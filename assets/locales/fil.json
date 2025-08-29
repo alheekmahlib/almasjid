@@ -1,0 +1,8 @@
+{
+  "appName": "Masjid - Hikmah Library",
+  "@appName": {
+    "description": "appName",
+    "type": "text",
+    "placeholders": {}
+  }
+}

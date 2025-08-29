@@ -1,0 +1,8 @@
+{
+  "appName": "مسجد - حکمت لائبریری",
+  "@appName": {
+    "description": "appName",
+    "type": "text",
+    "placeholders": {}
+  }
+}

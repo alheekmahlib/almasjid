@@ -1,0 +1,96 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+class CustomSwitchWidget<T extends GetxController> extends StatelessWidget {
+  final bool value;
+  final Function(bool) onChanged;
+  final T controller;
+  final String title;
+  final String? getBuilderId;
+  final double? startPadding;
+  final double? topPadding;
+  final double? endPadding;
+  final double? bottomPadding;
+  const CustomSwitchWidget({
+    super.key,
+    required this.value,
+    required this.onChanged,
+    required this.controller,
+    required this.title,
+    this.getBuilderId,
+    this.startPadding = 0.0,
+    this.topPadding = 8.0,
+    this.endPadding = 0.0,
+    this.bottomPadding = 8.0,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsetsDirectional.fromSTEB(startPadding ?? 0.0,
+          topPadding ?? 8.0, endPadding ?? 0.0, bottomPadding ?? 8.0),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.secondaryContainer,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+              child: Align(
+                alignment: AlignmentDirectional.centerStart,
+                child: FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Text(
+                    title.tr,
+                    style: TextStyle(
+                      fontFamily: 'cairo',
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: context.theme.colorScheme.inversePrimary
+                          .withValues(alpha: .7),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: GetBuilder<T>(
+                init: controller,
+                id: getBuilderId,
+                builder: (ctrl) => Switch(
+                  value: value,
+                  activeColor: Colors.red,
+                  inactiveTrackColor: context
+                      .theme.colorScheme.secondaryContainer
+                      .withValues(alpha: .5),
+                  activeTrackColor:
+                      context.theme.colorScheme.surface.withValues(alpha: .7),
+                  thumbColor:
+                      WidgetStatePropertyAll(context.theme.colorScheme.surface),
+                  trackOutlineColor:
+                      WidgetStatePropertyAll(context.theme.colorScheme.surface),
+                  inactiveThumbColor:
+                      context.theme.colorScheme.surface.withValues(alpha: .2),
+                  trackColor: WidgetStatePropertyAll(value
+                      ? context.theme.colorScheme.secondaryContainer
+                      : Colors.red.withValues(alpha: .8)),
+                  onChanged: (v) {
+                    onChanged(v);
+                    if (getBuilderId != null) {
+                      ctrl.update([getBuilderId!]);
+                    } else {
+                      ctrl.update();
+                    }
+                  },
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

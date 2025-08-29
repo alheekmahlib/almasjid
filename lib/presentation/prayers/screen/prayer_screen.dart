@@ -1,0 +1,199 @@
+part of '../prayers.dart';
+
+class PrayerScreen extends StatelessWidget {
+  PrayerScreen({super.key});
+
+  final generalCtrl = GeneralController.instance;
+  final adhanCtrl = AdhanController.instance;
+
+  @override
+  Widget build(BuildContext context) {
+    // adhanCtrl.initializeAdhan();
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (bool didPop, _) {
+        if (didPop) {
+          return;
+        }
+        PrayersNotificationsCtrl.instance.state.adhanPlayer.stop();
+        Get.back();
+      },
+      child: Obx(
+        () => !generalCtrl.state.activeLocation.value
+            ? activeLocationButton(context)
+            : Scaffold(
+                backgroundColor: context.theme.colorScheme.primaryContainer,
+                body: SafeArea(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          width: context.customOrientation(
+                              Get.width, Get.width * .45),
+                          child: SingleChildScrollView(
+                            child: Column(
+                              children: [
+                                const Gap(16),
+                                PrayerNowWidget(),
+                                const Gap(8),
+                                context.hDivider(width: Get.width * .5),
+                                const Gap(8),
+                                updateLocationBuild(context),
+                                const Gap(8),
+                                const ProhibitionWidget(),
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: context.customOrientation(
+                              Get.width, Get.width * .45),
+                          child: const PrayerBuild(),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+      ),
+    );
+  }
+
+  Container activeLocationButton(BuildContext context) {
+    return Container(
+      height: 80,
+      width: Get.width,
+      margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+      padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+      decoration: BoxDecoration(
+        color: context.theme.canvasColor.withValues(alpha: .1),
+        borderRadius: const BorderRadius.all(Radius.circular(8)),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Expanded(
+            flex: 7,
+            child: Text(
+              'activeLocationPlease'.tr,
+              style: TextStyle(
+                fontSize: 18.0,
+                fontFamily: 'naskh',
+                fontWeight: FontWeight.bold,
+                color: context.theme.canvasColor.withValues(alpha: .7),
+              ),
+            ),
+          ),
+          const Gap(32),
+          Expanded(
+            flex: 2,
+            child: Obx(() => Switch(
+                  value: generalCtrl.state.activeLocation.value,
+                  activeColor: Colors.red,
+                  inactiveTrackColor:
+                      context.theme.colorScheme.surface.withValues(alpha: .5),
+                  activeTrackColor:
+                      context.theme.colorScheme.surface.withValues(alpha: .7),
+                  thumbColor:
+                      WidgetStatePropertyAll(context.theme.colorScheme.surface),
+                  trackOutlineColor: WidgetStatePropertyAll(
+                      adhanCtrl.state.autoCalculationMethod.value
+                          ? context.theme.colorScheme.surface
+                          : context.theme.canvasColor.withValues(alpha: .5)),
+                  onChanged: (_) async =>
+                      await generalCtrl.toggleLocationService(),
+                )),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Padding updateLocationBuild(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      child: SizedBox(
+        height: 65,
+        width: Get.width,
+        child: ContainerButtonWidget(
+          svgHeight: 80,
+          width: Get.width,
+          svgPath: SvgPath.svgAlert,
+          title: '${Location.instance.city}\n${Location.instance.country}',
+          onPressed: () async {
+            // تحديث الموقع وإعادة حساب أوقات الصلاة
+            // Update location and recalculate prayer times
+            final success = await generalCtrl.updateLocationAndPrayerTimes();
+            if (success) {
+              // إجبار تحديث واجهة المستخدم
+              // Force UI update
+              Get.forceAppUpdate();
+              log(
+                'Location and prayer times updated successfully',
+                name: 'PrayerScreen',
+              );
+            }
+          },
+        ),
+        // CustomButton(
+        //       onPressed: () async {
+        //         // تحديث الموقع وإعادة حساب أوقات الصلاة
+        //         // Update location and recalculate prayer times
+        //         final success = await generalCtrl.updateLocationAndPrayerTimes();
+        //         if (success) {
+        //           // إجبار تحديث واجهة المستخدم
+        //           // Force UI update
+        //           Get.forceAppUpdate();
+        //           log(
+        //             'Location and prayer times updated successfully',
+        //             name: 'PrayerScreen',
+        //           );
+        //         }
+        //       },
+        //       icon: Icons.location_on_outlined,
+        //       iconSize: 100,
+        //       svgColor: Theme.of(context).colorScheme.primary,
+        //       title: '${Location.instance.city}\n${Location.instance.country}',
+        //       backgroundColor:
+        //           Theme.of(context).colorScheme.surface.withValues(alpha: .5),
+        //       borderColor: Theme.of(context).colorScheme.surface,
+        //       // iconWidget: Row(
+        //       //   children: [
+        //       //     Icon(
+        //       //       Icons.location_on_outlined,
+        //       //       size: 40,
+        //       //       color:
+        //       //           context.theme.colorScheme.onSurface.withValues(alpha: .3),
+        //       //     ),
+        //       //     const Gap(16),
+        //       //     Column(
+        //       //       mainAxisSize: MainAxisSize.min,
+        //       //       children: [
+        //       //         Text(
+        //       //           Location.instance.city,
+        //       //           style: TextStyle(
+        //       //             fontFamily: 'cairo',
+        //       //             fontSize: 18,
+        //       //             fontWeight: FontWeight.bold,
+        //       //             color: context.theme.colorScheme.inversePrimary,
+        //       //             height: 1.5,
+        //       //           ),
+        //       //         ),
+        //       //         Text(
+        //       //           Location.instance.country,
+        //       //           style: TextStyle(
+        //       //             fontFamily: 'cairo',
+        //       //             fontSize: 12,
+        //       //             color: context.theme.colorScheme.inversePrimary,
+        //       //             height: 1.5,
+        //       //           ),
+        //       //         ),
+        //       //       ],
+        //       //     ),
+        //       //   ],
+        //       // ),
+        //     ),
+      ),
+    );
+  }
+}

@@ -1,0 +1,140 @@
+name: almasjid
+description: "A new Flutter project."
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.6.1
+
+dependencies:
+  adhan: ^2.0.0+1
+  archive: ^4.0.7
+  awesome_notifications: ^0.10.0
+  background_fetch: ^1.4.0
+  badges: ^3.1.2
+  bot_toast: ^4.1.3
+  connectivity_plus: ^6.1.5
+  cupertino_icons: ^1.0.8
+  dio: ^5.9.0
+  drawing_animation:
+    git:
+      ref: master
+      url: https://github.com/alheekmahlib/drawing_animation.git
+  either_dart: ^1.0.0
+  floaty_nav_bar: ^1.0.2
+  flutter:
+    sdk: flutter
+  flutter_cache_manager: ^3.4.1
+  flutter_compass_v2: ^1.0.3
+  flutter_localizations:
+    sdk: flutter
+  flutter_map: ^8.1.1
+  flutter_native_splash: ^2.4.4
+  flutter_rounded_progress_bar: ^0.3.2
+  flutter_screenutil: ^5.9.3
+  flutter_svg: ^2.2.0
+  flutter_timezone: ^4.1.1
+  gap: ^3.0.1
+  gauge_indicator: ^0.4.3
+  geocoding: ^4.0.0
+  geolocator: ^13.0.2
+  get: ^4.7.2
+  get_it: ^8.2.0
+  get_storage: ^2.1.1
+  hijri_calendar: ^1.0.7+7
+  intl: ^0.19.0
+  just_audio: ^0.10.4
+  latlong2: ^0.9.1
+  lottie: ^3.3.1
+  nominatim_geocoding: ^0.0.6
+  path: ^1.9.0
+  path_provider: ^2.1.5
+  rate_my_app: ^2.3.2
+  share_plus: ^11.1.0
+  slide_countdown: ^2.0.2
+  smooth_page_indicator: ^1.2.1
+  solar_icons: ^0.0.5
+  square_percent_indicater: ^0.1.0
+  timezone: ^0.10.1
+  turf: ^0.0.10
+  url_launcher: ^6.3.2
+  wakelock_plus: ^1.3.2
+
+dev_dependencies:
+  flutter_lints: ^5.0.0
+  flutter_test:
+    sdk: flutter
+
+flutter_native_splash:
+  color: "#FDF7F4"
+  color_dark: "#2d2d2d"
+  image: assets/images/zad_muslim_stroke_512.png
+  image_dark: assets/images/zad_muslim_stroke_512.png
+  # flutter_lints: true
+  android_12:
+    image: assets/images/zad_muslim_stroke_512.png
+    icon_background_color: "#FDF7F4"
+    image_dark: assets/images/zad_muslim_stroke_512.png
+    icon_background_color_dark: "#2d2d2d"
+package_rename_config:
+  # android:
+  #   app_name: زاد المسلم - مكتبة الحكمة
+  # #    package_name: com.alheekmah.alheekmahLibrary
+  # ios:
+  #   app_name: زاد المسلم - مكتبة الحكمة
+  #    package_name: com.alheekmah.alheekmahLibrary
+  macos:
+    app_name: زاد المسلم - مكتبة الحكمة
+    package_name: com.alheekmah.alheekmahLibrary
+  # flutter_lints: ^5.0.0
+flutter_assets:
+  # assets_path: assets/lottie/
+  assets_path: assets/svg/
+  output_path: lib/core/utils/constants/
+  # filename: lottie_constants.dart
+  filename: svg_constants.dart
+  field_prefix: null
+  class_name: SvgPath
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - assets/svg/
+    - assets/svg/qibla/
+    - assets/svg/logo/
+    - assets/svg/home/
+    - assets/svg/prayer/
+    - assets/images/
+    - assets/svg/hijri/
+    - assets/json/
+    - assets/lottie/
+    - assets/locales/
+  fonts:
+    - family: cairo
+      fonts:
+        - asset: assets/fonts/Cairo-Bold.ttf
+          weight: 900
+        - asset: assets/fonts/Cairo-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Cairo-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Cairo-Regular.ttf
+    
+  # fonts:
+  #   - family: Schyler
+  #     fonts:
+  #       - asset: fonts/Schyler-Regular.ttf
+  #       - asset: fonts/Schyler-Italic.ttf
+  #         style: italic
+  #   - family: Trajan Pro
+  #     fonts:
+  #       - asset: fonts/TrajanPro.ttf
+  #       - asset: fonts/TrajanPro_Bold.ttf
+  #         weight: 700
+  #
+  # For details regarding fonts from package dependencies,
+  # see https://flutter.dev/to/font-from-package

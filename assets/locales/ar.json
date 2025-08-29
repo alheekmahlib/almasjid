@@ -1,0 +1,8 @@
+{
+  "appName": "المسجد - مكتبة الحكمة",
+  "@appName": {
+    "description": "appName",
+    "type": "text",
+    "placeholders": {}
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "appName": "মসজিদ - হিকমাহ লাইব্রেরি",
+  "@appName": {
+    "description": "appName",
+    "type": "text",
+    "placeholders": {}
+  }
+}
