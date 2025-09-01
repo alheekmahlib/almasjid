@@ -219,8 +219,8 @@ class EventController extends GetxController {
       if (event.month == hijriNow.hMonth &&
           event.day.contains(hijriNow.hDay) &&
           isTrue) {
-        String hadithText = event.hadith.map((h) => h.hadith).join("\n\n");
-        String bookInfo = event.hadith.map((h) => h.bookInfo).join("\n\n");
+        String hadithText = event.hadith.map((h) => h.hadith).join('\n\n');
+        String bookInfo = event.hadith.map((h) => h.bookInfo).join('\n\n');
 
         await Future.delayed(const Duration(seconds: 2));
         // customBottomSheet(
@@ -335,8 +335,8 @@ class EventController extends GetxController {
   void showEvent(int day, int month) {
     for (Event event in events) {
       if (event.month == month && event.day.contains(day)) {
-        String hadithText = event.hadith.map((h) => h.hadith).join("\n\n");
-        String bookInfo = event.hadith.map((h) => h.bookInfo).join("\n\n");
+        String hadithText = event.hadith.map((h) => h.hadith).join('\n\n');
+        String bookInfo = event.hadith.map((h) => h.bookInfo).join('\n\n');
 
         // customBottomSheet(
         //   textTitle: 'events',

@@ -34,11 +34,13 @@ class PrayerScreen extends StatelessWidget {
                             child: Column(
                               children: [
                                 const Gap(16),
-                                PrayerNowWidget(),
+                                const PrayerNowWidget(),
                                 const Gap(8),
                                 context.hDivider(width: Get.width * .5),
                                 const Gap(8),
                                 updateLocationBuild(context),
+                                const Gap(8),
+                                horizontalWeekCalendar(context),
                                 const Gap(8),
                                 const ProhibitionWidget(),
                               ],
@@ -55,6 +57,38 @@ class PrayerScreen extends StatelessWidget {
                   ),
                 ),
               ),
+      ),
+    );
+  }
+
+  Padding horizontalWeekCalendar(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+      child: HorizontalWeekCalendar(
+        minDate: DateTime.now().subtract(const Duration(days: 7)),
+        maxDate: DateTime.now().add(const Duration(days: 7)),
+        initialDate: DateTime.now(),
+        onDateChange: (date) {
+          adhanCtrl.state.selectedDate = date;
+        },
+        carouselHeight: 60,
+        showTopNavbar: false,
+        monthFormat: 'MMMM yyyy',
+        showNavigationButtons: true,
+        weekStartFrom: WeekStartFrom.monday,
+        borderRadius: BorderRadius.circular(12),
+        itemBorderColor: Colors.transparent,
+        activeBackgroundColor: context.theme.colorScheme.surface,
+        activeTextColor: Colors.white,
+        inactiveBackgroundColor: Colors.transparent,
+        inactiveTextColor: context.theme.colorScheme.inversePrimary,
+        disabledTextColor: Colors.grey,
+        disabledBackgroundColor: Colors.grey.withValues(alpha: .3),
+        activeNavigatorColor: context.theme.colorScheme.surface,
+        inactiveNavigatorColor: Colors.grey,
+        monthColor: context.theme.colorScheme.surface,
+        onWeekChange: (List<DateTime> dates) {},
+        scrollPhysics: const BouncingScrollPhysics(),
       ),
     );
   }
@@ -111,15 +145,21 @@ class PrayerScreen extends StatelessWidget {
 
   Padding updateLocationBuild(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      padding: const EdgeInsets.symmetric(horizontal: 24.0),
       child: SizedBox(
         height: 65,
         width: Get.width,
         child: ContainerButtonWidget(
           svgHeight: 80,
           width: Get.width,
-          svgPath: SvgPath.svgAlert,
+          // svgPath: SvgPath.svgAlert,
+          withShape: false,
+          useGradient: false,
+          backgroundColor: Colors.transparent,
+          borderColor:
+              Theme.of(context).colorScheme.surface.withValues(alpha: .2),
           title: '${Location.instance.city}\n${Location.instance.country}',
+          titleColor: context.theme.colorScheme.inversePrimary,
           onPressed: () async {
             // تحديث الموقع وإعادة حساب أوقات الصلاة
             // Update location and recalculate prayer times

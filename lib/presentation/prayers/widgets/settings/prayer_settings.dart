@@ -5,21 +5,24 @@ class PrayerSettings extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<GeneralController>(builder: (generalCtrl) {
-      return Column(
-        children: [
-          CustomSwitchWidget(
-            controller: GeneralController.instance,
-            title: 'detectLocation',
-            value: generalCtrl.state.activeLocation.value,
-            bottomPadding: 8.0,
-            onChanged: (bool value) => generalCtrl.toggleLocationService(),
-          ),
-          AdhanSounds(),
-          const Gap(8),
-          SetTimingCalculations()
-        ],
-      );
-    });
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      child: GetBuilder<GeneralController>(builder: (generalCtrl) {
+        return Column(
+          children: [
+            CustomSwitchWidget(
+              controller: GeneralController.instance,
+              title: 'detectLocation',
+              value: generalCtrl.state.activeLocation.value,
+              startMargin: 16.0,
+              onChanged: (bool value) => generalCtrl.toggleLocationService(),
+            ),
+            AdhanSounds(),
+            const Gap(8),
+            SetTimingCalculations()
+          ],
+        );
+      }),
+    );
   }
 }

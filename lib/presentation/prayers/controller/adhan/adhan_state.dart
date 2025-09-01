@@ -7,9 +7,9 @@ class AdhanState {
   /// -------- [Variables] ----------
   final box = GetStorage();
   PrayerTimes? prayerTimes;
-  String nextPrayerTime = "";
+  String nextPrayerTime = '';
   final DateTime now = DateTime.now();
-  RxString countdownTime = "".obs;
+  RxString countdownTime = ''.obs;
   SunnahTimes? sunnahTimes;
   // HijriCalendarConfig hijriDateNow = EventController.instance.hijriNow;
   late Coordinates coordinates;
@@ -42,6 +42,7 @@ class AdhanState {
   RxInt prohibitionTimesIndex = 0.obs;
   RxBool isPrayerTimesInitialized = false.obs;
   Rx<Color> backgroundColor = const Color(0xffB8E0EA).obs;
+  var selectedDate = DateTime.now();
 }
 
 class OurPrayerAdjustments extends PrayerAdjustments {

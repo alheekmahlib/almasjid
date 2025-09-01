@@ -1,9 +1,8 @@
 import 'package:almasjid/core/utils/constants/svg_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:get/get.dart';
+import 'package:get/utils.dart';
 
-import '/core/utils/constants/extensions/alignment_rotated_extension.dart';
 import '/core/utils/constants/extensions/svg_extensions.dart';
 
 class ContainerButtonWidget extends StatelessWidget {
@@ -21,6 +20,13 @@ class ContainerButtonWidget extends StatelessWidget {
   final IconData? icon;
   final double? verticalMargin;
   final double? horizontalMargin;
+  final bool? withShape;
+  final Color? titleColor;
+
+  /// Whether to use gradient background or solid color
+  /// If true: uses LinearGradient with backgroundColor and its transparent variant
+  /// If false: uses solid backgroundColor
+  final bool useGradient;
   const ContainerButtonWidget(
       {super.key,
       this.svgPath,
@@ -36,103 +42,129 @@ class ContainerButtonWidget extends StatelessWidget {
       this.icon,
       this.height,
       this.verticalMargin,
-      this.horizontalMargin});
+      this.horizontalMargin,
+      this.useGradient = true,
+      this.withShape = true,
+      this.titleColor});
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        if (onPressed != null) {
-          onPressed!();
-        }
-      },
-      child: Container(
-        padding: EdgeInsets.all(4.0),
-        margin: EdgeInsets.symmetric(
-            vertical: verticalMargin ?? 0.0,
-            horizontal: horizontalMargin ?? 0.0),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8.0),
-          border: Border.all(
-            color: borderColor ?? Theme.of(context).colorScheme.surface,
-            width: 1,
-          ),
-        ),
-        child: ClipPath(
+    return Container(
+      margin: EdgeInsets.symmetric(
+          vertical: verticalMargin ?? 0.0, horizontal: horizontalMargin ?? 0.0),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(16.0),
+        child: InkWell(
+          onTap: onPressed,
+          borderRadius: BorderRadius.circular(16.0),
+          splashColor: Colors.white.withValues(alpha: 0.3),
+          highlightColor: Colors.white.withValues(alpha: 0.1),
           child: Container(
-            height: height ?? 35,
-            width: width ?? 30,
+            height: height ?? 56,
+            width: width ?? double.infinity,
             decoration: BoxDecoration(
-              color: backgroundColor ??
-                  Theme.of(context).colorScheme.surface.withValues(alpha: .8),
-              borderRadius: BorderRadius.circular(4.0),
+              gradient: useGradient
+                  ? LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [
+                        backgroundColor ??
+                            Theme.of(context).colorScheme.surface,
+                        (backgroundColor ??
+                                Theme.of(context).colorScheme.surface)
+                            .withValues(alpha: 0.8),
+                      ],
+                    )
+                  : null,
+              color: useGradient
+                  ? null
+                  : backgroundColor ?? Theme.of(context).colorScheme.surface,
+              borderRadius: BorderRadius.circular(16.0),
+              border: Border.all(
+                color: borderColor ??
+                    Theme.of(context)
+                        .colorScheme
+                        .primary
+                        .withValues(alpha: 0.3),
+                width: 1.5,
+              ),
+              // boxShadow: [
+              //   BoxShadow(
+              //     color: (shadowColor ?? Theme.of(context).colorScheme.primary)
+              //         .withValues(alpha: 0.3),
+              //     blurRadius: 12,
+              //     offset: const Offset(0, 6),
+              //   ),
+              // ],
             ),
             child: Stack(
               alignment: Alignment.center,
               children: [
-                Align(
-                  alignment: AlignmentDirectional.centerEnd,
-                  child: Transform.translate(
-                    offset: alignmentLayout(
-                        const Offset(-40, 0), const Offset(40, 0)),
-                    child: icon != null
-                        ? Icon(
-                            icon!,
-                            size: 200,
-                            color: svgColor ??
-                                Theme.of(context)
-                                    .colorScheme
-                                    .secondaryContainer
-                                    .withValues(alpha: .1),
-                          )
-                        : customSvgWithColor(
-                            svgPath ?? SvgPath.svgAlert,
-                            height: 200,
-                            color: svgColor ??
-                                Theme.of(context)
-                                    .colorScheme
-                                    .secondaryContainer
-                                    .withValues(alpha: .1),
-                          ),
+                // Background decorative element
+                if (withShape!) ...[
+                  Positioned(
+                    right: -20,
+                    top: -10,
+                    child: Container(
+                      width: 100,
+                      height: 100,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: context.theme.colorScheme.primary
+                            .withValues(alpha: 0.3),
+                      ),
+                    ),
                   ),
-                ),
+                ],
+                // Main content
                 title != null
-                    ? Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          icon != null
-                              ? Icon(
-                                  icon!,
-                                  size: svgHeight ?? 24,
-                                  color: svgColor ??
-                                      Theme.of(context)
-                                          .colorScheme
-                                          .secondaryContainer
-                                          .withValues(alpha: .1),
-                                )
-                              : customSvgWithColor(
-                                  svgPath ?? SvgPath.svgAlert,
-                                  height: 24,
-                                  color: svgColor ??
-                                      Theme.of(context)
-                                          .colorScheme
-                                          .secondaryContainer,
+                    ? Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            if (icon != null || svgPath != null) ...[
+                              Container(
+                                padding: const EdgeInsets.all(8),
+                                decoration: BoxDecoration(
+                                  color: Colors.white.withValues(alpha: 0.2),
+                                  borderRadius: BorderRadius.circular(12),
                                 ),
-                          const Gap(8),
-                          Text(
-                            title!,
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: context.theme.canvasColor,
-                              fontWeight: FontWeight.w500,
-                              fontFamily: 'cairo',
-                              height: 1.5,
+                                child: icon != null
+                                    ? Icon(
+                                        icon!,
+                                        size: svgHeight ?? 24,
+                                        color: svgColor ?? Colors.white,
+                                      )
+                                    : customSvgWithColor(
+                                        svgPath ?? SvgPath.svgAlert,
+                                        height: svgHeight ?? 24,
+                                        color: svgColor ?? Colors.white,
+                                      ),
+                              ),
+                              const Gap(12),
+                            ],
+                            Flexible(
+                              child: Text(
+                                title!,
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: titleColor ?? Colors.white,
+                                  fontWeight: FontWeight.w600,
+                                  fontFamily: 'cairo',
+                                  letterSpacing: 0.5,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       )
-                    : child!,
+                    : Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: child!,
+                      ),
               ],
             ),
           ),

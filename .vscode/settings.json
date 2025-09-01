@@ -1,0 +1,31 @@
+{
+  // تفعيل التنسيق التلقائي عند الحفظ
+  "editor.formatOnSave": true,
+  // تفعيل الحفظ التلقائي مع التنسيق
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "explicit",
+    "source.fixAll": "explicit"
+  },
+  // إعدادات Dart و Flutter
+  "dart.lineLength": 80,
+  "dart.enableSdkFormatter": true,
+  "dart.previewLsp": false,
+  // تفعيل التحذيرات والاقتراحات
+  "dart.showLintNames": true,
+  "dart.showIgnoreQuickFixes": true,
+  // إعدادات المحرر
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+  // تفعيل الاقتراحات التلقائية
+  "editor.suggestOnTriggerCharacters": true,
+  "editor.acceptSuggestionOnEnter": "on",
+  // إعدادات التحذيرات
+  "problems.showCurrentInStatus": true,
+  // إعدادات Flutter المتقدمة
+  "dart.flutterHotReloadOnSave": "manual",
+  "dart.closingLabels": true,
+  "dart.analysisExcludedFolders": [
+    "build"
+  ]
+}

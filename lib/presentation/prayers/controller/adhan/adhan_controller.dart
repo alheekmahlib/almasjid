@@ -23,7 +23,7 @@ class AdhanController extends GetxController {
     Future.delayed(
         const Duration(seconds: 10),
         () => ever(getNextPrayerByDateTime(), (value) {
-              log("nextPrayer has been changed $value");
+              log('nextPrayer has been changed $value');
               update();
             }));
   }
@@ -43,26 +43,26 @@ class AdhanController extends GetxController {
   String prayerNameFromEnum(Prayer prayer) {
     switch (prayer) {
       case Prayer.fajr:
-        return "Fajr";
+        return 'Fajr';
       case Prayer.sunrise:
-        return "Sunrise";
+        return 'Sunrise';
       case Prayer.dhuhr:
-        return "Dhuhr";
+        return 'Dhuhr';
       case Prayer.asr:
-        return "Asr";
+        return 'Asr';
       case Prayer.maghrib:
-        return "Maghrib";
+        return 'Maghrib';
       case Prayer.isha:
-        return "Isha";
+        return 'Isha';
       default:
-        return "Fajr";
+        return 'Fajr';
     }
   }
 
   Future<void> initTimes() async {
-    log("====================");
-    log("Updating times...");
-    log("====================");
+    log('====================');
+    log('Updating times...');
+    log('====================');
     await Future.wait([
       getPrayerTime(0, state.prayerTimes!.fajr)
           .then((v) => state.fajrTime.value = v),
@@ -81,7 +81,7 @@ class AdhanController extends GetxController {
       getPrayerTime(7, state.sunnahTimes!.lastThirdOfTheNight)
           .then((v) => state.lastThirdTime.value = v),
     ]);
-    log("Times updated, calling update...");
+    log('Times updated, calling update...');
     // update();
   }
 

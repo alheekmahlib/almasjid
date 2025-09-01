@@ -12,7 +12,7 @@ class AppRouter {
   static List<GetPage> pages = [
     GetPage(
       name: homeScreen,
-      page: () => HomeScreen(),
+      page: () => const HomeScreen(),
       // page: () => ZadIntelligenceScreen(),
       // binding: HomeWidgetsBinding(),
       transition: Transition.fadeIn,

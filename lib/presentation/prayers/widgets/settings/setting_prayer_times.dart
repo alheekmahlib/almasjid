@@ -16,7 +16,8 @@ class SettingPrayerTimes extends StatelessWidget {
               Text(
                 'SetPrayerTimes'.tr,
                 style: TextStyle(
-                    color: context.theme.canvasColor.withValues(alpha: .7),
+                    color: context.theme.colorScheme.inversePrimary
+                        .withValues(alpha: .7),
                     fontFamily: 'cairo',
                     fontStyle: FontStyle.italic,
                     fontWeight: FontWeight.bold,
@@ -40,33 +41,45 @@ class SettingPrayerTimes extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          '${adhanCtrl.prayerNameList[index]['title']!}'.tr,
-                          style: TextStyle(
-                              color: context.theme.canvasColor
-                                  .withValues(alpha: .7),
-                              fontFamily: 'cairo',
-                              fontStyle: FontStyle.italic,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16),
-                        ),
+                        isOnePrayer
+                            ? const SizedBox.shrink()
+                            : Text(
+                                '${adhanCtrl.prayerNameList[index]['title']!}'
+                                    .tr,
+                                style: TextStyle(
+                                    color: context
+                                        .theme.colorScheme.inversePrimary
+                                        .withValues(alpha: .7),
+                                    fontFamily: 'cairo',
+                                    fontStyle: FontStyle.italic,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16),
+                              ),
                         const Gap(4),
                         SizedBox(
                           height: 45,
                           child: Container(
-                            color: context.theme.colorScheme.secondaryContainer,
+                            decoration: BoxDecoration(
+                              color: context.theme.colorScheme.surface
+                                  .withValues(alpha: .3),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(
-                                  adhanCtrl.prayerNameList[index]['time']!,
-                                  style: TextStyle(
-                                    fontFamily: 'cairo',
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                    color: context
-                                        .theme.colorScheme.inversePrimary
-                                        .withValues(alpha: .7),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 16.0),
+                                  child: Text(
+                                    adhanCtrl.prayerNameList[index]['time']!,
+                                    style: TextStyle(
+                                      fontFamily: 'cairo',
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                      color: context
+                                          .theme.colorScheme.inversePrimary
+                                          .withValues(alpha: .7),
+                                    ),
                                   ),
                                 ),
                                 Padding(

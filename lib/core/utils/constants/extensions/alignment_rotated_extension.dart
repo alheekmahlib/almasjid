@@ -22,7 +22,7 @@ extension RotatedAndAlignmentExtension on Widget {
     }
   }
 
-  alignmentLayout(var rtl, var ltr) {
+  dynamic alignmentLayout(var rtl, var ltr) {
     if ('lang'.tr.isRtlLanguage()) {
       return rtl;
     } else {
@@ -30,7 +30,7 @@ extension RotatedAndAlignmentExtension on Widget {
     }
   }
 
-  alignmentLayoutWPassLang(String language, var rtl, var ltr) {
+  dynamic alignmentLayoutWPassLang(String language, var rtl, var ltr) {
     if ('lang'.tr.isRtlLanguageWPassLang(language)) {
       return rtl;
     } else {

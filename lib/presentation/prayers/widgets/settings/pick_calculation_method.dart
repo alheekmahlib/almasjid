@@ -46,7 +46,7 @@ class PickCalculationMethod extends StatelessWidget {
                 child: Container(
                   height: 50,
                   width: Get.width,
-                  margin: const EdgeInsets.all(8.0),
+                  margin: const EdgeInsets.symmetric(horizontal: 8.0),
                   padding: const EdgeInsets.symmetric(
                       vertical: 8.0, horizontal: 16.0),
                   decoration: BoxDecoration(

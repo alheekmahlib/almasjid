@@ -3,7 +3,7 @@ part of '../../prayers.dart';
 class NotiState {
   final box = GetStorage('AdhanSounds');
 
-  RxString progressString = "0".obs;
+  RxString progressString = '0'.obs;
   RxDouble progress = 0.0.obs;
   RxBool isDownloading = false.obs;
   RxInt downloadIndex = 0.obs;

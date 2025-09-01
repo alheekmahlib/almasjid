@@ -45,14 +45,13 @@ extension BottomSheetExtension on void {
                     const SizedBox().customSvgWithColor(
                       SvgPath.svgCloseCarve,
                       width: 120,
-                      color:
-                          Theme.of(Get.context!).colorScheme.secondaryContainer,
+                      color: Theme.of(Get.context!).colorScheme.inversePrimary,
                     ),
                     Container(
                       width: 70,
                       height: 4,
                       decoration: BoxDecoration(
-                        color: Theme.of(Get.context!).colorScheme.primary,
+                        color: Theme.of(Get.context!).canvasColor,
                         borderRadius: BorderRadius.circular(8),
                       ),
                     )
@@ -60,7 +59,7 @@ extension BottomSheetExtension on void {
                 ),
                 const Gap(8),
                 Get.context!.hDivider(
-                  color: Theme.of(Get.context!).colorScheme.secondaryContainer,
+                  color: Theme.of(Get.context!).colorScheme.inversePrimary,
                   height: 1,
                   width: 70,
                 ),
@@ -68,7 +67,8 @@ extension BottomSheetExtension on void {
                     Text(
                       textTitle?.tr ?? '',
                       style: TextStyle(
-                        color: Theme.of(Get.context!).canvasColor,
+                        color:
+                            Theme.of(Get.context!).colorScheme.inversePrimary,
                         fontFamily: 'cairo',
                         fontWeight: FontWeight.bold,
                         fontSize: 20,

@@ -86,7 +86,7 @@ extension AdhanGetters on AdhanController {
   /// حساب التقدم من صلاة الفجر إلى صلاة العشاء
   /// Calculate progress from Fajr to Isha prayer
   RxDouble get getPrayerDayProgress {
-    final now = DateTime.now();
+    final now = DateTime.now(); // استخدام الوقت الحالي الفعلي
     final PrayerTimes? prayerTimes = state.prayerTimes;
 
     if (prayerTimes == null) {
@@ -145,23 +145,23 @@ extension AdhanGetters on AdhanController {
 
     // ألوان مختلفة لكل فترة صلاة
     final List<GaugeAxisGradient> prayerColors = [
-      GaugeAxisGradient(
+      const GaugeAxisGradient(
         colors: [Color(0xff0a0f29), Color(0xff000000)],
         colorStops: [0.0, 1.0],
       ), // الفجر إلى الشروق - أزرق داكن (فجر)
-      GaugeAxisGradient(
+      const GaugeAxisGradient(
         colors: [Color(0xffB8E0EA), Color(0xff0098EE)],
         colorStops: [0.0, 1.0],
       ), // الشروق إلى الظهر - ذهبي (صباح)
-      GaugeAxisGradient(
+      const GaugeAxisGradient(
         colors: [Color(0xff0098EE), Color(0xff0098EE)],
         colorStops: [0.0, 1.0],
       ), // الظهر إلى العصر - أزرق فاتح (ظهيرة)
-      GaugeAxisGradient(
+      const GaugeAxisGradient(
         colors: [Color(0xffF17148), Color(0xffCF4B6D)],
         colorStops: [0.0, 1.0],
       ), // العصر إلى المغرب - برتقالي (عصر)
-      GaugeAxisGradient(
+      const GaugeAxisGradient(
         colors: [Color(0xff0a0f29), Color(0xff000000)],
         colorStops: [0.0, 1.0],
       ), // المغرب إلى العشاء - بنفسجي (مغرب)
@@ -431,68 +431,6 @@ extension AdhanGetters on AdhanController {
   }
 
   PrayerDetail get getNextPrayerDetail => getPrayerDetails(isNextPrayer: true);
-
-  Rx<Widget> getTimeNowWidget(
-    Widget widget1,
-    Widget widget2,
-    Widget widget3,
-    Widget widget4,
-    Widget widget5,
-    Widget widget6, {
-    int? index,
-  }) {
-    // إذا تم تمرير index، يتم تحديد الودجت بناءً على الفهرس
-    if (index != null) {
-      if (index > 4) {
-        index = 5;
-      }
-      switch (index) {
-        case 0:
-          return widget1.obs;
-        case 1:
-          return widget2.obs;
-        case 2:
-          return widget3.obs;
-        case 3:
-          return widget4.obs;
-        case 4:
-          return widget5.obs;
-        case 5:
-          return widget6.obs;
-        default:
-          throw ArgumentError('Invalid index. Must be between 0 and 4.');
-      }
-    }
-
-    // إذا لم يتم تمرير index، يتم تحديد الودجت بناءً على الوقت الحالي
-    DateTime fajr = state.prayerTimes!.fajr;
-    DateTime sunrise = state.prayerTimes!.sunrise;
-    DateTime dhuhr = state.prayerTimes!.dhuhr;
-    DateTime maghrib = state.prayerTimes!.maghrib;
-
-    if (state.now.isBefore(fajr.subtract(const Duration(minutes: 10))) &&
-        state.now.isAfter(sunrise.add(const Duration(minutes: 10)))) {
-      return widget1.obs;
-    } else if (state.now
-            .isAfter(sunrise.subtract(const Duration(minutes: 10))) &&
-        state.now.isBefore(sunrise.add(const Duration(minutes: 30)))) {
-      return widget2.obs;
-    } else if (state.now.isAfter(sunrise.add(const Duration(minutes: 30))) &&
-        state.now.isBefore(dhuhr.subtract(const Duration(hours: 1)))) {
-      return widget3.obs;
-    } else if (state.now.isAfter(dhuhr.subtract(const Duration(hours: 1))) &&
-        state.now.isBefore(maghrib.subtract(const Duration(hours: 1)))) {
-      return widget4.obs;
-    } else if (state.now.isAfter(maghrib.subtract(const Duration(hours: 1))) &&
-        state.now.isBefore(maghrib.add(const Duration(minutes: 20)))) {
-      return widget5.obs;
-    } else if (state.now.isAfter(maghrib.add(const Duration(minutes: 20))) ||
-        state.now.isBefore(sunrise.subtract(const Duration(minutes: 10)))) {
-      return widget6.obs;
-    } else {
-      return widget1.obs;
-    }
-  }
 
   LinearGradient getTimeNowColor() {
     DateTime sunrise = state.prayerTimes!.sunrise;

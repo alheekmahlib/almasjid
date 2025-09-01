@@ -43,7 +43,7 @@ class CustomButton extends StatelessWidget {
     return SizedBox(
       width: width ?? 30,
       child: Container(
-        padding: EdgeInsets.all(4.0),
+        padding: const EdgeInsets.all(4.0),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8.0),
           border: Border.all(

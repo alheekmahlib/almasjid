@@ -13,7 +13,10 @@ class AdhanSounds extends StatelessWidget {
         onPressed: () => customBottomSheet(
             textTitle: 'adhanSounds', child: bottomSheetWidget(context)),
         title: 'adhanSounds',
-        titleColor: Theme.of(context).colorScheme.secondaryContainer,
+        titleColor: Theme.of(context).colorScheme.surface,
+        width: Get.width,
+        backgroundColor:
+            Theme.of(context).colorScheme.surface.withValues(alpha: .3),
       ),
     );
   }

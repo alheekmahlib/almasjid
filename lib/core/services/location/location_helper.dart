@@ -13,7 +13,7 @@ class LocationHelper {
       if (permission == LocationPermission.denied) {
         permission = await Geolocator.requestPermission();
         if (permission == LocationPermission.denied) {
-          log("message",
+          log('message',
               error: LocationException('Location permissions are denied.'));
           throw LocationException('Location permissions are denied.');
         }
@@ -138,18 +138,18 @@ class LocationHelper {
   }
 
   Future<Position?> get fetchCurrentPosition async {
-    log("Starting to fetch location...", name: 'Background service');
+    log('Starting to fetch location...', name: 'Background service');
 
     bool isLocationServiceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!isLocationServiceEnabled) {
-      log("Location services are disabled.", name: 'Background service');
+      log('Location services are disabled.', name: 'Background service');
       return null; // Return null when location services are disabled
     }
 
     LocationPermission permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied ||
         permission == LocationPermission.deniedForever) {
-      log("Location permissions are denied.", name: 'Background service');
+      log('Location permissions are denied.', name: 'Background service');
       return null; // Return null when permissions are denied
     }
 
@@ -164,7 +164,7 @@ class LocationHelper {
                 30), // حد زمني للحصول على الموقع - Time limit for location fetch
       ),
     );
-    log("Fetched current position: (${currentPosition.latitude}, ${currentPosition.longitude})",
+    log('Fetched current position: (${currentPosition.latitude}, ${currentPosition.longitude})',
         name: 'Background service');
 
     return currentPosition; // Return the fetched position

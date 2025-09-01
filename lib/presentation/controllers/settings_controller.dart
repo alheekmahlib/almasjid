@@ -33,9 +33,9 @@ class SettingsController extends GetxController {
   }
 
   void loadLang() {
-    String? langCode = box.read("lang");
-    String? langName = box.read("langName") ?? 'العربية';
-    String? langFont = box.read("languageFont") ?? 'naskh';
+    String? langCode = box.read('lang');
+    String? langName = box.read('langName') ?? 'العربية';
+    String? langFont = box.read('languageFont') ?? 'naskh';
     // String? langFont2 =
     //     await box.read("languageFont2");
 

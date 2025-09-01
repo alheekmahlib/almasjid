@@ -1,9 +1,11 @@
+import 'package:almasjid/core/utils/constants/extensions/bottom_sheet_extension.dart';
 import 'package:almasjid/core/utils/constants/extensions/svg_extensions.dart';
 import 'package:floaty_nav_bar/floaty_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../core/utils/constants/svg_constants.dart';
+import '../prayers/prayers.dart';
 import 'home_controller.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -22,14 +24,15 @@ class HomeScreen extends StatelessWidget {
               FloatingActionButtonLocation.centerDocked,
           floatingActionButton: FloatyNavBar(
             backgroundColor: context.theme.colorScheme.inversePrimary,
-            shape: SquircleShape(),
+            shape: const SquircleShape(),
             gap: 32,
             selectedTab: controller.currentIndex,
             tabs: [
               FloatyTab(
                 isSelected: controller.currentIndex == 0,
                 title: 'prayer',
-                margin: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                margin:
+                    const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
                 selectedColor: context.theme.colorScheme.surface,
                 unselectedColor: Colors.transparent,
                 titleStyle: TextStyle(
@@ -53,15 +56,18 @@ class HomeScreen extends StatelessWidget {
                     SvgPath.svgHomeSettings,
                     color: context.theme.canvasColor.withValues(alpha: .6),
                   ),
-                  onTap: () {
-                    // Add action for search tab
-                  },
+                  onTap: () => context.customBottomSheet(
+                    containerColor: context.theme.colorScheme.primaryContainer,
+                    textTitle: 'prayerSettings',
+                    child: const PrayerSettings(),
+                  ),
                 ),
               ),
               FloatyTab(
                 isSelected: controller.currentIndex == 1,
                 title: 'Home',
-                margin: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                margin:
+                    const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
                 selectedColor: context.theme.colorScheme.surface,
                 unselectedColor: Colors.transparent,
                 titleStyle: TextStyle(
@@ -85,129 +91,15 @@ class HomeScreen extends StatelessWidget {
                     SvgPath.svgHomeSettings,
                     color: context.theme.canvasColor.withValues(alpha: .6),
                   ),
-                  onTap: () {
-                    // Add action for search tab
-                  },
+                  onTap: () => context.customBottomSheet(
+                    containerColor: context.theme.colorScheme.primaryContainer,
+                    textTitle: 'prayerSettings',
+                    child: const PrayerSettings(),
+                  ),
                 ),
               ),
             ],
           ),
-          // floatingActionButtonLocation:
-          //     FloatingActionButtonLocation.centerDocked,
-          // floatingActionButton: Container(
-          //   margin: EdgeInsets.all(16.0),
-          //   decoration: BoxDecoration(
-          //     color: Theme.of(context).colorScheme.surface,
-          //     borderRadius: BorderRadius.circular(16),
-          //     boxShadow: [
-          //       BoxShadow(
-          //         color: Colors.black.withValues(alpha: 0.1),
-          //         blurRadius: 10,
-          //         offset: const Offset(0, -5),
-          //       ),
-          //     ],
-          //   ),
-          //   child: ClipRRect(
-          //     borderRadius: BorderRadius.circular(16),
-          //     child: BottomNavigationBar(
-          //       currentIndex: controller.currentIndex,
-          //       onTap: controller.changeIndex,
-          //       type: BottomNavigationBarType.fixed,
-          //       showSelectedLabels: false,
-          //       showUnselectedLabels: false,
-          //       backgroundColor: Theme.of(context).colorScheme.surface,
-          //       selectedItemColor: Theme.of(context).colorScheme.primary,
-          //       unselectedItemColor: Theme.of(context)
-          //           .colorScheme
-          //           .inversePrimary
-          //           .withValues(alpha: 0.6),
-          //       selectedLabelStyle: const TextStyle(
-          //         fontFamily: 'cairo',
-          //         fontSize: 18,
-          //         fontWeight: FontWeight.bold,
-          //       ),
-          //       unselectedLabelStyle: const TextStyle(
-          //         fontFamily: 'cairo',
-          //         fontSize: 18,
-          //       ),
-          //       items: [
-          //         BottomNavigationBarItem(
-          //           label: '',
-          //           icon: Container(
-          //             padding: const EdgeInsets.all(8),
-          //             decoration: BoxDecoration(
-          //               color: controller.currentIndex == 0
-          //                   ? Theme.of(context)
-          //                       .colorScheme
-          //                       .primaryContainer
-          //                       .withValues(alpha: 0.5)
-          //                   : Colors.transparent,
-          //               borderRadius: BorderRadius.circular(18),
-          //             ),
-          //             child: Icon(
-          //               Icons.explore,
-          //               size: 24,
-          //               color: controller.currentIndex == 0
-          //                   ? Theme.of(context).colorScheme.primary
-          //                   : Theme.of(context)
-          //                       .colorScheme
-          //                       .onSecondary
-          //                       .withValues(alpha: 0.6),
-          //             ),
-          //           ),
-          //         ),
-          //         BottomNavigationBarItem(
-          //           label: '',
-          //           icon: Container(
-          //             padding: const EdgeInsets.all(8),
-          //             decoration: BoxDecoration(
-          //               color: controller.currentIndex == 1
-          //                   ? Theme.of(context)
-          //                       .colorScheme
-          //                       .primaryContainer
-          //                       .withValues(alpha: 0.5)
-          //                   : Colors.transparent,
-          //               borderRadius: BorderRadius.circular(18),
-          //             ),
-          //             child: customSvgWithCustomColor(
-          //               height: 30,
-          //               width: 30,
-          //               controller.currentIndex == 1
-          //                   ? SvgPath.svgHomePrayerFill
-          //                   : SvgPath.svgHomePrayerStroke,
-          //               color: context.theme.colorScheme.inversePrimary,
-          //             ),
-          //           ),
-          //         ),
-          //         BottomNavigationBarItem(
-          //           label: '',
-          //           icon: Container(
-          //             padding: const EdgeInsets.all(8),
-          //             decoration: BoxDecoration(
-          //               color: controller.currentIndex == 2
-          //                   ? Theme.of(context)
-          //                       .colorScheme
-          //                       .primaryContainer
-          //                       .withValues(alpha: 0.5)
-          //                   : Colors.transparent,
-          //               borderRadius: BorderRadius.circular(18),
-          //             ),
-          //             child: Icon(
-          //               Icons.settings,
-          //               size: 24,
-          //               color: controller.currentIndex == 2
-          //                   ? Theme.of(context).colorScheme.primary
-          //                   : Theme.of(context)
-          //                       .colorScheme
-          //                       .onSecondary
-          //                       .withValues(alpha: 0.6),
-          //             ),
-          //           ),
-          //         ),
-          //       ],
-          //     ),
-          //   ),
-          // ),
         );
       },
     );

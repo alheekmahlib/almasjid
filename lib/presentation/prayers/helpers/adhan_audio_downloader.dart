@@ -107,16 +107,16 @@ class AudioDownloader {
       await zipFile.delete();
 
       if (extractedFilePath == null || extractedFilePathFajir == null) {
-        throw Exception("Failed to extract audio files.");
+        throw Exception('Failed to extract audio files.');
       }
       notiCtrl.state.tempAdhanPathFajir.value = extractedFilePathFajir;
       notiCtrl.state.tempAdhanPath.value = extractedFilePath;
-      log("Final tempAdhanPath: ${notiCtrl.state.tempAdhanPath.value}");
-      log("Final tempAdhanPathFajir: ${notiCtrl.state.tempAdhanPathFajir.value}");
+      log('Final tempAdhanPath: ${notiCtrl.state.tempAdhanPath.value}');
+      log('Final tempAdhanPathFajir: ${notiCtrl.state.tempAdhanPathFajir.value}');
 
       return extractedFilePathFajir ?? extractedFilePath;
     } catch (e) {
-      log("Error downloading or extracting file: $e");
+      log('Error downloading or extracting file: $e');
       return null;
     }
   }

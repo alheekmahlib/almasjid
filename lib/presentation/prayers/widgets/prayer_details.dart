@@ -12,70 +12,58 @@ class PrayerDetails extends StatelessWidget {
     return GetBuilder<AdhanController>(
         id: 'init_athan',
         builder: (adhanCtrl) {
-          return Stack(
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 32.0),
-                child: TimeNowWidget(
-                  height: 250,
-                  index: index,
-                ),
-              ),
-              SingleChildScrollView(
-                physics: const ClampingScrollPhysics(),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: Column(
+          return SingleChildScrollView(
+            physics: const ClampingScrollPhysics(),
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 32.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 32.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              prayerSummary ??
-                                  '${adhanCtrl.prayerNameList[index]['title']}'
-                                      .tr,
-                              style: TextStyle(
-                                fontFamily: 'cairo',
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
-                                color: context.theme.canvasColor
-                                    .withValues(alpha: .7),
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                            Text(
-                              adhanCtrl.prayerNameList[index]['time'],
-                              style: TextStyle(
-                                fontFamily: 'cairo',
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
-                                color: context.theme.canvasColor
-                                    .withValues(alpha: .7),
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          ],
+                      Text(
+                        prayerSummary ??
+                            '${adhanCtrl.prayerNameList[index]['title']}'.tr,
+                        style: TextStyle(
+                          fontFamily: 'cairo',
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: context.theme.colorScheme.inversePrimary
+                              .withValues(alpha: .7),
                         ),
+                        textAlign: TextAlign.center,
                       ),
-                      const Gap(8),
-                      prayerProgressBar(context, adhanCtrl, index),
-                      const Gap(8),
-                      prayerDetails(context, index),
-                      const Gap(16),
-                      context.hDivider(
-                          width: Get.width * .5,
-                          height: 1,
-                          color: context.theme.colorScheme.surface
-                              .withValues(alpha: .7)),
-                      const Gap(16),
-                      SettingPrayerTimes(listNum: index, isOnePrayer: true),
+                      Text(
+                        adhanCtrl.prayerNameList[index]['time'],
+                        style: TextStyle(
+                          fontFamily: 'cairo',
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: context.theme.colorScheme.inversePrimary
+                              .withValues(alpha: .7),
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
                     ],
                   ),
                 ),
-              ),
-            ],
+                const Gap(8),
+                prayerProgressBar(context, adhanCtrl, index),
+                const Gap(8),
+                prayerDetails(context, index),
+                const Gap(16),
+                context.hDivider(
+                    width: Get.width * .5,
+                    height: 1,
+                    color: context.theme.colorScheme.surface
+                        .withValues(alpha: .7)),
+                const Gap(16),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: SettingPrayerTimes(listNum: index, isOnePrayer: true),
+                ),
+              ],
+            ),
           );
         });
   }
@@ -88,14 +76,19 @@ class PrayerDetails extends StatelessWidget {
         alignment: Alignment.center,
         children: [
           Obx(() => RoundedProgressBar(
-                height: 65,
+                height: 35,
                 style: RoundedProgressBarStyle(
                   borderWidth: 5,
                   widthShadow: 5,
-                  backgroundProgress: Theme.of(context).colorScheme.onSurface,
-                  colorProgress: Theme.of(context).colorScheme.primary,
-                  colorProgressDark:
-                      Theme.of(context).canvasColor.withValues(alpha: 0.5),
+                  backgroundProgress: Theme.of(context)
+                      .colorScheme
+                      .onSurface
+                      .withValues(alpha: 0.1),
+                  colorProgress: Theme.of(context).colorScheme.surface,
+                  colorProgressDark: Theme.of(context)
+                      .colorScheme
+                      .inversePrimary
+                      .withValues(alpha: 0.1),
                   colorBorder: Theme.of(context)
                       .colorScheme
                       .surface
@@ -106,27 +99,10 @@ class PrayerDetails extends StatelessWidget {
                 borderRadius: BorderRadius.circular(4),
                 percent: adhanCtrl.getTimeLeftForPrayerByIndex(index).value,
               )),
-          Transform.translate(
-            offset: const Offset(0, 5),
-            child: Column(
-              children: [
-                Text(
-                  'timeLeft:'.tr,
-                  style: TextStyle(
-                    fontFamily: 'cairo',
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    color: Theme.of(context).canvasColor.withValues(alpha: .5),
-                  ),
-                ),
-                SlideCountdownWidget(
-                    fontSize: 24,
-                    color: Theme.of(context).canvasColor,
-                    duration:
-                        adhanCtrl.getDurationLeftForPrayerByIndex(index).value),
-              ],
-            ),
-          ),
+          SlideCountdownWidget(
+              fontSize: 24,
+              color: Theme.of(context).colorScheme.inversePrimary,
+              duration: adhanCtrl.getDurationLeftForPrayerByIndex(index).value),
         ],
       ),
     );
@@ -138,7 +114,7 @@ class PrayerDetails extends StatelessWidget {
         prayerHadithsList[index]['fromQuran'] == ''
             ? const SizedBox.shrink()
             : Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 32.0),
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
                 child: Column(
                   children: [
                     Align(
@@ -149,8 +125,8 @@ class PrayerDetails extends StatelessWidget {
                           fontFamily: 'cairo',
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
-                          color:
-                              context.theme.canvasColor.withValues(alpha: .7),
+                          color: context.theme.colorScheme.inversePrimary
+                              .withValues(alpha: .7),
                         ),
                       ),
                     ),
@@ -159,7 +135,8 @@ class PrayerDetails extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 16.0, vertical: 8.0),
                       decoration: BoxDecoration(
-                          color: context.theme.colorScheme.onSurface,
+                          color: context.theme.colorScheme.surface
+                              .withValues(alpha: .2),
                           borderRadius: const BorderRadius.all(
                             Radius.circular(8),
                           )),
@@ -168,8 +145,8 @@ class PrayerDetails extends StatelessWidget {
                         style: TextStyle(
                           fontFamily: 'uthmanic2',
                           fontSize: 22,
-                          color:
-                              context.theme.canvasColor.withValues(alpha: .7),
+                          color: context.theme.colorScheme.inversePrimary
+                              .withValues(alpha: .7),
                         ),
                       ),
                     ),
@@ -183,7 +160,8 @@ class PrayerDetails extends StatelessWidget {
                       style: TextStyle(
                         fontFamily: 'naskh',
                         fontSize: 14,
-                        color: context.theme.canvasColor.withValues(alpha: .7),
+                        color: context.theme.colorScheme.inversePrimary
+                            .withValues(alpha: .7),
                       ),
                     ),
                   ],
@@ -191,7 +169,7 @@ class PrayerDetails extends StatelessWidget {
         prayerHadithsList[index]['fromSunnah'] == ''
             ? const SizedBox.shrink()
             : Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 32.0),
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
                 child: Column(
                   children: [
                     Align(
@@ -202,8 +180,8 @@ class PrayerDetails extends StatelessWidget {
                           fontFamily: 'cairo',
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
-                          color:
-                              context.theme.canvasColor.withValues(alpha: .7),
+                          color: context.theme.colorScheme.inversePrimary
+                              .withValues(alpha: .7),
                         ),
                       ),
                     ),
@@ -212,7 +190,8 @@ class PrayerDetails extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 16.0, vertical: 8.0),
                       decoration: BoxDecoration(
-                          color: context.theme.colorScheme.onSurface,
+                          color: context.theme.colorScheme.surface
+                              .withValues(alpha: .2),
                           borderRadius: const BorderRadius.all(
                             Radius.circular(8),
                           )),
@@ -222,8 +201,8 @@ class PrayerDetails extends StatelessWidget {
                           fontFamily: 'naskh',
                           fontSize: 20,
                           // fontWeight: FontWeight.bold,
-                          color:
-                              context.theme.canvasColor.withValues(alpha: .7),
+                          color: context.theme.colorScheme.inversePrimary
+                              .withValues(alpha: .7),
                         ),
                         textAlign: TextAlign.justify,
                       ),
@@ -238,7 +217,8 @@ class PrayerDetails extends StatelessWidget {
                       style: TextStyle(
                         fontFamily: 'naskh',
                         fontSize: 14,
-                        color: context.theme.canvasColor.withValues(alpha: .7),
+                        color: context.theme.colorScheme.inversePrimary
+                            .withValues(alpha: .7),
                       ),
                     ),
                   ],

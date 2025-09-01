@@ -8,7 +8,7 @@ extension LaunchAlheekmahUrlExtension on void {
     if (await canLaunchUrl(Uri.parse(uri))) {
       await launchUrl(Uri.parse(uri));
     } else {
-      log("No url client found");
+      log('No url client found');
     }
   }
 }

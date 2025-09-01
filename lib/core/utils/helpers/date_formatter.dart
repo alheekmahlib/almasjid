@@ -82,7 +82,7 @@ class DateFormatter {
   }
 
   static String formatPrayerTime(DateTime? time) {
-    if (time == null) return "";
+    if (time == null) return '';
     try {
       // Customize the format as needed
       return DateFormat('h:mm a', _locale).format(time);
@@ -94,7 +94,7 @@ class DateFormatter {
   }
 
   static String timeLeft(DateTime? time) {
-    if (time == null) return "";
+    if (time == null) return '';
     try {
       // Customize the format as needed
       return DateFormat('hh:mm', _locale).format(time);

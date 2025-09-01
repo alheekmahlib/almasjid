@@ -10,7 +10,7 @@ extension ContactUsExtension on void {
     if (await canLaunchUrl(Uri.parse(uri))) {
       await launchUrl(Uri.parse(uri));
     } else {
-      log("No email client found");
+      log('No email client found');
     }
   }
 }

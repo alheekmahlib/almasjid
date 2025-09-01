@@ -11,6 +11,10 @@ class CustomSwitchWidget<T extends GetxController> extends StatelessWidget {
   final double? topPadding;
   final double? endPadding;
   final double? bottomPadding;
+  final double? startMargin;
+  final double? topMargin;
+  final double? endMargin;
+  final double? bottomMargin;
   const CustomSwitchWidget({
     super.key,
     required this.value,
@@ -22,16 +26,22 @@ class CustomSwitchWidget<T extends GetxController> extends StatelessWidget {
     this.topPadding = 8.0,
     this.endPadding = 0.0,
     this.bottomPadding = 8.0,
+    this.startMargin,
+    this.topMargin,
+    this.endMargin,
+    this.bottomMargin,
   });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsetsDirectional.fromSTEB(startPadding ?? 0.0,
-          topPadding ?? 8.0, endPadding ?? 0.0, bottomPadding ?? 8.0),
+          topPadding ?? 8.0, endPadding ?? 0.0, bottomPadding ?? 0.0),
       child: Container(
+        padding: EdgeInsetsDirectional.fromSTEB(startMargin ?? 0.0,
+            topMargin ?? 0.0, endMargin ?? 0.0, bottomMargin ?? 0.0),
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.secondaryContainer,
+          color: Theme.of(context).colorScheme.surface.withValues(alpha: .3),
           borderRadius: BorderRadius.circular(8),
         ),
         child: Row(
@@ -68,8 +78,10 @@ class CustomSwitchWidget<T extends GetxController> extends StatelessWidget {
                       .withValues(alpha: .5),
                   activeTrackColor:
                       context.theme.colorScheme.surface.withValues(alpha: .7),
-                  thumbColor:
-                      WidgetStatePropertyAll(context.theme.colorScheme.surface),
+                  thumbColor: value
+                      ? WidgetStatePropertyAll(
+                          context.theme.colorScheme.surface)
+                      : WidgetStatePropertyAll(context.theme.canvasColor),
                   trackOutlineColor:
                       WidgetStatePropertyAll(context.theme.colorScheme.surface),
                   inactiveThumbColor:

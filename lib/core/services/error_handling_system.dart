@@ -44,7 +44,7 @@ class ErrorHandler implements Exception {
             default:
               return Failure(
                 error.response?.statusCode ?? 0,
-                error.response?.statusMessage ?? "Unknown error",
+                error.response?.statusMessage ?? 'Unknown error',
               );
           }
         } else {
@@ -55,9 +55,9 @@ class ErrorHandler implements Exception {
       case DioExceptionType.unknown:
         return DataSource.DEFAULT.getFailure();
       case DioExceptionType.badCertificate:
-        return Failure(501, "Unknown resource with this certificate");
+        return Failure(501, 'Unknown resource with this certificate');
       case DioExceptionType.connectionError:
-        return Failure(500, "Internal Server Error");
+        return Failure(500, 'Internal Server Error');
     }
   }
 }
@@ -119,14 +119,14 @@ class ResponseCode {
 }
 
 class ResponseMessage {
-  static const String BAD_REQUEST = "Bad request error";
-  static const String UNAUTORISED = "Unauthorized error";
-  static const String FORBIDDEN = "Forbidden error";
-  static const String NOT_FOUND = "Not found error";
-  static const String INTERNAL_SERVER_ERROR = "Internal server error";
-  static const String CONNECT_TIMEOUT = "Connection timeout error";
-  static const String SEND_TIMEOUT = "Send timeout error";
-  static const String RECIEVE_TIMEOUT = "Receive timeout error";
-  static const String CANCEL = "Request was cancelled";
-  static const String DEFAULT = "An unknown error occurred";
+  static const String BAD_REQUEST = 'Bad request error';
+  static const String UNAUTORISED = 'Unauthorized error';
+  static const String FORBIDDEN = 'Forbidden error';
+  static const String NOT_FOUND = 'Not found error';
+  static const String INTERNAL_SERVER_ERROR = 'Internal server error';
+  static const String CONNECT_TIMEOUT = 'Connection timeout error';
+  static const String SEND_TIMEOUT = 'Send timeout error';
+  static const String RECIEVE_TIMEOUT = 'Receive timeout error';
+  static const String CANCEL = 'Request was cancelled';
+  static const String DEFAULT = 'An unknown error occurred';
 }

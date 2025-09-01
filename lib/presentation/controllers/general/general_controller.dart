@@ -70,20 +70,11 @@ class GeneralController extends GetxController {
   /// -------- [Methods] ----------
 
   /// Greeting
-  updateGreeting() {
+  void updateGreeting() {
     final now = DateTime.now();
     final isMorning = now.hour < 12;
     state.greeting.value =
         isMorning ? 'صبحكم الله بالخير' : 'مساكم الله بالخير';
-  }
-
-  scrollToAyah(int ayahNumber) {
-    if (state.ayahListController.hasClients) {
-      double position = (ayahNumber - 1) * state.ayahItemWidth;
-      state.ayahListController.jumpTo(position);
-    } else {
-      log("Controller not attached to any scroll views.");
-    }
   }
 
   /// -------- [PrayersMethods] ----------
@@ -106,7 +97,7 @@ class GeneralController extends GetxController {
       // Future.delayed(const Duration(seconds: 2))
       //     .then((_) => PrayersWidgetConfig().updatePrayersDate());
     } catch (e) {
-      log(e.toString(), name: "Main", error: e);
+      log(e.toString(), name: 'Main', error: e);
     }
   }
 
@@ -116,7 +107,7 @@ class GeneralController extends GetxController {
     state.box.write(IS_LOCATION_ACTIVE, false);
     state.box.write(FIRST_LAUNCH, true);
     // SplashScreenController.instance.state.customWidget.value = 2;
-    log('Location cancelled', name: "Main");
+    log('Location cancelled', name: 'Main');
   }
 
   // @override

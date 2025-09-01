@@ -5,107 +5,162 @@ class PrayerBuild extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: Get.height,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 16.0),
-        child: GetBuilder<AdhanController>(
-            id: 'init_athan',
-            builder: (adhanCtrl) => ListView.builder(
-                  shrinkWrap: true,
-                  primary: false,
-                  itemCount: adhanCtrl.prayerNameList.length,
-                  itemBuilder: (context, index) {
+    return Padding(
+      padding: const EdgeInsets.only(
+          right: 8.0, left: 8.0, top: 16.0, bottom: 120.0),
+      child: GetBuilder<AdhanController>(
+          id: 'init_athan',
+          builder: (adhanCtrl) => Column(
+                children: List.generate(
+                  adhanCtrl.prayerNameList.length,
+                  (index) {
                     final prayerList = adhanCtrl.prayerNameList.toList();
                     final String prayerTitle = prayerList[index]['title'];
                     final String prayerTime = prayerList[index]['time'];
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 4.0),
-                      child: _prayerContainerBuild(
-                          context, index, prayerTitle, prayerTime),
-                    );
+
+                    return _buildPrayerRowWithTimeline(
+                        context, index, prayerTitle, prayerTime, adhanCtrl);
                   },
-                )),
-      ),
+                ),
+              )),
     );
   }
 
-  Widget _prayerNameBuild(BuildContext context, int index, String prayerTitle,
-      AdhanController adhanCtrl) {
-    return FittedBox(
-      fit: BoxFit.scaleDown,
-      child: Text(
-        prayerTitle.tr,
-        style: TextStyle(
-          fontFamily: 'cairo',
-          fontSize: adhanCtrl.getCurrentPrayerByDateTime() == index ? 20 : 16,
-          fontWeight: FontWeight.bold,
-          color: Theme.of(context).colorScheme.inversePrimary,
-        ),
-      ),
-    );
-  }
+  // بناء صف الصلاة مع التايم لاين المخصص
+  Widget _buildPrayerRowWithTimeline(BuildContext context, int index,
+      String prayerTitle, String prayerTime, AdhanController adhanCtrl) {
+    final currentPrayerIndex = adhanCtrl.getCurrentPrayerByDateTime();
+    final bool isCurrentPrayer = currentPrayerIndex == index;
+    final bool isPastPrayer = index < currentPrayerIndex;
 
-  Widget _prayerTimeBuild(BuildContext context, int index, String prayerTime,
-      AdhanController adhanCtrl) {
-    return Center(
-      child: ReactiveNumberText(
-        text: prayerTime.toString(),
-        style: TextStyle(
-          fontFamily: 'cairo',
-          fontSize: adhanCtrl.getCurrentPrayerByDateTime() == index ? 20 : 16,
-          fontWeight: FontWeight.bold,
-          color: Theme.of(context).colorScheme.inversePrimary,
-        ),
-      ),
-    );
-  }
-
-  Widget _prayerIconBuild(
-      BuildContext context, int index, AdhanController adhanCtrl) {
-    return Icon(
-      adhanCtrl.prayerNameList[index]['icon'],
-      size: adhanCtrl.getCurrentPrayerByDateTime() == index ? 28 : 24,
-      color: index == 1 || index == 2 || index == 3 || index == 4
-          ? const Color.fromARGB(255, 242, 181, 15)
-          : Theme.of(context).canvasColor,
-    );
-  }
-
-  Widget _prayerContainerBuild(
-      BuildContext context, int index, String prayerTitle, String prayerTime) {
-    return Center(
-      child: GetBuilder<AdhanController>(
-          id: 'change_notification',
-          builder: (adhanCtrl) => ContainerButtonWidget(
-                onPressed: () => customBottomSheet(
-                  child: PrayerDetails(
-                    prayerName: prayerTitle,
+    return IntrinsicHeight(
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          // عمود التايم لاين
+          SizedBox(
+            width: 80,
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                // الخط العلوي
+                // if (index > 0) ...[
+                Container(
+                  width: 5,
+                  decoration: BoxDecoration(
+                    color: index <= currentPrayerIndex
+                        ? Theme.of(context).colorScheme.surface
+                        : Theme.of(context)
+                            .colorScheme
+                            .surface
+                            .withValues(alpha: 0.3),
+                    borderRadius: BorderRadius.circular(8),
                   ),
                 ),
-                width: Get.width,
-                horizontalMargin: 8.0,
-                backgroundColor: adhanCtrl.getCurrentPrayerByDateTime() == index
-                    ? Theme.of(context).colorScheme.surface
-                    : Theme.of(context)
-                        .colorScheme
-                        .surface
-                        .withValues(alpha: .5),
-                height:
-                    adhanCtrl.getCurrentPrayerByDateTime() == index ? 70 : 49,
-                icon: adhanCtrl.getPrayerIcon(prayerTitle),
+                // ],
+
+                // المؤشر
+                Container(
+                  margin: const EdgeInsets.symmetric(vertical: 4),
+                  child: _buildTimelineIndicator(
+                      context, index, isCurrentPrayer, isPastPrayer, adhanCtrl),
+                ),
+              ],
+            ),
+          ),
+
+          // محتوى الصلاة
+          Expanded(
+            child: Container(
+              margin: isCurrentPrayer
+                  ? EdgeInsetsDirectional.fromSTEB(
+                      0.0, 0.0, 16.0, index == 7 ? 0.0 : 6.0)
+                  : EdgeInsetsDirectional.fromSTEB(
+                      0.0, 0.0, 32.0, index == 7 ? 0.0 : 6.0),
+              child: _buildPrayerContent(
+                  context, index, prayerTitle, prayerTime, adhanCtrl),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// بناء مؤشر التايم لاين باستخدام timelines_plus
+Widget _buildTimelineIndicator(BuildContext context, int index,
+    bool isCurrentPrayer, bool isPastPrayer, AdhanController adhanCtrl) {
+  return AnimatedContainer(
+    duration: const Duration(milliseconds: 500),
+    curve: Curves.easeInOut,
+    width: isCurrentPrayer ? 42 : 28,
+    height: isCurrentPrayer ? 42 : 28,
+    decoration: BoxDecoration(
+      shape: BoxShape.circle,
+      color: _getTimelineIndicatorColor(
+          context, index, isCurrentPrayer, isPastPrayer),
+    ),
+    child: Center(
+      child: AnimatedSwitcher(
+        duration: const Duration(milliseconds: 300),
+        child: _prayerIconBuild(context, index, adhanCtrl, isCurrentPrayer,
+            isCustomColor: false),
+      ),
+    ),
+  );
+}
+
+// بناء محتوى الصلاة
+Widget _buildPrayerContent(BuildContext context, int index, String prayerTitle,
+    String prayerTime, AdhanController adhanCtrl) {
+  final currentPrayerIndex = adhanCtrl.getCurrentPrayerByDateTime();
+  final bool isCurrentPrayer = currentPrayerIndex == index;
+
+  return GetBuilder<AdhanController>(
+      id: 'change_notification',
+      builder: (adhanCtrl) => AnimatedContainer(
+            duration: const Duration(milliseconds: 300),
+            curve: Curves.easeInOut,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              color: isCurrentPrayer
+                  ? Theme.of(context).colorScheme.surface.withValues(alpha: 0.2)
+                  : Colors.transparent,
+            ),
+            child: ContainerButtonWidget(
+              onPressed: () => context.customBottomSheet(
+                containerColor: context.theme.colorScheme.primaryContainer,
+                child: PrayerDetails(
+                  prayerName: prayerTitle,
+                ),
+              ),
+              width: Get.width,
+              horizontalMargin: 0,
+              useGradient: false,
+              withShape: false,
+              backgroundColor: Colors.transparent,
+              shadowColor: Colors.transparent,
+              borderColor: isCurrentPrayer
+                  ? Theme.of(context).colorScheme.surface.withValues(alpha: 0.5)
+                  : Theme.of(context)
+                      .colorScheme
+                      .surface
+                      .withValues(alpha: 0.2),
+              height: adhanCtrl.getCurrentPrayerByDateTime() == index ? 75 : 55,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Expanded(
-                      flex: 1,
-                      child: _prayerIconBuild(context, index, adhanCtrl),
-                    ),
-                    Expanded(
                         flex: 4,
-                        child: _prayerNameBuild(
-                            context, index, prayerTitle, adhanCtrl)),
+                        child: Align(
+                          alignment: AlignmentDirectional.centerStart,
+                          child: _prayerNameBuild(
+                              context, index, prayerTitle, adhanCtrl),
+                        )),
                     Expanded(
                       flex: 4,
                       child: _prayerTimeBuild(
@@ -113,7 +168,65 @@ class PrayerBuild extends StatelessWidget {
                     ),
                   ],
                 ),
-              )),
-    );
+              ),
+            ),
+          ));
+}
+
+// دالة مساعدة لتحديد لون مؤشر التايم لاين
+Color _getTimelineIndicatorColor(
+    BuildContext context, int index, bool isCurrentPrayer, bool isPastPrayer) {
+  if (isCurrentPrayer) {
+    return Theme.of(context).colorScheme.surface;
+  } else if (isPastPrayer) {
+    return Theme.of(context).colorScheme.surface.withValues(alpha: 0.7);
+  } else {
+    return Theme.of(context).colorScheme.surface.withValues(alpha: 0.5);
   }
+}
+
+Widget _prayerNameBuild(BuildContext context, int index, String prayerTitle,
+    AdhanController adhanCtrl) {
+  return FittedBox(
+    fit: BoxFit.scaleDown,
+    child: Text(
+      prayerTitle.tr,
+      style: TextStyle(
+        fontFamily: 'cairo',
+        fontSize: adhanCtrl.getCurrentPrayerByDateTime() == index ? 20 : 16,
+        fontWeight: FontWeight.bold,
+        color: Theme.of(context).colorScheme.inversePrimary,
+      ),
+      textAlign: TextAlign.start,
+    ),
+  );
+}
+
+Widget _prayerTimeBuild(BuildContext context, int index, String prayerTime,
+    AdhanController adhanCtrl) {
+  return Center(
+    child: ReactiveNumberText(
+      text: prayerTime.toString(),
+      style: TextStyle(
+        fontFamily: 'cairo',
+        fontSize: adhanCtrl.getCurrentPrayerByDateTime() == index ? 20 : 16,
+        fontWeight: FontWeight.bold,
+        color: Theme.of(context).colorScheme.inversePrimary,
+      ),
+    ),
+  );
+}
+
+Widget _prayerIconBuild(BuildContext context, int index,
+    AdhanController adhanCtrl, bool isCurrentPrayer,
+    {bool? isCustomColor = true}) {
+  return Icon(
+    adhanCtrl.prayerNameList[index]['icon'],
+    size: isCurrentPrayer ? 32 : 20,
+    color: isCustomColor!
+        ? index == 1 || index == 2 || index == 3 || index == 4
+            ? const Color.fromARGB(255, 242, 181, 15)
+            : Theme.of(context).canvasColor
+        : Theme.of(context).canvasColor,
+  );
 }
