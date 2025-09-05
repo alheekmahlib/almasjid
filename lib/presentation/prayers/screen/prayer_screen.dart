@@ -22,35 +22,46 @@ class PrayerScreen extends StatelessWidget {
         () => !generalCtrl.state.activeLocation.value
             ? activeLocationButton(context)
             : Scaffold(
-                backgroundColor: context.theme.colorScheme.primaryContainer,
+                backgroundColor: context.theme.colorScheme.surface,
                 body: SafeArea(
-                  child: SingleChildScrollView(
+                  child: Container(
+                    color: context.theme.colorScheme.primaryContainer,
                     child: Column(
                       children: [
-                        SizedBox(
-                          width: context.customOrientation(
-                              Get.width, Get.width * .45),
+                        const AppBarWidget(),
+                        Flexible(
                           child: SingleChildScrollView(
+                            physics: const BouncingScrollPhysics(),
                             child: Column(
                               children: [
-                                const Gap(16),
-                                const PrayerNowWidget(),
-                                const Gap(8),
-                                context.hDivider(width: Get.width * .5),
-                                const Gap(8),
-                                updateLocationBuild(context),
-                                const Gap(8),
-                                horizontalWeekCalendar(context),
-                                const Gap(8),
-                                const ProhibitionWidget(),
+                                SizedBox(
+                                  width: context.customOrientation(
+                                      Get.width, Get.width * .45),
+                                  child: SingleChildScrollView(
+                                    child: Column(
+                                      children: [
+                                        const Gap(16),
+                                        PrayerNowWidget(),
+                                        const Gap(8),
+                                        context.hDivider(width: Get.width * .5),
+                                        const Gap(8),
+                                        updateLocationBuild(context),
+                                        const Gap(8),
+                                        horizontalWeekCalendar(context),
+                                        const Gap(8),
+                                        const ProhibitionWidget(),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: context.customOrientation(
+                                      Get.width, Get.width * .45),
+                                  child: const PrayerBuild(),
+                                ),
                               ],
                             ),
                           ),
-                        ),
-                        SizedBox(
-                          width: context.customOrientation(
-                              Get.width, Get.width * .45),
-                          child: const PrayerBuild(),
                         ),
                       ],
                     ),
@@ -61,15 +72,18 @@ class PrayerScreen extends StatelessWidget {
     );
   }
 
-  Padding horizontalWeekCalendar(BuildContext context) {
+  Widget horizontalWeekCalendar(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24.0),
       child: HorizontalWeekCalendar(
         minDate: DateTime.now().subtract(const Duration(days: 7)),
         maxDate: DateTime.now().add(const Duration(days: 7)),
         initialDate: DateTime.now(),
-        onDateChange: (date) {
+        onDateChange: (date) async {
           adhanCtrl.state.selectedDate = date;
+          // حساب أوقات الصلاة للتاريخ المختار
+          // Calculate prayer times for selected date
+          await adhanCtrl.updateSelectedDate(date);
         },
         carouselHeight: 60,
         showTopNavbar: false,

@@ -113,6 +113,7 @@ flutter:
     - assets/svg/logo/
     - assets/svg/home/
     - assets/svg/prayer/
+    - assets/svg/theme/
     - assets/images/
     - assets/svg/hijri/
     - assets/json/

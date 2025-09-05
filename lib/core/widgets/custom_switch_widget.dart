@@ -23,23 +23,23 @@ class CustomSwitchWidget<T extends GetxController> extends StatelessWidget {
     required this.title,
     this.getBuilderId,
     this.startPadding = 0.0,
-    this.topPadding = 8.0,
+    this.topPadding = 0.0,
     this.endPadding = 0.0,
-    this.bottomPadding = 8.0,
-    this.startMargin,
-    this.topMargin,
-    this.endMargin,
-    this.bottomMargin,
+    this.bottomPadding = 0.0,
+    this.startMargin = 0.0,
+    this.topMargin = 1.0,
+    this.endMargin = 0.0,
+    this.bottomMargin = 1.0,
   });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(startPadding ?? 0.0,
-          topPadding ?? 8.0, endPadding ?? 0.0, bottomPadding ?? 0.0),
+      padding: EdgeInsetsDirectional.fromSTEB(startMargin ?? 0.0,
+          topMargin ?? 0.0, endMargin ?? 0.0, bottomMargin ?? 0.0),
       child: Container(
-        padding: EdgeInsetsDirectional.fromSTEB(startMargin ?? 0.0,
-            topMargin ?? 0.0, endMargin ?? 0.0, bottomMargin ?? 0.0),
+        padding: EdgeInsetsDirectional.fromSTEB(startPadding ?? 0.0,
+            topPadding ?? 0.0, endPadding ?? 0.0, bottomPadding ?? 0.0),
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.surface.withValues(alpha: .3),
           borderRadius: BorderRadius.circular(8),
@@ -65,39 +65,34 @@ class CustomSwitchWidget<T extends GetxController> extends StatelessWidget {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: GetBuilder<T>(
-                init: controller,
-                id: getBuilderId,
-                builder: (ctrl) => Switch(
-                  value: value,
-                  activeColor: Colors.red,
-                  inactiveTrackColor: context
-                      .theme.colorScheme.secondaryContainer
-                      .withValues(alpha: .5),
-                  activeTrackColor:
-                      context.theme.colorScheme.surface.withValues(alpha: .7),
-                  thumbColor: value
-                      ? WidgetStatePropertyAll(
-                          context.theme.colorScheme.surface)
-                      : WidgetStatePropertyAll(context.theme.canvasColor),
-                  trackOutlineColor:
-                      WidgetStatePropertyAll(context.theme.colorScheme.surface),
-                  inactiveThumbColor:
-                      context.theme.colorScheme.surface.withValues(alpha: .2),
-                  trackColor: WidgetStatePropertyAll(value
-                      ? context.theme.colorScheme.secondaryContainer
-                      : Colors.red.withValues(alpha: .8)),
-                  onChanged: (v) {
-                    onChanged(v);
-                    if (getBuilderId != null) {
-                      ctrl.update([getBuilderId!]);
-                    } else {
-                      ctrl.update();
-                    }
-                  },
-                ),
+            GetBuilder<T>(
+              init: controller,
+              id: getBuilderId,
+              builder: (ctrl) => Switch(
+                value: value,
+                activeColor: Colors.red,
+                inactiveTrackColor: context.theme.colorScheme.secondaryContainer
+                    .withValues(alpha: .5),
+                activeTrackColor:
+                    context.theme.colorScheme.surface.withValues(alpha: .7),
+                thumbColor: value
+                    ? WidgetStatePropertyAll(context.theme.colorScheme.surface)
+                    : WidgetStatePropertyAll(context.theme.canvasColor),
+                trackOutlineColor:
+                    WidgetStatePropertyAll(context.theme.colorScheme.surface),
+                inactiveThumbColor:
+                    context.theme.colorScheme.surface.withValues(alpha: .2),
+                trackColor: WidgetStatePropertyAll(value
+                    ? context.theme.colorScheme.secondaryContainer
+                    : Colors.red.withValues(alpha: .8)),
+                onChanged: (v) {
+                  onChanged(v);
+                  if (getBuilderId != null) {
+                    ctrl.update([getBuilderId!]);
+                  } else {
+                    ctrl.update();
+                  }
+                },
               ),
             ),
           ],

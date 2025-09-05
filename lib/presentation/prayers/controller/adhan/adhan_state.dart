@@ -30,7 +30,7 @@ class AdhanState {
   RxBool twilightAngle = false.obs;
   RxBool middleOfTheNight = true.obs;
   RxBool seventhOfTheNight = true.obs;
-  var prayerTimesNow;
+  PrayerTimes? prayerTimesNow;
   RxBool autoCalculationMethod = true.obs;
   RxString calculationMethodString = 'أم القرى'.obs;
   RxString selectedCountry = 'Saudi Arabia'.obs;
@@ -43,6 +43,18 @@ class AdhanState {
   RxBool isPrayerTimesInitialized = false.obs;
   Rx<Color> backgroundColor = const Color(0xffB8E0EA).obs;
   var selectedDate = DateTime.now();
+
+  // أوقات الصلاة للتاريخ المختار / Prayer times for selected date
+  PrayerTimes? selectedDatePrayerTimes;
+  SunnahTimes? selectedDateSunnahTimes;
+  RxString selectedDateFajrTime = ''.obs;
+  RxString selectedDateSunriseTime = ''.obs;
+  RxString selectedDateDhuhrTime = ''.obs;
+  RxString selectedDateAsrTime = ''.obs;
+  RxString selectedDateMaghribTime = ''.obs;
+  RxString selectedDateIshaTime = ''.obs;
+  RxString selectedDateLastThirdTime = ''.obs;
+  RxString selectedDateMidnightTime = ''.obs;
 }
 
 class OurPrayerAdjustments extends PrayerAdjustments {

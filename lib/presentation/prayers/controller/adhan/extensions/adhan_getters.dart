@@ -146,7 +146,7 @@ extension AdhanGetters on AdhanController {
     // ألوان مختلفة لكل فترة صلاة
     final List<GaugeAxisGradient> prayerColors = [
       const GaugeAxisGradient(
-        colors: [Color(0xff0a0f29), Color(0xff000000)],
+        colors: [Color(0xff000000), Color(0xff4b4c4f)],
         colorStops: [0.0, 1.0],
       ), // الفجر إلى الشروق - أزرق داكن (فجر)
       const GaugeAxisGradient(
@@ -154,15 +154,15 @@ extension AdhanGetters on AdhanController {
         colorStops: [0.0, 1.0],
       ), // الشروق إلى الظهر - ذهبي (صباح)
       const GaugeAxisGradient(
-        colors: [Color(0xff0098EE), Color(0xff0098EE)],
+        colors: [Color(0xff0098EE), Color(0xffc5deed)],
         colorStops: [0.0, 1.0],
       ), // الظهر إلى العصر - أزرق فاتح (ظهيرة)
       const GaugeAxisGradient(
-        colors: [Color(0xffF17148), Color(0xffCF4B6D)],
+        colors: [Color(0xfff2dfd9), Color(0xfff8a159)],
         colorStops: [0.0, 1.0],
       ), // العصر إلى المغرب - برتقالي (عصر)
       const GaugeAxisGradient(
-        colors: [Color(0xff0a0f29), Color(0xff000000)],
+        colors: [Color(0xff4b4c4f), Color(0xff000000)],
         colorStops: [0.0, 1.0],
       ), // المغرب إلى العشاء - بنفسجي (مغرب)
     ];
@@ -633,12 +633,7 @@ extension AdhanGetters on AdhanController {
 
   Future<String> getPrayerTime(int prayerIndex, DateTime prayerTime) async {
     try {
-      final prayerAdjustments = state.box
-              .read<int?>(prayerNameList[prayerIndex]['sharedAdjustment']) ??
-          0;
-      prayerNameList[prayerIndex]['adjustment'] = prayerAdjustments;
-      Duration adjustment = Duration(minutes: prayerAdjustments);
-      DateTime adjustedPrayerTime = prayerTime.add(adjustment);
+      DateTime adjustedPrayerTime = prayerTime;
       return await DateFormatter.justTime(adjustedPrayerTime);
     } catch (e) {
       return '';

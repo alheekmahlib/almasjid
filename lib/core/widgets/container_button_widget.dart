@@ -1,3 +1,4 @@
+import 'package:almasjid/core/utils/constants/extensions/alignment_rotated_extension.dart';
 import 'package:almasjid/core/utils/constants/svg_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -22,6 +23,10 @@ class ContainerButtonWidget extends StatelessWidget {
   final double? horizontalMargin;
   final bool? withShape;
   final Color? titleColor;
+  final double? borderRadius;
+  final double? fontSize;
+  final MainAxisAlignment? mainAxisAlignment;
+  final Color? shapeColor;
 
   /// Whether to use gradient background or solid color
   /// If true: uses LinearGradient with backgroundColor and its transparent variant
@@ -45,7 +50,11 @@ class ContainerButtonWidget extends StatelessWidget {
       this.horizontalMargin,
       this.useGradient = true,
       this.withShape = true,
-      this.titleColor});
+      this.titleColor,
+      this.borderRadius,
+      this.fontSize,
+      this.mainAxisAlignment,
+      this.shapeColor});
 
   @override
   Widget build(BuildContext context) {
@@ -53,10 +62,10 @@ class ContainerButtonWidget extends StatelessWidget {
       margin: EdgeInsets.symmetric(
           vertical: verticalMargin ?? 0.0, horizontal: horizontalMargin ?? 0.0),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(16.0),
+        borderRadius: BorderRadius.circular(borderRadius ?? 16.0),
         child: InkWell(
           onTap: onPressed,
-          borderRadius: BorderRadius.circular(16.0),
+          borderRadius: BorderRadius.circular(borderRadius ?? 16.0),
           splashColor: Colors.white.withValues(alpha: 0.3),
           highlightColor: Colors.white.withValues(alpha: 0.1),
           child: Container(
@@ -79,13 +88,9 @@ class ContainerButtonWidget extends StatelessWidget {
               color: useGradient
                   ? null
                   : backgroundColor ?? Theme.of(context).colorScheme.surface,
-              borderRadius: BorderRadius.circular(16.0),
+              borderRadius: BorderRadius.circular(borderRadius ?? 16.0),
               border: Border.all(
-                color: borderColor ??
-                    Theme.of(context)
-                        .colorScheme
-                        .primary
-                        .withValues(alpha: 0.3),
+                color: borderColor ?? Theme.of(context).highlightColor,
                 width: 1.5,
               ),
               // boxShadow: [
@@ -102,26 +107,44 @@ class ContainerButtonWidget extends StatelessWidget {
               children: [
                 // Background decorative element
                 if (withShape!) ...[
-                  Positioned(
-                    right: -20,
-                    top: -10,
-                    child: Container(
-                      width: 100,
-                      height: 100,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: context.theme.colorScheme.primary
-                            .withValues(alpha: 0.3),
+                  alignmentLayout(
+                    Positioned(
+                      right: -20,
+                      top: -10,
+                      child: Container(
+                        width: 100,
+                        height: 100,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: shapeColor ??
+                              context.theme.colorScheme.primary
+                                  .withValues(alpha: 0.3),
+                        ),
                       ),
                     ),
-                  ),
+                    Positioned(
+                      left: -20,
+                      top: -10,
+                      child: Container(
+                        width: 100,
+                        height: 100,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: shapeColor ??
+                              context.theme.colorScheme.primary
+                                  .withValues(alpha: 0.3),
+                        ),
+                      ),
+                    ),
+                  )
                 ],
                 // Main content
                 title != null
                     ? Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 16.0),
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisAlignment:
+                              mainAxisAlignment ?? MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             if (icon != null || svgPath != null) ...[
@@ -129,7 +152,8 @@ class ContainerButtonWidget extends StatelessWidget {
                                 padding: const EdgeInsets.all(8),
                                 decoration: BoxDecoration(
                                   color: Colors.white.withValues(alpha: 0.2),
-                                  borderRadius: BorderRadius.circular(12),
+                                  borderRadius:
+                                      BorderRadius.circular(borderRadius ?? 16),
                                 ),
                                 child: icon != null
                                     ? Icon(
@@ -149,11 +173,11 @@ class ContainerButtonWidget extends StatelessWidget {
                               child: Text(
                                 title!,
                                 style: TextStyle(
-                                  fontSize: 16,
+                                  fontSize: fontSize ?? 16,
                                   color: titleColor ?? Colors.white,
-                                  fontWeight: FontWeight.w600,
+                                  fontWeight: FontWeight.bold,
                                   fontFamily: 'cairo',
-                                  letterSpacing: 0.5,
+                                  height: 1.7,
                                 ),
                                 textAlign: TextAlign.center,
                               ),

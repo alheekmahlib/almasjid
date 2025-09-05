@@ -4,5 +4,17 @@
     "description": "appName",
     "type": "text",
     "placeholders": {}
+  },
+  "appLang": "Bahasa Aplikasi",
+  "@appLang": {
+    "description": "appLang",
+    "type": "text",
+    "placeholders": {}
+  },
+  "lang": "Bahasa Indonesia",
+  "@lang": {
+    "description": "lang",
+    "type": "text",
+    "placeholders": {}
   }
 }

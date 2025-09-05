@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 
+import '../../../presentation/about_app/about_app.dart';
 import '../../../presentation/home/home_screen.dart';
+import '../../../presentation/ourApp/screen/our_apps_screen.dart';
 import '../../../presentation/prayers/prayers.dart';
 import '../../../presentation/qibla/qibla.dart';
 
@@ -8,6 +10,8 @@ class AppRouter {
   static const String homeScreen = '/homeScreen';
   static const String prayerScreen = '/prayerScreen';
   static const String qiblaScreen = '/qiblaScreen';
+  static const String ourApps = '/ourApps';
+  static const String aboutApp = '/aboutApp';
 
   static List<GetPage> pages = [
     GetPage(
@@ -25,6 +29,16 @@ class AppRouter {
     GetPage(
       name: qiblaScreen,
       page: () => QiblaScreen(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: ourApps,
+      page: () => const OurApps(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: aboutApp,
+      page: () => const AboutApp(),
       transition: Transition.fadeIn,
     ),
   ];

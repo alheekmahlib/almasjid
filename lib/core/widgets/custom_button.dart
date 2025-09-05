@@ -73,11 +73,15 @@ class CustomButton extends StatelessWidget {
                   child: Stack(
                     alignment: Alignment.center,
                     children: [
+                      // Background graphic/icon. When using an Icon, position it with an end offset.
                       svgPath != null
-                          ? isCustomSvgColor!
+                          ? (isCustomSvgColor!
                               ? _svgBuild(context)
-                              : _svgBuildWithCustomColor(context)
-                          : _iconBuild(context),
+                              : _svgBuildWithCustomColor(context))
+                          : PositionedDirectional(
+                              end: 60,
+                              child: _iconBuild(context),
+                            ),
                       title != null
                           ? Text(
                               title!.tr,
@@ -107,11 +111,11 @@ class CustomButton extends StatelessWidget {
   }
 
   Widget _iconBuild(BuildContext context) {
-    return PositionedDirectional(
-      end: 60,
-      child: Icon(icon ?? Icons.cloud_download_outlined,
-          size: iconSize ?? 40,
-          color: svgColor ?? context.theme.primaryColorLight),
+    // Return a plain Icon so it can be used safely in any layout.
+    return Icon(
+      icon ?? Icons.cloud_download_outlined,
+      size: iconSize ?? 40,
+      color: svgColor ?? context.theme.primaryColorLight,
     );
   }
 

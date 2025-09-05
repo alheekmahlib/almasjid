@@ -9,12 +9,16 @@ class AdhanSounds extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 50,
-      child: CustomButton(
+      child: ContainerButtonWidget(
         onPressed: () => customBottomSheet(
             textTitle: 'adhanSounds', child: bottomSheetWidget(context)),
         title: 'adhanSounds',
-        titleColor: Theme.of(context).colorScheme.surface,
+        titleColor: Theme.of(context).colorScheme.inversePrimary,
         width: Get.width,
+        withShape: false,
+        useGradient: false,
+        borderRadius: 8.0,
+        borderColor: Colors.transparent,
         backgroundColor:
             Theme.of(context).colorScheme.surface.withValues(alpha: .3),
       ),

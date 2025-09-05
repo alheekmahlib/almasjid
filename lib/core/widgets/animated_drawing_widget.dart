@@ -71,7 +71,7 @@ class AnimatedDrawingWidget extends StatelessWidget {
       shaderCallback: (bounds) => gradient.createShader(bounds),
       blendMode: BlendMode.modulate,
       child: AnimatedDrawing.svg(
-        svgPath ?? SvgPath.svgHomePrayerFill,
+        svgPath ?? SvgPath.svgLogoAqemLogoStroke,
         animationDirection:
             animationDirection ?? AnimationDirection.rightToLeft,
         run: true,

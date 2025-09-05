@@ -36,8 +36,7 @@ class SettingPrayerTimes extends StatelessWidget {
                     index = i;
                   }
                   return Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 2.0, horizontal: 8.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -55,7 +54,6 @@ class SettingPrayerTimes extends StatelessWidget {
                                     fontWeight: FontWeight.bold,
                                     fontSize: 16),
                               ),
-                        const Gap(4),
                         SizedBox(
                           height: 45,
                           child: Container(
@@ -174,7 +172,6 @@ class SettingPrayerTimes extends StatelessWidget {
                             ),
                           ),
                         ),
-                        const Gap(8),
                       ],
                     ),
                   );

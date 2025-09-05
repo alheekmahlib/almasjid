@@ -8,32 +8,47 @@ class QiblaScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: activeLocationWidget(
-      context,
-      Padding(
-        padding: const EdgeInsets.only(right: 16.0, left: 16.0, top: 16.0),
-        child: Column(
-          children: [
-            Flexible(
-              child: CustomTabBarWidget(
-                firstTabText: 'compass',
-                secondTabText: 'map',
-                // topChild: Hero(
-                //   tag: 'qibla_tag',
-                //   child: customSvgWithCustomColor(
-                //     SvgPath.svgQeblaLogo,
-                //     width: 160.0,
-                //     color: context.theme.colorScheme.surface,
-                //   ),
-                // ),
-                firstTabChild: QiblaCompassWidget(),
-                secondTabChild: QiblaMapWidget(),
+        backgroundColor: context.theme.colorScheme.surface,
+        body: SafeArea(
+          child: Container(
+            color: context.theme.colorScheme.surface,
+            child: activeLocationWidget(
+              context,
+              Container(
+                margin: const EdgeInsets.only(bottom: 88.0),
+                decoration: BoxDecoration(
+                  color: context.theme.colorScheme.primaryContainer,
+                  borderRadius: const BorderRadius.only(
+                    bottomLeft: Radius.circular(30),
+                    bottomRight: Radius.circular(30),
+                  ),
+                ),
+                child: Column(
+                  children: [
+                    const AppBarWidget(),
+                    const Gap(16),
+                    Flexible(
+                      child: CustomTabBarWidget(
+                        firstTabText: 'compass',
+                        secondTabText: 'map',
+                        // topChild: Hero(
+                        //   tag: 'qibla_tag',
+                        //   child: customSvgWithCustomColor(
+                        //     SvgPath.svgQeblaLogo,
+                        //     width: 160.0,
+                        //     color: context.theme.colorScheme.surface,
+                        //   ),
+                        // ),
+                        firstTabChild: QiblaCompassWidget(),
+                        secondTabChild: QiblaMapWidget(),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ],
-        ),
-      ),
-    ));
+          ),
+        ));
   }
 
   Widget activeLocationWidget(BuildContext context, Widget child) {

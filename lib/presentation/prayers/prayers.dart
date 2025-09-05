@@ -4,7 +4,6 @@ import 'dart:developer' show log;
 import 'dart:io' show Directory, File, Platform;
 
 import 'package:adhan/adhan.dart';
-import 'package:almasjid/core/widgets/custom_button.dart';
 import 'package:archive/archive.dart' show ZipDecoder;
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:dio/dio.dart';
@@ -40,6 +39,7 @@ import '../../../core/utils/constants/shared_preferences_constants.dart';
 import '../../../core/utils/constants/svg_constants.dart';
 import '../../../core/utils/helpers/date_formatter.dart';
 import '../../../core/widgets/reactive_number_text.dart';
+import '../../core/widgets/app_bar_widget.dart';
 import '../../core/widgets/container_button_widget.dart';
 import '../../core/widgets/custom_switch_widget.dart';
 import '../calendar/events.dart';

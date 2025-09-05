@@ -4,5 +4,17 @@
     "description": "appName",
     "type": "text",
     "placeholders": {}
+  },
+  "appLang": "অ্যাপের ভাষা",
+  "@appLang": {
+    "description": "appLang",
+    "type": "text",
+    "placeholders": {}
+  },
+  "lang": "বাংলা",
+  "@lang": {
+    "description": "lang",
+    "type": "text",
+    "placeholders": {}
   }
 }

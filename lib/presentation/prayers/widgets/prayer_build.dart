@@ -10,17 +10,20 @@ class PrayerBuild extends StatelessWidget {
           right: 8.0, left: 8.0, top: 16.0, bottom: 120.0),
       child: GetBuilder<AdhanController>(
           id: 'init_athan',
-          builder: (adhanCtrl) => Column(
-                children: List.generate(
-                  adhanCtrl.prayerNameList.length,
-                  (index) {
-                    final prayerList = adhanCtrl.prayerNameList.toList();
-                    final String prayerTitle = prayerList[index]['title'];
-                    final String prayerTime = prayerList[index]['time'];
+          builder: (adhanCtrl) => GetBuilder<AdhanController>(
+                id: 'selected_date_prayers',
+                builder: (ctrl) => Column(
+                  children: List.generate(
+                    adhanCtrl.prayerNameList.length,
+                    (index) {
+                      final prayerList = adhanCtrl.prayerNameList.toList();
+                      final String prayerTitle = prayerList[index]['title'];
+                      final String prayerTime = prayerList[index]['time'];
 
-                    return _buildPrayerRowWithTimeline(
-                        context, index, prayerTitle, prayerTime, adhanCtrl);
-                  },
+                      return _buildPrayerRowWithTimeline(
+                          context, index, prayerTitle, prayerTime, adhanCtrl);
+                    },
+                  ),
                 ),
               )),
     );

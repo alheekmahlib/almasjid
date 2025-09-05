@@ -23,7 +23,8 @@ class SetTimingCalculations extends StatelessWidget {
           const Gap(4),
           CustomSwitchWidget<AdhanController>(
             controller: AdhanController.instance,
-            startMargin: 16.0,
+            startPadding: 16.0,
+            endPadding: 16.0,
             title: 'automaticallyDetermineCalculationMethod',
             value: adhanCtrl.state.autoCalculationMethod.value,
             onChanged: (bool value) => adhanCtrl.switchAutoCalculation(value),
@@ -45,7 +46,8 @@ class SetTimingCalculations extends StatelessWidget {
           CustomSwitchWidget<AdhanController>(
             controller: AdhanController.instance,
             title: 'shafie',
-            startMargin: 16.0,
+            startPadding: 16.0,
+            endPadding: 16.0,
             value: !adhanCtrl.state.isHanafi,
             // value: (!adhanCtrl.state.isHanafi).obs,
             onChanged: (v) => adhanCtrl.hanafiOnTap(!v),
@@ -53,7 +55,8 @@ class SetTimingCalculations extends StatelessWidget {
           CustomSwitchWidget<AdhanController>(
               controller: AdhanController.instance,
               title: 'hanafe',
-              startMargin: 16.0,
+              startPadding: 16.0,
+              endPadding: 16.0,
               value: adhanCtrl.state.isHanafi,
               onChanged: adhanCtrl.hanafiOnTap),
           Padding(
@@ -74,7 +77,8 @@ class SetTimingCalculations extends StatelessWidget {
           CustomSwitchWidget<AdhanController>(
             controller: AdhanController.instance,
             title: 'middleOfTheNight',
-            startMargin: 16.0,
+            startPadding: 16.0,
+            endPadding: 16.0,
             value: adhanCtrl.state.middleOfTheNight.value,
             onChanged: (bool value) async {
               adhanCtrl.getHighLatitudeRule(0);
@@ -84,7 +88,8 @@ class SetTimingCalculations extends StatelessWidget {
           CustomSwitchWidget<AdhanController>(
             controller: AdhanController.instance,
             title: 'SeventhOfTheNight',
-            startMargin: 16.0,
+            startPadding: 16.0,
+            endPadding: 16.0,
             value: adhanCtrl.state.seventhOfTheNight.value,
             onChanged: (bool value) async {
               adhanCtrl.getHighLatitudeRule(1);
@@ -94,7 +99,8 @@ class SetTimingCalculations extends StatelessWidget {
           CustomSwitchWidget<AdhanController>(
             controller: AdhanController.instance,
             title: 'usingTheAngle',
-            startMargin: 16.0,
+            startPadding: 16.0,
+            endPadding: 16.0,
             value: adhanCtrl.state.twilightAngle.value,
             onChanged: (bool value) async {
               adhanCtrl.getHighLatitudeRule(2);

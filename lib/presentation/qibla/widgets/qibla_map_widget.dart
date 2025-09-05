@@ -136,9 +136,10 @@ class QiblaMapWidget extends StatelessWidget {
                   },
                 ),
                 Align(
-                  alignment: AlignmentDirectional.topStart,
+                  alignment: AlignmentDirectional.bottomStart,
                   child: Padding(
-                    padding: const EdgeInsets.only(bottom: 32.0),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 32.0, horizontal: 16.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [

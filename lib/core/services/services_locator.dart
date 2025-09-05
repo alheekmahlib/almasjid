@@ -10,6 +10,7 @@ import 'package:timezone/timezone.dart' as tz;
 
 import '/presentation/controllers/settings_controller.dart';
 import '../../presentation/controllers/theme_controller.dart';
+import '../../presentation/ourApp/controller/our_apps_controller.dart';
 import '../../presentation/prayers/prayers.dart';
 import '../../presentation/splash/splash.dart';
 import '../../presentation/whats_new/whats_new.dart';
@@ -68,6 +69,9 @@ class ServicesLocator {
     sl.registerLazySingleton<PrayersNotificationsCtrl>(() =>
         Get.put<PrayersNotificationsCtrl>(PrayersNotificationsCtrl(),
             permanent: true));
+
+    sl.registerLazySingleton<OurAppsController>(
+        () => Get.put<OurAppsController>(OurAppsController(), permanent: true));
 
     if (Platform.isIOS || Platform.isAndroid || Platform.isFuchsia) {
       RateAppHelper.rateMyApp.init();

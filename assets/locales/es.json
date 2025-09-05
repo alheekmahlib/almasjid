@@ -4,5 +4,17 @@
     "description": "appName",
     "type": "text",
     "placeholders": {}
+  },
+  "appLang": "Idioma de la aplicación",
+  "@appLang": {
+    "description": "appLang",
+    "type": "text",
+    "placeholders": {}
+  },
+  "lang": "Español",
+  "@lang": {
+    "description": "lang",
+    "type": "text",
+    "placeholders": {}
   }
 }

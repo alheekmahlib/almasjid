@@ -4,5 +4,17 @@
     "description": "appName",
     "type": "text",
     "placeholders": {}
+  },
+  "appLang": "Wika ng Aplikasyon",
+  "@appLang": {
+    "description": "appLang",
+    "type": "text",
+    "placeholders": {}
+  },
+  "lang": "Filipino",
+  "@lang": {
+    "description": "lang",
+    "type": "text",
+    "placeholders": {}
   }
 }

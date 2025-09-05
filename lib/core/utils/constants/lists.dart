@@ -43,13 +43,13 @@ final List screensList = [
 const List themeList = [
   {
     'name': AppTheme.blue,
-    'title': 'blueMode',
-    'svgUrl': 'assets/svg/theme0.svg',
+    'title': 'oldMode',
+    'svgUrl': 'assets/svg/theme/theme1.svg',
   },
   {
     'name': AppTheme.dark,
     'title': 'darkMode',
-    'svgUrl': 'assets/svg/theme2.svg',
+    'svgUrl': 'assets/svg/theme/theme2.svg',
   }
 ];
 
@@ -166,39 +166,11 @@ List<Map<String, dynamic>> prohibitionTimesList = [
 
 List<Map<String, dynamic>> qiblaList = [
   {
-    'qibla': SvgPath.svgQiblaQibla1,
+    'qibla': SvgPath.svgQiblaQibla,
     'height': 350.0,
-    'arrow': SvgPath.svgQiblaArrow2,
-    'kaaba': SvgPath.svgQiblaKaaba2,
+    'arrow': '',
+    'kaaba': SvgPath.svgHomeKaaba,
     'arrowHeight': 350.0,
-  },
-  {
-    'qibla': SvgPath.svgQiblaQibla2,
-    'height': 300.0,
-    'arrow': SvgPath.svgQiblaArrow2,
-    'kaaba': SvgPath.svgQiblaKaaba2,
-    'arrowHeight': 300.0,
-  },
-  {
-    'qibla': SvgPath.svgQiblaQibla3,
-    'height': 300.0,
-    'arrow': SvgPath.svgQiblaArrow3,
-    'kaaba': SvgPath.svgQiblaKaaba2,
-    'arrowHeight': 300.0,
-  },
-  {
-    'qibla': SvgPath.svgQiblaQibla4,
-    'height': 310.0,
-    'arrow': SvgPath.svgQiblaArrow4,
-    'kaaba': SvgPath.svgQiblaKaaba4,
-    'arrowHeight': 60.0,
-  },
-  {
-    'qibla': SvgPath.svgQiblaQibla5,
-    'height': 270.0,
-    'arrow': SvgPath.svgQiblaArrow5,
-    'kaaba': SvgPath.svgQiblaKaaba5,
-    'arrowHeight': 300.0,
   },
 ];
 

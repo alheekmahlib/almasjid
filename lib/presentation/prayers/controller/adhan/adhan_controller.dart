@@ -113,7 +113,7 @@ class AdhanController extends GetxController {
 
       state.prayerTimesNow =
           PrayerTimes(state.coordinates, state.dateComponents, state.params);
-      state.sunnahTimes = SunnahTimes(state.prayerTimesNow);
+      state.sunnahTimes = SunnahTimes(state.prayerTimesNow!);
       state.prayerTimes = state.prayerTimesNow;
       // update();
       return await initTimes();
@@ -181,6 +181,11 @@ class AdhanController extends GetxController {
   Future<void> _finalizePrayerTimeInitialization() async {
     await initTimes();
     state.isPrayerTimesInitialized.value = true;
+
+    // حساب أوقات الصلاة للتاريخ المختار (اليوم الحالي في البداية)
+    // Calculate prayer times for selected date (current day initially)
+    await calculatePrayerTimesForDate(state.selectedDate);
+
     update(['init_athan', 'update_progress']);
     PrayerProgressController.instance.updateProgress();
   }
@@ -261,5 +266,56 @@ class AdhanController extends GetxController {
     state.box.remove(PRAYER_TIME_DATE);
     state.box.remove(PRAYER_TIME);
     await initializeStoredAdhan(forceUpdate: true);
+  }
+
+  /// حساب أوقات الصلاة لتاريخ محدد
+  /// Calculate prayer times for specific date
+  Future<void> calculatePrayerTimesForDate(DateTime selectedDate) async {
+    try {
+      if (!GeneralController.instance.state.activeLocation.value) return;
+
+      // إنشاء DateComponents للتاريخ المختار
+      final dateComponents = DateComponents.from(selectedDate);
+
+      // حساب أوقات الصلاة للتاريخ المختار
+      state.selectedDatePrayerTimes =
+          PrayerTimes(state.coordinates, dateComponents, state.params);
+
+      state.selectedDateSunnahTimes =
+          SunnahTimes(state.selectedDatePrayerTimes!);
+
+      // تحديث أوقات الصلاة للتاريخ المختار
+      await Future.wait([
+        getPrayerTime(0, state.selectedDatePrayerTimes!.fajr)
+            .then((v) => state.selectedDateFajrTime.value = v),
+        getPrayerTime(1, state.selectedDatePrayerTimes!.sunrise)
+            .then((v) => state.selectedDateSunriseTime.value = v),
+        getPrayerTime(2, state.selectedDatePrayerTimes!.dhuhr)
+            .then((v) => state.selectedDateDhuhrTime.value = v),
+        getPrayerTime(3, state.selectedDatePrayerTimes!.asr)
+            .then((v) => state.selectedDateAsrTime.value = v),
+        getPrayerTime(4, state.selectedDatePrayerTimes!.maghrib)
+            .then((v) => state.selectedDateMaghribTime.value = v),
+        getPrayerTime(5, state.selectedDatePrayerTimes!.isha)
+            .then((v) => state.selectedDateIshaTime.value = v),
+        getPrayerTime(6, state.selectedDateSunnahTimes!.middleOfTheNight)
+            .then((v) => state.selectedDateMidnightTime.value = v),
+        getPrayerTime(7, state.selectedDateSunnahTimes!.lastThirdOfTheNight)
+            .then((v) => state.selectedDateLastThirdTime.value = v),
+      ]);
+
+      // تحديث الواجهة
+      update(['init_athan', 'selected_date_prayers']);
+    } catch (e) {
+      log('Error calculating prayer times for date: $e',
+          name: 'AdhanController');
+    }
+  }
+
+  /// تحديث التاريخ المختار وحساب أوقات الصلاة
+  /// Update selected date and calculate prayer times
+  Future<void> updateSelectedDate(DateTime newDate) async {
+    state.selectedDate = newDate;
+    await calculatePrayerTimesForDate(newDate);
   }
 }

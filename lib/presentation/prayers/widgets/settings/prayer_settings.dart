@@ -14,12 +14,14 @@ class PrayerSettings extends StatelessWidget {
               controller: GeneralController.instance,
               title: 'detectLocation',
               value: generalCtrl.state.activeLocation.value,
-              startMargin: 16.0,
+              startPadding: 16.0,
+              endPadding: 16.0,
               onChanged: (bool value) => generalCtrl.toggleLocationService(),
             ),
+            const Gap(8),
             AdhanSounds(),
             const Gap(8),
-            SetTimingCalculations()
+            SetTimingCalculations(),
           ],
         );
       }),
