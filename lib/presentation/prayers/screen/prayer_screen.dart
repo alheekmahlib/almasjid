@@ -45,7 +45,21 @@ class PrayerScreen extends StatelessWidget {
                                         const Gap(8),
                                         context.hDivider(width: Get.width * .5),
                                         const Gap(8),
-                                        updateLocationBuild(context),
+                                        Row(
+                                          children: [
+                                            Expanded(
+                                              child:
+                                                  updateLocationBuild(context),
+                                            ),
+                                            Expanded(
+                                              child: HijriDateWidget(
+                                                color: context
+                                                    .theme.colorScheme.surface,
+                                                horizontalPadding: 24.0,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                         const Gap(8),
                                         horizontalWeekCalendar(context),
                                         const Gap(8),
@@ -163,90 +177,41 @@ class PrayerScreen extends StatelessWidget {
       child: SizedBox(
         height: 65,
         width: Get.width,
-        child: ContainerButtonWidget(
-          svgHeight: 80,
-          width: Get.width,
-          // svgPath: SvgPath.svgAlert,
-          withShape: false,
-          useGradient: false,
-          backgroundColor: Colors.transparent,
-          borderColor:
-              Theme.of(context).colorScheme.surface.withValues(alpha: .2),
-          title: '${Location.instance.city}\n${Location.instance.country}',
-          titleColor: context.theme.colorScheme.inversePrimary,
-          onPressed: () async {
-            // تحديث الموقع وإعادة حساب أوقات الصلاة
-            // Update location and recalculate prayer times
-            final success = await generalCtrl.updateLocationAndPrayerTimes();
-            if (success) {
-              // إجبار تحديث واجهة المستخدم
-              // Force UI update
-              Get.forceAppUpdate();
-              log(
-                'Location and prayer times updated successfully',
-                name: 'PrayerScreen',
-              );
-            }
-          },
+        child: Stack(
+          alignment: AlignmentDirectional.centerStart,
+          children: [
+            Icon(Icons.place_rounded,
+                color: context.theme.colorScheme.surface.withValues(alpha: .1),
+                size: 70),
+            ContainerButtonWidget(
+              svgHeight: 80,
+              width: Get.width,
+              // svgPath: SvgPath.svgAlert,
+              withShape: false,
+              useGradient: false,
+              backgroundColor: Colors.transparent,
+              borderColor:
+                  Theme.of(context).colorScheme.surface.withValues(alpha: .2),
+              title: '${Location.instance.city}\n${Location.instance.country}',
+              titleColor: context.theme.colorScheme.inversePrimary,
+              onPressed: () async {
+                // تحديث الموقع وإعادة حساب أوقات الصلاة
+                // Update location and recalculate prayer times
+                final success =
+                    await generalCtrl.updateLocationAndPrayerTimes();
+                if (success) {
+                  // إجبار تحديث واجهة المستخدم
+                  // Force UI update
+                  Get.forceAppUpdate();
+                  log(
+                    'Location and prayer times updated successfully',
+                    name: 'PrayerScreen',
+                  );
+                }
+              },
+            ),
+          ],
         ),
-        // CustomButton(
-        //       onPressed: () async {
-        //         // تحديث الموقع وإعادة حساب أوقات الصلاة
-        //         // Update location and recalculate prayer times
-        //         final success = await generalCtrl.updateLocationAndPrayerTimes();
-        //         if (success) {
-        //           // إجبار تحديث واجهة المستخدم
-        //           // Force UI update
-        //           Get.forceAppUpdate();
-        //           log(
-        //             'Location and prayer times updated successfully',
-        //             name: 'PrayerScreen',
-        //           );
-        //         }
-        //       },
-        //       icon: Icons.location_on_outlined,
-        //       iconSize: 100,
-        //       svgColor: Theme.of(context).colorScheme.primary,
-        //       title: '${Location.instance.city}\n${Location.instance.country}',
-        //       backgroundColor:
-        //           Theme.of(context).colorScheme.surface.withValues(alpha: .5),
-        //       borderColor: Theme.of(context).colorScheme.surface,
-        //       // iconWidget: Row(
-        //       //   children: [
-        //       //     Icon(
-        //       //       Icons.location_on_outlined,
-        //       //       size: 40,
-        //       //       color:
-        //       //           context.theme.colorScheme.onSurface.withValues(alpha: .3),
-        //       //     ),
-        //       //     const Gap(16),
-        //       //     Column(
-        //       //       mainAxisSize: MainAxisSize.min,
-        //       //       children: [
-        //       //         Text(
-        //       //           Location.instance.city,
-        //       //           style: TextStyle(
-        //       //             fontFamily: 'cairo',
-        //       //             fontSize: 18,
-        //       //             fontWeight: FontWeight.bold,
-        //       //             color: context.theme.colorScheme.inversePrimary,
-        //       //             height: 1.5,
-        //       //           ),
-        //       //         ),
-        //       //         Text(
-        //       //           Location.instance.country,
-        //       //           style: TextStyle(
-        //       //             fontFamily: 'cairo',
-        //       //             fontSize: 12,
-        //       //             color: context.theme.colorScheme.inversePrimary,
-        //       //             height: 1.5,
-        //       //           ),
-        //       //         ),
-        //       //       ],
-        //       //     ),
-        //       //   ],
-        //       // ),
-        //     ),
       ),
     );
   }

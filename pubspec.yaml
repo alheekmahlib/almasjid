@@ -48,11 +48,12 @@ dependencies:
   just_audio: ^0.10.4
   latlong2: ^0.9.1
   lottie: ^3.3.1
+  screenshot: ^3.0.0
   nominatim_geocoding: ^0.0.6
   path: ^1.9.0
   path_provider: ^2.1.5
   rate_my_app: ^2.3.2
-  share_plus: ^11.1.0
+  share_plus: ^11.0.0
   slide_countdown: ^2.0.2
   smooth_page_indicator: ^1.2.1
   solar_icons: ^0.0.5
@@ -114,6 +115,7 @@ flutter:
     - assets/svg/home/
     - assets/svg/prayer/
     - assets/svg/theme/
+    - assets/svg/share/
     - assets/images/
     - assets/svg/hijri/
     - assets/json/

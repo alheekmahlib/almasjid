@@ -60,10 +60,10 @@ class CustomButton extends StatelessWidget {
                 vertical: verticalPadding ?? 4.0),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(4.0),
-              side: BorderSide(
-                color: borderColor ?? Colors.transparent,
-                width: 1,
-              ),
+              // side: BorderSide(
+              //   color: borderColor ?? Colors.transparent,
+              //   width: 1,
+              // ),
             ),
           ),
           onPressed: onPressed,

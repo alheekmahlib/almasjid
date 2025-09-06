@@ -440,7 +440,7 @@ extension AdhanGetters on AdhanController {
     if (state.now.isAfter(sunrise.subtract(const Duration(minutes: 10))) &&
         state.now.isBefore(sunrise.add(const Duration(minutes: 30)))) {
       return const LinearGradient(
-          colors: [Color(0xffbababa), Color(0xff232323)],
+          colors: [Color(0xffbababa), Color(0xff081e37)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight);
     } else if (state.now.isAfter(sunrise.add(const Duration(minutes: 30))) &&
@@ -464,7 +464,7 @@ extension AdhanGetters on AdhanController {
     } else if (state.now.isAfter(maghrib.add(const Duration(minutes: 20))) ||
         state.now.isBefore(sunrise.subtract(const Duration(minutes: 10)))) {
       return const LinearGradient(
-          colors: [Color(0xff0a0f29), Color(0xff000000)],
+          colors: [Color(0xff0a0f29), Color(0xff081e37)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight);
     } else {

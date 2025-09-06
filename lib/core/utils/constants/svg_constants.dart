@@ -71,6 +71,10 @@ class SvgPath {
   /// assets/svg/qibla/qibla.svg
   static const String svgQiblaQibla = "assets/svg/qibla/qibla.svg";
 
+  /// Assets for svgShareShare
+  /// assets/svg/share/share.svg
+  static const String svgShareShare = "assets/svg/share/share.svg";
+
   /// Assets for svgThemeTheme1
   /// assets/svg/theme/theme1.svg
   static const String svgThemeTheme1 = "assets/svg/theme/theme1.svg";
