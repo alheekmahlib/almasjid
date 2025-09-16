@@ -21,6 +21,10 @@
 <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" /> 
 <!-- geolocator -->
 
+<!-- Huawei Location permissions -->
+<uses-permission android:name="com.huawei.hms.permission.LOCATION" />
+<!-- Huawei Location permissions -->
+
     <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:label="almasjid"

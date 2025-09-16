@@ -75,30 +75,33 @@ class PrayerNowWidget extends StatelessWidget {
                   children: [
                     Icon(
                       adhanCtrl.prayerNameList[currentPrayer]['icon'],
-                      size: 200,
+                      size: 180,
                       color: currentPrayer == 1 ||
                               currentPrayer == 2 ||
                               currentPrayer == 3 ||
                               currentPrayer == 4
                           ? const Color.fromARGB(255, 242, 181, 15)
-                              .withValues(alpha: .2)
+                              .withValues(alpha: .1)
                           : context.theme.colorScheme.inversePrimary
-                              .withValues(alpha: .1),
+                              .withValues(alpha: .05),
                     ),
                     Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text(
-                          '${adhanCtrl.prayerNameList[currentPrayer]['title']}'
-                              .tr,
-                          style: TextStyle(
-                            fontFamily: 'cairo',
-                            fontSize: 34,
-                            fontWeight: FontWeight.bold,
-                            color: context.theme.colorScheme.inversePrimary,
-                            height: .2,
+                        FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: Text(
+                            '${adhanCtrl.prayerNameList[currentPrayer]['title']}'
+                                .tr,
+                            style: TextStyle(
+                              fontFamily: 'cairo',
+                              fontSize: 34,
+                              fontWeight: FontWeight.bold,
+                              color: context.theme.colorScheme.inversePrimary,
+                              height: .2,
+                            ),
+                            textAlign: TextAlign.start,
                           ),
-                          textAlign: TextAlign.start,
                         ),
                         ReactiveNumberText(
                           text: adhanCtrl.prayerNameList[currentPrayer]['time'],

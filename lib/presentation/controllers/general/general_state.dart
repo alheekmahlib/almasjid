@@ -14,6 +14,7 @@ class GeneralState {
   double ayahItemWidth = 30.0;
   RxInt screenSelectedValue = 0.obs;
   RxBool activeLocation = false.obs;
+  RxBool isLocationLoading = false.obs;
   // RxBool isLocationActive = false.obs;
 
   // مفتاح للحصول على ارتفاع AyahTafsirWidget

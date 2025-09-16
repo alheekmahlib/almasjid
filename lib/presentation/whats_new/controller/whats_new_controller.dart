@@ -14,16 +14,6 @@ class WhatsNewController extends GetxController {
 
   /// -------- [Methods] ----------
 
-  void navigationPage() {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (state.newFeatures.isNotEmpty) {
-        SplashScreenController.instance.state.customWidget.value = 3;
-      } else {
-        Get.offAllNamed(AppRouter.homeScreen);
-      }
-    });
-  }
-
   Future<List<Map<String, dynamic>>> getNewFeatures() async {
     int lastShownIndex = await getLastShownIndex();
 
@@ -45,9 +35,7 @@ class WhatsNewController extends GetxController {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!GeneralController.instance.isFirstLaunch) {
         GetStorage().write(IS_LOCATION_ACTIVE, true);
-        SplashScreenController.instance.state.customWidget.value = 1;
-      } else {
-        navigationPage();
+        // SplashScreenController.instance.state.customWidgetIndex.value = 1;
       }
     });
   }

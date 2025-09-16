@@ -27,6 +27,7 @@ class ContainerButtonWidget extends StatelessWidget {
   final double? fontSize;
   final MainAxisAlignment? mainAxisAlignment;
   final Color? shapeColor;
+  final bool? isLoading;
 
   /// Whether to use gradient background or solid color
   /// If true: uses LinearGradient with backgroundColor and its transparent variant
@@ -54,7 +55,8 @@ class ContainerButtonWidget extends StatelessWidget {
       this.borderRadius,
       this.fontSize,
       this.mainAxisAlignment,
-      this.shapeColor});
+      this.shapeColor,
+      this.isLoading = false});
 
   @override
   Widget build(BuildContext context) {
@@ -170,17 +172,26 @@ class ContainerButtonWidget extends StatelessWidget {
                               const Gap(12),
                             ],
                             Flexible(
-                              child: Text(
-                                title!,
-                                style: TextStyle(
-                                  fontSize: fontSize ?? 16,
-                                  color: titleColor ?? Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: 'cairo',
-                                  height: 1.7,
-                                ),
-                                textAlign: TextAlign.center,
-                              ),
+                              child: isLoading!
+                                  ? SizedBox(
+                                      height: 20,
+                                      width: 20,
+                                      child: CircularProgressIndicator(
+                                        color:
+                                            context.theme.colorScheme.surface,
+                                        strokeWidth: 2,
+                                      ))
+                                  : Text(
+                                      title!,
+                                      style: TextStyle(
+                                        fontSize: fontSize ?? 16,
+                                        color: titleColor ?? Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: 'cairo',
+                                        height: 1.7,
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
                             ),
                           ],
                         ),

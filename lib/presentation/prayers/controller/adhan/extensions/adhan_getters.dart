@@ -640,20 +640,20 @@ extension AdhanGetters on AdhanController {
     }
   }
 
-  IconData getPrayerIcon(String prayerName) {
+  int getPrayerNotificationIndexForPrayer(String prayerName) {
     String notiType =
         GetStorage('AdhanSounds').read('scheduledAdhan_$prayerName') ??
             'nothing';
     if ('nothing' == notiType) {
-      return notificationOptions[0]['icon'];
+      return 0;
     } else if ('silent' == notiType) {
-      return notificationOptions[1]['icon'];
+      return 1;
     } else if ('bell' == notiType) {
-      return notificationOptions[2]['icon'];
+      return 2;
     } else if ('sound' == notiType) {
-      return notificationOptions[3]['icon'];
+      return 3;
     } else {
-      return notificationOptions[0]['icon'];
+      return 0;
     }
   }
 }

@@ -31,7 +31,6 @@ class PageViewBuild extends StatelessWidget {
                       : Container(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 8.0, vertical: 4.0),
-                          margin: const EdgeInsets.symmetric(horizontal: 8.0),
                           decoration: BoxDecoration(
                               color: context.theme.colorScheme.surface
                                   .withValues(alpha: .3),
@@ -40,21 +39,22 @@ class PageViewBuild extends StatelessWidget {
                           child: Text(
                             '${newFeatures[index]['title']}'.tr,
                             style: TextStyle(
-                              color: context.theme.colorScheme.inversePrimary,
+                              color: context.theme.canvasColor,
                               fontSize: 16.0.sp,
                               fontFamily: 'cairo',
                               height: 2,
                             ),
                           ),
                         ),
-                  const Gap(8),
+                  newFeatures[index]['title'] == ''
+                      ? const SizedBox.shrink()
+                      : const Gap(8),
                   newFeatures[index]['imagePath'] == ''
                       ? const SizedBox.shrink()
                       : Center(
                           child: Container(
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 8.0, vertical: 4.0),
-                            margin: const EdgeInsets.symmetric(horizontal: 8.0),
                             decoration: BoxDecoration(
                                 color: context.theme.colorScheme.surface
                                     .withValues(alpha: .3),
@@ -68,22 +68,24 @@ class PageViewBuild extends StatelessWidget {
                             ),
                           ),
                         ),
-                  const Gap(8),
+                  newFeatures[index]['imagePath'] == ''
+                      ? const SizedBox.shrink()
+                      : const Gap(8),
                   newFeatures[index]['details'] == ''
                       ? const SizedBox.shrink()
                       : Container(
                           width: size.width,
+                          alignment: Alignment.center,
                           padding: const EdgeInsets.all(16.0),
-                          margin: const EdgeInsets.symmetric(horizontal: 8.0),
                           decoration: BoxDecoration(
                               color: context.theme.colorScheme.surface
                                   .withValues(alpha: .3),
                               borderRadius:
-                                  const BorderRadius.all(Radius.circular(4))),
+                                  const BorderRadius.all(Radius.circular(16))),
                           child: Text(
                             '${newFeatures[index]['details']}'.tr,
                             style: TextStyle(
-                              color: context.theme.colorScheme.inversePrimary,
+                              color: context.theme.canvasColor,
                               fontSize: 14.0.sp,
                               fontFamily: 'cairo',
                               height: 2,

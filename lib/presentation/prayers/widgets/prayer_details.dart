@@ -62,6 +62,8 @@ class PrayerDetails extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   child: SettingPrayerTimes(listNum: index, isOnePrayer: true),
                 ),
+                const Gap(8),
+                ActivateAdhanButton(index: index, prayerTitle: prayerName!),
               ],
             ),
           );

@@ -7,46 +7,21 @@ class ProhibitionWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetX<AdhanController>(
       builder: (adhanCtrl) => adhanCtrl.prohibitionTimesBool.value
-          ? Padding(
-              padding:
-                  const EdgeInsets.only(right: 16.0, left: 16.0, bottom: 8.0),
-              child: SizedBox(
-                height: 55,
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.surface,
-                    borderRadius: const BorderRadius.all(Radius.circular(8)),
-                  ),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Text(
-                          'prohibitionTimes'.tr,
-                          style: TextStyle(
-                            fontFamily: 'cairo',
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color:
-                                context.theme.canvasColor.withValues(alpha: .7),
-                          ),
-                        ),
-                      ),
-                      const Gap(8),
-                      IconButton(
-                        icon: const Icon(Icons.info_outline),
-                        onPressed: () {
-                          showModalBottomSheet(
-                            context: context,
-                            builder: (context) => prohibitionDetails(context,
-                                adhanCtrl.state.prohibitionTimesIndex.value),
-                          );
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+          ? ContainerButtonWidget(
+              onPressed: () {
+                showModalBottomSheet(
+                  context: context,
+                  builder: (context) => prohibitionDetails(
+                      context, adhanCtrl.state.prohibitionTimesIndex.value),
+                );
+              },
+              title: 'prohibitionTimes',
+              horizontalMargin: 24.0,
+              backgroundColor: Colors.red.withValues(alpha: .1),
+              borderColor: context.theme.colorScheme.surface,
+              titleColor: context.theme.colorScheme.inversePrimary,
+              useGradient: false,
+              withShape: false,
             )
           : const SizedBox.shrink(),
     );

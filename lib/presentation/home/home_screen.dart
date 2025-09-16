@@ -29,7 +29,7 @@ class HomeScreen extends StatelessWidget {
             tabs: [
               FloatyTab(
                 isSelected: controller.currentIndex == 0,
-                title: 'Home',
+                title: 'qibla'.tr,
                 margin:
                     const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
                 selectedColor: context.theme.colorScheme.surface,
@@ -51,7 +51,7 @@ class HomeScreen extends StatelessWidget {
               ),
               FloatyTab(
                 isSelected: controller.currentIndex == 1,
-                title: 'prayer',
+                title: 'prayer'.tr,
                 margin:
                     const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
                 selectedColor: context.theme.colorScheme.surface,
@@ -73,7 +73,7 @@ class HomeScreen extends StatelessWidget {
               ),
               FloatyTab(
                 isSelected: controller.currentIndex == 2,
-                title: 'Home',
+                title: 'settings'.tr,
                 margin:
                     const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
                 selectedColor: context.theme.colorScheme.surface,

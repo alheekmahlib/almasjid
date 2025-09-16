@@ -1,20 +1,21 @@
-import 'package:almasjid/core/utils/constants/extensions/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 
+import '/core/utils/constants/extensions/extensions.dart';
 import '../../../../core/services/notifications_helper.dart';
 import '../../../../core/utils/constants/lottie.dart';
 import '../../../../core/utils/constants/lottie_constants.dart';
 import '../../../../core/widgets/animated_drawing_widget.dart';
+import '../../../../core/widgets/container_button_widget.dart';
 import '../../../../core/widgets/custom_button.dart';
-import '../../../whats_new/whats_new.dart';
+import '../../splash.dart';
 
 class ActiveNotificationWidget extends StatelessWidget {
   ActiveNotificationWidget({super.key});
 
-  final whatsNewCtrl = WhatsNewController.instance;
+  final splashCtrl = SplashScreenController.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +33,7 @@ class ActiveNotificationWidget extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 const Gap(16),
-                // customLottie(LottieConstants.assetsLottieActivateNotification),
+                customLottie(LottieConstants.assetsLottieNotification),
                 const Spacer(),
                 Container(
                   padding: const EdgeInsets.symmetric(
@@ -53,22 +54,23 @@ class ActiveNotificationWidget extends StatelessWidget {
                   ),
                 ),
                 const Gap(32),
-                SizedBox(
-                  height: 45,
-                  child: CustomButton(
-                    onPressed: () async {
-                      NotifyHelper()
-                          .requistPermissions()
-                          .then((_) => whatsNewCtrl.navigationPage());
-                      // NotifyHelper.initFlutterLocalNotifications();
-                      NotifyHelper.initAwesomeNotifications();
-                    },
-                    svgPath: 'SvgPath.svgCheckMark',
-                    svgColor: context.theme.colorScheme.surface,
-                    titleColor: context.theme.canvasColor,
-                    title: 'activation'.tr,
-                  ),
-                ),
+                Obx(() => ContainerButtonWidget(
+                      onPressed: splashCtrl.state.isNotificationLoading.value
+                          ? null
+                          : () async {
+                              await splashCtrl.activateNotifications();
+                            },
+                      height: 45,
+                      width: Get.width,
+                      horizontalMargin: 0,
+                      useGradient: false,
+                      withShape: false,
+                      isLoading: splashCtrl.state.isNotificationLoading.value,
+                      backgroundColor: Colors.transparent,
+                      shadowColor: Colors.transparent,
+                      borderColor: context.theme.colorScheme.surface,
+                      title: 'activation'.tr,
+                    )),
               ],
             ),
             Row(
@@ -77,16 +79,15 @@ class ActiveNotificationWidget extends StatelessWidget {
                 Expanded(
                   child: Column(
                     children: [
-                      customLottie(
-                          LottieConstants.assetsLottieActivateNotification),
+                      customLottie(LottieConstants.assetsLottieNotification),
                       const Spacer(),
                       SizedBox(
                         height: 45,
                         child: CustomButton(
                           onPressed: () async {
-                            NotifyHelper()
-                                .requistPermissions()
-                                .then((_) => whatsNewCtrl.navigationPage());
+                            await NotifyHelper().requistPermissions().then(
+                                (_) => SplashScreenController.instance.state
+                                    .customWidgetIndex.value = 3);
                             // NotifyHelper.initFlutterLocalNotifications();
                             NotifyHelper.initAwesomeNotifications();
                           },

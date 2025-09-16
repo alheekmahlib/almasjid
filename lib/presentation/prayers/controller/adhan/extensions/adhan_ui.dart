@@ -36,7 +36,6 @@ extension AdhanUi on AdhanController {
       prayerNameList[prayerIndex]['title'],
       notificationOptions[i]['title'],
     );
-    Get.back();
     update(['change_notification']);
   }
 }

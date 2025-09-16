@@ -13,6 +13,8 @@ class ApiConstants {
       'alheekmahlib/thegarlanded/blob/master/noti.json?raw=true';
   static const String ourAppsUrl =
       'alheekmahlib/thegarlanded/blob/master/ourApps.json?raw=true';
-  static const String mapUrl =
-      'https://basemaps.cartocdn.com/rastertiles/voyager_no_buildings/{z}/{x}/{y}.png';
+  static const String mapLightUrl =
+      'https://basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}.png';
+  static const String mapDarkUrl =
+      'https://basemaps.cartocdn.com/rastertiles/dark_all/{z}/{x}/{y}.png';
 }

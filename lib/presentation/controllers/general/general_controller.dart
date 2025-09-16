@@ -9,6 +9,7 @@ import '../../../core/services/background_services.dart';
 import '../../../core/services/location/locations.dart';
 import '../../../core/utils/constants/shared_preferences_constants.dart';
 import '../../prayers/prayers.dart';
+import '../../qibla/qibla.dart';
 import 'general_state.dart';
 
 class GeneralController extends GetxController {
@@ -81,6 +82,7 @@ class GeneralController extends GetxController {
 
   Future<void> initLocation() async {
     try {
+      state.isLocationLoading.value = true;
       if (Platform.isMacOS || Platform.isLinux || Platform.isWindows) {
         await NominatimGeocoding.init();
         log('Location service is not supported on this platform');
@@ -98,6 +100,8 @@ class GeneralController extends GetxController {
       //     .then((_) => PrayersWidgetConfig().updatePrayersDate());
     } catch (e) {
       log(e.toString(), name: 'Main', error: e);
+    } finally {
+      state.isLocationLoading.value = false;
     }
   }
 
@@ -184,6 +188,7 @@ class GeneralController extends GetxController {
       // إعادة حساب أوقات الصلاة
       // Recalculate prayer times
       await AdhanController.instance.clearCacheAndRecalculate();
+      await QiblaController.instance.updateQiblaDirection();
 
       // تحديث الويدجت
       // Update widget

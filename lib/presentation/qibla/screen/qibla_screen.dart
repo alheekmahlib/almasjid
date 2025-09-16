@@ -15,32 +15,21 @@ class QiblaScreen extends StatelessWidget {
             child: activeLocationWidget(
               context,
               Container(
-                margin: const EdgeInsets.only(bottom: 88.0),
-                decoration: BoxDecoration(
-                  color: context.theme.colorScheme.primaryContainer,
-                  borderRadius: const BorderRadius.only(
-                    bottomLeft: Radius.circular(30),
-                    bottomRight: Radius.circular(30),
-                  ),
-                ),
+                color: context.theme.colorScheme.primaryContainer,
                 child: Column(
                   children: [
                     const AppBarWidget(),
-                    const Gap(16),
+                    // const Gap(16),
                     Flexible(
-                      child: CustomTabBarWidget(
-                        firstTabText: 'compass',
-                        secondTabText: 'map',
-                        // topChild: Hero(
-                        //   tag: 'qibla_tag',
-                        //   child: customSvgWithCustomColor(
-                        //     SvgPath.svgQeblaLogo,
-                        //     width: 160.0,
-                        //     color: context.theme.colorScheme.surface,
-                        //   ),
-                        // ),
-                        firstTabChild: QiblaCompassWidget(),
-                        secondTabChild: QiblaMapWidget(),
+                      child: GetBuilder<QiblaController>(
+                        init: QiblaController.instance,
+                        builder: (qiblaCtrl) => IndexedStack(
+                          index: qiblaCtrl.currentIndex.value,
+                          children: [
+                            QiblaCompassWidget(),
+                            QiblaMapWidget(),
+                          ],
+                        ),
                       ),
                     ),
                   ],

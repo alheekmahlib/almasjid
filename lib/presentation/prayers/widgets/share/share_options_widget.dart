@@ -33,12 +33,13 @@ class ShareOptionsWidget extends StatelessWidget {
               color: context.theme.hintColor,
             ),
           ),
+          const Gap(24),
         ],
       ),
     );
   }
 
-  ContainerButtonWidget _imageBuild(ClipRRect card, BuildContext context) {
+  Widget _imageBuild(ClipRRect card, BuildContext context) {
     return ContainerButtonWidget(
       onPressed: shareCtrl.isSaving.value
           ? null

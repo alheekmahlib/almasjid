@@ -16,10 +16,13 @@ class SplashScreen extends StatelessWidget {
               Stack(
                 alignment: Alignment.center,
                 children: [
-                  const Align(
-                    alignment: Alignment.bottomCenter,
-                    child: AlheekmahAndLoading(),
-                  ),
+                  GetX<SplashScreenController>(
+                      builder: (s) => s.state.customWidgetIndex.value == 0
+                          ? const Align(
+                              alignment: Alignment.bottomCenter,
+                              child: AlheekmahAndLoading(),
+                            )
+                          : const SizedBox.shrink()),
                   Align(
                     alignment: Alignment.center,
                     child: Stack(
@@ -29,9 +32,6 @@ class SplashScreen extends StatelessWidget {
                           opacity: .03,
                           width: Get.width,
                           height: Get.width * .6,
-                          customColor: context.theme.canvasColor,
-                        ),
-                        AnimatedDrawingWidget(
                           customColor: context.theme.canvasColor,
                         ),
                       ],
@@ -44,18 +44,13 @@ class SplashScreen extends StatelessWidget {
                         child: SplashScreenController.instance
                             .ramadhanOrEidGreeting()),
                   ),
-                  _animatedContainer(context),
                   Align(
-                    alignment: Alignment.bottomCenter,
+                    alignment: Alignment.center,
                     child: GetX<SplashScreenController>(
-                      builder: (s) => AnimatedOpacity(
-                        opacity: s.state.containerAnimate.value ? 1 : 0,
-                        duration: const Duration(milliseconds: 350),
-                        curve: Curves.easeInOutCirc,
-                        child: s.customWidget,
-                      ),
+                      builder: (s) => s.customWidget,
                     ),
                   ),
+                  _animatedContainer(context),
                 ],
               ),
               Center(
@@ -77,10 +72,12 @@ class SplashScreen extends StatelessWidget {
                             ],
                           ),
                         ),
-                        const Expanded(
-                          flex: 4,
-                          child: AlheekmahAndLoading(),
-                        )
+                        s.state.customWidgetIndex.value == 0
+                            ? const Expanded(
+                                flex: 4,
+                                child: AlheekmahAndLoading(),
+                              )
+                            : const SizedBox.shrink(),
                       ],
                     ),
                     Align(
@@ -88,18 +85,13 @@ class SplashScreen extends StatelessWidget {
                       child: SplashScreenController.instance
                           .ramadhanOrEidGreeting(),
                     ),
-                    _animatedContainer(context),
                     Align(
-                      alignment: Alignment.bottomCenter,
+                      alignment: Alignment.center,
                       child: GetX<SplashScreenController>(
-                        builder: (s) => AnimatedOpacity(
-                          opacity: s.state.containerAnimate.value ? 1 : 0,
-                          duration: const Duration(milliseconds: 350),
-                          curve: Curves.easeInOutCirc,
-                          child: s.customWidget,
-                        ),
+                        builder: (s) => s.customWidget,
                       ),
                     ),
+                    _animatedContainer(context),
                   ],
                 ),
               )),
@@ -117,7 +109,7 @@ class SplashScreen extends StatelessWidget {
                 alignment: Alignment.bottomCenter,
                 duration: const Duration(milliseconds: 350),
                 curve: Curves.easeInOutCirc,
-                height: s.state.smallContainerHeight.value,
+                height: s.state.firstContainerHeight.value,
                 width: Get.width,
                 color: context.theme.colorScheme.surface.withValues(alpha: .5),
               )),
@@ -128,7 +120,7 @@ class SplashScreen extends StatelessWidget {
                 alignment: Alignment.bottomCenter,
                 duration: const Duration(milliseconds: 350),
                 curve: Curves.easeInOutCirc,
-                height: s.state.smallContainerHeight.value,
+                height: s.state.firstContainerHeight.value,
                 width: Get.width,
                 color: context.theme.colorScheme.surface.withValues(alpha: .5),
               )),
@@ -140,7 +132,7 @@ class SplashScreen extends StatelessWidget {
               alignment: Alignment.bottomCenter,
               duration: const Duration(milliseconds: 350),
               curve: Curves.easeInOutCirc,
-              height: s.state.containerAnimate.value ? Get.height * .5 : 0,
+              height: s.state.secondContainerHeight.value,
               width: Get.width,
               color: context.theme.colorScheme.primaryContainer,
             ),
@@ -152,7 +144,7 @@ class SplashScreen extends StatelessWidget {
                 alignment: Alignment.topCenter,
                 duration: const Duration(milliseconds: 350),
                 curve: Curves.easeInOutCirc,
-                height: s.state.containerAnimate.value ? Get.height * .5 : 0,
+                height: s.state.secondContainerHeight.value,
                 width: Get.width,
                 color: context.theme.colorScheme.primaryContainer,
               )),

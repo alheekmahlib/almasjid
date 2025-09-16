@@ -15,55 +15,20 @@ class ActivateAdhanButton extends StatelessWidget {
       id: 'change_notification',
       builder: (adhanCtrl) => Container(
         // height: 445,
-        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 32.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      Icon(
-                        adhanCtrl.prayerNameList[index]['icon'],
-                        size: 70,
-                        color:
-                            index == 1 || index == 2 || index == 3 || index == 4
-                                ? const Color.fromARGB(255, 242, 181, 15)
-                                    .withValues(alpha: .4)
-                                : Theme.of(context)
-                                    .canvasColor
-                                    .withValues(alpha: .2),
-                      ),
-                      Text(
-                        '${adhanCtrl.prayerNameList[index]['title']}'.tr,
-                        style: TextStyle(
-                          fontFamily: 'cairo',
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                          color:
-                              context.theme.canvasColor.withValues(alpha: .7),
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
-                  Text(
-                    adhanCtrl.prayerNameList[index]['time'],
-                    style: TextStyle(
-                      fontFamily: 'cairo',
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: context.theme.canvasColor.withValues(alpha: .7),
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ],
-              ),
+            Text(
+              'notificationOptions'.tr,
+              style: TextStyle(
+                  color: context.theme.colorScheme.inversePrimary
+                      .withValues(alpha: .7),
+                  fontFamily: 'cairo',
+                  fontStyle: FontStyle.italic,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16),
             ),
-            const Gap(16),
+            const Gap(4),
             Column(
               children: List.generate(
                 notificationOptions.length,
@@ -72,8 +37,28 @@ class ActivateAdhanButton extends StatelessWidget {
                   child: GestureDetector(
                     onTap: () async =>
                         await adhanCtrl.notificationOptionsOnTap(i, index),
-                    child: Padding(
+                    child: Container(
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      margin: const EdgeInsets.symmetric(
+                          vertical: 2.0, horizontal: 8.0),
+                      decoration: BoxDecoration(
+                        color: adhanCtrl.getPrayerNotificationIndexForPrayer(
+                                    prayerTitle) ==
+                                i
+                            ? context.theme.colorScheme.surface
+                                .withValues(alpha: .3)
+                            : context.theme.colorScheme.surface
+                                .withValues(alpha: .1),
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(
+                          color: adhanCtrl.getPrayerNotificationIndexForPrayer(
+                                      prayerTitle) ==
+                                  i
+                              ? context.theme.colorScheme.surface
+                              : Colors.transparent,
+                          width: 2,
+                        ),
+                      ),
                       child: Row(
                         // mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [

@@ -6,6 +6,10 @@ class AdhanController extends GetxController {
 
   AdhanState state = AdhanState();
 
+  // Tracks and updates current prayer highlighting reliably
+  int _lastCurrentPrayerIndex = -1;
+  Timer? _currentPrayerTimer;
+
   @override
   Future<void> onInit() async {
     super.onInit();
@@ -20,17 +24,16 @@ class AdhanController extends GetxController {
         () async =>
             await PrayersNotificationsCtrl.instance.reschedulePrayers());
     updateProgressBar();
-    Future.delayed(
-        const Duration(seconds: 10),
-        () => ever(getNextPrayerByDateTime(), (value) {
-              log('nextPrayer has been changed $value');
-              update();
-            }));
+    // Start periodic watcher after initial data likely loaded
+    Future.delayed(const Duration(seconds: 10), () {
+      updateCurrentPrayer();
+    });
   }
 
   @override
   void onClose() {
     state.timer?.cancel();
+    _currentPrayerTimer?.cancel();
     super.onClose();
   }
 
@@ -250,13 +253,23 @@ class AdhanController extends GetxController {
     update(['init_athan']);
   }
 
-  /// تحديث الصلاة الحالية بصورة دورية
-  /// Update current prayer periodically
+  /// تحديث الصلاة الحالية بصورة دورية مع إعادة بناء عناصر الواجهة عند التغيير
+  /// Update current prayer periodically and rebuild related UI when it changes
   void updateCurrentPrayer() {
-    Timer.periodic(const Duration(seconds: 30), (timer) {
-      getCurrentPrayerByDateTime();
+    _currentPrayerTimer?.cancel();
+    // Seed last index to current to avoid redundant first rebuild
+    _lastCurrentPrayerIndex = getCurrentPrayerByDateTime();
+    _currentPrayerTimer = Timer.periodic(const Duration(seconds: 30), (timer) {
+      final currentIndex = getCurrentPrayerByDateTime();
       getTimeNowColor();
-      update(['CurrentPrayer']);
+      if (currentIndex != _lastCurrentPrayerIndex) {
+        _lastCurrentPrayerIndex = currentIndex;
+        // Rebuild prayer list and selected-date views when prayer changes
+        update(['init_athan', 'selected_date_prayers', 'CurrentPrayer']);
+      } else {
+        // Still push lighter updates for components that depend on time
+        update(['CurrentPrayer']);
+      }
     });
   }
 

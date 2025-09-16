@@ -9,46 +9,53 @@ class SplashScreenController extends GetxController {
   @override
   void onInit() {
     _loadInitialData();
-    startTime();
-    Future.delayed(const Duration(milliseconds: 600))
-        .then((_) => state.logoAnimate.value = true);
-    Future.delayed(const Duration(milliseconds: 4000))
-        .then((_) => state.containerAnimate.value = true);
-    Future.delayed(const Duration(milliseconds: 3800))
-        .then((_) => state.smallContainerHeight.value = Get.height);
-    // Future.delayed(const Duration(milliseconds: 4500)).then((_) {
-    //   state.customWidget.value = 0;
-    // });
+    Future.delayed(const Duration(milliseconds: 4300))
+        .then((_) async => await changeCustomWidget());
+    // startTime();
     super.onInit();
   }
 
-  /// -------- [Methods] ----------
-
-  Future<void> _loadInitialData() async {
-    SettingsController.instance.loadLang();
-    GeneralController.instance.getLastPageAndFontSize();
-    GeneralController.instance.updateGreeting();
-    GeneralController.instance.state.screenSelectedValue.value =
-        state.box.read(SCREEN_SELECTED_VALUE) ?? 0;
+  @override
+  void onReady() {
+    final height = Get.height;
+    openSlider(duration: 3500, height: height);
+    closeSlider(duration: 4300, height: 0.0);
+    super.onReady();
   }
 
-  Future startTime() async {
-    await Future.delayed(const Duration(milliseconds: 4300));
-    WhatsNewController.instance.activeLocation();
+  void openSlider({required int duration, required double height}) {
+    Future.delayed(Duration(milliseconds: duration))
+        .then((_) => state.firstContainerHeight.value = height);
+    Future.delayed(Duration(milliseconds: duration + 300))
+        .then((_) => state.secondContainerHeight.value = height);
   }
 
-  Widget ramadhanOrEidGreeting() {
-    if (state.today.hMonth == 9) {
-      return ramadanOrEid('ramadan_white', height: 100.0);
-    } else if (GeneralController.instance.eidDays) {
-      return ramadanOrEid('eid_white', height: 100.0);
+  void closeSlider({required int duration, required double height}) {
+    Future.delayed(Duration(milliseconds: duration))
+        .then((_) => state.secondContainerHeight.value = height);
+    Future.delayed(Duration(milliseconds: duration + 300))
+        .then((_) => state.firstContainerHeight.value = height);
+  }
+
+  Future<void> changeCustomWidget() async {
+    bool isAllowed = await AwesomeNotifications().isNotificationAllowed();
+    if (!GeneralController.instance.state.activeLocation.value) {
+      state.customWidgetIndex.value = 1;
+    } else if (!isAllowed) {
+      state.customWidgetIndex.value = 2;
+    } else if (WhatsNewController.instance.state.newFeatures.isNotEmpty) {
+      state.customWidgetIndex.value = 3;
     } else {
-      return const SizedBox.shrink();
+      Get.offAndToNamed(AppRouter.homeScreen);
     }
   }
 
   Widget get customWidget {
-    switch (state.customWidget.value) {
+    switch (state.customWidgetIndex.value) {
+      case 0:
+        return AnimatedDrawingWidget(
+          customColor: Get.theme.canvasColor,
+        );
       case 1:
         return ActiveLocationWidget();
       case 2:
@@ -58,7 +65,40 @@ class SplashScreenController extends GetxController {
           newFeatures: WhatsNewController.instance.state.newFeatures,
         );
       default:
-        return Container();
+        return AnimatedDrawingWidget(
+          customColor: Get.theme.canvasColor,
+        );
+    }
+  }
+
+  /// -------- [Methods] ----------
+
+  Future<void> activateNotifications() async {
+    try {
+      state.isNotificationLoading.value = true;
+      await NotifyHelper().requistPermissions();
+      NotifyHelper.initAwesomeNotifications();
+      state.customWidgetIndex.value = 3;
+    } finally {
+      state.isNotificationLoading.value = false;
+    }
+  }
+
+  Future<void> _loadInitialData() async {
+    SettingsController.instance.loadLang();
+    GeneralController.instance.getLastPageAndFontSize();
+    GeneralController.instance.updateGreeting();
+    GeneralController.instance.state.screenSelectedValue.value =
+        state.box.read(SCREEN_SELECTED_VALUE) ?? 0;
+  }
+
+  Widget ramadhanOrEidGreeting() {
+    if (state.today.hMonth == 9) {
+      return ramadanOrEid('ramadan_white', height: 100.0);
+    } else if (GeneralController.instance.eidDays) {
+      return ramadanOrEid('eid_white', height: 100.0);
+    } else {
+      return const SizedBox.shrink();
     }
   }
 }

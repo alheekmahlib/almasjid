@@ -2,6 +2,8 @@ import 'dart:developer' show log;
 import 'dart:ui' as ui;
 
 import 'package:adhan/adhan.dart';
+import 'package:almasjid/core/widgets/custom_button.dart';
+import 'package:almasjid/presentation/controllers/theme_controller.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -22,10 +24,11 @@ import '../../../core/utils/constants/api_constants.dart';
 import '../../../core/utils/constants/lists.dart';
 import '../../../core/utils/constants/shared_preferences_constants.dart';
 import '../../core/widgets/app_bar_widget.dart';
-import '../../core/widgets/custom_tab_bar_widget.dart';
 import '../controllers/general/general_controller.dart';
 
 part '../qibla/controller/qibla_controller.dart';
 part '../qibla/screen/qibla_screen.dart';
+part '../qibla/widgets/custom_painter.dart';
 part '../qibla/widgets/qibla_compass_widget.dart';
 part '../qibla/widgets/qibla_map_widget.dart';
+part 'widgets/header_card_widget.dart';

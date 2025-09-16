@@ -20,6 +20,7 @@ class CustomButton extends StatelessWidget {
   final bool? isCustomSvgColor;
   final double? horizontalPadding;
   final double? verticalPadding;
+  final double? borderRadius;
   const CustomButton(
       {super.key,
       this.svgPath,
@@ -36,7 +37,8 @@ class CustomButton extends StatelessWidget {
       this.iconWidget,
       this.isCustomSvgColor = false,
       this.horizontalPadding,
-      this.verticalPadding});
+      this.verticalPadding,
+      this.borderRadius});
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +47,7 @@ class CustomButton extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(4.0),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8.0),
+          borderRadius: BorderRadius.circular(borderRadius ?? 8.0),
           border: Border.all(
             color: borderColor ?? Colors.transparent,
             width: 1,
@@ -59,7 +61,7 @@ class CustomButton extends StatelessWidget {
                 horizontal: horizontalPadding ?? 4.0,
                 vertical: verticalPadding ?? 4.0),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(4.0),
+              borderRadius: BorderRadius.circular(borderRadius ?? 4.0),
               // side: BorderSide(
               //   color: borderColor ?? Colors.transparent,
               //   width: 1,

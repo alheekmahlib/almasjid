@@ -7,6 +7,7 @@ class LocationHelper {
     return instance;
   }
   LocationHelper._();
+
   Future<bool> checkPermission() async {
     try {
       LocationPermission permission = await Geolocator.checkPermission();
@@ -31,26 +32,64 @@ class LocationHelper {
   }
 
   Future<void> getPositionDetails() async {
+    bool? isGoogle = await GoogleHuaweiAvailability.isGoogleServiceAvailable;
+    bool? isHuawei = await GoogleHuaweiAvailability.isHuaweiServiceAvailable;
+    final bool useHuaweiLocation =
+        Platform.isAndroid && (isHuawei == true) && (isGoogle != true);
+
     if (await Geolocator.isLocationServiceEnabled()) {
       if (await Geolocator.checkPermission() == LocationPermission.denied) {
         await Geolocator.requestPermission();
       }
     }
     if (await checkPermission()) {
-      // إعدادات الموقع المحسنة - Enhanced location settings
-      var currentPosition = await Geolocator.getCurrentPosition(
-        locationSettings: const LocationSettings(
-          accuracy: LocationAccuracy.high,
-          distanceFilter:
-              1000, // تحديث الموقع كل 1000 متر - Update location every 1000 meters
-          timeLimit: Duration(
-              seconds:
-                  30), // حد زمني للحصول على الموقع - Time limit for location fetch
-        ),
-      );
+      Position? currentPosition;
+
+      if (useHuaweiLocation) {
+        try {
+          hms_location.FusedLocationProviderClient locationClient =
+              hms_location.FusedLocationProviderClient();
+
+          hms_location.Location hwLocation =
+              await locationClient.getLastLocation();
+          currentPosition = Position(
+            latitude: hwLocation.latitude!,
+            longitude: hwLocation.longitude!,
+            timestamp: DateTime.now(),
+            accuracy: hwLocation.horizontalAccuracyMeters ?? 0.0,
+            altitude: hwLocation.altitude ?? 0.0,
+            heading: 0.0,
+            speed: hwLocation.speed ?? 0.0,
+            speedAccuracy: 0.0,
+            altitudeAccuracy: 0.0,
+            headingAccuracy: 0.0,
+          );
+        } catch (e) {
+          log('HMS Location error: $e',
+              name: LocationHelper.instance.toString());
+        }
+      }
+
+      if (!useHuaweiLocation || currentPosition == null) {
+        currentPosition = await Geolocator.getCurrentPosition(
+          locationSettings: Platform.isAndroid
+              ? AndroidSettings(
+                  accuracy: LocationAccuracy.high,
+                  distanceFilter: 1000,
+                  forceLocationManager: useHuaweiLocation,
+                  timeLimit: const Duration(seconds: 30),
+                )
+              : const LocationSettings(
+                  accuracy: LocationAccuracy.high,
+                  distanceFilter: 1000,
+                  timeLimit: Duration(seconds: 30),
+                ),
+        );
+      }
+
       try {
         if (Platform.isAndroid || Platform.isIOS) {
-          await _getLocationForMobile(currentPosition);
+          await _getLocationForMobile(currentPosition, useHuaweiLocation);
           GetStorage().write(ACTIVE_LOCATION, true);
           GeneralController.instance.state.activeLocation.value = true;
         } else {
@@ -67,17 +106,55 @@ class LocationHelper {
     }
   }
 
-  Future<void> _getLocationForMobile(Position currentPosition) async {
+  Future<void> _getLocationForMobile(
+      Position currentPosition, bool useHuaweiLocation) async {
     List<Placemark> placemarks = [];
-    try {
-      placemarks = await placemarkFromCoordinates(
-        currentPosition.latitude,
-        currentPosition.longitude,
-      );
-    } catch (e) {
-      log('error: $e');
+    String? city;
+    String? country;
+
+    if (useHuaweiLocation) {
+      try {
+        // TODO: Replace with actual Huawei Site Kit reverse geocoding implementation
+        // For now, using a placeholder or a web-based geocoding service if available
+        // Example: Using Nominatim for Huawei devices without GMS for reverse geocoding
+        await NominatimGeocoding.init();
+        Coordinate coordinate = Coordinate(
+            latitude: currentPosition.latitude,
+            longitude: currentPosition.longitude);
+        Geocoding geocoding =
+            await NominatimGeocoding.to.reverseGeoCoding(coordinate);
+        city = geocoding.address.city;
+        country = geocoding.address.country;
+      } catch (e) {
+        log('HMS Site Kit reverse geocoding error: $e');
+        // Fallback to geocoding package if HMS Site Kit fails or is not implemented yet
+        try {
+          placemarks = await placemarkFromCoordinates(
+            currentPosition.latitude,
+            currentPosition.longitude,
+          );
+        } catch (e) {
+          log('error: $e');
+        }
+      }
+    } else {
+      try {
+        placemarks = await placemarkFromCoordinates(
+          currentPosition.latitude,
+          currentPosition.longitude,
+        );
+      } catch (e) {
+        log('error: $e');
+      }
     }
-    if (placemarks.isNotEmpty) {
+
+    if (city != null && country != null) {
+      Location().updateLocation(
+        city: city,
+        country: country,
+        position: currentPosition,
+      );
+    } else if (placemarks.isNotEmpty) {
       Placemark placemark = placemarks.first;
       Location().updateLocation(
         city: placemark.locality ?? 'UNKNOWN',
@@ -153,44 +230,57 @@ class LocationHelper {
       return null; // Return null when permissions are denied
     }
 
-    // إعدادات الموقع المحسنة لكل منصة - Enhanced location settings for each platform
-    Position currentPosition = await Geolocator.getCurrentPosition(
-      locationSettings: const LocationSettings(
-        accuracy: LocationAccuracy.high,
-        distanceFilter:
-            10, // تحديث الموقع كل 10 متر - Update location every 10 meters
-        timeLimit: Duration(
-            seconds:
-                30), // حد زمني للحصول على الموقع - Time limit for location fetch
-      ),
-    );
+    bool? isGoogle = await GoogleHuaweiAvailability.isGoogleServiceAvailable;
+    bool? isHuawei = await GoogleHuaweiAvailability.isHuaweiServiceAvailable;
+    final bool useHuaweiLocation =
+        Platform.isAndroid && (isHuawei == true) && (isGoogle != true);
+
+    Position? currentPosition;
+
+    if (useHuaweiLocation) {
+      try {
+        hms_location.FusedLocationProviderClient locationClient =
+            hms_location.FusedLocationProviderClient();
+
+        hms_location.Location hwLocation =
+            await locationClient.getLastLocation();
+        currentPosition = Position(
+          latitude: hwLocation.latitude!,
+          longitude: hwLocation.longitude!,
+          timestamp: DateTime.now(),
+          accuracy: hwLocation.horizontalAccuracyMeters ?? 0.0,
+          altitude: hwLocation.altitude ?? 0.0,
+          heading: 0.0,
+          speed: hwLocation.speed ?? 0.0,
+          speedAccuracy: 0.0,
+          altitudeAccuracy: 0.0,
+          headingAccuracy: 0.0,
+        );
+      } catch (e) {
+        log('HMS Location error: $e', name: 'Background service');
+      }
+    }
+
+    if (!useHuaweiLocation || currentPosition == null) {
+      currentPosition = await Geolocator.getCurrentPosition(
+        locationSettings: Platform.isAndroid
+            ? AndroidSettings(
+                accuracy: LocationAccuracy.high,
+                distanceFilter: 10,
+                forceLocationManager: useHuaweiLocation,
+                timeLimit: const Duration(seconds: 30),
+              )
+            : const LocationSettings(
+                accuracy: LocationAccuracy.high,
+                distanceFilter: 10,
+                timeLimit: Duration(seconds: 30),
+              ),
+      );
+    }
+
     log('Fetched current position: (${currentPosition.latitude}, ${currentPosition.longitude})',
         name: 'Background service');
 
-    return currentPosition; // Return the fetched position
+    return currentPosition;
   }
-  //
-  // Future<void> getCityAndCountry(
-  //     double latitude, double longitude, String appLanguage) async {
-  //   try {
-  //     // استخدام اللغة المختارة في التطبيق
-  //     List<Placemark> placemarks = await placemarkFromCoordinates(
-  //       latitude,
-  //       longitude,
-  //       localeIdentifier: appLanguage, // تمرير اللغة المختارة
-  //     );
-  //
-  //     if (placemarks.isNotEmpty) {
-  //       Placemark place = placemarks.first;
-  //       String city = place.locality ?? ''; // اسم المدينة
-  //       String country = place.country ?? ''; // اسم الدولة
-  //
-  //       log('City: $city, Country: $country');
-  //     } else {
-  //       log('No placemarks found');
-  //     }
-  //   } catch (e) {
-  //     log('Error: $e');
-  //   }
-  // }
 }

@@ -20,14 +20,8 @@ class SettingsScreen extends StatelessWidget {
         backgroundColor: context.theme.colorScheme.surface,
         body: SafeArea(
           child: Container(
-            height: Get.height * .89,
-            decoration: BoxDecoration(
-              color: context.theme.colorScheme.primaryContainer,
-              borderRadius: const BorderRadius.only(
-                bottomLeft: Radius.circular(32.0),
-                bottomRight: Radius.circular(32.0),
-              ),
-            ),
+            height: Get.height,
+            color: context.theme.colorScheme.primaryContainer,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [

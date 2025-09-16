@@ -18,6 +18,15 @@ class QiblaController extends GetxController {
   Rx<MapController> mapController = MapController().obs;
   List<LatLng>? geodesicPoints;
 
+  RxInt currentIndex = 0.obs;
+
+  // التبديل بين الشاشتين
+  // Toggle between screens
+  void changeTab(int index) {
+    currentIndex.value = index;
+    update();
+  }
+
   RxBool isDirectionCorrect(double direction) =>
       ((qiblaDirection.value - direction).abs() <= 0.3).obs;
 

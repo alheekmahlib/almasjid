@@ -15,10 +15,7 @@ class ButtonWidget extends StatelessWidget {
     whatsNewCtrl.state.currentPageIndex.value = controller.page?.toInt() ?? 0;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 8.0),
-      child: Obx(() {
-        return SizedBox(
-          height: 45,
-          child: CustomButton(
+      child: Obx(() => ContainerButtonWidget(
             onPressed: () {
               if (whatsNewCtrl.state.currentPageIndex.value ==
                   newFeatures.length - 1) {
@@ -30,25 +27,23 @@ class ButtonWidget extends StatelessWidget {
                     curve: Curves.easeIn);
               }
             },
-            svgPath: SvgPath.svgCheckMark,
-            svgColor: context.theme.colorScheme.surface,
-            titleColor: context.theme.canvasColor,
-            iconWidget: Center(
-              child: whatsNewCtrl.state.currentPageIndex.value ==
-                      newFeatures.length - 1
-                  ? Text('start'.tr,
-                      style: TextStyle(
-                          fontFamily: 'cairo',
-                          fontSize: 18,
-                          color: context.theme.canvasColor))
-                  : Icon(
-                      Icons.arrow_forward,
-                      color: context.theme.colorScheme.primary,
-                    ),
-            ),
-          ),
-        );
-      }),
+            height: 45,
+            width: Get.width,
+            horizontalMargin: 0,
+            useGradient: false,
+            withShape: false,
+            backgroundColor: Colors.transparent,
+            shadowColor: Colors.transparent,
+            borderColor: context.theme.colorScheme.surface,
+            icon: whatsNewCtrl.state.currentPageIndex.value ==
+                    newFeatures.length - 1
+                ? null
+                : Icons.arrow_forward,
+            title: whatsNewCtrl.state.currentPageIndex.value ==
+                    newFeatures.length - 1
+                ? 'start'.tr
+                : null,
+          )),
     );
   }
 }

@@ -23,119 +23,151 @@ class QiblaCompassWidget extends StatelessWidget {
             } else if (snapshot.hasError) {
               return const Center(child: CircularProgressIndicator.adaptive());
             } else if (!snapshot.hasData ||
-                qiblaCtrl.qiblaDirection.value == 0.0) {
+                qiblaCtrl.qiblaDirection.value == 0.0 ||
+                snapshot.data!.heading == null) {
               return const Center(child: CircularProgressIndicator.adaptive());
             } else {
               double direction = snapshot.data!.heading!;
               final qiblaIndex = qiblaCtrl.qiblaWidgetIndex.value;
               WidgetsBinding.instance.addPostFrameCallback((_) {
                 qiblaCtrl.direction.value = direction;
-                if (qiblaCtrl.isDirectionCorrect(direction).value) {
+                final bool nextIsCorrect =
+                    qiblaCtrl.isDirectionCorrect(direction).value;
+                // Trigger haptic only on transition into correct alignment.
+                if (nextIsCorrect && !qiblaCtrl.isCorrect.value) {
                   HapticFeedback.mediumImpact();
-                  qiblaCtrl.qiblaColor.value = Theme.of(context)
-                      .colorScheme
-                      .surface
-                      .withValues(alpha: .4);
-                  qiblaCtrl.isCorrect.value = true;
-                } else {
-                  qiblaCtrl.qiblaColor.value = Theme.of(context)
-                      .colorScheme
-                      .surface
-                      .withValues(alpha: .2);
-                  qiblaCtrl.isCorrect.value = false;
                 }
+                qiblaCtrl.qiblaColor.value = Theme.of(context)
+                    .colorScheme
+                    .surface
+                    .withValues(alpha: nextIsCorrect ? .4 : .2);
+                qiblaCtrl.isCorrect.value = nextIsCorrect;
               });
-              return Stack(
-                alignment: Alignment.topCenter,
-                children: [
-                  Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 6.0, horizontal: 16.0),
-                    decoration: BoxDecoration(
-                      color: context.theme.colorScheme.surface
-                          .withValues(alpha: .4),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        customSvgWithColor(
-                          SvgPath.svgHomeKaaba,
-                          height: 70,
-                          color:
-                              context.theme.canvasColor.withValues(alpha: .4),
-                        ),
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text(
-                              '${'qiblaDirection'.tr} : ',
-                              style: TextStyle(
-                                fontFamily: 'cairo',
-                                fontSize: 28,
-                                height: 1.6,
-                                fontWeight: FontWeight.bold,
-                                color: context.theme.colorScheme.inversePrimary
-                                    .withValues(alpha: .6),
+              final theme = context.theme.colorScheme;
+              final double targetAngleDeg =
+                  _normalizeAngle(qiblaCtrl.qiblaDirection.value - direction);
+              final bool aligned = qiblaCtrl.isCorrect.value;
+
+              return Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Stack(
+                  children: [
+                    // Header card with Kaaba watermark and Qibla degrees
+                    HeaderCardWidget(aligned: aligned),
+
+                    // Compass area
+                    Center(
+                      child: LayoutBuilder(
+                        builder: (context, constraints) {
+                          final double size =
+                              (constraints.biggest.shortestSide * 0.9)
+                                  .clamp(220.0, 420.0)
+                                  .toDouble();
+                          final double dialSize = size;
+                          final double needleSize =
+                              (qiblaList[qiblaIndex]['height'] + 20).toDouble();
+
+                          return RepaintBoundary(
+                            child: AnimatedContainer(
+                              duration: const Duration(milliseconds: 220),
+                              padding: const EdgeInsets.all(18),
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  // Dial painter (ticks + NESW)
+                                  SizedBox(
+                                    width: dialSize,
+                                    height: dialSize,
+                                    child: Transform.rotate(
+                                      angle: (-qiblaCtrl.qiblaDirection.value *
+                                          (3.141592653589793 / 180)),
+                                      child: CustomPaint(
+                                        painter: _CompassDialPainter(
+                                          ringColor: theme.primary
+                                              .withValues(alpha: .15),
+                                          tickColor: theme.inversePrimary
+                                              .withValues(alpha: .55),
+                                          textColor: theme.inversePrimary
+                                              .withValues(alpha: .7),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+
+                                  // Rotating needle (SVG from assets)
+                                  TweenAnimationBuilder<double>(
+                                    tween: Tween<double>(
+                                        begin: 0, end: targetAngleDeg),
+                                    duration: const Duration(milliseconds: 260),
+                                    curve: Curves.easeOutCubic,
+                                    builder: (context, value, child) {
+                                      final double angleRad =
+                                          value * (3.141592653589793 / 180);
+                                      return Transform.rotate(
+                                        angle: angleRad,
+                                        child: AnimatedScale(
+                                          duration:
+                                              const Duration(milliseconds: 200),
+                                          scale: aligned ? 1.06 : 1.0,
+                                          curve: Curves.easeOut,
+                                          child: child,
+                                        ),
+                                      );
+                                    },
+                                    child: customSvg(
+                                      qiblaList[qiblaIndex]['qibla'],
+                                      height: needleSize,
+                                    ),
+                                  ),
+
+                                  // Current heading badge at bottom
+                                  Positioned(
+                                    bottom: 10,
+                                    child: Container(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 12, vertical: 8),
+                                      decoration: BoxDecoration(
+                                        color:
+                                            theme.surface.withValues(alpha: .6),
+                                        borderRadius: BorderRadius.circular(24),
+                                        border: Border.all(
+                                          color: theme.outline
+                                              .withValues(alpha: .18),
+                                        ),
+                                      ),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Icon(
+                                            Icons.explore_rounded,
+                                            size: 18,
+                                            color: theme.inversePrimary
+                                                .withValues(alpha: .7),
+                                          ),
+                                          const SizedBox(width: 6),
+                                          Text(
+                                            '${direction.toStringAsFixed(1)}°',
+                                            style: TextStyle(
+                                              fontFamily: 'cairo',
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w700,
+                                              color: theme.inversePrimary
+                                                  .withValues(alpha: .75),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
-                            Text(
-                              '${qiblaCtrl.qiblaDirection.value.toStringAsFixed(1)}°',
-                              style: TextStyle(
-                                fontFamily: 'cairo',
-                                fontSize: 45,
-                                height: 1.6,
-                                fontWeight: FontWeight.bold,
-                                color: context.theme.colorScheme.inversePrimary
-                                    .withValues(alpha: .6),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.center,
-                    child: Transform.rotate(
-                      angle: ((qiblaCtrl.qiblaDirection.value - direction) *
-                          (3.141592653589793 / 180)),
-                      child: customSvg(
-                        qiblaList[qiblaIndex]['qibla'],
-                        height: qiblaList[qiblaIndex]['height'] + 20,
+                          );
+                        },
                       ),
                     ),
-                  ),
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Container(
-                      height: 40,
-                      width: double.infinity,
-                      alignment: Alignment.center,
-                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                      decoration: BoxDecoration(
-                        color: context.theme.colorScheme.surface
-                            .withValues(alpha: .3),
-                        borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(8),
-                          topRight: Radius.circular(8),
-                        ),
-                      ),
-                      child: Text(
-                        '${direction.toStringAsFixed(1)}°',
-                        style: TextStyle(
-                          fontFamily: 'cairo',
-                          fontSize: 20,
-                          height: 1.2,
-                          fontWeight: FontWeight.bold,
-                          color: context.theme.colorScheme.inversePrimary
-                              .withValues(alpha: .6),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               );
             }
           },
@@ -143,4 +175,15 @@ class QiblaCompassWidget extends StatelessWidget {
       },
     );
   }
+}
+
+// Normalize angle to [-180, 180] for shortest rotation animation.
+double _normalizeAngle(double angle) {
+  while (angle > 180) {
+    angle -= 360;
+  }
+  while (angle < -180) {
+    angle += 360;
+  }
+  return angle;
 }
