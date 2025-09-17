@@ -27,7 +27,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <application
-        android:label="almasjid"
+        android:label="أقم - مكتبة الحكمة"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

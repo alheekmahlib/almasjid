@@ -1,5 +1,5 @@
 {
-  "appName": "Masjid - Perpustakaan Hikmah",
+  "appName": "Aqim - Perpustakaan Al-Hikmah",
   "@appName": {
     "description": "appName",
     "type": "text",
@@ -14,6 +14,481 @@
   "lang": "Bahasa Indonesia",
   "@lang": {
     "description": "lang",
+    "type": "text",
+    "placeholders": {}
+  },
+  "Fajr": "Subuh",
+  "@Fajr": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Dhuhr": "Dzuhur",
+  "@Dhuhr": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Asr": "Ashar",
+  "@Asr": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Maghrib": "Maghrib",
+  "@Maghrib": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Isha": "Isya",
+  "@Isha": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lastThirdOfTheNight": "Sepertiga Malam Akhir",
+  "@lastThirdOfTheNight": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "middleOfTheNight": "Tengah Malam",
+  "@middleOfTheNight": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Sunrise": "Terbit Matahari",
+  "@Sunrise": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Sun": "Min",
+  "@Sun": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Mon": "Sen",
+  "@Mon": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Tue": "Sel",
+  "@Tue": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Wed": "Rab",
+  "@Wed": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Thu": "Kam",
+  "@Thu": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Fri": "Jum",
+  "@Fri": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Sat": "Sab",
+  "@Sat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "SundayFullName": "Minggu",
+  "@SundayFullName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "MondayFullName": "Senin",
+  "@MondayFullName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "TuesdayFullName": "Selasa",
+  "@TuesdayFullName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "WednesdayFullName": "Rabu",
+  "@WednesdayFullName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ThursdayFullName": "Kamis",
+  "@ThursdayFullName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "FridayFullName": "Jumat",
+  "@FridayFullName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "SaturdayFullName": "Sabtu",
+  "@SaturdayFullName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "activeLocationPlease": "Mohon aktifkan lokasi untuk mengaktifkan waktu shalat",
+  "@activeLocationPlease": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "prayerSetting": "Pengaturan Shalat",
+  "@prayerSetting": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "detectLocation": "Deteksi Lokasi",
+  "@detectLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "adhanSounds": "Suara Adzan",
+  "@adhanSounds": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "aqsa": "Adzan Al-Aqsa",
+  "@aqsa": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saqqaf": "Hasyim As-Saqqaf",
+  "@saqqaf": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sarihi": "Abdul Majid As-Sarihi",
+  "@sarihi": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setTimingCalculations": "Pengaturan Perhitungan Waktu",
+  "@setTimingCalculations": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "automaticallyDetermineCalculationMethod": "Menentukan metode perhitungan secara otomatis",
+  "@automaticallyDetermineCalculationMethod": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "madhab": "Mazhab",
+  "@madhab": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "shafie": "Syafi'i, Maliki dan Hanbali",
+  "@shafie": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hanafe": "Hanafi",
+  "@hanafe": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "madhabNote": "Adzan Isya dalam mazhab Hanafi terlambat dari mazhab mayoritas sekitar dua belas menit sebagaimana dalam \"Ensiklopedia Fiqih Kuwait\" (7/175), dan adzan Ashar dalam mazhab Hanafi terlambat setengah jam atau lebih, tergantung perbedaan negara dan musim.",
+  "@madhabNote": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "SeventhOfTheNight": "Seperseventh Malam",
+  "@SeventhOfTheNight": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "usingTheAngle": "Menggunakan Sudut",
+  "@usingTheAngle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "SetPrayerTimes": "Pengaturan Waktu Shalat",
+  "@SetPrayerTimes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notificationOptions": "Opsi Notifikasi",
+  "@notificationOptions": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nothing": "Tidak Ada",
+  "@nothing": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "silent": "Senyap",
+  "@silent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bell": "Nada Dering",
+  "@bell": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sound": "Adzan",
+  "@sound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "aboutPrayer": "Tentang Shalat",
+  "@aboutPrayer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "timeLeft:": "Waktu tersisa untuk adzan:",
+  "@timeLeft:": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fromQuran:": "Dari Al-Quran:",
+  "@fromQuran:": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fromSunnah:": "Dari As-Sunnah:",
+  "@fromSunnah:": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "prohibitionTimes": "Waktu Terlarang Shalat",
+  "@prohibitionTimes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fajrBody": "Siapa yang shalat Subuh maka dia dalam jaminan Allah",
+  "@fajrBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dhuhrBody": "Shalat, shalat dan apa yang kalian miliki",
+  "@dhuhrBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "asrBody": "Siapa yang shalat dua waktu sejuk masuk surga",
+  "@asrBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "maghribBody": "Tidak ada bagian dalam Islam bagi yang meninggalkan shalat",
+  "@maghribBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ishaBody": "Siapa yang shalat Isya berjamaah, seperti qiyam setengah malam",
+  "@ishaBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "timeForPrayer": "Waktu shalat",
+  "@timeForPrayer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "openAppReminderTitle": "Pengingat Buka Aplikasi",
+  "@openAppReminderTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "openAppReminderBody": "Mohon buka aplikasi untuk menjadwalkan notifikasi shalat baru.",
+  "@openAppReminderBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "prayer": "Shalat",
+  "@prayer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "langChange": "Ubah Bahasa",
+  "@langChange": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "themeTitle": "Pilih Tema",
+  "@themeTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ourApps": "Aplikasi Kami",
+  "@ourApps": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "aboutApp": "Tentang Aplikasi",
+  "@aboutApp": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "about_app": "'Zad Al-Muslim - Perpustakaan Al-Hikmah' adalah aplikasi Islam komprehensif yang berisi Al-Quran, Tafsir, Dzikir, waktu shalat dengan notifikasi, dan penunjuk arah kiblat. Sahabat harian Anda untuk mendekatkan diri kepada Allah.",
+  "@about_app": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "about_app2": "Fitur-fitur utama aplikasi:",
+  "@about_app2": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "about_app3": "'Zad Al-Muslim - Perpustakaan Al-Hikmah' adalah aplikasi Islam terpadu yang bertujuan menyediakan semua kebutuhan Muslim dalam satu tempat dengan cara yang mudah dan nyaman. Aplikasi ini dilengkapi dengan Al-Quran lengkap dengan kemampuan membaca ayat-ayat, mendengarkannya dengan suara banyak qari terkenal, dan membaca tafsir beragam untuk pemahaman yang lebih mendalam setiap ayat. Juga berisi waktu shalat yang akurat dengan notifikasi cerdas untuk mengingatkan Anda setiap shalat, ditambah alat penunjuk arah kiblat yang membantu Anda melakukan ibadah dengan benar.\n\nAplikasi ini juga mencakup koleksi lengkap dzikir harian dan doa-doa ma'tsur untuk memperkuat hubungan Anda dengan Allah, serta perpustakaan kaya dengan kitab-kitab tafsir. Anda juga dapat mendengarkan surat-surat Al-Quran dengan suara qari terkemuka dan menikmati pengalaman spiritual yang istimewa. 'Zad Al-Muslim - Perpustakaan Al-Hikmah' adalah sahabat ideal bagi setiap Muslim yang berusaha mengatur kehidupan religiusnya dan memperkuat imannya.",
+  "@about_app3": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "email": "Hubungi Kami",
+  "@email": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "share": "Bagikan Aplikasi",
+  "@share": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "facebook": "Ikuti Kami di Facebook",
+  "@facebook": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "qibla": "Kiblat",
+  "@qibla": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "qiblaDirection": "Arah Kiblat",
+  "@qiblaDirection": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "compass": "Kompas",
+  "@compass": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "map": "Peta",
+  "@map": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locationNote": "Mohon aktifkan layanan lokasi untuk mendapatkan waktu shalat yang akurat berdasarkan lokasi Anda saat ini.\nHarap diketahui bahwa semua data lokasi Anda akan tetap rahasia sepenuhnya dan tidak akan dibagikan dengan pihak ketiga mana pun.",
+  "@locationNote": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notificationNote": "Mohon aktifkan notifikasi agar Anda mendapat pemberitahuan waktu shalat dan notifikasi lainnya.",
+  "@notificationNote": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locate": "Deteksi Lokasi",
+  "@locate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "activation": "Aktivasi",
+  "@activation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ok": "OK",
+  "@ok": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancel": "Batal",
+  "@cancel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "What's New": "Apa yang Baru",
+  "@What's New": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "What'sNewDetails10": "۞ Desain antarmuka pengguna baru.\n۞ Menambahkan perpustakaan kitab tafsir dan hadits.\n۞ Peningkatan performa aplikasi.\n۞ Menambahkan fitur-fitur baru.",
+  "@What'sNewDetails10": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "shareImage": "Bagikan Gambar",
+  "@shareImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sharePrayerTime": "Bagikan Waktu Shalat",
+  "@sharePrayerTime": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nextPrayer": "Shalat Berikutnya",
+  "@nextPrayer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Muharram": "Muharram",
+  "@Muharram": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Safar": "Safar",
+  "@Safar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Rabi' Al-Awwal": "Rabiul Awwal",
+  "@Rabi' Al-Awwal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Rabi' Al-Thani": "Rabiul Akhir",
+  "@Rabi' Al-Thani": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Jumada Al-Awwal": "Jumadil Awwal",
+  "@Jumada Al-Awwal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Jumada Al-Thani": "Jumadil Akhir",
+  "@Jumada Al-Thani": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Rajab": "Rajab",
+  "@Rajab": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Sha'aban": "Sya'ban",
+  "@Sha'aban": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Ramadan": "Ramadhan",
+  "@Ramadan": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Shawwal": "Syawal",
+  "@Shawwal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Dhu Al-Qi'dah": "Dzulqaidah",
+  "@Dhu Al-Qi'dah": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Dhu Al-Hijjah": "Dzulhijjah",
+  "@Dhu Al-Hijjah": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "settings": "Pengaturan",
+  "@settings": {
     "type": "text",
     "placeholders": {}
   }

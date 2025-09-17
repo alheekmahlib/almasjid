@@ -519,20 +519,21 @@ packages:
       url: "https://github.com/alheekmahlib/google_huawei_availability.git"
     source: git
     version: "1.5.0"
-  hijri_calendar:
+  hijri:
     dependency: "direct main"
     description:
-      name: hijri_calendar
-      sha256: "5b99f8924b738cb7156fff2c679a261cecf4214c324f2529255afb3a9ccfea58"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.7+7"
+      path: "."
+      ref: master
+      resolved-ref: d08b864fa7a48d199cfa84ddaef104690a47660f
+      url: "https://github.com/alheekmahlib/hijri_date.git"
+    source: git
+    version: "3.0.1"
   horizontal_week_calendar:
     dependency: "direct main"
     description:
       path: "."
       ref: main
-      resolved-ref: "6038ea4e5a92c319f9fdc5d9df647df7bcc8fbde"
+      resolved-ref: a254accdb661260f2f60ab8d47c415050512f2d8
       url: "https://github.com/alheekmahlib/horizontal_week_calendar.git"
     source: git
     version: "0.0.20"
@@ -568,6 +569,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.14.2+301"
+  huawei_site:
+    dependency: "direct main"
+    description:
+      name: huawei_site
+      sha256: "31474f51c17ef50c0f6109cbee8a606ab00955464bea625ad7aeed752e855f1e"
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.5.1+303"
   image:
     dependency: transitive
     description:
@@ -752,6 +761,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.2.1"
+  package_rename:
+    dependency: "direct main"
+    description:
+      name: package_rename
+      sha256: "5dbef9f2f0849a7b5d237733a898bcdab917e5b7e16d662e91e095b6278d9af9"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.10.0"
   path:
     dependency: "direct main"
     description:

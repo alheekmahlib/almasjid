@@ -35,6 +35,7 @@ class HomeScreen extends StatelessWidget {
                 selectedColor: context.theme.colorScheme.surface,
                 unselectedColor: Colors.transparent,
                 titleStyle: TextStyle(
+                  fontWeight: FontWeight.bold,
                   fontFamily: 'cairo',
                   fontSize: 18,
                   color: context.theme.canvasColor.withValues(alpha: .6),
@@ -57,6 +58,7 @@ class HomeScreen extends StatelessWidget {
                 selectedColor: context.theme.colorScheme.surface,
                 unselectedColor: Colors.transparent,
                 titleStyle: TextStyle(
+                  fontWeight: FontWeight.bold,
                   fontFamily: 'cairo',
                   fontSize: 18,
                   color: context.theme.canvasColor.withValues(alpha: .6),
@@ -79,6 +81,7 @@ class HomeScreen extends StatelessWidget {
                 selectedColor: context.theme.colorScheme.surface,
                 unselectedColor: Colors.transparent,
                 titleStyle: TextStyle(
+                  fontWeight: FontWeight.bold,
                   fontFamily: 'cairo',
                   fontSize: 18,
                   color: context.theme.canvasColor.withValues(alpha: .6),

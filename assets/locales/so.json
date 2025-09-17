@@ -1,11 +1,11 @@
 {
-  "appName": "Masjid - Maktabadda Hikmah",
+  "appName": "Aqim - Maktabada Xikma",
   "@appName": {
     "description": "appName",
     "type": "text",
     "placeholders": {}
   },
-  "appLang": "Luqadda Appka",
+  "appLang": "Luuqadda App-ka",
   "@appLang": {
     "description": "appLang",
     "type": "text",
@@ -14,6 +14,481 @@
   "lang": "Soomaali",
   "@lang": {
     "description": "lang",
+    "type": "text",
+    "placeholders": {}
+  },
+  "Fajr": "Fajr",
+  "@Fajr": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Dhuhr": "Dhuhr",
+  "@Dhuhr": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Asr": "Asr",
+  "@Asr": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Maghrib": "Maghrib",
+  "@Maghrib": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Isha": "Isha",
+  "@Isha": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lastThirdOfTheNight": "Saddexda meelood ee danbe ee habeenka",
+  "@lastThirdOfTheNight": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "middleOfTheNight": "Bartamaha habeenka",
+  "@middleOfTheNight": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Sunrise": "Qorrax-ka-soo-bixitaanka",
+  "@Sunrise": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Sun": "Axd",
+  "@Sun": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Mon": "Isn",
+  "@Mon": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Tue": "Tal",
+  "@Tue": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Wed": "Arb",
+  "@Wed": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Thu": "Kha",
+  "@Thu": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Fri": "Jim",
+  "@Fri": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Sat": "Sab",
+  "@Sat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "SundayFullName": "Axad",
+  "@SundayFullName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "MondayFullName": "Isniin",
+  "@MondayFullName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "TuesdayFullName": "Talaado",
+  "@TuesdayFullName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "WednesdayFullName": "Arbaco",
+  "@WednesdayFullName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ThursdayFullName": "Khamiis",
+  "@ThursdayFullName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "FridayFullName": "Jimco",
+  "@FridayFullName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "SaturdayFullName": "Sabti",
+  "@SaturdayFullName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "activeLocationPlease": "Fadlan wax ka bedel goobta si aad u hesho waqtiyada salaadda",
+  "@activeLocationPlease": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "prayerSetting": "Dejinta Salaadda",
+  "@prayerSetting": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "detectLocation": "Ogaanshaha Goobta",
+  "@detectLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "adhanSounds": "Codadka Adhaan-ka",
+  "@adhanSounds": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "aqsa": "Adhaan Al-Aqsa",
+  "@aqsa": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saqqaf": "Hashim As-Saqqaf",
+  "@saqqaf": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sarihi": "Abdul Majeed As-Sarihi",
+  "@sarihi": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setTimingCalculations": "Hagaajinta Xisaabta Waqtiyada",
+  "@setTimingCalculations": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "automaticallyDetermineCalculationMethod": "Si toos ah u go'aaminta habka xisaabinta",
+  "@automaticallyDetermineCalculationMethod": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "madhab": "Mathab",
+  "@madhab": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "shafie": "Shaafici, Maaliki iyo Hanbali",
+  "@shafie": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hanafe": "Hanafi",
+  "@hanafe": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "madhabNote": "Waqtiga Cishaa ee Hanafiyada wuu dib u dhacaa ka Jumhuurka, waxaana u dhow laba iyo toban daqiiqo sida ku qoran \"Mawsuucada Fiqhiga Kuwaytiga\" (7/175), waqtiga Asarna wuu dib u dhacaa Hanafiyada shan iyo labaatan daqiiqo iyo wax ka badan, iyadoo ku xiran kala duwanaanta waddammada iyo faslada.",
+  "@madhabNote": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "SeventhOfTheNight": "Toddobaad habeenka",
+  "@SeventhOfTheNight": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "usingTheAngle": "Isticmaalka xagasha",
+  "@usingTheAngle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "SetPrayerTimes": "Dejinta Waqtiyada Salaadda",
+  "@SetPrayerTimes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notificationOptions": "Doorashooyinka Ogeysiinta",
+  "@notificationOptions": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nothing": "Waxba",
+  "@nothing": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "silent": "Aammusan",
+  "@silent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bell": "Cod",
+  "@bell": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sound": "Adhaan",
+  "@sound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "aboutPrayer": "Ku saabsan Salaadda",
+  "@aboutPrayer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "timeLeft:": "Waqtiga hadhay ee adhaan-ka:",
+  "@timeLeft:": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fromQuran:": "Quraanka:",
+  "@fromQuran:": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fromSunnah:": "Sunnada:",
+  "@fromSunnah:": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "prohibitionTimes": "Waqtiga la mamnuucayo salaadda",
+  "@prohibitionTimes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fajrBody": "Kii salaada subaxda saladay wuu ku jiraa dammaanadda Allah",
+  "@fajrBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dhuhrBody": "Salaadda salaadda iyo waxa gacmahaagu leh",
+  "@dhuhrBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "asrBody": "Kii salaada salaado labada qabow galay jannada",
+  "@asrBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "maghribBody": "Ma jiro qayb Islaam ah qofka ka taga salaadda",
+  "@maghribBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ishaBody": "Kii salaada cishaa ku salaada jamaacdaa, wuu la mid yahay qiyaamka badh habeen",
+  "@ishaBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "timeForPrayer": "Waqtiga salaadda",
+  "@timeForPrayer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "openAppReminderTitle": "Xusuusin furitaanka app-ka",
+  "@openAppReminderTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "openAppReminderBody": "Fadlan fur app-ka si aad u qorsheysato ogeysiisyada salaadda cusub.",
+  "@openAppReminderBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "prayer": "Salaadda",
+  "@prayer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "langChange": "Beddelka Luuqadda",
+  "@langChange": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "themeTitle": "Dooro muuqaalka",
+  "@themeTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ourApps": "Barnaamijyadeenna",
+  "@ourApps": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "aboutApp": "Ku saabsan App-ka",
+  "@aboutApp": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "about_app": "'Saad Al-Muslim - Maktabada Xikma' waa app Islami oo dhamaystiran oo ka kooban Quraanka Kariimka, tafsiirada, dhikrada, waqtiyada salaadda oo leh digniin, iyo go'aaminta Qiblada. Saaxiibbada maalinle ah ee u dhow baaska Allah.",
+  "@about_app": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "about_app2": "Sifooyinka ugu muhiimsan ee barnaamijka:",
+  "@about_app2": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "about_app3": "'Saad Al-Muslim - Maktabada Xikma' waa app Islami oo dhamaystiran oo ujeedkiisu yahay inuu bixiyo dhammaan baahiyaha Muslim-ka hal meel oo fudud oo raaxo leh. App-ku waxa uu ka duwan yahay bixinta Quraanka Kariimka oo dhamaystiran oo leh awood lagu aqriyo aayaadka, dhageysta iyaga oo leh codka quraa badan oo caan ah, iyo aqrinta tafsiirada kala duwan si loo fahmo qoto dheer aayad kasta. Waxa kale oo ay ka kooban tahay waqtiyada salaadda saxda ah oo leh digniin caqli ah si ay kuugu soo xusuusiyaan sallaad kasta, iyo qalabka go'aaminta jihada Qiblada oo ku caawiya inaad si sax ah u samaysaa cibaadaadka.\n\nApp-ku waxa kale oo uu ka kooban yahay ururka dhamaystiran ee dhikrada maalinle ah iyo ducoyinka la soo djiray si loo xoojiyo xidhiidhka Allah, iyo sidoo kale maktabad hodanaan ah oo buugaag tafsir ah. Waxa kale oo aad u dhagesan kartaa suuraha Quraanka oo leh codka quraa caanka ah oo aad ku raaxeysato khibrad ruuxi ah oo gaar ah. 'Saad Al-Muslim - Maktabada Xikma' waa saaxiibka ugu fiican Muslim kasta oo dadaalaya inuu maamulo noloshooda diinta ah oo uu kordhiyo iimaamkooda.",
+  "@about_app3": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "email": "Nala soo xidhiidh",
+  "@email": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "share": "La wadaag app-ka",
+  "@share": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "facebook": "Nagu raac Facebook",
+  "@facebook": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "qibla": "Qiblada",
+  "@qibla": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "qiblaDirection": "Jihada Qiblada",
+  "@qiblaDirection": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "compass": "Kampas",
+  "@compass": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "map": "Khariidad",
+  "@map": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locationNote": "Fadlan wax ka bedel adeegga go'aaminta goobta si aad si sax ah u hesho waqtiyada salaadda iyadoo ku saleysan goobta hadda joogtid.\nFadlan ogow in dhammaan xogta goobta aad joogtid ay siri ahaanaysay oo aan la wadaagin doonin qof saddexaad.",
+  "@locationNote": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notificationNote": "Fadlan wax ka bedel ogeysiisyada si aad u hesho digniin waqtiyada salaadda iyo ogeysiisyo kale.",
+  "@notificationNote": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locate": "Goobta ogaansha",
+  "@locate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "activation": "Wax ka bedelka",
+  "@activation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ok": "Haa",
+  "@ok": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancel": "Ka laabo",
+  "@cancel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "What's New": "Maxaa cusub",
+  "@What's New": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "What'sNewDetails10": "۞ Naqshadayn cusub oo isticmaale ah.\n۞ Ku daridda maktabad buugaag tafsir iyo xadith ah.\n۞ Wanaajinta dadaalka app-ka.\n۞ Ku daridda sifooyinka cusub.",
+  "@What'sNewDetails10": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "shareImage": "La wadaag sawirka",
+  "@shareImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sharePrayerTime": "La wadaag waqtiga salaadda",
+  "@sharePrayerTime": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nextPrayer": "Salaadda xigta",
+  "@nextPrayer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Muharram": "Muharram",
+  "@Muharram": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Safar": "Safar",
+  "@Safar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Rabi' Al-Awwal": "Rabii' Al-Awwal",
+  "@Rabi' Al-Awwal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Rabi' Al-Thani": "Rabii' Al-Thani",
+  "@Rabi' Al-Thani": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Jumada Al-Awwal": "Jumaada Al-Awwal",
+  "@Jumada Al-Awwal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Jumada Al-Thani": "Jumaada Al-Thani",
+  "@Jumada Al-Thani": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Rajab": "Rajab",
+  "@Rajab": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Sha'aban": "Sha'abaan",
+  "@Sha'aban": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Ramadan": "Ramadaan",
+  "@Ramadan": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Shawwal": "Shawwaal",
+  "@Shawwal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Dhu Al-Qi'dah": "Dhul Qi'da",
+  "@Dhu Al-Qi'dah": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Dhu Al-Hijjah": "Dhul Hijja",
+  "@Dhu Al-Hijjah": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "settings": "Dejinta",
+  "@settings": {
     "type": "text",
     "placeholders": {}
   }

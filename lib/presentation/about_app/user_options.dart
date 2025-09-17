@@ -39,7 +39,7 @@ class UserOptions extends StatelessWidget {
                     'share'.tr,
                     style: TextStyle(
                         color: context.theme.hintColor,
-                        fontFamily: 'kufi',
+                        fontFamily: 'cairo',
                         fontStyle: FontStyle.italic,
                         fontSize: 14),
                   ),
@@ -70,7 +70,7 @@ class UserOptions extends StatelessWidget {
                     'email'.tr,
                     style: TextStyle(
                         color: context.theme.hintColor,
-                        fontFamily: 'kufi',
+                        fontFamily: 'cairo',
                         fontStyle: FontStyle.italic,
                         fontSize: 14),
                   ),
@@ -97,7 +97,7 @@ class UserOptions extends StatelessWidget {
                     'facebook'.tr,
                     style: TextStyle(
                         color: context.theme.hintColor,
-                        fontFamily: 'kufi',
+                        fontFamily: 'cairo',
                         fontStyle: FontStyle.italic,
                         fontSize: 14),
                   ),

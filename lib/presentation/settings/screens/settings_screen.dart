@@ -41,7 +41,7 @@ class SettingsScreen extends StatelessWidget {
                           onPressed: () => context.customBottomSheet(
                             containerColor:
                                 context.theme.colorScheme.primaryContainer,
-                            textTitle: 'prayerSettings',
+                            textTitle: 'prayerSetting',
                             child: const PrayerSettings(),
                           ),
                           width: Get.width,
@@ -64,7 +64,7 @@ class SettingsScreen extends StatelessWidget {
                               ),
                               const Gap(16),
                               Text(
-                                'prayerSettings'.tr,
+                                'prayerSetting'.tr,
                                 style: TextStyle(
                                   fontSize: 20,
                                   color: context

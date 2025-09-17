@@ -1,5 +1,5 @@
 {
-  "appName": "Masjid - Biblioteca Hikmah",
+  "appName": "Iqim - Biblioteca Al-Hikmah",
   "@appName": {
     "description": "appName",
     "type": "text",
@@ -14,6 +14,481 @@
   "lang": "Español",
   "@lang": {
     "description": "lang",
+    "type": "text",
+    "placeholders": {}
+  },
+  "Fajr": "Fajr",
+  "@Fajr": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Dhuhr": "Dhuhr",
+  "@Dhuhr": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Asr": "Asr",
+  "@Asr": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Maghrib": "Maghrib",
+  "@Maghrib": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Isha": "Isha",
+  "@Isha": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lastThirdOfTheNight": "Último tercio de la noche",
+  "@lastThirdOfTheNight": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "middleOfTheNight": "Medianoche",
+  "@middleOfTheNight": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Sunrise": "Amanecer",
+  "@Sunrise": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Sun": "Dom",
+  "@Sun": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Mon": "Lun",
+  "@Mon": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Tue": "Mar",
+  "@Tue": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Wed": "Mié",
+  "@Wed": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Thu": "Jue",
+  "@Thu": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Fri": "Vie",
+  "@Fri": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Sat": "Sáb",
+  "@Sat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "SundayFullName": "Domingo",
+  "@SundayFullName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "MondayFullName": "Lunes",
+  "@MondayFullName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "TuesdayFullName": "Martes",
+  "@TuesdayFullName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "WednesdayFullName": "Miércoles",
+  "@WednesdayFullName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ThursdayFullName": "Jueves",
+  "@ThursdayFullName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "FridayFullName": "Viernes",
+  "@FridayFullName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "SaturdayFullName": "Sábado",
+  "@SaturdayFullName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "activeLocationPlease": "Por favor, active la ubicación para activar los horarios de oración",
+  "@activeLocationPlease": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "prayerSetting": "Configuración de oración",
+  "@prayerSetting": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "detectLocation": "Detectar ubicación",
+  "@detectLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "adhanSounds": "Sonidos del Adhan",
+  "@adhanSounds": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "aqsa": "Adhan de Al-Aqsa",
+  "@aqsa": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saqqaf": "Hashim Al-Saqqaf",
+  "@saqqaf": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sarihi": "Abdul Majid Al-Sarihi",
+  "@sarihi": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setTimingCalculations": "Configurar cálculo de horarios",
+  "@setTimingCalculations": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "automaticallyDetermineCalculationMethod": "Determinar método de cálculo automáticamente",
+  "@automaticallyDetermineCalculationMethod": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "madhab": "Madhab",
+  "@madhab": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "shafie": "Shafi'i, Maliki y Hanbali",
+  "@shafie": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hanafe": "Hanafi",
+  "@hanafe": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "madhabNote": "El Adhan de Isha se retrasa en la escuela Hanafi en comparación con la mayoría, aproximadamente doce minutos como se menciona en la \"Enciclopedia Jurídica de Kuwait\" (7/175), y el Adhan de Asr se retrasa en la escuela Hanafi media hora o más, según las diferencias de países y estaciones.",
+  "@madhabNote": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "SeventhOfTheNight": "Séptima parte de la noche",
+  "@SeventhOfTheNight": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "usingTheAngle": "Usando el ángulo",
+  "@usingTheAngle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "SetPrayerTimes": "Configurar horarios de oración",
+  "@SetPrayerTimes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notificationOptions": "Opciones de notificación",
+  "@notificationOptions": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nothing": "Nada",
+  "@nothing": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "silent": "Silencioso",
+  "@silent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bell": "Timbre",
+  "@bell": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sound": "Adhan",
+  "@sound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "aboutPrayer": "Acerca de la oración",
+  "@aboutPrayer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "timeLeft:": "Tiempo restante para el Adhan:",
+  "@timeLeft:": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fromQuran:": "Del Corán:",
+  "@fromQuran:": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fromSunnah:": "De la Sunnah:",
+  "@fromSunnah:": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "prohibitionTimes": "Tiempo prohibido para orar",
+  "@prohibitionTimes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fajrBody": "Quien reza Fajr está bajo la protección de Allah",
+  "@fajrBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dhuhrBody": "¡La oración, la oración y lo que poseen vuestras diestras!",
+  "@dhuhrBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "asrBody": "Quien reza las dos oraciones frescas entra al Paraíso",
+  "@asrBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "maghribBody": "No hay parte en el Islam para quien abandona la oración",
+  "@maghribBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ishaBody": "Quien reza Isha en congregación, es como si estuviera de pie la mitad de la noche",
+  "@ishaBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "timeForPrayer": "Hora de oración",
+  "@timeForPrayer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "openAppReminderTitle": "Recordatorio para abrir la aplicación",
+  "@openAppReminderTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "openAppReminderBody": "Por favor, abra la aplicación para programar nuevas notificaciones de oración.",
+  "@openAppReminderBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "prayer": "Oración",
+  "@prayer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "langChange": "Cambiar idioma",
+  "@langChange": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "themeTitle": "Elegir tema",
+  "@themeTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ourApps": "Nuestras aplicaciones",
+  "@ourApps": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "aboutApp": "Acerca de la aplicación",
+  "@aboutApp": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "about_app": "'Zad Al-Muslim - Biblioteca Al-Hikmah' es una aplicación islámica integral que incluye el Sagrado Corán, tafsir, adhkar, horarios de oración con alertas y determinación de la Qibla. Tu compañero diario para acercarte a Allah.",
+  "@about_app": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "about_app2": "Entre las características más importantes del programa:",
+  "@about_app2": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "about_app3": "'Zad Al-Muslim - Biblioteca Al-Hikmah' es una aplicación islámica integral que tiene como objetivo proporcionar todas las necesidades de un musulmán en un solo lugar de manera fácil y conveniente. La aplicación se caracteriza por proporcionar el Sagrado Corán completo con la capacidad de leer versos, escucharlos con las voces de muchos recitadores famosos y leer diversas interpretaciones para una comprensión más profunda de cada verso. También contiene horarios de oración precisos con alertas inteligentes para recordarte cada oración, además de una herramienta de determinación de dirección de la Qibla que te ayuda a realizar actos de adoración correctamente.\n\nLa aplicación también incluye una colección integral de adhkar diarios y súplicas transmitidas para fortalecer tu conexión con Allah, así como una rica biblioteca de libros de tafsir. También puedes escuchar suras coránicas con las voces de recitadores prominentes y disfrutar de una experiencia espiritual distintiva. 'Zad Al-Muslim - Biblioteca Al-Hikmah' es el compañero ideal para todo musulmán que busca organizar su vida religiosa y fortalecer su fe.",
+  "@about_app3": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "email": "Contáctanos",
+  "@email": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "share": "Compartir aplicación",
+  "@share": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "facebook": "Síguenos en Facebook",
+  "@facebook": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "qibla": "Qibla",
+  "@qibla": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "qiblaDirection": "Dirección de la Qibla",
+  "@qiblaDirection": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "compass": "Brújula",
+  "@compass": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "map": "Mapa",
+  "@map": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locationNote": "Por favor, active el servicio de ubicación para recibir horarios de oración precisos basados en su ubicación actual.\nTenga en cuenta que todos los datos de su ubicación permanecerán completamente confidenciales y no se compartirán con terceros.",
+  "@locationNote": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notificationNote": "Por favor, active las notificaciones para recibir alertas sobre horarios de oración y otras notificaciones.",
+  "@notificationNote": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locate": "Ubicar",
+  "@locate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "activation": "Activación",
+  "@activation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ok": "OK",
+  "@ok": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancel": "Cancelar",
+  "@cancel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "What's New": "Novedades",
+  "@What's New": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "What'sNewDetails10": "۞ Nuevo diseño de interfaz de usuario.\n۞ Agregada biblioteca para libros de tafsir y hadith.\n۞ Mejora del rendimiento de la aplicación.\n۞ Agregadas nuevas características.",
+  "@What'sNewDetails10": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "shareImage": "Compartir imagen",
+  "@shareImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sharePrayerTime": "Compartir horario de oración",
+  "@sharePrayerTime": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nextPrayer": "Próxima oración",
+  "@nextPrayer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Muharram": "Muharram",
+  "@Muharram": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Safar": "Safar",
+  "@Safar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Rabi' Al-Awwal": "Rabi' Al-Awwal",
+  "@Rabi' Al-Awwal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Rabi' Al-Thani": "Rabi' Al-Thani",
+  "@Rabi' Al-Thani": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Jumada Al-Awwal": "Jumada Al-Awwal",
+  "@Jumada Al-Awwal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Jumada Al-Thani": "Jumada Al-Thani",
+  "@Jumada Al-Thani": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Rajab": "Rajab",
+  "@Rajab": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Sha'aban": "Sha'aban",
+  "@Sha'aban": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Ramadan": "Ramadán",
+  "@Ramadan": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Shawwal": "Shawwal",
+  "@Shawwal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Dhu Al-Qi'dah": "Dhu Al-Qi'dah",
+  "@Dhu Al-Qi'dah": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Dhu Al-Hijjah": "Dhu Al-Hijjah",
+  "@Dhu Al-Hijjah": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "settings": "Configuración",
+  "@settings": {
     "type": "text",
     "placeholders": {}
   }

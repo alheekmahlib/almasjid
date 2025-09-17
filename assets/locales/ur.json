@@ -1,5 +1,5 @@
 {
-  "appName": "مسجد - حکمت لائبریری",
+  "appName": "اقیم - الحکمہ لائبریری",
   "@appName": {
     "description": "appName",
     "type": "text",
@@ -14,6 +14,481 @@
   "lang": "اردو",
   "@lang": {
     "description": "lang",
+    "type": "text",
+    "placeholders": {}
+  },
+  "Fajr": "فجر",
+  "@Fajr": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Dhuhr": "ظہر",
+  "@Dhuhr": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Asr": "عصر",
+  "@Asr": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Maghrib": "مغرب",
+  "@Maghrib": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Isha": "عشاء",
+  "@Isha": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lastThirdOfTheNight": "رات کا آخری تہائی",
+  "@lastThirdOfTheNight": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "middleOfTheNight": "آدھی رات",
+  "@middleOfTheNight": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Sunrise": "طلوع آفتاب",
+  "@Sunrise": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Sun": "اتوار",
+  "@Sun": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Mon": "پیر",
+  "@Mon": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Tue": "منگل",
+  "@Tue": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Wed": "بدھ",
+  "@Wed": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Thu": "جمعرات",
+  "@Thu": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Fri": "جمعہ",
+  "@Fri": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Sat": "ہفتہ",
+  "@Sat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "SundayFullName": "اتوار",
+  "@SundayFullName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "MondayFullName": "پیر",
+  "@MondayFullName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "TuesdayFullName": "منگل",
+  "@TuesdayFullName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "WednesdayFullName": "بدھ",
+  "@WednesdayFullName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ThursdayFullName": "جمعرات",
+  "@ThursdayFullName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "FridayFullName": "جمعہ",
+  "@FridayFullName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "SaturdayFullName": "ہفتہ",
+  "@SaturdayFullName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "activeLocationPlease": "براہ کرم نماز کے اوقات کو فعال کرنے کے لیے مقام کی سروس فعال کریں",
+  "@activeLocationPlease": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "prayerSetting": "نماز کی ترتیبات",
+  "@prayerSetting": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "detectLocation": "مقام کا تعین",
+  "@detectLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "adhanSounds": "اذان کی آوازیں",
+  "@adhanSounds": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "aqsa": "اذان اقصیٰ",
+  "@aqsa": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saqqaf": "ہاشم السقاف",
+  "@saqqaf": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sarihi": "عبدالمجید السریحی",
+  "@sarihi": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setTimingCalculations": "وقت کے حساب کتاب کی ترتیب",
+  "@setTimingCalculations": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "automaticallyDetermineCalculationMethod": "حساب کا طریقہ خود کار طریقے سے طے کریں",
+  "@automaticallyDetermineCalculationMethod": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "madhab": "مذہب",
+  "@madhab": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "shafie": "شافعی، مالکی اور حنبلی",
+  "@shafie": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hanafe": "حنفی",
+  "@hanafe": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "madhabNote": "عشاء کی اذان حنفیہ کے نزدیک جمہور سے تقریباً بارہ منٹ دیر سے ہوتی ہے جیسا کہ موسوعۃ الفقہیۃ الکویتیۃ (7/175) میں ہے، اور عصر کی اذان حنفیہ کے نزدیک نصف گھنٹہ یا اس سے زیادہ دیر سے ہوتی ہے، یہ ملکوں اور موسموں کے اختلاف کے مطابق ہے۔",
+  "@madhabNote": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "SeventhOfTheNight": "رات کا ساتواں حصہ",
+  "@SeventhOfTheNight": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "usingTheAngle": "زاویہ استعمال کرتے ہوئے",
+  "@usingTheAngle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "SetPrayerTimes": "نماز کے اوقات کی ترتیب",
+  "@SetPrayerTimes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notificationOptions": "اطلاع کے اختیارات",
+  "@notificationOptions": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nothing": "کچھ نہیں",
+  "@nothing": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "silent": "خاموش",
+  "@silent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bell": "آواز",
+  "@bell": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sound": "اذان",
+  "@sound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "aboutPrayer": "نماز کے بارے میں",
+  "@aboutPrayer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "timeLeft:": "اذان کے لیے باقی وقت:",
+  "@timeLeft:": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fromQuran:": "قرآن سے:",
+  "@fromQuran:": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fromSunnah:": "سنت سے:",
+  "@fromSunnah:": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "prohibitionTimes": "نماز کے منع اوقات",
+  "@prohibitionTimes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fajrBody": "جس نے فجر کی نماز پڑھی وہ اللہ کی حفاظت میں ہے",
+  "@fajrBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dhuhrBody": "نماز نماز اور جو تمہاری ملکیت میں ہے",
+  "@dhuhrBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "asrBody": "جس نے دونوں ٹھنڈے وقت کی نمازیں پڑھیں وہ جنت میں داخل ہوگا",
+  "@asrBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "maghribBody": "اسلام میں اس شخص کا کوئی حصہ نہیں جو نماز چھوڑ دے",
+  "@maghribBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ishaBody": "جس نے عشاء کی نماز جماعت سے پڑھی، یہ آدھی رات کے قیام کے برابر ہے",
+  "@ishaBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "timeForPrayer": "نماز کا وقت",
+  "@timeForPrayer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "openAppReminderTitle": "ایپ کھولنے کی یاد دہانی",
+  "@openAppReminderTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "openAppReminderBody": "براہ کرم نئے نماز کی اطلاعات شیڈول کرنے کے لیے ایپ کھولیں۔",
+  "@openAppReminderBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "prayer": "نماز",
+  "@prayer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "langChange": "زبان تبدیل کریں",
+  "@langChange": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "themeTitle": "تھیم منتخب کریں",
+  "@themeTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ourApps": "ہماری ایپلیکیشنز",
+  "@ourApps": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "aboutApp": "ایپ کے بارے میں",
+  "@aboutApp": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "about_app": "'زاد المسلم - الحکمہ لائبریری' ایک جامع اسلامی ایپ ہے جس میں قرآن کریم، تفسیر، اذکار، نماز کے اوقات اطلاعات کے ساتھ، اور قبلے کا تعین شامل ہے۔ اللہ سے قربت کے لیے آپ کا روزانہ ساتھی۔",
+  "@about_app": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "about_app2": "پروگرام کی اہم خصوصیات:",
+  "@about_app2": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "about_app3": "'زاد المسلم - الحکمہ لائبریری' ایک مکمل اسلامی ایپلیکیشن ہے جس کا مقصد مسلمان کی تمام ضروریات کو ایک جگہ آسان اور آرام دہ طریقے سے فراہم کرنا ہے۔ ایپ قرآن کریم کو مکمل طور پر فراہم کرنے کی خصوصیت رکھتی ہے جس میں آیات پڑھنے، مختلف مشہور قاریوں کی آواز میں سننے، اور ہر آیت کی گہری سمجھ کے لیے مختلف تفاسیر پڑھنے کی سہولت ہے۔ اس میں ہر نماز کی یاد دلانے کے لیے ذہین اطلاعات کے ساتھ نماز کے درست اوقات بھی شامل ہیں، اور قبلے کی سمت معلوم کرنے کا آلہ بھی ہے جو عبادات کو صحیح طریقے سے ادا کرنے میں مدد کرتا ہے۔\n\nایپ میں اللہ سے تعلق مضبوط کرنے کے لیے روزانہ اذکار اور مسنون دعاؤں کا جامع مجموعہ بھی شامل ہے، نیز تفسیری کتب سے بھرپور لائبریری بھی ہے۔ آپ ممتاز قاریوں کی آواز میں قرآنی سورتوں کو سن سکتے ہیں اور منفرد روحانی تجربے سے لطف اندوز ہو سکتے ہیں۔ 'زاد المسلم - الحکمہ لائبریری' ہر اس مسلمان کے لیے بہترین ساتھی ہے جو اپنی مذہبی زندگی کو منظم کرنا اور اپنے ایمان کو مضبوط بنانا چاہتا ہے۔",
+  "@about_app3": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "email": "ہم سے رابطہ کریں",
+  "@email": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "share": "ایپ شیئر کریں",
+  "@share": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "facebook": "فیس بک پر ہماری پیروی کریں",
+  "@facebook": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "qibla": "قبلہ",
+  "@qibla": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "qiblaDirection": "قبلے کی سمت",
+  "@qiblaDirection": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "compass": "قطب نما",
+  "@compass": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "map": "نقشہ",
+  "@map": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locationNote": "براہ کرم اپنے موجودہ مقام کی بنیاد پر درست نماز کے اوقات حاصل کرنے کے لیے مقام کی سروس فعال کریں۔\nبراہ کرم جان لیں کہ آپ کے مقام کی تمام معلومات مکمل طور پر خفیہ رہیں گی اور کسی تیسرے فریق کے ساتھ شیئر نہیں کی جائیں گی۔",
+  "@locationNote": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notificationNote": "براہ کرم نماز کے اوقات اور دیگر اطلاعات حاصل کرنے کے لیے نوٹیفیکیشن فعال کریں۔",
+  "@notificationNote": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locate": "مقام کا تعین",
+  "@locate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "activation": "فعال کریں",
+  "@activation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ok": "ٹھیک ہے",
+  "@ok": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancel": "منسوخ",
+  "@cancel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "What's New": "نیا کیا ہے",
+  "@What's New": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "What'sNewDetails10": "۞ نیا یوزر انٹرفیس ڈیزائن۔\n۞ تفسیر اور حدیث کی کتب کا اضافہ۔\n۞ ایپ کی کارکردگی میں بہتری۔\n۞ نئے فیچرز کا اضافہ۔",
+  "@What'sNewDetails10": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "shareImage": "تصویر شیئر کریں",
+  "@shareImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sharePrayerTime": "نماز کا وقت شیئر کریں",
+  "@sharePrayerTime": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nextPrayer": "اگلی نماز",
+  "@nextPrayer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Muharram": "محرم",
+  "@Muharram": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Safar": "صفر",
+  "@Safar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Rabi' Al-Awwal": "ربیع الاول",
+  "@Rabi' Al-Awwal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Rabi' Al-Thani": "ربیع الثانی",
+  "@Rabi' Al-Thani": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Jumada Al-Awwal": "جمادی الاول",
+  "@Jumada Al-Awwal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Jumada Al-Thani": "جمادی الآخرہ",
+  "@Jumada Al-Thani": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Rajab": "رجب",
+  "@Rajab": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Sha'aban": "شعبان",
+  "@Sha'aban": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Ramadan": "رمضان",
+  "@Ramadan": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Shawwal": "شوال",
+  "@Shawwal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Dhu Al-Qi'dah": "ذوالقعدہ",
+  "@Dhu Al-Qi'dah": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Dhu Al-Hijjah": "ذوالحجہ",
+  "@Dhu Al-Hijjah": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "settings": "ترتیبات",
+  "@settings": {
     "type": "text",
     "placeholders": {}
   }

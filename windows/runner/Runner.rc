@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "almasjid" "\0"
+            VALUE "FileDescription", "أقم - مكتبة الحكمة" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "almasjid" "\0"
+            VALUE "InternalName", "أقم - مكتبة الحكمة" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2025 com.example. All rights reserved." "\0"
             VALUE "OriginalFilename", "almasjid.exe" "\0"
-            VALUE "ProductName", "almasjid" "\0"
+            VALUE "ProductName", "أقم - مكتبة الحكمة" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

@@ -1,5 +1,5 @@
 {
-  "appName": "المسجد - مكتبة الحكمة",
+  "appName": "أقِم - مكتبة الحكمة",
   "@appName": {
     "description": "appName",
     "type": "text",
@@ -14,6 +14,481 @@
   "lang": "العربية",
   "@lang": {
     "description": "lang",
+    "type": "text",
+    "placeholders": {}
+  },
+  "Fajr": "الفجر",
+  "@Fajr": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Dhuhr": "الظهر",
+  "@Dhuhr": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Asr": "العصر",
+  "@Asr": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Maghrib": "المغرب",
+  "@Maghrib": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Isha": "العشاء",
+  "@Isha": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lastThirdOfTheNight": "الثلث الأخير",
+  "@lastThirdOfTheNight": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "middleOfTheNight": "منتصف الليل",
+  "@middleOfTheNight": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Sunrise": "الشروق",
+  "@Sunrise": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Sun": "أح",
+  "@Sun": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Mon": "إث",
+  "@Mon": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Tue": "ثل",
+  "@Tue": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Wed": "أر",
+  "@Wed": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Thu": "خم",
+  "@Thu": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Fri": "جم",
+  "@Fri": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Sat": "سب",
+  "@Sat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "SundayFullName": "الأحد",
+  "@SundayFullName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "MondayFullName": "الإثنين",
+  "@MondayFullName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "TuesdayFullName": "الثلاثاء",
+  "@TuesdayFullName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "WednesdayFullName": "الأربعاء",
+  "@WednesdayFullName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ThursdayFullName": "الخميس",
+  "@ThursdayFullName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "FridayFullName": "الجمعة",
+  "@FridayFullName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "SaturdayFullName": "السبت",
+  "@SaturdayFullName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "activeLocationPlease": "يرجى تفعيل تحديد الموقع لتفعيل أوقات الصلاة",
+  "@activeLocationPlease": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "prayerSetting": "إعدادات الصلاة",
+  "@prayerSetting": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "detectLocation": "تحديد الموقع",
+  "@detectLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "adhanSounds": "أصوات الأذان",
+  "@adhanSounds": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "aqsa": "أذان الأقصى",
+  "@aqsa": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saqqaf": "هاشم السقاف",
+  "@saqqaf": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sarihi": "عبد المجيد السريحي",
+  "@sarihi": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setTimingCalculations": "ضبط حساب المواقيت",
+  "@setTimingCalculations": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "automaticallyDetermineCalculationMethod": "تحديد طريقة الحساب تلقائيًا",
+  "@automaticallyDetermineCalculationMethod": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "madhab": "المذهب",
+  "@madhab": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "shafie": "شافعي، مالكي وحنبلي",
+  "@shafie": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hanafe": "حنفي",
+  "@hanafe": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "madhabNote": "إن أذان العشاء يتأخر عند الحنفية ، عنه لدى الجمهور ، بنحو ثنتي عشرة دقيقة كما في \" الموسوعة الفقهية الكويتية \" (7/175)، وأذان العصر يتأخر عند الحنفية بنصف ساعة وأكثر ، بحسب اختلاف البلدان والفصول.",
+  "@madhabNote": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "SeventhOfTheNight": "سبع الليل",
+  "@SeventhOfTheNight": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "usingTheAngle": "بإستخدام الزاوية",
+  "@usingTheAngle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "SetPrayerTimes": "ضبط مواقيت الصلاة",
+  "@SetPrayerTimes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notificationOptions": "خيارات الإشعار",
+  "@notificationOptions": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nothing": "لا شئ",
+  "@nothing": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "silent": "صامت",
+  "@silent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bell": "نغمة",
+  "@bell": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sound": "أذان",
+  "@sound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "aboutPrayer": "عن الصلاة",
+  "@aboutPrayer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "timeLeft:": "الوقت المتبقي للأذان:",
+  "@timeLeft:": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fromQuran:": "من القرآن:",
+  "@fromQuran:": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fromSunnah:": "من السنة:",
+  "@fromSunnah:": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "prohibitionTimes": "وقت منهي الصلاة فيه",
+  "@prohibitionTimes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fajrBody": "من صلى الصبح فهو في ذمة الله",
+  "@fajrBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dhuhrBody": "الصلاة الصلاة وما ملكت أيمانكم",
+  "@dhuhrBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "asrBody": "من صلى البردين دخل الجنة",
+  "@asrBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "maghribBody": "لا حظ في الإسلام لمن ترك الصلاة",
+  "@maghribBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ishaBody": "من صلى العشاء في جماعة، كان كقيام نصف االليل",
+  "@ishaBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "timeForPrayer": "وقت صلاة",
+  "@timeForPrayer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "openAppReminderTitle": "تذكير بفتح التطبيق",
+  "@openAppReminderTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "openAppReminderBody": "يرجى فتح التطبيق لجدولة إشعارات الصلاة الجديدة.",
+  "@openAppReminderBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "prayer": "الصلاة",
+  "@prayer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "langChange": "تغيير اللغة",
+  "@langChange": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "themeTitle": "أختر المظهر",
+  "@themeTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ourApps": "تطبيقاتنا",
+  "@ourApps": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "aboutApp": "عن التطبيق",
+  "@aboutApp": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "about_app": "'زاد المسلم - مكتبة الحكمة' هو تطبيق إسلامي شامل يضم القرآن الكريم، التفسير، الأذكار، أوقات الصلاة مع التنبيهات، وتحديد القبلة. رفيقك اليومي للتقرب إلى الله.",
+  "@about_app": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "about_app2": "من اهم مميزات البرنامج :",
+  "@about_app2": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "about_app3": "'زاد المسلم - مكتبة الحكمة' هو تطبيق إسلامي متكامل يهدف إلى توفير جميع احتياجات المسلم في مكان واحد بطريقة سهلة ومريحة. يتميز التطبيق بتوفير القرآن الكريم كاملًا مع إمكانية قراءة الآيات، الاستماع إليها بصوت العديد من القراء المشهورين، وقراءة التفاسير المتنوعة لفهم أعمق لكل آية. كما يحتوي على أوقات الصلاة الدقيقة مع تنبيهات ذكية لتذكيرك بكل صلاة، بالإضافة إلى أداة تحديد اتجاه القبلة التي تساعدك على أداء العبادات بشكل صحيح.\n\nيشمل التطبيق أيضًا مجموعة شاملة من الأذكار اليومية والأدعية المأثورة لتقوية صلتك بالله، فضلًا عن مكتبة غنية بكتب التفسير. يمكنك أيضًا الاستماع إلى السور القرآنية بصوت قراء بارزين والاستمتاع بتجربة روحية مميزة. 'زاد المسلم - مكتبة الحكمة' هو الرفيق الأمثل لكل مسلم يسعى إلى تنظيم حياته الدينية وتعزيز إيمانه. ",
+  "@about_app3": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "email": "تواصل معنا",
+  "@email": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "share": "شارك التطبيق",
+  "@share": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "facebook": "تابعنا على فيسبوك",
+  "@facebook": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "qibla": "القبلة",
+  "@qibla": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "qiblaDirection": "إتجاه القبلة",
+  "@qiblaDirection": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "compass": "بوصلة",
+  "@compass": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "map": "خارطة",
+  "@map": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locationNote": "يرجى تفعيل خدمة تحديد الموقع لتصلك أوقات الصلاة بدقة بناءً على موقعك الحالي.\nيُرجى العلم أن جميع بيانات موقعك ستبقى سرية تمامًا ولن يتم مشاركتها مع أي طرف ثالث.",
+  "@locationNote": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notificationNote": "يرجى تفعيل الإشعارات ليصلك تنبيهات بأوقات الصلاة والإشعارات الأخرى.",
+  "@notificationNote": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locate": "تحديد الموقع",
+  "@locate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "activation": "تفعيل",
+  "@activation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ok": "موافق",
+  "@ok": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancel": "إلغاء",
+  "@cancel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "What's New": "ما الجديد",
+  "@What's New": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "What'sNewDetails10": "۞ تصميم واجهة مستخدم جديدة.\n۞ إضافة مكتبة لكتب التفسير والحديث.\n۞ تحسين أداء التطبيق.\n۞ إضافة ميزات جديدة.",
+  "@What'sNewDetails10": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "shareImage": "شارك الصورة",
+  "@shareImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sharePrayerTime": "شارك وقت الصلاة",
+  "@sharePrayerTime": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nextPrayer": "الصلاة القادمة",
+  "@nextPrayer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Muharram": "محرم",
+  "@Muharram": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Safar": "صفر",
+  "@Safar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Rabi' Al-Awwal": "ربيع الاول",
+  "@Rabi' Al-Awwal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Rabi' Al-Thani": "ربيع الثاني",
+  "@Rabi' Al-Thani": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Jumada Al-Awwal": "جمادى الاول",
+  "@Jumada Al-Awwal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Jumada Al-Thani": "جمادى الآخرة",
+  "@Jumada Al-Thani": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Rajab": "رجب",
+  "@Rajab": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Sha'aban": "شعبان",
+  "@Sha'aban": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Ramadan": "رمضان",
+  "@Ramadan": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Shawwal": "شوال",
+  "@Shawwal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Dhu Al-Qi'dah": "ذو القعدة",
+  "@Dhu Al-Qi'dah": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Dhu Al-Hijjah": "ذوالحجة",
+  "@Dhu Al-Hijjah": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "settings": "الإعدادات",
+  "@settings": {
     "type": "text",
     "placeholders": {}
   }

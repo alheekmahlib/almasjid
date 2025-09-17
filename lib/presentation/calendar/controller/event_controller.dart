@@ -6,24 +6,24 @@ class EventController extends GetxController {
       : Get.put<EventController>(EventController());
 
   final box = GetStorage();
-  late HijriCalendarConfig hijriNow;
+  late HijriCalendar hijriNow;
   var now = DateTime.now();
   List<int> noHadithInMonth = <int>[2, 3, 4, 5];
   List<int> notReminderIndex = <int>[1, 2, 3, 5, 6, 7, 8, 9, 10, 12];
   var events = <Event>[].obs;
-  late HijriCalendarConfig selectedDate;
+  late HijriCalendar selectedDate;
   late PageController pageController;
-  late List<HijriCalendarConfig> months;
+  late List<HijriCalendar> months;
   int? startYear;
   int? endYear;
   RxInt adjustHijriDays = 0.obs;
-  Rx<HijriCalendarConfig> calenderMonth = HijriCalendarConfig.now().obs;
+  Rx<HijriCalendar> calenderMonth = HijriCalendar.now().obs;
 
   @override
   void onInit() {
     super.onInit();
     adjustHijriDays.value = box.read('adjustHijriDays') ?? 0;
-    selectedDate = HijriCalendarConfig.now();
+    selectedDate = HijriCalendar.now();
     initializeMonths();
     pageController = PageController(
       initialPage: selectedDate.hMonth - 1,
@@ -36,7 +36,7 @@ class EventController extends GetxController {
 
   void initializeMonths() {
     months = List.generate(12, (index) {
-      var hijri = HijriCalendarConfig.fromHijri(
+      var hijri = HijriCalendar.fromHijri(
         selectedDate.hYear,
         index + 1,
         1,
@@ -49,7 +49,7 @@ class EventController extends GetxController {
       return hijri;
     });
 
-    var currentHijri = HijriCalendarConfig.now();
+    var currentHijri = HijriCalendar.now();
     var adjustedDay = currentHijri.hDay + adjustHijriDays.value;
     var adjustedMonth = currentHijri.hMonth;
     var adjustedYear = currentHijri.hYear;
@@ -67,7 +67,7 @@ class EventController extends GetxController {
     }
 
     hijriNow =
-        HijriCalendarConfig.fromHijri(adjustedYear, adjustedMonth, adjustedDay);
+        HijriCalendar.fromHijri(adjustedYear, adjustedMonth, adjustedDay);
     hijriNow.lengthOfMonth =
         hijriNow.getDaysInMonth(hijriNow.hYear, hijriNow.hMonth) - 1;
 
@@ -81,10 +81,10 @@ class EventController extends GetxController {
     var previousYear = hMonth - 1 == 0 ? hYear - 1 : hYear;
 
     var lastDayOfPreviousMonth =
-        HijriCalendarConfig().getDaysInMonth(previousYear, previousMonth);
+        HijriCalendar().getDaysInMonth(previousYear, previousMonth);
 
     // اليوم الذي ينتهي به الشهر السابق
-    var lastDayWeekday = HijriCalendarConfig.fromHijri(
+    var lastDayWeekday = HijriCalendar.fromHijri(
       previousYear,
       previousMonth,
       lastDayOfPreviousMonth,
@@ -102,7 +102,7 @@ class EventController extends GetxController {
     }
   }
 
-  int getDaysInMonth(HijriCalendarConfig hijri, int hYear, int hMonth) {
+  int getDaysInMonth(HijriCalendar hijri, int hYear, int hMonth) {
     if (hijriNow.hMonth == 6) {
       return hijri.getDaysInMonth(hYear, hMonth) - 1;
     } else {
@@ -122,7 +122,7 @@ class EventController extends GetxController {
     return false.obs;
   }
 
-  RxBool isCurrentDay(HijriCalendarConfig month, int dayOffset) =>
+  RxBool isCurrentDay(HijriCalendar month, int dayOffset) =>
       (month.hYear == hijriNow.hYear &&
               month.hMonth == hijriNow.hMonth &&
               dayOffset == hijriNow.hDay)
@@ -245,7 +245,7 @@ class EventController extends GetxController {
 
   int calculate(int year, int month, int day) {
     // حساب الأيام المتبقية للمناسبة مع إعادة التعيين للسنة القادمة - Calculate remaining days for the event with reset to next year
-    HijriCalendarConfig hijriCalendar = HijriCalendarConfig();
+    HijriCalendar hijriCalendar = HijriCalendar();
     DateTime start = DateTime.now().add(Duration(days: adjustHijriDays.value));
     DateTime end = hijriCalendar.hijriToGregorian(year, month, day);
 
@@ -316,7 +316,7 @@ class EventController extends GetxController {
   }
 
   void onMonthChanged(int month) {
-    selectedDate = HijriCalendarConfig()
+    selectedDate = HijriCalendar()
       ..hYear = selectedDate.hYear
       ..hMonth = month + 1
       ..hDay = selectedDate.hDay;
@@ -324,7 +324,7 @@ class EventController extends GetxController {
   }
 
   void onYearChanged(int year) {
-    selectedDate = HijriCalendarConfig()
+    selectedDate = HijriCalendar()
       ..hYear = year
       ..hMonth = selectedDate.hMonth
       ..hDay = selectedDate.hDay;
@@ -370,8 +370,8 @@ class EventController extends GetxController {
   }
 
   void resetDate() {
-    selectedDate = HijriCalendarConfig()
-      ..hYear = HijriCalendarConfig.now().hYear
+    selectedDate = HijriCalendar()
+      ..hYear = HijriCalendar.now().hYear
       ..hMonth = selectedDate.hMonth
       ..hDay = selectedDate.hDay;
     initializeMonths();
@@ -379,7 +379,7 @@ class EventController extends GetxController {
 
   // حساب السنة المناسبة للمناسبة (الحالية أو القادمة) - Calculate appropriate year for the event (current or next)
   int getEventYear(int month, int day) {
-    HijriCalendarConfig hijriCalendar = HijriCalendarConfig();
+    HijriCalendar hijriCalendar = HijriCalendar();
     DateTime start = DateTime.now().add(Duration(days: adjustHijriDays.value));
     DateTime currentYearEnd =
         hijriCalendar.hijriToGregorian(hijriNow.hYear, month, day);

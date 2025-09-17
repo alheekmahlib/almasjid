@@ -1,11 +1,11 @@
 {
-  "appName": "Masjid - Hikmah Library",
+  "appName": "Iqama - Alheekmah Library",
   "@appName": {
     "description": "appName",
     "type": "text",
     "placeholders": {}
   },
-  "appLang": "Wika ng Aplikasyon",
+  "appLang": "Wika ng App",
   "@appLang": {
     "description": "appLang",
     "type": "text",
@@ -14,6 +14,481 @@
   "lang": "Filipino",
   "@lang": {
     "description": "lang",
+    "type": "text",
+    "placeholders": {}
+  },
+  "Fajr": "Fajr",
+  "@Fajr": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Dhuhr": "Dhuhr",
+  "@Dhuhr": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Asr": "Asr",
+  "@Asr": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Maghrib": "Maghrib",
+  "@Maghrib": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Isha": "Isha",
+  "@Isha": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lastThirdOfTheNight": "Huling Ikatlong Bahagi",
+  "@lastThirdOfTheNight": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "middleOfTheNight": "Gitna ng Gabi",
+  "@middleOfTheNight": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Sunrise": "Pagsikat ng Araw",
+  "@Sunrise": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Sun": "Lin",
+  "@Sun": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Mon": "Lun",
+  "@Mon": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Tue": "Mar",
+  "@Tue": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Wed": "Miy",
+  "@Wed": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Thu": "Huw",
+  "@Thu": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Fri": "Biy",
+  "@Fri": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Sat": "Sab",
+  "@Sat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "SundayFullName": "Linggo",
+  "@SundayFullName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "MondayFullName": "Lunes",
+  "@MondayFullName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "TuesdayFullName": "Martes",
+  "@TuesdayFullName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "WednesdayFullName": "Miyerkules",
+  "@WednesdayFullName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ThursdayFullName": "Huwebes",
+  "@ThursdayFullName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "FridayFullName": "Biyernes",
+  "@FridayFullName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "SaturdayFullName": "Sabado",
+  "@SaturdayFullName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "activeLocationPlease": "Mangyaring i-activate ang serbisyo ng lokasyon upang makatanggap ng mga oras ng panalangin",
+  "@activeLocationPlease": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "prayerSetting": "Mga Setting ng Panalangin",
+  "@prayerSetting": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "detectLocation": "Tukuyin ang Lokasyon",
+  "@detectLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "adhanSounds": "Mga Tunog ng Adhan",
+  "@adhanSounds": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "aqsa": "Adhan Al-Aqsa",
+  "@aqsa": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saqqaf": "Hashim As-Saqqaf",
+  "@saqqaf": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sarihi": "Abdul Majeed As-Sarihi",
+  "@sarihi": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setTimingCalculations": "Itakda ang Kalkulasyon ng Oras",
+  "@setTimingCalculations": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "automaticallyDetermineCalculationMethod": "Awtomatikong tukuyin ang paraan ng kalkulasyon",
+  "@automaticallyDetermineCalculationMethod": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "madhab": "Madhab",
+  "@madhab": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "shafie": "Shafi'i, Maliki at Hanbali",
+  "@shafie": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hanafe": "Hanafi",
+  "@hanafe": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "madhabNote": "Ang adhan ng Isha ay naantala sa Hanafi kaysa sa karamihan ng mga iskolar ng mahigit kumulang labing-dalawang minuto tulad ng nakasaad sa \"Kuwaiti Fiqh Encyclopedia\" (7/175), at ang adhan ng Asr ay naantala sa Hanafi ng kalahating oras o higit pa, depende sa pagkakaiba ng mga bansa at mga panahon.",
+  "@madhabNote": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "SeventhOfTheNight": "Ikapitong Bahagi ng Gabi",
+  "@SeventhOfTheNight": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "usingTheAngle": "Gamit ang Anggulo",
+  "@usingTheAngle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "SetPrayerTimes": "Itakda ang mga Oras ng Panalangin",
+  "@SetPrayerTimes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notificationOptions": "Mga Opsyon ng Notification",
+  "@notificationOptions": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nothing": "Wala",
+  "@nothing": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "silent": "Tahimik",
+  "@silent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bell": "Tunog",
+  "@bell": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sound": "Adhan",
+  "@sound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "aboutPrayer": "Tungkol sa Panalangin",
+  "@aboutPrayer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "timeLeft:": "Natitirang oras para sa adhan:",
+  "@timeLeft:": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fromQuran:": "Mula sa Quran:",
+  "@fromQuran:": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fromSunnah:": "Mula sa Sunnah:",
+  "@fromSunnah:": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "prohibitionTimes": "Panahong ipinagbabawal ang panalangin",
+  "@prohibitionTimes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fajrBody": "Ang nagsasagawa ng Subh ay nasa pangangalaga ng Allah",
+  "@fajrBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dhuhrBody": "Ang panalangin, ang panalangin at kung ano ang hawak ninyo sa inyong mga kamay",
+  "@dhuhrBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "asrBody": "Sino man ang nagdasal ng mga dalawang malamig na panalangin ay papasok sa paraiso",
+  "@asrBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "maghribBody": "Walang bahagi sa Islam para sa taong tumalikod sa panalangin",
+  "@maghribBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ishaBody": "Sino man ang nagdasal ng Isha sa congregation, ito ay parang nagtayo ng kalahating gabi",
+  "@ishaBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "timeForPrayer": "Oras para sa panalangin",
+  "@timeForPrayer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "openAppReminderTitle": "Paalala para buksan ang App",
+  "@openAppReminderTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "openAppReminderBody": "Mangyaring buksan ang app upang mag-schedule ng mga bagong notification para sa panalangin.",
+  "@openAppReminderBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "prayer": "Panalangin",
+  "@prayer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "langChange": "Pagbabago ng Wika",
+  "@langChange": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "themeTitle": "Pumili ng Tema",
+  "@themeTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ourApps": "Aming mga App",
+  "@ourApps": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "aboutApp": "Tungkol sa App",
+  "@aboutApp": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "about_app": "Ang 'Zad Al-Muslim - Alheekmah Library' ay isang komprehensibong Islamic app na naglalaman ng Quran, tafsir, mga adhkar, mga oras ng panalangin na may mga alert, at qibla finder. Ang inyong araw-araw na kasama upang malapit sa Allah.",
+  "@about_app": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "about_app2": "Isa sa mga pangunahing tampok ng programa:",
+  "@about_app2": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "about_app3": "Ang 'Zad Al-Muslim - Alheekmah Library' ay isang kumpletong Islamic application na naglalayong magbigay ng lahat ng pangangailangan ng isang Muslim sa isang lugar sa madaling at kumportableng paraan. Ang app ay nag-feature ng kumpletong Quran na may kakayahang basahin ang mga talata, makinig sa mga ito sa boses ng maraming kilalang mga qari, at basahin ang iba't ibang tafsir para sa mas malalim na pag-unawa sa bawat talata. Kasama din nito ang mga tumpak na oras ng panalangin na may mga matalinong alert upang ipaalala sa inyo ang bawat panalangin, kasama ang qibla direction tool na tumutulong sa inyong magsagawa ng mga pagsasanay sa tamang paraan.\n\nKasama din sa app ang isang komprehensibong koleksyon ng mga pang-araw-araw na adhkar at mga napatunayang dua upang palakasin ang inyong koneksyon sa Allah, pati na rin ang isang mayamang library ng mga tafsir books. Maaari din kayong makinig sa mga surah ng Quran sa boses ng mga kilalang qari at mag-enjoy sa isang natatanging spiritual experience. Ang 'Zad Al-Muslim - Alheekmah Library' ay ang perpektong kasama para sa bawat Muslim na nagsisikap na ayusin ang kanilang religious life at palakasin ang kanilang pananampalataya.",
+  "@about_app3": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "email": "Makipag-ugnayan sa Amin",
+  "@email": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "share": "Ibahagi ang App",
+  "@share": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "facebook": "Sundin Kami sa Facebook",
+  "@facebook": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "qibla": "Qibla",
+  "@qibla": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "qiblaDirection": "Direksyon ng Qibla",
+  "@qiblaDirection": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "compass": "Compass",
+  "@compass": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "map": "Mapa",
+  "@map": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locationNote": "Mangyaring i-activate ang serbisyo ng lokasyon upang makatanggap kayo ng mga tumpak na oras ng panalangin batay sa inyong kasalukuyang lokasyon.\nMangyaring malaman na ang lahat ng data ng inyong lokasyon ay mananatiling ganap na pribado at hindi ibabahagi sa anumang third party.",
+  "@locationNote": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notificationNote": "Mangyaring i-enable ang mga notification upang makatanggap ng mga alert para sa mga oras ng panalangin at iba pang mga notification.",
+  "@notificationNote": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locate": "Tukuyin ang Lokasyon",
+  "@locate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "activation": "Aktivasyon",
+  "@activation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ok": "OK",
+  "@ok": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancel": "Kanselahin",
+  "@cancel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "What's New": "Ano ang Bago",
+  "@What's New": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "What'sNewDetails10": "۞ Bagong user interface design.\n۞ Pagdagdag ng library para sa mga tafsir at hadith books.\n۞ Pagpapabuti ng performance ng app.\n۞ Pagdagdag ng mga bagong feature.",
+  "@What'sNewDetails10": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "shareImage": "Ibahagi ang Larawan",
+  "@shareImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sharePrayerTime": "Ibahagi ang Oras ng Panalangin",
+  "@sharePrayerTime": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nextPrayer": "Susunod na Panalangin",
+  "@nextPrayer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Muharram": "Muharram",
+  "@Muharram": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Safar": "Safar",
+  "@Safar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Rabi' Al-Awwal": "Rabi' Al-Awwal",
+  "@Rabi' Al-Awwal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Rabi' Al-Thani": "Rabi' Al-Thani",
+  "@Rabi' Al-Thani": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Jumada Al-Awwal": "Jumada Al-Awwal",
+  "@Jumada Al-Awwal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Jumada Al-Thani": "Jumada Al-Thani",
+  "@Jumada Al-Thani": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Rajab": "Rajab",
+  "@Rajab": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Sha'aban": "Sha'aban",
+  "@Sha'aban": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Ramadan": "Ramadan",
+  "@Ramadan": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Shawwal": "Shawwal",
+  "@Shawwal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Dhu Al-Qi'dah": "Dhu Al-Qi'dah",
+  "@Dhu Al-Qi'dah": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Dhu Al-Hijjah": "Dhu Al-Hijjah",
+  "@Dhu Al-Hijjah": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "settings": "Mga Setting",
+  "@settings": {
     "type": "text",
     "placeholders": {}
   }

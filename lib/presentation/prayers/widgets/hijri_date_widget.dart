@@ -36,7 +36,8 @@ class HijriDateWidget extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  EventController.instance.hijriNow.getDayName().tr,
+                  '${EventController.instance.hijriNow.getDayName()}FullName'
+                      .tr,
                   style: TextStyle(
                     fontSize: 18,
                     fontFamily: 'cairo',

@@ -1,0 +1,57 @@
+{
+  "agcgw_all": {
+    "SG": "connect-dra.dbankcloud.cn",
+    "SG_back": "connect-dra.hispace.hicloud.com",
+    "CN": "connect-drcn.dbankcloud.cn",
+    "CN_back": "connect-drcn.hispace.hicloud.com",
+    "RU": "connect-drru.hispace.dbankcloud.ru",
+    "RU_back": "connect-drru.hispace.dbankcloud.cn",
+    "DE": "connect-dre.dbankcloud.cn",
+    "DE_back": "connect-dre.hispace.hicloud.com"
+  },
+  "websocketgw_all": {
+    "SG": "connect-ws-dra.hispace.dbankcloud.cn",
+    "SG_back": "connect-ws-dra.hispace.dbankcloud.com",
+    "CN": "connect-ws-drcn.hispace.dbankcloud.cn",
+    "CN_back": "connect-ws-drcn.hispace.dbankcloud.com",
+    "RU": "connect-ws-drru.hispace.dbankcloud.ru",
+    "RU_back": "connect-ws-drru.hispace.dbankcloud.cn",
+    "DE": "connect-ws-dre.hispace.dbankcloud.cn",
+    "DE_back": "connect-ws-dre.hispace.dbankcloud.com"
+  },
+  "client": {
+    "cp_id": "890001200004000898",
+    "product_id": "461323198430442292",
+    "client_id": "1775990226909429376",
+    "client_secret": "7103F04DB70E499A784046614D061547748B12B8AF437C2A8B2D9DE457D2BAAE",
+    "project_id": "461323198430442292",
+    "app_id": "115301239",
+    "api_key": "DgEDAOWzkAh3lV1XyJPMbxrS3TO7CdkpnVN6Lu5jvKRljqjVY7exQlLNZoSNkmRpWogb2+vhf5vNr20LV+4LvlQbtAhXqCOiYAfGYg==",
+    "package_name": "com.alheekmah.aqimApp"
+  },
+  "oauth_client": {
+    "client_id": "115301239",
+    "client_type": 1
+  },
+  "app_info": {
+    "app_id": "115301239",
+    "package_name": "com.alheekmah.aqimApp"
+  },
+  "configuration_version": "3.0",
+  "appInfos": [
+    {
+      "package_name": "com.alheekmah.aqimApp",
+      "client": {
+        "app_id": "115301239"
+      },
+      "app_info": {
+        "package_name": "com.alheekmah.aqimApp",
+        "app_id": "115301239"
+      },
+      "oauth_client": {
+        "client_type": 1,
+        "client_id": "115301239"
+      }
+    }
+  ]
+}

@@ -43,21 +43,26 @@ dependencies:
   get: ^4.7.2
   get_it: ^8.2.0
   get_storage: ^2.1.1
-  hijri_calendar: ^1.0.7+7
-  horizontal_week_calendar:
-    git:
-      ref: main
-      url: https://github.com/alheekmahlib/horizontal_week_calendar.git
   google_huawei_availability:
     git:
       ref: dev
       url: https://github.com/alheekmahlib/google_huawei_availability.git
+  hijri:
+    git:
+      ref: master
+      url: https://github.com/alheekmahlib/hijri_date.git
+  horizontal_week_calendar:
+    git:
+      ref: main
+      url: https://github.com/alheekmahlib/horizontal_week_calendar.git
   huawei_location: ^6.14.2+301
+  huawei_site: ^6.5.1+303
   intl: ^0.19.0
   just_audio: ^0.10.4
   latlong2: ^0.9.1
   lottie: ^3.3.1
   nominatim_geocoding: ^0.0.6
+  package_rename: ^1.10.0
   path: ^1.9.0
   path_provider: ^2.1.5
   rate_my_app: ^2.3.2
@@ -89,16 +94,19 @@ flutter_native_splash:
     icon_background_color: "#FDF7F4"
     image_dark: assets/images/zad_muslim_stroke_512.png
     icon_background_color_dark: "#2d2d2d"
+
 package_rename_config:
-  # android:
-  #   app_name: زاد المسلم - مكتبة الحكمة
-  # #    package_name: com.alheekmah.alheekmahLibrary
-  # ios:
-  #   app_name: زاد المسلم - مكتبة الحكمة
-  #    package_name: com.alheekmah.alheekmahLibrary
+  android:
+    app_name: أقم - مكتبة الحكمة
+    package_name: com.alheekmah.aqimApp
+  ios:
+    app_name: أقم - مكتبة الحكمة
+    package_name: com.alheekmah.aqimApp
   macos:
-    app_name: زاد المسلم - مكتبة الحكمة
-    package_name: com.alheekmah.alheekmahLibrary
+    app_name: أقم - مكتبة الحكمة
+    package_name: com.alheekmah.aqimApp
+  windows:
+    app_name: أقم - مكتبة الحكمة
   # flutter_lints: ^5.0.0
 flutter_assets:
   # assets_path: assets/lottie/

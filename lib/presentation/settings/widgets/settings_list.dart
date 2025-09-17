@@ -95,9 +95,12 @@ class SettingsList extends StatelessWidget {
               child: Text(
                 title.tr,
                 style: TextStyle(
-                  fontFamily: 'kufi',
-                  fontSize: 16,
-                  color: context.theme.hintColor,
+                  fontSize: 18,
+                  color: context.theme.colorScheme.inversePrimary
+                      .withValues(alpha: .6),
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'cairo',
+                  height: 1.7,
                 ),
               ),
             ),

@@ -5,6 +5,7 @@ class PrayerScreen extends StatelessWidget {
 
   final generalCtrl = GeneralController.instance;
   final adhanCtrl = AdhanController.instance;
+  final eventCtrl = EventController.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -90,6 +91,11 @@ class PrayerScreen extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24.0),
       child: HorizontalWeekCalendar(
+        hijriInitialDate: eventCtrl.hijriNow,
+        hijriMaxDate:
+            HijriCalendar.fromDate(DateTime.now().add(const Duration(days: 7))),
+        hijriMinDate: HijriCalendar.fromDate(
+            DateTime.now().subtract(const Duration(days: 7))),
         minDate: DateTime.now().subtract(const Duration(days: 7)),
         maxDate: DateTime.now().add(const Duration(days: 7)),
         initialDate: DateTime.now(),
@@ -103,7 +109,8 @@ class PrayerScreen extends StatelessWidget {
         showTopNavbar: false,
         monthFormat: 'MMMM yyyy',
         showNavigationButtons: true,
-        weekStartFrom: WeekStartFrom.monday,
+        useHijriDates: true,
+        weekStartFrom: WeekStartFrom.friday,
         borderRadius: BorderRadius.circular(12),
         itemBorderColor: Colors.transparent,
         activeBackgroundColor: context.theme.colorScheme.surface,
@@ -117,6 +124,38 @@ class PrayerScreen extends StatelessWidget {
         monthColor: context.theme.colorScheme.surface,
         onWeekChange: (List<DateTime> dates) {},
         scrollPhysics: const BouncingScrollPhysics(),
+        translateNumbers: true,
+        languageCode: Get.locale?.languageCode ?? 'ar',
+        customDayNames: [
+          'Mon'.tr,
+          'Tue'.tr,
+          'Wed'.tr,
+          'Thu'.tr,
+          'Fri'.tr,
+          'Sat'.tr,
+          'Sun'.tr
+        ],
+        dayTextStyle: TextStyle(
+          fontSize: 20,
+          fontFamily: 'cairo',
+          fontWeight: FontWeight.bold,
+          color: context.theme.colorScheme.inversePrimary,
+          height: 1.1,
+        ),
+        monthTextStyle: TextStyle(
+          fontSize: 16,
+          fontFamily: 'cairo',
+          fontWeight: FontWeight.bold,
+          color: context.theme.colorScheme.inversePrimary,
+          height: 1.5,
+        ),
+        dayNameTextStyle: TextStyle(
+          fontSize: 14,
+          fontFamily: 'cairo',
+          fontWeight: FontWeight.bold,
+          color: context.theme.colorScheme.inversePrimary,
+          height: 1.1,
+        ),
       ),
     );
   }

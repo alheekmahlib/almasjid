@@ -43,7 +43,7 @@ class _ShareCard extends StatelessWidget {
                           children: [
                             // Next prayer
                             Text(
-                              'NextPrayer'.tr,
+                              'nextPrayer'.tr,
                               style: TextStyle(
                                 fontSize: 14,
                                 fontFamily: 'cairo',
@@ -120,7 +120,7 @@ class _ShareCard extends StatelessWidget {
                                     color: Colors.white, size: 18),
                                 const Gap(8),
                                 Text(
-                                  '${'TimeLeft'.tr}: ${share.timeLeftLabel}',
+                                  '${'timeLeft:'.tr} ${share.timeLeftLabel.convertNumbers()}',
                                   style: TextStyle(
                                     fontSize: 16,
                                     fontFamily: 'cairo',

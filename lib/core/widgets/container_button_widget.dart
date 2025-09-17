@@ -198,7 +198,7 @@ class ContainerButtonWidget extends StatelessWidget {
                       )
                     : Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: child!,
+                        child: child ?? const SizedBox.shrink(),
                       ),
               ],
             ),

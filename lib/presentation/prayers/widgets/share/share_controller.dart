@@ -40,7 +40,7 @@ class ShareController extends GetxController {
   // Hijri date text
   String get hijriDateText {
     final h = EventController.instance.hijriNow;
-    return '${h.hDay} ${h.getLongMonthName().tr} ${h.hYear}';
+    return '${'${h.hDay}'.convertNumbers()} ${h.getLongMonthName().tr} ${'${h.hYear}'.convertNumbers()}';
   }
 
   // City, Country
@@ -79,7 +79,7 @@ class ShareController extends GetxController {
             .create();
         await imagePath.writeAsBytes(imageBytesScreen!);
 
-        final shareText = '${'shareNextPrayer'.tr}\n'
+        final shareText = '${'sharePrayerTime'.tr}\n'
             '${'appName'.tr}';
 
         final params = ShareParams(

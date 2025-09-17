@@ -17,6 +17,7 @@ import 'package:gauge_indicator/gauge_indicator.dart';
 import 'package:geocoding/geocoding.dart' as geo;
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:hijri/hijri_calendar.dart';
 import 'package:horizontal_week_calendar/horizontal_week_calendar.dart';
 import 'package:intl/intl.dart' as intl;
 import 'package:just_audio/just_audio.dart';

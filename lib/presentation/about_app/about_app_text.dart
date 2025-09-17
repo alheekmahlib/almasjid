@@ -30,7 +30,7 @@ class AboutAppText extends StatelessWidget {
           child: Text(
             'aboutApp'.tr,
             style: TextStyle(
-              fontFamily: 'kufi',
+              fontFamily: 'cairo',
               fontSize: 18,
               color: context.theme.hintColor,
             ),

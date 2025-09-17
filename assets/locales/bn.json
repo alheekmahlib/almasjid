@@ -1,5 +1,5 @@
 {
-  "appName": "মসজিদ - হিকমাহ লাইব্রেরি",
+  "appName": "আকিম - মাকতাবাতুল হিকমাহ",
   "@appName": {
     "description": "appName",
     "type": "text",
@@ -14,6 +14,481 @@
   "lang": "বাংলা",
   "@lang": {
     "description": "lang",
+    "type": "text",
+    "placeholders": {}
+  },
+  "Fajr": "ফজর",
+  "@Fajr": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Dhuhr": "যুহর",
+  "@Dhuhr": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Asr": "আসর",
+  "@Asr": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Maghrib": "মাগরিব",
+  "@Maghrib": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Isha": "ইশা",
+  "@Isha": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lastThirdOfTheNight": "রাতের শেষ তৃতীয়াংশ",
+  "@lastThirdOfTheNight": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "middleOfTheNight": "রাতের মধ্য",
+  "@middleOfTheNight": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Sunrise": "সূর্যোদয়",
+  "@Sunrise": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Sun": "রবি",
+  "@Sun": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Mon": "সোম",
+  "@Mon": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Tue": "মঙ্গল",
+  "@Tue": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Wed": "বুধ",
+  "@Wed": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Thu": "বৃহস্পতি",
+  "@Thu": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Fri": "শুক্র",
+  "@Fri": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Sat": "শনি",
+  "@Sat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "SundayFullName": "রবিবার",
+  "@SundayFullName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "MondayFullName": "সোমবার",
+  "@MondayFullName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "TuesdayFullName": "মঙ্গলবার",
+  "@TuesdayFullName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "WednesdayFullName": "বুধবার",
+  "@WednesdayFullName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ThursdayFullName": "বৃহস্পতিবার",
+  "@ThursdayFullName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "FridayFullName": "শুক্রবার",
+  "@FridayFullName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "SaturdayFullName": "শনিবার",
+  "@SaturdayFullName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "activeLocationPlease": "নামাজের সময় সক্রিয় করতে অনুগ্রহ করে অবস্থান সেবা চালু করুন",
+  "@activeLocationPlease": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "prayerSetting": "নামাজের সেটিংস",
+  "@prayerSetting": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "detectLocation": "অবস্থান নির্ধারণ",
+  "@detectLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "adhanSounds": "আজানের আওয়াজ",
+  "@adhanSounds": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "aqsa": "আকসার আজান",
+  "@aqsa": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saqqaf": "হাশিম আস-সাক্কাফ",
+  "@saqqaf": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sarihi": "আব্দুল মাজিদ আস-সারিহি",
+  "@sarihi": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setTimingCalculations": "সময় গণনা সেট করুন",
+  "@setTimingCalculations": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "automaticallyDetermineCalculationMethod": "স্বয়ংক্রিয়ভাবে গণনা পদ্ধতি নির্ধারণ",
+  "@automaticallyDetermineCalculationMethod": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "madhab": "মাজহাব",
+  "@madhab": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "shafie": "শাফেঈ, মালিকি ও হাম্বলি",
+  "@shafie": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hanafe": "হানাফি",
+  "@hanafe": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "madhabNote": "হানাফি মাজহাবে ইশার আজান জমহুরের তুলনায় প্রায় বারো মিনিট দেরিতে হয়, যেমনটি 'আল-মাওসুআ আল-ফিকহিয়্যা আল-কুয়ায়তিয়্যা'-তে (৭/১৭৫) উল্লেখ রয়েছে। এবং হানাফি মাজহাবে আসরের আজান দেশ ও ঋতু অনুযায়ী আধা ঘন্টা বা তার বেশি দেরিতে হয়।",
+  "@madhabNote": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "SeventhOfTheNight": "রাতের সপ্তমাংশ",
+  "@SeventhOfTheNight": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "usingTheAngle": "কোণ ব্যবহার করে",
+  "@usingTheAngle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "SetPrayerTimes": "নামাজের সময় সেট করুন",
+  "@SetPrayerTimes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notificationOptions": "বিজ্ঞপ্তির বিকল্প",
+  "@notificationOptions": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nothing": "কিছুই না",
+  "@nothing": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "silent": "নিরব",
+  "@silent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bell": "ঘন্টা",
+  "@bell": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sound": "আজান",
+  "@sound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "aboutPrayer": "নামাজ সম্পর্কে",
+  "@aboutPrayer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "timeLeft:": "আজানের বাকি সময়:",
+  "@timeLeft:": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fromQuran:": "কুরআন থেকে:",
+  "@fromQuran:": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fromSunnah:": "সুন্নাহ থেকে:",
+  "@fromSunnah:": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "prohibitionTimes": "নিষিদ্ধ সময়ে নামাজ",
+  "@prohibitionTimes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fajrBody": "যে ব্যক্তি ফজরের নামাজ পড়ল সে আল্লাহর জিম্মায়",
+  "@fajrBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dhuhrBody": "নামাজ, নামাজ এবং তোমাদের দাসদাসীরা",
+  "@dhuhrBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "asrBody": "যে ব্যক্তি দুই ঠান্ডা নামাজ পড়ল সে জান্নাতে প্রবেশ করবে",
+  "@asrBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "maghribBody": "যে ব্যক্তি নামাজ ছাড়ে তার জন্য ইসলামে কোন অংশ নেই",
+  "@maghribBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ishaBody": "যে ব্যক্তি জামাতে ইশা পড়ল সে যেন অর্ধ রাত কিয়াম করল",
+  "@ishaBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "timeForPrayer": "নামাজের সময়",
+  "@timeForPrayer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "openAppReminderTitle": "অ্যাপ খোলার স্মরণিকা",
+  "@openAppReminderTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "openAppReminderBody": "নতুন নামাজের বিজ্ঞপ্তি সময়সূচী করতে অনুগ্রহ করে অ্যাপটি খুলুন।",
+  "@openAppReminderBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "prayer": "নামাজ",
+  "@prayer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "langChange": "ভাষা পরিবর্তন",
+  "@langChange": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "themeTitle": "থিম নির্বাচন করুন",
+  "@themeTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ourApps": "আমাদের অ্যাপ",
+  "@ourApps": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "aboutApp": "অ্যাপ সম্পর্কে",
+  "@aboutApp": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "about_app": "'জাদুল মুসলিম - মাকতাবাতুল হিকমাহ' হল একটি সম্পূর্ণ ইসলামিক অ্যাপ যাতে রয়েছে পবিত্র কুরআন, তাফসির, জিকির, বিজ্ঞপ্তিসহ নামাজের সময় এবং কিবলা নির্দেশক। আল্লাহর নিকটবর্তী হওয়ার জন্য আপনার দৈনন্দিন সঙ্গী।",
+  "@about_app": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "about_app2": "প্রোগ্রামের গুরুত্বপূর্ণ বৈশিষ্ট্যসমূহ:",
+  "@about_app2": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "about_app3": "'জাদুল মুসলিম - মাকতাবাতুল হিকমাহ' হল একটি সম্পূর্ণ ইসলামিক অ্যাপ যার লক্ষ্য একটি সহজ ও আরামদায়ক উপায়ে একই স্থানে মুসলমানদের সকল প্রয়োজন পূরণ করা। অ্যাপটি বিশিষ্ট বৈশিষ্ট্য সহ সম্পূর্ণ পবিত্র কুরআন প্রদান করে যাতে আয়াত পড়া, বিভিন্ন বিখ্যাত কারীদের কণ্ঠে শোনা এবং প্রতিটি আয়াতের গভীর বোঝার জন্য বিভিন্ন তাফসির পড়ার সুবিধা রয়েছে। এতে রয়েছে প্রতিটি নামাজের জন্য স্মার্ট রিমাইন্ডার সহ নামাজের নির্ভুল সময় এবং সঠিকভাবে ইবাদত করতে সাহায্যকারী কিবলা নির্দেশক।\n\nঅ্যাপটিতে আল্লাহর সাথে আপনার সম্পর্ক শক্তিশালী করার জন্য দৈনন্দিন জিকির ও মাসনুন দোয়ার বিস্তৃত সংগ্রহ এবং তাফসিরের বইয়ের সমৃদ্ধ লাইব্রেরি রয়েছে। আপনি বিশিষ্ট কারীদের কণ্ঠে কুরআনের সূরা শুনতে পারেন এবং বিশেষ আধ্যাত্মিক অভিজ্ঞতা উপভোগ করতে পারেন। 'জাদুল মুসলিম - মাকতাবাতুল হিকমাহ' প্রতিটি মুসলমানের জন্য আদর্শ সঙ্গী যারা তাদের ধর্মীয় জীবন সংগঠিত করতে এবং ঈমান বৃদ্ধি করতে চান।",
+  "@about_app3": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "email": "আমাদের সাথে যোগাযোগ",
+  "@email": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "share": "অ্যাপ শেয়ার করুন",
+  "@share": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "facebook": "ফেসবুকে আমাদের ফলো করুন",
+  "@facebook": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "qibla": "কিবলা",
+  "@qibla": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "qiblaDirection": "কিবলার দিক",
+  "@qiblaDirection": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "compass": "কম্পাস",
+  "@compass": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "map": "মানচিত্র",
+  "@map": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locationNote": "আপনার বর্তমান অবস্থানের ভিত্তিতে নির্ভুল নামাজের সময় পেতে অনুগ্রহ করে লোকেশন সেবা চালু করুন।\nঅনুগ্রহ করে জেনে রাখুন যে আপনার অবস্থানের সমস্ত তথ্য সম্পূর্ণ গোপনীয় থাকবে এবং কোন তৃতীয় পক্ষের সাথে শেয়ার করা হবে না।",
+  "@locationNote": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notificationNote": "নামাজের সময় এবং অন্যান্য বিজ্ঞপ্তি পেতে অনুগ্রহ করে নোটিফিকেশন চালু করুন।",
+  "@notificationNote": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locate": "অবস্থান নির্ধারণ",
+  "@locate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "activation": "সক্রিয়করণ",
+  "@activation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ok": "ঠিক আছে",
+  "@ok": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancel": "বাতিল",
+  "@cancel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "What's New": "নতুন কী",
+  "@What's New": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "What'sNewDetails10": "۞ নতুন ইউজার ইন্টারফেস ডিজাইন।\n۞ তাফসির ও হাদিসের বইয়ের লাইব্রেরি সংযোজন।\n۞ অ্যাপের পারফরমেন্স উন্নতি।\n۞ নতুন ফিচার সংযোজন।",
+  "@What'sNewDetails10": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "shareImage": "ছবি শেয়ার করুন",
+  "@shareImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sharePrayerTime": "নামাজের সময় শেয়ার করুন",
+  "@sharePrayerTime": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nextPrayer": "পরবর্তী নামাজ",
+  "@nextPrayer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Muharram": "মুহাররম",
+  "@Muharram": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Safar": "সফর",
+  "@Safar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Rabi' Al-Awwal": "রবিউল আউয়াল",
+  "@Rabi' Al-Awwal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Rabi' Al-Thani": "রবিউস সানি",
+  "@Rabi' Al-Thani": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Jumada Al-Awwal": "জমাদিউল আউয়াল",
+  "@Jumada Al-Awwal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Jumada Al-Thani": "জমাদিউল আখিরাহ",
+  "@Jumada Al-Thani": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Rajab": "রজব",
+  "@Rajab": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Sha'aban": "শাবান",
+  "@Sha'aban": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Ramadan": "রমজান",
+  "@Ramadan": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Shawwal": "শাওয়াল",
+  "@Shawwal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Dhu Al-Qi'dah": "জিলকদ",
+  "@Dhu Al-Qi'dah": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Dhu Al-Hijjah": "জিলহজ",
+  "@Dhu Al-Hijjah": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "settings": "সেটিংস",
+  "@settings": {
     "type": "text",
     "placeholders": {}
   }
