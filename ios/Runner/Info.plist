@@ -51,6 +51,8 @@
 		</array>
 		<key>NSLocationWhenInUseUsageDescription</key>
 		<string>This app needs access to location when open.</string>
+		<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+		<string>This app needs access to location to provide accurate prayer times and notifications even when the app is not in use.</string>
 		<key>NSLocationTemporaryUsageDescriptionDictionary</key>
 		<dict>
 			<key>Location</key>
