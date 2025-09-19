@@ -114,7 +114,7 @@ class AudioDownloader {
       log('Final tempAdhanPath: ${notiCtrl.state.tempAdhanPath.value}');
       log('Final tempAdhanPathFajir: ${notiCtrl.state.tempAdhanPathFajir.value}');
 
-      return extractedFilePathFajir ?? extractedFilePath;
+      return extractedFilePathFajir;
     } catch (e) {
       log('Error downloading or extracting file: $e');
       return null;

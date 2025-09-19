@@ -12,8 +12,8 @@ class AdhanSounds extends StatelessWidget {
       child: ContainerButtonWidget(
         onPressed: () => customBottomSheet(
             textTitle: 'adhanSounds', child: bottomSheetWidget(context)),
-        title: 'adhanSounds',
-        titleColor: Theme.of(context).colorScheme.inversePrimary,
+        title: 'adhanSounds'.tr,
+        titleColor: Theme.of(context).canvasColor,
         width: Get.width,
         withShape: false,
         useGradient: false,

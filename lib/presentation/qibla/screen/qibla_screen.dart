@@ -74,7 +74,7 @@ class QiblaScreen extends StatelessWidget {
                   child: Obx(() => Switch(
                         value: GeneralController
                             .instance.state.activeLocation.value,
-                        activeColor: Colors.red,
+                        activeThumbColor: Colors.red,
                         inactiveTrackColor: context.theme.colorScheme.surface
                             .withValues(alpha: .5),
                         activeTrackColor: context.theme.colorScheme.surface

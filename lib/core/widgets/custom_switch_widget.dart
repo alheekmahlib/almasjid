@@ -70,7 +70,7 @@ class CustomSwitchWidget<T extends GetxController> extends StatelessWidget {
               id: getBuilderId,
               builder: (ctrl) => Switch(
                 value: value,
-                activeColor: Colors.red,
+                activeThumbColor: Colors.red,
                 inactiveTrackColor: context.theme.colorScheme.secondaryContainer
                     .withValues(alpha: .5),
                 activeTrackColor:

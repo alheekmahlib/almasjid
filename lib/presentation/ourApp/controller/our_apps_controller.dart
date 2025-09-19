@@ -57,7 +57,8 @@ class OurAppsController extends GetxController {
 
   // إطلاق رابط التطبيق حسب النظام الأساسي
   // Launch app URL based on platform
-  launchURL(BuildContext context, int index, OurAppInfo ourAppInfo) async {
+  Future<void> launchURL(
+      BuildContext context, int index, OurAppInfo ourAppInfo) async {
     if (!kIsWeb) {
       if (context.theme.platform == TargetPlatform.iOS) {
         if (await canLaunchUrl(Uri.parse(ourAppInfo.urlAppStore))) {
