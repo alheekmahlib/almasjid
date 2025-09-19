@@ -17,8 +17,6 @@ class AppRouter {
     GetPage(
       name: homeScreen,
       page: () => const HomeScreen(),
-      // page: () => ZadIntelligenceScreen(),
-      // binding: HomeWidgetsBinding(),
       transition: Transition.fadeIn,
     ),
     GetPage(

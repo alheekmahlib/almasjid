@@ -24,15 +24,6 @@ class ShareOptionsWidget extends StatelessWidget {
         children: [
           const Gap(12),
           _imageBuild(card, context),
-          const Gap(6),
-          Text(
-            'The image will include the next prayer time, remaining time, Hijri date, and your location.'
-                .tr,
-            textAlign: TextAlign.center,
-            style: context.textTheme.bodySmall?.copyWith(
-              color: context.theme.hintColor,
-            ),
-          ),
           const Gap(24),
         ],
       ),

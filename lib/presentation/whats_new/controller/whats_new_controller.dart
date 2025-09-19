@@ -8,7 +8,6 @@ class WhatsNewController extends GetxController {
   @override
   Future<void> onInit() async {
     activeLocation();
-    state.newFeatures = await getNewFeatures();
     super.onInit();
   }
 

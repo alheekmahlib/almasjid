@@ -8,6 +8,9 @@ class SmoothPageIndicatorWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (newFeatures.isEmpty) {
+      return const SizedBox.shrink();
+    }
     return SmoothPageIndicator(
       controller: controller,
       count: newFeatures.length,

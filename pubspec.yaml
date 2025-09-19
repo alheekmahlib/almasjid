@@ -11,11 +11,11 @@ environment:
 dependencies:
   adhan: ^2.0.0+1
   archive: ^4.0.7
-  awesome_notifications: ^0.10.0
+  awesome_notifications: ^0.10.1
   background_fetch: ^1.4.0
   badges: ^3.1.2
   bot_toast: ^4.1.3
-  connectivity_plus: ^6.1.5
+  connectivity_plus: ^7.0.0
   cupertino_icons: ^1.0.8
   dio: ^5.9.0
   drawing_animation:
@@ -28,18 +28,19 @@ dependencies:
     sdk: flutter
   flutter_cache_manager: ^3.4.1
   flutter_compass_v2: ^1.0.3
+  flutter_launcher_icons: ^0.14.4
   flutter_localizations:
     sdk: flutter
-  flutter_map: ^8.1.1
-  flutter_native_splash: ^2.4.4
+  flutter_map: ^8.2.1
+  flutter_native_splash: ^2.4.6
   flutter_rounded_progress_bar: ^0.3.2
   flutter_screenutil: ^5.9.3
-  flutter_svg: ^2.2.0
+  flutter_svg: ^2.2.1
   flutter_timezone: ^4.1.1
   gap: ^3.0.1
   gauge_indicator: ^0.4.3
   geocoding: ^4.0.0
-  geolocator: ^13.0.2
+  geolocator: ^14.0.2
   get: ^4.7.2
   get_it: ^8.2.0
   get_storage: ^2.1.1
@@ -57,26 +58,24 @@ dependencies:
       url: https://github.com/alheekmahlib/horizontal_week_calendar.git
   huawei_location: ^6.14.2+301
   huawei_site: ^6.5.1+303
-  intl: ^0.19.0
-  just_audio: ^0.10.4
+  intl: ^0.20.2
+  just_audio: ^0.10.5
   latlong2: ^0.9.1
-  lottie: ^3.3.1
+  lottie: ^3.3.2
   nominatim_geocoding: ^0.0.6
   package_rename: ^1.10.0
-  path: ^1.9.0
+  path: ^1.9.1
   path_provider: ^2.1.5
   rate_my_app: ^2.3.2
   screenshot: ^3.0.0
-  share_plus: ^11.0.0
+  share_plus: ^12.0.0
   slide_countdown: ^2.0.2
   smooth_page_indicator: ^1.2.1
   solar_icons: ^0.0.5
   square_percent_indicater: ^0.1.0
-  timelines_plus: ^1.0.7
   timezone: ^0.10.1
   turf: ^0.0.10
   url_launcher: ^6.3.2
-  wakelock_plus: ^1.3.2
 
 dev_dependencies:
   flutter_lints: ^5.0.0
@@ -84,16 +83,16 @@ dev_dependencies:
     sdk: flutter
 
 flutter_native_splash:
-  color: "#FDF7F4"
-  color_dark: "#2d2d2d"
-  image: assets/images/zad_muslim_stroke_512.png
-  image_dark: assets/images/zad_muslim_stroke_512.png
+  color: "#001A23"
+  color_dark: "#001A23"
+  image: assets/images/aqim_icon_with_stroke.png
+  image_dark: assets/images/aqim_icon_with_stroke.png
   # flutter_lints: true
   android_12:
-    image: assets/images/zad_muslim_stroke_512.png
-    icon_background_color: "#FDF7F4"
-    image_dark: assets/images/zad_muslim_stroke_512.png
-    icon_background_color_dark: "#2d2d2d"
+    image: assets/images/aqim_icon_with_stroke.png
+    icon_background_color: "#001A23"
+    image_dark: assets/images/aqim_icon_with_stroke.png
+    icon_background_color_dark: "#001A23"
 
 package_rename_config:
   android:

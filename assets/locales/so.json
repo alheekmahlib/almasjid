@@ -491,5 +491,10 @@
   "@settings": {
     "type": "text",
     "placeholders": {}
+  },
+  "prayerDetails": "Faahfaahinta Salaadda",
+  "@prayerDetails": {
+    "type": "text",
+    "placeholders": {}
   }
 }

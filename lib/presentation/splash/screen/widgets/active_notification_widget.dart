@@ -4,12 +4,10 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 
 import '/core/utils/constants/extensions/extensions.dart';
-import '../../../../core/services/notifications_helper.dart';
 import '../../../../core/utils/constants/lottie.dart';
 import '../../../../core/utils/constants/lottie_constants.dart';
 import '../../../../core/widgets/animated_drawing_widget.dart';
 import '../../../../core/widgets/container_button_widget.dart';
-import '../../../../core/widgets/custom_button.dart';
 import '../../splash.dart';
 
 class ActiveNotificationWidget extends StatelessWidget {
@@ -45,11 +43,11 @@ class ActiveNotificationWidget extends StatelessWidget {
                   child: Text(
                     'notificationNote'.tr,
                     style: TextStyle(
-                        fontFamily: 'naskh',
-                        fontSize: 20.sp,
+                        fontFamily: 'cairo',
+                        fontSize: 16.sp,
                         height: 1.5,
                         fontWeight: FontWeight.w500,
-                        color: context.theme.colorScheme.inversePrimary),
+                        color: context.theme.canvasColor),
                     textAlign: TextAlign.justify,
                   ),
                 ),
@@ -81,22 +79,25 @@ class ActiveNotificationWidget extends StatelessWidget {
                     children: [
                       customLottie(LottieConstants.assetsLottieNotification),
                       const Spacer(),
-                      SizedBox(
-                        height: 45,
-                        child: CustomButton(
-                          onPressed: () async {
-                            await NotifyHelper().requistPermissions().then(
-                                (_) => SplashScreenController.instance.state
-                                    .customWidgetIndex.value = 3);
-                            // NotifyHelper.initFlutterLocalNotifications();
-                            NotifyHelper.initAwesomeNotifications();
-                          },
-                          svgPath: 'SvgPath.svgCheckMark',
-                          svgColor: context.theme.colorScheme.surface,
-                          titleColor: context.theme.canvasColor,
-                          title: 'activation'.tr,
-                        ),
-                      ),
+                      Obx(() => ContainerButtonWidget(
+                            onPressed: splashCtrl
+                                    .state.isNotificationLoading.value
+                                ? null
+                                : () async {
+                                    await splashCtrl.activateNotifications();
+                                  },
+                            height: 45,
+                            width: Get.width,
+                            horizontalMargin: 0,
+                            useGradient: false,
+                            withShape: false,
+                            isLoading:
+                                splashCtrl.state.isNotificationLoading.value,
+                            backgroundColor: Colors.transparent,
+                            shadowColor: Colors.transparent,
+                            borderColor: context.theme.colorScheme.surface,
+                            title: 'activation'.tr,
+                          )),
                     ],
                   ),
                 ),
@@ -111,12 +112,12 @@ class ActiveNotificationWidget extends StatelessWidget {
                     child: Text(
                       'notificationNote'.tr,
                       style: TextStyle(
-                          fontFamily: 'naskh',
-                          fontSize: 20.sp,
+                          fontFamily: 'cairo',
+                          fontSize: 16.sp,
                           height: 1.5,
                           fontWeight: FontWeight.w500,
-                          color: context.theme.colorScheme.inversePrimary),
-                      textAlign: TextAlign.center,
+                          color: context.theme.canvasColor),
+                      textAlign: TextAlign.justify,
                     ),
                   ),
                 ),

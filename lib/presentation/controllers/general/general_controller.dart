@@ -3,7 +3,6 @@ import 'dart:io';
 
 import 'package:get/get.dart';
 import 'package:nominatim_geocoding/nominatim_geocoding.dart';
-import 'package:wakelock_plus/wakelock_plus.dart';
 
 import '../../../core/services/background_services.dart';
 import '../../../core/services/location/locations.dart';
@@ -45,13 +44,6 @@ class GeneralController extends GetxController {
         await BackgroundTaskHandler.initializeHandler();
       }
     }
-    Future.delayed(const Duration(seconds: 1)).then((_) async {
-      try {
-        await WakelockPlus.enable();
-      } catch (e) {
-        log('Failed to enable wakelock: $e');
-      }
-    });
     // WidgetsBinding.instance.addObserver(this);
     // HijriWidgetConfig().updateHijriDate();
     // PrayersWidgetConfig.onPrayerWidgetClicked();

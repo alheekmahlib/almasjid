@@ -491,5 +491,10 @@
   "@settings": {
     "type": "text",
     "placeholders": {}
+  },
+  "prayerDetails": "نماز کی تفصیلات",
+  "@prayerDetails": {
+    "type": "text",
+    "placeholders": {}
   }
 }

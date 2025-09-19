@@ -7,11 +7,13 @@ class SplashScreenController extends GetxController {
   SplashState state = SplashState();
 
   @override
-  void onInit() {
+  Future<void> onInit() async {
     _loadInitialData();
     Future.delayed(const Duration(milliseconds: 4300))
         .then((_) async => await changeCustomWidget());
     // startTime();
+    WhatsNewController.instance.state.newFeatures =
+        await WhatsNewController.instance.getNewFeatures();
     super.onInit();
   }
 

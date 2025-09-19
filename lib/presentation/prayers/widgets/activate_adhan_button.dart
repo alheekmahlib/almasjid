@@ -72,7 +72,7 @@ class ActivateAdhanButton extends StatelessWidget {
                             '${notificationOptions[i]['title']}'.tr,
                             style: TextStyle(
                               fontFamily: 'cairo',
-                              fontSize: 24,
+                              fontSize: 17,
                               color: context.theme.colorScheme.primary,
                             ),
                           ),

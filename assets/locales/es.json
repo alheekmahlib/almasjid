@@ -491,5 +491,10 @@
   "@settings": {
     "type": "text",
     "placeholders": {}
+  },
+  "prayerDetails": "Detalles de la Oración",
+  "@prayerDetails": {
+    "type": "text",
+    "placeholders": {}
   }
 }

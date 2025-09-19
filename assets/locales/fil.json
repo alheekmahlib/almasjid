@@ -491,5 +491,10 @@
   "@settings": {
     "type": "text",
     "placeholders": {}
+  },
+  "prayerDetails": "Mga Detalye ng Dasal",
+  "@prayerDetails": {
+    "type": "text",
+    "placeholders": {}
   }
 }

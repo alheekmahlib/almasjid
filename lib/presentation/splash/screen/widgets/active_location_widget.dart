@@ -4,7 +4,6 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 
 import '/core/utils/constants/extensions/extensions.dart';
-import '/core/widgets/custom_button.dart';
 import '/presentation/controllers/general/general_controller.dart';
 import '../../../../core/utils/constants/lottie.dart';
 import '../../../../core/utils/constants/lottie_constants.dart';
@@ -40,7 +39,7 @@ class ActiveLocationWidget extends StatelessWidget {
                   child: Text(
                     'locationNote'.tr,
                     style: TextStyle(
-                        fontFamily: 'naskh',
+                        fontFamily: 'cairo',
                         fontSize: 16.sp,
                         height: 1.5,
                         fontWeight: FontWeight.w500,
@@ -92,29 +91,37 @@ class ActiveLocationWidget extends StatelessWidget {
                           width: 250.0,
                           color: context.theme.colorScheme.surface),
                       const Spacer(),
-                      SizedBox(
-                        height: 45,
-                        child: CustomButton(
-                          onPressed: () async => await generalCtrl
-                              .initLocation()
-                              .then((_) => SplashScreenController
-                                  .instance.state.customWidgetIndex.value = 2),
-                          svgPath: 'SvgPath.svgCheckMark',
-                          svgColor: context.theme.colorScheme.surface,
-                          titleColor: context.theme.canvasColor,
-                          title: 'locate'.tr,
-                        ),
-                      ),
+                      Obx(() => ContainerButtonWidget(
+                            onPressed: generalCtrl.state.isLocationLoading.value
+                                ? null
+                                : () async => await generalCtrl
+                                    .initLocation()
+                                    .then((_) => SplashScreenController.instance
+                                        .state.customWidgetIndex.value = 2),
+                            height: 45,
+                            width: Get.width,
+                            horizontalMargin: 0,
+                            useGradient: false,
+                            withShape: false,
+                            isLoading:
+                                generalCtrl.state.isLocationLoading.value,
+                            backgroundColor: Colors.transparent,
+                            shadowColor: Colors.transparent,
+                            borderColor: context.theme.colorScheme.surface,
+                            title: 'locate'.tr,
+                          )),
                       const Gap(8),
-                      SizedBox(
+                      ContainerButtonWidget(
+                        onPressed: () => generalCtrl.cancelLocation(),
                         height: 45,
-                        child: CustomButton(
-                          onPressed: () => generalCtrl.cancelLocation(),
-                          svgPath: 'SvgPath.svgClose',
-                          svgColor: context.theme.colorScheme.surface,
-                          titleColor: context.theme.canvasColor,
-                          title: 'cancel'.tr,
-                        ),
+                        width: Get.width,
+                        horizontalMargin: 0,
+                        useGradient: false,
+                        withShape: false,
+                        backgroundColor: Colors.transparent,
+                        shadowColor: Colors.transparent,
+                        borderColor: Colors.red,
+                        title: 'cancel'.tr,
                       ),
                     ],
                   ),
@@ -130,7 +137,7 @@ class ActiveLocationWidget extends StatelessWidget {
                     child: Text(
                       'locationNote'.tr,
                       style: TextStyle(
-                          fontFamily: 'naskh',
+                          fontFamily: 'cairo',
                           fontSize: 18.sp,
                           height: 1.5,
                           fontWeight: FontWeight.w500,

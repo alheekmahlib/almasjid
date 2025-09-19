@@ -133,6 +133,7 @@ Widget _buildPrayerContent(BuildContext context, int index, String prayerTitle,
             ),
             child: ContainerButtonWidget(
               onPressed: () => context.customBottomSheet(
+                textTitle: 'prayerDetails'.tr,
                 containerColor: context.theme.colorScheme.primaryContainer,
                 child: PrayerDetails(
                   prayerName: prayerTitle,

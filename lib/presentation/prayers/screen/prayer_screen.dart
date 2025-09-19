@@ -127,13 +127,13 @@ class PrayerScreen extends StatelessWidget {
         translateNumbers: true,
         languageCode: Get.locale?.languageCode ?? 'ar',
         customDayNames: [
+          'Sun'.tr,
           'Mon'.tr,
           'Tue'.tr,
           'Wed'.tr,
           'Thu'.tr,
           'Fri'.tr,
           'Sat'.tr,
-          'Sun'.tr
         ],
         dayTextStyle: TextStyle(
           fontSize: 20,
@@ -190,7 +190,7 @@ class PrayerScreen extends StatelessWidget {
             flex: 2,
             child: Obx(() => Switch(
                   value: generalCtrl.state.activeLocation.value,
-                  activeColor: Colors.red,
+                  activeThumbColor: Colors.red,
                   inactiveTrackColor:
                       context.theme.colorScheme.surface.withValues(alpha: .5),
                   activeTrackColor:

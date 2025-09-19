@@ -491,5 +491,10 @@
   "@settings": {
     "type": "text",
     "placeholders": {}
+  },
+  "prayerDetails": "Detail Sholat",
+  "@prayerDetails": {
+    "type": "text",
+    "placeholders": {}
   }
 }

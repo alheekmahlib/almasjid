@@ -29,7 +29,7 @@ class SplashScreen extends StatelessWidget {
                       alignment: Alignment.center,
                       children: [
                         AnimatedDrawingWidget(
-                          opacity: .03,
+                          opacity: .02,
                           width: Get.width,
                           height: Get.width * .6,
                           customColor: context.theme.canvasColor,
@@ -65,7 +65,7 @@ class SplashScreen extends StatelessWidget {
                             alignment: Alignment.center,
                             children: [
                               AnimatedDrawingWidget(
-                                  opacity: .03,
+                                  opacity: .02,
                                   width: Get.width,
                                   height: Get.width * .6),
                               const AnimatedDrawingWidget(),
