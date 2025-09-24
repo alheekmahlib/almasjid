@@ -39,6 +39,8 @@ class ShareOptionsWidget extends StatelessWidget {
               await shareCtrl.shareAsImage();
             },
       height: 290,
+      backgroundColor: context.theme.colorScheme.surface.withValues(alpha: .3),
+      useGradient: false,
       child: Column(
         children: [
           card,

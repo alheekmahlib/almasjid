@@ -233,33 +233,6 @@ extension AdhanGetters on AdhanController {
     }
   }
 
-  /// الحصول على لون الفترة الحالية للصلاة
-  /// Get current prayer period color
-  Color get getCurrentPrayerPeriodColor {
-    final now = DateTime.now();
-    final PrayerTimes? prayerTimes = state.prayerTimes;
-
-    if (prayerTimes == null) {
-      return const Color(0xFF9E9E9E);
-    }
-
-    if (now.isBefore(prayerTimes.fajr)) {
-      return const Color(0xFF263238); // رمادي داكن قبل الفجر
-    } else if (now.isBefore(prayerTimes.sunrise)) {
-      return const Color(0xFF1A237E); // أزرق داكن (فجر)
-    } else if (now.isBefore(prayerTimes.dhuhr)) {
-      return const Color(0xFFFFB300); // ذهبي (صباح)
-    } else if (now.isBefore(prayerTimes.asr)) {
-      return const Color(0xFF0288D1); // أزرق فاتح (ظهيرة)
-    } else if (now.isBefore(prayerTimes.maghrib)) {
-      return const Color(0xFFFF6F00); // برتقالي (عصر)
-    } else if (now.isBefore(prayerTimes.isha)) {
-      return const Color(0xFF7B1FA2); // بنفسجي (مغرب)
-    } else {
-      return const Color(0xFF4A148C); // بنفسجي داكن (عشاء)
-    }
-  }
-
   RxDouble getTimeLeftForPrayerByIndex(int index) {
     final now = DateTime.now();
 
@@ -299,56 +272,6 @@ extension AdhanGetters on AdhanController {
             .clamp(0, 100)
             .toDouble();
     return percentageLeft.obs;
-  }
-
-  LinearGradient getNowColorByIndex(int index) {
-    if (index == 0) {
-      return const LinearGradient(
-          colors: [Color(0xff0a0f29), Color(0xff000000)],
-          begin: Alignment.bottomCenter,
-          end: Alignment.topCenter);
-    } else if (index == 1) {
-      return const LinearGradient(
-          colors: [Color(0xffbababa), Color(0xff232323)],
-          begin: Alignment.bottomCenter,
-          end: Alignment.topCenter);
-    } else if (index == 2) {
-      return const LinearGradient(
-          colors: [Color(0xffB8E0EA), Color(0xff0098EE)],
-          begin: Alignment.bottomCenter,
-          end: Alignment.topCenter);
-    } else if (index == 3) {
-      return const LinearGradient(
-          colors: [Color(0xffB8E0EA), Color(0xff0098EE)],
-          begin: Alignment.bottomCenter,
-          end: Alignment.topCenter);
-    } else if (index == 4) {
-      return const LinearGradient(
-          colors: [Color(0xffF17148), Color(0xffCF4B6D)],
-          begin: Alignment.bottomCenter,
-          end: Alignment.topCenter);
-    } else if (index == 5) {
-      return const LinearGradient(
-          colors: [Color(0xff0a0f29), Color(0xff000000)],
-          begin: Alignment.bottomCenter,
-          end: Alignment.topCenter);
-    } else if (index == 6) {
-      return const LinearGradient(
-          colors: [Color(0xff0a0f29), Color(0xff000000)],
-          begin: Alignment.bottomCenter,
-          end: Alignment.topCenter);
-    } else if (index == 7) {
-      return const LinearGradient(
-          colors: [Color(0xff0a0f29), Color(0xff000000)],
-          begin: Alignment.bottomCenter,
-          end: Alignment.topCenter);
-    } else {
-      state.backgroundColor.value = const Color(0xffbababa);
-      return const LinearGradient(
-          colors: [Color(0xffbababa), Color(0xff232323)],
-          begin: Alignment.bottomCenter,
-          end: Alignment.topCenter);
-    }
   }
 
   Rx<Duration> getDurationLeftForPrayerByIndex(int index) {
@@ -486,16 +409,9 @@ extension AdhanGetters on AdhanController {
     if (state.now.isAfter(dateTime.fajr) &&
         state.now.isBefore(dateTime.sunrise)) {
       state.prohibitionTimesIndex.value = 0;
+      update(['prohibitionTimes']); // تحديث الواجهة لإظهار التغييرات
       return true.obs;
     }
-
-    // 2- من طلوع الشمس حتى ترتفع قيد رمح (تقريباً 15-20 دقيقة)
-    // From sunrise until the sun rises a spear's length (approximately 15-20 minutes)
-    // else if (state.now.isAfter(sunrise) &&
-    //     state.now.isBefore(sunrise.add(const Duration(minutes: 20)))) {
-    //   state.prohibitionTimesIndex.value = 1;
-    //   return true.obs;
-    // }
 
     // 5- حين يقوم قائم الظهيرة وتتوسط الشمس كبد السماء قبل الزوال (5-10 دقائق قبل الظهر)
     // When the sun is at its zenith before midday (5-10 minutes before Dhuhr)
@@ -503,6 +419,7 @@ extension AdhanGetters on AdhanController {
             .isAfter(dateTime.dhuhr.subtract(const Duration(minutes: 10))) &&
         state.now.isBefore(dateTime.dhuhr)) {
       state.prohibitionTimesIndex.value = 1;
+      update(['prohibitionTimes']); // تحديث الواجهة لإظهار التغييرات
       return true.obs;
     }
 
@@ -512,18 +429,11 @@ extension AdhanGetters on AdhanController {
         state.now
             .isBefore(dateTime.maghrib.subtract(const Duration(minutes: 15)))) {
       state.prohibitionTimesIndex.value = 2;
+      update(['prohibitionTimes']); // تحديث الواجهة لإظهار التغييرات
       return true.obs;
-    }
-
-    // 4- من حين تميل الشمس للغروب حتى تغرب (15 دقيقة قبل المغرب)
-    // When the sun starts to set until it sets (15 minutes before Maghrib)
-    // else if (state.now.isAfter(maghrib.subtract(const Duration(minutes: 15))) &&
-    //     state.now.isBefore(maghrib)) {
-    //   state.prohibitionTimesIndex.value = 4;
-    //   return true.obs;
-    // }
-    else {
+    } else {
       state.prohibitionTimesIndex.value = -1; // لا يوجد وقت نهي
+      update(['prohibitionTimes']); // تحديث الواجهة لإظهار التغييرات
       return false.obs;
     }
   }
