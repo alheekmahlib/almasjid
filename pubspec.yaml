@@ -48,10 +48,7 @@ dependencies:
     git:
       ref: dev
       url: https://github.com/alheekmahlib/google_huawei_availability.git
-  hijri:
-    git:
-      ref: master
-      url: https://github.com/alheekmahlib/hijri_date.git
+  hijri_date: ^1.0.0
   horizontal_week_calendar:
     git:
       ref: main

@@ -30,9 +30,8 @@ class PrayerBuild extends StatelessWidget {
   // بناء صف الصلاة مع التايم لاين المخصص
   Widget _buildPrayerRowWithTimeline(BuildContext context, int index,
       String prayerTitle, String prayerTime, AdhanController adhanCtrl) {
-    final currentPrayerIndex = adhanCtrl.getCurrentPrayerByDateTime();
-    final bool isCurrentPrayer = currentPrayerIndex == index;
-    final bool isPastPrayer = index < currentPrayerIndex;
+    final bool isCurrentPrayer = adhanCtrl.currentPrayerIndex == index;
+    final bool isPastPrayer = index < adhanCtrl.currentPrayerIndex;
 
     return IntrinsicHeight(
       child: Row(
@@ -50,7 +49,7 @@ class PrayerBuild extends StatelessWidget {
                 Container(
                   width: 5,
                   decoration: BoxDecoration(
-                    color: index <= currentPrayerIndex
+                    color: index <= adhanCtrl.currentPrayerIndex
                         ? Theme.of(context).colorScheme.surface
                         : Theme.of(context)
                             .colorScheme
@@ -115,8 +114,7 @@ Widget _buildTimelineIndicator(BuildContext context, int index,
 // بناء محتوى الصلاة
 Widget _buildPrayerContent(BuildContext context, int index, String prayerTitle,
     String prayerTime, AdhanController adhanCtrl) {
-  final currentPrayerIndex = adhanCtrl.getCurrentPrayerByDateTime();
-  final bool isCurrentPrayer = currentPrayerIndex == index;
+  final bool isCurrentPrayer = adhanCtrl.currentPrayerIndex == index;
 
   return GetBuilder<AdhanController>(
       id: 'change_notification',
@@ -149,7 +147,7 @@ Widget _buildPrayerContent(BuildContext context, int index, String prayerTitle,
                       .colorScheme
                       .surface
                       .withValues(alpha: 0.2),
-              height: adhanCtrl.getCurrentPrayerByDateTime() == index ? 75 : 55,
+              height: isCurrentPrayer ? 75 : 55,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Row(
@@ -195,7 +193,7 @@ Widget _prayerNameBuild(BuildContext context, int index, String prayerTitle,
       prayerTitle.tr,
       style: TextStyle(
         fontFamily: 'cairo',
-        fontSize: adhanCtrl.getCurrentPrayerByDateTime() == index ? 20 : 18,
+        fontSize: adhanCtrl.currentPrayerIndex == index ? 20 : 18,
         fontWeight: FontWeight.bold,
         color: Theme.of(context).colorScheme.inversePrimary,
       ),
@@ -211,7 +209,7 @@ Widget _prayerTimeBuild(BuildContext context, int index, String prayerTime,
       text: prayerTime.toString(),
       style: TextStyle(
         fontFamily: 'cairo',
-        fontSize: adhanCtrl.getCurrentPrayerByDateTime() == index ? 24 : 20,
+        fontSize: adhanCtrl.currentPrayerIndex == index ? 24 : 20,
         fontWeight: FontWeight.bold,
         color: Theme.of(context).colorScheme.inversePrimary,
       ),

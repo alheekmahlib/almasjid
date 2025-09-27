@@ -559,13 +559,87 @@ extension AdhanGetters on AdhanController {
     }
   }
 
+  int get currentPrayerIndex => getCurrentPrayerByDateTime();
+
   int getCurrentPrayerByDateTime() {
     final when = state.now;
     final prayer = state.prayerTimes;
     final sunnah = state.sunnahTimes!;
     int value = 0;
-    if (when.isBefore(prayer!.fajr)) {
-      value = 0; // fajr
+
+    log('Current time: $when');
+    log('Fajr time: ${prayer!.fajr}');
+    log('lastThirdOfTheNight: ${sunnah.lastThirdOfTheNight}');
+    log('middleOfTheNight: ${sunnah.middleOfTheNight}');
+
+    if (when.isBefore(prayer.fajr)) {
+      log('Time is before Fajr');
+
+      // تحديد التاريخ الصحيح لأوقات منتصف الليل والثلث الأخير
+      DateTime adjustedMiddleOfNight;
+      DateTime adjustedLastThirdOfNight;
+
+      // إذا كان وقت منتصف الليل قبل الساعة 12 (في اليوم السابق)
+      if (sunnah.middleOfTheNight.hour >= 18) {
+        // منتصف الليل في اليوم السابق
+        adjustedMiddleOfNight = DateTime(
+          when.year,
+          when.month,
+          when.day - 1,
+          sunnah.middleOfTheNight.hour,
+          sunnah.middleOfTheNight.minute,
+          sunnah.middleOfTheNight.second,
+        );
+      } else {
+        // منتصف الليل في نفس اليوم
+        adjustedMiddleOfNight = DateTime(
+          when.year,
+          when.month,
+          when.day,
+          sunnah.middleOfTheNight.hour,
+          sunnah.middleOfTheNight.minute,
+          sunnah.middleOfTheNight.second,
+        );
+      }
+
+      // إذا كان وقت الثلث الأخير قبل الساعة 12 (في اليوم السابق)
+      if (sunnah.lastThirdOfTheNight.hour >= 18) {
+        // الثلث الأخير في اليوم السابق
+        adjustedLastThirdOfNight = DateTime(
+          when.year,
+          when.month,
+          when.day - 1,
+          sunnah.lastThirdOfTheNight.hour,
+          sunnah.lastThirdOfTheNight.minute,
+          sunnah.lastThirdOfTheNight.second,
+        );
+      } else {
+        // الثلث الأخير في نفس اليوم
+        adjustedLastThirdOfNight = DateTime(
+          when.year,
+          when.month,
+          when.day,
+          sunnah.lastThirdOfTheNight.hour,
+          sunnah.lastThirdOfTheNight.minute,
+          sunnah.lastThirdOfTheNight.second,
+        );
+      }
+
+      log('Adjusted middleOfTheNight: $adjustedMiddleOfNight');
+      log('Adjusted lastThirdOfTheNight: $adjustedLastThirdOfNight');
+
+      // إذا كان الوقت بعد الثلث الأخير من الليل وقبل الفجر، نبقى في فترة الثلث الأخير
+      if (when.isAfter(adjustedLastThirdOfNight)) {
+        log('Time is after lastThirdOfTheNight - returning 7');
+        value = 7; // lastQuarterOfNight
+      } else if (when.isAfter(adjustedMiddleOfNight)) {
+        log('Time is after middleOfTheNight - returning 7 (LastThird)');
+        value =
+            7; // lastQuarterOfNight - بعد منتصف الليل مباشرة ننتقل للثلث الأخير
+      } else {
+        log('Time is before middleOfTheNight - returning 6');
+        value = 6; // midnightTime (فترة ما قبل منتصف الليل)
+      }
     } else if (when.isBefore(prayer.sunrise)) {
       value = 1; // sunrise
     } else if (when.isBefore(prayer.dhuhr)) {
@@ -581,7 +655,8 @@ extension AdhanGetters on AdhanController {
     } else if (when.isBefore(sunnah.lastThirdOfTheNight)) {
       value = 7; // lastQuarterOfNight
     } else {
-      value = 0; // none
+      // إذا كان الوقت بعد الثلث الأخير من الليل، نبقى في فترة الثلث الأخير حتى الفجر
+      value = 7; // lastQuarterOfNight
     }
     return value;
   }
