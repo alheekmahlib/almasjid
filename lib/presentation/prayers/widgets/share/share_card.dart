@@ -83,57 +83,47 @@ class _ShareCard extends StatelessWidget {
 
                     const Gap(12),
                     // Progress bar (from fajr to isha)
-                    Obx(() => Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            RoundedProgressBar(
-                              height: 25,
-                              style: RoundedProgressBarStyle(
-                                borderWidth: 5,
-                                widthShadow: 5,
-                                backgroundProgress: Theme.of(context)
-                                    .colorScheme
-                                    .onSurface
-                                    .withValues(alpha: 0.1),
-                                colorProgress: Theme.of(context).canvasColor,
-                                colorProgressDark: Theme.of(context)
-                                    .colorScheme
-                                    .inversePrimary
-                                    .withValues(alpha: 0.1),
-                                colorBorder: Theme.of(context)
-                                    .canvasColor
-                                    .withValues(alpha: 0.1),
-                                colorBackgroundIcon: Colors.transparent,
-                              ),
-                              // margin: EdgeInsets.symmetric(vertical: 16),
-                              borderRadius: BorderRadius.circular(10),
-                              percent: adhan
-                                  .getTimeLeftForPrayerByIndex(
-                                      adhan.getCurrentPrayerByDateTime())
-                                  .value,
-                            ),
-                            // Time left chip
-                            Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                const Icon(Icons.timer_rounded,
-                                    color: Colors.white, size: 18),
-                                const Gap(8),
-                                Text(
-                                  '${'timeLeft:'.tr} ${share.timeLeftLabel.convertNumbers()}',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontFamily: 'cairo',
-                                    color: Colors.black.withValues(alpha: .6),
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
+                    Obx(() => RoundedProgressBar(
+                          height: 25,
+                          style: RoundedProgressBarStyle(
+                            borderWidth: 5,
+                            widthShadow: 5,
+                            backgroundProgress: Theme.of(context)
+                                .colorScheme
+                                .onSurface
+                                .withValues(alpha: 0.1),
+                            colorProgress: Theme.of(context).canvasColor,
+                            colorProgressDark: Theme.of(context)
+                                .colorScheme
+                                .inversePrimary
+                                .withValues(alpha: 0.1),
+                            colorBorder: Theme.of(context)
+                                .canvasColor
+                                .withValues(alpha: 0.1),
+                            colorBackgroundIcon: Colors.transparent,
+                          ),
+                          // margin: EdgeInsets.symmetric(vertical: 16),
+                          borderRadius: BorderRadius.circular(10),
+                          percent: adhan
+                              .getIntervalPercentageOfDayBetweenPrayerAndNextByIndex(
+                                  adhan.getCurrentPrayerByDateTime())
+                              .value,
                         )),
 
-                    const Gap(12),
+                    // Time left chip
+                    Center(
+                      child: Text(
+                        '${'timeLeft:'.tr} ${share.timeLeftLabel.convertNumbers()}',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontFamily: 'cairo',
+                          color:
+                              context.theme.canvasColor.withValues(alpha: .8),
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                    const Gap(8),
                     // Hijri + Place
                     Row(
                       children: [

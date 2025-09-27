@@ -32,9 +32,9 @@ class ShareController extends GetxController {
     final minutes = diff.inMinutes.remainder(60);
     if (diff == Duration.zero) return '--';
     if (hours <= 0) {
-      return '${minutes.toString().padLeft(2, '0')} min';
+      return '${minutes.toString().padLeft(2, '0')} ${'min'.tr}';
     }
-    return '${hours.toString().padLeft(2, '0')}:${minutes.toString().padLeft(2, '0')} h';
+    return '${hours.toString().padLeft(2, '0')}:${minutes.toString().padLeft(2, '0')} ${'h'.tr}';
   }
 
   // Hijri date text
@@ -56,7 +56,7 @@ class ShareController extends GetxController {
   Future<void> createAndShowVerseImage() async {
     try {
       final Uint8List? imageBytes = await screenshotController.capture(
-        pixelRatio: 7,
+        pixelRatio: 9,
         delay: const Duration(milliseconds: 100),
       );
       if (imageBytes != null) {

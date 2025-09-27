@@ -53,4 +53,8 @@ class LottieConstants {
   /// Assets for assetsLottieLocation
   /// assets/lottie/location.json
   static const String assetsLottieLocation = 'assets/lottie/location.json';
+
+  /// Assets for assetsLottieCheck
+  /// assets/lottie/check.json
+  static const String assetsLottieCheck = 'assets/lottie/check.json';
 }

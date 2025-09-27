@@ -496,5 +496,20 @@
   "@prayerDetails": {
     "type": "text",
     "placeholders": {}
+  },
+  "min": "min",
+  "@min": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "h": "h",
+  "@h": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saving...": "Saving...",
+  "@saving...": {
+    "type": "text",
+    "placeholders": {}
   }
 }

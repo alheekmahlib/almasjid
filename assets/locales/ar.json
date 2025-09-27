@@ -496,5 +496,20 @@
   "@prayerDetails": {
     "type": "text",
     "placeholders": {}
+  },
+  "min": "د",
+  "@min": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "h": "س",
+  "@h": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saving...": "جاري الحفظ...",
+  "@saving...": {
+    "type": "text",
+    "placeholders": {}
   }
 }

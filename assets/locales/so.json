@@ -496,5 +496,20 @@
   "@prayerDetails": {
     "type": "text",
     "placeholders": {}
+  },
+  "min": "daqiiq",
+  "@min": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "h": "saac",
+  "@h": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saving...": "Kaydinaya...",
+  "@saving...": {
+    "type": "text",
+    "placeholders": {}
   }
 }

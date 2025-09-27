@@ -496,5 +496,20 @@
   "@prayerDetails": {
     "type": "text",
     "placeholders": {}
+  },
+  "min": "منٹ",
+  "@min": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "h": "گھنٹہ",
+  "@h": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saving...": "محفوظ کیا جا رہا ہے...",
+  "@saving...": {
+    "type": "text",
+    "placeholders": {}
   }
 }

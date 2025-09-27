@@ -191,6 +191,9 @@ class AdhanController extends GetxController {
 
     update(['init_athan', 'update_progress']);
     PrayerProgressController.instance.updateProgress();
+
+    // Ensure precise scheduling starts after times are ready
+    updateCurrentPrayer();
   }
 
   /// محاولة استخدام البيانات المخزنة في حالة الخطأ
@@ -256,21 +259,61 @@ class AdhanController extends GetxController {
   /// تحديث الصلاة الحالية بصورة دورية مع إعادة بناء عناصر الواجهة عند التغيير
   /// Update current prayer periodically and rebuild related UI when it changes
   void updateCurrentPrayer() {
+    // Cancel any previous timer and seed the current prayer index
     _currentPrayerTimer?.cancel();
-    // Seed last index to current to avoid redundant first rebuild
     _lastCurrentPrayerIndex = getCurrentPrayerByDateTime();
-    _currentPrayerTimer = Timer.periodic(const Duration(seconds: 30), (timer) {
+
+    // Push a lightweight update for time-dependent widgets
+    update(['update_progress']);
+
+    // Schedule an exact tick at the next prayer change
+    _scheduleNextPrayerTick();
+  }
+
+  /// جدولة مؤقّت لموعد تغيّر الصلاة التالي بدقّة
+  /// Schedule a one-shot timer to fire exactly at the next prayer boundary
+  void _scheduleNextPrayerTick() {
+    // Determine duration until next prayer change using existing helper
+    final Duration wait = _timeUntilNextPrayerChange();
+
+    // Safety: ensure at least 1s to avoid zero/negative durations
+    final Duration safeWait =
+        wait.inSeconds <= 0 ? const Duration(seconds: 1) : wait;
+
+    _currentPrayerTimer = Timer(safeWait, () {
       final currentIndex = getCurrentPrayerByDateTime();
       getTimeNowColor();
-      if (currentIndex != _lastCurrentPrayerIndex) {
-        _lastCurrentPrayerIndex = currentIndex;
-        // Rebuild prayer list and selected-date views when prayer changes
-        update(['init_athan', 'selected_date_prayers', 'CurrentPrayer']);
+
+      final changed = currentIndex != _lastCurrentPrayerIndex;
+      _lastCurrentPrayerIndex = currentIndex;
+
+      if (changed) {
+        // Update only the necessary widgets: list highlight, selected date views, and progress visuals
+        update(['init_athan', 'selected_date_prayers', 'update_progress']);
       } else {
-        // Still push lighter updates for components that depend on time
-        update(['CurrentPrayer']);
+        // Still refresh progress/time-bound widgets
+        update(['update_progress']);
       }
+
+      // Schedule the next tick for the following boundary
+      _scheduleNextPrayerTick();
     });
+  }
+
+  /// الوقت المتبقي حتى تغيّر الصلاة الحاليّة إلى التي تليها
+  /// Uses controller's duration helper for current prayer
+  Duration _timeUntilNextPrayerChange() {
+    try {
+      final int idx = getCurrentPrayerByDateTime();
+      final Duration d = getDurationLeftForPrayerByIndex(idx).value;
+      // Guard against unrealistic values
+      if (d.isNegative) return const Duration(seconds: 1);
+      // Cap extremely long waits to avoid potential platform timer quirks (optional)
+      return d;
+    } catch (_) {
+      // Fallback to a short retry if anything goes wrong
+      return const Duration(seconds: 5);
+    }
   }
 
   /// مسح البيانات المخزنة وإعادة الحساب

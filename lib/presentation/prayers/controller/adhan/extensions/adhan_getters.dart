@@ -274,6 +274,51 @@ extension AdhanGetters on AdhanController {
     return percentageLeft.obs;
   }
 
+  /// احسب المدة بين صلاة فائتة والصلاة التالية لها مباشرةً (بدون الاعتماد على الوقت الحالي)
+  /// Compute the interval duration between a given prayer (missed) and the immediately next prayer
+  /// This does NOT use DateTime.now(); it only uses the two prayer times and wraps to next day when needed.
+  Rx<Duration> getDurationBetweenPrayerAndNextByIndex(int index) {
+    if (index < 0 || index >= prayerNameList.length) {
+      throw ArgumentError(
+          'Index out of range, must be between 0 and ${prayerNameList.length - 1}.');
+    }
+
+    final Map<String, dynamic> currentPrayerMap = prayerNameList[index];
+    final int nextIndex = (index + 1) % prayerNameList.length;
+    final Map<String, dynamic> nextPrayerMap = prayerNameList[nextIndex];
+
+    DateTime? currentPrayerDateTime = currentPrayerMap['dateTime'];
+    DateTime? nextPrayerDateTime = nextPrayerMap['dateTime'];
+
+    if (currentPrayerDateTime == null || nextPrayerDateTime == null) {
+      return Duration.zero.obs;
+    }
+
+    // إذا كان موعد الصلاة التالية يسبق موعد الصلاة الحالية أو يساويه، نضيف يومًا للموعد التالي
+    // If next prayer's time is before or equal to current's time, move next to the next day
+    if (!nextPrayerDateTime.isAfter(currentPrayerDateTime)) {
+      nextPrayerDateTime = nextPrayerDateTime.add(const Duration(days: 1));
+    }
+
+    final Duration interval =
+        nextPrayerDateTime.difference(currentPrayerDateTime);
+    return interval.obs;
+  }
+
+  /// احسب النسبة المئوية من اليوم (24 ساعة) التي تمثلها الفترة بين الصلاة الفائتة والصلاة التالية لها مباشرةً
+  /// Compute the interval as a percentage of a full day between a given prayer and the next one
+  RxDouble getIntervalPercentageOfDayBetweenPrayerAndNextByIndex(int index) {
+    final Duration interval =
+        getDurationBetweenPrayerAndNextByIndex(index).value;
+    final int fullDayMinutes = const Duration(days: 1).inMinutes;
+    if (interval.inMinutes <= 0) {
+      return 0.0.obs;
+    }
+    final double percentage =
+        ((interval.inMinutes / fullDayMinutes) * 100).clamp(0, 100).toDouble();
+    return percentage.obs;
+  }
+
   Rx<Duration> getDurationLeftForPrayerByIndex(int index) {
     final now = DateTime.now();
 

@@ -2,6 +2,8 @@ import 'dart:developer' show log;
 import 'dart:ui' as ui;
 
 import 'package:adhan/adhan.dart';
+import 'package:almasjid/core/utils/constants/lottie.dart';
+import 'package:almasjid/core/utils/constants/lottie_constants.dart';
 import 'package:almasjid/core/widgets/custom_button.dart';
 import 'package:almasjid/presentation/controllers/theme_controller.dart';
 import 'package:flutter/foundation.dart';

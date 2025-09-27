@@ -496,5 +496,20 @@
   "@prayerDetails": {
     "type": "text",
     "placeholders": {}
+  },
+  "min": "mnt",
+  "@min": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "h": "jam",
+  "@h": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saving...": "Menyimpan...",
+  "@saving...": {
+    "type": "text",
+    "placeholders": {}
   }
 }

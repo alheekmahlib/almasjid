@@ -38,7 +38,7 @@ class ShareOptionsWidget extends StatelessWidget {
               await shareCtrl.createAndShowVerseImage();
               await shareCtrl.shareAsImage();
             },
-      height: 290,
+      height: 310,
       backgroundColor: context.theme.colorScheme.surface.withValues(alpha: .3),
       useGradient: false,
       child: Column(
@@ -59,7 +59,7 @@ class ShareOptionsWidget extends StatelessWidget {
                     : customSvgWithColor(
                         SvgPath.svgShareShare,
                         height: 24,
-                        color: context.theme.canvasColor,
+                        color: context.theme.colorScheme.inversePrimary,
                       ),
                 const Gap(16),
                 Text(
