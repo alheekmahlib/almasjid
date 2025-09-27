@@ -357,7 +357,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "qiblaDirection": "إتجاه القبلة",
+  "qiblaDirection": "اتجاه القبلة",
   "@qiblaDirection": {
     "type": "text",
     "placeholders": {}
