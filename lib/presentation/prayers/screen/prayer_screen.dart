@@ -54,7 +54,7 @@ class PrayerScreen extends StatelessWidget {
                                             ),
                                             Expanded(
                                               child: HijriDateWidget(
-                                                color: context
+                                                svgColor: context
                                                     .theme.colorScheme.surface,
                                                 horizontalPadding: 24.0,
                                               ),

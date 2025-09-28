@@ -37,55 +37,52 @@ class OurAppsBuild extends StatelessWidget {
                 return ContainerButtonWidget(
                   onPressed: () =>
                       ourApps.launchURL(context, index, apps[index]),
-                  height: 90,
+                  height: 70,
                   horizontalMargin: 32.0,
                   backgroundColor:
                       Theme.of(context).colorScheme.primaryContainer,
                   shapeColor:
                       context.theme.colorScheme.surface.withValues(alpha: .1),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8.0),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        SvgPicture.network(
-                          apps[index].appLogo,
-                          height: 45,
-                          width: 45,
-                        ),
-                        const Gap(24.0),
-                        context.vDivider(height: 40.0),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                apps[index].appTitle,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SvgPicture.network(
+                        apps[index].appLogo,
+                        height: 45,
+                        width: 45,
+                      ),
+                      const Gap(24.0),
+                      context.vDivider(height: 40.0),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              apps[index].appTitle,
+                              style: TextStyle(
+                                  color:
+                                      context.theme.colorScheme.inversePrimary,
+                                  fontSize: 13,
+                                  fontFamily: 'cairo',
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            const Gap(8.0),
+                            Expanded(
+                              child: Text(
+                                apps[index].body,
                                 style: TextStyle(
-                                    color: context
-                                        .theme.colorScheme.inversePrimary,
-                                    fontSize: 13,
+                                    color: context.theme.colorScheme.surface
+                                        .withValues(alpha: .7),
+                                    fontSize: 11,
                                     fontFamily: 'cairo',
                                     fontWeight: FontWeight.bold),
                               ),
-                              const Gap(8.0),
-                              Expanded(
-                                child: Text(
-                                  apps[index].body,
-                                  style: TextStyle(
-                                      color: context.theme.colorScheme.surface
-                                          .withValues(alpha: .7),
-                                      fontSize: 11,
-                                      fontFamily: 'cairo',
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 );
               },

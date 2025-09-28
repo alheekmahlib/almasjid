@@ -1,11 +1,16 @@
 part of '../prayers.dart';
 
 class HijriDateWidget extends StatelessWidget {
-  final Color? color;
+  final Color? svgColor;
+  final Color? fontColor;
   final double? horizontalPadding;
   final AlignmentGeometry? alignment;
   const HijriDateWidget(
-      {super.key, this.color, this.horizontalPadding, this.alignment});
+      {super.key,
+      this.svgColor,
+      this.fontColor,
+      this.horizontalPadding,
+      this.alignment});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +23,8 @@ class HijriDateWidget extends StatelessWidget {
           children: [
             customSvgWithCustomColor(
               'assets/svg/hijri/${EventController.instance.hijriNow.hMonth}.svg',
-              color: (color ?? context.theme.canvasColor).withValues(alpha: .4),
+              color:
+                  (svgColor ?? context.theme.canvasColor).withValues(alpha: .4),
               height: 48,
             ),
             Column(
@@ -31,7 +37,8 @@ class HijriDateWidget extends StatelessWidget {
                     fontSize: 28,
                     fontFamily: 'cairo',
                     fontWeight: FontWeight.w700,
-                    color: color ?? context.theme.canvasColor,
+                    color:
+                        fontColor ?? context.theme.colorScheme.inversePrimary,
                     height: 1.2,
                   ),
                 ),
@@ -42,7 +49,8 @@ class HijriDateWidget extends StatelessWidget {
                     fontSize: 18,
                     fontFamily: 'cairo',
                     fontWeight: FontWeight.w700,
-                    color: color ?? context.theme.canvasColor,
+                    color:
+                        fontColor ?? context.theme.colorScheme.inversePrimary,
                     height: 1.2,
                   ),
                 ),

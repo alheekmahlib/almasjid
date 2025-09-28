@@ -31,12 +31,12 @@ dependencies:
   flutter_launcher_icons: ^0.14.4
   flutter_localizations:
     sdk: flutter
-  flutter_map: ^8.2.1
+  flutter_map: ^8.2.2
   flutter_native_splash: ^2.4.6
   flutter_rounded_progress_bar: ^0.3.2
   flutter_screenutil: ^5.9.3
   flutter_svg: ^2.2.1
-  flutter_timezone: ^4.1.1
+  flutter_timezone: ^5.0.0
   gap: ^3.0.1
   gauge_indicator: ^0.4.3
   geocoding: ^4.0.0

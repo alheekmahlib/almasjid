@@ -28,6 +28,8 @@ class ContainerButtonWidget extends StatelessWidget {
   final MainAxisAlignment? mainAxisAlignment;
   final Color? shapeColor;
   final bool? isLoading;
+  final double? horizontalPadding;
+  final double? verticalPadding;
 
   /// Whether to use gradient background or solid color
   /// If true: uses LinearGradient with backgroundColor and its transparent variant
@@ -56,7 +58,9 @@ class ContainerButtonWidget extends StatelessWidget {
       this.fontSize,
       this.mainAxisAlignment,
       this.shapeColor,
-      this.isLoading = false});
+      this.isLoading = false,
+      this.horizontalPadding,
+      this.verticalPadding});
 
   @override
   Widget build(BuildContext context) {
@@ -197,7 +201,9 @@ class ContainerButtonWidget extends StatelessWidget {
                         ),
                       )
                     : Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: horizontalPadding ?? 8.0,
+                            vertical: verticalPadding ?? 8.0),
                         child: child ?? const SizedBox.shrink(),
                       ),
               ],

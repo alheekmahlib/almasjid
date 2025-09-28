@@ -8,7 +8,6 @@ class _ShareCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final gradient = adhan.getTimeNowColor();
     return Container(
-      padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
         gradient: gradient,
       ),
@@ -16,7 +15,7 @@ class _ShareCard extends StatelessWidget {
         children: [
           Container(
             padding:
-                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                const EdgeInsets.symmetric(horizontal: 10.0, vertical: 8.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
               // Inner overlay to ensure text contrast
@@ -29,7 +28,10 @@ class _ShareCard extends StatelessWidget {
             child: Stack(
               alignment: Alignment.topCenter,
               children: [
-                const HijriDateWidget(alignment: Alignment.center),
+                HijriDateWidget(
+                  alignment: Alignment.center,
+                  fontColor: context.theme.canvasColor,
+                ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   mainAxisSize: MainAxisSize.min,
@@ -58,7 +60,7 @@ class _ShareCard extends StatelessWidget {
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                               style: const TextStyle(
-                                fontSize: 24,
+                                fontSize: 20,
                                 fontFamily: 'cairo',
                                 color: Colors.white,
                                 fontWeight: FontWeight.w800,
@@ -71,7 +73,7 @@ class _ShareCard extends StatelessWidget {
                         Text(
                           share.formattedNextPrayerTime,
                           style: const TextStyle(
-                            fontSize: 24,
+                            fontSize: 20,
                             fontFamily: 'cairo',
                             color: Colors.white,
                             fontWeight: FontWeight.w800,
@@ -181,6 +183,7 @@ class _ShareCard extends StatelessWidget {
               fontWeight: FontWeight.w700,
             ),
           ),
+          const Gap(8),
         ],
       ),
     );

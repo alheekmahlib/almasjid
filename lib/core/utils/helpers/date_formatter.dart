@@ -77,7 +77,8 @@ class DateFormatter {
 
   /// Get the user's time zone
   static Future<tz.Location> _getUserTimeZone() async {
-    final String currentTimeZone = await FlutterTimezone.getLocalTimezone();
+    TimezoneInfo timezone = await FlutterTimezone.getLocalTimezone();
+    final String currentTimeZone = timezone.identifier;
     return tz.getLocation(currentTimeZone);
   }
 

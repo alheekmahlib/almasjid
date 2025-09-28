@@ -17,7 +17,7 @@ class ShareOptionsWidget extends StatelessWidget {
     );
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 0, 16, 24),
+      padding: const EdgeInsets.fromLTRB(0, 0, 0, 24),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -39,6 +39,8 @@ class ShareOptionsWidget extends StatelessWidget {
               await shareCtrl.shareAsImage();
             },
       height: 310,
+      horizontalMargin: 0.0,
+      borderRadius: 0.0,
       backgroundColor: context.theme.colorScheme.surface.withValues(alpha: .3),
       useGradient: false,
       child: Column(

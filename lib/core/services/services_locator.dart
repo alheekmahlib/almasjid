@@ -76,7 +76,8 @@ class ServicesLocator {
     if (Platform.isIOS || Platform.isAndroid || Platform.isFuchsia) {
       RateAppHelper.rateMyApp.init();
     }
-    final String timeZoneName = await FlutterTimezone.getLocalTimezone();
+    TimezoneInfo timezone = await FlutterTimezone.getLocalTimezone();
+    final String timeZoneName = timezone.identifier;
     tz.initializeTimeZones();
     tz.setLocalLocation(tz.getLocation(timeZoneName));
   }
