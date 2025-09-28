@@ -575,15 +575,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.2.8"
-  hijri:
-    dependency: transitive
-    description:
-      path: "."
-      ref: master
-      resolved-ref: d08b864fa7a48d199cfa84ddaef104690a47660f
-      url: "https://github.com/alheekmahlib/hijri_date.git"
-    source: git
-    version: "3.0.1"
   hijri_date:
     dependency: "direct main"
     description:
@@ -597,7 +588,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: b4f76a47f6557fd4778f357dfa1f1c0214bd51bc
+      resolved-ref: "2ea61074d92da9765a73bcfd782f577c6d0e050a"
       url: "https://github.com/alheekmahlib/horizontal_week_calendar.git"
     source: git
     version: "0.1.0"

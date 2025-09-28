@@ -71,7 +71,7 @@ class PrayerNowWidget extends StatelessWidget {
                   segments: adhanCtrl.getPrayerGaugeSegments,
                 ),
                 builder: (context, child, value) => Stack(
-                  alignment: Alignment.center,
+                  alignment: Alignment.bottomCenter,
                   children: [
                     Icon(
                       adhanCtrl.prayerNameList[currentPrayer]['icon'],
@@ -110,21 +110,27 @@ class PrayerNowWidget extends StatelessWidget {
                             fontSize: 34,
                             fontWeight: FontWeight.bold,
                             color: context.theme.colorScheme.inversePrimary,
+                            height: 1.3,
                           ),
                           textAlign: TextAlign.end,
                         ),
                         Container(
+                          height: 60,
                           decoration: BoxDecoration(
                             color: context.theme.colorScheme.surface
                                 .withValues(alpha: .4),
                             borderRadius: BorderRadius.circular(12),
                           ),
-                          child: SlideCountdownWidget(
-                            fontSize: 38,
-                            color: context.theme.colorScheme.inversePrimary,
-                            duration: adhanCtrl
-                                .getDurationLeftForPrayerByIndex(currentPrayer)
-                                .value,
+                          child: FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: SlideCountdownWidget(
+                              fontSize: 38,
+                              color: context.theme.colorScheme.inversePrimary,
+                              duration: adhanCtrl
+                                  .getDurationLeftForPrayerByIndex(
+                                      currentPrayer)
+                                  .value,
+                            ),
                           ),
                         ),
                       ],

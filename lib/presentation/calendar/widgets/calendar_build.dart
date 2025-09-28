@@ -3,7 +3,7 @@ part of '../events.dart';
 class CalendarBuild extends StatelessWidget {
   final int firstDayWeekday;
   final int daysInMonth;
-  final HijriCalendar month;
+  final HijriDate month;
   CalendarBuild(
       {super.key,
       required this.firstDayWeekday,

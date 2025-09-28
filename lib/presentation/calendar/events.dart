@@ -7,7 +7,7 @@ import 'package:flutter_rounded_progress_bar/flutter_rounded_progress_bar.dart';
 import 'package:flutter_rounded_progress_bar/rounded_progress_bar_style.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:hijri/hijri_calendar.dart';
+import 'package:hijri_date/hijri_date.dart';
 
 import '../../../core/widgets/reactive_number_text.dart';
 

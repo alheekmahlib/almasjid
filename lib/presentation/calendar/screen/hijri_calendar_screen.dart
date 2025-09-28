@@ -1,7 +1,7 @@
 // part of '../events.dart';
 
-// class HijriCalendarScreen extends StatelessWidget {
-//   HijriCalendarScreen({super.key});
+// class HijriDateScreen extends StatelessWidget {
+//   HijriDateScreen({super.key});
 
 //   final eventsCtrl = EventController.instance;
 

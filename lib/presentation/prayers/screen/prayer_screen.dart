@@ -93,8 +93,8 @@ class PrayerScreen extends StatelessWidget {
       child: HorizontalWeekCalendar(
         hijriInitialDate: eventCtrl.hijriNow,
         hijriMaxDate:
-            HijriCalendar.fromDate(DateTime.now().add(const Duration(days: 7))),
-        hijriMinDate: HijriCalendar.fromDate(
+            HijriDate.fromDate(DateTime.now().add(const Duration(days: 7))),
+        hijriMinDate: HijriDate.fromDate(
             DateTime.now().subtract(const Duration(days: 7))),
         minDate: DateTime.now().subtract(const Duration(days: 7)),
         maxDate: DateTime.now().add(const Duration(days: 7)),

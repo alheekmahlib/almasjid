@@ -37,7 +37,7 @@
 //             Expanded(
 //               flex: 6,
 //               child: Center(
-//                 child: CustomDropdown<HijriCalendarConfig>(
+//                 child: CustomDropdown<HijriDateConfig>(
 //                   excludeSelected: false,
 //                   decoration: CustomDropdownDecoration(
 //                     closedFillColor: context.theme.colorScheme.primaryContainer,
@@ -63,7 +63,7 @@
 //                   ),
 //                   maxlines: 1,
 //                   items: List.generate(12, (index) {
-//                     var hijri = HijriCalendarConfig();
+//                     var hijri = HijriDateConfig();
 //                     hijri.hYear = eventCtrl.selectedDate.hYear;
 //                     hijri.hMonth = index + 1;
 //                     hijri.hDay = 1;

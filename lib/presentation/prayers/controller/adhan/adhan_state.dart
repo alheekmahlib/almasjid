@@ -11,7 +11,7 @@ class AdhanState {
   final DateTime now = DateTime.now();
   RxString countdownTime = ''.obs;
   SunnahTimes? sunnahTimes;
-  // HijriCalendarConfig hijriDateNow = EventController.instance.hijriNow;
+  // HijriDateConfig hijriDateNow = EventController.instance.hijriNow;
   late Coordinates coordinates;
   late DateComponents dateComponents;
   late CalculationParameters params;
