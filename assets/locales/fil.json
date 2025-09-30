@@ -566,5 +566,15 @@
   "@downloadingPrayerData": {
     "type": "text",
     "placeholders": {}
+  },
+  "noInternet": "Walang internet connection",
+  "@noInternet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noNotifications": "Walang mga notification",
+  "@noNotifications": {
+    "type": "text",
+    "placeholders": {}
   }
 }

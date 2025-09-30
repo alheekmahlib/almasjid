@@ -566,5 +566,15 @@
   "@downloadingPrayerData": {
     "type": "text",
     "placeholders": {}
+  },
+  "noInternet": "ইন্টারনেট সংযোগ নেই",
+  "@noInternet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noNotifications": "কোনো বিজ্ঞপ্তি নেই",
+  "@noNotifications": {
+    "type": "text",
+    "placeholders": {}
   }
 }

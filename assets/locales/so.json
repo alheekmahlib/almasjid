@@ -566,5 +566,15 @@
   "@downloadingPrayerData": {
     "type": "text",
     "placeholders": {}
+  },
+  "noInternet": "Ma jiro xidhiidh internet ah",
+  "@noInternet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noNotifications": "Ma jiraan ogeysiisyo",
+  "@noNotifications": {
+    "type": "text",
+    "placeholders": {}
   }
 }

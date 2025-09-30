@@ -566,5 +566,15 @@
   "@downloadingPrayerData": {
     "type": "text",
     "placeholders": {}
+  },
+  "noInternet": "Tidak ada koneksi internet",
+  "@noInternet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noNotifications": "Tidak ada notifikasi",
+  "@noNotifications": {
+    "type": "text",
+    "placeholders": {}
   }
 }

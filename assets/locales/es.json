@@ -566,5 +566,15 @@
   "@downloadingPrayerData": {
     "type": "text",
     "placeholders": {}
+  },
+  "noInternet": "Sin conexión a internet",
+  "@noInternet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noNotifications": "No hay notificaciones",
+  "@noNotifications": {
+    "type": "text",
+    "placeholders": {}
   }
 }
