@@ -32,7 +32,7 @@ class PrayerScreen extends StatelessWidget {
                         const AppBarWidget(),
                         GetBuilder<AdhanController>(
                           id: 'loading_state',
-                          builder: (controller) => !controller
+                          builder: (controller) => controller
                                   .isLoadingPrayerData.value
                               ? const LoadingWidget()
                               : Flexible(
