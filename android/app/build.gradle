@@ -5,10 +5,49 @@ plugins {
     id "com.huawei.agconnect"
 }
 
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file('local.properties')
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.withReader('UTF-8') { reader ->
+        localProperties.load(reader)
+    }
+}
+
+def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
+if (flutterVersionCode == null) {
+    flutterVersionCode = '1'
+}
+
+def flutterVersionName = localProperties.getProperty('flutter.versionName')
+if (flutterVersionName == null) {
+    flutterVersionName = '1.0'
+}
+
+def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file('key.properties')
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+
 android {
     namespace = "com.alheekmah.aqimApp"
     compileSdk = 36 // flutter.compileSdkVersion
     ndkVersion = "27.0.12077973" // flutter.ndkVersion
+
+    signingConfigs {
+        release {
+            keyAlias 'huawei'
+            keyPassword 'Ha1182009'
+            storeFile file('../huawei-release-key.keystore')
+            storePassword 'Ha1182009'
+        }
+        debug {
+            keyAlias 'huawei'
+            keyPassword 'Ha1182009'
+            storeFile file('../huawei-release-key.keystore')
+            storePassword 'Ha1182009'
+        }
+    }
 
     defaultConfig {
         multiDexEnabled true
@@ -42,19 +81,15 @@ android {
 
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.debug
+            signingConfig signingConfigs.release
+        }
+        debug {
+            signingConfig signingConfigs.debug
         }
     }
     buildFeatures {
         viewBinding true
-        compose false
     }
-
-    // composeOptions {
-    //     kotlinCompilerExtensionVersion = '1.5.8'
-    // }
 }
 
 flutter {

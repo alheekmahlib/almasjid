@@ -41,6 +41,7 @@ class AdhanState {
   Future<List<String>>? countryListFuture;
   RxInt prohibitionTimesIndex = 0.obs;
   RxBool isPrayerTimesInitialized = false.obs;
+  RxBool isLoadingPrayerData = false.obs;
   Rx<Color> backgroundColor = const Color(0xffB8E0EA).obs;
   var selectedDate = DateTime.now();
 

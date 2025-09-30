@@ -322,17 +322,17 @@
     "type": "text",
     "placeholders": {}
   },
-  "about_app": "'Muslim's Guide - Al-Heekmah Library' is a comprehensive Islamic app that includes the Holy Quran, interpretation, dhikr, prayer times with alerts, and Qibla direction. Your daily companion to get closer to Allah.",
+  "about_app": "The 'Aqim' app is a simple and direct Islamic application, designed specifically to help you perform your prayers on time with ease.\nThe app focuses on providing the essential tools that every Muslim needs in their daily life, through an easy-to-use interactive interface that ensures a comfortable and clear experience.\nWith 'Aqim', you will never miss a prayer again, as the app works as a personal alarm and precise guide for your Qibla, making it the perfect tool for maintaining the most important pillars of Islam.",
   "@about_app": {
     "type": "text",
     "placeholders": {}
   },
-  "about_app2": "The most important features of the program:",
+  "about_app2": "App Features:",
   "@about_app2": {
     "type": "text",
     "placeholders": {}
   },
-  "about_app3": "'Muslim's Guide - Al-Heekmah Library' is an integrated Islamic application that aims to provide all Muslim needs in one place in an easy and convenient way. The app features the complete Holy Quran with the ability to read verses, listen to them with the voice of many famous reciters, and read various interpretations for a deeper understanding of each verse. It also contains accurate prayer times with smart alerts to remind you of each prayer, in addition to a Qibla direction tool that helps you perform worship correctly.\n\nThe app also includes a comprehensive collection of daily dhikr and reported supplications to strengthen your connection with Allah, as well as a rich library of interpretation books. You can also listen to Quranic chapters with the voices of prominent reciters and enjoy a unique spiritual experience. 'Muslim's Guide - Al-Heekmah Library' is the perfect companion for every Muslim seeking to organize their religious life and strengthen their faith.",
+  "about_app3": "Prayer Times: The app displays prayer times with high accuracy based on your geographical location.\nAdhan Notifications: Receive audio alerts when each prayer time arrives to always be ready.\nQibla Direction: An accurate and easy-to-use compass to determine the correct Qibla direction from anywhere in the world.\nInteractive Interface: Simple and clear design that makes it easy to navigate between app features without any complexity.",
   "@about_app3": {
     "type": "text",
     "placeholders": {}
@@ -399,6 +399,41 @@
   },
   "cancel": "Cancel",
   "@cancel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "searchForCity": "Search for City",
+  "@searchForCity": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectFromMap": "Select from Map",
+  "@selectFromMap": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterCityName": "Enter city name...",
+  "@enterCityName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "manualLocationNote": "For Huawei devices, manual location setting is recommended for best accuracy",
+  "@manualLocationNote": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locationSetSuccessfully": "Location set successfully",
+  "@locationSetSuccessfully": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "failedToSetLocation": "Failed to set location",
+  "@failedToSetLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "failedToSearchCities": "Failed to search cities",
+  "@failedToSearchCities": {
     "type": "text",
     "placeholders": {}
   },

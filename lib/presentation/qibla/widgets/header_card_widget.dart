@@ -77,32 +77,39 @@ class HeaderCardWidget extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                        '${'qiblaDirection'.tr} : ',
-                        style: TextStyle(
-                          fontFamily: 'cairo',
-                          fontSize: 22,
-                          height: 1.7,
-                          fontWeight: FontWeight.w800,
-                          color: context.theme.colorScheme.inversePrimary
-                              .withValues(alpha: .6),
+                      Expanded(
+                        child: FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: Text(
+                            '${'qiblaDirection'.tr} : ',
+                            style: TextStyle(
+                              fontFamily: 'cairo',
+                              fontSize: 20.sp,
+                              height: 1.7,
+                              fontWeight: FontWeight.w800,
+                              color: context.theme.colorScheme.inversePrimary
+                                  .withValues(alpha: .6),
+                            ),
+                          ),
                         ),
                       ),
-                      AnimatedSwitcher(
-                        duration: const Duration(milliseconds: 250),
-                        transitionBuilder: (child, anim) =>
-                            ScaleTransition(scale: anim, child: child),
-                        child: Text(
-                          '${qiblaCtrl.qiblaDirection.value.toStringAsFixed(1)}°',
-                          key: ValueKey(qiblaCtrl.qiblaDirection.value
-                              .toStringAsFixed(1)),
-                          style: TextStyle(
-                            fontFamily: 'cairo',
-                            fontSize: 40,
-                            height: 1.7,
-                            fontWeight: FontWeight.w800,
-                            color: context.theme.colorScheme.inversePrimary
-                                .withValues(alpha: .6),
+                      Expanded(
+                        child: AnimatedSwitcher(
+                          duration: const Duration(milliseconds: 250),
+                          transitionBuilder: (child, anim) =>
+                              ScaleTransition(scale: anim, child: child),
+                          child: Text(
+                            '${qiblaCtrl.qiblaDirection.value.toStringAsFixed(1)}°',
+                            key: ValueKey(qiblaCtrl.qiblaDirection.value
+                                .toStringAsFixed(1)),
+                            style: TextStyle(
+                              fontFamily: 'cairo',
+                              fontSize: 40,
+                              height: 1.7,
+                              fontWeight: FontWeight.w800,
+                              color: context.theme.colorScheme.inversePrimary
+                                  .withValues(alpha: .6),
+                            ),
                           ),
                         ),
                       ),

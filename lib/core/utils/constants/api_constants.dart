@@ -17,4 +17,6 @@ class ApiConstants {
       'https://basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}.png';
   static const String mapDarkUrl =
       'https://basemaps.cartocdn.com/rastertiles/dark_all/{z}/{x}/{y}.png';
+  static const String mapHuaweiUrl =
+      'https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png';
 }

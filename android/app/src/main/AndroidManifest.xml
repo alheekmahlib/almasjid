@@ -25,6 +25,11 @@
 <uses-permission android:name="com.huawei.hms.permission.LOCATION" />
 <!-- Huawei Location permissions -->
 
+<!-- awesome_notifications permissions -->
+  <uses-permission android:name="android.permission.VIBRATE"/>
+  <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+<!-- Awesome Notifications permissions -->
+
     <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:label="أقم - مكتبة الحكمة"

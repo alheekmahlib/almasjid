@@ -41,26 +41,38 @@ class AboutAppText extends StatelessWidget {
             padding:
                 const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   'about_app'.tr,
                   style: TextStyle(
-                    fontFamily: 'naskh',
-                    fontSize: 20,
+                    fontFamily: 'cairo',
+                    fontSize: 15,
                     fontWeight: FontWeight.bold,
-                    color: context.theme.hintColor,
+                    color: context.theme.colorScheme.inversePrimary,
                   ),
                   textAlign: TextAlign.justify,
                 ),
                 const Gap(24),
+                Text(
+                  'about_app2'.tr,
+                  style: TextStyle(
+                    fontFamily: 'cairo',
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: context.theme.colorScheme.inversePrimary,
+                  ),
+                  textAlign: TextAlign.justify,
+                ),
+                const Gap(8),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       ('about_app3').tr,
                       style: TextStyle(
-                        fontSize: 18.0,
-                        fontFamily: 'naskh',
+                        fontSize: 16.0,
+                        fontFamily: 'cairo',
                         // fontWeight: FontWeight.bold,
                         color: context.theme.hintColor,
                       ),

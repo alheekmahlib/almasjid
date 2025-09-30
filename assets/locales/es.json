@@ -322,17 +322,17 @@
     "type": "text",
     "placeholders": {}
   },
-  "about_app": "'Zad Al-Muslim - Biblioteca Al-Hikmah' es una aplicación islámica integral que incluye el Sagrado Corán, tafsir, adhkar, horarios de oración con alertas y determinación de la Qibla. Tu compañero diario para acercarte a Allah.",
+  "about_app": "La aplicación 'Aqim' es una aplicación islámica simple y directa, diseñada específicamente para ayudarte a realizar tus oraciones a tiempo y con facilidad.\nLa aplicación se enfoca en proporcionar las herramientas esenciales que todo musulmán necesita en su vida diaria, a través de una interfaz interactiva fácil de usar que te garantiza una experiencia cómoda y clara.\nCon 'Aqim', nunca más perderás una oración, ya que la aplicación funciona como una alarma personal y una guía precisa para tu Qibla, convirtiéndola en la herramienta perfecta para mantener los pilares más importantes del Islam.",
   "@about_app": {
     "type": "text",
     "placeholders": {}
   },
-  "about_app2": "Entre las características más importantes del programa:",
+  "about_app2": "Características de la Aplicación:",
   "@about_app2": {
     "type": "text",
     "placeholders": {}
   },
-  "about_app3": "'Zad Al-Muslim - Biblioteca Al-Hikmah' es una aplicación islámica integral que tiene como objetivo proporcionar todas las necesidades de un musulmán en un solo lugar de manera fácil y conveniente. La aplicación se caracteriza por proporcionar el Sagrado Corán completo con la capacidad de leer versos, escucharlos con las voces de muchos recitadores famosos y leer diversas interpretaciones para una comprensión más profunda de cada verso. También contiene horarios de oración precisos con alertas inteligentes para recordarte cada oración, además de una herramienta de determinación de dirección de la Qibla que te ayuda a realizar actos de adoración correctamente.\n\nLa aplicación también incluye una colección integral de adhkar diarios y súplicas transmitidas para fortalecer tu conexión con Allah, así como una rica biblioteca de libros de tafsir. También puedes escuchar suras coránicas con las voces de recitadores prominentes y disfrutar de una experiencia espiritual distintiva. 'Zad Al-Muslim - Biblioteca Al-Hikmah' es el compañero ideal para todo musulmán que busca organizar su vida religiosa y fortalecer su fe.",
+  "about_app3": "Horarios de Oración: La aplicación muestra los horarios de oración con alta precisión basada en tu ubicación geográfica.\nNotificaciones de Adhan: Recibe alertas de audio cuando llegue el momento de cada oración para estar siempre preparado.\nDirección de Qibla: Una brújula precisa y fácil de usar para determinar la dirección correcta de la Qibla desde cualquier lugar del mundo.\nInterfaz Interactiva: Diseño simple y claro que facilita la navegación entre las características de la aplicación sin ninguna complejidad.",
   "@about_app3": {
     "type": "text",
     "placeholders": {}
@@ -399,6 +399,41 @@
   },
   "cancel": "Cancelar",
   "@cancel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "searchForCity": "Buscar Ciudad",
+  "@searchForCity": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectFromMap": "Seleccionar del Mapa",
+  "@selectFromMap": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterCityName": "Ingrese el nombre de la ciudad...",
+  "@enterCityName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "manualLocationNote": "Para dispositivos Huawei, se recomienda establecer la ubicación manualmente para obtener la mejor precisión",
+  "@manualLocationNote": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locationSetSuccessfully": "Ubicación establecida exitosamente",
+  "@locationSetSuccessfully": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "failedToSetLocation": "Error al establecer ubicación",
+  "@failedToSetLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "failedToSearchCities": "Error al buscar ciudades",
+  "@failedToSearchCities": {
     "type": "text",
     "placeholders": {}
   },

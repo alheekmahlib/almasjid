@@ -68,7 +68,6 @@ class SplashScreen extends StatelessWidget {
                                   opacity: .02,
                                   width: Get.width,
                                   height: Get.width * .6),
-                              const AnimatedDrawingWidget(),
                             ],
                           ),
                         ),

@@ -322,17 +322,17 @@
     "type": "text",
     "placeholders": {}
   },
-  "about_app": "'Zad Al-Muslim - Perpustakaan Al-Hikmah' adalah aplikasi Islam komprehensif yang berisi Al-Quran, Tafsir, Dzikir, waktu shalat dengan notifikasi, dan penunjuk arah kiblat. Sahabat harian Anda untuk mendekatkan diri kepada Allah.",
+  "about_app": "Aplikasi 'Aqim' adalah aplikasi Islam yang sederhana dan langsung, dirancang khusus untuk membantu Anda melaksanakan sholat tepat waktu dengan mudah.\nAplikasi ini fokus menyediakan alat-alat penting yang dibutuhkan setiap Muslim dalam kehidupan sehari-hari, melalui antarmuka interaktif yang mudah digunakan yang menjamin pengalaman yang nyaman dan jelas.\nDengan 'Aqim', Anda tidak akan pernah melewatkan sholat lagi, karena aplikasi bekerja sebagai alarm pribadi dan panduan akurat untuk Qibla Anda, menjadikannya alat yang sempurna untuk menjaga rukun Islam yang paling penting.",
   "@about_app": {
     "type": "text",
     "placeholders": {}
   },
-  "about_app2": "Fitur-fitur utama aplikasi:",
+  "about_app2": "Fitur Aplikasi:",
   "@about_app2": {
     "type": "text",
     "placeholders": {}
   },
-  "about_app3": "'Zad Al-Muslim - Perpustakaan Al-Hikmah' adalah aplikasi Islam terpadu yang bertujuan menyediakan semua kebutuhan Muslim dalam satu tempat dengan cara yang mudah dan nyaman. Aplikasi ini dilengkapi dengan Al-Quran lengkap dengan kemampuan membaca ayat-ayat, mendengarkannya dengan suara banyak qari terkenal, dan membaca tafsir beragam untuk pemahaman yang lebih mendalam setiap ayat. Juga berisi waktu shalat yang akurat dengan notifikasi cerdas untuk mengingatkan Anda setiap shalat, ditambah alat penunjuk arah kiblat yang membantu Anda melakukan ibadah dengan benar.\n\nAplikasi ini juga mencakup koleksi lengkap dzikir harian dan doa-doa ma'tsur untuk memperkuat hubungan Anda dengan Allah, serta perpustakaan kaya dengan kitab-kitab tafsir. Anda juga dapat mendengarkan surat-surat Al-Quran dengan suara qari terkemuka dan menikmati pengalaman spiritual yang istimewa. 'Zad Al-Muslim - Perpustakaan Al-Hikmah' adalah sahabat ideal bagi setiap Muslim yang berusaha mengatur kehidupan religiusnya dan memperkuat imannya.",
+  "about_app3": "Waktu Sholat: Aplikasi menampilkan waktu sholat dengan akurasi tinggi berdasarkan lokasi geografis Anda.\nNotifikasi Adzan: Terima peringatan audio saat waktu setiap sholat tiba agar selalu siap.\nArah Qibla: Kompas yang akurat dan mudah digunakan untuk menentukan arah Qibla yang benar dari mana saja di dunia.\nAntarmuka Interaktif: Desain sederhana dan jelas yang memudahkan navigasi antar fitur aplikasi tanpa kompleksitas apa pun.",
   "@about_app3": {
     "type": "text",
     "placeholders": {}
@@ -399,6 +399,41 @@
   },
   "cancel": "Batal",
   "@cancel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "searchForCity": "Cari Kota",
+  "@searchForCity": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectFromMap": "Pilih dari Peta",
+  "@selectFromMap": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterCityName": "Masukkan nama kota...",
+  "@enterCityName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "manualLocationNote": "Untuk perangkat Huawei, disarankan mengatur lokasi secara manual untuk akurasi terbaik",
+  "@manualLocationNote": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locationSetSuccessfully": "Lokasi berhasil ditetapkan",
+  "@locationSetSuccessfully": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "failedToSetLocation": "Gagal menetapkan lokasi",
+  "@failedToSetLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "failedToSearchCities": "Gagal mencari kota",
+  "@failedToSearchCities": {
     "type": "text",
     "placeholders": {}
   },

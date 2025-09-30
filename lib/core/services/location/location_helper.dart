@@ -8,33 +8,6 @@ class LocationHelper {
   }
   LocationHelper._();
 
-  /// Check if Huawei Mobile Services (HMS) is available and working
-  Future<bool> _isHMSAvailable() async {
-    if (!Platform.isAndroid) return false;
-
-    try {
-      bool? isGoogle = await GoogleHuaweiAvailability.isGoogleServiceAvailable;
-      bool? isHuawei = await GoogleHuaweiAvailability.isHuaweiServiceAvailable;
-
-      // Only use HMS if Huawei services are available AND Google services are not available
-      // But add additional conservative check - for now disable HMS usage to avoid errors
-      if (isHuawei == true && isGoogle != true) {
-        log('HMS might be available, but using conservative approach - falling back to Geolocator for stability',
-            name: LocationHelper.instance.toString());
-        // Temporarily disable HMS usage until we can test on actual Huawei device
-        return false;
-      } else {
-        log('HMS not available: isHuawei=$isHuawei, isGoogle=$isGoogle',
-            name: LocationHelper.instance.toString());
-        return false;
-      }
-    } catch (e) {
-      log('Error checking HMS availability: $e',
-          name: LocationHelper.instance.toString());
-      return false;
-    }
-  }
-
   Future<bool> checkPermission() async {
     try {
       LocationPermission permission = await Geolocator.checkPermission();
@@ -52,8 +25,7 @@ class LocationHelper {
       }
       return true;
     } catch (e) {
-      log('Error checking location permission: $e',
-          name: LocationHelper.instance.toString());
+      log('Error checking location permission: $e', name: 'LocationHelper');
       return false;
     }
   }
@@ -64,17 +36,16 @@ class LocationHelper {
       // For Huawei devices, we rely on the regular Android permissions
       // which are already handled by the Geolocator package
       log('Huawei location permissions checked via Geolocator',
-          name: LocationHelper.instance.toString());
+          name: 'LocationHelper');
     } catch (e) {
-      log('Error with Huawei location permissions: $e',
-          name: LocationHelper.instance.toString());
+      log('Error with Huawei location permissions: $e', name: 'LocationHelper');
       throw LocationException('Failed to verify Huawei location permissions.');
     }
   }
 
   Future<void> getPositionDetails() async {
     // Check if HMS is actually available and installed
-    bool isHMSAvailable = await _isHMSAvailable();
+    bool isHMSAvailable = await HuaweiLocationHelper.instance._isHMSAvailable();
 
     bool useHuaweiLocation = Platform.isAndroid && isHMSAvailable;
 
@@ -89,8 +60,7 @@ class LocationHelper {
 
       if (useHuaweiLocation) {
         try {
-          log('Attempting to use Huawei Location Kit',
-              name: LocationHelper.instance.toString());
+          log('Attempting to use Huawei Location Kit', name: 'LocationHelper');
 
           // Request Huawei location permissions first
           await _requestHuaweiLocationPermissions();
@@ -115,14 +85,14 @@ class LocationHelper {
               headingAccuracy: 0.0,
             );
             log('Successfully obtained position from Huawei Location Kit',
-                name: LocationHelper.instance.toString());
+                name: 'LocationHelper');
           } else {
             log('Huawei Location Kit returned null coordinates, falling back to Geolocator',
-                name: LocationHelper.instance.toString());
+                name: 'LocationHelper');
           }
         } catch (e) {
           log('HMS Location error (falling back to Geolocator): $e',
-              name: LocationHelper.instance.toString());
+              name: 'LocationHelper');
           // Force fallback to Geolocator
           useHuaweiLocation = false;
         }
@@ -158,8 +128,7 @@ class LocationHelper {
       } catch (e) {
         GetStorage().write(ACTIVE_LOCATION, false);
         GeneralController.instance.state.activeLocation.value = false;
-        log('Error updating location details: $e',
-            name: LocationHelper.instance.toString());
+        log('Error updating location details: $e', name: 'LocationHelper');
       }
     }
   }
@@ -201,12 +170,11 @@ class LocationHelper {
             country = addressDetail.country;
           }
 
-          log('Huawei Site Kit found: $city, $country',
-              name: LocationHelper.instance.toString());
+          log('Huawei Site Kit found: $city, $country', name: 'LocationHelper');
         }
       } catch (e) {
         log('Failed to get location from Huawei Site Kit: $e',
-            name: LocationHelper.instance.toString());
+            name: 'LocationHelper');
         // Fallback to Google geocoding if available
         useHuaweiLocation = false;
       }
@@ -220,7 +188,7 @@ class LocationHelper {
         );
       } catch (e) {
         log('Failed to get placemark from coordinates: $e',
-            name: LocationHelper.instance.toString());
+            name: 'LocationHelper');
       }
     }
 
@@ -312,7 +280,7 @@ class LocationHelper {
     }
 
     // Check if HMS is actually available and installed
-    bool isHMSAvailable = await _isHMSAvailable();
+    bool isHMSAvailable = await HuaweiLocationHelper.instance._isHMSAvailable();
 
     bool useHuaweiLocation = Platform.isAndroid && isHMSAvailable;
 
@@ -386,7 +354,7 @@ class LocationHelper {
     Duration? interval,
   }) async {
     // Check if HMS is actually available and installed
-    bool isHMSAvailable = await _isHMSAvailable();
+    bool isHMSAvailable = await HuaweiLocationHelper.instance._isHMSAvailable();
 
     bool useHuaweiLocation = Platform.isAndroid && isHMSAvailable;
 
@@ -397,7 +365,7 @@ class LocationHelper {
     if (useHuaweiLocation) {
       try {
         log('Attempting to set up Huawei Location updates',
-            name: LocationHelper.instance.toString());
+            name: 'LocationHelper');
 
         hms_location.FusedLocationProviderClient locationClient =
             hms_location.FusedLocationProviderClient();
@@ -427,15 +395,15 @@ class LocationHelper {
             }
           } catch (e) {
             log('Error getting Huawei location update: $e',
-                name: LocationHelper.instance.toString());
+                name: 'LocationHelper');
           }
         });
 
         log('Huawei location updates setup successfully',
-            name: LocationHelper.instance.toString());
+            name: 'LocationHelper');
       } catch (e) {
         log('Error setting up Huawei location updates (falling back to Geolocator): $e',
-            name: LocationHelper.instance.toString());
+            name: 'LocationHelper');
         // Force fallback to Geolocator
         useHuaweiLocation = false;
         _requestGeolocatorUpdates(onLocationUpdate, interval);
@@ -450,8 +418,7 @@ class LocationHelper {
     Function(Position) onLocationUpdate,
     Duration? interval,
   ) {
-    log('Setting up Geolocator location updates',
-        name: LocationHelper.instance.toString());
+    log('Setting up Geolocator location updates', name: 'LocationHelper');
 
     Geolocator.getPositionStream(
       locationSettings: Platform.isAndroid

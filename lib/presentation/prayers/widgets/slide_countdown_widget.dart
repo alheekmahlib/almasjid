@@ -29,6 +29,9 @@ class SlideCountdownWidget extends StatelessWidget {
         decoration: const BoxDecoration(
           color: Colors.transparent,
         ),
+        showZeroValue: true,
+        shouldShowDays: (_) => false,
+        onDone: () => Get.forceAppUpdate(),
         slideDirection: SlideDirection.up,
         duration: duration ?? adhanCtrl.getTimeLeftForNextPrayer,
         separatorStyle: TextStyle(

@@ -27,9 +27,17 @@ class PrayerBackgroundManager {
         return false;
       }
 
-      // التحقق من صحة التخزين المؤقت
-      // Check cache validity
-      if (PrayerCacheManager.isCacheValid(currentLocation: currentLocation)) {
+      // التحقق من صحة التخزين الشهري أولاً
+      // Check monthly cache validity first
+      final isMonthlyValid = MonthlyPrayerCache.isMonthlyDataValid(
+          currentLocation: currentLocation);
+
+      // التحقق من صحة التخزين اليومي
+      // Check daily cache validity
+      final isDailyValid =
+          PrayerCacheManager.isCacheValid(currentLocation: currentLocation);
+
+      if (isMonthlyValid || isDailyValid) {
         log('Prayer times cache is valid, no update needed', name: _tag);
         return false; // لا حاجة للتحديث / No update needed
       }
@@ -78,6 +86,14 @@ class PrayerBackgroundManager {
       // تحديث أوقات الصلاة
       // Update prayer times
       await checkAndUpdatePrayerTimes();
+
+      // تحديث البيانات الشهرية في الخلفية
+      // Update monthly data in background
+      await AdhanController.instance.updateMonthlyDataInBackground();
+
+      // تنظيف البيانات القديمة
+      // Clean up old data
+      await AdhanController.instance.cleanupOldData();
 
       // تحديث التاريخ الهجري في الويدجت
       // Update Hijri date in widget
@@ -165,12 +181,27 @@ class PrayerBackgroundManager {
   /// Get background operations statistics
   static Map<String, dynamic> getStats() {
     final storage = GetStorage();
-    final cacheStats = PrayerCacheManager.getCacheStats();
+    final dailyCacheStats = PrayerCacheManager.getCacheStats();
+
+    // إحصائيات التخزين الشهري
+    final currentLocation = PrayerCacheManager.getStoredLocation();
+    final isMonthlyValid = currentLocation != null
+        ? MonthlyPrayerCache.isMonthlyDataValid(
+            currentLocation: currentLocation)
+        : false;
 
     return {
-      'cacheStats': cacheStats,
+      'dailyCacheStats': dailyCacheStats,
+      'monthlyCacheValid': isMonthlyValid,
+      'currentLocation': currentLocation != null
+          ? {
+              'latitude': currentLocation.latitude,
+              'longitude': currentLocation.longitude,
+            }
+          : null,
       'lastDailyTaskRun': storage.read('last_daily_task_run'),
       'shouldExecuteDailyTasks': false, // سيتم حسابها في runtime
+      'cacheSystemVersion': '2.0', // نسخة النظام الجديد
     };
   }
 }

@@ -322,17 +322,17 @@
     "type": "text",
     "placeholders": {}
   },
-  "about_app": "'Saad Al-Muslim - Maktabada Xikma' waa app Islami oo dhamaystiran oo ka kooban Quraanka Kariimka, tafsiirada, dhikrada, waqtiyada salaadda oo leh digniin, iyo go'aaminta Qiblada. Saaxiibbada maalinle ah ee u dhow baaska Allah.",
+  "about_app": "App-ka 'Aqim' waa app Islami oo fudud oo toos ah, oo si gaar ah loogu sameeyay si uu kaaga caawiyo inaad samaysid salaadaadka waqtigooda oo fudud.\nApp-ku waxa uu diiradda saaraa bixinta qalabka muhiimka ah ee ay Muslim walba u baahan tahay noloshiisa maalinlaha ah, iyada oo loo marayo interface-fudud oo isticmaal ah oo kuu dammaanad qaadaya khibrad raaxo leh oo cad.\n'Aqim', mar dambe ma lumin doontid sallaad, maxaa yeelay app-ku waxa uu u shaqeeyaa sida koor shakhsi ah iyo hage saxan oo Qibladdaada ah, taas oo ka dhigaysa qalabka ugu fiican ee lagu ilaaliyo tiirarka ugu muhiimsan ee Islaamka.",
   "@about_app": {
     "type": "text",
     "placeholders": {}
   },
-  "about_app2": "Sifooyinka ugu muhiimsan ee barnaamijka:",
+  "about_app2": "Sifooyinka App-ka:",
   "@about_app2": {
     "type": "text",
     "placeholders": {}
   },
-  "about_app3": "'Saad Al-Muslim - Maktabada Xikma' waa app Islami oo dhamaystiran oo ujeedkiisu yahay inuu bixiyo dhammaan baahiyaha Muslim-ka hal meel oo fudud oo raaxo leh. App-ku waxa uu ka duwan yahay bixinta Quraanka Kariimka oo dhamaystiran oo leh awood lagu aqriyo aayaadka, dhageysta iyaga oo leh codka quraa badan oo caan ah, iyo aqrinta tafsiirada kala duwan si loo fahmo qoto dheer aayad kasta. Waxa kale oo ay ka kooban tahay waqtiyada salaadda saxda ah oo leh digniin caqli ah si ay kuugu soo xusuusiyaan sallaad kasta, iyo qalabka go'aaminta jihada Qiblada oo ku caawiya inaad si sax ah u samaysaa cibaadaadka.\n\nApp-ku waxa kale oo uu ka kooban yahay ururka dhamaystiran ee dhikrada maalinle ah iyo ducoyinka la soo djiray si loo xoojiyo xidhiidhka Allah, iyo sidoo kale maktabad hodanaan ah oo buugaag tafsir ah. Waxa kale oo aad u dhagesan kartaa suuraha Quraanka oo leh codka quraa caanka ah oo aad ku raaxeysato khibrad ruuxi ah oo gaar ah. 'Saad Al-Muslim - Maktabada Xikma' waa saaxiibka ugu fiican Muslim kasta oo dadaalaya inuu maamulo noloshooda diinta ah oo uu kordhiyo iimaamkooda.",
+  "about_app3": "Waqtiyada Salaadda: App-ku waxa uu muujiyaa waqtiyada salaadda iyada oo leh saxnaad sare oo ku saleysan goobta juqraafiyeedka.\nOgeysiinta Adhaan: Hel digniino maqal ah marka waqtiga sallaad kasta yimaado si had iyo jeer u diyaar ahaato.\nJihada Qiblada: Kompas saxan oo fudud oo la isticmaalo si loo go'aamiyo jihada Qiblada saxda ah meel kasta oo adduunka ka mid ah.\nInterface Is-dhexgal: Naqshad fudud oo cad oo fududda u dhigaysa in la dhex maro sifooyinka app-ka iyada oo aan wax isku dhafan ah lahayn.",
   "@about_app3": {
     "type": "text",
     "placeholders": {}
@@ -399,6 +399,41 @@
   },
   "cancel": "Ka laabo",
   "@cancel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "searchForCity": "Raadi Magaalo",
+  "@searchForCity": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectFromMap": "Ka dooro Khariidadda",
+  "@selectFromMap": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterCityName": "Gali magaca magaalada...",
+  "@enterCityName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "manualLocationNote": "Aaladaha Huawei, waxaa lagu talinayaa in goobta si gacal ah loo dejiyo si loo helo saxnaanta ugu fiican",
+  "@manualLocationNote": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locationSetSuccessfully": "Goobta si guul leh ayaa loo dejiyay",
+  "@locationSetSuccessfully": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "failedToSetLocation": "Waa lagu fashilmay dejinta goobta",
+  "@failedToSetLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "failedToSearchCities": "Waa lagu fashilmay raadinta magaalooyinka",
+  "@failedToSearchCities": {
     "type": "text",
     "placeholders": {}
   },

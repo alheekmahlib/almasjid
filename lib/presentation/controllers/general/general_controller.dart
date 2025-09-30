@@ -97,6 +97,34 @@ class GeneralController extends GetxController {
     }
   }
 
+  /// Initialize location with manual selection (for Huawei devices)
+  Future<void> initManualLocation({
+    required double latitude,
+    required double longitude,
+  }) async {
+    try {
+      state.isLocationLoading.value = true;
+
+      await HuaweiLocationHelper.instance.setManualLocation(
+        latitude: latitude,
+        longitude: longitude,
+      );
+
+      state.activeLocation.value = true;
+      state.box.write(ACTIVE_LOCATION, true);
+      state.box.write(IS_LOCATION_ACTIVE, true);
+      state.box.write(FIRST_LAUNCH, true);
+
+      AdhanController.instance.initializeStoredAdhan();
+    } catch (e) {
+      log('Error initializing manual location: $e',
+          name: 'GeneralController', error: e);
+      rethrow;
+    } finally {
+      state.isLocationLoading.value = false;
+    }
+  }
+
   void cancelLocation() {
     state.activeLocation.value = false;
     state.box.write(ACTIVE_LOCATION, false);

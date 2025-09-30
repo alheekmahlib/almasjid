@@ -50,7 +50,7 @@ class UserOptions extends StatelessWidget {
             const Divider(),
             InkWell(
               onTap: () => contactUs(
-                  subject: 'تطبيق زاد المسلم - مكتبة الحكمة',
+                  subject: 'تطبيق أَقِم - مكتبة الحكمة',
                   stringText:
                       'يرجى كتابة أي ملاحظة أو إستفسار\n| جزاكم الله خيرًا |'),
               child: Row(

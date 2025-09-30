@@ -7,6 +7,7 @@ extension AdhanUi on AdhanController {
     // تفعيل المذهب الحنفي وإلغاء تفعيل الشافعي - Activate Hanafi madhab and deactivate Shafi'i
     state.isHanafi = value;
     state.box.write(SHAFI, state.isHanafi);
+    state.isLoadingPrayerData.value = true;
     await initializeStoredAdhan(forceUpdate: true);
   }
 
@@ -20,6 +21,7 @@ extension AdhanUi on AdhanController {
     log("After adjustment: ${prayerNameList[index]['adjustment']}");
     state.box.remove(PRAYER_TIME_DATE);
     state.box.remove(PRAYER_TIME);
+    state.isLoadingPrayerData.value = true;
     await initializeStoredAdhan(forceUpdate: true);
   }
 
@@ -27,6 +29,7 @@ extension AdhanUi on AdhanController {
     state.autoCalculationMethod.value = value;
     // sl<NotificationController>().initializeNotification();
     state.box.write(AUTO_CALCULATION, value);
+    state.isLoadingPrayerData.value = true;
     initializeStoredAdhan(forceUpdate: true);
   }
 

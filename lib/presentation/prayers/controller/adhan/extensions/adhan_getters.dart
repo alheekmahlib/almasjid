@@ -2,15 +2,37 @@ part of '../../../prayers.dart';
 
 extension AdhanGetters on AdhanController {
   /// -------- [Getters] ----------
+
+  /// حالة تحميل بيانات الصلاة
+  /// Prayer data loading state
+  RxBool get isLoadingPrayerData => state.isLoadingPrayerData;
+
+  /// التحقق من صحة البيانات الشهرية المخزنة
+  /// Check if monthly cached data is valid
+  bool get isMonthlyDataAvailable {
+    final currentLocation = PrayerCacheManager.getStoredLocation();
+    return currentLocation != null &&
+        MonthlyPrayerCache.isMonthlyDataValid(currentLocation: currentLocation);
+  }
+
+  /// الحصول على إحصائيات التخزين
+  /// Get cache statistics
+  Map<String, dynamic> get cacheStatistics {
+    return {
+      'monthlyDataAvailable': isMonthlyDataAvailable,
+      'dailyDataAvailable': PrayerCacheManager.getCacheStats()['isValid'],
+      'isPrayerTimesInitialized': state.isPrayerTimesInitialized.value,
+      'isLoadingData': state.isLoadingPrayerData.value,
+    };
+  }
+
   // int get adjustment {
   //   if (state.adjustmentIndex.value >= 0 &&
   //       state.adjustmentIndex.value < state.adjustments.length) {
   //     return state.adjustments[state.adjustmentIndex.value].value;
   //   }
   //   return 0;
-  // }
-
-  RxInt get currentPrayer => (state.prayerTimes!.currentPrayer().index - 1).obs;
+  // }  RxInt get currentPrayer => (state.prayerTimes!.currentPrayer().index - 1).obs;
   int get nextPrayer => state.prayerTimes!.nextPrayer().index;
 
   String get getFridayDhuhrName =>
@@ -567,12 +589,12 @@ extension AdhanGetters on AdhanController {
     final sunnah = state.sunnahTimes!;
     int value = 0;
 
-    log('Current time: $when');
-    log('Fajr time: ${prayer!.fajr}');
-    log('lastThirdOfTheNight: ${sunnah.lastThirdOfTheNight}');
-    log('middleOfTheNight: ${sunnah.middleOfTheNight}');
+    // log('Current time: $when');
+    // log('Fajr time: ${prayer!.fajr}');
+    // log('lastThirdOfTheNight: ${sunnah.lastThirdOfTheNight}');
+    // log('middleOfTheNight: ${sunnah.middleOfTheNight}');
 
-    if (when.isBefore(prayer.fajr)) {
+    if (when.isBefore(prayer!.fajr)) {
       log('Time is before Fajr');
 
       // تحديد التاريخ الصحيح لأوقات منتصف الليل والثلث الأخير

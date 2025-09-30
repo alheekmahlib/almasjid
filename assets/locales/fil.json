@@ -322,17 +322,17 @@
     "type": "text",
     "placeholders": {}
   },
-  "about_app": "Ang 'Zad Al-Muslim - Alheekmah Library' ay isang komprehensibong Islamic app na naglalaman ng Quran, tafsir, mga adhkar, mga oras ng panalangin na may mga alert, at qibla finder. Ang inyong araw-araw na kasama upang malapit sa Allah.",
+  "about_app": "Ang 'Aqim' app ay isang simpleng at direktang Islamic application, na dinisenyo nang espesyal upang tulungan kayong magdasal sa tamang oras nang madaling paraan.\nNakatuon ang app sa pagbibigay ng mga pangunahing kasangkapan na kailangan ng bawat Muslim sa kanilang pang-araw-araw na buhay, sa pamamagitan ng madaling gamitin na interactive interface na nagsisiguro ng komportable at malinaw na karanasan.\nSa 'Aqim', hindi na kayo makakalimutan ang anumang dasal, dahil gumagana ang app bilang personal na alarm at tumpak na gabay para sa inyong Qibla, na ginagawa itong perpektong kasangkapan para sa pagpapanatili ng mga pinakamahalagang haligi ng Islam.",
   "@about_app": {
     "type": "text",
     "placeholders": {}
   },
-  "about_app2": "Isa sa mga pangunahing tampok ng programa:",
+  "about_app2": "Mga Katangian ng App:",
   "@about_app2": {
     "type": "text",
     "placeholders": {}
   },
-  "about_app3": "Ang 'Zad Al-Muslim - Alheekmah Library' ay isang kumpletong Islamic application na naglalayong magbigay ng lahat ng pangangailangan ng isang Muslim sa isang lugar sa madaling at kumportableng paraan. Ang app ay nag-feature ng kumpletong Quran na may kakayahang basahin ang mga talata, makinig sa mga ito sa boses ng maraming kilalang mga qari, at basahin ang iba't ibang tafsir para sa mas malalim na pag-unawa sa bawat talata. Kasama din nito ang mga tumpak na oras ng panalangin na may mga matalinong alert upang ipaalala sa inyo ang bawat panalangin, kasama ang qibla direction tool na tumutulong sa inyong magsagawa ng mga pagsasanay sa tamang paraan.\n\nKasama din sa app ang isang komprehensibong koleksyon ng mga pang-araw-araw na adhkar at mga napatunayang dua upang palakasin ang inyong koneksyon sa Allah, pati na rin ang isang mayamang library ng mga tafsir books. Maaari din kayong makinig sa mga surah ng Quran sa boses ng mga kilalang qari at mag-enjoy sa isang natatanging spiritual experience. Ang 'Zad Al-Muslim - Alheekmah Library' ay ang perpektong kasama para sa bawat Muslim na nagsisikap na ayusin ang kanilang religious life at palakasin ang kanilang pananampalataya.",
+  "about_app3": "Mga Oras ng Dasal: Nagpapakita ang app ng mga oras ng dasal nang may mataas na katumpakan batay sa inyong heograpikong lokasyon.\nMga Abiso ng Adhan: Makatanggap ng mga audio alert kapag dumating na ang oras ng bawat dasal upang laging maging handa.\nDireksyon ng Qibla: Isang tumpak at madaling gamitin na kompas upang matukoy ang tamang direksyon ng Qibla mula sa kahit saan sa mundo.\nInteractive Interface: Simpleng at malinaw na disenyo na ginagawang madali ang pag-navigate sa pagitan ng mga feature ng app nang walang anumang komplikasyon.",
   "@about_app3": {
     "type": "text",
     "placeholders": {}
@@ -399,6 +399,41 @@
   },
   "cancel": "Kanselahin",
   "@cancel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "searchForCity": "Maghanap ng Lungsod",
+  "@searchForCity": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectFromMap": "Piliin sa Mapa",
+  "@selectFromMap": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterCityName": "Ilagay ang pangalan ng lungsod...",
+  "@enterCityName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "manualLocationNote": "Para sa mga Huawei device, inirerekomenda ang manual na pagtatakda ng lokasyon para sa pinakamahusay na katumpakan",
+  "@manualLocationNote": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locationSetSuccessfully": "Matagumpay na naitakda ang lokasyon",
+  "@locationSetSuccessfully": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "failedToSetLocation": "Nabigo sa pagtatakda ng lokasyon",
+  "@failedToSetLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "failedToSearchCities": "Nabigo sa paghahanap ng mga lungsod",
+  "@failedToSearchCities": {
     "type": "text",
     "placeholders": {}
   },
