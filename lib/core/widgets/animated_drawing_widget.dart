@@ -24,6 +24,7 @@ class AnimatedDrawingWidget extends StatelessWidget {
   final int? duration;
   final AnimationDirection? animationDirection;
   final Color? customColor;
+  final bool? isRepeat;
 
   const AnimatedDrawingWidget(
       {super.key,
@@ -33,7 +34,8 @@ class AnimatedDrawingWidget extends StatelessWidget {
       this.duration,
       this.animationDirection,
       this.customColor,
-      this.svgPath});
+      this.svgPath,
+      this.isRepeat});
 
   @override
   Widget build(BuildContext context) {
@@ -81,6 +83,7 @@ class AnimatedDrawingWidget extends StatelessWidget {
         // إضافة خصائص مخصصة لـ iOS
         // Add iOS-specific properties
         scaleToViewport: true,
+        repeat: isRepeat ?? false,
         lineAnimation: LineAnimation.oneByOne,
         // تحسين الأداء على iOS
         // Optimize performance on iOS

@@ -546,5 +546,25 @@
   "@saving...": {
     "type": "text",
     "placeholders": {}
+  },
+  "locationSetted": "Goobta la dejiyay",
+  "@locationSetted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tapOnMapToSelectLocation": "Riix khariidadda si aad u doorato goobta",
+  "@tapOnMapToSelectLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseSelectLocation": "Fadlan dooro goob khariidadda ku taal",
+  "@pleaseSelectLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "downloadingPrayerData": "Waa la soo dejinayaa xogta salaadda...",
+  "@downloadingPrayerData": {
+    "type": "text",
+    "placeholders": {}
   }
 }

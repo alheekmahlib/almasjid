@@ -546,5 +546,25 @@
   "@saving...": {
     "type": "text",
     "placeholders": {}
+  },
+  "locationSetted": "Location Set",
+  "@locationSetted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tapOnMapToSelectLocation": "Tap on the map to select location",
+  "@tapOnMapToSelectLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseSelectLocation": "Please select a location on the map",
+  "@pleaseSelectLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "downloadingPrayerData": "Downloading prayer data...",
+  "@downloadingPrayerData": {
+    "type": "text",
+    "placeholders": {}
   }
 }

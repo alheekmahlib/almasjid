@@ -546,5 +546,25 @@
   "@saving...": {
     "type": "text",
     "placeholders": {}
+  },
+  "locationSetted": "Nakatakda ang Lokasyon",
+  "@locationSetted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tapOnMapToSelectLocation": "I-tap ang mapa para pumili ng lokasyon",
+  "@tapOnMapToSelectLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseSelectLocation": "Mangyaring pumili ng lokasyon sa mapa",
+  "@pleaseSelectLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "downloadingPrayerData": "Nagda-download ng prayer data...",
+  "@downloadingPrayerData": {
+    "type": "text",
+    "placeholders": {}
   }
 }

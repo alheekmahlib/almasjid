@@ -546,5 +546,25 @@
   "@saving...": {
     "type": "text",
     "placeholders": {}
+  },
+  "locationSetted": "مقام مقرر کر دیا گیا",
+  "@locationSetted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tapOnMapToSelectLocation": "مقام منتخب کرنے کے لیے نقشے پر ٹیپ کریں",
+  "@tapOnMapToSelectLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseSelectLocation": "برائے کرم نقشے پر کوئی مقام منتخب کریں",
+  "@pleaseSelectLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "downloadingPrayerData": "نماز کا ڈیٹا ڈاؤن لوڈ ہو رہا ہے...",
+  "@downloadingPrayerData": {
+    "type": "text",
+    "placeholders": {}
   }
 }

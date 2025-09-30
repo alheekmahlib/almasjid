@@ -246,7 +246,7 @@ packages:
     description:
       path: "."
       ref: master
-      resolved-ref: c1e1fb61644d3fc99f3c8a1db15f94375f7621e8
+      resolved-ref: fa61269d1c9a8ded4accd82699b0140652c911a7
       url: "https://github.com/alheekmahlib/drawing_animation.git"
     source: git
     version: "1.0.1"

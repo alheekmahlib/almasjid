@@ -546,5 +546,25 @@
   "@saving...": {
     "type": "text",
     "placeholders": {}
+  },
+  "locationSetted": "নির্ধারিত অবস্থান",
+  "@locationSetted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tapOnMapToSelectLocation": "অবস্থান নির্বাচন করতে মানচিত্রে ট্যাপ করুন",
+  "@tapOnMapToSelectLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseSelectLocation": "দয়া করে মানচিত্রে একটি অবস্থান নির্বাচন করুন",
+  "@pleaseSelectLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "downloadingPrayerData": "নামাজের তথ্য ডাউনলোড করা হচ্ছে...",
+  "@downloadingPrayerData": {
+    "type": "text",
+    "placeholders": {}
   }
 }

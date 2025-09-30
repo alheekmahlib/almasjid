@@ -8,14 +8,17 @@ class LoadingWidget extends StatelessWidget {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          const Gap(64),
           const AnimatedDrawingWidget(
             height: 70,
             width: 140,
+            isRepeat: true,
           ),
           const Gap(16),
           Text(
-            'جاري تحميل بيانات الصلاة...'.tr,
+            'downloadingPrayerData'.tr,
             style: TextStyle(
               fontSize: 16,
               fontFamily: 'cairo',

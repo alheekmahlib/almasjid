@@ -561,5 +561,10 @@
   "@pleaseSelectLocation": {
     "type": "text",
     "placeholders": {}
+  },
+  "downloadingPrayerData": "جاري تحميل بيانات الصلاة...",
+  "@downloadingPrayerData": {
+    "type": "text",
+    "placeholders": {}
   }
 }
