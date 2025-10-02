@@ -398,6 +398,8 @@
     "placeholders": {}
   },
   "cancel": "Ka laabo",
+  "teachingPrayer": "Baridda Salaadda",
+  "noData": "Xog lama hayo @x",
   "@cancel": {
     "type": "text",
     "placeholders": {}
@@ -574,6 +576,16 @@
   },
   "noNotifications": "Ma jiraan ogeysiisyo",
   "@noNotifications": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "liatafaqahuu": "fahmaan",
+  "@liatafaqahuu": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "understanding": "inay Diinta kasaan",
+  "@understanding": {
     "type": "text",
     "placeholders": {}
   }

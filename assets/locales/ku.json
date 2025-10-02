@@ -1,0 +1,592 @@
+{
+  "appName": "Aqim - پەیوانگەی ھەیکمە",
+  "@appName": {
+    "description": "appName",
+    "type": "text",
+    "placeholders": {}
+  },
+  "appLang": "زمانی بەرنامە",
+  "@appLang": {
+    "description": "appLang",
+    "type": "text",
+    "placeholders": {}
+  },
+  "lang": "کوردیی سۆرانی",
+  "@lang": {
+    "description": "lang",
+    "type": "text",
+    "placeholders": {}
+  },
+  "Fajr": "بەیانی",
+  "@Fajr": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Dhuhr": "نیوەڕۆ",
+  "@Dhuhr": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Asr": "ئێواران",
+  "@Asr": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Maghrib": "مەغریب",
+  "@Maghrib": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Isha": "ئێشا",
+  "@Isha": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lastThirdOfTheNight": "سێیەکەی کۆتایی شەو",
+  "@lastThirdOfTheNight": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "middleOfTheNight": "نیوەشەو",
+  "@middleOfTheNight": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Sunrise": "خۆرهەڵاتن",
+  "@Sunrise": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Sun": "یەک",
+  "@Sun": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Mon": "دوو",
+  "@Mon": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Tue": "سێ",
+  "@Tue": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Wed": "چوار",
+  "@Wed": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Thu": "پێنج",
+  "@Thu": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Fri": "هەینی",
+  "@Fri": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Sat": "شەمە",
+  "@Sat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "SundayFullName": "یەکشەممە",
+  "@SundayFullName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "MondayFullName": "دووشەممە",
+  "@MondayFullName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "TuesdayFullName": "سێشەممە",
+  "@TuesdayFullName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "WednesdayFullName": "چوارشەممە",
+  "@WednesdayFullName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ThursdayFullName": "پێنجشەممە",
+  "@ThursdayFullName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "FridayFullName": "هەینی",
+  "@FridayFullName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "SaturdayFullName": "شەممە",
+  "@SaturdayFullName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "activeLocationPlease": "تکایە شوێن چالاک بکە بۆ دەستکاریکردنی کاتەکانی نوێژ",
+  "@activeLocationPlease": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "prayerSetting": "ڕێکخستنی نوێژ",
+  "@prayerSetting": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "detectLocation": "دۆزینەوەی شوێن",
+  "@detectLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "adhanSounds": "دەنگی ئازان",
+  "@adhanSounds": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "aqsa": "ئازانی ئەقصا",
+  "@aqsa": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saqqaf": "هاشم السقاف",
+  "@saqqaf": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sarihi": "عبد المجيد السريحي",
+  "@sarihi": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setTimingCalculations": "دەستنیشانکردنی ژماردنی کات",
+  "@setTimingCalculations": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "automaticallyDetermineCalculationMethod": "ڕێگای ژماردن خۆکارانە دیاری بکە",
+  "@automaticallyDetermineCalculationMethod": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "madhab": "مەزهەب",
+  "@madhab": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "shafie": "شافعی، مالیکی و حنبلی",
+  "@shafie": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hanafe": "حنفی",
+  "@hanafe": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "madhabNote": "لە ھەنەفییاندا کاتی عیشا بە نزیکەی ١٢ خولەک درەنگترە لەوەی کە لە نزیکەرییەکاندا ھایە. ھەروا کاتی ئەسەر بە یەک نیو کات یان زیاتر درەنگ دەبێت پێیەوە بە گوڕانکاریی شار و وەستان.",
+  "@madhabNote": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "SeventhOfTheNight": "حەوتەی شەو",
+  "@SeventhOfTheNight": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "usingTheAngle": "بە بەکارهێنانی گوێزا",
+  "@usingTheAngle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "SetPrayerTimes": "کاتەکانی نوێژ ڕێکبخە",
+  "@SetPrayerTimes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notificationOptions": "هەڵبژاردەکانی ئاگادارکردنەوە",
+  "@notificationOptions": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nothing": "هیچ",
+  "@nothing": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "silent": "بێدەنگ",
+  "@silent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bell": "زەنگ",
+  "@bell": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sound": "ئازان",
+  "@sound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "aboutPrayer": "دەربارەی نوێژ",
+  "@aboutPrayer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "timeLeft:": "کاتی ماوە بۆ ئازدەن:",
+  "@timeLeft:": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fromQuran:": "لە قورئانەوە:",
+  "@fromQuran:": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fromSunnah:": "لە سوننەتەوە:",
+  "@fromSunnah:": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "prohibitionTimes": "کاتە هەرامەکانی نوێژ",
+  "@prohibitionTimes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fajrBody": "کەسێک بەیانی بخوێنێت لە پەناەی خوای گەورەدایە",
+  "@fajrBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dhuhrBody": "نوێژ، نوێژ و ئەوانەی کە لە دەستتاندا هەن",
+  "@dhuhrBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "asrBody": "کەسێک دوو نوێژی ساردەکان بخوێنێت دەچێتە باخی",
+  "@asrBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "maghribBody": "بەریاری نییە لە ئیسلامدا بۆ کەسێک کە نوێژ جێی دێڵێت",
+  "@maghribBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ishaBody": "کەسێک عیشا بە جماعەت بخوێنێت وەک نیوە شەوەکە قایم بووە",
+  "@ishaBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "timeForPrayer": "کاتێکی نوێژ",
+  "@timeForPrayer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "openAppReminderTitle": "بیرهێنانی کردنەوەی بەرنامە",
+  "@openAppReminderTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "openAppReminderBody": "تکایە بەرنامەکە بکەرەوە بۆ دیاریکردنی ئاگادارییە نوێکان.",
+  "@openAppReminderBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "prayer": "نوێژ",
+  "@prayer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "langChange": "گۆڕینی زمان",
+  "@langChange": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "themeTitle": "ڕووکار هەڵبژێرە",
+  "@themeTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ourApps": "بەرنامەکانمان",
+  "@ourApps": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "aboutApp": "دەربارەی بەرنامە",
+  "@aboutApp": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "about_app": "بەرنامەی 'Aqim' بەرنامەیەکی ئیسلامی سادە و ڕاستەوخۆیە کە تایبەتمەندی کراوە بۆ یارمەتیدانی تۆ بۆ ئەنجامدانی نوێژەکانت بە کات و بە ئاسانی.\nبەرنامەکە سەرنجی دەدات بە ئامرازە بنەڕەتییەکان کە هەریەک موسوڵمانێک پێویستی پێیان هەیە لە ژیانی ڕۆژانەیدا، لە ڕێگەی ڕووکاریەکی ئاسانی بەکارهێنان و هاوکارییەکەی بۆ ئەوەی ئەزموونێکی ئارام و ڕوون بپارێزێت.\nلەگەڵ 'Aqim'دا، هەرگیز نوێژێکت لە دەست ناچێت، چونکە بەرنامەکە وەک هەوشاندەری کەسی و ڕێنیشاندەری ورد بۆ قیبلە کار دەکات، ئەمەش بۆی دەکات کە بێت ئامرازێکی گونجاو بۆ پاراستنی گرنگترین ڕوکنەکانی ئیسلام.",
+  "@about_app": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "about_app2": "تایبەتمەندییەکانی بەرنامە:",
+  "@about_app2": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "about_app3": "کاتەکانی نوێژ: بەرنامەکە کاتەکانی نوێژ بە وردی نیشان دەدات بە پەیوەندی بە شوێنی جوگرافیایت.\nئاگادارییەکانی ئازدەن: کاتێک کاتی هەر نوێژێک دەگات ئاگادارکردنەوەی دەنگدار وەربگرە بۆ ئامادەبوون هەمیشە.\nئاراستیی قیبلە: کەمپاسێکی ورد و ئاسانی بەکارهێنان بۆ دیاریکردنی ئاراستیی ڕاستی قیبلە لە هەر شوێنێک لە جیهان۔\nڕووکاری هاوکاری: دیزاینێکی سادە و ڕوون کە گەشت کردن لە نێوان تێچووانی بەرنامەکە ئاسانت دەکات بەبێ هێندە قورس بوون.",
+  "@about_app3": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "email": "پەیوەندی بکە لەگەڵمان",
+  "@email": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "share": "بەرنامەکە هاوبەشی بکە",
+  "@share": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "facebook": "لە فەیس بووکەوە شوێن بگرەمان",
+  "@facebook": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "qibla": "قیبلە",
+  "@qibla": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "qiblaDirection": "ئاراستیی قیبلە",
+  "@qiblaDirection": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "compass": "کەمپاس",
+  "@compass": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "map": "نەخشە",
+  "@map": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locationNote": "تکایە خزمەتگوزارییەکانی شوێن چالاک بکە بۆ وەرگرتنی کاتەکانی نوێژ بە وردی پەیوەست بە شوێنی ئێستات.\nتکایە ئاگادار بەوە بە کە هەموو داتاکانی شوێنت بە تەواوی نهێنی دەبن و ناگواستنەوە بۆ هیچ لایەنێکی سێیەم.",
+  "@locationNote": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notificationNote": "تکایە ئاگادارکردنەوەکان چالاک بکە بۆ وەرگرتنی ئاگاداریی کاتەکانی نوێژ و ئاگادارییەکانی تر.",
+  "@notificationNote": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locate": "شوێن دیاری بکە",
+  "@locate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "activation": "چالاککردن",
+  "@activation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ok": "باشە",
+  "@ok": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancel": "هەڵوەشاندنەوە",
+  "teachingPrayer": "فێرکردنی نوێژ",
+  "noData": "داتا نییە بۆ @x",
+  "@cancel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "searchForCity": "گەڕان بۆ شار",
+  "@searchForCity": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectFromMap": "لە نەخشەوە هەڵبژێرە",
+  "@selectFromMap": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterCityName": "ناوی شار بنووسە...",
+  "@enterCityName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "manualLocationNote": "لە ئامێرەکانی Huaweiدا، دیاریکردنی شوێن بە دەستی پێشنیار دەکرێت بۆ باشترین وردی",
+  "@manualLocationNote": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locationSetSuccessfully": "شوێن بە سەرکەوتوویی دیاری کرا",
+  "@locationSetSuccessfully": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "failedToSetLocation": "شکستی هێنا لە دیاریکردنی شوێن",
+  "@failedToSetLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "failedToSearchCities": "گەڕان بۆ شارەکان شکستی هێنا",
+  "@failedToSearchCities": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "What's New": "چی نوێیە",
+  "@What's New": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "What'sNewDetails10": "۞ دیزاینی ڕووکاری بەکارهێنەر نوێ کرایەوە.\n۞ کتێبخانەیەک بۆ کتێبەکانی تفسیر و حدیث زیاد کرا.\n۞ کارایی بەرنامە باشتر کرا.\n۞ تایبەتمەندییە نوێکان زیاد کران.",
+  "@What'sNewDetails10": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "shareImage": "وێنەکە هاوبەشی بکە",
+  "@shareImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sharePrayerTime": "کاتی نوێژ هاوبەشی بکە",
+  "@sharePrayerTime": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nextPrayer": "نوێژی داهاتوو",
+  "@nextPrayer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Muharram": "محەرەم",
+  "@Muharram": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Safar": "سەفەر",
+  "@Safar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Rabi' Al-Awwal": "ڕەبیعەڵئەوەڵ",
+  "@Rabi' Al-Awwal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Rabi' Al-Thani": "ڕەبیعەڵانی",
+  "@Rabi' Al-Thani": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Jumada Al-Awwal": "جومادیەڵئەوەڵ",
+  "@Jumada Al-Awwal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Jumada Al-Thani": "جۆمادێ ثانی",
+  "@Jumada Al-Thani": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Rajab": "ڕەجەب",
+  "@Rajab": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Sha'aban": "شەعبان",
+  "@Sha'aban": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Ramadan": "ڕەمەزان",
+  "@Ramadan": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Shawwal": "شەوال",
+  "@Shawwal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Dhu Al-Qi'dah": "ذیقعدە",
+  "@Dhu Al-Qi'dah": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Dhu Al-Hijjah": "ذیحجە",
+  "@Dhu Al-Hijjah": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "settings": "ڕێکخستنەکان",
+  "@settings": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "prayerDetails": "وردەکارییەکانی نوێژ",
+  "@prayerDetails": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "min": "خولەک",
+  "@min": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "h": "کات",
+  "@h": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saving...": "پاشەکەوتکردن...",
+  "@saving...": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locationSetted": "شوێن دیاری کرا",
+  "@locationSetted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tapOnMapToSelectLocation": "لە نەخشەکەدا پەنجە بنێ بۆ دیاریکردنی شوێن",
+  "@tapOnMapToSelectLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseSelectLocation": "تکایە شوێنێک دیاری بکە لەسەر نەخشەکە",
+  "@pleaseSelectLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "downloadingPrayerData": "دەیتاکانی نوێژ دابەزێنرێن...",
+  "@downloadingPrayerData": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noInternet": "هیچ پەیوەندیەکی ئینتەرنێت نییە",
+  "@noInternet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noNotifications": "ئاگاداری نییە",
+  "@noNotifications": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "liatafaqahuu": "ليتفقهوا",
+  "@liatafaqahuu": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "understanding": "بۆ بەدەستهێنانی تێگەشتن لە ئایین",
+  "@understanding": {
+    "type": "text",
+    "placeholders": {}
+  }
+}

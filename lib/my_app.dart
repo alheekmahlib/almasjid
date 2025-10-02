@@ -48,16 +48,22 @@ class MyApp extends StatelessWidget {
                   AppConstants.languages[1].countryCode),
               theme: themeCtrl.currentThemeData,
               // theme: brownTheme,
-              builder: BotToastInit(),
+              builder: (context, child) {
+                // الحفاظ على BotToast مع ضبط الاتجاه ديناميكياً حسب اللغة
+                final botToast = BotToastInit();
+                final botChild = botToast(context, child);
+                final langCode = Get.locale?.languageCode ??
+                    localizationCtrl.locale.languageCode;
+                const rtlLangs = {'ar', 'ku', 'ur', 'fa'};
+                final isRtl = rtlLangs.contains(langCode);
+                return Directionality(
+                  textDirection: isRtl ? TextDirection.rtl : TextDirection.ltr,
+                  child: botChild,
+                );
+              },
               navigatorObservers: [BotToastNavigatorObserver()],
               getPages: AppRouter.pages,
-              home: Directionality(
-                textDirection: TextDirection.rtl,
-                child: SplashScreen(),
-                // child: WillPopScope(
-                //     onWillPop: () async => false, child: SplashScreen()),
-                // child: const HomePage(),
-              ),
+              home: SplashScreen(),
             ),
           );
         });

@@ -21,7 +21,7 @@ class HijriDateWidget extends StatelessWidget {
         child: Stack(
           alignment: Alignment.center,
           children: [
-            customSvgWithCustomColor(
+            customSvgWithColor(
               'assets/svg/hijri/${EventController.instance.hijriNow.hMonth}.svg',
               color:
                   (svgColor ?? context.theme.canvasColor).withValues(alpha: .4),

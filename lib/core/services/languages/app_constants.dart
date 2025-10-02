@@ -55,5 +55,23 @@ class AppConstants {
       languageCode: 'fil',
       appLang: 'Wika ng Aplikasyon',
     ),
+    LanguageModel(
+      languageName: 'Türkçe',
+      countryCode: '',
+      languageCode: 'tr',
+      appLang: 'Uygulama Dili',
+    ),
+    LanguageModel(
+      languageName: 'کوردیی سۆرانی',
+      countryCode: '',
+      languageCode: 'ku',
+      appLang: 'زمانی بەرنامە',
+    ),
+    LanguageModel(
+      languageName: 'Bahasa Melayu',
+      countryCode: '',
+      languageCode: 'ms',
+      appLang: 'Bahasa Aplikasi',
+    ),
   ];
 }

@@ -1,590 +1,590 @@
 {
-  "appName": "أقِم - مكتبة الحكمة",
+  "appName": "Aqim - Perpustakaan Al-Heekmah",
   "@appName": {
     "description": "appName",
     "type": "text",
     "placeholders": {}
   },
-  "appLang": "لغة التطبيق",
+  "appLang": "Bahasa Aplikasi",
   "@appLang": {
     "description": "appLang",
     "type": "text",
     "placeholders": {}
   },
-  "lang": "العربية",
+  "lang": "Bahasa Melayu",
   "@lang": {
     "description": "lang",
     "type": "text",
     "placeholders": {}
   },
-  "Fajr": "الفجر",
+  "Fajr": "Subuh",
   "@Fajr": {
     "type": "text",
     "placeholders": {}
   },
-  "Dhuhr": "الظهر",
+  "Dhuhr": "Zuhur",
   "@Dhuhr": {
     "type": "text",
     "placeholders": {}
   },
-  "Asr": "العصر",
+  "Asr": "Asar",
   "@Asr": {
     "type": "text",
     "placeholders": {}
   },
-  "Maghrib": "المغرب",
+  "Maghrib": "Maghrib",
   "@Maghrib": {
     "type": "text",
     "placeholders": {}
   },
-  "Isha": "العشاء",
+  "Isha": "Isyak",
   "@Isha": {
     "type": "text",
     "placeholders": {}
   },
-  "lastThirdOfTheNight": "الثلث الأخير",
+  "lastThirdOfTheNight": "Sepertiga Malam Terakhir",
   "@lastThirdOfTheNight": {
     "type": "text",
     "placeholders": {}
   },
-  "middleOfTheNight": "منتصف الليل",
+  "middleOfTheNight": "Tengah Malam",
   "@middleOfTheNight": {
     "type": "text",
     "placeholders": {}
   },
-  "Sunrise": "الشروق",
+  "Sunrise": "Matahari Terbit",
   "@Sunrise": {
     "type": "text",
     "placeholders": {}
   },
-  "Sun": "أح",
+  "Sun": "Ahd",
   "@Sun": {
     "type": "text",
     "placeholders": {}
   },
-  "Mon": "إث",
+  "Mon": "Isn",
   "@Mon": {
     "type": "text",
     "placeholders": {}
   },
-  "Tue": "ثل",
+  "Tue": "Sel",
   "@Tue": {
     "type": "text",
     "placeholders": {}
   },
-  "Wed": "أر",
+  "Wed": "Rab",
   "@Wed": {
     "type": "text",
     "placeholders": {}
   },
-  "Thu": "خم",
+  "Thu": "Kha",
   "@Thu": {
     "type": "text",
     "placeholders": {}
   },
-  "Fri": "جم",
+  "Fri": "Jum",
   "@Fri": {
     "type": "text",
     "placeholders": {}
   },
-  "Sat": "سب",
+  "Sat": "Sab",
   "@Sat": {
     "type": "text",
     "placeholders": {}
   },
-  "SundayFullName": "الأحد",
+  "SundayFullName": "Ahad",
   "@SundayFullName": {
     "type": "text",
     "placeholders": {}
   },
-  "MondayFullName": "الإثنين",
+  "MondayFullName": "Isnin",
   "@MondayFullName": {
     "type": "text",
     "placeholders": {}
   },
-  "TuesdayFullName": "الثلاثاء",
+  "TuesdayFullName": "Selasa",
   "@TuesdayFullName": {
     "type": "text",
     "placeholders": {}
   },
-  "WednesdayFullName": "الأربعاء",
+  "WednesdayFullName": "Rabu",
   "@WednesdayFullName": {
     "type": "text",
     "placeholders": {}
   },
-  "ThursdayFullName": "الخميس",
+  "ThursdayFullName": "Khamis",
   "@ThursdayFullName": {
     "type": "text",
     "placeholders": {}
   },
-  "FridayFullName": "الجمعة",
+  "FridayFullName": "Jumaat",
   "@FridayFullName": {
     "type": "text",
     "placeholders": {}
   },
-  "SaturdayFullName": "السبت",
+  "SaturdayFullName": "Sabtu",
   "@SaturdayFullName": {
     "type": "text",
     "placeholders": {}
   },
-  "activeLocationPlease": "يرجى تفعيل تحديد الموقع لتفعيل أوقات الصلاة",
+  "activeLocationPlease": "Sila aktifkan lokasi untuk mengaktifkan waktu solat",
   "@activeLocationPlease": {
     "type": "text",
     "placeholders": {}
   },
-  "prayerSetting": "إعدادات الصلاة",
+  "prayerSetting": "Tetapan Solat",
   "@prayerSetting": {
     "type": "text",
     "placeholders": {}
   },
-  "detectLocation": "تحديد الموقع",
+  "detectLocation": "Kesan Lokasi",
   "@detectLocation": {
     "type": "text",
     "placeholders": {}
   },
-  "adhanSounds": "أصوات الأذان",
+  "adhanSounds": "Bunyi Azan",
   "@adhanSounds": {
     "type": "text",
     "placeholders": {}
   },
-  "aqsa": "أذان الأقصى",
+  "aqsa": "Azan Al-Aqsa",
   "@aqsa": {
     "type": "text",
     "placeholders": {}
   },
-  "saqqaf": "هاشم السقاف",
+  "saqqaf": "Hashem Al-Saqqaf",
   "@saqqaf": {
     "type": "text",
     "placeholders": {}
   },
-  "sarihi": "عبد المجيد السريحي",
+  "sarihi": "Abdul Majeed Al-Sarihi",
   "@sarihi": {
     "type": "text",
     "placeholders": {}
   },
-  "setTimingCalculations": "ضبط حساب المواقيت",
+  "setTimingCalculations": "Tetapkan Pengiraan Waktu",
   "@setTimingCalculations": {
     "type": "text",
     "placeholders": {}
   },
-  "automaticallyDetermineCalculationMethod": "تحديد طريقة الحساب تلقائيًا",
+  "automaticallyDetermineCalculationMethod": "Tentukkan Kaedah Pengiraan Secara Automatik",
   "@automaticallyDetermineCalculationMethod": {
     "type": "text",
     "placeholders": {}
   },
-  "madhab": "المذهب",
+  "madhab": "Mazhab",
   "@madhab": {
     "type": "text",
     "placeholders": {}
   },
-  "shafie": "شافعي، مالكي وحنبلي",
+  "shafie": "Syafie, Maliki dan Hanbali",
   "@shafie": {
     "type": "text",
     "placeholders": {}
   },
-  "hanafe": "حنفي",
+  "hanafe": "Hanafi",
   "@hanafe": {
     "type": "text",
     "placeholders": {}
   },
-  "madhabNote": "إن أذان العشاء يتأخر عند الحنفية ، عنه لدى الجمهور ، بنحو ثنتي عشرة دقيقة كما في \" الموسوعة الفقهية الكويتية \" (7/175)، وأذان العصر يتأخر عند الحنفية بنصف ساعة وأكثر ، بحسب اختلاف البلدان والفصول.",
+  "madhabNote": "Waktu Isyak bagi mazhab Hanafi lewat sekitar dua belas minit berbanding jumhur (Rujuk Ensiklopedia Fiqh Kuwait 7/175). Waktu Asar juga lewat sekitar setengah jam atau lebih mengikut negara dan musim.",
   "@madhabNote": {
     "type": "text",
     "placeholders": {}
   },
-  "SeventhOfTheNight": "سبع الليل",
+  "SeventhOfTheNight": "Tujuh daripada Malam",
   "@SeventhOfTheNight": {
     "type": "text",
     "placeholders": {}
   },
-  "usingTheAngle": "بإستخدام الزاوية",
+  "usingTheAngle": "Menggunakan Sudut",
   "@usingTheAngle": {
     "type": "text",
     "placeholders": {}
   },
-  "SetPrayerTimes": "ضبط مواقيت الصلاة",
+  "SetPrayerTimes": "Tetapkan Waktu Solat",
   "@SetPrayerTimes": {
     "type": "text",
     "placeholders": {}
   },
-  "notificationOptions": "خيارات الإشعار",
+  "notificationOptions": "Pilihan Pemberitahuan",
   "@notificationOptions": {
     "type": "text",
     "placeholders": {}
   },
-  "nothing": "لا شئ",
+  "nothing": "Tiada",
   "@nothing": {
     "type": "text",
     "placeholders": {}
   },
-  "silent": "صامت",
+  "silent": "Senyap",
   "@silent": {
     "type": "text",
     "placeholders": {}
   },
-  "bell": "نغمة",
+  "bell": "Lonceng",
   "@bell": {
     "type": "text",
     "placeholders": {}
   },
-  "sound": "أذان",
+  "sound": "Azan",
   "@sound": {
     "type": "text",
     "placeholders": {}
   },
-  "aboutPrayer": "عن الصلاة",
+  "aboutPrayer": "Tentang Solat",
   "@aboutPrayer": {
     "type": "text",
     "placeholders": {}
   },
-  "timeLeft:": "الوقت المتبقي للأذان:",
+  "timeLeft:": "Masa berbaki untuk azan:",
   "@timeLeft:": {
     "type": "text",
     "placeholders": {}
   },
-  "fromQuran:": "من القرآن:",
+  "fromQuran:": "Daripada al-Quran:",
   "@fromQuran:": {
     "type": "text",
     "placeholders": {}
   },
-  "fromSunnah:": "من السنة:",
+  "fromSunnah:": "Daripada Sunnah:",
   "@fromSunnah:": {
     "type": "text",
     "placeholders": {}
   },
-  "prohibitionTimes": "وقت منهي الصلاة فيه",
+  "prohibitionTimes": "Waktu Larangan Solat",
   "@prohibitionTimes": {
     "type": "text",
     "placeholders": {}
   },
-  "fajrBody": "من صلى الصبح فهو في ذمة الله",
+  "fajrBody": "Sesiapa yang solat Subuh berada dalam perlindungan Allah",
   "@fajrBody": {
     "type": "text",
     "placeholders": {}
   },
-  "dhuhrBody": "الصلاة الصلاة وما ملكت أيمانكم",
+  "dhuhrBody": "Peliharalah solat dan apa yang dimiliki tangan kanan kamu",
   "@dhuhrBody": {
     "type": "text",
     "placeholders": {}
   },
-  "asrBody": "من صلى البردين دخل الجنة",
+  "asrBody": "Sesiapa yang solat pada dua waktu sejuk akan masuk Syurga",
   "@asrBody": {
     "type": "text",
     "placeholders": {}
   },
-  "maghribBody": "لا حظ في الإسلام لمن ترك الصلاة",
+  "maghribBody": "Tiada bahagian dalam Islam bagi orang yang meninggalkan solat",
   "@maghribBody": {
     "type": "text",
     "placeholders": {}
   },
-  "ishaBody": "من صلى العشاء في جماعة، كان كقيام نصف االليل",
+  "ishaBody": "Sesiapa yang solat Isyak berjemaah seolah-olah berdiri separuh malam",
   "@ishaBody": {
     "type": "text",
     "placeholders": {}
   },
-  "timeForPrayer": "وقت صلاة",
+  "timeForPrayer": "Waktu solat",
   "@timeForPrayer": {
     "type": "text",
     "placeholders": {}
   },
-  "openAppReminderTitle": "تذكير بفتح التطبيق",
+  "openAppReminderTitle": "Peringatan Membuka Aplikasi",
   "@openAppReminderTitle": {
     "type": "text",
     "placeholders": {}
   },
-  "openAppReminderBody": "يرجى فتح التطبيق لجدولة إشعارات الصلاة الجديدة.",
+  "openAppReminderBody": "Sila buka aplikasi untuk menjadualkan pemberitahuan solat yang baharu.",
   "@openAppReminderBody": {
     "type": "text",
     "placeholders": {}
   },
-  "prayer": "الصلاة",
+  "prayer": "Solat",
   "@prayer": {
     "type": "text",
     "placeholders": {}
   },
-  "langChange": "تغيير اللغة",
+  "langChange": "Tukar Bahasa",
   "@langChange": {
     "type": "text",
     "placeholders": {}
   },
-  "themeTitle": "أختر المظهر",
+  "themeTitle": "Pilih Tema",
   "@themeTitle": {
     "type": "text",
     "placeholders": {}
   },
-  "ourApps": "تطبيقاتنا",
+  "ourApps": "Aplikasi Kami",
   "@ourApps": {
     "type": "text",
     "placeholders": {}
   },
-  "aboutApp": "عن التطبيق",
+  "aboutApp": "Tentang Aplikasi",
   "@aboutApp": {
     "type": "text",
     "placeholders": {}
   },
-  "about_app": "تطبيق ‘أَقِم’ هو تطبيق إسلامي بسيط ومباشر، مصمم خصيصًا لمساعدتك على أداء صلاتك في وقتها وبكل سهولة.\nيركز التطبيق على تقديم الأدوات الأساسية التي يحتاجها كل مسلم في حياته اليومية، من خلال واجهة تفاعلية سهلة الاستخدام تضمن لك تجربة مريحة وواضحة.\nمع ‘أَقِم’، لن تفوتك أي صلاة بعد الآن، حيث يعمل التطبيق كمُنبه شخصي وموجه دقيق لقبلتك، مما يجعله الأداة المثالية للحفاظ على أهم أركان الإسلام.",
+  "about_app": "Aplikasi 'Aqim' ialah aplikasi Islam yang ringkas dan terus terang, direka khusus untuk membantu anda menunaikan solat tepat pada waktunya dengan mudah.\nAplikasi ini memberi tumpuan kepada alat asas yang diperlukan setiap Muslim dalam kehidupan harian, melalui antara muka interaktif yang mudah digunakan untuk memastikan pengalaman yang selesa dan jelas.\nDengan 'Aqim', anda tidak akan terlepas solat lagi kerana aplikasi ini berfungsi sebagai penggera peribadi dan panduan kiblat yang tepat, menjadikannya alat yang ideal untuk memelihara rukun Islam yang paling penting.",
   "@about_app": {
     "type": "text",
     "placeholders": {}
   },
-  "about_app2": "مميزات التطبيق:",
+  "about_app2": "Ciri-ciri Aplikasi:",
   "@about_app2": {
     "type": "text",
     "placeholders": {}
   },
-  "about_app3": "أوقات الصلاة: يعرض التطبيق مواقيت الصلاة بدقة عالية بناءً على موقعك الجغرافي.\nإشعارات الأذان: استقبل تنبيهات صوتية عند حلول وقت كل صلاة لتكون على استعداد دائم.\nاتجاه القبلة: بوصلة دقيقة وسهلة الاستخدام لتحديد اتجاه القبلة الصحيح من أي مكان في العالم.\nواجهة تفاعلية: تصميم بسيط وواضح يجعل من السهل التنقل بين مميزات التطبيق دون أي تعقيد.",
+  "about_app3": "Waktu Solat: Aplikasi memaparkan waktu solat dengan ketepatan tinggi berdasarkan lokasi geografi anda.\nPemberitahuan Azan: Terima amaran audio apabila setiap waktu solat tiba supaya anda sentiasa bersedia.\nArah Kiblat: Kompas yang tepat dan mudah digunakan untuk menentukan arah kiblat yang betul dari mana-mana sahaja di dunia.\nAntara Muka Interaktif: Reka bentuk ringkas dan jelas yang memudahkan navigasi antara ciri aplikasi tanpa kerumitan.",
   "@about_app3": {
     "type": "text",
     "placeholders": {}
   },
-  "email": "تواصل معنا",
+  "email": "Hubungi Kami",
   "@email": {
     "type": "text",
     "placeholders": {}
   },
-  "share": "شارك التطبيق",
+  "share": "Kongsi Aplikasi",
   "@share": {
     "type": "text",
     "placeholders": {}
   },
-  "facebook": "تابعنا على فيسبوك",
+  "facebook": "Ikuti Kami di Facebook",
   "@facebook": {
     "type": "text",
     "placeholders": {}
   },
-  "qibla": "القبلة",
+  "qibla": "Kiblat",
   "@qibla": {
     "type": "text",
     "placeholders": {}
   },
-  "qiblaDirection": "اتجاه القبلة",
+  "qiblaDirection": "Arah Kiblat",
   "@qiblaDirection": {
     "type": "text",
     "placeholders": {}
   },
-  "compass": "بوصلة",
+  "compass": "Kompas",
   "@compass": {
     "type": "text",
     "placeholders": {}
   },
-  "map": "خارطة",
+  "map": "Peta",
   "@map": {
     "type": "text",
     "placeholders": {}
   },
-  "locationNote": "يرجى تفعيل خدمة تحديد الموقع لتصلك أوقات الصلاة بدقة بناءً على موقعك الحالي.\nيُرجى العلم أن جميع بيانات موقعك ستبقى سرية تمامًا ولن يتم مشاركتها مع أي طرف ثالث.",
+  "locationNote": "Sila aktifkan perkhidmatan lokasi untuk menerima waktu solat yang tepat berdasarkan lokasi semasa anda.\nHarap maklum, semua data lokasi anda akan kekal sulit sepenuhnya dan tidak akan dikongsi dengan mana-mana pihak ketiga.",
   "@locationNote": {
     "type": "text",
     "placeholders": {}
   },
-  "notificationNote": "يرجى تفعيل الإشعارات ليصلك تنبيهات بأوقات الصلاة والإشعارات الأخرى.",
+  "notificationNote": "Sila aktifkan pemberitahuan untuk menerima peringatan waktu solat dan pemberitahuan lain.",
   "@notificationNote": {
     "type": "text",
     "placeholders": {}
   },
-  "locate": "تحديد الموقع",
+  "locate": "Tetapkan Lokasi",
   "@locate": {
     "type": "text",
     "placeholders": {}
   },
-  "activation": "تفعيل",
+  "activation": "Pengaktifan",
   "@activation": {
     "type": "text",
     "placeholders": {}
   },
-  "ok": "موافق",
+  "ok": "OK",
   "@ok": {
     "type": "text",
     "placeholders": {}
   },
-  "cancel": "إلغاء",
-  "teachingPrayer": "تعليم الصلاة",
-  "noData": "لا توجد بيانات لـ @x",
+  "cancel": "Batal",
+  "teachingPrayer": "Pembelajaran Solat",
+  "noData": "Tiada data untuk @x",
   "@cancel": {
     "type": "text",
     "placeholders": {}
   },
-  "searchForCity": "البحث عن المدينة",
+  "searchForCity": "Cari Bandar",
   "@searchForCity": {
     "type": "text",
     "placeholders": {}
   },
-  "selectFromMap": "تحديد من الخريطة",
+  "selectFromMap": "Pilih dari Peta",
   "@selectFromMap": {
     "type": "text",
     "placeholders": {}
   },
-  "enterCityName": "ادخل اسم المدينة...",
+  "enterCityName": "Masukkan nama bandar...",
   "@enterCityName": {
     "type": "text",
     "placeholders": {}
   },
-  "manualLocationNote": "يُفضل على الأجهزة هواوي تحديد الموقع يدوياً للحصول على أفضل دقة",
+  "manualLocationNote": "Untuk peranti Huawei, tetapan lokasi manual disyorkan untuk ketepatan terbaik",
   "@manualLocationNote": {
     "type": "text",
     "placeholders": {}
   },
-  "locationSetSuccessfully": "تم تحديد الموقع بنجاح",
+  "locationSetSuccessfully": "Lokasi berjaya ditetapkan",
   "@locationSetSuccessfully": {
     "type": "text",
     "placeholders": {}
   },
-  "failedToSetLocation": "فشل في تحديد الموقع",
+  "failedToSetLocation": "Gagal menetapkan lokasi",
   "@failedToSetLocation": {
     "type": "text",
     "placeholders": {}
   },
-  "failedToSearchCities": "فشل في البحث عن المدن",
+  "failedToSearchCities": "Gagal mencari bandar",
   "@failedToSearchCities": {
     "type": "text",
     "placeholders": {}
   },
-  "What's New": "ما الجديد",
+  "What's New": "Apa yang Baharu",
   "@What's New": {
     "type": "text",
     "placeholders": {}
   },
-  "What'sNewDetails10": "۞ تصميم واجهة مستخدم جديدة.\n۞ إضافة مكتبة لكتب التفسير والحديث.\n۞ تحسين أداء التطبيق.\n۞ إضافة ميزات جديدة.",
+  "What'sNewDetails10": "۞ Reka bentuk antara muka pengguna baharu.\n۞ Ditambah perpustakaan untuk buku tafsir dan hadis.\n۞ Penambahbaikan prestasi aplikasi.\n۞ Ciri-ciri baharu ditambah.",
   "@What'sNewDetails10": {
     "type": "text",
     "placeholders": {}
   },
-  "shareImage": "شارك الصورة",
+  "shareImage": "Kongsi Imej",
   "@shareImage": {
     "type": "text",
     "placeholders": {}
   },
-  "sharePrayerTime": "شارك وقت الصلاة",
+  "sharePrayerTime": "Kongsi Waktu Solat",
   "@sharePrayerTime": {
     "type": "text",
     "placeholders": {}
   },
-  "nextPrayer": "الصلاة القادمة",
+  "nextPrayer": "Solat Seterusnya",
   "@nextPrayer": {
     "type": "text",
     "placeholders": {}
   },
-  "Muharram": "محرم",
+  "Muharram": "Muharram",
   "@Muharram": {
     "type": "text",
     "placeholders": {}
   },
-  "Safar": "صفر",
+  "Safar": "Safar",
   "@Safar": {
     "type": "text",
     "placeholders": {}
   },
-  "Rabi' Al-Awwal": "ربيع الاول",
+  "Rabi' Al-Awwal": "Rabi' Al-Awwal",
   "@Rabi' Al-Awwal": {
     "type": "text",
     "placeholders": {}
   },
-  "Rabi' Al-Thani": "ربيع الثاني",
+  "Rabi' Al-Thani": "Rabi' Al-Thani",
   "@Rabi' Al-Thani": {
     "type": "text",
     "placeholders": {}
   },
-  "Jumada Al-Awwal": "جمادى الاول",
+  "Jumada Al-Awwal": "Jumada Al-Awwal",
   "@Jumada Al-Awwal": {
     "type": "text",
     "placeholders": {}
   },
-  "Jumada Al-Thani": "جمادى الآخرة",
+  "Jumada Al-Thani": "Jumada Al-Thani",
   "@Jumada Al-Thani": {
     "type": "text",
     "placeholders": {}
   },
-  "Rajab": "رجب",
+  "Rajab": "Rajab",
   "@Rajab": {
     "type": "text",
     "placeholders": {}
   },
-  "Sha'aban": "شعبان",
+  "Sha'aban": "Sya'aban",
   "@Sha'aban": {
     "type": "text",
     "placeholders": {}
   },
-  "Ramadan": "رمضان",
+  "Ramadan": "Ramadan",
   "@Ramadan": {
     "type": "text",
     "placeholders": {}
   },
-  "Shawwal": "شوال",
+  "Shawwal": "Syawal",
   "@Shawwal": {
     "type": "text",
     "placeholders": {}
   },
-  "Dhu Al-Qi'dah": "ذو القعدة",
+  "Dhu Al-Qi'dah": "Zulkaedah",
   "@Dhu Al-Qi'dah": {
     "type": "text",
     "placeholders": {}
   },
-  "Dhu Al-Hijjah": "ذوالحجة",
+  "Dhu Al-Hijjah": "Zulhijah",
   "@Dhu Al-Hijjah": {
     "type": "text",
     "placeholders": {}
   },
-  "settings": "الإعدادات",
+  "settings": "Tetapan",
   "@settings": {
     "type": "text",
     "placeholders": {}
   },
-  "prayerDetails": "تفاصيل الصلاة",
+  "prayerDetails": "Butiran Solat",
   "@prayerDetails": {
     "type": "text",
     "placeholders": {}
   },
-  "min": "د",
+  "min": "min",
   "@min": {
     "type": "text",
     "placeholders": {}
   },
-  "h": "س",
+  "h": "j",
   "@h": {
     "type": "text",
     "placeholders": {}
   },
-  "saving...": "جاري الحفظ...",
+  "saving...": "Menyimpan...",
   "@saving...": {
     "type": "text",
     "placeholders": {}
   },
-  "locationSetted": "الموقع المحدد",
+  "locationSetted": "Lokasi Ditentukan",
   "@locationSetted": {
     "type": "text",
     "placeholders": {}
   },
-  "tapOnMapToSelectLocation": "اضغط على الخريطة لتحديد الموقع",
+  "tapOnMapToSelectLocation": "Ketuk pada peta untuk memilih lokasi",
   "@tapOnMapToSelectLocation": {
     "type": "text",
     "placeholders": {}
   },
-  "pleaseSelectLocation": "يرجى تحديد موقع على الخريطة",
+  "pleaseSelectLocation": "Sila pilih lokasi pada peta",
   "@pleaseSelectLocation": {
     "type": "text",
     "placeholders": {}
   },
-  "downloadingPrayerData": "جاري تحميل بيانات الصلاة...",
+  "downloadingPrayerData": "Memuat turun data solat...",
   "@downloadingPrayerData": {
     "type": "text",
     "placeholders": {}
   },
-  "noInternet": "لا يوجد اتصال بالإنترنت",
+  "noInternet": "Tiada sambungan internet",
   "@noInternet": {
     "type": "text",
     "placeholders": {}
   },
-  "noNotifications": "لا توجد إشعارات",
+  "noNotifications": "Tiada pemberitahuan",
   "@noNotifications": {
     "type": "text",
     "placeholders": {}
   },
-  "liatafaqahuu": "ليتفقهوا",
+  "liatafaqahuu": "liatafaqahuu",
   "@liatafaqahuu": {
     "type": "text",
     "placeholders": {}
   },
-  "understanding": "to obtain understanding in the religion",
+  "understanding": "untuk memperoleh kefahaman dalam agama",
   "@understanding": {
     "type": "text",
     "placeholders": {}

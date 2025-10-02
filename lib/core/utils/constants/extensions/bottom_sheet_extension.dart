@@ -49,7 +49,8 @@ extension BottomSheetExtension on void {
                     width: 70,
                     height: 4,
                     decoration: BoxDecoration(
-                      color: Theme.of(Get.context!).canvasColor,
+                      color:
+                          Theme.of(Get.context!).colorScheme.primaryContainer,
                       borderRadius: BorderRadius.circular(8),
                     ),
                   )
@@ -82,6 +83,7 @@ extension BottomSheetExtension on void {
                   ),
                 ),
               ),
+              const Gap(32),
             ],
           ),
         ),

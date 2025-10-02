@@ -398,6 +398,8 @@
     "placeholders": {}
   },
   "cancel": "منسوخ",
+  "teachingPrayer": "تعلیمِ نماز",
+  "noData": "@x کے لیے کوئی ڈیٹا موجود نہیں",
   "@cancel": {
     "type": "text",
     "placeholders": {}
@@ -574,6 +576,16 @@
   },
   "noNotifications": "کوئی اطلاعات نہیں",
   "@noNotifications": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "liatafaqahuu": "سمجھیں",
+  "@liatafaqahuu": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "understanding": "کہ دین کی سمجھ حاصل کریں",
+  "@understanding": {
     "type": "text",
     "placeholders": {}
   }

@@ -398,6 +398,8 @@
     "placeholders": {}
   },
   "cancel": "বাতিল",
+  "teachingPrayer": "নামাজ শিক্ষা",
+  "noData": "@x এর জন্য কোনো ডাটা নেই",
   "@cancel": {
     "type": "text",
     "placeholders": {}
@@ -574,6 +576,16 @@
   },
   "noNotifications": "কোনো বিজ্ঞপ্তি নেই",
   "@noNotifications": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "liatafaqahuu": "বুঝুক",
+  "@liatafaqahuu": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "understanding": "ধর্মে জ্ঞানানুশীলন করতে",
+  "@understanding": {
     "type": "text",
     "placeholders": {}
   }

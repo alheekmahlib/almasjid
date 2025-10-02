@@ -66,26 +66,26 @@ class LanguageList extends StatelessWidget {
                           List.generate(AppConstants.languages.length, (index) {
                         final lang = AppConstants.languages[index];
                         return Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
                           child: ButtonWithNewStyle(
                             onTap: () => localCtrl.changeLangOnTap(index),
                             controller: localCtrl,
                             containerHeight: 50,
                             containerWidth: Get.width,
                             checkBoxColor: context.theme.colorScheme.surface,
-                            value: 'appLang'.tr == lang.appLang,
+                            value: 'lang'.tr == lang.languageName,
                             svgPath: null,
                             imagePath: null,
                             child: Center(
                               child: Text(
                                 lang.languageName,
                                 style: TextStyle(
-                                  color: 'appLang'.tr == lang.appLang
+                                  color: 'lang'.tr == lang.languageName
                                       ? context.theme.colorScheme.inversePrimary
                                       : context.theme.colorScheme.inversePrimary
                                           .withValues(alpha: .5),
                                   fontSize: 18,
-                                  fontWeight: 'appLang'.tr == lang.appLang
+                                  fontWeight: 'lang'.tr == lang.languageName
                                       ? FontWeight.bold
                                       : FontWeight.normal,
                                   fontFamily: 'noto',
@@ -95,6 +95,7 @@ class LanguageList extends StatelessWidget {
                           ),
                         );
                       })),
+                  const Gap(8),
                 ],
               ),
             ),

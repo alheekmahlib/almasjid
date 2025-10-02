@@ -398,6 +398,8 @@
     "placeholders": {}
   },
   "cancel": "Cancel",
+  "teachingPrayer": "Teaching Prayer",
+  "noData": "No data for @x",
   "@cancel": {
     "type": "text",
     "placeholders": {}
@@ -574,6 +576,16 @@
   },
   "noNotifications": "No notifications",
   "@noNotifications": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "liatafaqahuu": "comprehend",
+  "@liatafaqahuu": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "understanding": "to obtain understanding in the religion",
+  "@understanding": {
     "type": "text",
     "placeholders": {}
   }

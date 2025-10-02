@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-const rtlLang = ['العربية', 'עברית', 'فارسی', 'اردو', 'کوردی'];
+const rtlLang = ['العربية', 'עברית', 'فارسی', 'اردو', 'کوردیی سۆرانی'];
 
 extension StringExtension on String {
   bool isRtlLanguage() {

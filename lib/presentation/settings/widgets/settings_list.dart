@@ -26,9 +26,9 @@ class SettingsList extends StatelessWidget {
             Column(
               children: [
                 const LanguageList(),
-                const Gap(24),
+                const Gap(8),
                 ThemeChange(),
-                const Gap(24),
+                const Gap(8),
                 Container(
                   margin: const EdgeInsets.symmetric(horizontal: 24.0),
                   padding: const EdgeInsets.all(6.0),

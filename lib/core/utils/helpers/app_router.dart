@@ -5,6 +5,7 @@ import '../../../presentation/home/home_screen.dart';
 import '../../../presentation/ourApp/screen/our_apps_screen.dart';
 import '../../../presentation/prayers/prayers.dart';
 import '../../../presentation/qibla/qibla.dart';
+import '../../../presentation/teaching_prayer/teaching.dart';
 
 class AppRouter {
   static const String homeScreen = '/homeScreen';
@@ -12,6 +13,7 @@ class AppRouter {
   static const String qiblaScreen = '/qiblaScreen';
   static const String ourApps = '/ourApps';
   static const String aboutApp = '/aboutApp';
+  static const String teachingPrayer = '/teachingPrayer';
 
   static List<GetPage> pages = [
     GetPage(
@@ -37,6 +39,11 @@ class AppRouter {
     GetPage(
       name: aboutApp,
       page: () => const AboutApp(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: teachingPrayer,
+      page: () => const TeachingPrayerScreen(),
       transition: Transition.fadeIn,
     ),
   ];

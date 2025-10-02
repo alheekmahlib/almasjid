@@ -398,6 +398,8 @@
     "placeholders": {}
   },
   "cancel": "Kanselahin",
+  "teachingPrayer": "Pagtuturo ng Panalangin",
+  "noData": "Walang datos para sa @x",
   "@cancel": {
     "type": "text",
     "placeholders": {}
@@ -574,6 +576,16 @@
   },
   "noNotifications": "Walang mga notification",
   "@noNotifications": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "liatafaqahuu": "maunawaan",
+  "@liatafaqahuu": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "understanding": "magpakaunawa sa relihiyon",
+  "@understanding": {
     "type": "text",
     "placeholders": {}
   }

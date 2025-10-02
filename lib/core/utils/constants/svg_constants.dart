@@ -18,6 +18,54 @@ class SvgPath {
   /// assets/svg/close_carve.svg
   static const String svgCloseCarve = "assets/svg/close_carve.svg";
 
+  /// Assets for svgHijri1
+  /// assets/svg/hijri/1.svg
+  static const String svgHijri1 = "assets/svg/hijri/1.svg";
+
+  /// Assets for svgHijri10
+  /// assets/svg/hijri/10.svg
+  static const String svgHijri10 = "assets/svg/hijri/10.svg";
+
+  /// Assets for svgHijri11
+  /// assets/svg/hijri/11.svg
+  static const String svgHijri11 = "assets/svg/hijri/11.svg";
+
+  /// Assets for svgHijri12
+  /// assets/svg/hijri/12.svg
+  static const String svgHijri12 = "assets/svg/hijri/12.svg";
+
+  /// Assets for svgHijri2
+  /// assets/svg/hijri/2.svg
+  static const String svgHijri2 = "assets/svg/hijri/2.svg";
+
+  /// Assets for svgHijri3
+  /// assets/svg/hijri/3.svg
+  static const String svgHijri3 = "assets/svg/hijri/3.svg";
+
+  /// Assets for svgHijri4
+  /// assets/svg/hijri/4.svg
+  static const String svgHijri4 = "assets/svg/hijri/4.svg";
+
+  /// Assets for svgHijri5
+  /// assets/svg/hijri/5.svg
+  static const String svgHijri5 = "assets/svg/hijri/5.svg";
+
+  /// Assets for svgHijri6
+  /// assets/svg/hijri/6.svg
+  static const String svgHijri6 = "assets/svg/hijri/6.svg";
+
+  /// Assets for svgHijri7
+  /// assets/svg/hijri/7.svg
+  static const String svgHijri7 = "assets/svg/hijri/7.svg";
+
+  /// Assets for svgHijri8
+  /// assets/svg/hijri/8.svg
+  static const String svgHijri8 = "assets/svg/hijri/8.svg";
+
+  /// Assets for svgHijri9
+  /// assets/svg/hijri/9.svg
+  static const String svgHijri9 = "assets/svg/hijri/9.svg";
+
   /// Assets for svgHomeKaaba
   /// assets/svg/home/kaaba.svg
   static const String svgHomeKaaba = "assets/svg/home/kaaba.svg";
@@ -37,6 +85,15 @@ class SvgPath {
   /// Assets for svgHomeSettings
   /// assets/svg/home/settings.svg
   static const String svgHomeSettings = "assets/svg/home/settings.svg";
+
+  /// Assets for svgHomeTeachingPrayer
+  /// assets/svg/home/teaching_prayer.svg
+  static const String svgHomeTeachingPrayer =
+      "assets/svg/home/teaching_prayer.svg";
+
+  /// Assets for svgLiatafaqahuu
+  /// assets/svg/liatafaqahuu.svg
+  static const String svgLiatafaqahuu = "assets/svg/liatafaqahuu.svg";
 
   /// Assets for svgLogoAqemLogo
   /// assets/svg/logo/aqem_logo.svg
