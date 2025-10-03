@@ -1,4 +1,5 @@
 import 'package:almasjid/core/utils/constants/extensions/bottom_sheet_extension.dart';
+import 'package:almasjid/core/utils/constants/extensions/extensions.dart';
 import 'package:almasjid/core/utils/constants/svg_constants.dart';
 import 'package:almasjid/core/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +31,8 @@ class PrayerNowWidget extends StatelessWidget {
 
                 /// Define the radius.
                 /// If you omit this value, the parent size will be used, if possible.
-                radius: Get.width * .48,
+                radius:
+                    context.customOrientation(Get.width * .48, Get.width * .22),
 
                 /// Gauge value.
                 value: adhanCtrl.getPrayerDayProgress.value,

@@ -71,12 +71,14 @@ class SplashScreen extends StatelessWidget {
                             ],
                           ),
                         ),
-                        s.state.customWidgetIndex.value == 0
-                            ? const Expanded(
-                                flex: 4,
-                                child: AlheekmahAndLoading(),
-                              )
-                            : const SizedBox.shrink(),
+                        GetX<SplashScreenController>(
+                          builder: (s) => s.state.customWidgetIndex.value == 0
+                              ? const Expanded(
+                                  flex: 4,
+                                  child: AlheekmahAndLoading(),
+                                )
+                              : const SizedBox.shrink(),
+                        ),
                       ],
                     ),
                     Align(

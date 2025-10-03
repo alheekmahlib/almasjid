@@ -579,6 +579,21 @@
     "type": "text",
     "placeholders": {}
   },
+  "qiblaDirectionForCity": "শহরের জন্য কিবলার দিক:",
+  "@qiblaDirectionForCity": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "qiblaNoteForDesktop": "এই ফিচারটি শুধুমাত্র মোবাইল ডিভাইসে উপলব্ধ। আপনার বর্তমান অবস্থানের ভিত্তিতে কিবলার দিক দেখতে অনুগ্রহ করে আপনার স্মার্টফোন বা ট্যাবলেট ব্যবহার করুন।",
+  "@qiblaNoteForDesktop": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reminder": "রিমাইন্ডার",
+  "@reminder": {
+    "type": "text",
+    "placeholders": {}
+  },
   "liatafaqahuu": "বুঝুক",
   "@liatafaqahuu": {
     "type": "text",

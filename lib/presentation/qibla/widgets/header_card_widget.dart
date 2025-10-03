@@ -60,7 +60,8 @@ class HeaderCardWidget extends StatelessWidget {
               const Gap(8),
               Expanded(
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 16.0, vertical: 2.0),
                   decoration: BoxDecoration(
                     color:
                         context.theme.colorScheme.surface.withValues(alpha: .5),

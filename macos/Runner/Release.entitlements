@@ -4,5 +4,11 @@
 <dict>
 	<key>com.apple.security.app-sandbox</key>
 	<true/>
+	<!-- Allow the app to access user location while sandboxed -->
+	<key>com.apple.security.personal-information.location</key>
+	<true/>
+	<!-- Optional: allow outbound network connections for geocoding/services in release -->
+	<key>com.apple.security.network.client</key>
+	<true/>
 </dict>
 </plist>

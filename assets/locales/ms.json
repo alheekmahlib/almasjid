@@ -579,6 +579,21 @@
     "type": "text",
     "placeholders": {}
   },
+  "qiblaDirectionForCity": "Arah kiblat untuk bandar:",
+  "@qiblaDirectionForCity": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "qiblaNoteForDesktop": "Ciri ini hanya tersedia pada peranti mudah alih. Sila gunakan telefon pintar atau tablet anda untuk mendapatkan arah kiblat berdasarkan lokasi semasa anda.",
+  "@qiblaNoteForDesktop": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reminder": "Peringatan",
+  "@reminder": {
+    "type": "text",
+    "placeholders": {}
+  },
   "liatafaqahuu": "liatafaqahuu",
   "@liatafaqahuu": {
     "type": "text",

@@ -588,5 +588,20 @@
   "@understanding": {
     "type": "text",
     "placeholders": {}
+  },
+  "qiblaDirectionForCity": "اتجاه القبلة لمدينة:",
+  "@qiblaDirectionForCity": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "qiblaNoteForDesktop": "هذه الميزة متاحة فقط على الأجهزة المحمولة. يرجى استخدام هاتفك الذكي أو جهازك اللوحي للوصول إلى اتجاه القبلة بناءً على موقعك الحالي.",
+  "@qiblaNoteForDesktop": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reminder": "تذكير",
+  "@reminder": {
+    "type": "text",
+    "placeholders": {}
   }
 }

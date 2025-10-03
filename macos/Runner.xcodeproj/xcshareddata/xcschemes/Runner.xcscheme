@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "33CC10EC2044A3C60003C045"
-               BuildableName = "&#x627;&#x654;&#x642;&#x645; - &#x645;&#x643;&#x62a;&#x628;&#x629; &#x627;&#x644;&#x62d;&#x643;&#x645;&#x629;.app"
+               BuildableName = "Aqim.app"
                BlueprintName = "Runner"
                ReferencedContainer = "container:Runner.xcodeproj">
             </BuildableReference>
@@ -31,7 +31,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "33CC10EC2044A3C60003C045"
-            BuildableName = "&#x627;&#x654;&#x642;&#x645; - &#x645;&#x643;&#x62a;&#x628;&#x629; &#x627;&#x644;&#x62d;&#x643;&#x645;&#x629;.app"
+            BuildableName = "Aqim.app"
             BlueprintName = "Runner"
             ReferencedContainer = "container:Runner.xcodeproj">
          </BuildableReference>
@@ -66,7 +66,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "33CC10EC2044A3C60003C045"
-            BuildableName = "&#x627;&#x654;&#x642;&#x645; - &#x645;&#x643;&#x62a;&#x628;&#x629; &#x627;&#x644;&#x62d;&#x643;&#x645;&#x629;.app"
+            BuildableName = "Aqim.app"
             BlueprintName = "Runner"
             ReferencedContainer = "container:Runner.xcodeproj">
          </BuildableReference>
@@ -83,7 +83,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "33CC10EC2044A3C60003C045"
-            BuildableName = "&#x627;&#x654;&#x642;&#x645; - &#x645;&#x643;&#x62a;&#x628;&#x629; &#x627;&#x644;&#x62d;&#x643;&#x645;&#x629;.app"
+            BuildableName = "Aqim.app"
             BlueprintName = "Runner"
             ReferencedContainer = "container:Runner.xcodeproj">
          </BuildableReference>

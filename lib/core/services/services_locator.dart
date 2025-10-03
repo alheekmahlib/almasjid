@@ -76,9 +76,16 @@ class ServicesLocator {
     if (Platform.isIOS || Platform.isAndroid || Platform.isFuchsia) {
       RateAppHelper.rateMyApp.init();
     }
-    TimezoneInfo timezone = await FlutterTimezone.getLocalTimezone();
-    final String timeZoneName = timezone.identifier;
-    tz.initializeTimeZones();
-    tz.setLocalLocation(tz.getLocation(timeZoneName));
+    try {
+      final TimezoneInfo timezone = await FlutterTimezone.getLocalTimezone();
+      final String timeZoneName = timezone.identifier;
+      tz.initializeTimeZones();
+      tz.setLocalLocation(tz.getLocation(timeZoneName));
+    } catch (_) {
+      // Fallback gracefully if plugin not available or throws
+      tz.initializeTimeZones();
+      // tz.local uses platform default when available
+      // No explicit setLocalLocation to avoid crashing on unsupported platforms
+    }
   }
 }

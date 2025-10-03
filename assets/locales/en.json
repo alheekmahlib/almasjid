@@ -579,6 +579,21 @@
     "type": "text",
     "placeholders": {}
   },
+  "qiblaDirectionForCity": "Qibla direction for city:",
+  "@qiblaDirectionForCity": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "qiblaNoteForDesktop": "This feature is only available on mobile devices. Please use your smartphone or tablet to access the Qibla direction based on your current location.",
+  "@qiblaNoteForDesktop": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reminder": "Reminder",
+  "@reminder": {
+    "type": "text",
+    "placeholders": {}
+  },
   "liatafaqahuu": "comprehend",
   "@liatafaqahuu": {
     "type": "text",

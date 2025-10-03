@@ -75,6 +75,7 @@ extension TextSpanExtension on String {
           style = const TextStyle(
             color: Color(0xff0066cc),
             fontFamily: 'cairo',
+            fontSize: 18,
             fontWeight: FontWeight.w600,
           );
           break;
@@ -82,19 +83,23 @@ extension TextSpanExtension on String {
           style = const TextStyle(
             color: Color(0xff7A9E7E),
             fontFamily: 'cairo',
+            fontSize: 18,
             fontStyle: FontStyle.italic,
           );
           break;
         case 'hamesh':
           style = const TextStyle(
             color: Color(0xff666666),
-            fontSize: 12,
+            fontSize: 18,
             fontFamily: 'cairo',
           );
           break;
         default:
-          style =
-              TextStyle(color: Get.context!.theme.colorScheme.inversePrimary);
+          style = TextStyle(
+            color: Get.context!.theme.colorScheme.inversePrimary,
+            fontSize: 18,
+            fontFamily: 'cairo',
+          );
       }
 
       spans.add(TextSpan(
@@ -120,7 +125,8 @@ extension TextSpanExtension on String {
       text: TextSpan(
         children: spans,
         style: TextStyle(
-          fontSize: 16.0,
+          fontSize: 18.0,
+          fontFamily: 'cairo',
           color: Get.context!.theme.colorScheme.inversePrimary,
           height: 1.5,
         ),
@@ -172,26 +178,31 @@ extension TextSpanExtension on String {
           spans.add(TextSpan(
               text: preText,
               style: TextStyle(
-                  color: Get.context!.theme.colorScheme.inversePrimary)));
+                color: Get.context!.theme.colorScheme.inversePrimary,
+                fontSize: 18,
+                fontFamily: 'cairo',
+              )));
         }
 
         TextStyle matchedTextStyle;
         if (isBraceMatch) {
           matchedTextStyle = const TextStyle(
-              color: Color(0xff008000), fontFamily: 'uthmanic2');
+              color: Color(0xff008000), fontSize: 18, fontFamily: 'uthmanic2');
         } else if (isParenthesesMatch) {
-          matchedTextStyle =
-              const TextStyle(color: Color(0xff008000), fontFamily: 'naskh');
+          matchedTextStyle = const TextStyle(
+              color: Color(0xff008000), fontSize: 18, fontFamily: 'naskh');
         } else if (isCustomParenthesesMatch) {
           matchedTextStyle = const TextStyle(
-              color: Color(0xff008000), fontFamily: 'uthmanic2');
+              color: Color(0xff008000), fontSize: 18, fontFamily: 'uthmanic2');
         } else if (isSquareBracketMatch) {
-          matchedTextStyle = const TextStyle(color: Color(0xff7A9E7E));
+          matchedTextStyle = const TextStyle(
+              color: Color(0xff7A9E7E), fontSize: 18, fontFamily: 'cairo');
         } else if (isDashMatch) {
-          matchedTextStyle = const TextStyle(color: Color(0xff7A9E7E));
+          matchedTextStyle = const TextStyle(
+              color: Color(0xff7A9E7E), fontSize: 18, fontFamily: 'cairo');
         } else {
-          matchedTextStyle =
-              const TextStyle(color: Color(0xff7A9E7E), fontFamily: 'cairo');
+          matchedTextStyle = const TextStyle(
+              color: Color(0xff7A9E7E), fontSize: 18, fontFamily: 'cairo');
         }
 
         spans.add(TextSpan(
@@ -206,8 +217,10 @@ extension TextSpanExtension on String {
     if (lastMatchEnd < text.length) {
       spans.add(TextSpan(
           text: text.substring(lastMatchEnd),
-          style:
-              TextStyle(color: Get.context!.theme.colorScheme.inversePrimary)));
+          style: TextStyle(
+              color: Get.context!.theme.colorScheme.inversePrimary,
+              fontSize: 18,
+              fontFamily: 'cairo')));
     }
 
     return spans;

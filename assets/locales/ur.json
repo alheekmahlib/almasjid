@@ -579,6 +579,21 @@
     "type": "text",
     "placeholders": {}
   },
+  "qiblaDirectionForCity": "شہر کے لیے قبلے کی سمت:",
+  "@qiblaDirectionForCity": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "qiblaNoteForDesktop": "یہ خصوصیت صرف موبائل ڈیوائسز پر دستیاب ہے۔ براہ کرم اپنے موجودہ مقام کی بنیاد پر قبلے کی سمت معلوم کرنے کے لیے اپنے اسمارٹ فون یا ٹیبلیٹ کا استعمال کریں۔",
+  "@qiblaNoteForDesktop": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reminder": "یاد دہانی",
+  "@reminder": {
+    "type": "text",
+    "placeholders": {}
+  },
   "liatafaqahuu": "سمجھیں",
   "@liatafaqahuu": {
     "type": "text",

@@ -104,7 +104,8 @@ extension ScheduleDailyExtension on PrayersNotificationsCtrl {
 
       notificationId += 5;
 
-      if ((Platform.isIOS && day >= 10) || (Platform.isAndroid && day >= 30)) {
+      if ((Platform.isIOS || Platform.isMacOS && day >= 10) ||
+          (Platform.isAndroid && day >= 30)) {
         break;
       }
     }

@@ -101,19 +101,22 @@ class ActiveNotificationWidget extends StatelessWidget {
                     ],
                   ),
                 ),
+                const Gap(16),
                 Expanded(
                   child: Container(
+                    width: double.infinity,
+                    alignment: Alignment.center,
                     padding: const EdgeInsets.symmetric(
                         horizontal: 24.0, vertical: 16.0),
                     decoration: BoxDecoration(
                         color: context.theme.colorScheme.surface
                             .withValues(alpha: .2),
-                        borderRadius: BorderRadius.circular(16)),
+                        borderRadius: BorderRadius.circular(8)),
                     child: Text(
                       'notificationNote'.tr,
                       style: TextStyle(
                           fontFamily: 'cairo',
-                          fontSize: 16.sp,
+                          fontSize: 8.sp,
                           height: 1.5,
                           fontWeight: FontWeight.w500,
                           color: context.theme.canvasColor),

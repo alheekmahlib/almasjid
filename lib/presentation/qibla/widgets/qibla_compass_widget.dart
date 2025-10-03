@@ -9,10 +9,12 @@ class QiblaCompassWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<QiblaController>(
       builder: (qiblaCtrl) {
-        if (!qiblaCtrl.locationEnabled.value) {
-          return const Center(child: CircularProgressIndicator.adaptive());
-        }
-        if (!qiblaCtrl.permissionGranted.value) {
+        // السماح بعرض البوصلة إن كان اتجاه القبلة معروفًا (من الموقع المخزن)
+        // حتى لو كانت خدمة/صلاحية الموقع قيد التحديث.
+        final bool hasQibla = qiblaCtrl.qiblaDirection.value != 0.0;
+        if (!hasQibla &&
+            (!qiblaCtrl.locationEnabled.value ||
+                !qiblaCtrl.permissionGranted.value)) {
           return const Center(child: CircularProgressIndicator.adaptive());
         }
         return StreamBuilder<CompassEvent>(

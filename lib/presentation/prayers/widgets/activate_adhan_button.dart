@@ -65,7 +65,7 @@ class ActivateAdhanButton extends StatelessWidget {
                           Icon(
                             notificationOptions[i]['icon'],
                             size: 28,
-                            color: context.theme.colorScheme.primary,
+                            color: context.theme.colorScheme.inversePrimary,
                           ),
                           const Gap(16),
                           Text(
@@ -73,7 +73,7 @@ class ActivateAdhanButton extends StatelessWidget {
                             style: TextStyle(
                               fontFamily: 'cairo',
                               fontSize: 17,
-                              color: context.theme.colorScheme.primary,
+                              color: context.theme.colorScheme.inversePrimary,
                             ),
                           ),
                         ],

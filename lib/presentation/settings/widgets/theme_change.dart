@@ -1,8 +1,10 @@
+import 'package:almasjid/core/utils/constants/extensions/svg_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 
 import '../../../core/utils/constants/lists.dart';
+import '../../../core/utils/constants/svg_constants.dart';
 import '../../controllers/theme_controller.dart';
 import 'button_with_new_style.dart';
 
@@ -50,8 +52,24 @@ class ThemeChange extends StatelessWidget {
                     controller: themeCtrl,
                     containerHeight: 85,
                     value: themeList[index]['name'] == themeCtrl.currentTheme,
-                    svgPath: themeList[index]['svgUrl'],
                     imagePath: null,
+                    svgPath: null,
+                    child: Container(
+                      height: 75,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 12, vertical: 8),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color: index.isOdd
+                            ? context.theme.colorScheme.primary
+                            : context.theme.canvasColor,
+                      ),
+                      child: customSvgWithCustomColor(
+                        SvgPath.svgLogoAqemLogo,
+                        height: 25,
+                        color: context.theme.colorScheme.surface,
+                      ),
+                    ),
                   ),
                 ),
               ),

@@ -170,16 +170,18 @@ class NotifyHelper {
   }
 
   Future<void> requistPermissions() async {
+    // Ensure permission dialog is shown on first run (macOS/iOS)
     await AwesomeNotifications()
         .isNotificationAllowed()
         .then((isAllowed) async {
       if (!isAllowed) {
-        // Get.dialog(
-        //     const Text('please allow us to send you helpfull notifications'));
-        // This is just a basic example. For real apps, you must show some
-        // friendly dialog box before call the request method.
-        // This is very important to not harm the user experience
-        await AwesomeNotifications().requestPermissionToSendNotifications();
+        try {
+          await AwesomeNotifications().requestPermissionToSendNotifications();
+          log('Notification permission requested', name: 'NotifyHelper');
+        } catch (e) {
+          log('Failed to request notification permission: $e',
+              name: 'NotifyHelper');
+        }
       }
     });
   }

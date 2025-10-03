@@ -10,6 +10,7 @@ enum AppTheme { blue, dark }
 class ThemeController extends GetxController {
   static ThemeController get instance =>
       GetInstance().putOrFind(() => ThemeController());
+
   AppTheme? initialTheme;
   ThemeData? initialThemeData;
   final Rx<AppTheme> _currentTheme = AppTheme.blue.obs;

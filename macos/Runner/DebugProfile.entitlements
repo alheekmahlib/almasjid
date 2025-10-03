@@ -8,5 +8,11 @@
 	<true/>
 	<key>com.apple.security.network.server</key>
 	<true/>
+	<!-- Allow the app to access user location while sandboxed -->
+	<key>com.apple.security.personal-information.location</key>
+	<true/>
+	<!-- Optional: allow outbound network connections for geocoding/services in debug -->
+	<key>com.apple.security.network.client</key>
+	<true/>
 </dict>
 </plist>

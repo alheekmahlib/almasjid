@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
-import '/presentation/controllers/theme_controller.dart';
-
 extension SvgExtensionWithColor on Widget {
   Widget customSvgWithColor(String path,
       {double? height, double? width, Color? color}) {
@@ -25,9 +23,7 @@ extension SvgExtension on Widget {
       width: width,
       height: height,
       colorFilter: ColorFilter.mode(
-          ThemeController.instance.isDarkMode
-              ? Colors.white
-              : color ?? Theme.of(Get.context!).primaryColorLight,
+          color ?? Theme.of(Get.context!).primaryColorLight,
           BlendMode.modulate),
     );
   }

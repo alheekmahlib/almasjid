@@ -28,14 +28,18 @@ Future<void> initializeApp() async {
   Future.delayed(const Duration(seconds: 0));
   await GetStorage.init();
   GetStorage().remove(AUDIO_SERVICE_INITIALIZED);
+  // Always initialize services (register controllers, timezone, etc.)
+  await ServicesLocator().init();
+  tz.initializeTimeZones();
+  NotifyHelper.initAwesomeNotifications();
+  NotifyHelper().setNotificationsListeners();
+
+  // Mobile-specific initialization
   if (Platform.isAndroid || Platform.isIOS) {
     await setLocaleIdentifier('en');
-    NotifyHelper.initAwesomeNotifications();
-    await ServicesLocator().init();
-    tz.initializeTimeZones();
     // NotifyHelper.initFlutterLocalNotifications();
-    NotifyHelper().setNotificationsListeners();
-
-    FlutterNativeSplash.remove();
   }
+
+  // Ensure splash is removed on all platforms
+  FlutterNativeSplash.remove();
 }

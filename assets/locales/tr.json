@@ -579,6 +579,21 @@
     "type": "text",
     "placeholders": {}
   },
+  "qiblaDirectionForCity": "Şehir için kıble yönü:",
+  "@qiblaDirectionForCity": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "qiblaNoteForDesktop": "Bu özellik yalnızca mobil cihazlarda kullanılabilir. Lütfen mevcut konumunuza göre kıble yönünü almak için akıllı telefonunuzu veya tabletinizi kullanın.",
+  "@qiblaNoteForDesktop": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reminder": "Hatırlatıcı",
+  "@reminder": {
+    "type": "text",
+    "placeholders": {}
+  },
   "liatafaqahuu": "tefakkuh",
   "@liatafaqahuu": {
     "type": "text",

@@ -32,61 +32,15 @@ class PrayerScreen extends StatelessWidget {
                         const AppBarWidget(),
                         GetBuilder<AdhanController>(
                           id: 'loading_state',
-                          builder: (controller) => controller
-                                  .isLoadingPrayerData.value
-                              ? const LoadingWidget()
-                              : Flexible(
-                                  child: SingleChildScrollView(
-                                    physics: const BouncingScrollPhysics(),
-                                    child: Column(
-                                      children: [
-                                        SizedBox(
-                                          width: context.customOrientation(
-                                              Get.width, Get.width * .45),
-                                          child: SingleChildScrollView(
-                                            child: Column(
-                                              children: [
-                                                const Gap(16),
-                                                PrayerNowWidget(),
-                                                const Gap(8),
-                                                context.hDivider(
-                                                    width: Get.width * .5),
-                                                const Gap(8),
-                                                Row(
-                                                  children: [
-                                                    Expanded(
-                                                      child:
-                                                          updateLocationBuild(
-                                                              context),
-                                                    ),
-                                                    Expanded(
-                                                      child: HijriDateWidget(
-                                                        svgColor: context
-                                                            .theme
-                                                            .colorScheme
-                                                            .surface,
-                                                        horizontalPadding: 24.0,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                const Gap(8),
-                                                horizontalWeekCalendar(context),
-                                                const Gap(8),
-                                                const ProhibitionWidget(),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          width: context.customOrientation(
-                                              Get.width, Get.width * .45),
-                                          child: const PrayerBuild(),
-                                        ),
-                                      ],
+                          builder: (controller) =>
+                              controller.isLoadingPrayerData.value
+                                  ? const LoadingWidget()
+                                  : Flexible(
+                                      child: context.customOrientation(
+                                        portraitBuild(context),
+                                        landscapeBuild(context),
+                                      ),
                                     ),
-                                  ),
-                                ),
                         ),
                       ],
                     ),
@@ -94,6 +48,97 @@ class PrayerScreen extends StatelessWidget {
                 ),
               ),
       ),
+    );
+  }
+
+  Widget portraitBuild(BuildContext context) {
+    return SingleChildScrollView(
+      physics: const BouncingScrollPhysics(),
+      child: Column(
+        children: [
+          SizedBox(
+            width: context.customOrientation(Get.width, Get.width * .45),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  const Gap(16),
+                  PrayerNowWidget(),
+                  const Gap(8),
+                  context.hDivider(width: Get.width * .5),
+                  const Gap(8),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: updateLocationBuild(context),
+                      ),
+                      Expanded(
+                        child: HijriDateWidget(
+                          svgColor: context.theme.colorScheme.surface,
+                          horizontalPadding: 24.0,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const Gap(8),
+                  horizontalWeekCalendar(context),
+                  const Gap(8),
+                  const ProhibitionWidget(),
+                ],
+              ),
+            ),
+          ),
+          SizedBox(
+            width: context.customOrientation(Get.width, Get.width * .45),
+            child: const PrayerBuild(),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget landscapeBuild(BuildContext context) {
+    return Row(
+      children: [
+        Expanded(
+          child: SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              child: Column(
+                children: [
+                  const Gap(16),
+                  horizontalWeekCalendar(context),
+                  const Gap(8),
+                  const PrayerBuild(),
+                ],
+              )),
+        ),
+        Expanded(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Gap(16),
+              PrayerNowWidget(),
+              const Gap(16),
+              context.hDivider(width: Get.width * .5),
+              const Gap(16),
+              Row(
+                children: [
+                  Expanded(
+                    child: updateLocationBuild(context),
+                  ),
+                  Expanded(
+                    child: HijriDateWidget(
+                      svgColor: context.theme.colorScheme.surface,
+                      horizontalPadding: 24.0,
+                    ),
+                  ),
+                ],
+              ),
+              const Gap(8),
+              const ProhibitionWidget(),
+            ],
+          ),
+        ),
+      ],
     );
   }
 
