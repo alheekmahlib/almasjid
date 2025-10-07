@@ -29,18 +29,34 @@ if (keystorePropertiesFile.exists()) {
     keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 }
 
+def googlePlayKeyProperties = new Properties()
+def googlePlayKeyPropertiesFile = rootProject.file('google-play-key.properties')
+if (googlePlayKeyPropertiesFile.exists()) {
+    googlePlayKeyProperties.load(new FileInputStream(googlePlayKeyPropertiesFile))
+}
+
 android {
     namespace = "com.alheekmah.aqimApp"
     compileSdk = 36 // flutter.compileSdkVersion
     ndkVersion = "27.0.12077973" // flutter.ndkVersion
 
     signingConfigs {
-        release {
-            keyAlias 'huawei'
-            keyPassword 'Ha1182009'
-            storeFile file('../huawei-release-key.keystore')
-            storePassword 'Ha1182009'
+        // Huawei AppGallery signing
+        huaweiRelease {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
+            storePassword keystoreProperties['storePassword']
         }
+        
+        // Google Play Store signing
+        googlePlayRelease {
+            keyAlias googlePlayKeyProperties['googlePlayKeyAlias']
+            keyPassword googlePlayKeyProperties['googlePlayKeyPassword']
+            storeFile googlePlayKeyProperties['googlePlayStoreFile'] ? file(googlePlayKeyProperties['googlePlayStoreFile']) : null
+            storePassword googlePlayKeyProperties['googlePlayStorePassword']
+        }
+        
         debug {
             keyAlias 'huawei'
             keyPassword 'Ha1182009'
@@ -81,8 +97,15 @@ android {
 
     buildTypes {
         release {
-            signingConfig signingConfigs.release
+            signingConfig signingConfigs.huaweiRelease
         }
+        
+        googlePlayRelease {
+            signingConfig signingConfigs.googlePlayRelease
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        
         debug {
             signingConfig signingConfigs.debug
         }
