@@ -132,6 +132,7 @@ class AdhanController extends GetxController {
     try {
       // تعيين حالة التحميل إلى true
       state.isLoadingPrayerData.value = true;
+      update(['loading_state']);
       log('Initializing adhan data...', name: 'AdhanController');
 
       // الحصول على الموقع الحالي إذا لم يتم توفيره
@@ -141,6 +142,7 @@ class AdhanController extends GetxController {
       if (currentLocation == null) {
         log('No location available', name: 'AdhanController');
         state.isLoadingPrayerData.value = false;
+        update(['loading_state']);
         return;
       }
 
@@ -182,11 +184,13 @@ class AdhanController extends GetxController {
       } else {
         // إيقاف حالة التحميل إذا لم يكن الموقع نشطاً
         state.isLoadingPrayerData.value = false;
+        update(['loading_state']);
       }
     } catch (e) {
       log('Error initializing adhan: $e', name: 'AdhanController');
       // إيقاف حالة التحميل في حالة الخطأ
       state.isLoadingPrayerData.value = false;
+      update(['loading_state']);
       // في حالة الخطأ، حاول استخدام البيانات المخزنة
       // In case of error, try to use cached data
       await _tryUseCachedData();
@@ -218,6 +222,7 @@ class AdhanController extends GetxController {
 
     // إيقاف حالة التحميل
     state.isLoadingPrayerData.value = false;
+    update(['loading_state']);
 
     // حساب أوقات الصلاة للتاريخ المختار (اليوم الحالي في البداية)
     // Calculate prayer times for selected date (current day initially)
@@ -315,11 +320,12 @@ class AdhanController extends GetxController {
       log('No valid cached data available', name: 'AdhanController');
       // إيقاف حالة التحميل
       state.isLoadingPrayerData.value = false;
-      update(['init_athan']);
+      update(['init_athan', 'loading_state']);
     } catch (e) {
       log('Error in _tryUseCachedData: $e', name: 'AdhanController');
       // إيقاف حالة التحميل في حالة الخطأ أيضا
       state.isLoadingPrayerData.value = false;
+      update(['loading_state']);
     }
   }
 
@@ -347,7 +353,8 @@ class AdhanController extends GetxController {
   /// Update progress bar periodically
   void updateProgressBar() {
     Timer.periodic(const Duration(minutes: 1), (timer) {
-      update(['update_progress', 'CurrentPrayer']);
+      // Refresh progress widgets and lightly rebuild prayer list for visual tweaks
+      update(['update_progress', 'init_athan']);
     });
   }
 
@@ -370,7 +377,7 @@ class AdhanController extends GetxController {
     _lastCurrentPrayerIndex = getCurrentPrayerByDateTime();
 
     // Push a lightweight update for time-dependent widgets
-    update(['update_progress']);
+    update(['update_progress', 'init_athan']);
 
     // Schedule an exact tick at the next prayer change
     _scheduleNextPrayerTick();
@@ -426,6 +433,7 @@ class AdhanController extends GetxController {
   /// Clear cached data and recalculate
   Future<void> clearCacheAndRecalculate() async {
     state.isLoadingPrayerData.value = true;
+    update(['loading_state']);
     state.box.remove(PRAYER_TIME_DATE);
     state.box.remove(PRAYER_TIME);
     await initializeStoredAdhan(forceUpdate: true);

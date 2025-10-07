@@ -372,7 +372,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "locationNote": "Sila aktifkan perkhidmatan lokasi untuk menerima waktu solat yang tepat berdasarkan lokasi semasa anda.\nHarap maklum, semua data lokasi anda akan kekal sulit sepenuhnya dan tidak akan dikongsi dengan mana-mana pihak ketiga.",
+  "locationNote": "Sila aktifkan perkhidmatan lokasi untuk menerima waktu solat yang tepat berdasarkan lokasi semasa anda.\nUntuk memastikan waktu solat dikemas kini secara automatik apabila anda melancong atau berpindah ke lokasi baharu, aplikasi juga memerlukan akses kepada lokasi anda di latar belakang.\nKami memberi jaminan bahawa semua data lokasi anda akan kekal sulit sepenuhnya dan tidak akan dikongsi dengan mana-mana pihak ketiga.",
   "@locationNote": {
     "type": "text",
     "placeholders": {}

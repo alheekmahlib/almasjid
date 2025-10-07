@@ -372,7 +372,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "locationNote": "Mohon aktifkan layanan lokasi untuk mendapatkan waktu shalat yang akurat berdasarkan lokasi Anda saat ini.\nHarap diketahui bahwa semua data lokasi Anda akan tetap rahasia sepenuhnya dan tidak akan dibagikan dengan pihak ketiga mana pun.",
+  "locationNote": "Harap aktifkan layanan lokasi untuk menerima waktu sholat yang akurat berdasarkan lokasi Anda saat ini.\nUntuk memastikan waktu sholat diperbarui secara otomatis saat Anda bepergian atau pindah ke lokasi baru, aplikasi juga memerlukan akses ke lokasi Anda di latar belakang.\nKami menjamin bahwa semua data lokasi Anda akan tetap sepenuhnya pribadi dan tidak akan dibagikan kepada pihak ketiga mana pun.",
   "@locationNote": {
     "type": "text",
     "placeholders": {}

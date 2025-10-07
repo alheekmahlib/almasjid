@@ -372,7 +372,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "locationNote": "Mangyaring i-activate ang serbisyo ng lokasyon upang makatanggap kayo ng mga tumpak na oras ng panalangin batay sa inyong kasalukuyang lokasyon.\nMangyaring malaman na ang lahat ng data ng inyong lokasyon ay mananatiling ganap na pribado at hindi ibabahagi sa anumang third party.",
+  "locationNote": "Pakiaktibo ang mga serbisyo ng lokasyon upang makatanggap ng tumpak na oras ng panalangin batay sa inyong kasalukuyang lokasyon.\nUpang masiguro na ang mga oras ng panalangin ay awtomatikong ma-update kapag naglalakbay kayo o lumipat sa bagong lugar, kailangan din ng app na ma-access ang inyong lokasyon sa background.\nSiguraduhin namin na ang lahat ng inyong data sa lokasyon ay mananatiling ganap na pribado at hindi ibabahagi sa mga third party.",
   "@locationNote": {
     "type": "text",
     "placeholders": {}

@@ -372,7 +372,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "locationNote": "Bulunduğunuz konuma göre doğru namaz vakitlerini almak için lütfen konum servislerini etkinleştirin.\nTüm konum verilerinizin tamamen gizli kalacağını ve üçüncü taraflarla paylaşılmayacağını lütfen unutmayın.",
+  "locationNote": "Bulunduğunuz konuma göre doğru namaz vakitlerini almak için lütfen konum servislerini etkinleştirin.\nSeyahat ettiğinizde veya yeni bir yere taşındığınızda namaz vakitlerinin otomatik olarak güncellenmesini sağlamak için uygulamanın arka planda konumunuza erişmesi de gerekir.\nTüm konum verilerinizin tamamen gizli kalacağını ve üçüncü taraflarla paylaşılmayacağını size garanti ederiz.",
   "@locationNote": {
     "type": "text",
     "placeholders": {}

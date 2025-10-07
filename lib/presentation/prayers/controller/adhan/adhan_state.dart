@@ -8,7 +8,8 @@ class AdhanState {
   final box = GetStorage();
   PrayerTimes? prayerTimes;
   String nextPrayerTime = '';
-  final DateTime now = DateTime.now();
+  // استخدم getter لضمان قراءة الوقت الحالي دائمًا بدل تجميده لحظة إنشاء الحالة
+  DateTime get now => DateTime.now();
   RxString countdownTime = ''.obs;
   SunnahTimes? sunnahTimes;
   // HijriDateConfig hijriDateNow = EventController.instance.hijriNow;

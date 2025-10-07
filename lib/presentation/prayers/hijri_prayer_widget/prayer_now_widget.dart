@@ -20,9 +20,8 @@ class PrayerNowWidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Stack(
         children: [
-          GetBuilder<AdhanController>(
-            id: 'update_progress',
-            builder: (adhanCtrl) {
+          Obx(
+            () {
               int currentPrayer = adhanCtrl.getCurrentPrayerByDateTime();
               return AnimatedRadialGauge(
                 /// The animation duration.
@@ -56,7 +55,6 @@ class PrayerNowWidget extends StatelessWidget {
                     segmentSpacing: 10,
                     cornerRadius: const Radius.circular(8.0),
                   ),
-
                   pointer: GaugePointer.circle(
                     radius: 8,
                     color: context.theme.canvasColor,

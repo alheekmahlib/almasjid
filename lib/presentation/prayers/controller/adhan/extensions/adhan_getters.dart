@@ -74,7 +74,6 @@ extension AdhanGetters on AdhanController {
   }
 
   RxDouble get getTimeLeftPercentage {
-    final now = DateTime.now();
     final Prayer currentPrayer = state.prayerTimes!.currentPrayer();
     final Prayer? nextPrayer;
 
@@ -92,13 +91,14 @@ extension AdhanGetters on AdhanController {
     }
     if (nextPrayerDateTime == null ||
         currentPrayerDateTime == null ||
-        nextPrayerDateTime.isBefore(now)) {
+        nextPrayerDateTime.isBefore(state.now)) {
       return 0.0.obs;
     }
 
     final totalDuration =
         nextPrayerDateTime.difference(currentPrayerDateTime).inMinutes;
-    final elapsedDuration = now.difference(currentPrayerDateTime).inMinutes;
+    final elapsedDuration =
+        state.now.difference(currentPrayerDateTime).inMinutes;
 
     double percentage =
         ((elapsedDuration / totalDuration) * 100).clamp(0, 100).toDouble();
@@ -108,7 +108,6 @@ extension AdhanGetters on AdhanController {
   /// حساب التقدم من صلاة الفجر إلى صلاة العشاء
   /// Calculate progress from Fajr to Isha prayer
   RxDouble get getPrayerDayProgress {
-    final now = DateTime.now(); // استخدام الوقت الحالي الفعلي
     final PrayerTimes? prayerTimes = state.prayerTimes;
 
     if (prayerTimes == null) {
@@ -119,12 +118,12 @@ extension AdhanGetters on AdhanController {
     final DateTime ishaTime = prayerTimes.isha;
 
     // إذا كان الوقت الحالي قبل الفجر، فالتقدم يكون 0
-    if (now.isBefore(fajrTime)) {
+    if (state.now.isBefore(fajrTime)) {
       return 0.0.obs;
     }
 
     // إذا كان الوقت الحالي بعد العشاء، فالتقدم يكون 100%
-    if (now.isAfter(ishaTime)) {
+    if (state.now.isAfter(ishaTime)) {
       return 100.0.obs;
     }
 
@@ -132,7 +131,7 @@ extension AdhanGetters on AdhanController {
     final totalDuration = ishaTime.difference(fajrTime).inMinutes;
 
     // حساب المدة المنقضية من الفجر حتى الآن بالدقائق
-    final elapsedDuration = now.difference(fajrTime).inMinutes;
+    final elapsedDuration = state.now.difference(fajrTime).inMinutes;
 
     // تجنب القسمة على صفر
     if (totalDuration <= 0) {
@@ -231,24 +230,23 @@ extension AdhanGetters on AdhanController {
   /// الحصول على اسم الفترة الحالية للصلاة
   /// Get current prayer period name
   String get getCurrentPrayerPeriodName {
-    final now = DateTime.now();
     final PrayerTimes? prayerTimes = state.prayerTimes;
 
     if (prayerTimes == null) {
       return 'غير محدد';
     }
 
-    if (now.isBefore(prayerTimes.fajr)) {
+    if (state.now.isBefore(prayerTimes.fajr)) {
       return 'قبل الفجر';
-    } else if (now.isBefore(prayerTimes.sunrise)) {
+    } else if (state.now.isBefore(prayerTimes.sunrise)) {
       return 'فترة الفجر';
-    } else if (now.isBefore(prayerTimes.dhuhr)) {
+    } else if (state.now.isBefore(prayerTimes.dhuhr)) {
       return 'فترة الصباح';
-    } else if (now.isBefore(prayerTimes.asr)) {
+    } else if (state.now.isBefore(prayerTimes.asr)) {
       return 'فترة الظهيرة';
-    } else if (now.isBefore(prayerTimes.maghrib)) {
+    } else if (state.now.isBefore(prayerTimes.maghrib)) {
       return 'فترة العصر';
-    } else if (now.isBefore(prayerTimes.isha)) {
+    } else if (state.now.isBefore(prayerTimes.isha)) {
       return 'فترة المغرب';
     } else {
       return 'فترة العشاء';
@@ -256,8 +254,6 @@ extension AdhanGetters on AdhanController {
   }
 
   RxDouble getTimeLeftForPrayerByIndex(int index) {
-    final now = DateTime.now();
-
     if (index < 0 || index >= prayerNameList.length) {
       throw ArgumentError(
           'Index out of range, must be between 0 and ${prayerNameList.length - 1}.');
@@ -269,13 +265,13 @@ extension AdhanGetters on AdhanController {
     // إذا كانت الصلاة المطلوبة قد مرت اليوم، نضيف يوم واحد لحساب الصلاة القادمة
     if (targetPrayerDateTime != null) {
       targetPrayerDateTime = DateTime(
-        now.year,
-        now.month,
-        now.day,
+        state.now.year,
+        state.now.month,
+        state.now.day,
         targetPrayerDateTime.hour,
         targetPrayerDateTime.minute,
       );
-      if (targetPrayerDateTime.isBefore(now)) {
+      if (targetPrayerDateTime.isBefore(state.now)) {
         targetPrayerDateTime =
             targetPrayerDateTime.add(const Duration(days: 1));
       }
@@ -285,7 +281,7 @@ extension AdhanGetters on AdhanController {
       return 0.0.obs;
     }
 
-    final totalDuration = targetPrayerDateTime.difference(now).inMinutes;
+    final totalDuration = targetPrayerDateTime.difference(state.now).inMinutes;
     final fullDayDuration = const Duration(days: 1).inMinutes;
 
     // حساب النسبة المئوية المتبقية من 0 إلى 100 (كلما قل الوقت المتبقي زادت النسبة المئوية)
@@ -342,8 +338,6 @@ extension AdhanGetters on AdhanController {
   }
 
   Rx<Duration> getDurationLeftForPrayerByIndex(int index) {
-    final now = DateTime.now();
-
     if (index < 0 || index >= prayerNameList.length) {
       throw ArgumentError(
           'Index out of range, must be between 0 and ${prayerNameList.length - 1}.');
@@ -355,13 +349,13 @@ extension AdhanGetters on AdhanController {
     // إذا كانت الصلاة المطلوبة قد مرت اليوم، نضيف يوم واحد لحساب الصلاة القادمة
     if (targetPrayerDateTime != null) {
       targetPrayerDateTime = DateTime(
-        now.year,
-        now.month,
-        now.day,
+        state.now.year,
+        state.now.month,
+        state.now.day,
         targetPrayerDateTime.hour,
         targetPrayerDateTime.minute,
       );
-      if (targetPrayerDateTime.isBefore(now)) {
+      if (targetPrayerDateTime.isBefore(state.now)) {
         targetPrayerDateTime =
             targetPrayerDateTime.add(const Duration(days: 1));
       }
@@ -371,12 +365,11 @@ extension AdhanGetters on AdhanController {
       return Duration.zero.obs;
     }
 
-    final durationLeft = targetPrayerDateTime.difference(now);
+    final durationLeft = targetPrayerDateTime.difference(state.now);
     return durationLeft.obs;
   }
 
   Duration get getTimeLeftForNextPrayer {
-    final now = DateTime.now();
     final Prayer currentPrayer = state.prayerTimes!.currentPrayer();
     final Prayer? nextPrayer;
 
@@ -389,19 +382,18 @@ extension AdhanGetters on AdhanController {
     if (nextPrayer == Prayer.fajr && currentPrayer == Prayer.isha) {
       nextPrayerDateTime = nextPrayerDateTime?.add(const Duration(days: 1));
     }
-    if (nextPrayerDateTime == null || nextPrayerDateTime.isBefore(now)) {
+    if (nextPrayerDateTime == null || nextPrayerDateTime.isBefore(state.now)) {
       return Duration.zero;
     }
-    return nextPrayerDateTime.difference(now);
+    return nextPrayerDateTime.difference(state.now);
   }
 
   DateTime get getTimeLeftForHomeWidgetNextPrayer {
-    final now = DateTime.now();
     final Prayer nextPrayer = state.prayerTimes!.nextPrayer();
     final DateTime? nextPrayerDateTime =
         state.prayerTimes!.timeForPrayer(nextPrayer);
-    if (nextPrayerDateTime == null || nextPrayerDateTime.isBefore(now)) {
-      return now.add(const Duration(hours: 1));
+    if (nextPrayerDateTime == null || nextPrayerDateTime.isBefore(state.now)) {
+      return state.now.add(const Duration(hours: 1));
     }
     return nextPrayerDateTime;
   }
@@ -584,17 +576,16 @@ extension AdhanGetters on AdhanController {
   int get currentPrayerIndex => getCurrentPrayerByDateTime();
 
   int getCurrentPrayerByDateTime() {
-    final when = state.now;
     final prayer = state.prayerTimes;
     final sunnah = state.sunnahTimes!;
     int value = 0;
 
-    // log('Current time: $when');
+    // log('Current time: ${state.now}');
     // log('Fajr time: ${prayer!.fajr}');
     // log('lastThirdOfTheNight: ${sunnah.lastThirdOfTheNight}');
     // log('middleOfTheNight: ${sunnah.middleOfTheNight}');
 
-    if (when.isBefore(prayer!.fajr)) {
+    if (state.now.isBefore(prayer!.fajr)) {
       log('Time is before Fajr');
 
       // تحديد التاريخ الصحيح لأوقات منتصف الليل والثلث الأخير
@@ -605,9 +596,9 @@ extension AdhanGetters on AdhanController {
       if (sunnah.middleOfTheNight.hour >= 18) {
         // منتصف الليل في اليوم السابق
         adjustedMiddleOfNight = DateTime(
-          when.year,
-          when.month,
-          when.day - 1,
+          state.now.year,
+          state.now.month,
+          state.now.day - 1,
           sunnah.middleOfTheNight.hour,
           sunnah.middleOfTheNight.minute,
           sunnah.middleOfTheNight.second,
@@ -615,9 +606,9 @@ extension AdhanGetters on AdhanController {
       } else {
         // منتصف الليل في نفس اليوم
         adjustedMiddleOfNight = DateTime(
-          when.year,
-          when.month,
-          when.day,
+          state.now.year,
+          state.now.month,
+          state.now.day,
           sunnah.middleOfTheNight.hour,
           sunnah.middleOfTheNight.minute,
           sunnah.middleOfTheNight.second,
@@ -628,9 +619,9 @@ extension AdhanGetters on AdhanController {
       if (sunnah.lastThirdOfTheNight.hour >= 18) {
         // الثلث الأخير في اليوم السابق
         adjustedLastThirdOfNight = DateTime(
-          when.year,
-          when.month,
-          when.day - 1,
+          state.now.year,
+          state.now.month,
+          state.now.day - 1,
           sunnah.lastThirdOfTheNight.hour,
           sunnah.lastThirdOfTheNight.minute,
           sunnah.lastThirdOfTheNight.second,
@@ -638,9 +629,9 @@ extension AdhanGetters on AdhanController {
       } else {
         // الثلث الأخير في نفس اليوم
         adjustedLastThirdOfNight = DateTime(
-          when.year,
-          when.month,
-          when.day,
+          state.now.year,
+          state.now.month,
+          state.now.day,
           sunnah.lastThirdOfTheNight.hour,
           sunnah.lastThirdOfTheNight.minute,
           sunnah.lastThirdOfTheNight.second,
@@ -651,10 +642,10 @@ extension AdhanGetters on AdhanController {
       log('Adjusted lastThirdOfTheNight: $adjustedLastThirdOfNight');
 
       // إذا كان الوقت بعد الثلث الأخير من الليل وقبل الفجر، نبقى في فترة الثلث الأخير
-      if (when.isAfter(adjustedLastThirdOfNight)) {
+      if (state.now.isAfter(adjustedLastThirdOfNight)) {
         log('Time is after lastThirdOfTheNight - returning 7');
         value = 7; // lastQuarterOfNight
-      } else if (when.isAfter(adjustedMiddleOfNight)) {
+      } else if (state.now.isAfter(adjustedMiddleOfNight)) {
         log('Time is after middleOfTheNight - returning 7 (LastThird)');
         value =
             7; // lastQuarterOfNight - بعد منتصف الليل مباشرة ننتقل للثلث الأخير
@@ -662,19 +653,19 @@ extension AdhanGetters on AdhanController {
         log('Time is before middleOfTheNight - returning 6');
         value = 6; // midnightTime (فترة ما قبل منتصف الليل)
       }
-    } else if (when.isBefore(prayer.sunrise)) {
+    } else if (state.now.isBefore(prayer.sunrise)) {
       value = 1; // sunrise
-    } else if (when.isBefore(prayer.dhuhr)) {
+    } else if (state.now.isBefore(prayer.dhuhr)) {
       value = 2; // dhuhr
-    } else if (when.isBefore(prayer.asr)) {
+    } else if (state.now.isBefore(prayer.asr)) {
       value = 3; // asr
-    } else if (when.isBefore(prayer.maghrib)) {
+    } else if (state.now.isBefore(prayer.maghrib)) {
       value = 4; //maghrib
-    } else if (when.isBefore(prayer.isha)) {
+    } else if (state.now.isBefore(prayer.isha)) {
       value = 5; // isha
-    } else if (when.isBefore(sunnah.middleOfTheNight)) {
+    } else if (state.now.isBefore(sunnah.middleOfTheNight)) {
       value = 6; // midnightTime
-    } else if (when.isBefore(sunnah.lastThirdOfTheNight)) {
+    } else if (state.now.isBefore(sunnah.lastThirdOfTheNight)) {
       value = 7; // lastQuarterOfNight
     } else {
       // إذا كان الوقت بعد الثلث الأخير من الليل، نبقى في فترة الثلث الأخير حتى الفجر

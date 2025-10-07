@@ -372,7 +372,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "locationNote": "Por favor, active el servicio de ubicación para recibir horarios de oración precisos basados en su ubicación actual.\nTenga en cuenta que todos los datos de su ubicación permanecerán completamente confidenciales y no se compartirán con terceros.",
+  "locationNote": "Por favor activa los servicios de ubicación para recibir horarios de oración precisos según tu ubicación actual.\nPara asegurar que los horarios de oración se actualicen automáticamente cuando viajes o te mudes a un nuevo lugar, la app también necesita acceso a tu ubicación en segundo plano.\nTe aseguramos que todos tus datos de ubicación permanecerán completamente privados y no se compartirán con terceros.",
   "@locationNote": {
     "type": "text",
     "placeholders": {}

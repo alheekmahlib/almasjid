@@ -372,7 +372,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "locationNote": "Please enable location services to receive accurate prayer times based on your current location.\nPlease note that all your location data will remain completely confidential and will not be shared with any third party.",
+  "locationNote": "Please enable location services to receive accurate prayer times based on your current location.\nTo ensure prayer times are automatically updated when you travel or move to a new location, the app also needs access to your location in the background.\nWe assure you that all your location data will remain completely private and will not be shared with any third parties.",
   "@locationNote": {
     "type": "text",
     "placeholders": {}

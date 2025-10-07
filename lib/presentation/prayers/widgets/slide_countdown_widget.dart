@@ -33,6 +33,7 @@ class SlideCountdownWidget extends StatelessWidget {
         shouldShowDays: (_) => false,
         onDone: () => Get.forceAppUpdate(),
         slideDirection: SlideDirection.up,
+        countUpAtDuration: true,
         duration: duration ?? adhanCtrl.getTimeLeftForNextPrayer,
         separatorStyle: TextStyle(
           color: color ?? Colors.white,

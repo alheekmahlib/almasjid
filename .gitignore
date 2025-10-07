@@ -43,3 +43,42 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# AppGallery upload cert output
+/build/appgallery/
+
+# Security - Keystore files and certificates
+*.jks
+*.keystore
+*.p12
+*.pem
+*key.properties
+*-key.properties
+
+# Android keystore files (specific)
+android/*.jks
+android/*.keystore
+android/*.pem
+android/key.properties
+android/*-key.properties
+android/upload-keystore.jks
+android/google-play-keystore.jks
+android/huawei-release-key.keystore
+android/upload_certificate.pem
+android/google-play-key.properties
+android/upload-key.properties
+
+# iOS certificates and provisioning profiles
+ios/*.p12
+ios/*.mobileprovision
+ios/*.cer
+ios/*.certSigningRequest
+
+# Sensitive configuration files
+local.properties
+android/local.properties
+android/key.properties
+
+# Build scripts (optional - remove this section if you want to track them)
+build-play-store.sh
+quick-build-playstore.sh

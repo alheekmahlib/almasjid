@@ -33,7 +33,7 @@ class PrayerScreen extends StatelessWidget {
                         GetBuilder<AdhanController>(
                           id: 'loading_state',
                           builder: (controller) =>
-                              controller.isLoadingPrayerData.value
+                              controller.state.isLoadingPrayerData.value
                                   ? const LoadingWidget()
                                   : Flexible(
                                       child: context.customOrientation(
