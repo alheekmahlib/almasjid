@@ -55,7 +55,7 @@ class TeachingPrayerScreen extends StatelessWidget {
                           alignment: Alignment.center,
                           children: [
                             customSvgWithColor(
-                              height: 200,
+                              height: 180.h,
                               SvgPath.svgHomeTeachingPrayer,
                               color: context.theme.colorScheme.surface
                                   .withValues(alpha: .1),
@@ -63,7 +63,7 @@ class TeachingPrayerScreen extends StatelessWidget {
                             Column(
                               children: [
                                 customSvgWithColor(
-                                  height: 70,
+                                  height: 60.h,
                                   SvgPath.svgLiatafaqahuu,
                                   color: context.theme.colorScheme.surface,
                                 ),
@@ -75,7 +75,7 @@ class TeachingPrayerScreen extends StatelessWidget {
                                         .withValues(alpha: .9),
                                     fontWeight: FontWeight.w900,
                                     fontFamily: 'cairo',
-                                    fontSize: 14,
+                                    fontSize: 13.sp,
                                   ),
                                   textAlign: TextAlign.center,
                                 ),

@@ -27,7 +27,7 @@ class PickCalculationMethod extends StatelessWidget {
                                     color: context
                                         .theme.colorScheme.inversePrimary
                                         .withValues(alpha: .7),
-                                    fontSize: 16,
+                                    fontSize: 16.sp,
                                     fontFamily: 'cairo'),
                               ),
                               onTap: () {
@@ -44,9 +44,8 @@ class PickCalculationMethod extends StatelessWidget {
                 enabled: true,
                 label: adhanCtrl.state.selectedCountry.value,
                 child: Container(
-                  height: 50,
+                  height: 37.h,
                   width: Get.width,
-                  margin: const EdgeInsets.symmetric(horizontal: 8.0),
                   padding: const EdgeInsets.symmetric(
                       vertical: 8.0, horizontal: 16.0),
                   decoration: BoxDecoration(
@@ -62,7 +61,7 @@ class PickCalculationMethod extends StatelessWidget {
                             style: TextStyle(
                                 color: context.theme.colorScheme.inversePrimary
                                     .withValues(alpha: .7),
-                                fontSize: 14,
+                                fontSize: 14.sp,
                                 fontWeight: FontWeight.bold,
                                 fontFamily: 'cairo'),
                           )),

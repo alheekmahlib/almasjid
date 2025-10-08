@@ -25,7 +25,7 @@ class HijriDateWidget extends StatelessWidget {
               'assets/svg/hijri/${EventController.instance.hijriNow.hMonth}.svg',
               color:
                   (svgColor ?? context.theme.canvasColor).withValues(alpha: .4),
-              height: 48,
+              height: 48.h,
             ),
             Column(
               children: [
@@ -34,7 +34,7 @@ class HijriDateWidget extends StatelessWidget {
                       .toString()
                       .convertNumbers(),
                   style: TextStyle(
-                    fontSize: 28,
+                    fontSize: 24.sp,
                     fontFamily: 'cairo',
                     fontWeight: FontWeight.w700,
                     color:
@@ -46,7 +46,7 @@ class HijriDateWidget extends StatelessWidget {
                   '${EventController.instance.hijriNow.getDayName()}FullName'
                       .tr,
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: 18.sp,
                     fontFamily: 'cairo',
                     fontWeight: FontWeight.w700,
                     color:

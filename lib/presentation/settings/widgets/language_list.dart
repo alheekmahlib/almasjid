@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 
@@ -25,7 +26,7 @@ class LanguageList extends StatelessWidget {
                   fontFamily: 'cairo',
                   fontStyle: FontStyle.italic,
                   fontWeight: FontWeight.bold,
-                  fontSize: 16),
+                  fontSize: 14.sp),
             ),
             const Gap(4),
             Container(
@@ -52,9 +53,12 @@ class LanguageList extends StatelessWidget {
                     return Text(
                       SettingsController.instance.languageName.value,
                       style: TextStyle(
+                        fontSize: 18.sp,
+                        color: context.theme.colorScheme.inversePrimary
+                            .withValues(alpha: .6),
+                        fontWeight: FontWeight.bold,
                         fontFamily: 'cairo',
-                        fontSize: 18,
-                        color: context.theme.hintColor,
+                        height: 1.7,
                       ),
                     );
                   }),
@@ -70,7 +74,7 @@ class LanguageList extends StatelessWidget {
                           child: ButtonWithNewStyle(
                             onTap: () => localCtrl.changeLangOnTap(index),
                             controller: localCtrl,
-                            containerHeight: 50,
+                            containerHeight: 37.h,
                             containerWidth: Get.width,
                             checkBoxColor: context.theme.colorScheme.surface,
                             value: 'lang'.tr == lang.languageName,
@@ -84,7 +88,7 @@ class LanguageList extends StatelessWidget {
                                       ? context.theme.colorScheme.inversePrimary
                                       : context.theme.colorScheme.inversePrimary
                                           .withValues(alpha: .5),
-                                  fontSize: 18,
+                                  fontSize: 16.sp,
                                   fontWeight: 'lang'.tr == lang.languageName
                                       ? FontWeight.bold
                                       : FontWeight.normal,

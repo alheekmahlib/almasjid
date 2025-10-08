@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get_utils/get_utils.dart';
@@ -37,8 +38,9 @@ class OurAppsBuild extends StatelessWidget {
                 return ContainerButtonWidget(
                   onPressed: () =>
                       ourApps.launchURL(context, index, apps[index]),
-                  height: 70,
+                  height: 55.h,
                   horizontalMargin: 32.0,
+                  verticalPadding: 0.0,
                   backgroundColor:
                       Theme.of(context).colorScheme.primaryContainer,
                   shapeColor:
@@ -49,35 +51,39 @@ class OurAppsBuild extends StatelessWidget {
                     children: [
                       SvgPicture.network(
                         apps[index].appLogo,
-                        height: 45,
-                        width: 45,
+                        height: 40.h,
+                        width: 40.w,
                       ),
                       const Gap(24.0),
                       context.vDivider(height: 40.0),
                       Expanded(
                         child: Column(
+                          mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
                               apps[index].appTitle,
                               style: TextStyle(
-                                  color:
-                                      context.theme.colorScheme.inversePrimary,
-                                  fontSize: 13,
-                                  fontFamily: 'cairo',
-                                  fontWeight: FontWeight.bold),
+                                color: context.theme.colorScheme.inversePrimary,
+                                fontSize: 13.sp,
+                                height: 1.7,
+                                fontFamily: 'cairo',
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                             const Gap(8.0),
-                            Expanded(
-                              child: Text(
-                                apps[index].body,
-                                style: TextStyle(
-                                    color: context.theme.colorScheme.surface
-                                        .withValues(alpha: .7),
-                                    fontSize: 11,
-                                    fontFamily: 'cairo',
-                                    fontWeight: FontWeight.bold),
+                            Text(
+                              apps[index].body,
+                              style: TextStyle(
+                                color: context.theme.colorScheme.surface
+                                    .withValues(alpha: .7),
+                                fontSize: 11.sp,
+                                height: 1.7,
+                                fontFamily: 'cairo',
+                                fontWeight: FontWeight.bold,
                               ),
+                              overflow: TextOverflow.ellipsis,
                             ),
                           ],
                         ),

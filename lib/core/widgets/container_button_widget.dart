@@ -1,6 +1,7 @@
 import 'package:almasjid/core/utils/constants/extensions/alignment_rotated_extension.dart';
 import 'package:almasjid/core/utils/constants/svg_constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/utils.dart';
 
@@ -188,7 +189,7 @@ class ContainerButtonWidget extends StatelessWidget {
                                   : Text(
                                       title!,
                                       style: TextStyle(
-                                        fontSize: fontSize ?? 16,
+                                        fontSize: (fontSize ?? 16).sp,
                                         color: titleColor ?? Colors.white,
                                         fontWeight: FontWeight.bold,
                                         fontFamily: 'cairo',

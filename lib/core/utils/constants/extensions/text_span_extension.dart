@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 // تحسينات لمعالجة النصوص العربية مع أكواد HTML والتشكيل
@@ -125,7 +126,7 @@ extension TextSpanExtension on String {
       text: TextSpan(
         children: spans,
         style: TextStyle(
-          fontSize: 18.0,
+          fontSize: 18.0.sp,
           fontFamily: 'cairo',
           color: Get.context!.theme.colorScheme.inversePrimary,
           height: 1.5,
@@ -179,30 +180,42 @@ extension TextSpanExtension on String {
               text: preText,
               style: TextStyle(
                 color: Get.context!.theme.colorScheme.inversePrimary,
-                fontSize: 18,
+                fontSize: 18.sp,
                 fontFamily: 'cairo',
               )));
         }
 
         TextStyle matchedTextStyle;
         if (isBraceMatch) {
-          matchedTextStyle = const TextStyle(
-              color: Color(0xff008000), fontSize: 18, fontFamily: 'uthmanic2');
+          matchedTextStyle = TextStyle(
+              color: const Color(0xff008000),
+              fontSize: 18.sp,
+              fontFamily: 'uthmanic2');
         } else if (isParenthesesMatch) {
-          matchedTextStyle = const TextStyle(
-              color: Color(0xff008000), fontSize: 18, fontFamily: 'naskh');
+          matchedTextStyle = TextStyle(
+              color: const Color(0xff008000),
+              fontSize: 18.sp,
+              fontFamily: 'naskh');
         } else if (isCustomParenthesesMatch) {
-          matchedTextStyle = const TextStyle(
-              color: Color(0xff008000), fontSize: 18, fontFamily: 'uthmanic2');
+          matchedTextStyle = TextStyle(
+              color: const Color(0xff008000),
+              fontSize: 18.sp,
+              fontFamily: 'uthmanic2');
         } else if (isSquareBracketMatch) {
-          matchedTextStyle = const TextStyle(
-              color: Color(0xff7A9E7E), fontSize: 18, fontFamily: 'cairo');
+          matchedTextStyle = TextStyle(
+              color: const Color(0xff7A9E7E),
+              fontSize: 18.sp,
+              fontFamily: 'cairo');
         } else if (isDashMatch) {
-          matchedTextStyle = const TextStyle(
-              color: Color(0xff7A9E7E), fontSize: 18, fontFamily: 'cairo');
+          matchedTextStyle = TextStyle(
+              color: const Color(0xff7A9E7E),
+              fontSize: 18.sp,
+              fontFamily: 'cairo');
         } else {
-          matchedTextStyle = const TextStyle(
-              color: Color(0xff7A9E7E), fontSize: 18, fontFamily: 'cairo');
+          matchedTextStyle = TextStyle(
+              color: const Color(0xff7A9E7E),
+              fontSize: 18.sp,
+              fontFamily: 'cairo');
         }
 
         spans.add(TextSpan(
@@ -219,7 +232,7 @@ extension TextSpanExtension on String {
           text: text.substring(lastMatchEnd),
           style: TextStyle(
               color: Get.context!.theme.colorScheme.inversePrimary,
-              fontSize: 18,
+              fontSize: 18.sp,
               fontFamily: 'cairo')));
     }
 

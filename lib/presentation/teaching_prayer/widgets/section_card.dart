@@ -26,9 +26,9 @@ class _SectionCard extends StatelessWidget {
             title,
             style: TextStyle(
               color: context.theme.colorScheme.inversePrimary,
-              fontWeight: FontWeight.w800,
+              fontWeight: FontWeight.bold,
               fontFamily: 'cairo',
-              fontSize: 18,
+              fontSize: 18.sp,
             ),
           ),
           Padding(

@@ -26,7 +26,7 @@ class PrayerDetails extends StatelessWidget {
                             '${adhanCtrl.prayerNameList[index]['title']}'.tr,
                         style: TextStyle(
                           fontFamily: 'cairo',
-                          fontSize: 24,
+                          fontSize: 22.sp,
                           fontWeight: FontWeight.bold,
                           color: context.theme.colorScheme.inversePrimary
                               .withValues(alpha: .7),
@@ -37,7 +37,7 @@ class PrayerDetails extends StatelessWidget {
                         adhanCtrl.prayerNameList[index]['time'],
                         style: TextStyle(
                           fontFamily: 'cairo',
-                          fontSize: 24,
+                          fontSize: 22.sp,
                           fontWeight: FontWeight.bold,
                           color: context.theme.colorScheme.inversePrimary
                               .withValues(alpha: .7),
@@ -62,7 +62,6 @@ class PrayerDetails extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   child: SettingPrayerTimes(listNum: index, isOnePrayer: true),
                 ),
-                const Gap(8),
                 ActivateAdhanButton(index: index, prayerTitle: prayerName!),
               ],
             ),
@@ -78,7 +77,7 @@ class PrayerDetails extends StatelessWidget {
         alignment: Alignment.center,
         children: [
           Obx(() => RoundedProgressBar(
-                height: 35,
+                height: 30.h,
                 style: RoundedProgressBarStyle(
                   borderWidth: 5,
                   widthShadow: 5,
@@ -102,7 +101,7 @@ class PrayerDetails extends StatelessWidget {
                 percent: adhanCtrl.getTimeLeftForPrayerByIndex(index).value,
               )),
           SlideCountdownWidget(
-              fontSize: 24,
+              fontSize: 22.sp,
               color: Theme.of(context).colorScheme.inversePrimary,
               duration: adhanCtrl.getDurationLeftForPrayerByIndex(index).value),
         ],
@@ -125,7 +124,7 @@ class PrayerDetails extends StatelessWidget {
                         'fromQuran:'.tr,
                         style: TextStyle(
                           fontFamily: 'cairo',
-                          fontSize: 14,
+                          fontSize: 12.sp,
                           fontWeight: FontWeight.bold,
                           color: context.theme.colorScheme.inversePrimary
                               .withValues(alpha: .7),
@@ -146,7 +145,7 @@ class PrayerDetails extends StatelessWidget {
                         prayerHadithsList[index]['fromQuran'],
                         style: TextStyle(
                           fontFamily: 'uthmanic2',
-                          fontSize: 22,
+                          fontSize: 18.sp,
                           color: context.theme.colorScheme.inversePrimary
                               .withValues(alpha: .7),
                         ),
@@ -161,7 +160,7 @@ class PrayerDetails extends StatelessWidget {
                       prayerHadithsList[index]['ayahNumber'],
                       style: TextStyle(
                         fontFamily: 'naskh',
-                        fontSize: 14,
+                        fontSize: 12.sp,
                         color: context.theme.colorScheme.inversePrimary
                             .withValues(alpha: .7),
                       ),
@@ -180,7 +179,7 @@ class PrayerDetails extends StatelessWidget {
                         'fromSunnah:'.tr,
                         style: TextStyle(
                           fontFamily: 'cairo',
-                          fontSize: 14,
+                          fontSize: 12.sp,
                           fontWeight: FontWeight.bold,
                           color: context.theme.colorScheme.inversePrimary
                               .withValues(alpha: .7),
@@ -201,7 +200,7 @@ class PrayerDetails extends StatelessWidget {
                         prayerHadithsList[index]['fromSunnah'],
                         style: TextStyle(
                           fontFamily: 'naskh',
-                          fontSize: 20,
+                          fontSize: 18.sp,
                           // fontWeight: FontWeight.bold,
                           color: context.theme.colorScheme.inversePrimary
                               .withValues(alpha: .7),
@@ -218,7 +217,7 @@ class PrayerDetails extends StatelessWidget {
                       prayerHadithsList[index]['rule'],
                       style: TextStyle(
                         fontFamily: 'naskh',
-                        fontSize: 14,
+                        fontSize: 12.sp,
                         color: context.theme.colorScheme.inversePrimary
                             .withValues(alpha: .7),
                       ),

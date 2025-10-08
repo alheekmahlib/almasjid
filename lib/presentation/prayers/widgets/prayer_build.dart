@@ -94,8 +94,8 @@ Widget _buildTimelineIndicator(BuildContext context, int index,
   return AnimatedContainer(
     duration: const Duration(milliseconds: 500),
     curve: Curves.easeInOut,
-    width: isCurrentPrayer ? 42 : 28,
-    height: isCurrentPrayer ? 42 : 28,
+    width: (isCurrentPrayer ? 42 : 28).w,
+    height: (isCurrentPrayer ? 42 : 28).h,
     decoration: BoxDecoration(
       shape: BoxShape.circle,
       color: _getTimelineIndicatorColor(
@@ -147,7 +147,7 @@ Widget _buildPrayerContent(BuildContext context, int index, String prayerTitle,
                       .colorScheme
                       .surface
                       .withValues(alpha: 0.2),
-              height: isCurrentPrayer ? 75 : 55,
+              height: (isCurrentPrayer ? 60 : 45).h,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Row(
@@ -193,7 +193,7 @@ Widget _prayerNameBuild(BuildContext context, int index, String prayerTitle,
       prayerTitle.tr,
       style: TextStyle(
         fontFamily: 'cairo',
-        fontSize: adhanCtrl.currentPrayerIndex == index ? 20 : 18,
+        fontSize: adhanCtrl.currentPrayerIndex == index ? 18.sp : 16.sp,
         fontWeight: FontWeight.bold,
         color: Theme.of(context).colorScheme.inversePrimary,
       ),
@@ -209,7 +209,7 @@ Widget _prayerTimeBuild(BuildContext context, int index, String prayerTime,
       text: prayerTime.toString(),
       style: TextStyle(
         fontFamily: 'cairo',
-        fontSize: adhanCtrl.currentPrayerIndex == index ? 24 : 20,
+        fontSize: adhanCtrl.currentPrayerIndex == index ? 22.sp : 18.sp,
         fontWeight: FontWeight.bold,
         color: Theme.of(context).colorScheme.inversePrimary,
       ),
@@ -222,7 +222,7 @@ Widget _prayerIconBuild(BuildContext context, int index,
     {bool? isCustomColor = true}) {
   return Icon(
     adhanCtrl.prayerNameList[index]['icon'],
-    size: isCurrentPrayer ? 32 : 20,
+    size: isCurrentPrayer ? 28.h : 16.h,
     color: isCustomColor!
         ? index == 1 || index == 2 || index == 3 || index == 4
             ? const Color.fromARGB(255, 242, 181, 15)

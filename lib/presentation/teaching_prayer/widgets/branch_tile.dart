@@ -42,7 +42,7 @@ class _BranchTile extends StatelessWidget {
             color:
                 context.theme.colorScheme.inversePrimary.withValues(alpha: .9),
             fontWeight: FontWeight.bold,
-            fontSize: 16,
+            fontSize: 15.sp,
             fontFamily: 'cairo',
           ),
         ),

@@ -3,6 +3,7 @@ import 'package:almasjid/core/utils/constants/extensions/extensions.dart';
 import 'package:almasjid/core/utils/constants/svg_constants.dart';
 import 'package:almasjid/core/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gauge_indicator/gauge_indicator.dart';
 import 'package:get/get.dart';
 
@@ -17,7 +18,7 @@ class PrayerNowWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      padding: const EdgeInsets.symmetric(horizontal: 16.0).r,
       child: Stack(
         children: [
           Obx(
@@ -75,7 +76,7 @@ class PrayerNowWidget extends StatelessWidget {
                   children: [
                     Icon(
                       adhanCtrl.prayerNameList[currentPrayer]['icon'],
-                      size: 180,
+                      size: 130.h,
                       color: currentPrayer == 1 ||
                               currentPrayer == 2 ||
                               currentPrayer == 3 ||
@@ -95,7 +96,7 @@ class PrayerNowWidget extends StatelessWidget {
                                 .tr,
                             style: TextStyle(
                               fontFamily: 'cairo',
-                              fontSize: 34,
+                              fontSize: 26.sp,
                               fontWeight: FontWeight.bold,
                               color: context.theme.colorScheme.inversePrimary,
                               height: .2,
@@ -107,7 +108,7 @@ class PrayerNowWidget extends StatelessWidget {
                           text: adhanCtrl.prayerNameList[currentPrayer]['time'],
                           style: TextStyle(
                             fontFamily: 'cairo',
-                            fontSize: 34,
+                            fontSize: 26.sp,
                             fontWeight: FontWeight.bold,
                             color: context.theme.colorScheme.inversePrimary,
                             height: 1.3,
@@ -115,7 +116,7 @@ class PrayerNowWidget extends StatelessWidget {
                           textAlign: TextAlign.end,
                         ),
                         Container(
-                          height: 60,
+                          height: 45.h,
                           decoration: BoxDecoration(
                             color: context.theme.colorScheme.surface
                                 .withValues(alpha: .4),
@@ -124,7 +125,7 @@ class PrayerNowWidget extends StatelessWidget {
                           child: FittedBox(
                             fit: BoxFit.scaleDown,
                             child: SlideCountdownWidget(
-                              fontSize: 38,
+                              fontSize: 34.sp,
                               color: context.theme.colorScheme.inversePrimary,
                               duration: adhanCtrl
                                   .getDurationLeftForPrayerByIndex(
@@ -141,15 +142,15 @@ class PrayerNowWidget extends StatelessWidget {
             },
           ),
           SizedBox(
-            height: 45,
+            height: 35.h,
             child: CustomButton(
               onPressed: () => context.customBottomSheet(
                 containerColor: context.theme.colorScheme.primaryContainer,
                 textTitle: 'sharePrayerTime',
                 child: ShareOptionsWidget(),
               ),
-              width: 45,
-              iconSize: 28,
+              width: 40.w,
+              iconSize: 28.h,
               isCustomSvgColor: true,
               svgPath: SvgPath.svgShareShare,
               svgColor: context.theme.colorScheme.surface,

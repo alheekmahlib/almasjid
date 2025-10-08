@@ -8,12 +8,15 @@ class AdhanSounds extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 50,
+      height: 37.h,
       child: ContainerButtonWidget(
         onPressed: () => customBottomSheet(
-            textTitle: 'adhanSounds', child: bottomSheetWidget(context)),
+          textTitle: 'adhanSounds',
+          child: bottomSheetWidget(context),
+          containerColor: context.theme.colorScheme.primaryContainer,
+        ),
         title: 'adhanSounds'.tr,
-        titleColor: Theme.of(context).canvasColor,
+        titleColor: Theme.of(context).colorScheme.inversePrimary,
         width: Get.width,
         withShape: false,
         useGradient: false,
@@ -87,6 +90,7 @@ class AdhanSounds extends StatelessWidget {
                               const BorderRadius.all(Radius.circular(8.0)),
                         ),
                         child: ListTile(
+                          minTileHeight: 40.h,
                           onTap: () async {
                             notificationCtrl.switchAdhanOnTap(index);
                             notificationCtrl
@@ -103,9 +107,9 @@ class AdhanSounds extends StatelessWidget {
                                 adhans[index].adhanName.tr,
                                 style: TextStyle(
                                     color: context
-                                        .theme.colorScheme.secondaryContainer
+                                        .theme.colorScheme.inversePrimary
                                         .withValues(alpha: .7),
-                                    fontSize: 15,
+                                    fontSize: 15.sp,
                                     fontWeight: FontWeight.bold,
                                     fontFamily: 'cairo'),
                                 textAlign: TextAlign.center,
@@ -149,8 +153,8 @@ class AdhanSounds extends StatelessWidget {
                                 isSelected
                                     ? Icon(Icons.done,
                                         size: 28,
-                                        color: context.theme.colorScheme
-                                            .secondaryContainer)
+                                        color:
+                                            context.theme.colorScheme.surface)
                                     : const SizedBox.shrink(),
                               ],
                             ))

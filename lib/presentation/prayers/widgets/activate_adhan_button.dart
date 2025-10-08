@@ -17,6 +17,7 @@ class ActivateAdhanButton extends StatelessWidget {
         // height: 445,
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             Text(
               'notificationOptions'.tr,
@@ -26,14 +27,15 @@ class ActivateAdhanButton extends StatelessWidget {
                   fontFamily: 'cairo',
                   fontStyle: FontStyle.italic,
                   fontWeight: FontWeight.bold,
-                  fontSize: 16),
+                  fontSize: 14.sp),
             ),
             const Gap(4),
             Column(
+              mainAxisSize: MainAxisSize.min,
               children: List.generate(
                 notificationOptions.length,
                 (i) => SizedBox(
-                  height: 50,
+                  height: 40.h,
                   child: GestureDetector(
                     onTap: () async =>
                         await adhanCtrl.notificationOptionsOnTap(i, index),
@@ -64,7 +66,7 @@ class ActivateAdhanButton extends StatelessWidget {
                         children: [
                           Icon(
                             notificationOptions[i]['icon'],
-                            size: 28,
+                            size: 26.h,
                             color: context.theme.colorScheme.inversePrimary,
                           ),
                           const Gap(16),
@@ -72,7 +74,7 @@ class ActivateAdhanButton extends StatelessWidget {
                             '${notificationOptions[i]['title']}'.tr,
                             style: TextStyle(
                               fontFamily: 'cairo',
-                              fontSize: 17,
+                              fontSize: 15.sp,
                               color: context.theme.colorScheme.inversePrimary,
                             ),
                           ),

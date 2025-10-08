@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '/core/utils/constants/extensions/contact_us_extension.dart';
@@ -27,7 +28,7 @@ class UserOptions extends StatelessWidget {
                   Icon(
                     Icons.share_outlined,
                     color: context.theme.hintColor,
-                    size: 22,
+                    size: 20.h,
                   ),
                   Container(
                     width: 2,
@@ -38,10 +39,13 @@ class UserOptions extends StatelessWidget {
                   Text(
                     'share'.tr,
                     style: TextStyle(
-                        color: context.theme.hintColor,
-                        fontFamily: 'cairo',
-                        fontStyle: FontStyle.italic,
-                        fontSize: 14),
+                      color: context.theme.colorScheme.inversePrimary
+                          .withValues(alpha: .6),
+                      fontFamily: 'cairo',
+                      fontStyle: FontStyle.italic,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14.sp,
+                    ),
                   ),
                 ],
               ),
@@ -58,7 +62,7 @@ class UserOptions extends StatelessWidget {
                   Icon(
                     Icons.email_outlined,
                     color: context.theme.hintColor,
-                    size: 22,
+                    size: 20.h,
                   ),
                   Container(
                     width: 2,
@@ -69,10 +73,13 @@ class UserOptions extends StatelessWidget {
                   Text(
                     'email'.tr,
                     style: TextStyle(
-                        color: context.theme.hintColor,
-                        fontFamily: 'cairo',
-                        fontStyle: FontStyle.italic,
-                        fontSize: 14),
+                      color: context.theme.colorScheme.inversePrimary
+                          .withValues(alpha: .6),
+                      fontFamily: 'cairo',
+                      fontStyle: FontStyle.italic,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14.sp,
+                    ),
                   ),
                 ],
               ),
@@ -85,7 +92,7 @@ class UserOptions extends StatelessWidget {
                   Icon(
                     Icons.facebook_rounded,
                     color: context.theme.hintColor,
-                    size: 22,
+                    size: 20.h,
                   ),
                   Container(
                     width: 2,
@@ -96,10 +103,13 @@ class UserOptions extends StatelessWidget {
                   Text(
                     'facebook'.tr,
                     style: TextStyle(
-                        color: context.theme.hintColor,
-                        fontFamily: 'cairo',
-                        fontStyle: FontStyle.italic,
-                        fontSize: 14),
+                      color: context.theme.colorScheme.inversePrimary
+                          .withValues(alpha: .6),
+                      fontFamily: 'cairo',
+                      fontStyle: FontStyle.italic,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14.sp,
+                    ),
                   ),
                 ],
               ),

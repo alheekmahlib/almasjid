@@ -1,6 +1,7 @@
 import 'package:almasjid/core/utils/constants/extensions/extensions.dart';
 import 'package:almasjid/core/utils/constants/extensions/svg_extensions.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 
@@ -50,7 +51,7 @@ class SettingsList extends StatelessWidget {
                       _customButtonWidget(
                         context,
                         title: 'aboutApp',
-                        iconWidth: 50.0,
+                        iconWidth: 40.0,
                         svgPath: SvgPath.svgLogoAqemLogo,
                         onTap: () => Get.toNamed(
                           AppRouter.aboutApp,
@@ -87,7 +88,7 @@ class SettingsList extends StatelessWidget {
             Expanded(
                 flex: 2,
                 child: customSvgWithColor(svgPath,
-                    width: iconWidth ?? 60.0,
+                    width: (iconWidth ?? 60.0).w,
                     color: Theme.of(context).colorScheme.surface)),
             context.vDivider(height: 20.0),
             Expanded(
@@ -95,7 +96,7 @@ class SettingsList extends StatelessWidget {
               child: Text(
                 title.tr,
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 17.sp,
                   color: context.theme.colorScheme.inversePrimary
                       .withValues(alpha: .6),
                   fontWeight: FontWeight.bold,

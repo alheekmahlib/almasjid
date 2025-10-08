@@ -1,11 +1,12 @@
-import 'package:almasjid/core/utils/constants/extensions/bottom_sheet_extension.dart';
-import 'package:almasjid/core/utils/constants/extensions/extensions.dart';
-import 'package:almasjid/core/utils/constants/extensions/svg_extensions.dart';
-import 'package:almasjid/presentation/prayers/prayers.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 
+import '/core/utils/constants/extensions/bottom_sheet_extension.dart';
+import '/core/utils/constants/extensions/extensions.dart';
+import '/core/utils/constants/extensions/svg_extensions.dart';
+import '/presentation/prayers/prayers.dart';
 import '../../../core/utils/constants/svg_constants.dart';
 import '../../../core/widgets/animated_drawing_widget.dart';
 import '../../../core/widgets/app_bar_widget.dart';
@@ -60,7 +61,7 @@ class SettingsScreen extends StatelessWidget {
                                 const Gap(8),
                                 customSvgWithColor(
                                   SvgPath.svgHomeSettings,
-                                  height: 24,
+                                  height: 22.h,
                                   color: context
                                       .theme.colorScheme.inversePrimary
                                       .withValues(alpha: .6),
@@ -69,7 +70,7 @@ class SettingsScreen extends StatelessWidget {
                                 Text(
                                   'prayerSetting'.tr,
                                   style: TextStyle(
-                                    fontSize: 20,
+                                    fontSize: 18.sp,
                                     color: context
                                         .theme.colorScheme.inversePrimary
                                         .withValues(alpha: .6),
