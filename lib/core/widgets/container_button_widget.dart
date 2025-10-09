@@ -1,7 +1,6 @@
 import 'package:almasjid/core/utils/constants/extensions/alignment_rotated_extension.dart';
 import 'package:almasjid/core/utils/constants/svg_constants.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/utils.dart';
 
@@ -76,8 +75,8 @@ class ContainerButtonWidget extends StatelessWidget {
           splashColor: Colors.white.withValues(alpha: 0.3),
           highlightColor: Colors.white.withValues(alpha: 0.1),
           child: Container(
-            height: height ?? 56,
-            width: width ?? double.infinity,
+            height: (height ?? 56),
+            width: (width ?? double.infinity),
             decoration: BoxDecoration(
               gradient: useGradient
                   ? LinearGradient(
@@ -189,11 +188,11 @@ class ContainerButtonWidget extends StatelessWidget {
                                   : Text(
                                       title!,
                                       style: TextStyle(
-                                        fontSize: (fontSize ?? 16).sp,
+                                        fontSize: (fontSize ?? 16),
                                         color: titleColor ?? Colors.white,
                                         fontWeight: FontWeight.bold,
                                         fontFamily: 'cairo',
-                                        height: 1.7,
+                                        height: 1.4,
                                       ),
                                       textAlign: TextAlign.center,
                                     ),

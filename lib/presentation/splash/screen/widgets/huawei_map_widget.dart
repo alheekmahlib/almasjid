@@ -128,14 +128,14 @@ class HuaweiMapLocationWidget extends StatelessWidget {
                           Icon(
                             Icons.location_on,
                             color: context.theme.colorScheme.primary,
-                            size: 20.w,
+                            size: 20,
                           ),
                           Gap(8.w),
                           Text(
                             'locationSetted'.tr,
                             style: TextStyle(
                               fontFamily: 'cairo',
-                              fontSize: 16.sp,
+                              fontSize: 16,
                               fontWeight: FontWeight.w600,
                               color: context.theme.colorScheme.primary,
                             ),
@@ -147,7 +147,7 @@ class HuaweiMapLocationWidget extends StatelessWidget {
                             mapController.selectedAddress.value,
                             style: TextStyle(
                               fontFamily: 'cairo',
-                              fontSize: 14.sp,
+                              fontSize: 14,
                               color: context.theme.colorScheme.primary,
                             ),
                           )),
@@ -168,7 +168,7 @@ class HuaweiMapLocationWidget extends StatelessWidget {
                       Icon(
                         Icons.touch_app,
                         color: context.theme.colorScheme.primary,
-                        size: 20.w,
+                        size: 20,
                       ),
                       Gap(8.w),
                       Expanded(
@@ -176,7 +176,7 @@ class HuaweiMapLocationWidget extends StatelessWidget {
                           'tapOnMapToSelectLocation'.tr,
                           style: TextStyle(
                             fontFamily: 'cairo',
-                            fontSize: 14.sp,
+                            fontSize: 14,
                             color: context.theme.colorScheme.primary,
                           ),
                         ),

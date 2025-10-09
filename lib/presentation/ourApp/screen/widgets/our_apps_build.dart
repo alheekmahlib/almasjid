@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get_utils/get_utils.dart';
@@ -38,7 +37,7 @@ class OurAppsBuild extends StatelessWidget {
                 return ContainerButtonWidget(
                   onPressed: () =>
                       ourApps.launchURL(context, index, apps[index]),
-                  height: 55.h,
+                  height: 55,
                   horizontalMargin: 32.0,
                   verticalPadding: 0.0,
                   backgroundColor:
@@ -51,8 +50,8 @@ class OurAppsBuild extends StatelessWidget {
                     children: [
                       SvgPicture.network(
                         apps[index].appLogo,
-                        height: 40.h,
-                        width: 40.w,
+                        height: 40,
+                        width: 40,
                       ),
                       const Gap(24.0),
                       context.vDivider(height: 40.0),
@@ -66,7 +65,7 @@ class OurAppsBuild extends StatelessWidget {
                               apps[index].appTitle,
                               style: TextStyle(
                                 color: context.theme.colorScheme.inversePrimary,
-                                fontSize: 13.sp,
+                                fontSize: 13,
                                 height: 1.7,
                                 fontFamily: 'cairo',
                                 fontWeight: FontWeight.bold,
@@ -78,7 +77,7 @@ class OurAppsBuild extends StatelessWidget {
                               style: TextStyle(
                                 color: context.theme.colorScheme.surface
                                     .withValues(alpha: .7),
-                                fontSize: 11.sp,
+                                fontSize: 11,
                                 height: 1.7,
                                 fontFamily: 'cairo',
                                 fontWeight: FontWeight.bold,

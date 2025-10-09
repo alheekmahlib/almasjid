@@ -22,7 +22,7 @@ class WhatsNewScreen extends StatelessWidget {
                   'skip'.tr,
                   style: TextStyle(
                     color: context.theme.colorScheme.surface,
-                    fontSize: 12.0.sp,
+                    fontSize: 12.0,
                     fontFamily: 'cairo',
                   ),
                 ),

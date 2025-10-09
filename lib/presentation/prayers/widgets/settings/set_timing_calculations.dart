@@ -66,7 +66,7 @@ class SetTimingCalculations extends StatelessWidget {
                     'madhabNote'.tr,
                     style: TextStyle(
                       fontFamily: 'cairo',
-                      fontSize: 12.sp,
+                      fontSize: 12,
                       fontWeight: FontWeight.bold,
                       color: context.theme.colorScheme.inversePrimary
                           .withValues(alpha: .5),

@@ -1,6 +1,5 @@
 import 'package:almasjid/core/utils/constants/extensions/svg_extensions.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 
@@ -30,7 +29,7 @@ class ThemeChange extends StatelessWidget {
                 fontFamily: 'cairo',
                 fontStyle: FontStyle.italic,
                 fontWeight: FontWeight.bold,
-                fontSize: 14.sp,
+                fontSize: 14,
               ),
             ),
             const Gap(4),
@@ -51,12 +50,12 @@ class ThemeChange extends StatelessWidget {
                       });
                     },
                     controller: themeCtrl,
-                    containerHeight: 70.h,
+                    containerHeight: 70,
                     value: themeList[index]['name'] == themeCtrl.currentTheme,
                     imagePath: null,
                     svgPath: null,
                     child: Container(
-                      height: 60.h,
+                      height: 60,
                       padding: const EdgeInsets.symmetric(
                           horizontal: 12, vertical: 8),
                       decoration: BoxDecoration(
@@ -67,7 +66,7 @@ class ThemeChange extends StatelessWidget {
                       ),
                       child: customSvgWithCustomColor(
                         SvgPath.svgLogoAqemLogo,
-                        height: 20.h,
+                        height: 20,
                         color: context.theme.colorScheme.surface,
                       ),
                     ),

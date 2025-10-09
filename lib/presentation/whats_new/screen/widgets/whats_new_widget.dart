@@ -17,7 +17,7 @@ class WhatsNewWidget extends StatelessWidget {
         "What's New".tr,
         style: TextStyle(
           color: context.theme.canvasColor,
-          fontSize: 14.0.sp,
+          fontSize: 14.0,
           fontFamily: 'cairo',
         ),
       ),

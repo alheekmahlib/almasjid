@@ -31,7 +31,7 @@ class PlayButton extends StatelessWidget {
                 return IconButton(
                   icon: customSvg(
                     SvgPath.svgPrayerPauseArrow,
-                    height: 26.h,
+                    height: 26,
                   ),
                   onPressed: () {
                     notificationCtrl.state.audioPlayer.pause();
@@ -42,7 +42,7 @@ class PlayButton extends StatelessWidget {
                 return IconButton(
                   icon: customSvg(
                     SvgPath.svgPrayerPlayArrow,
-                    height: 26.h,
+                    height: 26,
                   ),
                   onPressed: () async {
                     notificationCtrl.state.currentlyPlayingIndex.value = index;

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 
@@ -32,7 +31,7 @@ class AboutAppText extends StatelessWidget {
             'aboutApp'.tr,
             style: TextStyle(
               fontFamily: 'cairo',
-              fontSize: 16.sp,
+              fontSize: 16,
               fontWeight: FontWeight.bold,
               color: context.theme.colorScheme.inversePrimary
                   .withValues(alpha: .6),
@@ -50,7 +49,7 @@ class AboutAppText extends StatelessWidget {
                   'about_app'.tr,
                   style: TextStyle(
                     fontFamily: 'cairo',
-                    fontSize: 13.sp,
+                    fontSize: 13,
                     fontWeight: FontWeight.bold,
                     color: context.theme.colorScheme.inversePrimary,
                   ),
@@ -61,7 +60,7 @@ class AboutAppText extends StatelessWidget {
                   'about_app2'.tr,
                   style: TextStyle(
                     fontFamily: 'cairo',
-                    fontSize: 14.sp,
+                    fontSize: 14,
                     fontWeight: FontWeight.bold,
                     color: context.theme.colorScheme.inversePrimary,
                   ),
@@ -74,7 +73,7 @@ class AboutAppText extends StatelessWidget {
                     Text(
                       ('about_app3').tr,
                       style: TextStyle(
-                        fontSize: 14.sp,
+                        fontSize: 14,
                         fontFamily: 'cairo',
                         // fontWeight: FontWeight.bold,
                         color: context.theme.hintColor,

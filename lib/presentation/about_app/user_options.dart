@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '/core/utils/constants/extensions/contact_us_extension.dart';
@@ -28,7 +27,7 @@ class UserOptions extends StatelessWidget {
                   Icon(
                     Icons.share_outlined,
                     color: context.theme.hintColor,
-                    size: 20.h,
+                    size: 20,
                   ),
                   Container(
                     width: 2,
@@ -44,7 +43,7 @@ class UserOptions extends StatelessWidget {
                       fontFamily: 'cairo',
                       fontStyle: FontStyle.italic,
                       fontWeight: FontWeight.bold,
-                      fontSize: 14.sp,
+                      fontSize: 14,
                     ),
                   ),
                 ],
@@ -62,7 +61,7 @@ class UserOptions extends StatelessWidget {
                   Icon(
                     Icons.email_outlined,
                     color: context.theme.hintColor,
-                    size: 20.h,
+                    size: 20,
                   ),
                   Container(
                     width: 2,
@@ -78,7 +77,7 @@ class UserOptions extends StatelessWidget {
                       fontFamily: 'cairo',
                       fontStyle: FontStyle.italic,
                       fontWeight: FontWeight.bold,
-                      fontSize: 14.sp,
+                      fontSize: 14,
                     ),
                   ),
                 ],
@@ -92,7 +91,7 @@ class UserOptions extends StatelessWidget {
                   Icon(
                     Icons.facebook_rounded,
                     color: context.theme.hintColor,
-                    size: 20.h,
+                    size: 20,
                   ),
                   Container(
                     width: 2,
@@ -108,7 +107,7 @@ class UserOptions extends StatelessWidget {
                       fontFamily: 'cairo',
                       fontStyle: FontStyle.italic,
                       fontWeight: FontWeight.bold,
-                      fontSize: 14.sp,
+                      fontSize: 14,
                     ),
                   ),
                 ],

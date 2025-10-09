@@ -40,7 +40,7 @@ class PageViewBuild extends StatelessWidget {
                             '${newFeatures[index]['title']}'.tr,
                             style: TextStyle(
                               color: context.theme.canvasColor,
-                              fontSize: 16.0.sp,
+                              fontSize: 16.0,
                               fontFamily: 'cairo',
                               height: 2,
                             ),
@@ -86,7 +86,7 @@ class PageViewBuild extends StatelessWidget {
                             '${newFeatures[index]['details']}'.tr,
                             style: TextStyle(
                               color: context.theme.canvasColor,
-                              fontSize: 14.0.sp,
+                              fontSize: 14.0,
                               fontFamily: 'cairo',
                               height: 2,
                             ),

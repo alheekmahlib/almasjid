@@ -3,13 +3,21 @@ part of '../../prayers.dart';
 List<Map<String, dynamic>> generatePrayerNameList(AdhanState state) {
   // تحديد ما إذا كنا نستخدم أوقات الصلاة للتاريخ المختار أم اليوم الحالي
   // Determine if we're using selected date prayer times or current day
-  final bool useSelectedDate = state.selectedDatePrayerTimes != null &&
-      !_isSameDay(state.selectedDate, DateTime.now());
+  // ملاحظة: لا نعتمد على selectedDatePrayerTimes لأنها قد لا تُملأ عند التحميل من الكاش الشهري.
+  // يكفي أن يكون التاريخ المختار مختلفًا عن اليوم الحالي لنعرض الأوقات النصية الخاصة به.
+  final bool useSelectedDate = !_isSameDay(state.selectedDate, DateTime.now());
 
-  final prayerTimes =
-      useSelectedDate ? state.selectedDatePrayerTimes! : state.prayerTimes!;
-  final sunnahTimes =
-      useSelectedDate ? state.selectedDateSunnahTimes! : state.sunnahTimes!;
+  final bool hasSelectedDateTimes = state.selectedDatePrayerTimes != null &&
+      state.selectedDateSunnahTimes != null;
+
+  // إن لم تتوفر كائنات PrayerTimes للتاريخ المختار (مسار الكاش الشهري)،
+  // نستخدم كائنات اليوم الحالي لقيم dateTime فقط، بينما تبقى قيم "time" نصية محسوبة لليوم المختار.
+  final prayerTimes = useSelectedDate && hasSelectedDateTimes
+      ? state.selectedDatePrayerTimes!
+      : state.prayerTimes!;
+  final sunnahTimes = useSelectedDate && hasSelectedDateTimes
+      ? state.selectedDateSunnahTimes!
+      : state.sunnahTimes!;
 
   return [
     {

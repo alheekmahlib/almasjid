@@ -8,7 +8,7 @@ class AdhanSounds extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 37.h,
+      height: 37,
       child: ContainerButtonWidget(
         onPressed: () => customBottomSheet(
           textTitle: 'adhanSounds',
@@ -90,7 +90,7 @@ class AdhanSounds extends StatelessWidget {
                               const BorderRadius.all(Radius.circular(8.0)),
                         ),
                         child: ListTile(
-                          minTileHeight: 40.h,
+                          minTileHeight: 40,
                           onTap: () async {
                             notificationCtrl.switchAdhanOnTap(index);
                             notificationCtrl
@@ -109,7 +109,7 @@ class AdhanSounds extends StatelessWidget {
                                     color: context
                                         .theme.colorScheme.inversePrimary
                                         .withValues(alpha: .7),
-                                    fontSize: 15.sp,
+                                    fontSize: 15,
                                     fontWeight: FontWeight.bold,
                                     fontFamily: 'cairo'),
                                 textAlign: TextAlign.center,

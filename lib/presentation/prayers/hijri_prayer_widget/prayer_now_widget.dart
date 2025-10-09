@@ -1,12 +1,12 @@
-import 'package:almasjid/core/utils/constants/extensions/bottom_sheet_extension.dart';
-import 'package:almasjid/core/utils/constants/extensions/extensions.dart';
-import 'package:almasjid/core/utils/constants/svg_constants.dart';
-import 'package:almasjid/core/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gauge_indicator/gauge_indicator.dart';
 import 'package:get/get.dart';
 
+import '/core/utils/constants/extensions/bottom_sheet_extension.dart';
+import '/core/utils/constants/extensions/extensions.dart';
+import '/core/utils/constants/svg_constants.dart';
+import '/core/widgets/custom_button.dart';
 import '../../../core/widgets/reactive_number_text.dart';
 import '../prayers.dart';
 
@@ -51,7 +51,7 @@ class PrayerNowWidget extends StatelessWidget {
 
                   /// Set the background color and axis thickness.
                   style: GaugeAxisStyle(
-                    thickness: 35,
+                    thickness: 30.h,
                     background: context.theme.colorScheme.primaryContainer,
                     segmentSpacing: 10,
                     cornerRadius: const Radius.circular(8.0),
@@ -142,15 +142,15 @@ class PrayerNowWidget extends StatelessWidget {
             },
           ),
           SizedBox(
-            height: 35.h,
+            height: 35,
             child: CustomButton(
               onPressed: () => context.customBottomSheet(
                 containerColor: context.theme.colorScheme.primaryContainer,
                 textTitle: 'sharePrayerTime',
                 child: ShareOptionsWidget(),
               ),
-              width: 40.w,
-              iconSize: 28.h,
+              width: 40,
+              iconSize: 28,
               isCustomSvgColor: true,
               svgPath: SvgPath.svgShareShare,
               svgColor: context.theme.colorScheme.surface,

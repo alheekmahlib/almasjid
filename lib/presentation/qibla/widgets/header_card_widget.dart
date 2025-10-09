@@ -85,7 +85,7 @@ class HeaderCardWidget extends StatelessWidget {
                             '${'qiblaDirection'.tr} : ',
                             style: TextStyle(
                               fontFamily: 'cairo',
-                              fontSize: 20.sp,
+                              fontSize: 20,
                               height: 1.7,
                               fontWeight: FontWeight.w800,
                               color: context.theme.colorScheme.inversePrimary

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class CustomSwitchWidget<T extends GetxController> extends StatelessWidget {
@@ -57,7 +56,7 @@ class CustomSwitchWidget<T extends GetxController> extends StatelessWidget {
                     title.tr,
                     style: TextStyle(
                       fontFamily: 'cairo',
-                      fontSize: 14.sp,
+                      fontSize: 14,
                       fontWeight: FontWeight.bold,
                       color: context.theme.colorScheme.inversePrimary
                           .withValues(alpha: .7),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 
@@ -54,7 +53,7 @@ class ActiveLocationWidget extends StatelessWidget {
                     'locationNote'.tr,
                     style: TextStyle(
                         fontFamily: 'cairo',
-                        fontSize: 16.sp,
+                        fontSize: 16,
                         height: 1.5,
                         fontWeight: FontWeight.w500,
                         color: context.theme.canvasColor),
@@ -101,7 +100,7 @@ class ActiveLocationWidget extends StatelessWidget {
                           'locationNote'.tr,
                           style: TextStyle(
                               fontFamily: 'cairo',
-                              fontSize: 8.sp,
+                              fontSize: 8,
                               height: 1.5,
                               fontWeight: FontWeight.w500,
                               color: context.theme.canvasColor),
@@ -173,7 +172,7 @@ class ActiveLocationWidget extends StatelessWidget {
                 ),
                 style: TextStyle(
                   fontFamily: 'cairo',
-                  fontSize: 14.sp,
+                  fontSize: 14,
                   color: context.theme.colorScheme.inversePrimary,
                 ),
                 onChanged: (value) {
@@ -203,7 +202,7 @@ class ActiveLocationWidget extends StatelessWidget {
                             style: TextStyle(
                               fontFamily: 'cairo',
                               fontWeight: FontWeight.w600,
-                              fontSize: 16.sp,
+                              fontSize: 16,
                               color: context.theme.colorScheme.inversePrimary,
                             ),
                           ),
@@ -211,7 +210,7 @@ class ActiveLocationWidget extends StatelessWidget {
                             city['country'],
                             style: TextStyle(
                               fontFamily: 'cairo',
-                              fontSize: 14.sp,
+                              fontSize: 14,
                               color: context.theme.colorScheme.inversePrimary
                                   .withValues(alpha: 0.7),
                             ),

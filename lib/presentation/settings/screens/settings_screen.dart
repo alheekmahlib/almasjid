@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 
@@ -61,7 +60,7 @@ class SettingsScreen extends StatelessWidget {
                                 const Gap(8),
                                 customSvgWithColor(
                                   SvgPath.svgHomeSettings,
-                                  height: 22.h,
+                                  height: 22,
                                   color: context
                                       .theme.colorScheme.inversePrimary
                                       .withValues(alpha: .6),
@@ -70,7 +69,7 @@ class SettingsScreen extends StatelessWidget {
                                 Text(
                                   'prayerSetting'.tr,
                                   style: TextStyle(
-                                    fontSize: 18.sp,
+                                    fontSize: 18,
                                     color: context
                                         .theme.colorScheme.inversePrimary
                                         .withValues(alpha: .6),

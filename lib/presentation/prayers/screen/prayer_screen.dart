@@ -61,11 +61,11 @@ class PrayerScreen extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  const Gap(16),
+                  Gap(16.h),
                   PrayerNowWidget(),
-                  const Gap(8),
+                  Gap(8.h),
                   context.hDivider(width: Get.width * .5),
-                  const Gap(8),
+                  Gap(8.h),
                   Row(
                     children: [
                       Expanded(
@@ -79,9 +79,9 @@ class PrayerScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const Gap(8),
+                  Gap(8.h),
                   horizontalWeekCalendar(context),
-                  const Gap(8),
+                  Gap(8.h),
                   const ProhibitionWidget(),
                 ],
               ),
@@ -160,7 +160,7 @@ class PrayerScreen extends StatelessWidget {
           // Calculate prayer times for selected date
           await adhanCtrl.updateSelectedDate(date);
         },
-        carouselHeight: 45.h,
+        carouselHeight: 60,
         showTopNavbar: false,
         monthFormat: 'MMMM yyyy',
         showNavigationButtons: true,
@@ -191,21 +191,21 @@ class PrayerScreen extends StatelessWidget {
           'Sat'.tr,
         ],
         dayTextStyle: TextStyle(
-          fontSize: 20.sp,
+          fontSize: 20,
           fontFamily: 'cairo',
           fontWeight: FontWeight.bold,
           color: context.theme.colorScheme.inversePrimary,
           height: 1.1,
         ),
         monthTextStyle: TextStyle(
-          fontSize: 16.sp,
+          fontSize: 16,
           fontFamily: 'cairo',
           fontWeight: FontWeight.bold,
           color: context.theme.colorScheme.inversePrimary,
           height: 1.5,
         ),
         dayNameTextStyle: TextStyle(
-          fontSize: 14.sp,
+          fontSize: 14,
           fontFamily: 'cairo',
           fontWeight: FontWeight.bold,
           color: context.theme.colorScheme.inversePrimary,
@@ -269,7 +269,7 @@ class PrayerScreen extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24.0),
       child: SizedBox(
-        height: 65.h,
+        height: 60,
         width: Get.width,
         child: Stack(
           alignment: AlignmentDirectional.centerStart,
@@ -278,6 +278,7 @@ class PrayerScreen extends StatelessWidget {
                 color: context.theme.colorScheme.surface.withValues(alpha: .1),
                 size: 70),
             ContainerButtonWidget(
+              height: 70,
               svgHeight: 80,
               width: Get.width,
               // svgPath: SvgPath.svgAlert,

@@ -41,7 +41,7 @@ class OurApps extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(bottom: 32.0),
                         child: customSvgWithColor(SvgPath.svgAlheekmahLogo,
-                            width: 80.0.w,
+                            width: 80.0,
                             color:
                                 Theme.of(context).colorScheme.inversePrimary),
                       ),
@@ -68,7 +68,7 @@ class OurApps extends StatelessWidget {
                                   const EdgeInsets.symmetric(vertical: 32.0).r),
                               child: customSvgWithColor(
                                   SvgPath.svgAlheekmahLogo,
-                                  width: 80.0.w,
+                                  width: 80.0,
                                   color: Theme.of(context)
                                       .colorScheme
                                       .inversePrimary),

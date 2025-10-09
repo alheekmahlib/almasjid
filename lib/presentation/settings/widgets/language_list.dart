@@ -53,7 +53,7 @@ class LanguageList extends StatelessWidget {
                     return Text(
                       SettingsController.instance.languageName.value,
                       style: TextStyle(
-                        fontSize: 18.sp,
+                        fontSize: 18,
                         color: context.theme.colorScheme.inversePrimary
                             .withValues(alpha: .6),
                         fontWeight: FontWeight.bold,
@@ -74,7 +74,7 @@ class LanguageList extends StatelessWidget {
                           child: ButtonWithNewStyle(
                             onTap: () => localCtrl.changeLangOnTap(index),
                             controller: localCtrl,
-                            containerHeight: 37.h,
+                            containerHeight: 37,
                             containerWidth: Get.width,
                             checkBoxColor: context.theme.colorScheme.surface,
                             value: 'lang'.tr == lang.languageName,
@@ -88,7 +88,7 @@ class LanguageList extends StatelessWidget {
                                       ? context.theme.colorScheme.inversePrimary
                                       : context.theme.colorScheme.inversePrimary
                                           .withValues(alpha: .5),
-                                  fontSize: 16.sp,
+                                  fontSize: 16,
                                   fontWeight: 'lang'.tr == lang.languageName
                                       ? FontWeight.bold
                                       : FontWeight.normal,

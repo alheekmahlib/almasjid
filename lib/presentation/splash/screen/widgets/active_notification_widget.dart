@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 
@@ -44,7 +43,7 @@ class ActiveNotificationWidget extends StatelessWidget {
                     'notificationNote'.tr,
                     style: TextStyle(
                         fontFamily: 'cairo',
-                        fontSize: 16.sp,
+                        fontSize: 16,
                         height: 1.5,
                         fontWeight: FontWeight.w500,
                         color: context.theme.canvasColor),
@@ -116,7 +115,7 @@ class ActiveNotificationWidget extends StatelessWidget {
                       'notificationNote'.tr,
                       style: TextStyle(
                           fontFamily: 'cairo',
-                          fontSize: 8.sp,
+                          fontSize: 8,
                           height: 1.5,
                           fontWeight: FontWeight.w500,
                           color: context.theme.canvasColor),

@@ -1,7 +1,6 @@
 import 'package:almasjid/core/utils/constants/extensions/extensions.dart';
 import 'package:almasjid/core/utils/constants/extensions/svg_extensions.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 
@@ -81,6 +80,7 @@ class SettingsList extends StatelessWidget {
       svgColor: context.theme.colorScheme.surface,
       shapeColor: context.theme.colorScheme.surface.withValues(alpha: 0.1),
       borderRadius: 10.0,
+      verticalPadding: 0.0,
       child: SizedBox(
         height: 45,
         child: Row(
@@ -88,7 +88,7 @@ class SettingsList extends StatelessWidget {
             Expanded(
                 flex: 2,
                 child: customSvgWithColor(svgPath,
-                    width: (iconWidth ?? 60.0).w,
+                    width: (iconWidth ?? 60.0),
                     color: Theme.of(context).colorScheme.surface)),
             context.vDivider(height: 20.0),
             Expanded(
@@ -96,12 +96,12 @@ class SettingsList extends StatelessWidget {
               child: Text(
                 title.tr,
                 style: TextStyle(
-                  fontSize: 17.sp,
+                  fontSize: 17,
                   color: context.theme.colorScheme.inversePrimary
                       .withValues(alpha: .6),
                   fontWeight: FontWeight.bold,
                   fontFamily: 'cairo',
-                  height: 1.7,
+                  height: 1.4,
                 ),
               ),
             ),

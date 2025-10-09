@@ -21,7 +21,7 @@ class SettingPrayerTimes extends StatelessWidget {
                 fontFamily: 'cairo',
                 fontStyle: FontStyle.italic,
                 fontWeight: FontWeight.bold,
-                fontSize: 14.sp),
+                fontSize: 14),
           ),
           const Gap(4),
           ListView.builder(
@@ -69,7 +69,7 @@ class SettingPrayerTimes extends StatelessWidget {
                               adhanCtrl.prayerNameList[index]['time']!,
                               style: TextStyle(
                                 fontFamily: 'cairo',
-                                fontSize: 16.sp,
+                                fontSize: 16,
                                 fontWeight: FontWeight.bold,
                                 color: context.theme.colorScheme.inversePrimary
                                     .withValues(alpha: .7),
@@ -87,7 +87,7 @@ class SettingPrayerTimes extends StatelessWidget {
                                           .convertNumbers(),
                                   style: TextStyle(
                                     fontFamily: 'cairo',
-                                    fontSize: 14.sp,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.bold,
                                     color: context
                                         .theme.colorScheme.inversePrimary
@@ -96,8 +96,8 @@ class SettingPrayerTimes extends StatelessWidget {
                                 ),
                                 const Gap(8),
                                 Container(
-                                  height: 25.h,
-                                  width: 75.w,
+                                  height: 25,
+                                  width: 75,
                                   decoration: BoxDecoration(
                                     color: context.theme.colorScheme.surface,
                                     borderRadius: const BorderRadius.all(
@@ -108,7 +108,7 @@ class SettingPrayerTimes extends StatelessWidget {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       SizedBox(
-                                        width: 25.w,
+                                        width: 25,
                                         child: ElevatedButton(
                                             onPressed: () async {
                                               await adhanCtrl
@@ -122,7 +122,7 @@ class SettingPrayerTimes extends StatelessWidget {
                                             ),
                                             child: Icon(
                                               Icons.add,
-                                              size: 16.h,
+                                              size: 16,
                                               color: context.theme.canvasColor,
                                             )),
                                       ),
@@ -130,7 +130,7 @@ class SettingPrayerTimes extends StatelessWidget {
                                           height: 20,
                                           color: context.theme.canvasColor),
                                       SizedBox(
-                                        width: 25.w,
+                                        width: 25,
                                         child: ElevatedButton(
                                             onPressed: () async {
                                               await adhanCtrl.adjustPrayerTime(
@@ -145,7 +145,7 @@ class SettingPrayerTimes extends StatelessWidget {
                                             ),
                                             child: Icon(
                                               Icons.remove,
-                                              size: 16.h,
+                                              size: 16,
                                               color: context.theme.canvasColor,
                                             )),
                                       ),

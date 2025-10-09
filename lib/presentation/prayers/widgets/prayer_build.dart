@@ -69,6 +69,7 @@ class PrayerBuild extends StatelessWidget {
               ],
             ),
           ),
+          Gap(16.h),
 
           // محتوى الصلاة
           Expanded(
@@ -94,8 +95,8 @@ Widget _buildTimelineIndicator(BuildContext context, int index,
   return AnimatedContainer(
     duration: const Duration(milliseconds: 500),
     curve: Curves.easeInOut,
-    width: (isCurrentPrayer ? 42 : 28).w,
-    height: (isCurrentPrayer ? 42 : 28).h,
+    width: (isCurrentPrayer ? 42 : 28),
+    height: (isCurrentPrayer ? 42 : 28),
     decoration: BoxDecoration(
       shape: BoxShape.circle,
       color: _getTimelineIndicatorColor(
@@ -147,7 +148,7 @@ Widget _buildPrayerContent(BuildContext context, int index, String prayerTitle,
                       .colorScheme
                       .surface
                       .withValues(alpha: 0.2),
-              height: (isCurrentPrayer ? 60 : 45).h,
+              height: (isCurrentPrayer ? 60 : 45),
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Row(
@@ -193,8 +194,9 @@ Widget _prayerNameBuild(BuildContext context, int index, String prayerTitle,
       prayerTitle.tr,
       style: TextStyle(
         fontFamily: 'cairo',
-        fontSize: adhanCtrl.currentPrayerIndex == index ? 18.sp : 16.sp,
+        fontSize: adhanCtrl.currentPrayerIndex == index ? 18.sp : 14,
         fontWeight: FontWeight.bold,
+        height: 1.4,
         color: Theme.of(context).colorScheme.inversePrimary,
       ),
       textAlign: TextAlign.start,
@@ -209,8 +211,9 @@ Widget _prayerTimeBuild(BuildContext context, int index, String prayerTime,
       text: prayerTime.toString(),
       style: TextStyle(
         fontFamily: 'cairo',
-        fontSize: adhanCtrl.currentPrayerIndex == index ? 22.sp : 18.sp,
+        fontSize: adhanCtrl.currentPrayerIndex == index ? 22 : 18,
         fontWeight: FontWeight.bold,
+        height: 1.4,
         color: Theme.of(context).colorScheme.inversePrimary,
       ),
     ),
@@ -222,7 +225,7 @@ Widget _prayerIconBuild(BuildContext context, int index,
     {bool? isCustomColor = true}) {
   return Icon(
     adhanCtrl.prayerNameList[index]['icon'],
-    size: isCurrentPrayer ? 28.h : 16.h,
+    size: isCurrentPrayer ? 28 : 16,
     color: isCustomColor!
         ? index == 1 || index == 2 || index == 3 || index == 4
             ? const Color.fromARGB(255, 242, 181, 15)
