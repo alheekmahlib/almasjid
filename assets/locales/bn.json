@@ -579,12 +579,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "qiblaDirectionForCity": "শহরের জন্য কিবলার দিক:",
+  "qiblaDirectionForCity": "আপনার শহরের জন্য কিবলার দিক:",
   "@qiblaDirectionForCity": {
     "type": "text",
     "placeholders": {}
   },
-  "qiblaNoteForDesktop": "এই ফিচারটি শুধুমাত্র মোবাইল ডিভাইসে উপলব্ধ। আপনার বর্তমান অবস্থানের ভিত্তিতে কিবলার দিক দেখতে অনুগ্রহ করে আপনার স্মার্টফোন বা ট্যাবলেট ব্যবহার করুন।",
+  "qiblaNoteForDesktop": "এই ফিচারটি শুধুমাত্র কম্পাস সুবিধা সহ ডিভাইসে উপলব্ধ। আপনার বর্তমান অবস্থানের ভিত্তিতে কিবলার দিক দেখতে অনুগ্রহ করে কম্পাস ফিচার সহ একটি ডিভাইস ব্যবহার করুন।",
   "@qiblaNoteForDesktop": {
     "type": "text",
     "placeholders": {}

@@ -579,12 +579,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "qiblaDirectionForCity": "Arah kiblat untuk bandar:",
+  "qiblaDirectionForCity": "Arah kiblat untuk bandar anda:",
   "@qiblaDirectionForCity": {
     "type": "text",
     "placeholders": {}
   },
-  "qiblaNoteForDesktop": "Ciri ini hanya tersedia pada peranti mudah alih. Sila gunakan telefon pintar atau tablet anda untuk mendapatkan arah kiblat berdasarkan lokasi semasa anda.",
+  "qiblaNoteForDesktop": "Ciri ini hanya tersedia pada peranti yang mempunyai kompas. Sila gunakan peranti dengan ciri kompas untuk mendapatkan arah kiblat berdasarkan lokasi semasa anda.",
   "@qiblaNoteForDesktop": {
     "type": "text",
     "placeholders": {}

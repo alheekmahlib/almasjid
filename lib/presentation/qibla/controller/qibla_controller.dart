@@ -30,23 +30,34 @@ class QiblaController extends GetxController {
   RxBool isDirectionCorrect(double direction) =>
       ((qiblaDirection.value - direction).abs() <= 0.3).obs;
 
+  /// التحقق من توفر مستشعر البوصلة على الجهاز
+  /// Check if device has a working compass sensor
+  Future<bool> checkCompassAvailability(
+      {Duration timeout = const Duration(seconds: 2)}) async {
+    try {
+      final stream = FlutterCompass.events;
+      if (stream == null) return false;
+      final event = await stream.first.timeout(timeout);
+      final heading = event.heading;
+      if (heading == null) return false;
+      if (heading.isNaN) return false;
+      return true;
+    } catch (e) {
+      log('Compass availability check failed: $e', name: 'QiblaController');
+      return false;
+    }
+  }
+
   /// الحصول على الموقع المحفوظ من GetStorage
   /// Get stored location from GetStorage
   LatLng? get getStoredLocation {
+    // الإعتماد على مدير الكاش الخاص بالصلاة كمصدر وحيد للموقع
     try {
-      final storedLocation = box.read('CURRENT_LOCATION');
-      if (storedLocation is Map<String, dynamic> &&
-          storedLocation.containsKey('latitude') &&
-          storedLocation.containsKey('longitude')) {
-        return LatLng(
-          storedLocation['latitude']?.toDouble() ?? 0.0,
-          storedLocation['longitude']?.toDouble() ?? 0.0,
-        );
-      }
+      return PrayerCacheManager.getStoredLocation();
     } catch (e) {
       log('Error getting stored location: $e', name: 'QiblaController');
+      return null;
     }
-    return null;
   }
 
   double get currentZoom => mapController.value.camera.zoom;
@@ -59,56 +70,35 @@ class QiblaController extends GetxController {
   void get zoomOut => mapController.value
       .move(mapController.value.camera.center, currentZoom - 1);
 
-  Future<void> _checkPermissions() async {
-    bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
-    locationEnabled.value = serviceEnabled;
-    if (!serviceEnabled) {
-      await Geolocator.openLocationSettings();
-      return;
-    }
-
-    LocationPermission permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied) {
-        permissionGranted.value = false;
-        return;
-      }
-    }
-
-    if (permission == LocationPermission.deniedForever) {
+  // لم نعد ندير صلاحيات الموقع هنا؛ إنما نعكس الحالة من الخدمات المركزية
+  Future<void> _refreshLocationStatus() async {
+    try {
+      // الخدمة متاحة؟
+      locationEnabled.value =
+          await LocationHelper.instance.isLocationServiceEnabled();
+      // نعدّ وجود موقع مخزّن كدليل كافٍ للسماح
+      permissionGranted.value = getStoredLocation != null;
+    } catch (_) {
+      locationEnabled.value = false;
       permissionGranted.value = false;
-      return;
     }
-
-    permissionGranted.value = true;
   }
 
   Future<void> updateQiblaDirection() async {
     try {
-      // أولاً: محاولة استخدام الموقع المحفوظ
-      // First: Try to use stored location
+      // الإعتماد فقط على الموقع المخزّن من أنظمة الموقع/الصلاة
       final storedLocation = getStoredLocation;
-
-      if (storedLocation != null) {
-        log('Using stored location for Qibla calculation',
+      if (storedLocation == null) {
+        log('No stored location found for Qibla calculation',
             name: 'QiblaController');
-        _calculateQiblaFromLocation(storedLocation);
         return;
       }
-
-      // ثانياً: جلب الموقع الحالي إذا لم يكن محفوظاً
-      // Second: Get current location if not stored
-      log('No stored location found, getting current location',
+      log('Using stored location for Qibla calculation',
           name: 'QiblaController');
-      await _getCurrentLocationAndCalculateQibla();
+      _calculateQiblaFromLocation(storedLocation);
     } catch (e) {
       log('Error updating Qibla direction: $e', name: 'QiblaController');
-      // في حالة الخطأ، محاولة استخدام الموقع المحفوظ كـ fallback
-      final storedLocation = getStoredLocation;
-      if (storedLocation != null) {
-        _calculateQiblaFromLocation(storedLocation);
-      }
+      // في جميع الأحوال لا نحاول طلب الموقع من هنا
     }
   }
 
@@ -128,47 +118,23 @@ class QiblaController extends GetxController {
 
   /// جلب الموقع الحالي وحساب القبلة
   /// Get current location and calculate Qibla
-  Future<void> _getCurrentLocationAndCalculateQibla() async {
-    const locationSettings = LocationSettings(
-      accuracy: LocationAccuracy.high,
-    );
-
-    final position = await Geolocator.getCurrentPosition(
-      locationSettings: locationSettings,
-    );
-
-    final currentLocation = LatLng(position.latitude, position.longitude);
-
-    // حفظ الموقع الجديد في GetStorage
-    // Save new location to GetStorage
-    box.write('CURRENT_LOCATION', {
-      'latitude': position.latitude,
-      'longitude': position.longitude,
-    });
-
-    _calculateQiblaFromLocation(currentLocation);
-  }
+  // أزيلت: لم نعد نجلب الموقع مباشرة من هنا
 
   @override
   void onInit() {
-    // تحميل الموقع المحفوظ أولاً
-    // Load stored location first
-    final storedLocation = getStoredLocation;
-    if (storedLocation != null) {
-      log('Loading Qibla from stored location', name: 'QiblaController');
-      _calculateQiblaFromLocation(storedLocation);
-    }
+    // تحميل القبلة من الموقع المخزّن فقط
+    updateQiblaDirection();
+    // تحديث حالة الخدمة/الصلاحيات من الخدمات المركزية
+    _refreshLocationStatus();
 
-    // التحقق من الصلاحيات وتحديث الموقع إذا لزم الأمر
-    // Check permissions and update location if needed
-    _checkPermissions().then((_) {
-      if (locationEnabled.value && permissionGranted.value) {
-        // إذا لم يكن هناك موقع محفوظ، جلب الموقع الحالي
-        // If no stored location, get current location
-        if (storedLocation == null) {
-          updateQiblaDirection();
-        }
+    // الاستماع لتغيّر الموقع المخزّن وتحديث القبلة تلقائيًا
+    box.listenKey(CURRENT_LOCATION, (value) {
+      log('CURRENT_LOCATION changed, updating Qibla', name: 'QiblaController');
+      final loc = getStoredLocation;
+      if (loc != null) {
+        _calculateQiblaFromLocation(loc);
       }
+      _refreshLocationStatus();
     });
 
     qiblaWidgetIndex.value = box.read(QIBLA_WIDGET_INDEX) ?? 0;
@@ -179,11 +145,12 @@ class QiblaController extends GetxController {
   /// Force location and Qibla update
   Future<void> forceLocationUpdate() async {
     try {
-      await _checkPermissions();
-      if (locationEnabled.value && permissionGranted.value) {
-        await _getCurrentLocationAndCalculateQibla();
-        log('Location forcibly updated', name: 'QiblaController');
-      }
+      // دع خدمات الموقع تحدث الموقع وتكتب في التخزين، ثم أعد التحميل من الكاش
+      await LocationHelper.instance.getPositionDetails();
+      await updateQiblaDirection();
+      await _refreshLocationStatus();
+      log('Location forcibly updated via LocationHelper',
+          name: 'QiblaController');
     } catch (e) {
       log('Error forcing location update: $e', name: 'QiblaController');
     }
@@ -202,14 +169,8 @@ class QiblaController extends GetxController {
   /// Sync location with prayer system
   void syncWithPrayerSystem() {
     try {
-      // إذا لم يكن لدينا موقع محفوظ، نحاول الحصول عليه من نظام الصلاة
-      if (!isStoredLocationValid) {
-        log('Syncing location with prayer system', name: 'QiblaController');
-        final storedLocation = getStoredLocation;
-        if (storedLocation != null) {
-          _calculateQiblaFromLocation(storedLocation);
-        }
-      }
+      log('Syncing Qibla with stored location', name: 'QiblaController');
+      updateQiblaDirection();
     } catch (e) {
       log('Error syncing with prayer system: $e', name: 'QiblaController');
     }

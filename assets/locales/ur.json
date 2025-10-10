@@ -579,12 +579,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "qiblaDirectionForCity": "شہر کے لیے قبلے کی سمت:",
+  "qiblaDirectionForCity": "آپ کے شہر کے لیے قبلے کی سمت:",
   "@qiblaDirectionForCity": {
     "type": "text",
     "placeholders": {}
   },
-  "qiblaNoteForDesktop": "یہ خصوصیت صرف موبائل ڈیوائسز پر دستیاب ہے۔ براہ کرم اپنے موجودہ مقام کی بنیاد پر قبلے کی سمت معلوم کرنے کے لیے اپنے اسمارٹ فون یا ٹیبلیٹ کا استعمال کریں۔",
+  "qiblaNoteForDesktop": "یہ خصوصیت صرف ان ڈیوائسز پر دستیاب ہے جن میں کمپاس موجود ہے۔ براہ کرم اپنے موجودہ مقام کی بنیاد پر قبلے کی سمت معلوم کرنے کے لیے کمپاس والا ڈیوائس استعمال کریں۔",
   "@qiblaNoteForDesktop": {
     "type": "text",
     "placeholders": {}

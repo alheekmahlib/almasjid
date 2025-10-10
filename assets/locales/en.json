@@ -579,12 +579,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "qiblaDirectionForCity": "Qibla direction for city:",
+  "qiblaDirectionForCity": "Qibla direction for your city:",
   "@qiblaDirectionForCity": {
     "type": "text",
     "placeholders": {}
   },
-  "qiblaNoteForDesktop": "This feature is only available on mobile devices. Please use your smartphone or tablet to access the Qibla direction based on your current location.",
+  "qiblaNoteForDesktop": "This feature is only available on devices with compass capability. Please use a device with compass feature to access the Qibla direction based on your current location.",
   "@qiblaNoteForDesktop": {
     "type": "text",
     "placeholders": {}

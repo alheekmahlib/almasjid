@@ -579,12 +579,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "qiblaDirectionForCity": "Şehir için kıble yönü:",
+  "qiblaDirectionForCity": "Şehriniz için kıble yönü:",
   "@qiblaDirectionForCity": {
     "type": "text",
     "placeholders": {}
   },
-  "qiblaNoteForDesktop": "Bu özellik yalnızca mobil cihazlarda kullanılabilir. Lütfen mevcut konumunuza göre kıble yönünü almak için akıllı telefonunuzu veya tabletinizi kullanın.",
+  "qiblaNoteForDesktop": "Bu özellik yalnızca pusula özelliği olan cihazlarda kullanılabilir. Lütfen mevcut konumunuza göre kıble yönünü almak için pusula özelliği olan bir cihaz kullanın.",
   "@qiblaNoteForDesktop": {
     "type": "text",
     "placeholders": {}

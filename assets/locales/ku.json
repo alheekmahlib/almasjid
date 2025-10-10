@@ -579,12 +579,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "qiblaDirectionForCity": "ئاراستیی قیبلە بۆ شار:",
+  "qiblaDirectionForCity": "ئاراستیی قیبلە بۆ شارەکەت:",
   "@qiblaDirectionForCity": {
     "type": "text",
     "placeholders": {}
   },
-  "qiblaNoteForDesktop": "ئەم تایبەتمەندییە تەنها لەسەر ئامێرە مۆبایلەکان بەردەستە. تکایە مۆبایل یان تابڵێتەکەت بەکاربهێنە بۆ دیاریکردنی ئاراستیی قیبلە پەیوەست بە شوێنی ئێستات.",
+  "qiblaNoteForDesktop": "ئەم تایبەتمەندییە تەنها لەسەر ئامێرەکان بەردەستە کە پیرۆزی تێدایە. تکایە ئامێرێک بەکاربهێنە کە پیرۆزی تێدابێت بۆ دیاریکردنی ئاراستیی قیبلە پەیوەست بە شوێنی ئێستات.",
   "@qiblaNoteForDesktop": {
     "type": "text",
     "placeholders": {}

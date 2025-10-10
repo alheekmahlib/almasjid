@@ -44,6 +44,7 @@ import '../../../core/utils/constants/shared_preferences_constants.dart';
 import '../../../core/utils/constants/svg_constants.dart';
 import '../../../core/utils/helpers/date_formatter.dart';
 import '../../../core/widgets/reactive_number_text.dart';
+import '../../core/widgets/active_location_button.dart';
 import '../../core/widgets/animated_drawing_widget.dart';
 import '../../core/widgets/app_bar_widget.dart';
 import '../../core/widgets/container_button_widget.dart';

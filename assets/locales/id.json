@@ -579,12 +579,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "qiblaDirectionForCity": "Arah kiblat untuk kota:",
+  "qiblaDirectionForCity": "Arah kiblat untuk kota Anda:",
   "@qiblaDirectionForCity": {
     "type": "text",
     "placeholders": {}
   },
-  "qiblaNoteForDesktop": "Fitur ini hanya tersedia di perangkat seluler. Harap gunakan smartphone atau tablet Anda untuk mengakses arah kiblat berdasarkan lokasi Anda saat ini.",
+  "qiblaNoteForDesktop": "Fitur ini hanya tersedia pada perangkat yang memiliki kompas. Harap gunakan perangkat dengan fitur kompas untuk mengakses arah kiblat berdasarkan lokasi Anda saat ini.",
   "@qiblaNoteForDesktop": {
     "type": "text",
     "placeholders": {}

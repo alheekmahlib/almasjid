@@ -1,6 +1,6 @@
 ext {
     compileSdkVersion = 36
-    targetSdkVersion = 34
+    targetSdkVersion = 35
     appCompatVersion = "1.4.2"
 }
 

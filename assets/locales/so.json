@@ -579,12 +579,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "qiblaDirectionForCity": "Jihada Qiblada ee magaalada:",
+  "qiblaDirectionForCity": "Jihada Qiblada ee magaaladiinna:",
   "@qiblaDirectionForCity": {
     "type": "text",
     "placeholders": {}
   },
-  "qiblaNoteForDesktop": "Astaantan waxa lagu heli karaa oo kaliya aaladaha mobilada. Fadlan isticmaal taleefankaaga casriga ah ama tablet-kaaga si aad u hesho jihada Qiblada ee ku salaysan goobtaada hadda.",
+  "qiblaNoteForDesktop": "Astaantan waxa lagu heli karaa oo kaliya aaladaha leh compass-ka. Fadlan isticmaal qalab leh compass feature si aad u hesho jihada Qiblada ee ku salaysan goobtaada hadda.",
   "@qiblaNoteForDesktop": {
     "type": "text",
     "placeholders": {}

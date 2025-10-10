@@ -579,12 +579,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "qiblaDirectionForCity": "Direksyon ng Qibla para sa lungsod:",
+  "qiblaDirectionForCity": "Direksyon ng Qibla para sa inyong lungsod:",
   "@qiblaDirectionForCity": {
     "type": "text",
     "placeholders": {}
   },
-  "qiblaNoteForDesktop": "Ang tampok na ito ay makukuha lamang sa mga mobile device. Mangyaring gamitin ang iyong smartphone o tablet upang makita ang direksyon ng Qibla batay sa iyong kasalukuyang lokasyon.",
+  "qiblaNoteForDesktop": "Ang tampok na ito ay makukuha lamang sa mga device na may compass. Mangyaring gamitin ang device na may compass feature upang makita ang direksyon ng Qibla batay sa inyong kasalukuyang lokasyon.",
   "@qiblaNoteForDesktop": {
     "type": "text",
     "placeholders": {}

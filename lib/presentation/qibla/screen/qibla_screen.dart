@@ -22,18 +22,27 @@ class QiblaScreen extends StatelessWidget {
                     const AppBarWidget(),
                     // const Gap(16),
                     Expanded(
-                      child: context.definePlatform(
-                          GetBuilder<QiblaController>(
-                            init: QiblaController.instance,
-                            builder: (qiblaCtrl) => IndexedStack(
-                              index: qiblaCtrl.currentIndex.value,
-                              children: [
-                                QiblaCompassWidget(),
-                                QiblaMapWidget(),
-                              ],
-                            ),
-                          ),
-                          Stack(
+                      child: FutureBuilder<bool>(
+                        future:
+                            QiblaController.instance.checkCompassAvailability(),
+                        builder: (context, snapshot) {
+                          // أثناء الفحص، نعرض البوصلة افتراضيًا لعدم تعطيل الواجهة، أو يمكن عرض لودينغ خفيف
+                          final hasCompass = snapshot.data ?? true;
+                          if (hasCompass) {
+                            return GetBuilder<QiblaController>(
+                              init: QiblaController.instance,
+                              builder: (qiblaCtrl) => IndexedStack(
+                                index: qiblaCtrl.currentIndex.value,
+                                children: [
+                                  QiblaCompassWidget(),
+                                  QiblaMapWidget(),
+                                ],
+                              ),
+                            );
+                          }
+
+                          // لا توجد بوصلة: نعرض تنبيه/واجهة بديلة مناسبة
+                          return Stack(
                             alignment: Alignment.center,
                             children: [
                               customSvgWithColor(
@@ -88,23 +97,29 @@ class QiblaScreen extends StatelessWidget {
                                                         .withValues(alpha: .7),
                                                   ),
                                                 ),
-                                                Text(
-                                                  '${qiblaCtrl.qiblaDirection.value.toStringAsFixed(1)}°',
-                                                  key: ValueKey(qiblaCtrl
-                                                      .qiblaDirection.value
-                                                      .toStringAsFixed(1)),
-                                                  style: TextStyle(
-                                                    fontFamily: 'cairo',
-                                                    fontSize: 40,
-                                                    height: 1.7,
-                                                    fontWeight: FontWeight.w800,
-                                                    color: context
-                                                        .theme
-                                                        .colorScheme
-                                                        .inversePrimary
-                                                        .withValues(alpha: .6),
-                                                  ),
-                                                ),
+                                                Obx(() => Text(
+                                                      '${QiblaController.instance.qiblaDirection.value.toStringAsFixed(1)}°',
+                                                      key: ValueKey(
+                                                          QiblaController
+                                                              .instance
+                                                              .qiblaDirection
+                                                              .value
+                                                              .toStringAsFixed(
+                                                                  1)),
+                                                      style: TextStyle(
+                                                        fontFamily: 'cairo',
+                                                        fontSize: 40,
+                                                        height: 1.7,
+                                                        fontWeight:
+                                                            FontWeight.w800,
+                                                        color: context
+                                                            .theme
+                                                            .colorScheme
+                                                            .inversePrimary
+                                                            .withValues(
+                                                                alpha: .6),
+                                                      ),
+                                                    )),
                                               ],
                                             ),
                                             Text(
@@ -126,7 +141,9 @@ class QiblaScreen extends StatelessWidget {
                                 ),
                               ),
                             ],
-                          )),
+                          );
+                        },
+                      ),
                     ),
                   ],
                 ),
@@ -138,58 +155,7 @@ class QiblaScreen extends StatelessWidget {
 
   Widget activeLocationWidget(BuildContext context, Widget child) {
     return Obx(() => !GeneralController.instance.state.activeLocation.value
-        ? Container(
-            height: 80,
-            width: Get.width,
-            margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-            padding:
-                const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-            decoration: BoxDecoration(
-              color: context.theme.colorScheme.primary.withValues(alpha: .1),
-              borderRadius: const BorderRadius.all(Radius.circular(8)),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  flex: 7,
-                  child: Text(
-                    'turnOnLocation'.tr,
-                    style: TextStyle(
-                      fontSize: 18.0,
-                      fontFamily: 'naskh',
-                      fontWeight: FontWeight.bold,
-                      color: context.theme.colorScheme.inversePrimary
-                          .withValues(alpha: .7),
-                    ),
-                  ),
-                ),
-                const Gap(32),
-                Expanded(
-                  flex: 2,
-                  child: Obx(() => Switch(
-                        value: GeneralController
-                            .instance.state.activeLocation.value,
-                        activeThumbColor: Colors.red,
-                        inactiveTrackColor: context.theme.colorScheme.surface
-                            .withValues(alpha: .5),
-                        activeTrackColor: context.theme.colorScheme.surface
-                            .withValues(alpha: .7),
-                        thumbColor: WidgetStatePropertyAll(
-                            context.theme.colorScheme.surface),
-                        trackOutlineColor: WidgetStatePropertyAll(
-                            GeneralController
-                                    .instance.state.activeLocation.value
-                                ? context.theme.colorScheme.surface
-                                : context.theme.canvasColor
-                                    .withValues(alpha: .5)),
-                        onChanged: (_) async => await GeneralController.instance
-                            .toggleLocationService(),
-                      )),
-                ),
-              ],
-            ),
-          )
+        ? ActiveLocationButton()
         : child);
   }
 }

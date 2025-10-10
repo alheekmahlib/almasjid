@@ -579,12 +579,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "qiblaDirectionForCity": "Dirección de la Qibla para la ciudad:",
+  "qiblaDirectionForCity": "Dirección de la Qibla para tu ciudad:",
   "@qiblaDirectionForCity": {
     "type": "text",
     "placeholders": {}
   },
-  "qiblaNoteForDesktop": "Esta función solo está disponible en dispositivos móviles. Usa tu smartphone o tablet para acceder a la dirección de la Qibla según tu ubicación actual.",
+  "qiblaNoteForDesktop": "Esta función solo está disponible en dispositivos que tienen brújula. Por favor usa un dispositivo con función de brújula para acceder a la dirección de la Qibla según tu ubicación actual.",
   "@qiblaNoteForDesktop": {
     "type": "text",
     "placeholders": {}

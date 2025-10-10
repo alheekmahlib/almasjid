@@ -589,12 +589,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "qiblaDirectionForCity": "اتجاه القبلة لمدينة:",
+  "qiblaDirectionForCity": "اتجاه القبلة لمدينتك:",
   "@qiblaDirectionForCity": {
     "type": "text",
     "placeholders": {}
   },
-  "qiblaNoteForDesktop": "هذه الميزة متاحة فقط على الأجهزة المحمولة. يرجى استخدام هاتفك الذكي أو جهازك اللوحي للوصول إلى اتجاه القبلة بناءً على موقعك الحالي.",
+  "qiblaNoteForDesktop": "هذه الميزة متاحة فقط على الأجهزة التي تحتوي  البوصلة. يرجى استخدام جهاز فيه ميزة البوصلة للوصول إلى اتجاه القبلة بناءً على موقعك الحالي.",
   "@qiblaNoteForDesktop": {
     "type": "text",
     "placeholders": {}

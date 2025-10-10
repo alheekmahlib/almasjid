@@ -17,8 +17,8 @@ class AdhanController extends GetxController {
       geo.setLocaleIdentifier('en');
     }
     getShared;
-    Future.delayed(
-        const Duration(seconds: 4), () async => await initializeStoredAdhan());
+    // ابدأ التهيئة فورًا بدل التأخير لتجنّب نافذة null
+    unawaited(initializeStoredAdhan());
     Future.delayed(
         const Duration(seconds: 8),
         () async =>
@@ -222,7 +222,7 @@ class AdhanController extends GetxController {
 
     // إيقاف حالة التحميل
     state.isLoadingPrayerData.value = false;
-    update(['loading_state']);
+    update(['loading_state', 'init_athan']);
 
     // حساب أوقات الصلاة للتاريخ المختار (اليوم الحالي في البداية)
     // Calculate prayer times for selected date (current day initially)
@@ -245,6 +245,8 @@ class AdhanController extends GetxController {
       if (todayPrayerTimes != null) {
         // تحويل بيانات اليوم إلى البيانات المطلوبة للحالة
         await _convertDayPrayerTimesToState(todayPrayerTimes);
+        // تحديث مبكر للواجهة لعرض الأوقات المخزّنة قبل أي حسابات إضافية
+        update(['init_athan']);
         await _finalizePrayerTimeInitialization();
         return true;
       }
@@ -360,8 +362,18 @@ class AdhanController extends GetxController {
 
   /// قائمة أسماء الصلوات مع التفاصيل
   /// Prayer names list with details
-  List<Map<String, dynamic>> get prayerNameList =>
-      generatePrayerNameList(state);
+  List<Map<String, dynamic>> get prayerNameList {
+    // تجنّب Null أثناء الإقلاع: أعد قائمة فارغة حتى تُهيّأ الأوقات
+    if (state.prayerTimes == null || state.sunnahTimes == null) {
+      return const [];
+    }
+    try {
+      return generatePrayerNameList(state);
+    } catch (e) {
+      log('generatePrayerNameList error: $e', name: 'AdhanController');
+      return const [];
+    }
+  }
 
   /// تحديث قائمة أسماء الصلوات
   /// Update prayer names list
