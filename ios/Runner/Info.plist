@@ -1,70 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
+<dict>
+	<key>BGTaskSchedulerPermittedIdentifiers</key>
+	<array>
+		<string>com.transistorsoft.fetchNotifications</string>
+		<string>com.transistorsoft.fetchEvery24Hours</string>
+		<string>com.alheekmah.alheekmahLibrary.dailyTask</string>
+	</array>
+	<key>CADisableMinimumFrameDurationOnPhone</key>
+	<true/>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>أقم - مكتبة الحكمة</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>almasjid</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>$(FLUTTER_BUILD_NAME)</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>$(FLUTTER_BUILD_NUMBER)</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>This app uses your location to provide accurate prayer times and send prayer notifications even when the app is closed. For example, it will automatically remind you when it's time for Fajr prayer at 5:30 AM based on your current location, without needing to open the app.</string>
+	<key>NSLocationTemporaryUsageDescriptionDictionary</key>
 	<dict>
-		<key>CFBundleDevelopmentRegion</key>
-		<string>$(DEVELOPMENT_LANGUAGE)</string>
-		<key>CFBundleDisplayName</key>
-		<string>أقم - مكتبة الحكمة</string>
-		<key>CFBundleExecutable</key>
-		<string>$(EXECUTABLE_NAME)</string>
-		<key>CFBundleIdentifier</key>
-		<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
-		<key>CFBundleInfoDictionaryVersion</key>
-		<string>6.0</string>
-		<key>CFBundleName</key>
-		<string>almasjid</string>
-		<key>CFBundlePackageType</key>
-		<string>APPL</string>
-		<key>CFBundleShortVersionString</key>
-		<string>$(FLUTTER_BUILD_NAME)</string>
-		<key>CFBundleSignature</key>
-		<string>????</string>
-		<key>CFBundleVersion</key>
-		<string>$(FLUTTER_BUILD_NUMBER)</string>
-		<key>LSRequiresIPhoneOS</key>
-		<true/>
-		<key>UILaunchStoryboardName</key>
-		<string>LaunchScreen</string>
-		<key>UIMainStoryboardFile</key>
-		<string>Main</string>
-		<key>UISupportedInterfaceOrientations</key>
-		<array>
-			<string>UIInterfaceOrientationPortrait</string>
-			<string>UIInterfaceOrientationLandscapeLeft</string>
-			<string>UIInterfaceOrientationLandscapeRight</string>
-		</array>
-		<key>UISupportedInterfaceOrientations~ipad</key>
-		<array>
-			<string>UIInterfaceOrientationPortrait</string>
-			<string>UIInterfaceOrientationPortraitUpsideDown</string>
-			<string>UIInterfaceOrientationLandscapeLeft</string>
-			<string>UIInterfaceOrientationLandscapeRight</string>
-		</array>
-		<key>CADisableMinimumFrameDurationOnPhone</key>
-		<true/>
-		<key>UIApplicationSupportsIndirectInputEvents</key>
-		<true/>
-		<key>UIBackgroundModes</key>
-		<array>
-			<string>location</string>
-		</array>
-		<key>NSLocationWhenInUseUsageDescription</key>
-		<string>This app needs access to location when open.</string>
-		<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-		<string>This app needs access to location to provide accurate prayer times and notifications even when the app is not in use.</string>
-		<key>NSLocationTemporaryUsageDescriptionDictionary</key>
-		<dict>
-			<key>Location</key>
-			<string>The example App requires temporary access to the device's precise location.</string>
-		</dict>
-		<key>BGTaskSchedulerPermittedIdentifiers</key>
-		<array>
-			<string>com.transistorsoft.fetchNotifications</string>
-			<string>com.transistorsoft.fetchEvery24Hours</string>
-			<string>com.alheekmah.alheekmahLibrary.dailyTask</string>
-		</array>
-		<key>UIStatusBarHidden</key>
-		<false/>
+		<key>Location</key>
+		<string>This app uses your precise location to calculate accurate prayer times and Qibla direction. For example, prayer times in Riyadh differ from those in London, so we need your exact location for precision.</string>
 	</dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app uses your location to calculate accurate prayer times based on your current position and to determine the correct Qibla direction for prayer. For example, when you're in New York, the app will show prayer times specific to that location and point towards Mecca.</string>
+	<key>UIApplicationSupportsIndirectInputEvents</key>
+	<true/>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+	</array>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UIMainStoryboardFile</key>
+	<string>Main</string>
+	<key>UIStatusBarHidden</key>
+	<false/>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+</dict>
 </plist>
