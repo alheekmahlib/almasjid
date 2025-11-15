@@ -12,16 +12,20 @@ extension BottomSheetExtension on void {
       Widget? titleChild,
       String? textTitle,
       Color? containerColor}) {
-    Get.bottomSheet(
-      // ملاحظة: bottomSheet route يفرض قيود عرض كاملة على الطفل.
-      // لا يمكن إجبار Container على عرض أصغر مباشرة.
-      // نستخدم Align + FractionallySizedBox لتطبيق عرض نسبي داخل القيود.
-      Padding(
-        padding: const EdgeInsets.only(top: 56.0, right: 8.0, left: 8.0),
-        child: Align(
-          alignment: Alignment.bottomCenter,
-          child: FractionallySizedBox(
-            widthFactor: Get.context!.customOrientation(1.0, 0.5),
+    showModalBottomSheet(
+        context: Get.context!,
+        backgroundColor: Colors.transparent,
+        isScrollControlled: true,
+        useSafeArea: true,
+        enableDrag: true,
+        isDismissible: true,
+        // showDragHandle: true,
+        constraints: BoxConstraints(
+            maxWidth:
+                Get.context!.customOrientation(Get.width, Get.width * .5)),
+        builder: (context) {
+          return Padding(
+            padding: const EdgeInsets.only(top: 56.0, right: 8.0, left: 8.0),
             child: Container(
               padding: const EdgeInsets.only(top: 8.0, right: 8.0, left: 8.0),
               decoration: BoxDecoration(
@@ -102,10 +106,7 @@ extension BottomSheetExtension on void {
                 ),
               ),
             ),
-          ),
-        ),
-      ),
-      isScrollControlled: true,
-    );
+          );
+        });
   }
 }

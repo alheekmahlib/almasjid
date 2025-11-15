@@ -38,8 +38,6 @@ import '/core/utils/constants/extensions/svg_extensions.dart';
 import '../../../core/services/location/locations.dart';
 import '../../../core/services/notifications_helper.dart';
 import '../../../core/utils/constants/lists.dart';
-import '../../../core/utils/constants/lottie.dart';
-import '../../../core/utils/constants/lottie_constants.dart';
 import '../../../core/utils/constants/shared_preferences_constants.dart';
 import '../../../core/utils/constants/svg_constants.dart';
 import '../../../core/utils/helpers/date_formatter.dart';

@@ -16,11 +16,14 @@
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
 		9BB7CF07BC677567FEDDC5C9 /* Pods_RunnerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B593A0BB373E35CF4654309F /* Pods_RunnerTests.framework */; };
-		D4F403312E7D25F300A1A3AC /* saqqaf_athan.aiff in Resources */ = {isa = PBXBuildFile; fileRef = D4F4032D2E7D25F300A1A3AC /* saqqaf_athan.aiff */; };
-		D4F403322E7D25F300A1A3AC /* sarihi_athan.aiff in Resources */ = {isa = PBXBuildFile; fileRef = D4F4032E2E7D25F300A1A3AC /* sarihi_athan.aiff */; };
+		D492D1012EC6E33E0036D8F1 /* salah_athan.aiff in Resources */ = {isa = PBXBuildFile; fileRef = D492D0FE2EC6E33E0036D8F1 /* salah_athan.aiff */; };
+		D492D1022EC6E33E0036D8F1 /* aqsa_athan.aiff in Resources */ = {isa = PBXBuildFile; fileRef = D492D0FB2EC6E33E0036D8F1 /* aqsa_athan.aiff */; };
+		D492D1032EC6E33E0036D8F1 /* baset_athan.aiff in Resources */ = {isa = PBXBuildFile; fileRef = D492D0FC2EC6E33E0036D8F1 /* baset_athan.aiff */; };
+		D492D1042EC6E33E0036D8F1 /* qatami_athan.aiff in Resources */ = {isa = PBXBuildFile; fileRef = D492D0FD2EC6E33E0036D8F1 /* qatami_athan.aiff */; };
+		D492D1052EC6E33E0036D8F1 /* saqqaf_athan.aiff in Resources */ = {isa = PBXBuildFile; fileRef = D492D0FF2EC6E33E0036D8F1 /* saqqaf_athan.aiff */; };
+		D492D1062EC6E33E0036D8F1 /* sarihi_athan.aiff in Resources */ = {isa = PBXBuildFile; fileRef = D492D1002EC6E33E0036D8F1 /* sarihi_athan.aiff */; };
 		D4F403332E7D25F300A1A3AC /* silence.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D4F4032F2E7D25F300A1A3AC /* silence.mp3 */; };
 		D4F403342E7D25F300A1A3AC /* notification.aiff in Resources */ = {isa = PBXBuildFile; fileRef = D4F4032C2E7D25F300A1A3AC /* notification.aiff */; };
-		D4F403352E7D25F300A1A3AC /* aqsa_athan.aiff in Resources */ = {isa = PBXBuildFile; fileRef = D4F4032B2E7D25F300A1A3AC /* aqsa_athan.aiff */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,10 +73,13 @@
 		AB2355D32A49AE8F3F13FB50 /* Pods-RunnerTests.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.profile.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.profile.xcconfig"; sourceTree = "<group>"; };
 		B593A0BB373E35CF4654309F /* Pods_RunnerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RunnerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE3FCCC30D1F2FD977920F63 /* Pods-RunnerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.debug.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.debug.xcconfig"; sourceTree = "<group>"; };
-		D4F4032B2E7D25F300A1A3AC /* aqsa_athan.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = aqsa_athan.aiff; sourceTree = "<group>"; };
+		D492D0FB2EC6E33E0036D8F1 /* aqsa_athan.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = aqsa_athan.aiff; sourceTree = "<group>"; };
+		D492D0FC2EC6E33E0036D8F1 /* baset_athan.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = baset_athan.aiff; sourceTree = "<group>"; };
+		D492D0FD2EC6E33E0036D8F1 /* qatami_athan.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = qatami_athan.aiff; sourceTree = "<group>"; };
+		D492D0FE2EC6E33E0036D8F1 /* salah_athan.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = salah_athan.aiff; sourceTree = "<group>"; };
+		D492D0FF2EC6E33E0036D8F1 /* saqqaf_athan.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = saqqaf_athan.aiff; sourceTree = "<group>"; };
+		D492D1002EC6E33E0036D8F1 /* sarihi_athan.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = sarihi_athan.aiff; sourceTree = "<group>"; };
 		D4F4032C2E7D25F300A1A3AC /* notification.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = notification.aiff; sourceTree = "<group>"; };
-		D4F4032D2E7D25F300A1A3AC /* saqqaf_athan.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = saqqaf_athan.aiff; sourceTree = "<group>"; };
-		D4F4032E2E7D25F300A1A3AC /* sarihi_athan.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = sarihi_athan.aiff; sourceTree = "<group>"; };
 		D4F4032F2E7D25F300A1A3AC /* silence.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = silence.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -178,11 +184,14 @@
 		D4F403302E7D25F300A1A3AC /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				D4F4032B2E7D25F300A1A3AC /* aqsa_athan.aiff */,
 				D4F4032C2E7D25F300A1A3AC /* notification.aiff */,
-				D4F4032D2E7D25F300A1A3AC /* saqqaf_athan.aiff */,
-				D4F4032E2E7D25F300A1A3AC /* sarihi_athan.aiff */,
 				D4F4032F2E7D25F300A1A3AC /* silence.mp3 */,
+				D492D0FB2EC6E33E0036D8F1 /* aqsa_athan.aiff */,
+				D492D0FC2EC6E33E0036D8F1 /* baset_athan.aiff */,
+				D492D0FD2EC6E33E0036D8F1 /* qatami_athan.aiff */,
+				D492D0FE2EC6E33E0036D8F1 /* salah_athan.aiff */,
+				D492D0FF2EC6E33E0036D8F1 /* saqqaf_athan.aiff */,
+				D492D1002EC6E33E0036D8F1 /* sarihi_athan.aiff */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -282,11 +291,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4F403312E7D25F300A1A3AC /* saqqaf_athan.aiff in Resources */,
-				D4F403322E7D25F300A1A3AC /* sarihi_athan.aiff in Resources */,
 				D4F403332E7D25F300A1A3AC /* silence.mp3 in Resources */,
 				D4F403342E7D25F300A1A3AC /* notification.aiff in Resources */,
-				D4F403352E7D25F300A1A3AC /* aqsa_athan.aiff in Resources */,
+				D492D1012EC6E33E0036D8F1 /* salah_athan.aiff in Resources */,
+				D492D1022EC6E33E0036D8F1 /* aqsa_athan.aiff in Resources */,
+				D492D1032EC6E33E0036D8F1 /* baset_athan.aiff in Resources */,
+				D492D1042EC6E33E0036D8F1 /* qatami_athan.aiff in Resources */,
+				D492D1052EC6E33E0036D8F1 /* saqqaf_athan.aiff in Resources */,
+				D492D1062EC6E33E0036D8F1 /* sarihi_athan.aiff in Resources */,
 				97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */,
 				3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */,
 				97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */,

@@ -26,6 +26,7 @@ class MyApp extends StatelessWidget {
     sl<ThemeController>().checkTheme();
     final localizationCtrl = Get.find<LocalizationController>();
     LocalNotificationsController.instance;
+    const TextScaler fixedScaler = TextScaler.linear(1.0);
     return ScreenUtilInit(
         designSize: const Size(360, 690),
         minTextAdapt: true,
@@ -56,9 +57,14 @@ class MyApp extends StatelessWidget {
                     localizationCtrl.locale.languageCode;
                 const rtlLangs = {'ar', 'ku', 'ur', 'fa'};
                 final isRtl = rtlLangs.contains(langCode);
-                return Directionality(
-                  textDirection: isRtl ? TextDirection.rtl : TextDirection.ltr,
-                  child: botChild,
+                final mq = MediaQuery.of(context);
+                return MediaQuery(
+                  data: mq.copyWith(textScaler: fixedScaler),
+                  child: Directionality(
+                    textDirection:
+                        isRtl ? TextDirection.rtl : TextDirection.ltr,
+                    child: botChild,
+                  ),
                 );
               },
               navigatorObservers: [BotToastNavigatorObserver()],

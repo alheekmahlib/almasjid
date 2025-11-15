@@ -599,8 +599,23 @@
     "type": "text",
     "placeholders": {}
   },
-  "understanding": "dinde anlayış elde etmek için",
+  "understanding": "dini konularda anlayış elde etmek için",
   "@understanding": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "baset": "Abdulbasit",
+  "@baset": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "qatami": "Nasser Al-Katami",
+  "@qatami": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "salah": "Salah El-Dib",
+  "@salah": {
     "type": "text",
     "placeholders": {}
   }

@@ -603,5 +603,20 @@
   "@understanding": {
     "type": "text",
     "placeholders": {}
+  },
+  "baset": "আব্দুল বাসিত",
+  "@baset": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "qatami": "নাসের আল-কাতামি",
+  "@qatami": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "salah": "সালাহ আল-দিব",
+  "@salah": {
+    "type": "text",
+    "placeholders": {}
   }
 }

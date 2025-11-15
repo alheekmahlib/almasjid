@@ -30,7 +30,7 @@ class AdhanSounds extends StatelessWidget {
 
   Widget bottomSheetWidget(BuildContext context) {
     return SizedBox(
-      height: Get.height * .3,
+      height: Get.height * .5,
       child: FutureBuilder<List<AdhanData>>(
           future: notificationCtrl.state.adhanData,
           builder: (context, snapshot) {
@@ -99,6 +99,7 @@ class AdhanSounds extends StatelessWidget {
                                 ? null
                                 : await notificationCtrl
                                     .adhanDownload(adhans[index]);
+                            await notificationCtrl.reschedulePrayers();
                           },
                           title: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,

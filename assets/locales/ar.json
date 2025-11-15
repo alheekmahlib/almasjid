@@ -603,5 +603,20 @@
   "@reminder": {
     "type": "text",
     "placeholders": {}
+  },
+  "baset": "عبد الباسط",
+  "@baset": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "qatami": "ناصر القطامي",
+  "@qatami": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "salah": "صلاح الذيب",
+  "@salah": {
+    "type": "text",
+    "placeholders": {}
   }
 }

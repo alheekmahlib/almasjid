@@ -599,8 +599,23 @@
     "type": "text",
     "placeholders": {}
   },
-  "understanding": "inay Diinta kasaan",
+  "understanding": "si ay ku helaan waxbarasho ku saabsan diinta",
   "@understanding": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "baset": "Abdul Basit",
+  "@baset": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "qatami": "Nasser Al-Qatami",
+  "@qatami": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "salah": "Salah Al-Deeb",
+  "@salah": {
     "type": "text",
     "placeholders": {}
   }

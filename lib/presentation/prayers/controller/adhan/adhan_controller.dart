@@ -13,21 +13,23 @@ class AdhanController extends GetxController {
   @override
   Future<void> onInit() async {
     super.onInit();
-    if (Platform.isAndroid || Platform.isIOS) {
-      geo.setLocaleIdentifier('en');
+    if (GeneralController.instance.state.activeLocation.value) {
+      if (Platform.isAndroid || Platform.isIOS) {
+        geo.setLocaleIdentifier('en');
+      }
+      getShared;
+      // ابدأ التهيئة فورًا بدل التأخير لتجنّب نافذة null
+      unawaited(initializeStoredAdhan());
+      Future.delayed(
+          const Duration(seconds: 8),
+          () async =>
+              await PrayersNotificationsCtrl.instance.reschedulePrayers());
+      updateProgressBar();
+      // Start periodic watcher after initial data likely loaded
+      Future.delayed(const Duration(seconds: 10), () {
+        updateCurrentPrayer();
+      });
     }
-    getShared;
-    // ابدأ التهيئة فورًا بدل التأخير لتجنّب نافذة null
-    unawaited(initializeStoredAdhan());
-    Future.delayed(
-        const Duration(seconds: 8),
-        () async =>
-            await PrayersNotificationsCtrl.instance.reschedulePrayers());
-    updateProgressBar();
-    // Start periodic watcher after initial data likely loaded
-    Future.delayed(const Duration(seconds: 10), () {
-      updateCurrentPrayer();
-    });
   }
 
   @override

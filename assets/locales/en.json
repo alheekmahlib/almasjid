@@ -603,5 +603,20 @@
   "@understanding": {
     "type": "text",
     "placeholders": {}
+  },
+  "baset": "Abdul Basit",
+  "@baset": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "qatami": "Nasser Al-Qatami",
+  "@qatami": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "salah": "Salah Al-Deeb",
+  "@salah": {
+    "type": "text",
+    "placeholders": {}
   }
 }

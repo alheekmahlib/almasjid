@@ -599,8 +599,23 @@
     "type": "text",
     "placeholders": {}
   },
-  "understanding": "کہ دین کی سمجھ حاصل کریں",
+  "understanding": "دین میں سمجھ بوجھ حاصل کرنے کے لیے",
   "@understanding": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "baset": "عبدالباسط",
+  "@baset": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "qatami": "ناصر القطامی",
+  "@qatami": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "salah": "صلاح الدیب",
+  "@salah": {
     "type": "text",
     "placeholders": {}
   }

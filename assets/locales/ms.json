@@ -594,14 +594,30 @@
     "type": "text",
     "placeholders": {}
   },
-  "liatafaqahuu": "liatafaqahuu",
-  "@liatafaqahuu": {
+  "baset": "Abdul Basit",
+  "@baset": {
     "type": "text",
     "placeholders": {}
   },
-  "understanding": "untuk memperoleh kefahaman dalam agama",
-  "@understanding": {
+  "qatami": "Nasser Al-Qatami",
+  "@qatami": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "salah": "Salah Al-Deeb",
+  "@salah": {
     "type": "text",
     "placeholders": {}
   }
+},
+"liatafaqahuu": "liatafaqahuu",
+"@liatafaqahuu": {
+  "type": "text",
+  "placeholders": {}
+},
+"understanding": "untuk memperoleh kefahaman dalam agama",
+"@understanding": {
+  "type": "text",
+  "placeholders": {}
+}
 }

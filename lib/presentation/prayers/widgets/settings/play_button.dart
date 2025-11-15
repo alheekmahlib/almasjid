@@ -25,8 +25,9 @@ class PlayButton extends StatelessWidget {
 
               if (playerState?.processingState == ProcessingState.buffering &&
                   isCurrentlyPlaying) {
-                return customLottie(LottieConstants.assetsLottiePlayButton,
-                    width: 20.0, height: 20.0);
+                return const CircularProgressIndicator(
+                  constraints: BoxConstraints(maxWidth: 20.0, maxHeight: 20.0),
+                );
               } else if (isCurrentlyPlaying && isPlaying) {
                 return IconButton(
                   icon: customSvg(

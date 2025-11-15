@@ -599,8 +599,23 @@
     "type": "text",
     "placeholders": {}
   },
-  "understanding": "بۆ بەدەستهێنانی تێگەشتن لە ئایین",
+  "understanding": "بۆ بەدەستهێنانی تێگەیشتن لە ئایین",
   "@understanding": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "baset": "عبدالباسط",
+  "@baset": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "qatami": "ناسری قەتامی",
+  "@qatami": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "salah": "سەلاح دیب",
+  "@salah": {
     "type": "text",
     "placeholders": {}
   }

@@ -74,6 +74,24 @@ extension PrayersNotiUi on PrayersNotificationsCtrl {
             ? 'resource://raw/sarihi_athan'
             : 'resource://raw/sarihi_athan_fajir';
         break;
+      case 3:
+        state.selectedAdhanPath.value = 'resource://raw/baset_athan';
+        state.selectedAdhanPathFajir.value = Platform.isIOS
+            ? 'resource://raw/baset_athan'
+            : 'resource://raw/baset_athan_fajir';
+        break;
+      case 4:
+        state.selectedAdhanPath.value = 'resource://raw/qatami_athan';
+        state.selectedAdhanPathFajir.value = Platform.isIOS
+            ? 'resource://raw/qatami_athan'
+            : 'resource://raw/qatami_athan_fajir';
+        break;
+      case 5:
+        state.selectedAdhanPath.value = 'resource://raw/salah_athan';
+        state.selectedAdhanPathFajir.value = Platform.isIOS
+            ? 'resource://raw/salah_athan'
+            : 'resource://raw/salah_athan_fajir';
+        break;
       default:
         state.selectedAdhanPath.value = 'resource://raw/aqsa_athan';
         state.selectedAdhanPathFajir.value = Platform.isIOS

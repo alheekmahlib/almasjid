@@ -80,9 +80,8 @@ class QiblaScreen extends StatelessWidget {
                                         child: Column(
                                           mainAxisSize: MainAxisSize.min,
                                           children: [
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
+                                            Wrap(
+                                              alignment: WrapAlignment.center,
                                               children: [
                                                 Text(
                                                   '${'qiblaDirectionForCity'.tr} ${Location.instance.city}',
@@ -132,6 +131,7 @@ class QiblaScreen extends StatelessWidget {
                                                     .inversePrimary
                                                     .withValues(alpha: .5),
                                               ),
+                                              textAlign: TextAlign.justify,
                                             ),
                                           ],
                                         ),

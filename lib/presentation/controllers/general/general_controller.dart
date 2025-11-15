@@ -9,6 +9,7 @@ import '../../../core/services/location/locations.dart';
 import '../../../core/utils/constants/shared_preferences_constants.dart';
 import '../../prayers/prayers.dart';
 import '../../qibla/qibla.dart';
+import '../../splash/splash.dart';
 import 'general_state.dart';
 
 class GeneralController extends GetxController {
@@ -130,7 +131,7 @@ class GeneralController extends GetxController {
     state.box.write(ACTIVE_LOCATION, false);
     state.box.write(IS_LOCATION_ACTIVE, false);
     state.box.write(FIRST_LAUNCH, true);
-    // SplashScreenController.instance.state.customWidget.value = 2;
+    SplashScreenController.instance.state.customWidgetIndex.value = 2;
     log('Location cancelled', name: 'Main');
   }
 

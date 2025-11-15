@@ -4,26 +4,53 @@
     "adhanFileName": "aqsa",
     "adhanLocalPath": "resource://raw/aqsa_athan",
     "adhanName": "aqsa",
-    "urlAndroidAdhanZip": "https://raw.githubusercontent.com/alheekmahlib/adhan_sounds/main/aqsa.zip",
+    "urlAndroidAdhanZip": "https://raw.githubusercontent.com/alheekmahlib/data/main/adhan_sounds/aqsa.zip",
     "urlIosAdhanZip": "https://raw.githubusercontent.com/alheekmahlib/adhan_sounds/main/aqsa_part.zip",
-    "urlPlayAdhan": "https://raw.githubusercontent.com/alheekmahlib/adhan_sounds/main/aqsa_ios/aqsa_ios/1.wav"
+    "urlPlayAdhan": "https://raw.githubusercontent.com/alheekmahlib/data/main/adhan_sounds/aqsa_athan.m4a"
   },
   {
     "index": 1,
     "adhanFileName": "saqqaf",
     "adhanLocalPath": "resource://raw/saqqaf_athan",
     "adhanName": "saqqaf",
-    "urlAndroidAdhanZip": "https://raw.githubusercontent.com/alheekmahlib/adhan_sounds/main/saqqaf.zip",
+    "urlAndroidAdhanZip": "https://raw.githubusercontent.com/alheekmahlib/data/main/adhan_sounds/saqqaf.zip",
     "urlIosAdhanZip": "https://raw.githubusercontent.com/alheekmahlib/adhan_sounds/main/Al-Saqqaf_part.zip",
-    "urlPlayAdhan": "https://raw.githubusercontent.com/alheekmahlib/adhan_sounds/main/Al-Saqqaf_ios/Al-Saqqaf_ios/1.wav"
+    "urlPlayAdhan": "https://raw.githubusercontent.com/alheekmahlib/data/main/adhan_sounds/saqqaf_athan.m4a"
   },
   {
     "index": 2,
     "adhanFileName": "sarihi",
     "adhanLocalPath": "resource://raw/sarihi_athan",
     "adhanName": "sarihi",
-    "urlAndroidAdhanZip": "https://raw.githubusercontent.com/alheekmahlib/adhan_sounds/main/sarihi.zip",
+    "urlAndroidAdhanZip": "https://raw.githubusercontent.com/alheekmahlib/data/main/adhan_sounds/sarihi.zip",
     "urlIosAdhanZip": "https://raw.githubusercontent.com/alheekmahlib/adhan_sounds/main/Al-Saqqaf_part.zip",
-    "urlPlayAdhan": "https://raw.githubusercontent.com/alheekmahlib/adhan_sounds/main/sarihi_athanF.m4a"
+    "urlPlayAdhan": "https://raw.githubusercontent.com/alheekmahlib/data/main/adhan_sounds/sarihi_athanF.m4a"
+  },
+  {
+    "index": 3,
+    "adhanFileName": "baset",
+    "adhanLocalPath": "resource://raw/baset_athan",
+    "adhanName": "baset",
+    "urlAndroidAdhanZip": "https://raw.githubusercontent.com/alheekmahlib/data/main/adhan_sounds/baset.zip",
+    "urlIosAdhanZip": "https://raw.githubusercontent.com/alheekmahlib/adhan_sounds/main/Al-Saqqaf_part.zip",
+    "urlPlayAdhan": "https://raw.githubusercontent.com/alheekmahlib/data/main/adhan_sounds/baset_athan.m4a"
+  },
+  {
+    "index": 4,
+    "adhanFileName": "qatami",
+    "adhanLocalPath": "resource://raw/qatami_athan",
+    "adhanName": "qatami",
+    "urlAndroidAdhanZip": "https://raw.githubusercontent.com/alheekmahlib/data/main/adhan_sounds/qatami.zip",
+    "urlIosAdhanZip": "https://raw.githubusercontent.com/alheekmahlib/adhan_sounds/main/Al-Saqqaf_part.zip",
+    "urlPlayAdhan": "https://raw.githubusercontent.com/alheekmahlib/data/main/adhan_sounds/qatami_athan.m4a"
+  },
+  {
+    "index": 5,
+    "adhanFileName": "salah",
+    "adhanLocalPath": "resource://raw/salah_athan",
+    "adhanName": "salah",
+    "urlAndroidAdhanZip": "https://raw.githubusercontent.com/alheekmahlib/data/main/adhan_sounds/salah.zip",
+    "urlIosAdhanZip": "https://raw.githubusercontent.com/alheekmahlib/adhan_sounds/main/Al-Saqqaf_part.zip",
+    "urlPlayAdhan": "https://raw.githubusercontent.com/alheekmahlib/data/main/adhan_sounds/salah_athan.m4a"
   }
 ]
