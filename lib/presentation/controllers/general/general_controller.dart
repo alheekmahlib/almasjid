@@ -7,6 +7,7 @@ import 'package:nominatim_geocoding/nominatim_geocoding.dart';
 import '../../../core/services/background_services.dart';
 import '../../../core/services/location/locations.dart';
 import '../../../core/utils/constants/shared_preferences_constants.dart';
+import '../../../core/widgets/home_widget/home_widget.dart';
 import '../../prayers/prayers.dart';
 import '../../qibla/qibla.dart';
 import '../../splash/splash.dart';
@@ -37,11 +38,11 @@ class GeneralController extends GetxController {
       if (Platform.isIOS || Platform.isAndroid) {
         await BGServices().registerTask();
         // await HijriWidgetConfig.initialize();
-        // await PrayersWidgetConfig.initialize();
-        // Future.delayed(const Duration(seconds: 5)).then((_) {
-        //   HijriWidgetConfig().updateHijriDate();
-        //   PrayersWidgetConfig().updatePrayersDate();
-        // });
+        await PrayersWidgetConfig.initialize();
+        Future.delayed(const Duration(seconds: 5)).then((_) {
+          // HijriWidgetConfig().updateHijriDate();
+          PrayersWidgetConfig().updatePrayersDate();
+        });
         await BackgroundTaskHandler.initializeHandler();
       }
     }

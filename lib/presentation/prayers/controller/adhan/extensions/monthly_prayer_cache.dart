@@ -41,6 +41,19 @@ class MonthlyPrayerCache {
         'longitude': location.longitude,
       });
 
+      // مزامنة البيانات الشهرية إلى App Group للويدجت مباشرةً
+      // Sync monthly data to App Group so the widget doesn't need the app to open daily
+      try {
+        await HomeWidget.setAppGroupId(StringConstants.groupId);
+        await HomeWidget.saveWidgetData(
+          'monthly_prayer_data',
+          jsonEncode(monthlyData.toJson()),
+        );
+        log('Monthly prayer data mirrored to App Group for widget', name: _tag);
+      } catch (e) {
+        log('Failed mirroring monthly data to App Group: $e', name: _tag);
+      }
+
       log('Monthly prayer data saved successfully', name: _tag);
     } catch (e) {
       log('Error saving monthly prayer data: $e', name: _tag);

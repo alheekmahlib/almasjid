@@ -18,7 +18,7 @@ class QiblaCompassWidget extends StatelessWidget {
           return const Center(child: CircularProgressIndicator.adaptive());
         }
         return StreamBuilder<CompassEvent>(
-          stream: FlutterCompass.events,
+          stream: CompassService.instance.events,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator.adaptive());

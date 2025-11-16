@@ -1,8 +1,9 @@
 class StringConstants {
-  static const String groupId = 'group.com.alheekmah.alheekmahLibrary.widget';
+  static const String groupId =
+      'group.alheekmah.aqimApp.prayer-widgetExtension';
   static const String iosHijriWidget = 'hijri_calendar_extensionExtension';
   static const String androidHijriWidget = 'HijriWidget';
-  static const String iosPrayersWidget = 'prayer_widgetExtension';
+  static const String iosPrayersWidget = 'prayer-widgetExtension';
   static const String androidPrayersWidget = 'PrayerWidget';
 
   static const String ourAppsUrl =

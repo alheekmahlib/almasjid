@@ -608,16 +608,15 @@
   "@salah": {
     "type": "text",
     "placeholders": {}
+  },
+  "liatafaqahuu": "liatafaqahuu",
+  "@liatafaqahuu": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "understanding": "untuk memperoleh kefahaman dalam agama",
+  "@understanding": {
+    "type": "text",
+    "placeholders": {}
   }
-},
-"liatafaqahuu": "liatafaqahuu",
-"@liatafaqahuu": {
-  "type": "text",
-  "placeholders": {}
-},
-"understanding": "untuk memperoleh kefahaman dalam agama",
-"@understanding": {
-  "type": "text",
-  "placeholders": {}
-}
 }

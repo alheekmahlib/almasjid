@@ -35,13 +35,7 @@ class QiblaController extends GetxController {
   Future<bool> checkCompassAvailability(
       {Duration timeout = const Duration(seconds: 2)}) async {
     try {
-      final stream = FlutterCompass.events;
-      if (stream == null) return false;
-      final event = await stream.first.timeout(timeout);
-      final heading = event.heading;
-      if (heading == null) return false;
-      if (heading.isNaN) return false;
-      return true;
+      return await CompassService.instance.isAvailable();
     } catch (e) {
       log('Compass availability check failed: $e', name: 'QiblaController');
       return false;
