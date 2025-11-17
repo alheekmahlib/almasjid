@@ -29,7 +29,7 @@ class CompassService {
   }
 
   void _startListening() {
-    _magnetometerSubscription = magnetometerEvents.listen(
+    _magnetometerSubscription = magnetometerEventStream().listen(
       (MagnetometerEvent event) {
         // حساب الاتجاه من قيم magnetometer
         // Calculate heading from magnetometer values
@@ -111,7 +111,7 @@ class CompassService {
   Future<bool> isAvailable() async {
     try {
       final completer = Completer<bool>();
-      final subscription = magnetometerEvents.listen(
+      final subscription = magnetometerEventStream().listen(
         (event) {
           if (!completer.isCompleted) {
             completer.complete(true);

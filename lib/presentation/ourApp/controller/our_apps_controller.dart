@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '/core/services/api_client.dart';
-import '/core/utils/constants/string_constants.dart';
+import '../../../core/utils/constants/api_constants.dart';
 import '../data/models/our_app_model.dart';
 
 class OurAppsController extends GetxController {
@@ -20,7 +20,7 @@ class OurAppsController extends GetxController {
     try {
       final apiClient = ApiClient();
       final result = await apiClient.request(
-        endpoint: StringConstants.ourAppsUrl,
+        endpoint: ApiConstants.ourAppsUrl,
         method: HttpMethod.get,
       );
 

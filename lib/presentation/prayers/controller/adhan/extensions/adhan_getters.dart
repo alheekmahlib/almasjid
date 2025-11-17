@@ -323,17 +323,71 @@ extension AdhanGetters on AdhanController {
     return interval.obs;
   }
 
-  /// احسب النسبة المئوية من اليوم (24 ساعة) التي تمثلها الفترة بين الصلاة الفائتة والصلاة التالية لها مباشرةً
-  /// Compute the interval as a percentage of a full day between a given prayer and the next one
+  /// احسب «نسبة المتبقي» للوصول إلى صلاة معيّنة ضمن الفترة بين الصلاة السابقة وهذه الصلاة.
+  /// المنهجية:
+  /// - نحدّد موعد «التكرار القادم» للصلاة الهدف بالنسبة للحظة الحالية (`state.now`).
+  /// - نحدّد موعد الصلاة السابقة مباشرةً بالنسبة لنفس يوم «الصلاة الهدف» (وقد يكون في اليوم السابق إذا كان وقتها أكبر من وقت الهدف).
+  /// - النسبة = (الوقت المتبقي حتى الصلاة الهدف) ÷ (طول الفترة بين السابقة والهدف) × 100.
   RxDouble getIntervalPercentageOfDayBetweenPrayerAndNextByIndex(int index) {
-    final Duration interval =
-        getDurationBetweenPrayerAndNextByIndex(index).value;
-    final int fullDayMinutes = const Duration(days: 1).inMinutes;
-    if (interval.inMinutes <= 0) {
+    if (index < 0 || index >= prayerNameList.length) {
+      throw ArgumentError(
+          'Index out of range, must be between 0 and ${prayerNameList.length - 1}.');
+    }
+
+    final Map<String, dynamic> targetPrayerMap = prayerNameList[index];
+    final int prevIndex =
+        (index - 1) < 0 ? (prayerNameList.length - 1) : (index - 1);
+    final Map<String, dynamic> prevPrayerMap = prayerNameList[prevIndex];
+
+    final DateTime? targetRaw = targetPrayerMap['dateTime'];
+    final DateTime? prevRaw = prevPrayerMap['dateTime'];
+
+    if (targetRaw == null || prevRaw == null) {
       return 0.0.obs;
     }
+
+    // نبني مواعيد اليوم/الغد بناءً على اللحظة الحالية لضمان أن الهدف في المستقبل
+    final DateTime now = state.now;
+    DateTime target = DateTime(
+      now.year,
+      now.month,
+      now.day,
+      targetRaw.hour,
+      targetRaw.minute,
+      targetRaw.second,
+    );
+
+    // إذا كان موعد الهدف مرّ اليوم، نأخذ التكرار التالي (الغد)
+    if (!target.isAfter(now)) {
+      target = target.add(const Duration(days: 1));
+    }
+
+    // اجعل موعد السابقة مرتبطًا بيوم الهدف نفسه، ثم أعِده لليوم السابق إذا لزم
+    DateTime prev = DateTime(
+      target.year,
+      target.month,
+      target.day,
+      prevRaw.hour,
+      prevRaw.minute,
+      prevRaw.second,
+    );
+    if (!prev.isBefore(target)) {
+      prev = prev.subtract(const Duration(days: 1));
+    }
+
+    final int totalMinutes = target.difference(prev).inMinutes;
+    if (totalMinutes <= 0) {
+      return 0.0.obs;
+    }
+
+    // الوقت المتبقي حتى الصلاة الهدف من الآن
+    int remainingMinutes = target.difference(now).inMinutes;
+    // قصّ القيم لضمان [0, totalMinutes]
+    if (remainingMinutes < 0) remainingMinutes = 0;
+    if (remainingMinutes > totalMinutes) remainingMinutes = totalMinutes;
+
     final double percentage =
-        ((interval.inMinutes / fullDayMinutes) * 100).clamp(0, 100).toDouble();
+        ((remainingMinutes / totalMinutes) * 100).clamp(0, 100).toDouble();
     return percentage.obs;
   }
 

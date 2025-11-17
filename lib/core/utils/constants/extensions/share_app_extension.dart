@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:almasjid/core/utils/constants/api_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -17,17 +18,12 @@ extension ShareAppExtension on void {
     final file = await File('${tempDir.path}/aqim_banner.png').create();
     file.writeAsBytesSync(list);
     final params = ShareParams(
-      text: 'تطبيق "أَقِم - مكتبة الحكمة" هو رفيقك اليومي للحفاظ على صلاتك.',
+      text:
+          'تطبيق "أَقِم - مكتبة الحكمة" هو رفيقك اليومي للحفاظ على صلاتك.\n\nللتحميل:\n${ApiConstants.downloadAppUrl}',
       files: [XFile(file.path)],
       sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size,
     );
 
     await SharePlus.instance.share(params);
-    // await Share.shareXFiles(
-    //   [XFile((file.path))],
-    //   text:
-    //       'تطبيق "زاد المسلم - مكتبة الحكمة" رفيقك اليومي للتقرب إلى الله.\n\nللتحميل:\nalheekmahlib.com/#/download/app/0',
-    //   sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size,
-    // );
   }
 }

@@ -62,7 +62,7 @@ class PrayerScreen extends StatelessWidget {
               child: Column(
                 children: [
                   Gap(16.h),
-                  PrayerNowWidget(),
+                  const PrayerNowWidget(),
                   Gap(8.h),
                   context.hDivider(width: Get.width * .5),
                   Gap(8.h),
@@ -116,7 +116,7 @@ class PrayerScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Gap(16),
-              PrayerNowWidget(),
+              const PrayerNowWidget(),
               const Gap(16),
               context.hDivider(width: Get.width * .5),
               const Gap(16),
