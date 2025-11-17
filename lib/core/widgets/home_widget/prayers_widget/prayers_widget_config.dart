@@ -16,6 +16,7 @@ class PrayersWidgetConfig {
         log('Invalid prayer list data', name: 'PrayersWidgetConfig');
         return;
       }
+      log('Updating prayers widget data...', name: 'PrayersWidgetConfig');
       HijriDate hijri = EventController.instance.hijriNow;
 
       final fajrTime = adhanCtrl.prayerNameList[0]['dateTime'] as DateTime;
@@ -122,6 +123,17 @@ class PrayersWidgetConfig {
           );
         }
       } else if (Platform.isAndroid) {
+        // حفظ طوابع زمنية لدعم عدّاد الوديجت (Chronometer)
+        final currentPrayer = adhanCtrl.getPrayerDetails(isNextPrayer: false);
+        final nextPrayer = adhanCtrl.getPrayerDetails(isNextPrayer: true);
+        if (currentPrayer.prayerTime != null) {
+          await HomeWidget.saveWidgetData<int>('current_prayer_epoch',
+              currentPrayer.prayerTime!.millisecondsSinceEpoch);
+        }
+        if (nextPrayer.prayerTime != null) {
+          await HomeWidget.saveWidgetData<int>('next_prayer_epoch',
+              nextPrayer.prayerTime!.millisecondsSinceEpoch);
+        }
         await HomeWidget.saveWidgetData<String>(
             'hijri_day_number', '${hijri.hDay}'.convertNumbers());
         await HomeWidget.saveWidgetData<String>(
@@ -135,27 +147,33 @@ class PrayersWidgetConfig {
         await HomeWidget.saveWidgetData<String>(
             'current_prayer_time',
             DateFormatter.formatPrayerTime(
-                adhanCtrl.getPrayerDetails(isNextPrayer: false).prayerTime));
+                    adhanCtrl.getPrayerDetails(isNextPrayer: false).prayerTime)
+                .convertNumbers());
         await HomeWidget.saveWidgetData<String>(
             'next_prayer_time',
             DateFormatter.formatPrayerTime(
-                adhanCtrl.getPrayerDetails(isNextPrayer: true).prayerTime));
+                    adhanCtrl.getPrayerDetails(isNextPrayer: true).prayerTime)
+                .convertNumbers());
+        await HomeWidget.saveWidgetData<String>('fajr_time',
+            DateFormatter.formatPrayerTime(fajrTime).convertNumbers());
+        await HomeWidget.saveWidgetData<String>('shuroq_time',
+            DateFormatter.formatPrayerTime(sunriseTime).convertNumbers());
+        await HomeWidget.saveWidgetData<String>('dhuhr_time',
+            DateFormatter.formatPrayerTime(dhuhrTime).convertNumbers());
+        await HomeWidget.saveWidgetData<String>('asr_time',
+            DateFormatter.formatPrayerTime(asrTime).convertNumbers());
+        await HomeWidget.saveWidgetData<String>('maghrib_time',
+            DateFormatter.formatPrayerTime(maghribTime).convertNumbers());
+        await HomeWidget.saveWidgetData<String>('isha_time',
+            DateFormatter.formatPrayerTime(ishaTime).convertNumbers());
         await HomeWidget.saveWidgetData<String>(
-            'fajr_time', DateFormatter.formatPrayerTime(fajrTime));
+            'muntasaf_allayl_time',
+            DateFormatter.formatPrayerTime(middleOfTheNightTime)
+                .convertNumbers());
         await HomeWidget.saveWidgetData<String>(
-            'shuroq_time', DateFormatter.formatPrayerTime(sunriseTime));
-        await HomeWidget.saveWidgetData<String>(
-            'dhuhr_time', DateFormatter.formatPrayerTime(dhuhrTime));
-        await HomeWidget.saveWidgetData<String>(
-            'asr_time', DateFormatter.formatPrayerTime(asrTime));
-        await HomeWidget.saveWidgetData<String>(
-            'maghrib_time', DateFormatter.formatPrayerTime(maghribTime));
-        await HomeWidget.saveWidgetData<String>(
-            'isha_time', DateFormatter.formatPrayerTime(ishaTime));
-        await HomeWidget.saveWidgetData<String>('muntasaf_allayl_time',
-            DateFormatter.formatPrayerTime(middleOfTheNightTime));
-        await HomeWidget.saveWidgetData<String>('althuluth_alakhir_time',
-            DateFormatter.formatPrayerTime(lastThirdOfTheNightTime));
+            'althuluth_alakhir_time',
+            DateFormatter.formatPrayerTime(lastThirdOfTheNightTime)
+                .convertNumbers());
         await HomeWidget.saveWidgetData<String>('fajr_name', fajrName.tr);
         await HomeWidget.saveWidgetData<String>('shuroq_name', sunriseName.tr);
         await HomeWidget.saveWidgetData<String>('dhuhr_name', dhuhrName.tr);
@@ -166,12 +184,25 @@ class PrayersWidgetConfig {
             'muntasaf_allayl_name', middleOfTheNightName.tr);
         await HomeWidget.saveWidgetData<String>(
             'althuluth_alakhir_name', lastThirdOfTheNightName.tr);
+        // اسم الصلاة التالية للاستخدام في الوديجت
+        await HomeWidget.saveWidgetData<String>('next_prayer_name',
+            adhanCtrl.getPrayerDetails(isNextPrayer: true).prayerName);
+        // تمرير لغة التطبيق اختيارياً في أندرويد (قد تُستخدم في المزود الأصلي للويدجت)
+        await HomeWidget.saveWidgetData<String>(
+            'app_language', Get.locale?.languageCode ?? 'ar');
       }
 
+      // حدّث جميع مزوّدات أندرويد (كبير وصغير)
       await HomeWidget.updateWidget(
         iOSName: StringConstants.iosPrayersWidget,
         androidName: StringConstants.androidPrayersWidget,
         qualifiedAndroidName: 'com.alheekmah.alheekmahLibrary.PrayerWidget',
+      );
+      await HomeWidget.updateWidget(
+        iOSName: StringConstants.iosPrayersWidget,
+        androidName: StringConstants.androidPrayersWidget,
+        qualifiedAndroidName:
+            'com.alheekmah.alheekmahLibrary.PrayerWidgetSmall',
       );
       if (Platform.isMacOS) {
         await MacOSWidgetService.instance.reloadAllTimelines();
@@ -230,10 +261,11 @@ class PrayersWidgetConfig {
         if (Get.context != null) {
           WidgetsBinding.instance.addPostFrameCallback((_) {
             try {
-              Get.toNamed(AppRouter.prayerScreen);
+              Get.toNamed(AppRouter.homeScreen);
             } catch (_) {
               try {
-                Get.to(() => PrayerScreen(), transition: Transition.downToUp);
+                Get.to(() => const HomeScreen(),
+                    transition: Transition.downToUp);
               } catch (_) {}
             }
           });

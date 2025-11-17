@@ -4,6 +4,8 @@ import 'package:get_storage/get_storage.dart';
 
 import '../../core/utils/constants/shared_preferences_constants.dart';
 import '../../core/utils/helpers/app_themes.dart';
+import '../../core/widgets/home_widget/home_widget.dart';
+import 'general/general_controller.dart';
 
 enum AppTheme { blue, dark }
 
@@ -44,7 +46,7 @@ class ThemeController extends GetxController {
     );
   }
 
-  void setTheme(AppTheme theme) {
+  Future<void> setTheme(AppTheme theme) async {
     _currentTheme.value = theme;
     ThemeData newThemeData;
     switch (theme) {
@@ -60,6 +62,9 @@ class ThemeController extends GetxController {
 
     // Save theme preference
     box.write(SET_THEME, theme.toString());
+    if (GeneralController.instance.state.activeLocation.value) {
+      await PrayersWidgetConfig().updatePrayersDate();
+    }
     update();
     Get.forceAppUpdate();
   }

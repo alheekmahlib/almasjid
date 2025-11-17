@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="widget_countdown_placeholder">--:--</string>
+    <string name="widget_small_label">ويدجت الصلوات - صغير</string>
+    <string name="widget_large_label">ويدجت الصلوات - كبير</string>
+</resources>

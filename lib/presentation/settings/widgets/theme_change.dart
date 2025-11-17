@@ -43,8 +43,8 @@ class ThemeChange extends StatelessWidget {
                 children: List.generate(
                   themeList.length,
                   (index) => ButtonWithNewStyle(
-                    onTap: () {
-                      themeCtrl.setTheme(themeList[index]['name']);
+                    onTap: () async {
+                      await themeCtrl.setTheme(themeList[index]['name']);
                       Get.forceAppUpdate().then((_) {
                         Get.back();
                       });
