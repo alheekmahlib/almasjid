@@ -35,7 +35,11 @@ class QiblaController extends GetxController {
   Future<bool> checkCompassAvailability(
       {Duration timeout = const Duration(seconds: 2)}) async {
     try {
-      return await CompassService.instance.isAvailable();
+      final stream = CompassX.events;
+      final event = await stream.first.timeout(timeout);
+      final heading = event.heading;
+      if (heading.isNaN) return false;
+      return true;
     } catch (e) {
       log('Compass availability check failed: $e', name: 'QiblaController');
       return false;

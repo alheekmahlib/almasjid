@@ -145,6 +145,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.19.1"
+  compassx:
+    dependency: "direct main"
+    description:
+      name: compassx
+      sha256: "4ac6d726b00491ea6361be4e0a17fb630fbe4051b744582d0c28eb0191e77f5a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.1"
   connectivity_plus:
     dependency: "direct main"
     description:
@@ -736,14 +744,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.6.1"
-  logging:
-    dependency: transitive
-    description:
-      name: logging
-      sha256: c8245ada5f1717ed44271ed1c26b8ce85ca3228fd2ffdb75468ab01979309d61
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.3.0"
   lottie:
     dependency: "direct main"
     description:
@@ -976,22 +976,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.0"
-  sensors_plus:
-    dependency: "direct main"
-    description:
-      name: sensors_plus
-      sha256: "89e2bfc3d883743539ce5774a2b93df61effde40ff958ecad78cd66b1a8b8d52"
-      url: "https://pub.dev"
-    source: hosted
-    version: "6.1.2"
-  sensors_plus_platform_interface:
-    dependency: transitive
-    description:
-      name: sensors_plus_platform_interface
-      sha256: "58815d2f5e46c0c41c40fb39375d3f127306f7742efe3b891c0b1c87e2b5cd5d"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.1"
   share_plus:
     dependency: "direct main"
     description:

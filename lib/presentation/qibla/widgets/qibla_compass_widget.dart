@@ -17,19 +17,18 @@ class QiblaCompassWidget extends StatelessWidget {
                 !qiblaCtrl.permissionGranted.value)) {
           return const Center(child: CircularProgressIndicator.adaptive());
         }
-        return StreamBuilder<CompassEvent>(
-          stream: CompassService.instance.events,
+        return StreamBuilder<CompassXEvent>(
+          stream: CompassX.events,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator.adaptive());
             } else if (snapshot.hasError) {
               return const Center(child: CircularProgressIndicator.adaptive());
             } else if (!snapshot.hasData ||
-                qiblaCtrl.qiblaDirection.value == 0.0 ||
-                snapshot.data!.heading == null) {
+                qiblaCtrl.qiblaDirection.value == 0.0) {
               return const Center(child: CircularProgressIndicator.adaptive());
             } else {
-              double direction = snapshot.data!.heading!;
+              double direction = snapshot.data!.heading;
               final qiblaIndex = qiblaCtrl.qiblaWidgetIndex.value;
               WidgetsBinding.instance.addPostFrameCallback((_) {
                 qiblaCtrl.direction.value = direction;

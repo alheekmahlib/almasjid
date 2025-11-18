@@ -26,8 +26,8 @@ class QiblaMapWidget extends StatelessWidget {
           child: Stack(
             alignment: Alignment.topCenter,
             children: [
-              StreamBuilder<CompassEvent>(
-                stream: CompassService.instance.events,
+              StreamBuilder<CompassXEvent>(
+                stream: CompassX.events,
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return const Center(child: CircularProgressIndicator());

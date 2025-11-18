@@ -7,6 +7,8 @@ PODS:
   - background_fetch (1.5.0):
     - Flutter
     - TSBackgroundFetch (~> 4.0)
+  - compassx (0.0.1):
+    - Flutter
   - connectivity_plus (0.0.1):
     - Flutter
   - Flutter (1.0.0)
@@ -33,8 +35,6 @@ PODS:
   - rate_my_app (2.3.2):
     - Flutter
     - FlutterMacOS
-  - sensors_plus (0.0.1):
-    - Flutter
   - share_plus (0.0.1):
     - Flutter
   - shared_preferences_foundation (0.0.1):
@@ -51,6 +51,7 @@ DEPENDENCIES:
   - audio_session (from `.symlinks/plugins/audio_session/ios`)
   - awesome_notifications (from `.symlinks/plugins/awesome_notifications/ios`)
   - background_fetch (from `.symlinks/plugins/background_fetch/ios`)
+  - compassx (from `.symlinks/plugins/compassx/ios`)
   - connectivity_plus (from `.symlinks/plugins/connectivity_plus/ios`)
   - Flutter (from `Flutter`)
   - flutter_native_splash (from `.symlinks/plugins/flutter_native_splash/ios`)
@@ -62,7 +63,6 @@ DEPENDENCIES:
   - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
   - rate_my_app (from `.symlinks/plugins/rate_my_app/darwin`)
-  - sensors_plus (from `.symlinks/plugins/sensors_plus/ios`)
   - share_plus (from `.symlinks/plugins/share_plus/ios`)
   - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
   - sqflite_darwin (from `.symlinks/plugins/sqflite_darwin/darwin`)
@@ -80,6 +80,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/awesome_notifications/ios"
   background_fetch:
     :path: ".symlinks/plugins/background_fetch/ios"
+  compassx:
+    :path: ".symlinks/plugins/compassx/ios"
   connectivity_plus:
     :path: ".symlinks/plugins/connectivity_plus/ios"
   Flutter:
@@ -102,8 +104,6 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/path_provider_foundation/darwin"
   rate_my_app:
     :path: ".symlinks/plugins/rate_my_app/darwin"
-  sensors_plus:
-    :path: ".symlinks/plugins/sensors_plus/ios"
   share_plus:
     :path: ".symlinks/plugins/share_plus/ios"
   shared_preferences_foundation:
@@ -117,6 +117,7 @@ SPEC CHECKSUMS:
   audio_session: 9bb7f6c970f21241b19f5a3658097ae459681ba0
   awesome_notifications: 0f432b28098d193920b11a44cfa9d2d9313a3888
   background_fetch: 7457cb2c7be3086b37d87207866f30bed2f9fb58
+  compassx: 2d291f8c8e5672f35c62277f2318ef48359dc1d0
   connectivity_plus: cb623214f4e1f6ef8fe7403d580fdad517d2f7dd
   Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
   flutter_native_splash: c32d145d68aeda5502d5f543ee38c192065986cf
@@ -129,7 +130,6 @@ SPEC CHECKSUMS:
   package_info_plus: af8e2ca6888548050f16fa2f1938db7b5a5df499
   path_provider_foundation: 080d55be775b7414fd5a5ef3ac137b97b097e564
   rate_my_app: cbb89973f870601f80f7bad63aba107260cabc5b
-  sensors_plus: 6a11ed0c2e1d0bd0b20b4029d3bad27d96e0c65b
   share_plus: 50da8cb520a8f0f65671c6c6a99b3617ed10a58a
   shared_preferences_foundation: 9e1978ff2562383bd5676f64ec4e9aa8fa06a6f7
   sqflite_darwin: 20b2a3a3b70e43edae938624ce550a3cbf66a3d0
