@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
 import '../../../presentation/about_app/about_app.dart';
-import '../../../presentation/home/home_screen.dart';
+import '../../../presentation/home/home.dart';
 import '../../../presentation/ourApp/screen/our_apps_screen.dart';
 import '../../../presentation/prayers/prayers.dart';
 import '../../../presentation/qibla/qibla.dart';
