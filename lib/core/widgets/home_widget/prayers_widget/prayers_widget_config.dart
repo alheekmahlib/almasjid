@@ -47,21 +47,19 @@ class PrayersWidgetConfig {
         final monthlyRaw = box.read('MONTHLY_PRAYER_DATA');
         final hasMonthly = monthlyRaw != null;
 
-        if (!hasMonthly) {
-          // نمرّر الأوقات فقط عند عدم توفر JSON الشهري (مسار تهيئة أولي / فشل سابق)
-          await HomeWidget.saveWidgetData('fajrTime', '$fajrTime');
-          await HomeWidget.saveWidgetData('dhuhrTime', '$dhuhrTime');
-          await HomeWidget.saveWidgetData('asrTime', '$asrTime');
-          await HomeWidget.saveWidgetData('maghribTime', '$maghribTime');
-          await HomeWidget.saveWidgetData('ishaTime', '$ishaTime');
-          await HomeWidget.saveWidgetData('sunriseTime', '$sunriseTime');
-          await HomeWidget.saveWidgetData(
-              'middleOfTheNightTime', '$middleOfTheNightTime');
-          await HomeWidget.saveWidgetData(
-              'lastThirdOfTheNightTime', '$lastThirdOfTheNightTime');
-          log('Saved individual prayer times (monthly not found)',
-              name: 'PrayersWidgetConfig');
-        }
+        // حفظ الأوقات الفردية دائماً لتسهيل المقارنة والتشخيص حتى مع وجود الشهري
+        await HomeWidget.saveWidgetData('fajrTime', '$fajrTime');
+        await HomeWidget.saveWidgetData('dhuhrTime', '$dhuhrTime');
+        await HomeWidget.saveWidgetData('asrTime', '$asrTime');
+        await HomeWidget.saveWidgetData('maghribTime', '$maghribTime');
+        await HomeWidget.saveWidgetData('ishaTime', '$ishaTime');
+        await HomeWidget.saveWidgetData('sunriseTime', '$sunriseTime');
+        await HomeWidget.saveWidgetData(
+            'middleOfTheNightTime', '$middleOfTheNightTime');
+        await HomeWidget.saveWidgetData(
+            'lastThirdOfTheNightTime', '$lastThirdOfTheNightTime');
+        log('Saved individual prayer times (forced even if monthly present)',
+            name: 'PrayersWidgetConfig');
         await HomeWidget.saveWidgetData('fajrName', fajrName.tr);
         await HomeWidget.saveWidgetData('dhuhrName', dhuhrName.tr);
         await HomeWidget.saveWidgetData('asrName', asrName.tr);
@@ -83,7 +81,9 @@ class PrayersWidgetConfig {
           if (hasMonthly) {
             await HomeWidget.saveWidgetData(
                 'monthly_prayer_data', jsonEncode(monthlyRaw));
-            log('Saved monthly_prayer_data JSON (no per-time duplication)',
+            log('Saved monthly_prayer_data JSON', name: 'PrayersWidgetConfig');
+          } else {
+            log('Monthly data missing; relying on individual times',
                 name: 'PrayersWidgetConfig');
           }
         } catch (e) {

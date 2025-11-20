@@ -199,7 +199,7 @@ class PrayerDetails extends StatelessWidget {
                           borderRadius: const BorderRadius.all(
                             Radius.circular(8),
                           )),
-                      child: Text(
+                      child: ArabicJustifiedText(
                         prayerHadithsList[index]['fromSunnah'],
                         style: TextStyle(
                           fontFamily: 'naskh',
@@ -208,7 +208,7 @@ class PrayerDetails extends StatelessWidget {
                           color: context.theme.colorScheme.inversePrimary
                               .withValues(alpha: .7),
                         ),
-                        textAlign: TextAlign.justify,
+                        // textAlign: TextAlign.justify,
                       ),
                     ),
                     context.hDivider(

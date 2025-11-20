@@ -90,7 +90,8 @@ struct Provider: AppIntentTimelineProvider {
 
     func createEntry(date: Date = Date()) -> PrayerWidgetEntry {
         // استخدام UserDefaults للوصول إلى بيانات التطبيق - Use UserDefaults to access app data
-        let userDefaults = UserDefaults(suiteName: "group.alheekmah.aqimApp.prayer-widgetExtension")
+        let userDefaults = UserDefaults(suiteName: "group.alheekmah.aqimApp.prayerWidget")
+        debugDumpPrayerWidgetKeys(userDefaults) // تفريغ مفاتيح المجموعة للتشخيص
 
         // الحصول على التاريخ الحالي لاستخدامه مع الأوقات - Get current date to use with times
         let currentDate = date
@@ -130,11 +131,37 @@ struct Provider: AppIntentTimelineProvider {
            let dailyTimes = json["dailyTimes"] as? [String: Any] {
             let day = calendar.component(.day, from: currentDate)
             if let dayDict = dailyTimes["\(day)"] as? [String: Any] {
+                // طباعة القيم الخام لليوم من JSON الشهري قبل أي تحويل
+                let rawPairs = dayDict.keys.sorted().map { k -> String in
+                    if let v = dayDict[k] { return "\(k)=\(v)" } else { return "\(k)=<nil>" }
+                }.joined(separator: ", ")
+                print("[Widget][Monthly][RawDay] day=\(day) " + rawPairs)
+                // مهيئ محلي للأوقات بدون إزاحة
+                let localFormatter: DateFormatter = {
+                    let f = DateFormatter();
+                    f.calendar = Calendar(identifier: .gregorian)
+                    f.locale = Locale(identifier: "en_US_POSIX")
+                    f.timeZone = TimeZone.current
+                    f.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS"
+                    return f
+                }()
+                let tzRegex = try? NSRegularExpression(pattern: "(Z|[+-]\\d{2}:?\\d{2})$")
                 func parse(_ key: String) -> String? {
-                    if let s = dayDict[key] as? String, let d = isoFormatter.date(from: s) {
-                        return defaultFormatter.string(from: d)
+                    guard let s = dayDict[key] as? String else { return nil }
+                    let range = NSRange(location: 0, length: s.utf16.count)
+                    let hasTZ = tzRegex?.firstMatch(in: s, options: [], range: range) != nil
+                    var d: Date? = nil
+                    if hasTZ {
+                        d = isoFormatter.date(from: s)
+                        if d == nil { print("[Widget][Parse][TZ][Fail] key=\(key) raw=\(s)") }
+                    } else {
+                        d = localFormatter.date(from: s)
+                        if d == nil { print("[Widget][Parse][Local][Fail] key=\(key) raw=\(s)") }
                     }
-                    return nil
+                    guard let dateObj = d else { return nil }
+                    let formatted = defaultFormatter.string(from: dateObj)
+                    print("[Widget][Parse] key=\(key) raw=\(s) hasTZ=\(hasTZ) used=\(formatted)")
+                    return formatted
                 }
                 let fajr = parse("fajr") ?? "\(currentDateString.prefix(10)) 06:00:00.000"
                 let sunrise = parse("sunrise") ?? "\(currentDateString.prefix(10)) 07:00:00.000"
@@ -185,20 +212,27 @@ struct Provider: AppIntentTimelineProvider {
         }
 
         if prayerTimes.isEmpty {
-            // Fallback للبيانات اليومية كما كان سابقًا
+            // Fallback للبيانات اليومية مع طباعة تشخيصية
+            print("[Widget][Fallback] Using daily keys due to empty monthly parse")
+            let fajrDaily = userDefaults?.string(forKey: "fajrTime") ?? "\(currentDateString.prefix(10)) 05:48:00.000"
+            let sunriseDaily = userDefaults?.string(forKey: "sunriseTime") ?? "\(currentDateString.prefix(10)) 07:15:00.000"
+            let dhuhrDaily = userDefaults?.string(forKey: "dhuhrTime") ?? "\(currentDateString.prefix(10)) 11:56:00.000"
+            let asrDaily = userDefaults?.string(forKey: "asrTime") ?? "\(currentDateString.prefix(10)) 14:13:00.000"
+            let maghribDaily = userDefaults?.string(forKey: "maghribTime") ?? "\(currentDateString.prefix(10)) 16:35:00.000"
+            let ishaDaily = userDefaults?.string(forKey: "ishaTime") ?? "\(currentDateString.prefix(10)) 18:01:00.000"
             prayerTimes = [
                 (name: userDefaults?.string(forKey: "fajrName") ?? "الفجر",
-                 time: convertPrayerTimeToToday(timeString: userDefaults?.string(forKey: "fajrTime") ?? "\(currentDateString.prefix(10)) 06:17:00.000")),
+                 time: convertPrayerTimeToToday(timeString: fajrDaily)),
                 (name: userDefaults?.string(forKey: "sunriseName") ?? "الشروق",
-                 time: convertPrayerTimeToToday(timeString: userDefaults?.string(forKey: "sunriseTime") ?? "\(currentDateString.prefix(10)) 07:47:00.000")),
+                 time: convertPrayerTimeToToday(timeString: sunriseDaily)),
                 (name: userDefaults?.string(forKey: "dhuhrName") ?? "الظهر",
-                 time: convertPrayerTimeToToday(timeString: userDefaults?.string(forKey: "dhuhrTime") ?? "\(currentDateString.prefix(10)) 12:09:00.000")),
+                 time: convertPrayerTimeToToday(timeString: dhuhrDaily)),
                 (name: userDefaults?.string(forKey: "asrName") ?? "العصر",
-                 time: convertPrayerTimeToToday(timeString: userDefaults?.string(forKey: "asrTime") ?? "\(currentDateString.prefix(10)) 14:12:00.000")),
+                 time: convertPrayerTimeToToday(timeString: asrDaily)),
                 (name: userDefaults?.string(forKey: "maghribName") ?? "المغرب",
-                 time: convertPrayerTimeToToday(timeString: userDefaults?.string(forKey: "maghribTime") ?? "\(currentDateString.prefix(10)) 16:29:00.000")),
+                 time: convertPrayerTimeToToday(timeString: maghribDaily)),
                 (name: userDefaults?.string(forKey: "ishaName") ?? "العشاء",
-                 time: convertPrayerTimeToToday(timeString: userDefaults?.string(forKey: "ishaTime") ?? "\(currentDateString.prefix(10)) 17:59:00.000"))
+                 time: convertPrayerTimeToToday(timeString: ishaDaily))
             ]
         }
 
@@ -210,6 +244,23 @@ struct Provider: AppIntentTimelineProvider {
                 (name: prayerTimes[4].name, time: prayerTimes[4].time),
                 (name: prayerTimes[5].name, time: prayerTimes[5].time)
             ]
+        }
+
+        // مقارنة سريعة بين القيم اليومية المحفوظة والقيم المستخرجة من الشهري (إن وُجدت المفاتيح اليومية)
+        if let fajrDaily = userDefaults?.string(forKey: "fajrTime"), let fajrParsed = prayerTimes.first(where: { $0.name.contains("فجر") || $0.name.contains("الفجر") })?.time {
+            print("[Widget][Compare] fajr daily=\(fajrDaily) used=\(fajrParsed)")
+        }
+        if let dhuhrDaily = userDefaults?.string(forKey: "dhuhrTime"), let dhuhrParsed = prayerTimes.first(where: { $0.name.contains("ظهر") || $0.name.contains("الظهر") })?.time {
+            print("[Widget][Compare] dhuhr daily=\(dhuhrDaily) used=\(dhuhrParsed)")
+        }
+        if let asrDaily = userDefaults?.string(forKey: "asrTime"), let asrParsed = prayerTimes.first(where: { $0.name.contains("عصر") || $0.name.contains("العصر") })?.time {
+            print("[Widget][Compare] asr daily=\(asrDaily) used=\(asrParsed)")
+        }
+        if let maghribDaily = userDefaults?.string(forKey: "maghribTime"), let maghribParsed = prayerTimes.first(where: { $0.name.contains("غرب") || $0.name.contains("المغرب") })?.time {
+            print("[Widget][Compare] maghrib daily=\(maghribDaily) used=\(maghribParsed)")
+        }
+        if let ishaDaily = userDefaults?.string(forKey: "ishaTime"), let ishaParsed = prayerTimes.first(where: { $0.name.contains("عشاء") || $0.name.contains("العشاء") })?.time {
+            print("[Widget][Compare] isha daily=\(ishaDaily) used=\(ishaParsed)")
         }
 
         // تأكيد البيانات - Confirm data
@@ -905,7 +956,7 @@ struct NumberLocalizationModifier: ViewModifier {
 }
 
 struct prayer_widget: Widget {
-    let kind: String = "prayer_widgetExtension"
+    let kind: String = "prayerWidget"
 
     var body: some WidgetConfiguration {
         AppIntentConfiguration(kind: kind, intent: ConfigurationAppIntent.self, provider: Provider()) { entry in
@@ -1210,5 +1261,35 @@ func convertNumbers(_ string: String, languageCode: String) -> String {
     }
     
     return result
+}
+
+// دالة لتفريغ المفاتيح والقيم ذات الصلة في مجموعة التطبيق - Dump relevant app group keys
+func debugDumpPrayerWidgetKeys(_ ud: UserDefaults?) {
+    guard let ud = ud else {
+        print("[Widget][UD] UserDefaults nil")
+        return
+    }
+    let expectedKeys = [
+        "fajrTime","sunriseTime","dhuhrTime","asrTime","maghribTime","ishaTime",
+        "middleOfTheNightTime","lastThirdOfTheNightTime","monthly_prayer_data",
+        "fajrName","sunriseName","dhuhrName","asrName","maghribName","ishaName",
+        "middleOfTheNightName","lastThirdOfTheNightName","hijriDay","hijriMonth","hijriYear","appLanguage"
+    ]
+    var lines: [String] = []
+    for k in expectedKeys {
+        if let v = ud.object(forKey: k) {
+            if k == "monthly_prayer_data", let s = v as? String {
+                lines.append("\(k)=len:\(s.count)")
+            } else {
+                lines.append("\(k)=\(v)")
+            }
+        } else {
+            lines.append("\(k)=<missing>")
+        }
+    }
+    print("[Widget][UD][Dump] " + lines.joined(separator: ", "))
+    if ud.object(forKey: "fajrTime") == nil {
+        print("[Widget][UD][Warn] fajrTime مفقود؛ سيتم استخدام قيم افتراضية. افتح التطبيق بعد تعديل App Group للتحديث.")
+    }
 }
 
