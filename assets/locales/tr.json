@@ -444,7 +444,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "What'sNewDetails10": "۞ Yeni kullanıcı arayüzü tasarımı.\n۞ Tefsir ve hadis kitapları için kütüphane eklendi.\n۞ Uygulama performansı iyileştirildi.\n۞ Yeni özellikler eklendi.",
+  "What'sNewDetails10": "۞ Bildirim görüntüleme sorunu düzeltildi.\n۞ Genel performans ve kararlılık iyileştirmeleri.",
   "@What'sNewDetails10": {
     "type": "text",
     "placeholders": {}

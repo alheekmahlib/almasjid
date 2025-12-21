@@ -444,7 +444,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "What'sNewDetails10": "۞ New user interface design.\n۞ Added library for interpretation and hadith books.\n۞ Improved app performance.\n۞ Added new features.",
+  "What'sNewDetails10": "۞ Fixed notification display issue.\n۞ General performance and stability improvements.",
   "@What'sNewDetails10": {
     "type": "text",
     "placeholders": {}

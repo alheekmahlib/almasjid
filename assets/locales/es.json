@@ -444,7 +444,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "What'sNewDetails10": "۞ Nuevo diseño de interfaz de usuario.\n۞ Agregada biblioteca para libros de tafsir y hadith.\n۞ Mejora del rendimiento de la aplicación.\n۞ Agregadas nuevas características.",
+  "What'sNewDetails10": "۞ Solucionado problema de visualización de notificaciones.\n۞ Mejoras generales de rendimiento y estabilidad.",
   "@What'sNewDetails10": {
     "type": "text",
     "placeholders": {}
