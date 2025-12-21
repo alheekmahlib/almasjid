@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:get/get.dart';
 
 import '../../../../core/utils/constants/shared_preferences_constants.dart';
@@ -21,19 +19,6 @@ extension GeneralGetters on GeneralController {
     String todayString =
         '${EventController.instance.hijriNow.hDay}-${EventController.instance.hijriNow.hMonth}';
     return eidDaysList.contains(todayString);
-  }
-
-  void getLastPageAndFontSize() {
-    try {
-      double fontSizeFromPref = state.box.read(FONT_SIZE) ?? 24.0;
-      if (fontSizeFromPref != 0.0 && fontSizeFromPref > 0) {
-        state.fontSizeArabic.value = fontSizeFromPref;
-      } else {
-        state.fontSizeArabic.value = 24.0;
-      }
-    } catch (e) {
-      log('Failed to load last page: $e');
-    }
   }
 
   bool get isActiveLocation => state.box.read(IS_LOCATION_ACTIVE) ?? false;

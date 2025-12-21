@@ -21,7 +21,7 @@ class PrayersNotificationsCtrl extends GetxController {
   void get getSharedVariables {
     String fajirPath = Platform.isIOS
         ? 'resource://raw/aqsa_athan'
-        : 'resource://raw/aqsa_athan_fajir';
+        : 'resource://raw/aqsa_fajir_athan';
     state.selectedAdhanPath.value =
         state.box.read(ADHAN_PATH) ?? 'resource://raw/aqsa_athan';
     state.selectedAdhanPathFajir.value =

@@ -8,6 +8,10 @@ class LocationHelper {
   }
   LocationHelper._();
 
+  bool get locationIsEmpty {
+    return Location.instance.position == null;
+  }
+
   Future<bool> checkPermission() async {
     try {
       LocationPermission permission = await Geolocator.checkPermission();
@@ -84,6 +88,7 @@ class LocationHelper {
               altitudeAccuracy: 0.0,
               headingAccuracy: 0.0,
             );
+            GeneralController.instance.state.activeLocation.value = true;
             log('Successfully obtained position from Huawei Location Kit',
                 name: 'LocationHelper');
           } else {
@@ -113,6 +118,7 @@ class LocationHelper {
                   timeLimit: Duration(seconds: 30),
                 ),
         );
+        GeneralController.instance.state.activeLocation.value = true;
       }
 
       try {

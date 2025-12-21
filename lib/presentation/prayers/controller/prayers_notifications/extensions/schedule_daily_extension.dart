@@ -18,9 +18,10 @@ extension ScheduleDailyExtension on PrayersNotificationsCtrl {
     }
 
     int notificationId = prayerIndex;
-    int daysToSchedule = Platform.isIOS ? 10 : 90;
+    int daysToSchedule = Platform.isIOS ? 10 : 30;
 
     DateTime? lastPrayerTime;
+    final now = DateTime.now();
 
     for (int day = 0; day < daysToSchedule; day++) {
       DateComponents dateComponents =
@@ -32,7 +33,7 @@ extension ScheduleDailyExtension on PrayersNotificationsCtrl {
         athanCtrl.state.params,
       );
 
-      DateTime? prayerTime;
+      late final DateTime prayerTime;
       Prayer selectedPrayer;
       String selectedBody;
 
@@ -64,6 +65,15 @@ extension ScheduleDailyExtension on PrayersNotificationsCtrl {
           break;
         default:
           return;
+      }
+
+      // لا تُجدول إشعارًا بوقتٍ ماضٍ. إذا كانت صلاة اليوم قد فاتت، انتقل لليوم التالي.
+      if (prayerTime.isBefore(now)) {
+        log(
+          'Skip past prayer time for ${athanCtrl.prayerNameFromEnum(selectedPrayer).tr}: $prayerTime',
+          name: 'ScheduleDailyExtension',
+        );
+        continue;
       }
 
       /// this code is for full athan on ios
@@ -104,10 +114,8 @@ extension ScheduleDailyExtension on PrayersNotificationsCtrl {
 
       notificationId += 5;
 
-      if ((Platform.isIOS || Platform.isMacOS && day >= 10) ||
-          (Platform.isAndroid && day >= 30)) {
-        break;
-      }
+      if (Platform.isAndroid && day >= 30) break;
+      if ((Platform.isIOS || Platform.isMacOS) && day >= 10) break;
     }
 
     if (lastPrayerTime != null) {
@@ -127,34 +135,40 @@ extension ScheduleDailyExtension on PrayersNotificationsCtrl {
     }
   }
 
-  Future<void> fullAthanForIos(
-      ReceivedNotification receivedNotification) async {
-    if (Platform.isIOS) {
-      for (int i = 1; i <= 6; i++) {
-        DateTime nextNotificationTime =
-            DateTime.now().add(Duration(seconds: 30 * i));
-        await NotifyHelper().scheduledNotification(
-            reminderId: receivedNotification.id! + i + 1,
-            title: receivedNotification.title!,
-            summary: receivedNotification.summary!,
-            body: receivedNotification.body!,
-            isRepeats: false,
-            time: nextNotificationTime,
-            payload: receivedNotification.payload,
-            soundIndex: i + 1);
-      }
-    }
-  }
+  // Future<void> fullAthanForIos(
+  //     LocalReceivedNotification receivedNotification) async {
+  //   if (Platform.isIOS) {
+  //     for (int i = 1; i <= 6; i++) {
+  //       DateTime nextNotificationTime =
+  //           DateTime.now().add(Duration(seconds: 30 * i));
+  //       await NotifyHelper().scheduledNotification(
+  //           reminderId: receivedNotification.id + i + 1,
+  //           title: receivedNotification.title,
+  //           summary: receivedNotification.summary,
+  //           body: receivedNotification.body,
+  //           isRepeats: false,
+  //           time: nextNotificationTime,
+  //           payload: receivedNotification.payload,
+  //           soundIndex: i + 1);
+  //     }
+  //   }
+  // }
 
   Future<void> reschedulePrayers() async {
     final adhanStorage = GetStorage('AdhanSounds');
-    List<String> prayerNames = ['Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'];
+    const prayers = <({int index, String name})>[
+      (index: 0, name: 'Fajr'),
+      (index: 2, name: 'Dhuhr'),
+      (index: 3, name: 'Asr'),
+      (index: 4, name: 'Maghrib'),
+      (index: 5, name: 'Isha'),
+    ];
 
     await cancelAllPrayerNotifications();
 
-    for (int i = 0; i < prayerNames.length; i++) {
-      String prayerName = prayerNames[i];
-      String? notificationType =
+    for (final prayer in prayers) {
+      final prayerName = prayer.name;
+      final String? notificationType =
           adhanStorage.read('scheduledAdhan_$prayerName');
       log('notification: $notificationType', name: 'ScheduleDailyExtension');
 
@@ -162,15 +176,15 @@ extension ScheduleDailyExtension on PrayersNotificationsCtrl {
         Future.microtask(() async {
           await PrayersNotificationsCtrl.instance
               .scheduleDailyNotificationsForPrayer(
-                  i, prayerName, notificationType);
+                  prayer.index, prayerName, notificationType);
         });
       }
     }
   }
 
   Future<void> cancelAllPrayerNotifications() async {
-    List<int> prayerNotificationIds = [0, 1, 2, 3, 4];
-    for (int id in prayerNotificationIds) {
+    const prayerNotificationIds = <int>[0, 2, 3, 4, 5];
+    for (final id in prayerNotificationIds) {
       await NotifyHelper().cancelNotification(id);
     }
     log('تم إلغاء جميع إشعارات الصلاة.', name: 'ScheduleDailyExtension');

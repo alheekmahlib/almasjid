@@ -5,12 +5,12 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '/core/widgets/local_notification/controller/local_notifications_controller.dart';
 import 'core/services/languages/app_constants.dart';
 import 'core/services/languages/localization_controller.dart';
 import 'core/services/languages/messages.dart';
 import 'core/services/services_locator.dart';
 import 'core/utils/helpers/app_router.dart';
-import 'core/widgets/local_notification/controller/local_notifications_controller.dart';
 import 'presentation/controllers/theme_controller.dart';
 
 class MyApp extends StatelessWidget {

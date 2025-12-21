@@ -4,9 +4,9 @@ import 'package:get/get.dart';
 
 import '/core/utils/constants/extensions/convert_number_extension.dart';
 import '/core/utils/constants/extensions/svg_extensions.dart';
+import '/core/widgets/local_notification/controller/local_notifications_controller.dart';
 import '../../../utils/constants/svg_constants.dart';
 import '../../reactive_number_text.dart';
-import '../controller/local_notifications_controller.dart';
 
 class NotificationIconWidget extends StatelessWidget {
   final double iconHeight;

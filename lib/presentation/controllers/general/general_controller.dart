@@ -1,6 +1,9 @@
+import 'dart:async';
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:nominatim_geocoding/nominatim_geocoding.dart';
 
@@ -13,12 +16,13 @@ import '../../qibla/qibla.dart';
 import '../../splash/splash.dart';
 import 'general_state.dart';
 
-class GeneralController extends GetxController {
+class GeneralController extends GetxController with WidgetsBindingObserver {
   static GeneralController get instance => Get.isRegistered<GeneralController>()
       ? Get.find<GeneralController>()
       : Get.put<GeneralController>(GeneralController());
 
   GeneralState state = GeneralState();
+  Completer<void>? _settingsCompleter;
 
   // @override
   @override
@@ -33,7 +37,7 @@ class GeneralController extends GetxController {
       // استرداد بيانات الموقع المحفوظة
       // Restore saved location data
       Location.instance.restoreFromStorage();
-      await initLocation();
+      await initLocation(isOpenSettings: false);
 
       if (Platform.isIOS || Platform.isAndroid) {
         await BGServices().registerTask();
@@ -46,7 +50,7 @@ class GeneralController extends GetxController {
         await BackgroundTaskHandler.initializeHandler();
       }
     }
-    // WidgetsBinding.instance.addObserver(this);
+    WidgetsBinding.instance.addObserver(this);
     // HijriWidgetConfig().updateHijriDate();
     // PrayersWidgetConfig.onPrayerWidgetClicked();
     // HijriWidgetConfig.onHijriWidgetClicked();
@@ -56,11 +60,11 @@ class GeneralController extends GetxController {
     super.onInit();
   }
 
-  // @override
-  // void onClose() {
-  //   WidgetsBinding.instance.removeObserver(this);
-  //   super.onClose();
-  // }
+  @override
+  void onClose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.onClose();
+  }
 
   /// -------- [Methods] ----------
 
@@ -74,29 +78,90 @@ class GeneralController extends GetxController {
 
   /// -------- [PrayersMethods] ----------
 
-  Future<void> initLocation() async {
+  // ✅ هذه الدالة تُستدعى عند تغيير حالة التطبيق
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+
+    // عندما يعود المستخدم للتطبيق
+    if (state == AppLifecycleState.resumed) {
+      if (_settingsCompleter != null && !_settingsCompleter!.isCompleted) {
+        _settingsCompleter!.complete();
+      }
+    }
+  }
+
+  // ✅ دالة لفتح الإعدادات والانتظار حتى العودة
+  Future<void> _openSettingsAndWait() async {
+    _settingsCompleter = Completer<void>();
+
+    await Geolocator.openAppSettings();
+
+    // انتظار حتى يعود المستخدم للتطبيق
+    await _settingsCompleter!.future;
+
+    // انتظار قليل للتأكد من تحديث الأذونات
+    await Future.delayed(const Duration(milliseconds: 500));
+  }
+
+  Future<void> initLocation({bool? isOpenSettings = true}) async {
     try {
       state.isLocationLoading.value = true;
+
       if (Platform.isMacOS || Platform.isLinux || Platform.isWindows) {
         await NominatimGeocoding.init();
         log('Location service is not supported on this platform');
+        return;
       }
-      await LocationHelper.instance.getPositionDetails();
-      // Get.forceAppUpdate();
-      state.activeLocation.value = true;
-      state.box.write(ACTIVE_LOCATION, true);
-      state.box.write(IS_LOCATION_ACTIVE, true);
-      state.box.write(FIRST_LAUNCH, true);
-      // AdhanController.instance.initializeAdhanVariables();
-      AdhanController.instance.initializeStoredAdhan();
-      // AdhanController.instance.update(['init_athan', 'update_progress']);
-      // Future.delayed(const Duration(seconds: 2))
-      //     .then((_) => PrayersWidgetConfig().updatePrayersDate());
+
+      LocationPermission permission = await Geolocator.checkPermission();
+      bool isEnabled = await Geolocator.isLocationServiceEnabled();
+
+      // ✅ حالة الرفض الدائم - فتح الإعدادات والانتظار
+      if (isEnabled &&
+          isOpenSettings! &&
+          permission == LocationPermission.deniedForever) {
+        // فتح الإعدادات والانتظار حتى العودة
+        await _openSettingsAndWait();
+
+        // ✅ إعادة التحقق من الإذن بعد العودة
+        permission = await Geolocator.checkPermission();
+
+        if (permission == LocationPermission.always ||
+            permission == LocationPermission.whileInUse) {
+          await _activateLocation();
+        } else {
+          // المستخدم لم يفعّل الموقع
+          log('User did not enable location permission');
+        }
+      } else if (permission == LocationPermission.always ||
+          permission == LocationPermission.whileInUse) {
+        // ✅ الإذن موجود - تفعيل مباشر
+        await _activateLocation();
+      } else if (permission == LocationPermission.denied) {
+        // ✅ طلب الإذن لأول مرة
+        permission = await Geolocator.requestPermission();
+
+        if (permission == LocationPermission.always ||
+            permission == LocationPermission.whileInUse) {
+          await _activateLocation();
+        }
+      }
     } catch (e) {
       log(e.toString(), name: 'Main', error: e);
     } finally {
       state.isLocationLoading.value = false;
     }
+  }
+
+  // ✅ دالة منفصلة لتفعيل الموقع
+  Future<void> _activateLocation() async {
+    await LocationHelper.instance.getPositionDetails();
+    state.box.write(ACTIVE_LOCATION, true);
+    state.box.write(IS_LOCATION_ACTIVE, true);
+    state.box.write(FIRST_LAUNCH, true);
+    await AdhanController.instance.initializeStoredAdhan();
+    Get.forceAppUpdate();
   }
 
   /// Initialize location with manual selection (for Huawei devices)
@@ -118,6 +183,7 @@ class GeneralController extends GetxController {
       state.box.write(FIRST_LAUNCH, true);
 
       AdhanController.instance.initializeStoredAdhan();
+      await SplashScreenController.instance.isNotificationAllowed();
     } catch (e) {
       log('Error initializing manual location: $e',
           name: 'GeneralController', error: e);
@@ -127,12 +193,12 @@ class GeneralController extends GetxController {
     }
   }
 
-  void cancelLocation() {
+  Future<void> cancelLocation() async {
     state.activeLocation.value = false;
     state.box.write(ACTIVE_LOCATION, false);
     state.box.write(IS_LOCATION_ACTIVE, false);
     state.box.write(FIRST_LAUNCH, true);
-    SplashScreenController.instance.state.customWidgetIndex.value = 2;
+    await SplashScreenController.instance.isNotificationAllowed();
     log('Location cancelled', name: 'Main');
   }
 

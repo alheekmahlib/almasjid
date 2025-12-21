@@ -14,7 +14,7 @@ class LocalNotificationsController extends GetxController {
   static LocalNotificationsController get instance =>
       Get.isRegistered<LocalNotificationsController>()
           ? Get.find<LocalNotificationsController>()
-          : Get.put(LocalNotificationsController());
+          : Get.put(LocalNotificationsController(), permanent: true);
 
   RxList<PostModel> postsList = <PostModel>[].obs;
   final box = GetStorage();
@@ -23,8 +23,8 @@ class LocalNotificationsController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    NotifyHelper().notificationBadgeListener();
-    fetchNewNotifications();
+    // NotifyHelper().notificationBadgeListener();
+    // fetchNewNotifications();
     loadReadStatus();
   }
 

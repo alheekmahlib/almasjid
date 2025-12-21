@@ -19,34 +19,35 @@ class PrayerScreen extends StatelessWidget {
         PrayersNotificationsCtrl.instance.state.adhanPlayer.stop();
         Get.back();
       },
-      child: Obx(
-        () => !generalCtrl.state.activeLocation.value
-            ? ActiveLocationButton()
-            : Scaffold(
-                backgroundColor: context.theme.colorScheme.surface,
-                body: SafeArea(
-                  child: Container(
-                    color: context.theme.colorScheme.primaryContainer,
-                    child: Column(
-                      children: [
-                        const AppBarWidget(),
-                        GetBuilder<AdhanController>(
+      child: Scaffold(
+        backgroundColor: context.theme.colorScheme.surface,
+        body: SafeArea(
+          child: Container(
+            color: context.theme.colorScheme.primaryContainer,
+            child: Column(
+              children: [
+                const AppBarWidget(),
+                Obx(
+                  () => !generalCtrl.state.activeLocation.value ||
+                          LocationHelper.instance.locationIsEmpty
+                      ? ActiveLocationButton()
+                      : GetBuilder<AdhanController>(
                           id: 'loading_state',
-                          builder: (controller) =>
-                              controller.state.isLoadingPrayerData.value
-                                  ? const LoadingWidget()
-                                  : Flexible(
-                                      child: context.customOrientation(
-                                        portraitBuild(context),
-                                        landscapeBuild(context),
-                                      ),
-                                    ),
+                          builder: (ctrl) => ctrl.isLoadingPrayerData.value ||
+                                  ctrl.isNoInternetAndDataNotInitialized.value
+                              ? const LoadingWidget()
+                              : Flexible(
+                                  child: context.customOrientation(
+                                    portraitBuild(context),
+                                    landscapeBuild(context),
+                                  ),
+                                ),
                         ),
-                      ],
-                    ),
-                  ),
                 ),
-              ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }

@@ -8,6 +8,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
+import '/core/widgets/local_notification/controller/local_notifications_controller.dart';
 import '/presentation/controllers/settings_controller.dart';
 import '../../presentation/controllers/theme_controller.dart';
 import '../../presentation/ourApp/controller/our_apps_controller.dart';
@@ -18,7 +19,8 @@ import '../../presentation/whats_new/whats_new.dart';
 // import '../../presentation/screens/splash/splash.dart';
 // import '../../presentation/screens/whats_new/whats_new.dart';
 import '../utils/helpers/rate_app_helper.dart';
-import '../widgets/local_notification/controller/local_notifications_controller.dart';
+import 'connectivity_service.dart';
+import 'internet_connection_controller.dart';
 // import '../widgets/local_notification/controller/local_notifications_controller.dart';
 
 final sl = GetIt.instance;
@@ -72,6 +74,9 @@ class ServicesLocator {
 
     sl.registerLazySingleton<OurAppsController>(
         () => Get.put<OurAppsController>(OurAppsController(), permanent: true));
+
+    Get.put(InternetConnectionService(), permanent: true);
+    Get.put(InternetConnectionController(), permanent: true);
 
     if (Platform.isIOS || Platform.isAndroid || Platform.isFuchsia) {
       RateAppHelper.rateMyApp.init();

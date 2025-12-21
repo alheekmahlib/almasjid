@@ -245,8 +245,8 @@ class ActiveLocationWidget extends StatelessWidget {
                   : () async => isHuaweiDevice
                       ? _showSearchBottomSheet(context)
                       : await generalCtrl.initLocation().then((_) =>
-                          SplashScreenController
-                              .instance.state.customWidgetIndex.value = 2),
+                          SplashScreenController.instance
+                              .isNotificationAllowed()),
               height: 45,
               width: Get.width,
               horizontalMargin: 0,
@@ -275,7 +275,7 @@ class ActiveLocationWidget extends StatelessWidget {
             : const SizedBox.shrink(),
         const Gap(8),
         ContainerButtonWidget(
-          onPressed: () => generalCtrl.cancelLocation(),
+          onPressed: () async => await generalCtrl.cancelLocation(),
           height: 45,
           width: Get.width,
           horizontalMargin: 0,

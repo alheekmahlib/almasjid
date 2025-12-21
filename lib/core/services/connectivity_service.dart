@@ -1,117 +1,70 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:gap/gap.dart';
-import 'package:get/get.dart';
+import 'package:flutter/foundation.dart';
 
-import '/core/utils/constants/svg_constants.dart';
+// enum لتسهيل التعامل مع حالات الاتصال
+enum ConnectivityStatus {
+  connected,
+  phoneData,
+  disconnected,
+}
 
-/// Usage Example
-/// final connectivityService = Get.put(ConnectivityService());
-/// await connectivityService.init();
-/// Now you can use connectivityService.connectionStatus
-/// or connectivityService.noConnection.
-/// OR
-/// ConnectivityService.instance.init();
-/// Now you can use ConnectivityService.instance.connectionStatus
-/// or ConnectivityService.instance.noConnection.
+class InternetConnectionService {
+  // StreamController لبث التغيرات في حالة الاتصال
+  final StreamController<ConnectivityStatus> _connectionStatusController =
+      StreamController<ConnectivityStatus>.broadcast();
 
-class ConnectivityService extends GetxService {
-  static ConnectivityService get instance =>
-      Get.isRegistered<ConnectivityService>()
-          ? Get.find<ConnectivityService>()
-          : Get.put(ConnectivityService());
+  // Stream يمكن للـ Controllers الأخرى الاستماع إليه
+  Stream<ConnectivityStatus> get connectionStream =>
+      _connectionStatusController.stream;
 
-  /// -------- [ConnectivityService] ----------
+  // متغير للاحتفاظ بآخر حالة اتصال معروفة
+  ConnectivityStatus _currentStatus = ConnectivityStatus.disconnected;
+  ConnectivityStatus get currentStatus => _currentStatus;
 
-  /// -------- [Variables] ----------
-
-  final RxList<ConnectivityResult> _connectionStatus =
-      [ConnectivityResult.none].obs;
-  final Connectivity _connectivity = Connectivity();
+  // اشتراك لمراقبة التغيرات من مكتبة connectivity_plus
   late StreamSubscription<List<ConnectivityResult>> _connectivitySubscription;
 
-  /// -------- [Getter] ----------
-
-  RxList<ConnectivityResult> get connectionStatus => _connectionStatus;
-
-  RxBool get noConnection =>
-      _connectionStatus.contains(ConnectivityResult.none).obs;
-
-  /// -------- [Initialization] ----------
-
-  /// Initialize the [ConnectivityService].
-  ///
-  /// This method is asynchronous and needs to be called before using the
-  /// [connectionStatus] or [noConnection].
-  ///
-  /// It will start listening to the connectivity changes and will update the
-  /// [connectionStatus] accordingly.
-  ///
-  /// It returns [ConnectivityService] itself, so you can chain it with other
-  /// methods.
-  ///
-  /// Example: ConnectivityService.instance.init();
-  ///
-  Future<ConnectivityService> init() async {
-    _connectivitySubscription =
-        _connectivity.onConnectivityChanged.listen(_updateConnectionStatus);
-    await _initConnectivity();
-    return this;
+  InternetConnectionService() {
+    _initialize();
   }
 
-  /// Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> _initConnectivity() async {
-    try {
-      final result = await _connectivity.checkConnectivity();
-      _updateConnectionStatus(result);
-    } on PlatformException catch (e) {
-      log('Couldn\'t check connectivity status', error: e);
+  // دالة للتهيئة الأولية وبدء الاستماع
+  Future<void> _initialize() async {
+    // الاستماع للتغيرات في الاتصال
+    _connectivitySubscription =
+        Connectivity().onConnectivityChanged.listen(_updateConnectionStatus);
+
+    // التحقق من الحالة الحالية عند بدء التشغيل
+    List<ConnectivityResult> initialResult =
+        await Connectivity().checkConnectivity();
+    _updateConnectionStatus(initialResult);
+  }
+
+  // دالة خاصة لتحديث الحالة وبثها عبر الـ Stream
+  void _updateConnectionStatus(List<ConnectivityResult> result) {
+    ConnectivityStatus newStatus;
+    // التحقق مما إذا كانت النتيجة تحتوي على 'none'
+    if (result.contains(ConnectivityResult.none)) {
+      newStatus = ConnectivityStatus.disconnected;
+    } else if (result.contains(ConnectivityResult.mobile)) {
+      newStatus = ConnectivityStatus.phoneData;
+    } else {
+      newStatus = ConnectivityStatus.connected;
+    }
+
+    // بث الحالة الجديدة فقط إذا تغيرت عن الحالة السابقة
+    if (newStatus != _currentStatus) {
+      _currentStatus = newStatus;
+      _connectionStatusController.add(newStatus);
+      debugPrint('Connectivity status updated: $newStatus');
     }
   }
 
-  void _updateConnectionStatus(List<ConnectivityResult> result) {
-    _connectionStatus.value = result;
-    log('Connectivity changed: $_connectionStatus');
-    // _showConnectivityStatusSnackBar(result);
-  }
-
-  // void _showConnectivityStatusSnackBar(List<ConnectivityResult> result) {
-  //   if (result.contains(ConnectivityResult.none)) {
-  //     Get.context?.showCustomErrorSnackBar('noInternet'.tr);
-  //   } else if (result.contains(ConnectivityResult.mobile)) {
-  //     Get.context?.showCustomErrorSnackBar('mobileDataAyat'.tr);
-  //   }
-  // }
-
-  /// -------- [Dispose] ----------
-
-  @override
-  void onClose() {
+  // دالة لإغلاق الـ StreamController والاشتراك عند عدم الحاجة للخدمة
+  void dispose() {
     _connectivitySubscription.cancel();
-    super.onClose();
+    _connectionStatusController.close();
   }
-
-  /// -------- [No Internet Widget] ----------
-
-  Widget get noInternetWidget => Column(
-        children: [
-          const Gap(60),
-          SvgPicture.asset(SvgPath.svgAlert, height: 120),
-          const Gap(16),
-          Text(
-            'noInternet'.tr,
-            style: TextStyle(
-              color: Theme.of(Get.context!).colorScheme.surface,
-              fontFamily: 'cairo',
-              fontWeight: FontWeight.bold,
-            ),
-            textAlign: TextAlign.center,
-          ),
-        ],
-      );
 }

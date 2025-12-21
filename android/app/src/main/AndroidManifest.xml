@@ -29,6 +29,11 @@
   <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 <!-- Awesome Notifications permissions -->
 
+        <!-- flutter_local_notifications (Android 13+) -->
+        <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+        <!-- Required for exact alarm scheduling on some Android versions/devices -->
+        <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+
     <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:label="أقم - مكتبة الحكمة"

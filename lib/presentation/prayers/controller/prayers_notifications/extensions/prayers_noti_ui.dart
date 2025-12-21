@@ -27,46 +27,19 @@ extension PrayersNotiUi on PrayersNotificationsCtrl {
     }
   }
 
-  // void selectAdhanOnTap(int index) {
-  //   if (isAdhanDownloadedByIndex(index).value) {
-  //     final selectedAdhan =
-  //         state.downloadedAdhanData.firstWhereOrNull((e) => e.index == index);
-  //     if (selectedAdhan != null) {
-  //       state.selectedAdhanPath.value = selectedAdhan.adhanPath!;
-  //       state.selectedAdhanPathFajir.value =
-  //           selectedAdhan.androidFajirFilePath!;
-  //       state.box.write(ADHAN_PATH, state.selectedAdhanPath.value);
-  //       state.box.write(ADHAN_PATH_FAJIR, state.selectedAdhanPathFajir.value);
-  //     }
-  //
-  //     log('adhan: ${state.downloadedAdhanData[0].iosFilePath}');
-  //     log('adhan selected: $index ${state.box.read(ADHAN_PATH)}');
-  //     log('adhan fajir selected: $index ${state.box.read(ADHAN_PATH_FAJIR)}');
-  //   } else {
-  //     log('adhan is not downloaded');
-  //     Get.defaultDialog(
-  //       backgroundColor: Get.context!.theme.cardColor,
-  //       titleStyle: TextStyle(color: Get.context!.theme.canvasColor),
-  //       middleTextStyle: TextStyle(color: Get.context!.theme.canvasColor),
-  //       title: 'Adhan isn\'t Downloaded',
-  //       middleText: 'Please Download Adhan First',
-  //     );
-  //   }
-  // }
-
   void switchAdhanOnTap(int index) {
     switch (index) {
       case 0:
         state.selectedAdhanPath.value = 'resource://raw/aqsa_athan';
         state.selectedAdhanPathFajir.value = Platform.isIOS
             ? 'resource://raw/aqsa_athan'
-            : 'resource://raw/aqsa_athan_fajir';
+            : 'resource://raw/aqsa_fajir_athan';
         break;
       case 1:
         state.selectedAdhanPath.value = 'resource://raw/saqqaf_athan';
         state.selectedAdhanPathFajir.value = Platform.isIOS
             ? 'resource://raw/saqqaf_athan'
-            : 'resource://raw/saqqaf_athan_fajir';
+            : 'resource://raw/saqqaf_fajir_athan';
         break;
       case 2:
         state.selectedAdhanPath.value = 'resource://raw/sarihi_athan';
@@ -78,25 +51,25 @@ extension PrayersNotiUi on PrayersNotificationsCtrl {
         state.selectedAdhanPath.value = 'resource://raw/baset_athan';
         state.selectedAdhanPathFajir.value = Platform.isIOS
             ? 'resource://raw/baset_athan'
-            : 'resource://raw/baset_athan_fajir';
+            : 'resource://raw/baset_fajir_athan';
         break;
       case 4:
         state.selectedAdhanPath.value = 'resource://raw/qatami_athan';
         state.selectedAdhanPathFajir.value = Platform.isIOS
             ? 'resource://raw/qatami_athan'
-            : 'resource://raw/qatami_athan_fajir';
+            : 'resource://raw/qatami_fajir_athan';
         break;
       case 5:
         state.selectedAdhanPath.value = 'resource://raw/salah_athan';
         state.selectedAdhanPathFajir.value = Platform.isIOS
             ? 'resource://raw/salah_athan'
-            : 'resource://raw/salah_athan_fajir';
+            : 'resource://raw/salah_fajir_athan';
         break;
       default:
         state.selectedAdhanPath.value = 'resource://raw/aqsa_athan';
         state.selectedAdhanPathFajir.value = Platform.isIOS
             ? 'resource://raw/aqsa_athan'
-            : 'resource://raw/aqsa_athan_fajir';
+            : 'resource://raw/aqsa_fajir_athan';
     }
 
     // تخزين المسارات المختارة في GetStorage
@@ -137,15 +110,15 @@ extension PrayersNotiUi on PrayersNotificationsCtrl {
     }
   }
 
-  void onNotificationActionReceived(ReceivedAction receivedAction) {
+  void onNotificationActionReceived(LocalReceivedAction receivedAction) {
     // playAudio(receivedAction.id, receivedAction.title, receivedAction.body);
     Get.to(() => PrayerScreen(), transition: Transition.downToUp);
     if (DateTime.now().isBefore(
-        receivedAction.displayedDate!.add(const Duration(minutes: 5)))) {
+        receivedAction.displayedDate.add(const Duration(minutes: 5)))) {
       Future.delayed(const Duration(seconds: 1)).then((_) => Get.bottomSheet(
               PrayerDetails(
-                prayerName: receivedAction.title!,
-                prayerSummary: receivedAction.summary!,
+                prayerName: receivedAction.title,
+                prayerSummary: receivedAction.summary,
               ),
               isScrollControlled: true)
           .then((_) async => await state.adhanPlayer.stop()));

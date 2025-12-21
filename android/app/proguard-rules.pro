@@ -20,3 +20,11 @@
 
 # General Android
 -dontwarn java.lang.invoke.**
+
+# flutter_local_notifications (Release / R8)
+# Prevent: "TypeToken must be created with a type argument" when R8 strips
+# generic signatures used by Gson.
+-keepattributes Signature,InnerClasses,EnclosingMethod,*Annotation*
+-keep class com.dexterous.flutterlocalnotifications.** { *; }
+-keep class com.google.gson.reflect.TypeToken { *; }
+-keep class com.google.gson.** { *; }

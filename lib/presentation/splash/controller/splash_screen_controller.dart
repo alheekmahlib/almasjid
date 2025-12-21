@@ -12,8 +12,6 @@ class SplashScreenController extends GetxController {
     Future.delayed(const Duration(milliseconds: 4300))
         .then((_) async => await changeCustomWidget());
     // startTime();
-    WhatsNewController.instance.state.newFeatures =
-        await WhatsNewController.instance.getNewFeatures();
     super.onInit();
   }
 
@@ -40,12 +38,24 @@ class SplashScreenController extends GetxController {
   }
 
   Future<void> changeCustomWidget() async {
-    bool isAllowed = await AwesomeNotifications().isNotificationAllowed();
-    if (!GeneralController.instance.state.activeLocation.value) {
+    if (LocationHelper().locationIsEmpty) {
       state.customWidgetIndex.value = 1;
-    } else if (!isAllowed) {
+    } else {
+      await isNotificationAllowed();
+    }
+  }
+
+  Future<void> isNotificationAllowed() async {
+    bool isAllowed = await NotifyHelper().isNotificationAllowed();
+    if (!isAllowed) {
       state.customWidgetIndex.value = 2;
-    } else if (WhatsNewController.instance.state.newFeatures.isNotEmpty) {
+    } else {
+      hasNewFeatures();
+    }
+  }
+
+  void hasNewFeatures() {
+    if (WhatsNewController.instance.hasNewFeatures) {
       state.customWidgetIndex.value = 3;
     } else {
       Get.offAndToNamed(AppRouter.homeScreen);
@@ -79,8 +89,10 @@ class SplashScreenController extends GetxController {
     try {
       state.isNotificationLoading.value = true;
       await NotifyHelper().requistPermissions();
-      NotifyHelper.initAwesomeNotifications();
-      state.customWidgetIndex.value = 3;
+      await NotifyHelper.initFlutterLocalNotifications();
+      // تسجيل أن المستخدم شاهد شاشة تفعيل الإشعارات
+      await NotifyHelper().markNotificationSetupAsSeen();
+      hasNewFeatures();
     } finally {
       state.isNotificationLoading.value = false;
     }
@@ -88,10 +100,7 @@ class SplashScreenController extends GetxController {
 
   Future<void> _loadInitialData() async {
     SettingsController.instance.loadLang();
-    GeneralController.instance.getLastPageAndFontSize();
     GeneralController.instance.updateGreeting();
-    GeneralController.instance.state.screenSelectedValue.value =
-        state.box.read(SCREEN_SELECTED_VALUE) ?? 0;
   }
 
   Widget ramadhanOrEidGreeting() {

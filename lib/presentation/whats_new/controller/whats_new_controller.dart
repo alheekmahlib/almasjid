@@ -7,9 +7,15 @@ class WhatsNewController extends GetxController {
   WhatsNewState state = WhatsNewState();
   @override
   Future<void> onInit() async {
-    activeLocation();
     super.onInit();
+    activeLocation();
+    state.newFeatures = await getNewFeatures();
   }
+
+  bool get hasNewFeatures =>
+      state.newFeatures.isNotEmpty ||
+      (state.box.read(LAST_SHOWN_UPDATE_INDEX) ?? 0) <
+          whatsNewList.last['index'];
 
   /// -------- [Methods] ----------
 

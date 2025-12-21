@@ -5,9 +5,9 @@ import 'package:lottie/lottie.dart';
 
 import '/core/utils/constants/extensions/extensions.dart';
 import '/core/utils/constants/extensions/svg_extensions.dart';
+import '/core/widgets/local_notification/controller/local_notifications_controller.dart';
 import '../../../presentation/controllers/general/general_controller.dart';
 import '../../utils/constants/svg_constants.dart';
-import 'controller/local_notifications_controller.dart';
 import 'widgets/notification_icon_widget.dart';
 
 class NotificationsScreen extends StatelessWidget {

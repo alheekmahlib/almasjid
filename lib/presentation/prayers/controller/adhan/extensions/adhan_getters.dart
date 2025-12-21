@@ -3,6 +3,13 @@ part of '../../../prayers.dart';
 extension AdhanGetters on AdhanController {
   /// -------- [Getters] ----------
 
+  RxBool get isNoInternetAndDataNotInitialized {
+    bool state = false;
+    state = (!InternetConnectionController.instance.isConnected &&
+        PrayerCacheManager.getCachedPrayerData() == null);
+    return state.obs;
+  }
+
   /// حالة تحميل بيانات الصلاة
   /// Prayer data loading state
   RxBool get isLoadingPrayerData => state.isLoadingPrayerData;
@@ -331,7 +338,8 @@ extension AdhanGetters on AdhanController {
   RxDouble getIntervalPercentageOfDayBetweenPrayerAndNextByIndex(int index) {
     if (index < 0 || index >= prayerNameList.length) {
       throw ArgumentError(
-          'Index out of range, must be between 0 and ${prayerNameList.length - 1}.');
+        'Index out of range, must be between 0 and ${prayerNameList.length - 1}.',
+      );
     }
 
     final Map<String, dynamic> targetPrayerMap = prayerNameList[index];
@@ -346,8 +354,10 @@ extension AdhanGetters on AdhanController {
       return 0.0.obs;
     }
 
-    // نبني مواعيد اليوم/الغد بناءً على اللحظة الحالية لضمان أن الهدف في المستقبل
+    // نبني مواعيد اليوم/الغد بناءً على اللحظة الحالية
     final DateTime now = state.now;
+
+    // نبني موعد الصلاة الهدف لليوم الحالي
     DateTime target = DateTime(
       now.year,
       now.month,
@@ -357,22 +367,33 @@ extension AdhanGetters on AdhanController {
       targetRaw.second,
     );
 
-    // إذا كان موعد الهدف مرّ اليوم، نأخذ التكرار التالي (الغد)
-    if (!target.isAfter(now)) {
-      target = target.add(const Duration(days: 1));
-    }
-
-    // اجعل موعد السابقة مرتبطًا بيوم الهدف نفسه، ثم أعِده لليوم السابق إذا لزم
+    // نبني موعد الصلاة السابقة لليوم الحالي
     DateTime prev = DateTime(
-      target.year,
-      target.month,
-      target.day,
+      now.year,
+      now.month,
+      now.day,
       prevRaw.hour,
       prevRaw.minute,
       prevRaw.second,
     );
-    if (!prev.isBefore(target)) {
+
+    // نحدد الفترة الزمنية الصحيحة بناءً على الوقت الحالي
+    if (now.isAfter(target) || now.isAtSameMomentAs(target)) {
+      // الصلاة الهدف مرت اليوم، نأخذها للغد
+      target = target.add(const Duration(days: 1));
+    }
+
+    if (now.isBefore(prev)) {
+      // نحن قبل الصلاة السابقة، فالسابقة والهدف في الأمس واليوم
       prev = prev.subtract(const Duration(days: 1));
+    } else {
+      // نحن بعد الصلاة السابقة، نتحقق إذا كان الهدف قبل السابقة (مثل: عشاء -> فجر)
+      if (targetRaw.hour < prevRaw.hour ||
+          (targetRaw.hour == prevRaw.hour &&
+              targetRaw.minute <= prevRaw.minute)) {
+        // الصلاة الهدف في اليوم التالي بطبيعتها
+        target = target.add(const Duration(days: 1));
+      }
     }
 
     final int totalMinutes = target.difference(prev).inMinutes;
@@ -380,14 +401,14 @@ extension AdhanGetters on AdhanController {
       return 0.0.obs;
     }
 
-    // الوقت المتبقي حتى الصلاة الهدف من الآن
-    int remainingMinutes = target.difference(now).inMinutes;
+    // الوقت المنقضي من الصلاة السابقة حتى الآن
+    int elapsedMinutes = now.difference(prev).inMinutes;
     // قصّ القيم لضمان [0, totalMinutes]
-    if (remainingMinutes < 0) remainingMinutes = 0;
-    if (remainingMinutes > totalMinutes) remainingMinutes = totalMinutes;
+    if (elapsedMinutes < 0) elapsedMinutes = 0;
+    if (elapsedMinutes > totalMinutes) elapsedMinutes = totalMinutes;
 
     final double percentage =
-        ((remainingMinutes / totalMinutes) * 100).clamp(0, 100).toDouble();
+        ((elapsedMinutes / totalMinutes) * 100).clamp(0, 100).toDouble();
     return percentage.obs;
   }
 
