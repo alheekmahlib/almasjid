@@ -1,6 +1,9 @@
 PODS:
   - audio_session (0.0.1):
     - Flutter
+  - awesome_notifications (0.10.0):
+    - Flutter
+    - IosAwnCore (~> 0.10.0)
   - background_fetch (1.5.0):
     - Flutter
     - TSBackgroundFetch (~> 4.0)
@@ -11,8 +14,6 @@ PODS:
   - device_info_plus (0.0.1):
     - Flutter
   - Flutter (1.0.0)
-  - flutter_local_notifications (0.0.1):
-    - Flutter
   - flutter_native_splash (2.4.3):
     - Flutter
   - flutter_timezone (0.0.1):
@@ -24,6 +25,7 @@ PODS:
     - FlutterMacOS
   - home_widget (0.0.1):
     - Flutter
+  - IosAwnCore (0.10.0)
   - just_audio (0.0.1):
     - Flutter
     - FlutterMacOS
@@ -49,12 +51,12 @@ PODS:
 
 DEPENDENCIES:
   - audio_session (from `.symlinks/plugins/audio_session/ios`)
+  - awesome_notifications (from `.symlinks/plugins/awesome_notifications/ios`)
   - background_fetch (from `.symlinks/plugins/background_fetch/ios`)
   - compassx (from `.symlinks/plugins/compassx/ios`)
   - connectivity_plus (from `.symlinks/plugins/connectivity_plus/ios`)
   - device_info_plus (from `.symlinks/plugins/device_info_plus/ios`)
   - Flutter (from `Flutter`)
-  - flutter_local_notifications (from `.symlinks/plugins/flutter_local_notifications/ios`)
   - flutter_native_splash (from `.symlinks/plugins/flutter_native_splash/ios`)
   - flutter_timezone (from `.symlinks/plugins/flutter_timezone/ios`)
   - geocoding_ios (from `.symlinks/plugins/geocoding_ios/ios`)
@@ -71,11 +73,14 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - IosAwnCore
     - TSBackgroundFetch
 
 EXTERNAL SOURCES:
   audio_session:
     :path: ".symlinks/plugins/audio_session/ios"
+  awesome_notifications:
+    :path: ".symlinks/plugins/awesome_notifications/ios"
   background_fetch:
     :path: ".symlinks/plugins/background_fetch/ios"
   compassx:
@@ -86,8 +91,6 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/device_info_plus/ios"
   Flutter:
     :path: Flutter
-  flutter_local_notifications:
-    :path: ".symlinks/plugins/flutter_local_notifications/ios"
   flutter_native_splash:
     :path: ".symlinks/plugins/flutter_native_splash/ios"
   flutter_timezone:
@@ -117,17 +120,18 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   audio_session: 9bb7f6c970f21241b19f5a3658097ae459681ba0
+  awesome_notifications: 0f432b28098d193920b11a44cfa9d2d9313a3888
   background_fetch: 7457cb2c7be3086b37d87207866f30bed2f9fb58
   compassx: 2d291f8c8e5672f35c62277f2318ef48359dc1d0
   connectivity_plus: cb623214f4e1f6ef8fe7403d580fdad517d2f7dd
   device_info_plus: 21fcca2080fbcd348be798aa36c3e5ed849eefbe
   Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
-  flutter_local_notifications: 395056b3175ba4f08480a7c5de30cd36d69827e4
   flutter_native_splash: c32d145d68aeda5502d5f543ee38c192065986cf
   flutter_timezone: 7c838e17ffd4645d261e87037e5bebf6d38fe544
   geocoding_ios: 33776c9ebb98d037b5e025bb0e7537f6dd19646e
   geolocator_apple: ab36aa0e8b7d7a2d7639b3b4e48308394e8cef5e
   home_widget: f169fc41fd807b4d46ab6615dc44d62adbf9f64f
+  IosAwnCore: 653786a911089012092ce831f2945cd339855a89
   just_audio: 4e391f57b79cad2b0674030a00453ca5ce817eed
   package_info_plus: af8e2ca6888548050f16fa2f1938db7b5a5df499
   path_provider_foundation: 080d55be775b7414fd5a5ef3ac137b97b097e564
@@ -138,6 +142,6 @@ SPEC CHECKSUMS:
   TSBackgroundFetch: e91020924db32f27d0a43df7dec6f73f10743571
   url_launcher_ios: 694010445543906933d732453a59da0a173ae33d
 
-PODFILE CHECKSUM: 4cf840914e02e619cbc071e0fad904756ae94e94
+PODFILE CHECKSUM: 0cc094395a8f26ac2e06a80b4d25a09cc2c8b719
 
 COCOAPODS: 1.16.2

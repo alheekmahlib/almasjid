@@ -39,12 +39,28 @@ end
 
 post_install do |installer|
   installer.pods_project.targets.each do |target|
-     flutter_additional_ios_build_settings(target)
-      target.build_configurations.each do |config|
-        xcconfig_path = config.base_configuration_reference.real_path
-        xcconfig = File.read(xcconfig_path)
-        xcconfig_mod = xcconfig.gsub(/DT_TOOLCHAIN_DIR/, "TOOLCHAIN_DIR")
-        File.open(xcconfig_path, "w") { |file| file << xcconfig_mod }
-      end
+    flutter_additional_ios_build_settings(target)
+    target.build_configurations.each do |config|
+      config.build_settings['BUILD_LIBRARY_FOR_DISTRIBUTION'] = 'NO'
+      # Fix for static framework dependencies
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
+    end
   end
+  
+  # Disable static framework transitive dependencies validation
+  installer.pods_project.build_configurations.each do |config|
+    config.build_settings['CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES'] = 'YES'
+  end
+
+  ################  Awesome Notifications pod modification  ###################
+  awesome_pod_file = File.expand_path(File.join('plugins', 'awesome_notifications', 'ios', 'Scripts', 'AwesomePodFile'), '.symlinks')
+  require awesome_pod_file
+  update_awesome_pod_build_settings(installer)
+  ################  Awesome Notifications pod modification  ###################
 end
+  
+################  Awesome Notifications pod modification  ###################
+awesome_pod_file = File.expand_path(File.join('plugins', 'awesome_notifications', 'ios', 'Scripts', 'AwesomePodFile'), '.symlinks')
+require awesome_pod_file
+update_awesome_main_target_settings('Runner', File.dirname(File.realpath(__FILE__)), flutter_root)
+################  Awesome Notifications pod modification  ###################

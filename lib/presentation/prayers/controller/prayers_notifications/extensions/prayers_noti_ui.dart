@@ -110,11 +110,11 @@ extension PrayersNotiUi on PrayersNotificationsCtrl {
     }
   }
 
-  void onNotificationActionReceived(LocalReceivedAction receivedAction) {
+  void onNotificationActionReceived(ReceivedAction receivedAction) {
     // playAudio(receivedAction.id, receivedAction.title, receivedAction.body);
     Get.to(() => PrayerScreen(), transition: Transition.downToUp);
     if (DateTime.now().isBefore(
-        receivedAction.displayedDate.add(const Duration(minutes: 5)))) {
+        receivedAction.displayedDate!.add(const Duration(minutes: 5)))) {
       Future.delayed(const Duration(seconds: 1)).then((_) => Get.bottomSheet(
               PrayerDetails(
                 prayerName: receivedAction.title,

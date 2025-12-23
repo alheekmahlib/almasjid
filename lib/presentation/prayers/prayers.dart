@@ -7,6 +7,7 @@ import 'dart:typed_data';
 import 'package:adhan/adhan.dart';
 import 'package:arabic_justified_text/arabic_justified_text.dart';
 import 'package:archive/archive.dart' show ZipDecoder;
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;

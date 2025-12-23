@@ -89,7 +89,7 @@ class SplashScreenController extends GetxController {
     try {
       state.isNotificationLoading.value = true;
       await NotifyHelper().requistPermissions();
-      await NotifyHelper.initFlutterLocalNotifications();
+      NotifyHelper.initAwesomeNotifications();
       // تسجيل أن المستخدم شاهد شاشة تفعيل الإشعارات
       await NotifyHelper().markNotificationSetupAsSeen();
       hasNewFeatures();

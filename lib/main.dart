@@ -33,7 +33,7 @@ Future<void> initializeApp() async {
   // Always initialize services (register controllers, timezone, etc.)
   await ServicesLocator().init();
   tz.initializeTimeZones();
-  await NotifyHelper.initFlutterLocalNotifications();
+  NotifyHelper.initAwesomeNotifications();
 
   // Mobile-specific initialization
   if (Platform.isAndroid || Platform.isIOS) {
