@@ -18,7 +18,7 @@ class SetTimingCalculations extends StatelessWidget {
                       fontFamily: 'cairo',
                       fontStyle: FontStyle.italic,
                       fontWeight: FontWeight.bold,
-                      fontSize: 14.sp),
+                      fontSize: 14),
                 ),
                 const Gap(4),
                 CustomSwitchWidget<AdhanController>(
@@ -41,7 +41,7 @@ class SetTimingCalculations extends StatelessWidget {
                       fontFamily: 'cairo',
                       fontStyle: FontStyle.italic,
                       fontWeight: FontWeight.bold,
-                      fontSize: 14.sp),
+                      fontSize: 14),
                 ),
                 const Gap(4),
                 CustomSwitchWidget<AdhanController>(

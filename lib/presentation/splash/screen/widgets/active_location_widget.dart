@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 
@@ -53,7 +54,7 @@ class ActiveLocationWidget extends StatelessWidget {
                     'locationNote'.tr,
                     style: TextStyle(
                         fontFamily: 'cairo',
-                        fontSize: 16,
+                        fontSize: 12.sp.clamp(12, 22),
                         height: 1.5,
                         fontWeight: FontWeight.w500,
                         color: context.theme.canvasColor),
@@ -61,7 +62,7 @@ class ActiveLocationWidget extends StatelessWidget {
                   ),
                 ),
                 const Gap(32),
-                _buttonsBuild(context, isHuaweiDevice),
+                _buttonsBuild(context, !isHuaweiDevice),
               ],
             ),
             Row(
@@ -70,16 +71,6 @@ class ActiveLocationWidget extends StatelessWidget {
                 Expanded(
                   child: Column(
                     children: [
-                      const Spacer(),
-                      _buttonsBuild(context, isHuaweiDevice),
-                    ],
-                  ),
-                ),
-                const Gap(16),
-                Expanded(
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
                       Opacity(
                         opacity: 0.2,
                         child: customLottieWithColor(
@@ -87,27 +78,32 @@ class ActiveLocationWidget extends StatelessWidget {
                             width: 250.0,
                             color: context.theme.colorScheme.surface),
                       ),
-                      Container(
-                        width: double.infinity,
-                        alignment: Alignment.center,
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 24.0, vertical: 16.0),
-                        decoration: BoxDecoration(
-                            color: context.theme.colorScheme.surface
-                                .withValues(alpha: .2),
-                            borderRadius: BorderRadius.circular(8)),
-                        child: Text(
-                          'locationNote'.tr,
-                          style: TextStyle(
-                              fontFamily: 'cairo',
-                              fontSize: 8,
-                              height: 1.5,
-                              fontWeight: FontWeight.w500,
-                              color: context.theme.canvasColor),
-                          textAlign: TextAlign.justify,
-                        ),
-                      ),
+                      const Spacer(),
+                      _buttonsBuild(context, !isHuaweiDevice),
                     ],
+                  ),
+                ),
+                const Gap(16),
+                Expanded(
+                  child: Container(
+                    width: double.infinity,
+                    alignment: Alignment.center,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 24.0, vertical: 16.0),
+                    decoration: BoxDecoration(
+                        color: context.theme.colorScheme.surface
+                            .withValues(alpha: .2),
+                        borderRadius: BorderRadius.circular(8)),
+                    child: Text(
+                      'locationNote'.tr,
+                      style: TextStyle(
+                          fontFamily: 'cairo',
+                          fontSize: 8.sp.clamp(8, 18),
+                          height: 1.5,
+                          fontWeight: FontWeight.w500,
+                          color: context.theme.canvasColor),
+                      textAlign: TextAlign.justify,
+                    ),
                   ),
                 ),
               ],
@@ -115,116 +111,6 @@ class ActiveLocationWidget extends StatelessWidget {
           ),
         );
       },
-    );
-  }
-
-  void _showSearchBottomSheet(BuildContext context) {
-    customBottomSheet(
-      textTitle: 'searchForCity'.tr,
-      containerColor: context.theme.colorScheme.primaryContainer,
-      child: SizedBox(
-        height: Get.height * 0.8,
-        child: Column(
-          children: [
-            // Search TextField
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: TextField(
-                controller: mapCtrl.searchController,
-                decoration: InputDecoration(
-                  hintText: 'enterCityName'.tr,
-                  prefixIcon: const Icon(Icons.search),
-                  suffixIcon: Obx(() => mapCtrl.isSearching.value
-                      ? const SizedBox(
-                          width: 20,
-                          height: 20,
-                          child: Padding(
-                            padding: EdgeInsets.all(13.0),
-                            child: CircularProgressIndicator(strokeWidth: 2),
-                          ),
-                        )
-                      : const SizedBox.shrink()),
-                  contentPadding: EdgeInsets.zero,
-                  constraints: const BoxConstraints(
-                    maxHeight: 45,
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(16),
-                    borderSide: BorderSide(
-                      color: context.theme.colorScheme.surface,
-                      width: 1,
-                    ),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(16),
-                    borderSide: BorderSide(
-                      color: context.theme.colorScheme.surface,
-                      width: 1,
-                    ),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(16),
-                    borderSide: BorderSide(
-                      color: context.theme.colorScheme.surface,
-                      width: 1,
-                    ),
-                  ),
-                ),
-                style: TextStyle(
-                  fontFamily: 'cairo',
-                  fontSize: 14,
-                  color: context.theme.colorScheme.inversePrimary,
-                ),
-                onChanged: (value) {
-                  // Debounce search
-                  Future.delayed(const Duration(milliseconds: 500), () {
-                    if (mapCtrl.searchController.text == value) {
-                      mapCtrl.searchCities(value);
-                    }
-                  });
-                },
-              ),
-            ),
-            const Gap(16),
-            // Search Results
-            Obx(() => mapCtrl.searchResults.isEmpty
-                ? const SizedBox.shrink()
-                : Container(
-                    constraints: const BoxConstraints(maxHeight: 300),
-                    child: ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: mapCtrl.searchResults.length,
-                      itemBuilder: (context, index) {
-                        final city = mapCtrl.searchResults[index];
-                        return ListTile(
-                          title: Text(
-                            city['name'],
-                            style: TextStyle(
-                              fontFamily: 'cairo',
-                              fontWeight: FontWeight.w600,
-                              fontSize: 16,
-                              color: context.theme.colorScheme.inversePrimary,
-                            ),
-                          ),
-                          subtitle: Text(
-                            city['country'],
-                            style: TextStyle(
-                              fontFamily: 'cairo',
-                              fontSize: 14,
-                              color: context.theme.colorScheme.inversePrimary
-                                  .withValues(alpha: 0.7),
-                            ),
-                          ),
-                          trailing: Icon(Icons.location_on,
-                              color: context.theme.colorScheme.surface),
-                          onTap: () => mapCtrl.selectCity(city),
-                        );
-                      },
-                    ),
-                  )),
-          ],
-        ),
-      ),
     );
   }
 
@@ -243,10 +129,14 @@ class ActiveLocationWidget extends StatelessWidget {
               onPressed: generalCtrl.state.isLocationLoading.value
                   ? null
                   : () async => isHuaweiDevice
-                      ? _showSearchBottomSheet(context)
-                      : await generalCtrl.initLocation().then((_) =>
-                          SplashScreenController.instance
-                              .isNotificationAllowed()),
+                      ? context.showSearchBottomSheet(context)
+                      : await generalCtrl.initLocation().then(
+                          (_) async {
+                            generalCtrl.state.activeLocation.value = true;
+                            await SplashScreenController.instance
+                                .isNotificationAllowed();
+                          },
+                        ),
               height: 45,
               width: Get.width,
               horizontalMargin: 0,

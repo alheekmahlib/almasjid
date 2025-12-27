@@ -50,7 +50,7 @@ class SettingPrayerTimes extends StatelessWidget {
                                 fontFamily: 'cairo',
                                 fontStyle: FontStyle.italic,
                                 fontWeight: FontWeight.bold,
-                                fontSize: 14.sp),
+                                fontSize: 14),
                           ),
                     Container(
                       height: 45,

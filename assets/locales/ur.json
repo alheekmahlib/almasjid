@@ -618,5 +618,15 @@
   "@salah": {
     "type": "text",
     "placeholders": {}
+  },
+  "start": "شروع کریں",
+  "@start": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "skip": "چھوڑ دیں",
+  "@skip": {
+    "type": "text",
+    "placeholders": {}
   }
 }

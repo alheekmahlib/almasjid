@@ -618,5 +618,15 @@
   "@salah": {
     "type": "text",
     "placeholders": {}
+  },
+  "start": "Magsimula",
+  "@start": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "skip": "Laktawan",
+  "@skip": {
+    "type": "text",
+    "placeholders": {}
   }
 }

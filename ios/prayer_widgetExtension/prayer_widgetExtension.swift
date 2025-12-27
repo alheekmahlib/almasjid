@@ -116,7 +116,8 @@ struct Provider: AppIntentTimelineProvider {
             return timeString
         }
 
-        // محاولة استخدام بيانات الشهر من App Group، وإلا فالرجوع للبيانات اليومية - Prefer monthly JSON, fallback to daily keys
+        // استخدام البيانات الفردية (اليومية) أولاً لأنها تتحدث مع كل فتح للتطبيق
+        // Use individual (daily) data first as it updates with each app open
         let defaultFormatter: DateFormatter = {
             let f = DateFormatter(); f.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"; f.timeZone = TimeZone.current; return f
         }()
@@ -125,10 +126,50 @@ struct Provider: AppIntentTimelineProvider {
         var prayerTimes: [(name: String, time: String)] = []
         var mainPrayers: [(name: String, time: String)] = []
 
-        if let monthlyJSONString = userDefaults?.string(forKey: "monthly_prayer_data"),
+        // التحقق من وجود البيانات الفردية أولاً - Check for individual data first
+        let hasDailyData = userDefaults?.string(forKey: "fajrTime") != nil
+        
+        if hasDailyData {
+            // استخدام البيانات الفردية (الأحدث) - Use individual data (most recent)
+            print("[Widget] Using daily individual prayer times (preferred)")
+            let fajrDaily = userDefaults?.string(forKey: "fajrTime") ?? "\(currentDateString.prefix(10)) 05:48:00.000"
+            let sunriseDaily = userDefaults?.string(forKey: "sunriseTime") ?? "\(currentDateString.prefix(10)) 07:15:00.000"
+            let dhuhrDaily = userDefaults?.string(forKey: "dhuhrTime") ?? "\(currentDateString.prefix(10)) 11:56:00.000"
+            let asrDaily = userDefaults?.string(forKey: "asrTime") ?? "\(currentDateString.prefix(10)) 14:13:00.000"
+            let maghribDaily = userDefaults?.string(forKey: "maghribTime") ?? "\(currentDateString.prefix(10)) 16:35:00.000"
+            let ishaDaily = userDefaults?.string(forKey: "ishaTime") ?? "\(currentDateString.prefix(10)) 18:01:00.000"
+            
+            print("[Widget][Daily] fajr=\(fajrDaily), dhuhr=\(dhuhrDaily), asr=\(asrDaily), maghrib=\(maghribDaily), isha=\(ishaDaily)")
+            
+            prayerTimes = [
+                (name: userDefaults?.string(forKey: "fajrName") ?? "الفجر",
+                 time: convertPrayerTimeToToday(timeString: fajrDaily)),
+                (name: userDefaults?.string(forKey: "sunriseName") ?? "الشروق",
+                 time: convertPrayerTimeToToday(timeString: sunriseDaily)),
+                (name: userDefaults?.string(forKey: "dhuhrName") ?? "الظهر",
+                 time: convertPrayerTimeToToday(timeString: dhuhrDaily)),
+                (name: userDefaults?.string(forKey: "asrName") ?? "العصر",
+                 time: convertPrayerTimeToToday(timeString: asrDaily)),
+                (name: userDefaults?.string(forKey: "maghribName") ?? "المغرب",
+                 time: convertPrayerTimeToToday(timeString: maghribDaily)),
+                (name: userDefaults?.string(forKey: "ishaName") ?? "العشاء",
+                 time: convertPrayerTimeToToday(timeString: ishaDaily))
+            ]
+            
+            mainPrayers = [
+                (name: prayerTimes[0].name, time: prayerTimes[0].time),
+                (name: prayerTimes[2].name, time: prayerTimes[2].time),
+                (name: prayerTimes[3].name, time: prayerTimes[3].time),
+                (name: prayerTimes[4].name, time: prayerTimes[4].time),
+                (name: prayerTimes[5].name, time: prayerTimes[5].time)
+            ]
+        } else if let monthlyJSONString = userDefaults?.string(forKey: "monthly_prayer_data"),
            let data = monthlyJSONString.data(using: .utf8),
            let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
            let dailyTimes = json["dailyTimes"] as? [String: Any] {
+            // Fallback للبيانات الشهرية إذا لم تكن البيانات الفردية موجودة
+            // Fallback to monthly data if individual data not available
+            print("[Widget][Fallback] Using monthly data (no daily data found)")
             let day = calendar.component(.day, from: currentDate)
             if let dayDict = dailyTimes["\(day)"] as? [String: Any] {
                 // طباعة القيم الخام لليوم من JSON الشهري قبل أي تحويل
@@ -136,13 +177,22 @@ struct Provider: AppIntentTimelineProvider {
                     if let v = dayDict[k] { return "\(k)=\(v)" } else { return "\(k)=<nil>" }
                 }.joined(separator: ", ")
                 print("[Widget][Monthly][RawDay] day=\(day) " + rawPairs)
-                // مهيئ محلي للأوقات بدون إزاحة
-                let localFormatter: DateFormatter = {
+                // مهيئ محلي للأوقات بدون إزاحة - يدعم 3 أو 6 أرقام للثواني الكسرية
+                // Local formatter for times without timezone - supports 3 or 6 fractional digits
+                let localFormatter3: DateFormatter = {
                     let f = DateFormatter();
                     f.calendar = Calendar(identifier: .gregorian)
                     f.locale = Locale(identifier: "en_US_POSIX")
                     f.timeZone = TimeZone.current
                     f.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS"
+                    return f
+                }()
+                let localFormatter6: DateFormatter = {
+                    let f = DateFormatter();
+                    f.calendar = Calendar(identifier: .gregorian)
+                    f.locale = Locale(identifier: "en_US_POSIX")
+                    f.timeZone = TimeZone.current
+                    f.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS"
                     return f
                 }()
                 let tzRegex = try? NSRegularExpression(pattern: "(Z|[+-]\\d{2}:?\\d{2})$")
@@ -155,7 +205,12 @@ struct Provider: AppIntentTimelineProvider {
                         d = isoFormatter.date(from: s)
                         if d == nil { print("[Widget][Parse][TZ][Fail] key=\(key) raw=\(s)") }
                     } else {
-                        d = localFormatter.date(from: s)
+                        // جرّب التنسيق مع 6 أرقام أولاً، ثم 3 أرقام
+                        // Try 6-digit format first, then 3-digit
+                        d = localFormatter6.date(from: s)
+                        if d == nil {
+                            d = localFormatter3.date(from: s)
+                        }
                         if d == nil { print("[Widget][Parse][Local][Fail] key=\(key) raw=\(s)") }
                     }
                     guard let dateObj = d else { return nil }
@@ -178,8 +233,6 @@ struct Provider: AppIntentTimelineProvider {
                 let asrName = userDefaults?.string(forKey: "asrName") ?? "العصر"
                 let maghribName = userDefaults?.string(forKey: "maghribName") ?? "المغرب"
                 let ishaName = userDefaults?.string(forKey: "ishaName") ?? "العشاء"
-                let midnightName = userDefaults?.string(forKey: "middleOfTheNightName") ?? "منتصف الليل"
-                let lastThirdName = userDefaults?.string(forKey: "lastThirdOfTheNightName") ?? "ثلث الليل الأخير"
 
                 prayerTimes = [
                     (name: fajrName, time: fajr),
@@ -197,42 +250,23 @@ struct Provider: AppIntentTimelineProvider {
                     (name: ishaName, time: isha)
                 ]
 
-                // Override middle/last third values into UserDefaults-based fields via locals by reusing below when creating entry
-                // We will pass midnight and lastThird strings directly in the entry creation
-                // Store temporarily via local constants
-                let _midnightStr = midnight
-                let _lastThirdStr = lastThird
-
-                // Build entry using these values below (replace later values)
-                // We'll use these via closure captures when constructing the entry at the end
-                // To do so, we attach them to userDefaults temp keys so existing code stays minimal
-                userDefaults?.set(_midnightStr, forKey: "__monthly_midnight")
-                userDefaults?.set(_lastThirdStr, forKey: "__monthly_lastThird")
+                // Store midnight/lastThird for entry creation
+                userDefaults?.set(midnight, forKey: "__monthly_midnight")
+                userDefaults?.set(lastThird, forKey: "__monthly_lastThird")
             }
         }
 
         if prayerTimes.isEmpty {
-            // Fallback للبيانات اليومية مع طباعة تشخيصية
-            print("[Widget][Fallback] Using daily keys due to empty monthly parse")
-            let fajrDaily = userDefaults?.string(forKey: "fajrTime") ?? "\(currentDateString.prefix(10)) 05:48:00.000"
-            let sunriseDaily = userDefaults?.string(forKey: "sunriseTime") ?? "\(currentDateString.prefix(10)) 07:15:00.000"
-            let dhuhrDaily = userDefaults?.string(forKey: "dhuhrTime") ?? "\(currentDateString.prefix(10)) 11:56:00.000"
-            let asrDaily = userDefaults?.string(forKey: "asrTime") ?? "\(currentDateString.prefix(10)) 14:13:00.000"
-            let maghribDaily = userDefaults?.string(forKey: "maghribTime") ?? "\(currentDateString.prefix(10)) 16:35:00.000"
-            let ishaDaily = userDefaults?.string(forKey: "ishaTime") ?? "\(currentDateString.prefix(10)) 18:01:00.000"
+            // Last fallback - use default placeholder values
+            print("[Widget][Fallback] No data found, using placeholder defaults")
+            let defaultTime = "\(currentDateString.prefix(10)) 12:00:00.000"
             prayerTimes = [
-                (name: userDefaults?.string(forKey: "fajrName") ?? "الفجر",
-                 time: convertPrayerTimeToToday(timeString: fajrDaily)),
-                (name: userDefaults?.string(forKey: "sunriseName") ?? "الشروق",
-                 time: convertPrayerTimeToToday(timeString: sunriseDaily)),
-                (name: userDefaults?.string(forKey: "dhuhrName") ?? "الظهر",
-                 time: convertPrayerTimeToToday(timeString: dhuhrDaily)),
-                (name: userDefaults?.string(forKey: "asrName") ?? "العصر",
-                 time: convertPrayerTimeToToday(timeString: asrDaily)),
-                (name: userDefaults?.string(forKey: "maghribName") ?? "المغرب",
-                 time: convertPrayerTimeToToday(timeString: maghribDaily)),
-                (name: userDefaults?.string(forKey: "ishaName") ?? "العشاء",
-                 time: convertPrayerTimeToToday(timeString: ishaDaily))
+                (name: "الفجر", time: convertPrayerTimeToToday(timeString: defaultTime)),
+                (name: "الشروق", time: convertPrayerTimeToToday(timeString: defaultTime)),
+                (name: "الظهر", time: convertPrayerTimeToToday(timeString: defaultTime)),
+                (name: "العصر", time: convertPrayerTimeToToday(timeString: defaultTime)),
+                (name: "المغرب", time: convertPrayerTimeToToday(timeString: defaultTime)),
+                (name: "العشاء", time: convertPrayerTimeToToday(timeString: defaultTime))
             ]
         }
 
@@ -246,27 +280,10 @@ struct Provider: AppIntentTimelineProvider {
             ]
         }
 
-        // مقارنة سريعة بين القيم اليومية المحفوظة والقيم المستخرجة من الشهري (إن وُجدت المفاتيح اليومية)
-        if let fajrDaily = userDefaults?.string(forKey: "fajrTime"), let fajrParsed = prayerTimes.first(where: { $0.name.contains("فجر") || $0.name.contains("الفجر") })?.time {
-            print("[Widget][Compare] fajr daily=\(fajrDaily) used=\(fajrParsed)")
-        }
-        if let dhuhrDaily = userDefaults?.string(forKey: "dhuhrTime"), let dhuhrParsed = prayerTimes.first(where: { $0.name.contains("ظهر") || $0.name.contains("الظهر") })?.time {
-            print("[Widget][Compare] dhuhr daily=\(dhuhrDaily) used=\(dhuhrParsed)")
-        }
-        if let asrDaily = userDefaults?.string(forKey: "asrTime"), let asrParsed = prayerTimes.first(where: { $0.name.contains("عصر") || $0.name.contains("العصر") })?.time {
-            print("[Widget][Compare] asr daily=\(asrDaily) used=\(asrParsed)")
-        }
-        if let maghribDaily = userDefaults?.string(forKey: "maghribTime"), let maghribParsed = prayerTimes.first(where: { $0.name.contains("غرب") || $0.name.contains("المغرب") })?.time {
-            print("[Widget][Compare] maghrib daily=\(maghribDaily) used=\(maghribParsed)")
-        }
-        if let ishaDaily = userDefaults?.string(forKey: "ishaTime"), let ishaParsed = prayerTimes.first(where: { $0.name.contains("عشاء") || $0.name.contains("العشاء") })?.time {
-            print("[Widget][Compare] isha daily=\(ishaDaily) used=\(ishaParsed)")
-        }
-
         // تأكيد البيانات - Confirm data
-        print("Current date: \(currentDate)")
-        print("Loaded prayerTimes with current date: \(prayerTimes)")
-        print("Main prayers (without sunrise): \(mainPrayers)")
+        print("[Widget] Current date: \(currentDate)")
+        print("[Widget] Loaded prayerTimes: \(prayerTimes)")
+        print("[Widget] Main prayers (without sunrise): \(mainPrayers)")
 
         let nextPrayer = getNextPrayer(currentTime: currentDate, prayerTimes: mainPrayers)
 
@@ -956,6 +973,8 @@ struct NumberLocalizationModifier: ViewModifier {
 }
 
 struct prayer_widget: Widget {
+    // تحذير: لا تُغيّر هذه القيمة! تغييرها يحذف الـ widget من شاشات المستخدمين
+    // WARNING: Do NOT change this value! Changing it removes the widget from users' screens
     let kind: String = "prayerWidget"
 
     var body: some WidgetConfiguration {
@@ -1188,19 +1207,21 @@ func getPrayerTimesForProgress(
         }
     }
 
-    // إضافة صلاة الفجر لليوم التالي - Add next day's Fajr prayer
-    if let fajr = todayPrayers.first {
-        if let nextDayFajr = calendar.date(byAdding: .day, value: 1, to: fajr.date) {
-            todayPrayers.append((name: fajr.name, date: nextDayFajr))
-        }
+    guard !todayPrayers.isEmpty else {
+        print("لم يتم العثور على صلوات لليوم الحالي - No prayers found for today.")
+        return (nil, nil)
     }
 
     // ترتيب الصلوات بناءً على الوقت - Sort prayers by time
     todayPrayers.sort { $0.date < $1.date }
-
-    guard !todayPrayers.isEmpty else {
-        print("لم يتم العثور على صلوات لليوم الحالي - No prayers found for today.")
-        return (nil, nil)
+    
+    // إضافة صلاة الفجر لليوم التالي بعد الترتيب - Add next day's Fajr after sorting
+    var nextDayFajr: (name: String, date: Date)? = nil
+    if let fajr = todayPrayers.first {
+        if let nextFajrDate = calendar.date(byAdding: .day, value: 1, to: fajr.date) {
+            nextDayFajr = (name: fajr.name, date: nextFajrDate)
+            todayPrayers.append(nextDayFajr!)
+        }
     }
 
     // إيجاد الصلاة الحالية والقادمة - Find current and next prayer
@@ -1209,15 +1230,22 @@ func getPrayerTimesForProgress(
             let currentPrayer = i > 0 ? todayPrayers[i - 1] : todayPrayers.last
             let nextPrayer = todayPrayers[i]
             
-            print("الصلاة الحالية: \(currentPrayer?.name ?? "غير محدد") - \(currentPrayer?.date ?? Date())")
-            print("الصلاة القادمة: \(nextPrayer.name) - \(nextPrayer.date)")
+            print("[Progress] الصلاة الحالية: \(currentPrayer?.name ?? "غير محدد") - \(currentPrayer?.date ?? Date())")
+            print("[Progress] الصلاة القادمة: \(nextPrayer.name) - \(nextPrayer.date)")
             
             return (currentPrayer, nextPrayer)
         }
     }
 
-    // إذا لم يتم العثور، فاعتبر آخر صلاة كالحالية وأول صلاة كالقادمة
-    // If not found, consider last prayer as current and first as next
+    // إذا تجاوزنا كل الصلوات (بعد العشاء)، الصلاة الحالية هي العشاء والقادمة هي فجر الغد
+    // If past all prayers (after Isha), current is Isha and next is tomorrow's Fajr
+    if let lastPrayer = todayPrayers.dropLast().last, // العشاء (قبل فجر الغد)
+       let tomorrowFajr = nextDayFajr {
+        print("[Progress] بعد العشاء - الحالية: \(lastPrayer.name) - \(lastPrayer.date)")
+        print("[Progress] القادمة (فجر الغد): \(tomorrowFajr.name) - \(tomorrowFajr.date)")
+        return (lastPrayer, tomorrowFajr)
+    }
+    
     return (todayPrayers.last, todayPrayers.first)
 }
 

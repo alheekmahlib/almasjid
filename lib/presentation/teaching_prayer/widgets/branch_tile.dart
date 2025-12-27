@@ -22,7 +22,18 @@ class _BranchTile extends StatelessWidget {
                 color: context.theme.colorScheme.surface.withValues(alpha: .15),
               ),
             ),
-            child: subtitle.buildTextString()),
+            child: ArabicJustifiedRichText(
+              textSpan: TextSpan(
+                children: subtitle.buildTextString(),
+                style: TextStyle(
+                  color: context.theme.colorScheme.inversePrimary
+                      .withValues(alpha: .9),
+                  fontSize: 15,
+                  fontFamily: 'cairo',
+                ),
+              ),
+              textAlign: TextAlign.justify,
+            )),
         textTitle: name,
         containerColor: context.theme.colorScheme.primaryContainer,
       ),

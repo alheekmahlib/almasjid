@@ -618,5 +618,15 @@
   "@salah": {
     "type": "text",
     "placeholders": {}
+  },
+  "start": "Mulai",
+  "@start": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "skip": "Lewati",
+  "@skip": {
+    "type": "text",
+    "placeholders": {}
   }
 }

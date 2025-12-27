@@ -3,14 +3,34 @@ part of '../home_widget.dart';
 class PrayersWidgetConfig {
   final adhanCtrl = AdhanController.instance;
 
+  /// عدد محاولات إعادة التحديث عند عدم جاهزية البيانات
+  static int _retryCount = 0;
+  static const int _maxRetries = 5;
+
   Future<void> updatePrayersDate() async {
     try {
       if (!adhanCtrl.state.isPrayerTimesInitialized.value ||
           adhanCtrl.state.prayerTimes == null ||
           adhanCtrl.state.sunnahTimes == null) {
         log('Prayer times not initialized', name: 'PrayersWidgetConfig');
+
+        // إعادة المحاولة بعد ثانيتين إذا لم تتجاوز الحد الأقصى
+        // Retry after 2 seconds if not exceeded max retries
+        if (_retryCount < _maxRetries) {
+          _retryCount++;
+          log('Retrying widget update ($_retryCount/$_maxRetries)...',
+              name: 'PrayersWidgetConfig');
+          Future.delayed(const Duration(seconds: 2), updatePrayersDate);
+        } else {
+          _retryCount = 0;
+          log('Max retries reached, giving up', name: 'PrayersWidgetConfig');
+        }
         return;
       }
+
+      // إعادة تعيين عداد المحاولات عند النجاح
+      _retryCount = 0;
+
       if (adhanCtrl.prayerNameList.isEmpty ||
           adhanCtrl.prayerNameList.length < 8) {
         log('Invalid prayer list data', name: 'PrayersWidgetConfig');

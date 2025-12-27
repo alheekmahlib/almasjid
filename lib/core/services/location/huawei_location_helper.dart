@@ -232,23 +232,30 @@ class HuaweiLocationHelper {
     return parts.join('، ');
   }
 
-  /// Search cities using Nominatim API as final fallback
+  /// Search cities using Nominatim API with proper User-Agent
   Future<List<Map<String, dynamic>>> _searchCitiesWithNominatimAPI(
       String query) async {
     try {
       log('Attempting Nominatim search for: $query', name: 'LocationHelper');
 
-      // Use a simple HTTP request to Nominatim API for city search
-      final uri = Uri.https('nominatim.openstreetmap.org', '/search', {
-        'q': query,
-        'format': 'json',
-        'addressdetails': '1',
-        'limit': '10',
-        'featureType': 'city',
-        'accept-language': 'en',
-      });
+      final locale = _getNominatimLocale();
 
-      final response = await Dio().get(uri.toString());
+      // استخدام Dio مع User-Agent صحيح (مطلوب من Nominatim)
+      final response = await Dio().get(
+        'https://nominatim.openstreetmap.org/search',
+        queryParameters: {
+          'q': query,
+          'format': 'json',
+          'addressdetails': '1',
+          'limit': '10',
+          'accept-language': locale.name.toLowerCase(),
+        },
+        options: Options(
+          headers: {
+            'User-Agent': 'Aqim/1.0 (contact: haozo89@gmail.com)',
+          },
+        ),
+      );
 
       if (response.statusCode == 200 && response.data is List) {
         List<Map<String, dynamic>> cities = [];
@@ -259,6 +266,8 @@ class HuaweiLocationHelper {
               address['town'] ??
               address['village'] ??
               address['municipality'] ??
+              address['state_district'] ??
+              address['county'] ??
               item['display_name']?.toString().split(',').first ??
               '';
 
@@ -291,6 +300,34 @@ class HuaweiLocationHelper {
     log('All search methods failed, returning fallback cities',
         name: 'LocationHelper');
     return _getFallbackCities();
+  }
+
+  /// تحويل لغة التطبيق إلى Locale الخاص بـ Nominatim
+  Locale _getNominatimLocale() {
+    switch (Get.locale?.languageCode) {
+      case 'ar':
+        return Locale.AR;
+      case 'en':
+        return Locale.EN;
+      case 'tr':
+        return Locale.TR;
+      case 'ur':
+        return Locale.UR;
+      case 'id':
+        return Locale.ID;
+      case 'ms':
+        return Locale.MS;
+      case 'bn':
+        return Locale.BN;
+      case 'es':
+        return Locale.ES;
+      case 'ku':
+        return Locale.KU;
+      case 'so':
+        return Locale.SO;
+      default:
+        return Locale.EN;
+    }
   }
 
   Future<void> setManualLocation({

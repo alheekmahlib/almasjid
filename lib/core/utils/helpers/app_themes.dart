@@ -81,6 +81,14 @@ final ThemeData blueTheme = ThemeData.light(
       )),
     ),
   ),
+  textTheme: const TextTheme(
+    titleMedium: TextStyle(
+      fontWeight: FontWeight.bold,
+      fontFamily: 'cairo',
+      fontSize: 12,
+      color: Color(0xff001A23),
+    ),
+  ),
 );
 
 final ThemeData darkTheme = ThemeData.dark(
@@ -159,6 +167,14 @@ final ThemeData darkTheme = ThemeData.dark(
         fontFamily: 'cairo',
         fontSize: 16,
       )),
+    ),
+  ),
+  textTheme: const TextTheme(
+    titleMedium: TextStyle(
+      fontWeight: FontWeight.bold,
+      fontFamily: 'cairo',
+      fontSize: 12,
+      color: Color(0xff001A23),
     ),
   ),
 );

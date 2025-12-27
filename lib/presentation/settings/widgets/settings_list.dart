@@ -1,9 +1,9 @@
-import 'package:almasjid/core/utils/constants/extensions/extensions.dart';
-import 'package:almasjid/core/utils/constants/extensions/svg_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 
+import '/core/utils/constants/extensions/extensions.dart';
+import '/core/utils/constants/extensions/svg_extensions.dart';
 import '../../../core/utils/constants/svg_constants.dart';
 import '../../../core/utils/helpers/app_router.dart';
 import '../../../core/widgets/container_button_widget.dart';

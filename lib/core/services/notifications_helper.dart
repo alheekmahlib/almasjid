@@ -1,4 +1,5 @@
 import 'dart:developer' show log;
+import 'dart:io' show Platform;
 
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart' show Colors;
@@ -8,6 +9,7 @@ import '../../presentation/prayers/prayers.dart';
 import '../utils/constants/lists.dart';
 import '../utils/constants/shared_preferences_constants.dart';
 import '../widgets/local_notification/controller/local_notifications_controller.dart';
+import 'macos_notifications_service.dart';
 
 class NotifyHelper {
   static bool _initialized = false;
@@ -28,8 +30,9 @@ class NotifyHelper {
       GetStorage().read<bool>(_notificationSetupSeenKey) ?? false;
 
   /// تعيين أن المستخدم قد شاهد شاشة تفعيل الإشعارات
-  Future<void> markNotificationSetupAsSeen() async {
-    await GetStorage().write(_notificationSetupSeenKey, true);
+  void markNotificationSetupAsSeen() {
+    GetStorage().write(_notificationSetupSeenKey, true);
+    log('Marked notification setup as seen', name: 'NotifyHelper');
   }
 
   // تحديد الصوت المخصص للإشعار بناءً على نوع الصوت المحدد
@@ -62,12 +65,27 @@ class NotifyHelper {
     Map<String, String?>? payload,
     int? soundIndex,
   }) async {
+    payload ??= {'sound_type': 'bell'};
+
+    // macOS: استخدام flutter_local_notifications
+    if (Platform.isMacOS) {
+      await _scheduleMacOSNotification(
+        id: reminderId,
+        title: title,
+        body: body,
+        time: time,
+        soundType: payload['sound_type'],
+        isFajr: reminderId == 0,
+      );
+      return;
+    }
+
+    // iOS/Android: استخدام awesome_notifications
     if (!_initialized) {
       initAwesomeNotifications();
     }
     String localTimeZone =
         await AwesomeNotifications().getLocalTimeZoneIdentifier();
-    payload ??= {'sound_type': 'bell'};
 
     // تحديد القناة المناسبة بناءً على نوع الصوت
     // Select appropriate channel based on sound type
@@ -102,6 +120,38 @@ class NotifyHelper {
       log('Notification successfully scheduled', name: 'NotifyHelper');
     } catch (e) {
       log('Error scheduling notification: $e', name: 'NotifyHelper');
+    }
+  }
+
+  /// جدولة إشعار macOS
+  Future<void> _scheduleMacOSNotification({
+    required int id,
+    required String title,
+    required String body,
+    DateTime? time,
+    String? soundType,
+    bool isFajr = false,
+  }) async {
+    final service = MacOSNotificationsService.instance;
+    await service.initialize();
+
+    if (time != null) {
+      await service.scheduleNotification(
+        id: id,
+        title: title,
+        body: body,
+        scheduledTime: time,
+        soundType: soundType,
+        isFajr: false,
+      );
+    } else {
+      await service.showNotification(
+        id: id,
+        title: title,
+        body: body,
+        soundType: soundType,
+        isFajr: false,
+      );
     }
   }
 
@@ -214,16 +264,28 @@ class NotifyHelper {
     });
   }
 
-  Future<void> cancelNotification(int notificationId) {
+  Future<void> cancelNotification(int notificationId) async {
     log('Notification ID $notificationId was cancelled', name: 'NotifyHelper');
+    if (Platform.isMacOS) {
+      return MacOSNotificationsService.instance.cancel(notificationId);
+    }
     return AwesomeNotifications().cancelSchedule(notificationId);
   }
 
   Future<void> requistPermissions() async {
+    // macOS: استخدام flutter_local_notifications
+    if (Platform.isMacOS) {
+      final service = MacOSNotificationsService.instance;
+      await service.initialize();
+      await service.requestPermissions();
+      log('macOS notification permission requested', name: 'NotifyHelper');
+      return;
+    }
+
+    // iOS/Android
     if (!_initialized) {
       initAwesomeNotifications();
     }
-    // Ensure permission dialog is shown on first run (macOS/iOS)
     await AwesomeNotifications()
         .isNotificationAllowed()
         .then((isAllowed) async {
@@ -240,6 +302,9 @@ class NotifyHelper {
   }
 
   void setNotificationsListeners() {
+    // macOS لا يحتاج listeners منفصلة
+    if (Platform.isMacOS) return;
+
     // Only after at least the action method is set, the notification events are delivered
     AwesomeNotifications().setListeners(
         onActionReceivedMethod: onActionReceivedMethod,
@@ -310,13 +375,17 @@ class NotifyHelper {
   Future<bool> isNotificationAllowed() async {
     // تحقق أولاً: هل شاهد المستخدم شاشة تفعيل الإشعارات من قبل؟
     // إذا لم يشاهدها، نُرجع false لإظهار الشاشة
-    if (!hasSeenNotificationSetup) {
-      return false;
+    if (hasSeenNotificationSetup) {
+      return true;
     }
 
     try {
       if (!_initialized) {
-        initAwesomeNotifications();
+        if (Platform.isMacOS || Platform.isLinux || Platform.isWindows) {
+          await MacOSNotificationsService.instance.initialize();
+        } else {
+          initAwesomeNotifications();
+        }
       }
     } catch (_) {}
     return GetStorage().read<bool>(_permissionFlagKey) ?? false;

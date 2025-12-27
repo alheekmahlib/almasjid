@@ -618,5 +618,15 @@
   "@salah": {
     "type": "text",
     "placeholders": {}
+  },
+  "start": "ابدأ",
+  "@start": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "skip": "تخطي",
+  "@skip": {
+    "type": "text",
+    "placeholders": {}
   }
 }

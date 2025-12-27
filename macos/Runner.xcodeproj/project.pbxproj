@@ -29,6 +29,14 @@
 		33CC10F62044A3C60003C045 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33CC10F42044A3C60003C045 /* MainMenu.xib */; };
 		33CC11132044BFA00003C045 /* MainFlutterWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CC11122044BFA00003C045 /* MainFlutterWindow.swift */; };
 		394679DD1B78AFD25939E3FA /* Pods_RunnerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09F08B5A226B7EF9888EC3B1 /* Pods_RunnerTests.framework */; };
+		D45EE8C82EFB6B7400F85D42 /* saqqaf_athan.aiff in Resources */ = {isa = PBXBuildFile; fileRef = D45EE8C42EFB6B7400F85D42 /* saqqaf_athan.aiff */; };
+		D45EE8C92EFB6B7400F85D42 /* sarihi_athan.aiff in Resources */ = {isa = PBXBuildFile; fileRef = D45EE8C52EFB6B7400F85D42 /* sarihi_athan.aiff */; };
+		D45EE8CA2EFB6B7400F85D42 /* baset_athan.aiff in Resources */ = {isa = PBXBuildFile; fileRef = D45EE8C02EFB6B7400F85D42 /* baset_athan.aiff */; };
+		D45EE8CB2EFB6B7400F85D42 /* aqsa_athan.aiff in Resources */ = {isa = PBXBuildFile; fileRef = D45EE8BF2EFB6B7400F85D42 /* aqsa_athan.aiff */; };
+		D45EE8CC2EFB6B7400F85D42 /* salah_athan.aiff in Resources */ = {isa = PBXBuildFile; fileRef = D45EE8C32EFB6B7400F85D42 /* salah_athan.aiff */; };
+		D45EE8CD2EFB6B7400F85D42 /* notification.aiff in Resources */ = {isa = PBXBuildFile; fileRef = D45EE8C12EFB6B7400F85D42 /* notification.aiff */; };
+		D45EE8CE2EFB6B7400F85D42 /* qatami_athan.aiff in Resources */ = {isa = PBXBuildFile; fileRef = D45EE8C22EFB6B7400F85D42 /* qatami_athan.aiff */; };
+		D45EE8CF2EFB6B7400F85D42 /* silence.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D45EE8C62EFB6B7400F85D42 /* silence.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +94,14 @@
 		7AFA3C8E1D35360C0083082E /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		8562C33C523CCEC1510974ED /* Pods-RunnerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.debug.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9740EEB21CF90195004384FC /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		D45EE8BF2EFB6B7400F85D42 /* aqsa_athan.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = aqsa_athan.aiff; sourceTree = "<group>"; };
+		D45EE8C02EFB6B7400F85D42 /* baset_athan.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = baset_athan.aiff; sourceTree = "<group>"; };
+		D45EE8C12EFB6B7400F85D42 /* notification.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = notification.aiff; sourceTree = "<group>"; };
+		D45EE8C22EFB6B7400F85D42 /* qatami_athan.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = qatami_athan.aiff; sourceTree = "<group>"; };
+		D45EE8C32EFB6B7400F85D42 /* salah_athan.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = salah_athan.aiff; sourceTree = "<group>"; };
+		D45EE8C42EFB6B7400F85D42 /* saqqaf_athan.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = saqqaf_athan.aiff; sourceTree = "<group>"; };
+		D45EE8C52EFB6B7400F85D42 /* sarihi_athan.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = sarihi_athan.aiff; sourceTree = "<group>"; };
+		D45EE8C62EFB6B7400F85D42 /* silence.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = silence.mp3; sourceTree = "<group>"; };
 		E1165DDC3620BB5AD99F98B1 /* Pods-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"; sourceTree = "<group>"; };
 		F8C947A0362358F71F1122D7 /* Pods-Runner.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -151,6 +167,7 @@
 				33CC10EE2044A3C60003C045 /* Products */,
 				2C900467EC57945237D6B77A /* Pods */,
 				A485DFF61F9049FD4DE73F69 /* Frameworks */,
+				D45EE8C72EFB6B7400F85D42 /* Sounds */,
 			);
 			sourceTree = "<group>";
 		};
@@ -205,6 +222,21 @@
 				09F08B5A226B7EF9888EC3B1 /* Pods_RunnerTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D45EE8C72EFB6B7400F85D42 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				D45EE8BF2EFB6B7400F85D42 /* aqsa_athan.aiff */,
+				D45EE8C02EFB6B7400F85D42 /* baset_athan.aiff */,
+				D45EE8C12EFB6B7400F85D42 /* notification.aiff */,
+				D45EE8C22EFB6B7400F85D42 /* qatami_athan.aiff */,
+				D45EE8C32EFB6B7400F85D42 /* salah_athan.aiff */,
+				D45EE8C42EFB6B7400F85D42 /* saqqaf_athan.aiff */,
+				D45EE8C52EFB6B7400F85D42 /* sarihi_athan.aiff */,
+				D45EE8C62EFB6B7400F85D42 /* silence.mp3 */,
+			);
+			path = Sounds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -314,6 +346,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D45EE8C82EFB6B7400F85D42 /* saqqaf_athan.aiff in Resources */,
+				D45EE8C92EFB6B7400F85D42 /* sarihi_athan.aiff in Resources */,
+				D45EE8CA2EFB6B7400F85D42 /* baset_athan.aiff in Resources */,
+				D45EE8CB2EFB6B7400F85D42 /* aqsa_athan.aiff in Resources */,
+				D45EE8CC2EFB6B7400F85D42 /* salah_athan.aiff in Resources */,
+				D45EE8CD2EFB6B7400F85D42 /* notification.aiff in Resources */,
+				D45EE8CE2EFB6B7400F85D42 /* qatami_athan.aiff in Resources */,
+				D45EE8CF2EFB6B7400F85D42 /* silence.mp3 in Resources */,
 				33CC10F32044A3C60003C045 /* Assets.xcassets in Resources */,
 				33CC10F62044A3C60003C045 /* MainMenu.xib in Resources */,
 			);

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:arabic_justified_text/arabic_justified_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';

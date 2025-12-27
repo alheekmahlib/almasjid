@@ -50,6 +50,17 @@ class MonthlyPrayerCache {
           jsonEncode(monthlyData.toJson()),
         );
         log('Monthly prayer data mirrored to App Group for widget', name: _tag);
+
+        // إخطار الـ widget بتحديث البيانات (ضروري لتفعيل إعادة قراءة البيانات)
+        // Notify widget to update (required to trigger data reload)
+        if (Platform.isIOS || Platform.isMacOS) {
+          await HomeWidget.updateWidget(
+            iOSName: StringConstants.iosPrayersWidget,
+            androidName: StringConstants.androidPrayersWidget,
+            qualifiedAndroidName: 'com.alheekmah.alheekmahLibrary.PrayerWidget',
+          );
+          log('Widget notified after monthly data save', name: _tag);
+        }
       } catch (e) {
         log('Failed mirroring monthly data to App Group: $e', name: _tag);
       }

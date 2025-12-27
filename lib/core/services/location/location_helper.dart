@@ -48,9 +48,14 @@ class LocationHelper {
   }
 
   Future<void> getPositionDetails() async {
+    // على Desktop، طلب الموقع مباشرة سيظهر مربع حوار الإذن
+    if (Platform.isMacOS || Platform.isLinux || Platform.isWindows) {
+      await _getDesktopPosition();
+      return;
+    }
+
     // Check if HMS is actually available and installed
     bool isHMSAvailable = await HuaweiLocationHelper.instance._isHMSAvailable();
-
     bool useHuaweiLocation = Platform.isAndroid && isHMSAvailable;
 
     if (await Geolocator.isLocationServiceEnabled()) {
@@ -122,15 +127,9 @@ class LocationHelper {
       }
 
       try {
-        if (Platform.isAndroid || Platform.isIOS) {
-          await _getLocationForMobile(currentPosition, useHuaweiLocation);
-          GetStorage().write(ACTIVE_LOCATION, true);
-          GeneralController.instance.state.activeLocation.value = true;
-        } else {
-          await _getLocationForDesktop(currentPosition);
-          GetStorage().write(ACTIVE_LOCATION, true);
-          GeneralController.instance.state.activeLocation.value = true;
-        }
+        await _reverseGeocode(currentPosition);
+        GetStorage().write(ACTIVE_LOCATION, true);
+        GeneralController.instance.state.activeLocation.value = true;
       } catch (e) {
         GetStorage().write(ACTIVE_LOCATION, false);
         GeneralController.instance.state.activeLocation.value = false;
@@ -139,98 +138,45 @@ class LocationHelper {
     }
   }
 
-  Future<void> _getLocationForMobile(
-      Position currentPosition, bool useHuaweiLocation) async {
-    List<Placemark> placemarks = [];
-    String? city;
-    String? country;
+  /// تحويل الإحداثيات إلى عنوان باستخدام Nominatim (OpenStreetMap)
+  Future<void> _reverseGeocode(Position position) async {
+    await NominatimGeocoding.init();
+    final geocoding = await NominatimGeocoding.to.reverseGeoCoding(
+      Coordinate(latitude: position.latitude, longitude: position.longitude),
+      // locale: Locale.AR,
+    );
 
-    if (useHuaweiLocation) {
-      try {
-        // Use Huawei Site Kit for reverse geocoding
-        final searchService = await hms_site.SearchService.create(
-          apiKey:
-              'DgEDAOWzkAh3lV1XyJPMbxrS3TO7CdkpnVN6Lu5jvKRljqjVY7exQlLNZoSNkmRpWogb2+vhf5vNr20LV+4LvlQbtAhXqCOiYAfGYg==', // Using API key from agconnect-services.json
-        );
+    // Nominatim قد يُرجع city أو town أو village أو state حسب الموقع
+    final address = geocoding.address;
+    final city = address.city.isNotEmpty
+        ? address.city
+        : address.district.isNotEmpty
+            ? address.district
+            : address.suburb.isNotEmpty
+                ? address.suburb
+                : address.state.isNotEmpty
+                    ? address.state
+                    : 'Unknown';
 
-        // Create a nearby search request to find places near the current location
-        final nearbySearchRequest = hms_site.NearbySearchRequest(
-          location: hms_site.Coordinate(
-            lat: currentPosition.latitude,
-            lng: currentPosition.longitude,
-          ),
-          radius: 100, // Search within 100 meters
-          language: 'en',
-        );
-
-        final nearbySearchResponse =
-            await searchService.nearbySearch(nearbySearchRequest);
-
-        if (nearbySearchResponse.sites?.isNotEmpty == true) {
-          final site = nearbySearchResponse.sites!.first;
-          final addressDetail = site?.address;
-          if (addressDetail != null) {
-            city = addressDetail.locality ??
-                addressDetail.subAdminArea ??
-                addressDetail.adminArea;
-            country = addressDetail.country;
-          }
-
-          log('Huawei Site Kit found: $city, $country', name: 'LocationHelper');
-        }
-      } catch (e) {
-        log('Failed to get location from Huawei Site Kit: $e',
-            name: 'LocationHelper');
-        // Fallback to Google geocoding if available
-        useHuaweiLocation = false;
-      }
-    }
-
-    if (!useHuaweiLocation) {
-      try {
-        placemarks = await placemarkFromCoordinates(
-          currentPosition.latitude,
-          currentPosition.longitude,
-        );
-      } catch (e) {
-        log('Failed to get placemark from coordinates: $e',
-            name: 'LocationHelper');
-      }
-    }
-
-    if (city != null && country != null) {
-      Location().updateLocation(
-        city: city,
-        country: country,
-        position: currentPosition,
-      );
-    } else if (placemarks.isNotEmpty) {
-      final placemark = placemarks.first;
-      final placeCity = placemark.locality ??
-          placemark.subAdministrativeArea ??
-          placemark.administrativeArea ??
-          'Unknown';
-      final placeCountry = placemark.country ?? 'Unknown';
-      Location().updateLocation(
-        city: placeCity,
-        country: placeCountry,
-        position: currentPosition,
-      );
-    }
+    Location().updateLocation(
+      city: city,
+      country: address.country.isNotEmpty ? address.country : 'Unknown',
+      position: position,
+    );
   }
 
-  Future<void> _getLocationForDesktop(Position currentPosition) async {
-    await NominatimGeocoding.init();
-    Coordinate coordinate = Coordinate(
-        latitude: currentPosition.latitude,
-        longitude: currentPosition.longitude);
-    Geocoding geocoding =
-        await NominatimGeocoding.to.reverseGeoCoding(coordinate);
-    Location().updateLocation(
-      city: geocoding.address.city,
-      country: geocoding.address.country,
-      position: currentPosition,
+  /// الحصول على الموقع لأنظمة Desktop
+  Future<void> _getDesktopPosition() async {
+    final position = await Geolocator.getCurrentPosition(
+      locationSettings: const LocationSettings(
+        accuracy: LocationAccuracy.high,
+        timeLimit: Duration(seconds: 30),
+      ),
     );
+
+    await _reverseGeocode(position);
+    GetStorage().write(ACTIVE_LOCATION, true);
+    GeneralController.instance.state.activeLocation.value = true;
   }
 
   Future<bool> isLocationServiceEnabled() async {

@@ -3,7 +3,7 @@ description: "A Prayer and qibla application."
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-version: 1.2.1+7
+version: 1.2.2+8
 
 environment:
   sdk: ^3.6.1
@@ -31,6 +31,7 @@ dependencies:
   flutter_app_info: ^3.0.3
   flutter_cache_manager: ^3.4.1
   flutter_launcher_icons: ^0.14.4
+  flutter_local_notifications: ^19.5.0
   flutter_localizations:
     sdk: flutter
   flutter_map: ^8.2.2
@@ -41,7 +42,6 @@ dependencies:
   flutter_timezone: ^5.0.1
   gap: ^3.0.1
   gauge_indicator: ^0.4.3
-  geocoding: ^4.0.0
   geolocator: ^14.0.2
   get: ^4.7.3
   get_it: ^9.2.0

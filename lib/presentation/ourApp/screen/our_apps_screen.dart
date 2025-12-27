@@ -54,14 +54,12 @@ class OurApps extends StatelessWidget {
                       Expanded(
                         flex: 4,
                         child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Flexible(
-                              child: AnimatedDrawingWidget(
-                                  opacity: .09,
-                                  width: Get.width,
-                                  height: Get.width * .6),
-                            ),
-                            const Spacer(),
+                            AnimatedDrawingWidget(
+                                opacity: 1,
+                                width: Get.width * .4,
+                                height: Get.width * .2),
                             Padding(
                               padding: context.customOrientation(
                                   const EdgeInsets.symmetric(vertical: 40.0).r,

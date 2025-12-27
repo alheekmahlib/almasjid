@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 
@@ -22,11 +21,12 @@ class LanguageList extends StatelessWidget {
             Text(
               'langChange'.tr,
               style: TextStyle(
-                  color: context.theme.colorScheme.inversePrimary,
-                  fontFamily: 'cairo',
-                  fontStyle: FontStyle.italic,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 14.sp),
+                color: context.theme.colorScheme.inversePrimary,
+                fontFamily: 'cairo',
+                fontStyle: FontStyle.italic,
+                fontWeight: FontWeight.bold,
+                fontSize: 14,
+              ),
             ),
             const Gap(4),
             Container(

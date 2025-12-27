@@ -618,5 +618,15 @@
   "@salah": {
     "type": "text",
     "placeholders": {}
+  },
+  "start": "Bilow",
+  "@start": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "skip": "Boodbood",
+  "@skip": {
+    "type": "text",
+    "placeholders": {}
   }
 }

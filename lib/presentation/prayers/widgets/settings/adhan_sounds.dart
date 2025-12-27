@@ -93,12 +93,14 @@ class AdhanSounds extends StatelessWidget {
                           minTileHeight: 40,
                           onTap: () async {
                             notificationCtrl.switchAdhanOnTap(index);
-                            notificationCtrl
-                                    .isAdhanDownloadedByIndex(index)
-                                    .value
-                                ? null
-                                : await notificationCtrl
-                                    .adhanDownload(adhans[index]);
+                            if (!Platform.isMacOS) {
+                              notificationCtrl
+                                      .isAdhanDownloadedByIndex(index)
+                                      .value
+                                  ? null
+                                  : await notificationCtrl
+                                      .adhanDownload(adhans[index]);
+                            }
                             await notificationCtrl.reschedulePrayers();
                           },
                           title: Row(

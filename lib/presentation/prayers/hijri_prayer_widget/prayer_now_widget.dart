@@ -26,7 +26,7 @@ class PrayerNowWidget extends StatelessWidget {
               children: [
                 Obx(
                   () {
-                    int currentPrayer = adhanCtrl.getCurrentPrayerByDateTime();
+                    int currentPrayer = adhanCtrl.currentPrayerIndex;
                     return AnimatedRadialGauge(
                       /// The animation duration.
                       duration: const Duration(seconds: 1),
@@ -100,7 +100,7 @@ class PrayerNowWidget extends StatelessWidget {
                                       .tr,
                                   style: TextStyle(
                                     fontFamily: 'cairo',
-                                    fontSize: 26.sp,
+                                    fontSize: 26.sp.clamp(26, 36),
                                     fontWeight: FontWeight.bold,
                                     color: context
                                         .theme.colorScheme.inversePrimary,
@@ -114,7 +114,7 @@ class PrayerNowWidget extends StatelessWidget {
                                     ['time'],
                                 style: TextStyle(
                                   fontFamily: 'cairo',
-                                  fontSize: 26.sp,
+                                  fontSize: 26.sp.clamp(26, 36),
                                   fontWeight: FontWeight.bold,
                                   color:
                                       context.theme.colorScheme.inversePrimary,
@@ -136,10 +136,6 @@ class PrayerNowWidget extends StatelessWidget {
                                     fontSize: 34.sp,
                                     color: context
                                         .theme.colorScheme.inversePrimary,
-                                    duration: adhanCtrl
-                                        .getDurationLeftForPrayerByIndex(
-                                            currentPrayer)
-                                        .value,
                                   ),
                                 ),
                               ),

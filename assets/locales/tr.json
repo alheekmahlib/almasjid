@@ -618,5 +618,15 @@
   "@salah": {
     "type": "text",
     "placeholders": {}
+  },
+  "start": "Başla",
+  "@start": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "skip": "Atla",
+  "@skip": {
+    "type": "text",
+    "placeholders": {}
   }
 }

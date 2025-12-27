@@ -46,6 +46,10 @@ class AdhanState {
   Rx<Color> backgroundColor = const Color(0xffB8E0EA).obs;
   var selectedDate = DateTime.now();
 
+  /// اسم المدينة والدولة بلغة المستخدم
+  RxString localizedCity = ''.obs;
+  RxString localizedCountry = ''.obs;
+
   // أوقات الصلاة للتاريخ المختار / Prayer times for selected date
   PrayerTimes? selectedDatePrayerTimes;
   SunnahTimes? selectedDateSunnahTimes;
@@ -57,6 +61,7 @@ class AdhanState {
   RxString selectedDateIshaTime = ''.obs;
   RxString selectedDateLastThirdTime = ''.obs;
   RxString selectedDateMidnightTime = ''.obs;
+  String location = '';
 }
 
 class OurPrayerAdjustments extends PrayerAdjustments {

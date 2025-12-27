@@ -618,5 +618,15 @@
   "@salah": {
     "type": "text",
     "placeholders": {}
+  },
+  "start": "دەستپێبکە",
+  "@start": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "skip": "تێپەڕاندن",
+  "@skip": {
+    "type": "text",
+    "placeholders": {}
   }
 }

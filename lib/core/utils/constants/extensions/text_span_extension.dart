@@ -12,9 +12,94 @@ import 'package:get/get.dart';
 // 5. دعم HTML المتداخل / Nested HTML support
 
 extension TextSpanExtension on String {
-  /// دالة لبناء Widget مع معالجة أكواد HTML والأقواس والرموز الخاصة
-  /// Build Widget with HTML code processing and special characters
-  Widget buildTextString() {
+  String removeHtmlTags(String htmlString) {
+    final RegExp regExp =
+        RegExp(r'<.*?[^\/]>', multiLine: true, caseSensitive: false);
+    return htmlString.replaceAll(regExp, '');
+  }
+
+  List<TextSpan> buildTextSpans() {
+    String htmlText = this;
+    String text = removeHtmlTags(htmlText);
+
+    // Insert line breaks after specific punctuation marks unless they are within square brackets
+    text = text.replaceAllMapped(
+        RegExp(r'(\...|\:)(?![^\[]*\])\s*'), (match) => '${match[0]}\n');
+
+    final RegExp regExpQuotes = RegExp(r'\"(.*?)\"');
+    final RegExp regExpBraces = RegExp(r'\{(.*?)\}');
+    final RegExp regExpParentheses = RegExp(r'\((.*?)\)');
+    final RegExp regExpSquareBrackets = RegExp(r'\[(.*?)\]');
+    final RegExp regExpDash = RegExp(r'\-(.*?)\-');
+
+    final Iterable<Match> matchesQuotes = regExpQuotes.allMatches(text);
+    final Iterable<Match> matchesBraces = regExpBraces.allMatches(text);
+    final Iterable<Match> matchesParentheses =
+        regExpParentheses.allMatches(text);
+    final Iterable<Match> matchesSquareBrackets =
+        regExpSquareBrackets.allMatches(text);
+    final Iterable<Match> matchesDash = regExpDash.allMatches(text);
+
+    final List<Match> allMatches = [
+      ...matchesQuotes,
+      ...matchesBraces,
+      ...matchesParentheses,
+      ...matchesSquareBrackets,
+      ...matchesDash
+    ]..sort((a, b) => a.start.compareTo(b.start));
+
+    int lastMatchEnd = 0;
+    List<TextSpan> spans = [];
+
+    for (final Match match in allMatches) {
+      if (match.start >= lastMatchEnd && match.end <= text.length) {
+        final String preText = text.substring(lastMatchEnd, match.start);
+        final String matchedText = text.substring(match.start, match.end);
+        final bool isBraceMatch = regExpBraces.hasMatch(matchedText);
+        final bool isParenthesesMatch = regExpParentheses.hasMatch(matchedText);
+        final bool isSquareBracketMatch =
+            regExpSquareBrackets.hasMatch(matchedText);
+        final bool isDashMatch = regExpDash.hasMatch(matchedText);
+
+        if (preText.isNotEmpty) {
+          spans.add(TextSpan(text: preText));
+        }
+
+        TextStyle matchedTextStyle;
+        if (isBraceMatch) {
+          matchedTextStyle =
+              const TextStyle(color: Color(0xff008000), fontFamily: 'naskh');
+        } else if (isParenthesesMatch) {
+          matchedTextStyle =
+              const TextStyle(color: Color(0xff008000), fontFamily: 'naskh');
+        } else if (isSquareBracketMatch) {
+          matchedTextStyle = const TextStyle(color: Color(0xff814714));
+        } else if (isDashMatch) {
+          matchedTextStyle = const TextStyle(color: Color(0xff814714));
+        } else {
+          matchedTextStyle =
+              const TextStyle(color: Color(0xffa24308), fontFamily: 'naskh');
+        }
+
+        spans.add(TextSpan(
+          text: matchedText,
+          style: matchedTextStyle,
+        ));
+
+        lastMatchEnd = match.end;
+      }
+    }
+
+    if (lastMatchEnd < text.length) {
+      spans.add(TextSpan(text: text.substring(lastMatchEnd)));
+    }
+
+    return spans;
+  }
+
+  /// دالة لبناء قائمة TextSpan مع معالجة أكواد HTML والأقواس والرموز الخاصة
+  /// Build List TextSpan with HTML code processing and special characters
+  List<TextSpan> buildTextString() {
     String text = this;
 
     // إزالة علامات HTML غير المرغوب فيها / Remove unwanted HTML tags
@@ -121,19 +206,7 @@ extension TextSpanExtension on String {
       spans.addAll(remainingSpans);
     }
 
-    return RichText(
-      text: TextSpan(
-        children: spans,
-        style: TextStyle(
-          fontSize: 18.0,
-          fontFamily: 'cairo',
-          color: Get.context!.theme.colorScheme.inversePrimary,
-          height: 1.5,
-        ),
-      ),
-      // textDirection: TextDirection.rtl,
-      textAlign: TextAlign.justify,
-    );
+    return spans;
   }
 
   /// دالة مساعدة لمعالجة الرموز الخاصة / Helper function to process special characters

@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:nominatim_geocoding/nominatim_geocoding.dart';
 
 import '../../../core/services/background_services.dart';
@@ -80,13 +81,23 @@ class GeneralController extends GetxController with WidgetsBindingObserver {
 
   // ✅ هذه الدالة تُستدعى عند تغيير حالة التطبيق
   @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    super.didChangeAppLifecycleState(state);
+  void didChangeAppLifecycleState(AppLifecycleState appState) {
+    super.didChangeAppLifecycleState(appState);
 
     // عندما يعود المستخدم للتطبيق
-    if (state == AppLifecycleState.resumed) {
+    if (appState == AppLifecycleState.resumed) {
       if (_settingsCompleter != null && !_settingsCompleter!.isCompleted) {
         _settingsCompleter!.complete();
+      }
+
+      // تحديث الـ widget عند عودة التطبيق من الخلفية
+      // Update widget when app returns from background
+      if (state.activeLocation.value &&
+          (Platform.isIOS || Platform.isAndroid)) {
+        Future.delayed(const Duration(milliseconds: 500), () {
+          PrayersWidgetConfig().updatePrayersDate();
+          log('Widget updated on app resume', name: 'GeneralController');
+        });
       }
     }
   }
@@ -107,17 +118,11 @@ class GeneralController extends GetxController with WidgetsBindingObserver {
   Future<void> initLocation({bool? isOpenSettings = true}) async {
     try {
       state.isLocationLoading.value = true;
-
-      if (Platform.isMacOS || Platform.isLinux || Platform.isWindows) {
-        await NominatimGeocoding.init();
-        log('Location service is not supported on this platform');
-        return;
-      }
-
+      await Geolocator.checkPermission();
       LocationPermission permission = await Geolocator.checkPermission();
       bool isEnabled = await Geolocator.isLocationServiceEnabled();
 
-      // ✅ حالة الرفض الدائم - فتح الإعدادات والانتظار
+      // حالة الرفض الدائم - فتح الإعدادات والانتظار
       if (isEnabled &&
           isOpenSettings! &&
           permission == LocationPermission.deniedForever) {
@@ -137,14 +142,25 @@ class GeneralController extends GetxController with WidgetsBindingObserver {
       } else if (permission == LocationPermission.always ||
           permission == LocationPermission.whileInUse) {
         // ✅ الإذن موجود - تفعيل مباشر
-        await _activateLocation();
+
+        await Geolocator.requestPermission().then((_) async {
+          await _activateLocation();
+          if (Platform.isMacOS) {
+            Get.forceAppUpdate();
+          }
+        });
       } else if (permission == LocationPermission.denied) {
         // ✅ طلب الإذن لأول مرة
         permission = await Geolocator.requestPermission();
 
         if (permission == LocationPermission.always ||
             permission == LocationPermission.whileInUse) {
-          await _activateLocation();
+          await Geolocator.requestPermission().then((_) async {
+            await _activateLocation();
+            if (Platform.isMacOS) {
+              Get.forceAppUpdate();
+            }
+          });
         }
       }
     } catch (e) {
@@ -156,12 +172,17 @@ class GeneralController extends GetxController with WidgetsBindingObserver {
 
   // ✅ دالة منفصلة لتفعيل الموقع
   Future<void> _activateLocation() async {
-    await LocationHelper.instance.getPositionDetails();
-    state.box.write(ACTIVE_LOCATION, true);
-    state.box.write(IS_LOCATION_ACTIVE, true);
-    state.box.write(FIRST_LAUNCH, true);
-    await AdhanController.instance.initializeStoredAdhan();
-    Get.forceAppUpdate();
+    await LocationHelper.instance.getPositionDetails().then((_) async {
+      log('Location activated: ${Location.instance.position}', name: 'Main');
+      state.box.write(ACTIVE_LOCATION, true);
+      state.box.write(IS_LOCATION_ACTIVE, true);
+      state.box.write(FIRST_LAUNCH, true);
+      await AdhanController.instance.initializeStoredAdhan().then((_) async {
+        AdhanController.instance.state.location =
+            await AdhanController.instance.localizedLocation;
+        Get.forceAppUpdate();
+      });
+    });
   }
 
   /// Initialize location with manual selection (for Huawei devices)
@@ -183,6 +204,7 @@ class GeneralController extends GetxController with WidgetsBindingObserver {
       state.box.write(FIRST_LAUNCH, true);
 
       AdhanController.instance.initializeStoredAdhan();
+      Get.forceAppUpdate();
       await SplashScreenController.instance.isNotificationAllowed();
     } catch (e) {
       log('Error initializing manual location: $e',
@@ -202,50 +224,37 @@ class GeneralController extends GetxController with WidgetsBindingObserver {
     log('Location cancelled', name: 'Main');
   }
 
-  // @override
-  // void didChangeAppLifecycleState(AppLifecycleState states) async {
-  //   log('AppLifecycleState: $states');
-  //   if (states == AppLifecycleState.resumed && state.activeLocation.value) {
-  //     bool isEnabled = await LocationHelper.instance.isLocationServiceEnabled();
-  //     if (isEnabled && !state.activeLocation.value) {
-  //       await initLocation().then((_) async {
-  //         state.activeLocation.value = true;
-  //         await AdhanController.instance.initializeAdhan();
-  //         Future.delayed(const Duration(seconds: 2))
-  //             .then((_) => PrayersWidgetConfig().updatePrayersDate());
-  //         state.box.write(ACTIVE_LOCATION, true);
-  //         AdhanController.instance.update();
-  //       });
-  //     }
-  //   }
-  // }
-
   Future<void> toggleLocationService() async {
     if (!state.activeLocation.value) {
+      LocationPermission permission = await Geolocator.checkPermission();
       bool isEnabled = await LocationHelper.instance.isLocationServiceEnabled();
       if (!isEnabled) {
         await LocationHelper.instance.openLocationSettings;
-      } else if (isEnabled) {
-        await LocationHelper.instance.openAppSettings;
+      } else if (isEnabled &&
+          (permission == LocationPermission.deniedForever ||
+              permission == LocationPermission.denied)) {
+        await _openSettingsAndWait();
         await Future.delayed(const Duration(seconds: 3));
         if (await LocationHelper.instance.checkPermission()) {
-          await initLocation().then((_) async {
-            state.activeLocation.value = true;
-            await AdhanController.instance.initializeStoredAdhan().then((_) {
-              state.box.write(ACTIVE_LOCATION, true);
-              Get.forceAppUpdate();
-            });
-          });
+          await _activateLocation();
+          // await initLocation().then((_) async {
+          //   state.activeLocation.value = true;
+          //   await AdhanController.instance.initializeStoredAdhan().then((_) {
+          //     state.box.write(ACTIVE_LOCATION, true);
+          //     Get.forceAppUpdate();
+          //   });
+          // });
         }
         log('Location services are already enabled.');
       } else {
-        await initLocation().then((_) async {
-          state.activeLocation.value = true;
-          await AdhanController.instance.initializeStoredAdhan().then((_) {
-            state.box.write(ACTIVE_LOCATION, true);
-            Get.forceAppUpdate();
-          });
-        });
+        await _activateLocation();
+        // await initLocation().then((_) async {
+        //   state.activeLocation.value = true;
+        //   await AdhanController.instance.initializeStoredAdhan().then((_) {
+        //     state.box.write(ACTIVE_LOCATION, true);
+        //     Get.forceAppUpdate();
+        //   });
+        // });
         log('Location services are already enabled.');
       }
       AdhanController.instance.update();
@@ -259,36 +268,54 @@ class GeneralController extends GetxController with WidgetsBindingObserver {
   /// تحديث الموقع وإعادة حساب أوقات الصلاة
   /// Update location and recalculate prayer times
   Future<bool> updateLocationAndPrayerTimes() async {
-    try {
-      log('Updating location and prayer times...', name: 'GeneralController');
-
-      // التحقق من تفعيل خدمة الموقع
-      // Check if location service is enabled
-      if (!state.activeLocation.value) {
-        log('Location service is not active', name: 'GeneralController');
-        return false;
-      }
-
-      // تحديث الموقع
-      // Update location
-      await initLocation();
-
-      // إعادة حساب أوقات الصلاة
-      // Recalculate prayer times
-      await AdhanController.instance.clearCacheAndRecalculate();
-      await QiblaController.instance.updateQiblaDirection();
-
-      // تحديث الويدجت
-      // Update widget
-      // PrayersWidgetConfig().updatePrayersDate();
-
-      log('Location and prayer times updated successfully',
-          name: 'GeneralController');
-      return true;
-    } catch (e) {
-      log('Error updating location and prayer times: $e',
-          name: 'GeneralController');
+    final currentLocation = LocationHelper().currentLocation;
+    final position = await LocationHelper().fetchCurrentPosition;
+    if (position == null) {
+      Get.context!.showSearchBottomSheet(Get.context!);
       return false;
     }
+    final newLocation = LatLng(
+      position.latitude,
+      position.longitude,
+    );
+
+    log('Current Location: $currentLocation, New Location: $newLocation',
+        name: 'GeneralController');
+    if (newLocation != currentLocation) {
+      try {
+        log('Updating location and prayer times...', name: 'GeneralController');
+
+        // التحقق من تفعيل خدمة الموقع
+        // Check if location service is enabled
+        if (!state.activeLocation.value) {
+          log('Location service is not active', name: 'GeneralController');
+          return false;
+        }
+
+        // تحديث الموقع
+        // Update location
+        await initLocation();
+
+        // إعادة حساب أوقات الصلاة
+        // Recalculate prayer times
+        await AdhanController.instance.clearCacheAndRecalculate();
+        await QiblaController.instance.updateQiblaDirection();
+
+        // تحديث الويدجت
+        // Update widget
+        // PrayersWidgetConfig().updatePrayersDate();
+
+        log('Location and prayer times updated successfully',
+            name: 'GeneralController');
+        return true;
+      } catch (e) {
+        log('Error updating location and prayer times: $e',
+            name: 'GeneralController');
+        return false;
+      }
+    }
+    log('Location has not changed, no update needed',
+        name: 'GeneralController');
+    return false;
   }
 }

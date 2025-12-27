@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 
-import '/core/utils/constants/extensions/svg_extensions.dart';
 import '../../../core/utils/constants/extensions/extensions.dart';
-import '../../../core/utils/constants/svg_constants.dart';
 import '../../../core/widgets/animated_drawing_widget.dart';
 import '../../core/widgets/app_bar_widget.dart';
 import 'about_app_text.dart';
@@ -45,19 +43,29 @@ class AboutApp extends StatelessWidget {
                       children: [
                         Expanded(
                           flex: 4,
-                          child: customSvgWithCustomColor(
-                            SvgPath.svgLogoAqemLogoStroke,
-                            height: 200,
-                          ),
+                          child: AnimatedDrawingWidget(
+                              opacity: 1,
+                              width: Get.width * .4,
+                              height: Get.width * .2),
                         ),
                         const Gap(32),
-                        Expanded(
+                        const Expanded(
                           flex: 4,
-                          child: ListView(
-                            children: const [
-                              AboutAppText(),
-                              Gap(16),
-                              UserOptions(),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Expanded(
+                                child: Center(
+                                  child: SingleChildScrollView(
+                                      child: Column(
+                                    children: [
+                                      AboutAppText(),
+                                      Gap(16),
+                                      UserOptions(),
+                                    ],
+                                  )),
+                                ),
+                              ),
                             ],
                           ),
                         )

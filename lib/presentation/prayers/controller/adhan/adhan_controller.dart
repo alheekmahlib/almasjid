@@ -14,9 +14,9 @@ class AdhanController extends GetxController {
   Future<void> onInit() async {
     super.onInit();
     if (GeneralController.instance.state.activeLocation.value) {
-      if (Platform.isAndroid || Platform.isIOS) {
-        geo.setLocaleIdentifier('en');
-      }
+      // if (Platform.isAndroid || Platform.isIOS) {
+      //   geo.setLocaleIdentifier('en');
+      // }
       getShared;
       // ابدأ التهيئة فورًا بدل التأخير لتجنّب نافذة null
       unawaited(initializeStoredAdhan());
@@ -29,6 +29,8 @@ class AdhanController extends GetxController {
       Future.delayed(const Duration(seconds: 10), () {
         updateCurrentPrayer();
       });
+      Future.delayed(const Duration(seconds: 2),
+          () async => state.location = await localizedLocation);
     }
   }
 
@@ -235,6 +237,16 @@ class AdhanController extends GetxController {
 
     // Ensure precise scheduling starts after times are ready
     updateCurrentPrayer();
+
+    // تحديث الـ widget بعد تهيئة أوقات الصلاة مباشرة
+    // Update widget immediately after prayer times initialization
+    if (Platform.isIOS || Platform.isAndroid) {
+      Future.delayed(const Duration(milliseconds: 500), () {
+        PrayersWidgetConfig().updatePrayersDate();
+        log('Widget update triggered after prayer times initialization',
+            name: 'AdhanController');
+      });
+    }
   }
 
   /// تحميل البيانات من التخزين الشهري

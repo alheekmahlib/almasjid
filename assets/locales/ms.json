@@ -618,5 +618,15 @@
   "@understanding": {
     "type": "text",
     "placeholders": {}
+  },
+  "start": "Mula",
+  "@start": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "skip": "Langkau",
+  "@skip": {
+    "type": "text",
+    "placeholders": {}
   }
 }

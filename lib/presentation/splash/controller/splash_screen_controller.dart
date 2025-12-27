@@ -17,29 +17,35 @@ class SplashScreenController extends GetxController {
 
   @override
   void onReady() {
-    final height = Get.height;
-    openSlider(duration: 3500, height: height);
-    closeSlider(duration: 4300, height: 0.0);
+    // toggleSlider(duration: 3500);
     super.onReady();
+  }
+
+  void toggleSlider({required int duration}) {
+    final height = Get.height;
+    openSlider(duration: duration, height: height);
+    closeSlider(duration: duration + 700, height: 0.0);
   }
 
   void openSlider({required int duration, required double height}) {
     Future.delayed(Duration(milliseconds: duration))
         .then((_) => state.firstContainerHeight.value = height);
-    Future.delayed(Duration(milliseconds: duration + 300))
+    Future.delayed(Duration(milliseconds: duration + 200))
         .then((_) => state.secondContainerHeight.value = height);
   }
 
   void closeSlider({required int duration, required double height}) {
     Future.delayed(Duration(milliseconds: duration))
         .then((_) => state.secondContainerHeight.value = height);
-    Future.delayed(Duration(milliseconds: duration + 300))
+    Future.delayed(Duration(milliseconds: duration + 200))
         .then((_) => state.firstContainerHeight.value = height);
   }
 
   Future<void> changeCustomWidget() async {
     if (LocationHelper().locationIsEmpty) {
-      state.customWidgetIndex.value = 1;
+      toggleSlider(duration: 0);
+      Future.delayed(const Duration(milliseconds: 600),
+          () => state.customWidgetIndex.value = 1);
     } else {
       await isNotificationAllowed();
     }
@@ -48,7 +54,9 @@ class SplashScreenController extends GetxController {
   Future<void> isNotificationAllowed() async {
     bool isAllowed = await NotifyHelper().isNotificationAllowed();
     if (!isAllowed) {
-      state.customWidgetIndex.value = 2;
+      toggleSlider(duration: 0);
+      Future.delayed(const Duration(milliseconds: 600),
+          () => state.customWidgetIndex.value = 2);
     } else {
       hasNewFeatures();
     }
@@ -56,9 +64,13 @@ class SplashScreenController extends GetxController {
 
   void hasNewFeatures() {
     if (WhatsNewController.instance.hasNewFeatures) {
-      state.customWidgetIndex.value = 3;
+      toggleSlider(duration: 0);
+      Future.delayed(const Duration(milliseconds: 600),
+          () => state.customWidgetIndex.value = 3);
     } else {
-      Get.offAndToNamed(AppRouter.homeScreen);
+      toggleSlider(duration: 0);
+      Future.delayed(const Duration(milliseconds: 900),
+          () => Get.offAndToNamed(AppRouter.homeScreen));
     }
   }
 
@@ -88,11 +100,23 @@ class SplashScreenController extends GetxController {
   Future<void> activateNotifications() async {
     try {
       state.isNotificationLoading.value = true;
-      await NotifyHelper().requistPermissions();
-      NotifyHelper.initAwesomeNotifications();
-      // تسجيل أن المستخدم شاهد شاشة تفعيل الإشعارات
-      await NotifyHelper().markNotificationSetupAsSeen();
-      hasNewFeatures();
+      if (Platform.isMacOS || Platform.isLinux || Platform.isWindows) {
+        await MacOSNotificationsService.instance.initialize();
+        final granted =
+            await MacOSNotificationsService.instance.requestPermissions();
+        // حفظ حالة الصلاحية
+        await GetStorage().write('notifications_permission_granted', granted);
+        // تسجيل أن المستخدم شاهد شاشة تفعيل الإشعارات
+        NotifyHelper().markNotificationSetupAsSeen();
+        hasNewFeatures();
+        return;
+      } else {
+        await NotifyHelper().requistPermissions();
+        NotifyHelper.initAwesomeNotifications();
+        // تسجيل أن المستخدم شاهد شاشة تفعيل الإشعارات
+        NotifyHelper().markNotificationSetupAsSeen();
+        hasNewFeatures();
+      }
     } finally {
       state.isNotificationLoading.value = false;
     }

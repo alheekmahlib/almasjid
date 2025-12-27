@@ -3,6 +3,68 @@ part of '../../../prayers.dart';
 extension AdhanGetters on AdhanController {
   /// -------- [Getters] ----------
 
+  /// تحويل كود اللغة إلى Locale الخاص بـ Nominatim
+  nominatim.Locale get _nominatimLocale {
+    switch (Get.locale?.languageCode) {
+      case 'ar':
+        return nominatim.Locale.AR;
+      case 'en':
+        return nominatim.Locale.EN;
+      case 'tr':
+        return nominatim.Locale.TR;
+      case 'ur':
+        return nominatim.Locale.UR;
+      case 'id':
+        return nominatim.Locale.ID;
+      case 'ms':
+        return nominatim.Locale.MS;
+      case 'bn':
+        return nominatim.Locale.BN;
+      case 'es':
+        return nominatim.Locale.ES;
+      case 'ku':
+        return nominatim.Locale.KU;
+      case 'so':
+        return nominatim.Locale.SO;
+      default:
+        return nominatim.Locale.EN;
+    }
+  }
+
+  /// جلب بيانات الموقع من Nominatim (استدعاء واحد فقط)
+  Future<nominatim.Geocoding> get _nominatimLocation async =>
+      await nominatim.NominatimGeocoding.to.reverseGeoCoding(
+        nominatim.Coordinate(
+            latitude: Location.instance.position!.latitude,
+            longitude: Location.instance.position!.longitude),
+        locale: _nominatimLocale,
+      );
+
+  /// اسم المدينة والدولة بلغة المستخدم (استدعاء واحد فقط للـ API)
+  Future<String> get localizedLocation async {
+    try {
+      final nominatim.Address address = (await _nominatimLocation).address;
+
+      final cityName = address.city.isNotEmpty
+          ? address.city
+          : address.district.isNotEmpty
+              ? address.district
+              : address.suburb.isNotEmpty
+                  ? address.suburb
+                  : address.state.isNotEmpty
+                      ? address.state
+                      : 'Unknown';
+
+      final countryName =
+          address.country.isNotEmpty ? address.country : 'Unknown';
+
+      return '$cityName\n$countryName';
+    } catch (e) {
+      // في حالة الخطأ، استخدم البيانات المخزنة
+      return '${Location.instance.city}\n${Location.instance.country}';
+    }
+  }
+
   RxBool get isNoInternetAndDataNotInitialized {
     bool state = false;
     state = (!InternetConnectionController.instance.isConnected &&
@@ -445,21 +507,50 @@ extension AdhanGetters on AdhanController {
   }
 
   Duration get getTimeLeftForNextPrayer {
-    final Prayer currentPrayer = state.prayerTimes!.currentPrayer();
-    final Prayer? nextPrayer;
+    // نستخدم getCurrentPrayerByDateTime للحصول على الفترة الحالية (0-7)
+    // بما في ذلك منتصف الليل (6) والثلث الأخير (7)
+    final int currentPrayerIndex = getCurrentPrayerByDateTime();
 
-    if (currentPrayer == Prayer.isha) {
-      nextPrayer = Prayer.fajr;
-    } else {
-      nextPrayer = state.prayerTimes!.nextPrayer();
-    }
-    DateTime? nextPrayerDateTime = state.prayerTimes!.timeForPrayer(nextPrayer);
-    if (nextPrayer == Prayer.fajr && currentPrayer == Prayer.isha) {
-      nextPrayerDateTime = nextPrayerDateTime?.add(const Duration(days: 1));
-    }
-    if (nextPrayerDateTime == null || nextPrayerDateTime.isBefore(state.now)) {
+    // تحديد index الصلاة القادمة
+    final int nextPrayerIndex =
+        (currentPrayerIndex) > 7 ? 0 : (currentPrayerIndex);
+
+    // الحصول على وقت الصلاة القادمة من prayerNameList
+    final Map<String, dynamic> nextPrayerMap = prayerNameList[nextPrayerIndex];
+    DateTime? nextPrayerDateTime = nextPrayerMap['dateTime'];
+
+    if (nextPrayerDateTime == null) {
       return Duration.zero;
     }
+
+    // بناء وقت الصلاة لليوم الحالي
+    nextPrayerDateTime = DateTime(
+      state.now.year,
+      state.now.month,
+      state.now.day,
+      nextPrayerDateTime.hour,
+      nextPrayerDateTime.minute,
+    );
+
+    // معالجة الحالات الليلية
+    // إذا كانت الصلاة القادمة هي الفجر (index 0) ونحن في فترة الليل
+    if (nextPrayerIndex == 0 && currentPrayerIndex >= 5) {
+      // نحن بعد المغرب، الفجر في اليوم التالي
+      nextPrayerDateTime = nextPrayerDateTime.add(const Duration(days: 1));
+    }
+    // إذا كانت الصلاة القادمة منتصف الليل أو الثلث الأخير وهي بعد منتصف الليل الفلكي
+    else if ((nextPrayerIndex == 6 || nextPrayerIndex == 7) &&
+        nextPrayerDateTime.hour < 12 &&
+        state.now.hour >= 12) {
+      // الوقت الليلي في الصباح الباكر (بعد 12 AM)
+      nextPrayerDateTime = nextPrayerDateTime.add(const Duration(days: 1));
+    }
+
+    // التحقق النهائي - إذا كان الوقت قد مر
+    if (nextPrayerDateTime.isBefore(state.now)) {
+      nextPrayerDateTime = nextPrayerDateTime.add(const Duration(days: 1));
+    }
+
     return nextPrayerDateTime.difference(state.now);
   }
 
