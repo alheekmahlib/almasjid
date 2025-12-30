@@ -110,19 +110,70 @@ extension PrayersNotiUi on PrayersNotificationsCtrl {
     }
   }
 
-  void onNotificationActionReceived(ReceivedAction receivedAction) {
-    // playAudio(receivedAction.id, receivedAction.title, receivedAction.body);
-    Get.to(() => PrayerScreen(), transition: Transition.downToUp);
+  void onNotificationActionReceived(ReceivedAction receivedAction) async {
     if (DateTime.now().isBefore(
         receivedAction.displayedDate!.add(const Duration(minutes: 5)))) {
-      Future.delayed(const Duration(seconds: 1)).then((_) => Get.bottomSheet(
-              PrayerDetails(
-                prayerName: receivedAction.title,
-                prayerSummary: receivedAction.summary,
+      Get.bottomSheet(
+              Container(
+                padding: const EdgeInsets.only(top: 8.0, right: 8.0, left: 8.0),
+                margin: const EdgeInsets.only(right: 8.0, left: 8.0),
+                decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(16),
+                    topRight: Radius.circular(16),
+                  ),
+                  border: Border.all(
+                    width: 1,
+                    color: Theme.of(Get.context!).colorScheme.primary,
+                  ),
+                ),
+                child: Container(
+                  padding: const EdgeInsets.only(bottom: 16.0),
+                  decoration: BoxDecoration(
+                    color: Theme.of(Get.context!).colorScheme.primaryContainer,
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(16),
+                      topRight: Radius.circular(16),
+                    ),
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          const SizedBox().customSvgWithColor(
+                            SvgPath.svgCloseCarve,
+                            width: 120,
+                            color: Theme.of(Get.context!)
+                                .colorScheme
+                                .inversePrimary,
+                          ),
+                          Container(
+                            width: 70,
+                            height: 4,
+                            decoration: BoxDecoration(
+                              color: Theme.of(Get.context!)
+                                  .colorScheme
+                                  .primaryContainer,
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                          )
+                        ],
+                      ),
+                      const Gap(8),
+                      PrayerDetails(
+                        prayerNameTranslated: receivedAction.title,
+                        prayerSummary: receivedAction.summary,
+                        payload: receivedAction.payload!,
+                      ),
+                    ],
+                  ),
+                ),
               ),
               isScrollControlled: true)
-          .then((_) async => await state.adhanPlayer.stop()));
-      playAudio(receivedAction.id, receivedAction.title);
+          .then((_) async => await state.adhanPlayer.stop());
+      await playAudio(receivedAction.id, receivedAction.title);
     }
   }
 
@@ -134,23 +185,74 @@ extension PrayersNotiUi on PrayersNotificationsCtrl {
     String? audioFajirPath = GetStorage('AdhanSounds')
         .read<String?>('$athanIndex$ADHAN_PATH_FAJIR_AUDIO');
 
-    log('Audio paths: audioPath=$audioPath, audioFajirPath=$audioFajirPath',
+    log('Audio paths: audioPath=$audioPath, audioFajirPath=$audioFajirPath, id=$id',
         name: 'NotifyHelper');
 
-    if (audioPath != null && File(audioPath).existsSync()) {
+    // تحديد مسار الصوت المناسب (فجر أو عادي)
+    final String? targetPath = id == 0 ? audioFajirPath : audioPath;
+
+    // التحقق من وجود الملف المُحمّل
+    if (targetPath != null && File(targetPath).existsSync()) {
       try {
-        await state.adhanPlayer.setAudioSource(
-          AudioSource.file(
-            id == 0 ? audioFajirPath! : audioPath,
-          ),
-        );
+        log('Playing downloaded audio: $targetPath', name: 'NotifyHelper');
+        await state.adhanPlayer.setAudioSource(AudioSource.file(targetPath));
         await state.adhanPlayer.play();
+        return;
       } catch (e, stack) {
-        log('Error playing audio: $e',
+        log('Error playing downloaded audio: $e',
             error: e, stackTrace: stack, name: 'NotifyHelper');
       }
-    } else {
-      log('Audio file does not exist or path is null', name: 'NotifyHelper');
     }
+
+    // على Android، استخدم ملفات raw المحلية عبر MethodChannel
+    if (Platform.isAndroid) {
+      try {
+        // قراءة المسار المحدد للأذان من التخزين
+        final String selectedPath = id == 0
+            ? (GetStorage('AdhanSounds').read<String?>(ADHAN_PATH_FAJIR) ??
+                'resource://raw/aqsa_fajir_athan')
+            : (GetStorage('AdhanSounds').read<String?>(ADHAN_PATH) ??
+                'resource://raw/aqsa_athan');
+
+        // استخراج اسم الملف من المسار
+        final String fileName =
+            selectedPath.replaceFirst('resource://raw/', '');
+
+        log('Getting raw audio path for: $fileName', name: 'NotifyHelper');
+
+        // استخدام MethodChannel للحصول على مسار الملف من raw
+        const channel = MethodChannel('com.alheekmah.aqimApp/raw_audio');
+        final String? rawPath = await channel.invokeMethod<String>(
+          'getRawAudioPath',
+          {'fileName': fileName},
+        );
+
+        if (rawPath != null && File(rawPath).existsSync()) {
+          log('Playing raw audio from: $rawPath', name: 'NotifyHelper');
+          await state.adhanPlayer.setAudioSource(AudioSource.file(rawPath));
+          await state.adhanPlayer.play();
+          return;
+        }
+      } catch (e, stack) {
+        log('Error playing raw audio via MethodChannel: $e',
+            error: e, stackTrace: stack, name: 'NotifyHelper');
+      }
+    }
+
+    // إذا لم يكن الملف متوفراً، جرّب الملف الآخر كـ fallback
+    final String? fallbackPath = id == 0 ? audioPath : audioFajirPath;
+    if (fallbackPath != null && File(fallbackPath).existsSync()) {
+      try {
+        log('Playing fallback audio: $fallbackPath', name: 'NotifyHelper');
+        await state.adhanPlayer.setAudioSource(AudioSource.file(fallbackPath));
+        await state.adhanPlayer.play();
+        return;
+      } catch (e, stack) {
+        log('Error playing fallback audio: $e',
+            error: e, stackTrace: stack, name: 'NotifyHelper');
+      }
+    }
+
+    log('No audio file available to play', name: 'NotifyHelper');
   }
 }

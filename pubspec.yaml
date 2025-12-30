@@ -3,7 +3,7 @@ description: "A Prayer and qibla application."
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-version: 1.2.2+8
+version: 1.2.3+9
 
 environment:
   sdk: ^3.6.1

@@ -2,13 +2,26 @@ part of '../prayers.dart';
 
 class PrayerDetails extends StatelessWidget {
   final String? prayerName;
+  final String? prayerNameTranslated;
   final String? prayerSummary;
+  final Map<String, String?>? payload;
 
-  const PrayerDetails({super.key, this.prayerName, this.prayerSummary});
+  const PrayerDetails({
+    super.key,
+    this.prayerName,
+    this.prayerNameTranslated,
+    this.prayerSummary,
+    this.payload,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final index = prayerList.indexWhere((p) => p == prayerName!);
+    final int index;
+    if (prayerName != null) {
+      index = prayerList.indexWhere((p) => p == prayerName!);
+    } else {
+      index = prayerListList.indexWhere((p) => p == prayerNameTranslated!);
+    }
     return GetBuilder<AdhanController>(
         id: 'init_athan',
         builder: (adhanCtrl) {
@@ -62,10 +75,12 @@ class PrayerDetails extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   child: SettingPrayerTimes(listNum: index, isOnePrayer: true),
                 ),
-                index == 1 || index == 6 || index == 7
+                payload != null || (index == 1 || index == 6 || index == 7)
                     ? const SizedBox.shrink()
                     : ActivateAdhanButton(
-                        index: index, prayerTitle: prayerName!),
+                        index: index,
+                        prayerTitle: prayerName!,
+                      ),
               ],
             ),
           );

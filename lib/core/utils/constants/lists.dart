@@ -185,6 +185,17 @@ final prayerList = [
   'lastThirdOfTheNight'
 ];
 
+final prayerListList = [
+  'Fajr'.tr,
+  'Sunrise'.tr,
+  AdhanController.instance.getFridayDhuhrName.tr,
+  'Asr'.tr,
+  AdhanController.instance.getMaghribName.tr,
+  'Isha'.tr,
+  'middleOfTheNight'.tr,
+  'lastThirdOfTheNight'.tr
+];
+
 final prayerColorList = [
   const Color(0xff232323),
   const Color(0xffbababa),

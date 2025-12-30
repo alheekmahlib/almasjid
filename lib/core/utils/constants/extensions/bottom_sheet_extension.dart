@@ -25,7 +25,7 @@ extension BottomSheetExtension on void {
                 Get.context!.customOrientation(Get.width, Get.width * .5)),
         builder: (context) {
           return Padding(
-            padding: const EdgeInsets.only(top: 56.0, right: 8.0, left: 8.0),
+            padding: const EdgeInsets.only(right: 8.0, left: 8.0),
             child: Container(
               padding: const EdgeInsets.only(top: 8.0, right: 8.0, left: 8.0),
               decoration: BoxDecoration(

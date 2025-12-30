@@ -804,19 +804,19 @@ extension AdhanGetters on AdhanController {
         );
       }
 
-      log('Adjusted middleOfTheNight: $adjustedMiddleOfNight');
-      log('Adjusted lastThirdOfTheNight: $adjustedLastThirdOfNight');
+      // log('Adjusted middleOfTheNight: $adjustedMiddleOfNight');
+      // log('Adjusted lastThirdOfTheNight: $adjustedLastThirdOfNight');
 
       // إذا كان الوقت بعد الثلث الأخير من الليل وقبل الفجر، نبقى في فترة الثلث الأخير
       if (state.now.isAfter(adjustedLastThirdOfNight)) {
-        log('Time is after lastThirdOfTheNight - returning 7');
+        // log('Time is after lastThirdOfTheNight - returning 7');
         value = 7; // lastQuarterOfNight
       } else if (state.now.isAfter(adjustedMiddleOfNight)) {
-        log('Time is after middleOfTheNight - returning 7 (LastThird)');
+        // log('Time is after middleOfTheNight - returning 7 (LastThird)');
         value =
             7; // lastQuarterOfNight - بعد منتصف الليل مباشرة ننتقل للثلث الأخير
       } else {
-        log('Time is before middleOfTheNight - returning 6');
+        // log('Time is before middleOfTheNight - returning 6');
         value = 6; // midnightTime (فترة ما قبل منتصف الليل)
       }
     } else if (state.now.isBefore(prayer.sunrise)) {

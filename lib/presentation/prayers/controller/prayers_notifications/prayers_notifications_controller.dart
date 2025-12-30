@@ -46,9 +46,11 @@ class PrayersNotificationsCtrl extends GetxController {
     final List<dynamic> jsonData = jsonDecode(jsonString);
     // state.adhanList.add(AdhanData.fromJson(data));
     state.adhanList = jsonData.map((data) => AdhanData.fromJson(data)).toList();
-    isAdhanDownloadedByIndex(0).value
-        ? null
-        : adhanDownload(state.adhanList[0]);
+    if (!Platform.isMacOS && !Platform.isAndroid) {
+      isAdhanDownloadedByIndex(0).value
+          ? null
+          : adhanDownload(state.adhanList[0]);
+    }
     return state.adhanList;
   }
 

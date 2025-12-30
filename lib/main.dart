@@ -37,6 +37,7 @@ Future<void> initializeApp() async {
     await NominatimGeocoding.init();
   }
   NotifyHelper.initAwesomeNotifications();
+  NotifyHelper().setNotificationsListeners();
 
   // Mobile-specific initialization
   // if (Platform.isAndroid || Platform.isIOS) {

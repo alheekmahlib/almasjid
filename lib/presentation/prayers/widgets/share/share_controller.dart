@@ -44,14 +44,14 @@ class ShareController extends GetxController {
   }
 
   // City, Country
-  String get placeText {
-    final city = Location.instance.city;
-    final country = Location.instance.country.isNotEmpty
-        ? Location.instance.country
-        : adhan.state.selectedCountry.value;
-    if (city.isNotEmpty) return '$city,\n$country';
-    return country;
-  }
+  // String get placeText {
+  //   final city = Location.instance.city;
+  //   final country = Location.instance.country.isNotEmpty
+  //       ? Location.instance.country
+  //       : adhan.state.selectedCountry.value;
+  //   if (city.isNotEmpty) return '$city,\n$country';
+  //   return country;
+  // }
 
   Future<void> createAndShowVerseImage() async {
     try {

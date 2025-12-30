@@ -58,9 +58,6 @@ class AdhanSounds extends StatelessWidget {
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             List<AdhanData> adhans = snapshot.data!;
-            notificationCtrl.isAdhanDownloadedByIndex(0).value
-                ? null
-                : notificationCtrl.adhanDownload(adhans[0]);
             return GetX<PrayersNotificationsCtrl>(builder: (notificationCtrl) {
               bool isSelected =
                   notificationCtrl.isAdhanSelectByIndex(index).value;

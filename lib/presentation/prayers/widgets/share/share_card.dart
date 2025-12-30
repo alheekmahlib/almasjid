@@ -147,7 +147,7 @@ class _ShareCard extends StatelessWidget {
                         const Gap(8),
                         Flexible(
                           child: Text(
-                            share.placeText,
+                            AdhanController.instance.state.location,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
@@ -157,7 +157,7 @@ class _ShareCard extends StatelessWidget {
                               fontWeight: FontWeight.w500,
                               height: 1.1,
                             ),
-                            textAlign: TextAlign.end,
+                            textAlign: TextAlign.start,
                           ),
                         ),
                       ],

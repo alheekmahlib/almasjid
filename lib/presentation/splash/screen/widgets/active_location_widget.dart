@@ -62,14 +62,15 @@ class ActiveLocationWidget extends StatelessWidget {
                   ),
                 ),
                 const Gap(32),
-                _buttonsBuild(context, !isHuaweiDevice),
+                _buttonsBuild(context, isHuaweiDevice),
               ],
             ),
             Row(
               mainAxisSize: MainAxisSize.min,
               children: [
                 Expanded(
-                  child: Column(
+                  child: Stack(
+                    alignment: Alignment.topCenter,
                     children: [
                       Opacity(
                         opacity: 0.2,
@@ -78,8 +79,10 @@ class ActiveLocationWidget extends StatelessWidget {
                             width: 250.0,
                             color: context.theme.colorScheme.surface),
                       ),
-                      const Spacer(),
-                      _buttonsBuild(context, !isHuaweiDevice),
+                      // const Spacer(),
+                      Align(
+                          alignment: Alignment.bottomCenter,
+                          child: _buttonsBuild(context, isHuaweiDevice)),
                     ],
                   ),
                 ),
@@ -124,45 +127,59 @@ class ActiveLocationWidget extends StatelessWidget {
 
   Widget _buttonsBuild(BuildContext context, bool isHuaweiDevice) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        Obx(() => ContainerButtonWidget(
-              onPressed: generalCtrl.state.isLocationLoading.value
-                  ? null
-                  : () async => isHuaweiDevice
-                      ? context.showSearchBottomSheet(context)
-                      : await generalCtrl.initLocation().then(
-                          (_) async {
-                            generalCtrl.state.activeLocation.value = true;
-                            await SplashScreenController.instance
-                                .isNotificationAllowed();
-                          },
-                        ),
-              height: 45,
-              width: Get.width,
-              horizontalMargin: 0,
-              useGradient: false,
-              withShape: false,
-              isLoading: generalCtrl.state.isLocationLoading.value,
-              backgroundColor: Colors.transparent,
-              shadowColor: Colors.transparent,
-              borderColor: context.theme.colorScheme.surface,
-              title: isHuaweiDevice ? 'searchForCity'.tr : 'locate'.tr,
-            )),
-        isHuaweiDevice ? const Gap(8) : const SizedBox.shrink(),
-        isHuaweiDevice
-            ? ContainerButtonWidget(
-                onPressed: () => _showMapBottomSheet(context),
-                height: 45,
-                width: Get.width,
-                horizontalMargin: 0,
-                useGradient: false,
-                withShape: false,
-                backgroundColor: Colors.transparent,
-                shadowColor: Colors.transparent,
-                borderColor: context.theme.colorScheme.surface,
-                title: 'selectFromMap'.tr,
+        !isHuaweiDevice
+            ? Obx(
+                () => ContainerButtonWidget(
+                  onPressed: generalCtrl.state.isLocationLoading.value
+                      ? null
+                      : () async => await generalCtrl.initLocation().then(
+                            (_) async {
+                              generalCtrl.state.activeLocation.value = true;
+                              await SplashScreenController.instance
+                                  .isNotificationAllowed();
+                            },
+                          ),
+                  height: 45,
+                  width: Get.width,
+                  horizontalMargin: 0,
+                  useGradient: false,
+                  withShape: false,
+                  isLoading: generalCtrl.state.isLocationLoading.value,
+                  backgroundColor: Colors.transparent,
+                  shadowColor: Colors.transparent,
+                  borderColor: context.theme.colorScheme.surface,
+                  title: isHuaweiDevice ? 'searchForCity'.tr : 'locate'.tr,
+                ),
               )
             : const SizedBox.shrink(),
+        !isHuaweiDevice ? const Gap(8) : const SizedBox.shrink(),
+        ContainerButtonWidget(
+          onPressed: () => context.showSearchBottomSheet(context),
+          height: 45,
+          width: Get.width,
+          horizontalMargin: 0,
+          useGradient: false,
+          withShape: false,
+          backgroundColor: Colors.transparent,
+          shadowColor: Colors.transparent,
+          borderColor: context.theme.colorScheme.surface,
+          title: 'searchForCity'.tr,
+        ),
+        const Gap(8),
+        ContainerButtonWidget(
+          onPressed: () => _showMapBottomSheet(context),
+          height: 45,
+          width: Get.width,
+          horizontalMargin: 0,
+          useGradient: false,
+          withShape: false,
+          backgroundColor: Colors.transparent,
+          shadowColor: Colors.transparent,
+          borderColor: context.theme.colorScheme.surface,
+          title: 'selectFromMap'.tr,
+        ),
         const Gap(8),
         ContainerButtonWidget(
           onPressed: () async => await generalCtrl.cancelLocation(),

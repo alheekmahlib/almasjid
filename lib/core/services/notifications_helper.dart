@@ -365,7 +365,7 @@ class NotifyHelper {
       name: 'NotifyHelper',
     );
     // notiCtrl.state.adhanPlayer.stop();
-    if (prayerList.contains(receivedAction.title!)) {
+    if (prayerListList.contains(receivedAction.title!)) {
       PrayersNotificationsCtrl.instance.onNotificationActionReceived(
         receivedAction,
       );
