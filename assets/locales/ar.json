@@ -628,5 +628,285 @@
   "@skip": {
     "type": "text",
     "placeholders": {}
+  },
+  "qadaDays": "أيام القضاء",
+  "@qadaDays": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tapToSelectMissedDays": "اضغط على الأيام التي لم تصمها لإضافتها للقضاء",
+  "@tapToSelectMissedDays": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "markAsFasted": "تسجيل صيام",
+  "@markAsFasted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "markDayAsFastedConfirm": "هل تريد تسجيل صيام اليوم",
+  "@markDayAsFastedConfirm": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "confirm": "تأكيد",
+  "@confirm": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "totalMissedDays": "إجمالي أيام القضاء",
+  "@totalMissedDays": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fastedDays": "أيام تم صيامها",
+  "@fastedDays": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "remainingQada": "المتبقي من القضاء",
+  "@remainingQada": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noMissedDays": "لا توجد أيام قضاء",
+  "@noMissedDays": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tapCalendarToAddMissedDays": "اضغط على التقويم لإضافة الأيام الفائتة",
+  "@tapCalendarToAddMissedDays": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "qadaSection": "قسم القضاء",
+  "@qadaSection": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notificationsSection": "التنبيهات",
+  "@notificationsSection": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "quranSection": "ختمة القرآن",
+  "@quranSection": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sadaqahSection": "الصدقات",
+  "@sadaqahSection": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "zakatSection": "زكاة الفطر",
+  "@zakatSection": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "timetableSection": "إمساكية رمضان",
+  "@timetableSection": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "quranTracker": "متتبع الختمات",
+  "@quranTracker": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "completedJuz": "الأجزاء المقروءة",
+  "@completedJuz": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "juz": "جزء",
+  "@juz": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sadaqahTracker": "متتبع الصدقات",
+  "@sadaqahTracker": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "totalSadaqah": "إجمالي الصدقات",
+  "@totalSadaqah": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sadaqahDays": "أيام الصدقة",
+  "@sadaqahDays": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addSadaqah": "إضافة صدقة",
+  "@addSadaqah": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "recentSadaqah": "آخر الصدقات",
+  "@recentSadaqah": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "amount": "المبلغ",
+  "@amount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "note": "ملاحظة",
+  "@note": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "optional": "اختياري",
+  "@optional": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "add": "إضافة",
+  "@add": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ramadanTimetable": "إمساكية رمضان",
+  "@ramadanTimetable": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "day": "اليوم",
+  "@day": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "zakatCalculator": "حاسبة زكاة الفطر",
+  "@zakatCalculator": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "familyMembers": "عدد أفراد الأسرة",
+  "@familyMembers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pricePerPerson": "سعر الصاع للفرد",
+  "@pricePerPerson": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterAmount": "أدخل المبلغ",
+  "@enterAmount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "totalZakat": "إجمالي الزكاة",
+  "@totalZakat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "zakatNote": "زكاة الفطر واجبة على كل مسلم يملك قوت يومه وليلته. تُخرج قبل صلاة العيد.",
+  "@zakatNote": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ramadanNotifications": "تنبيهات رمضان",
+  "@ramadanNotifications": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "suhoorReminder": "تذكير السحور",
+  "@suhoorReminder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iftarReminder": "تذكير الإفطار",
+  "@iftarReminder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "beforeFajr": "قبل الفجر بـ",
+  "@beforeFajr": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "beforeMaghrib": "قبل المغرب بـ",
+  "@beforeMaghrib": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "minutes": "دقيقة",
+  "@minutes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "suhoorTime": "وقت تنبيه السحور",
+  "@suhoorTime": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iftarTime": "وقت تنبيه الإفطار",
+  "@iftarTime": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lastTenNights": "العشر الأواخر",
+  "@lastTenNights": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lastTenNightsDesc": "تذكيرات مكثفة لليالي الوتر",
+  "@lastTenNightsDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "timeForSuhoor": "حان وقت السحور",
+  "@timeForSuhoor": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "prepareForIftar": "استعد للإفطار",
+  "@prepareForIftar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "completed": "مكتمل",
+  "@completed": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "missedDay": "يوم فائت",
+  "@missedDay": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fastedDay": "تم صيامه",
+  "@fastedDay": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "khatmas": "ختمة",
+  "@khatmas": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "days": "أيام",
+  "@days": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hijri": "هـ",
+  "@hijri": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reset": "إعادة تعيين",
+  "@reset": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fastingReminder": "تذكير الصيام",
+  "@fastingReminder": {
+    "type": "text",
+    "placeholders": {}
   }
 }

@@ -1,19 +1,42 @@
 import 'dart:convert';
+import 'dart:developer';
+import 'dart:io' show Platform;
 
+import 'package:adhan/adhan.dart' show DateComponents, PrayerTimes;
 import 'package:almasjid/core/utils/constants/extensions/convert_number_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_rounded_progress_bar/flutter_rounded_progress_bar.dart';
 import 'package:flutter_rounded_progress_bar/rounded_progress_bar_style.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:hijri_date/hijri_date.dart';
+import 'package:intl/intl.dart' as intl;
+import 'package:solar_icons/solar_icons.dart';
 
 import '../../../core/widgets/reactive_number_text.dart';
+import '../../core/services/notifications_helper.dart';
+import '../../core/utils/constants/extensions/bottom_sheet_extension.dart';
+import '../../core/utils/constants/extensions/extensions.dart';
+import '../../core/utils/constants/extensions/svg_extensions.dart';
+import '../../core/utils/constants/extensions/text_span_extension.dart';
+import '../../core/utils/constants/lottie.dart';
+import '../../core/widgets/custom_switch_widget.dart';
+import '../prayers/prayers.dart';
 
 part 'controller/event_controller.dart';
+part 'controller/ramadan_controller.dart';
+part 'data/lists/month_hadiths_list.dart';
 part 'data/model/event_model.dart';
+part 'data/model/qada_model.dart';
+part 'data/model/quran_tracker_model.dart';
+part 'screen/ramadan_screen.dart';
+part 'widgets/all_calculating_events_widget.dart';
 part 'widgets/calculating_date_events_widget.dart';
-part 'widgets/calendar_build.dart';
-part 'widgets/days_build_widget.dart';
-part 'widgets/days_name.dart';
+part 'widgets/qada_calendar_widget.dart';
+part 'widgets/qada_progress_widget.dart';
+part 'widgets/quran_tracker_widget.dart';
+part 'widgets/ramadan_notifications_settings.dart';
+part 'widgets/ramadan_timetable_widget.dart';
+part 'widgets/reminder_event_bottom_sheet.dart';

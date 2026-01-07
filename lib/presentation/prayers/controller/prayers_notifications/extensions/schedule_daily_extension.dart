@@ -180,6 +180,11 @@ extension ScheduleDailyExtension on PrayersNotificationsCtrl {
         });
       }
     }
+
+    // إعادة جدولة إشعارات الصيام (السحور/الإفطار/العشر الأواخر)
+    Future.microtask(() async {
+      await RamadanController.instance.rescheduleFastingNotifications();
+    });
   }
 
   Future<void> cancelAllPrayerNotifications() async {

@@ -1,9 +1,11 @@
 import 'dart:developer' show log;
 
 import 'package:get_storage/get_storage.dart';
+import 'package:hijri_date/hijri_date.dart';
 import 'package:latlong2/latlong.dart';
 
 import '/core/services/location/locations.dart';
+import '/core/services/notifications_helper.dart';
 // import '/core/widgets/home_widget/home_widget.dart';
 import '/core/widgets/local_notification/controller/local_notifications_controller.dart';
 import '../../presentation/prayers/prayers.dart';
@@ -103,6 +105,10 @@ class PrayerBackgroundManager {
       // Fetch new notifications
       await LocalNotificationsController.instance.fetchNewNotifications();
 
+      // جدولة تنبيهات رمضان
+      // Schedule Ramadan notifications
+      await scheduleRamadanNotificationsIfNeeded();
+
       // تحديث تاريخ آخر تشغيل للمهام اليومية
       // Update last daily task run date
       await _updateLastDailyTaskRun();
@@ -110,6 +116,73 @@ class PrayerBackgroundManager {
       log('Daily tasks completed successfully', name: _tag);
     } catch (e) {
       log('Error executing daily tasks: $e', name: _tag);
+    }
+  }
+
+  /// جدولة تنبيهات رمضان إذا كنا في رمضان
+  /// Schedule Ramadan notifications if we're in Ramadan
+  static Future<void> scheduleRamadanNotificationsIfNeeded() async {
+    try {
+      final storage = GetStorage();
+      final suhoorEnabled =
+          storage.read('ramadan_suhoor_notification') ?? false;
+      final iftarEnabled = storage.read('ramadan_iftar_notification') ?? false;
+
+      if (!suhoorEnabled && !iftarEnabled) return;
+
+      // التحقق من أننا في رمضان
+      // Check if we're in Ramadan
+      final hijriNow = HijriDate.now();
+      if (hijriNow.hMonth != 9) return;
+
+      log('Scheduling Ramadan notifications...', name: _tag);
+
+      final prayerTimes = AdhanController.instance.state.prayerTimes;
+      if (prayerTimes == null) return;
+
+      // تنبيه السحور - قبل الفجر
+      // Suhoor notification - before Fajr
+      if (suhoorEnabled) {
+        final suhoorMinutes = storage.read('ramadan_suhoor_minutes') ?? 60;
+        final suhoorTime =
+            prayerTimes.fajr.subtract(Duration(minutes: suhoorMinutes));
+
+        if (suhoorTime.isAfter(DateTime.now())) {
+          await NotifyHelper().scheduledNotification(
+            reminderId: 1000,
+            title: 'تذكير السحور',
+            summary: 'رمضان',
+            body: 'حان وقت السحور - تبقى $suhoorMinutes دقيقة على أذان الفجر',
+            isRepeats: false,
+            time: suhoorTime,
+            payload: {'sound_type': 'bell'},
+          );
+          log('Suhoor notification scheduled for $suhoorTime', name: _tag);
+        }
+      }
+
+      // تنبيه الإفطار - قبل المغرب
+      // Iftar notification - before Maghrib
+      if (iftarEnabled) {
+        final iftarMinutes = storage.read('ramadan_iftar_minutes') ?? 30;
+        final iftarTime =
+            prayerTimes.maghrib.subtract(Duration(minutes: iftarMinutes));
+
+        if (iftarTime.isAfter(DateTime.now())) {
+          await NotifyHelper().scheduledNotification(
+            reminderId: 1001,
+            title: 'تذكير الإفطار',
+            summary: 'رمضان',
+            body: 'استعد للإفطار - تبقى $iftarMinutes دقيقة على أذان المغرب',
+            isRepeats: false,
+            time: iftarTime,
+            payload: {'sound_type': 'bell'},
+          );
+          log('Iftar notification scheduled for $iftarTime', name: _tag);
+        }
+      }
+    } catch (e) {
+      log('Error scheduling Ramadan notifications: $e', name: _tag);
     }
   }
 

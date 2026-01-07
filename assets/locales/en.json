@@ -628,5 +628,133 @@
   "@skip": {
     "type": "text",
     "placeholders": {}
+  },
+  "qadaDays": "Qada Days",
+  "@qadaDays": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tapToSelectMissedDays": "Tap on the days you missed to add them to Qada",
+  "@tapToSelectMissedDays": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "markAsFasted": "Mark as Fasted",
+  "@markAsFasted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "markDayAsFastedConfirm": "Do you want to mark day as fasted",
+  "@markDayAsFastedConfirm": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "confirm": "Confirm",
+  "@confirm": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "totalMissedDays": "Total Missed Days",
+  "@totalMissedDays": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fastedDays": "Fasted Days",
+  "@fastedDays": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "remainingQada": "Remaining Qada",
+  "@remainingQada": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noMissedDays": "No Qada Days",
+  "@noMissedDays": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tapCalendarToAddMissedDays": "Tap the calendar to add missed days",
+  "@tapCalendarToAddMissedDays": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "qadaSection": "Qada Section",
+  "@qadaSection": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notificationsSection": "Notifications",
+  "@notificationsSection": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "quranSection": "Quran Khatma",
+  "@quranSection": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sadaqahSection": "Sadaqah",
+  "@sadaqahSection": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "zakatSection": "Zakat Al-Fitr",
+  "@zakatSection": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "timetableSection": "Ramadan Timetable",
+  "@timetableSection": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "quranTracker": "Khatma Tracker",
+  "completedJuz": "Completed Juz",
+  "juz": "Juz",
+  "sadaqahTracker": "Sadaqah Tracker",
+  "totalSadaqah": "Total Sadaqah",
+  "sadaqahDays": "Sadaqah Days",
+  "addSadaqah": "Add Sadaqah",
+  "recentSadaqah": "Recent Sadaqah",
+  "amount": "Amount",
+  "note": "Note",
+  "optional": "Optional",
+  "add": "Add",
+  "ramadanTimetable": "Ramadan Timetable",
+  "day": "Day",
+  "zakatCalculator": "Zakat Al-Fitr Calculator",
+  "familyMembers": "Family Members",
+  "pricePerPerson": "Price Per Person",
+  "enterAmount": "Enter Amount",
+  "totalZakat": "Total Zakat",
+  "zakatNote": "Zakat Al-Fitr is obligatory for every Muslim who has food for the day. It should be given before Eid prayer.",
+  "ramadanNotifications": "Ramadan Notifications",
+  "suhoorReminder": "Suhoor Reminder",
+  "iftarReminder": "Iftar Reminder",
+  "beforeFajr": "Before Fajr by",
+  "beforeMaghrib": "Before Maghrib by",
+  "minutes": "minutes",
+  "suhoorTime": "Suhoor Reminder Time",
+  "iftarTime": "Iftar Reminder Time",
+  "lastTenNights": "Last Ten Nights",
+  "lastTenNightsDesc": "Intensive reminders for odd nights",
+  "timeForSuhoor": "Time for Suhoor",
+  "prepareForIftar": "Prepare for Iftar",
+  "completed": "Completed",
+  "missedDay": "Missed",
+  "fastedDay": "Fasted",
+  "khatmas": "Khatma",
+  "days": "days",
+  "hijri": "H",
+  "reset": "Reset",
+  "@reset": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fastingReminder": "Fasting Reminder",
+  "@fastingReminder": {
+    "type": "text",
+    "placeholders": {}
   }
 }

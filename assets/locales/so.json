@@ -628,5 +628,15 @@
   "@skip": {
     "type": "text",
     "placeholders": {}
+  },
+  "reset": "Dib u deji",
+  "@reset": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fastingReminder": "Xusuusin Soon",
+  "@fastingReminder": {
+    "type": "text",
+    "placeholders": {}
   }
 }

@@ -41,10 +41,6 @@ class EventController extends GetxController {
         index + 1,
         1,
       );
-      // Ensure lengthOfMonth is initialized
-      // حساب بداية اليوم (أول يوم في الشهر)
-      hijri.wkDay = calculateFirstDayOfMonth(index + 1, selectedDate.hYear);
-
       hijri.lengthOfMonth = hijri.getDaysInMonth(hijri.hYear, hijri.hMonth);
       return hijri;
     });
@@ -68,45 +64,18 @@ class EventController extends GetxController {
 
     hijriNow = HijriDate.fromHijri(adjustedYear, adjustedMonth, adjustedDay);
     hijriNow.lengthOfMonth =
-        hijriNow.getDaysInMonth(hijriNow.hYear, hijriNow.hMonth) - 1;
+        hijriNow.getDaysInMonth(hijriNow.hYear, hijriNow.hMonth);
 
     startYear = hijriNow.hYear - 3;
     endYear = hijriNow.hYear + 3;
   }
 
-  int calculateFirstDayOfMonth(int hMonth, int hYear) {
-    // الحصول على اليوم الأخير من الشهر السابق
-    var previousMonth = hMonth - 1 == 0 ? 12 : hMonth - 1;
-    var previousYear = hMonth - 1 == 0 ? hYear - 1 : hYear;
-
-    var lastDayOfPreviousMonth =
-        HijriDate().getDaysInMonth(previousYear, previousMonth);
-
-    // اليوم الذي ينتهي به الشهر السابق
-    var lastDayWeekday = HijriDate.fromHijri(
-      previousYear,
-      previousMonth,
-      lastDayOfPreviousMonth,
-    ).weekDay();
-
-    // حساب اليوم الأول من الشهر الجديد
-    return (lastDayWeekday + 1) % 7; // اليوم الذي يلي اليوم الأخير
-  }
-
   int get getLengthOfMonth {
-    if (hijriNow.hMonth == 6) {
-      return hijriNow.lengthOfMonth - 1;
-    } else {
-      return hijriNow.lengthOfMonth;
-    }
+    return hijriNow.lengthOfMonth;
   }
 
   int getDaysInMonth(HijriDate hijri, int hYear, int hMonth) {
-    if (hijriNow.hMonth == 6) {
-      return hijri.getDaysInMonth(hYear, hMonth) - 1;
-    } else {
-      return hijri.getDaysInMonth(hYear, hMonth);
-    }
+    return hijri.getDaysInMonth(hYear, hMonth);
   }
 
   bool get isNewHadith =>
@@ -120,12 +89,6 @@ class EventController extends GetxController {
     }
     return false.obs;
   }
-
-  RxBool isCurrentDay(HijriDate month, int dayOffset) =>
-      (month.hYear == hijriNow.hYear &&
-              month.hMonth == hijriNow.hMonth &&
-              dayOffset == hijriNow.hDay)
-          .obs;
 
   Event? getIsReminder(List<int> months, int days) {
     return events.firstWhere(
@@ -144,24 +107,6 @@ class EventController extends GetxController {
         svgPath: '',
       ),
     );
-  }
-
-  Color getDayColor(bool isCurrentDay, List<int> months, int days) {
-    if (isCurrentDay) {
-      return Get.context!.theme.colorScheme.surface;
-    }
-
-    final reminder = getIsReminder(months, days);
-
-    if (!isEvent(months, days).value) {
-      return Get.context!.theme.colorScheme.primary.withValues(alpha: .1);
-    } else if (reminder != null && reminder.isReminder) {
-      return Get.context!.theme.colorScheme.surface.withValues(alpha: .15);
-    } else if (reminder != null && !reminder.isReminder) {
-      return Get.context!.theme.colorScheme.primary.withValues(alpha: .4);
-    } else {
-      return Colors.transparent;
-    }
   }
 
   String titleString(int id, int month) {
@@ -218,21 +163,21 @@ class EventController extends GetxController {
       if (event.month == hijriNow.hMonth &&
           event.day.contains(hijriNow.hDay) &&
           isTrue) {
-        // String hadithText = event.hadith.map((h) => h.hadith).join('\n\n');
-        // String bookInfo = event.hadith.map((h) => h.bookInfo).join('\n\n');
+        String hadithText = event.hadith.map((h) => h.hadith).join('\n\n');
+        String bookInfo = event.hadith.map((h) => h.bookInfo).join('\n\n');
 
         await Future.delayed(const Duration(seconds: 2));
-        // customBottomSheet(
-        //     child: ReminderEventBottomSheet(
-        //   lottieFile: event.lottiePath,
-        //   title: event.title.tr,
-        //   hadith: hadithText,
-        //   bookInfo: bookInfo,
-        //   titleString: titleString(event.id, event.month),
-        //   svgPath: event.svgPath,
-        //   day: hijriNow.hDay,
-        //   month: event.month,
-        // ));
+        customBottomSheet(
+            child: ReminderEventBottomSheet(
+          lottieFile: event.lottiePath,
+          title: event.title.tr,
+          hadith: hadithText,
+          bookInfo: bookInfo,
+          titleString: titleString(event.id, event.month),
+          svgPath: event.svgPath,
+          day: hijriNow.hDay,
+          month: event.month,
+        ));
         box.write(event.title, false);
       }
       bool notSameDay = event.day.contains(hijriNow.hDay);
@@ -244,9 +189,9 @@ class EventController extends GetxController {
 
   int calculate(int year, int month, int day) {
     // حساب الأيام المتبقية للمناسبة مع إعادة التعيين للسنة القادمة - Calculate remaining days for the event with reset to next year
-    HijriDate hijriDate = HijriDate();
+    HijriDate hijriCalendar = HijriDate();
     DateTime start = DateTime.now().add(Duration(days: adjustHijriDays.value));
-    DateTime end = hijriDate.hijriToGregorian(year, month, day);
+    DateTime end = hijriCalendar.hijriToGregorian(year, month, day);
 
     if (!start.isAfter(end)) {
       // إذا كان تاريخ المناسبة لم يحن بعد - If the event date hasn't arrived yet
@@ -257,7 +202,8 @@ class EventController extends GetxController {
 
       if (daysPassed > 4) {
         // احسب المناسبة للسنة الهجرية القادمة - Calculate the event for the next Hijri year
-        DateTime nextYearEnd = hijriDate.hijriToGregorian(year + 1, month, day);
+        DateTime nextYearEnd =
+            hijriCalendar.hijriToGregorian(year + 1, month, day);
         return DateTimeRange(start: start, end: nextYearEnd).duration.inDays;
       } else {
         // إذا مضى 4 أيام أو أقل، أظهر أن المناسبة قد مضت - If 4 days or less have passed, show that the event has passed
@@ -287,19 +233,6 @@ class EventController extends GetxController {
     super.onClose();
   }
 
-  String getWeekdayFullName(int index) {
-    final weekdays = [
-      'SundayFullName',
-      'MondayFullName',
-      'TuesdayFullName',
-      'WednesdayFullName',
-      'ThursdayFullName',
-      'FridayFullName',
-      'SaturdayFullName',
-    ];
-    return weekdays[index].tr;
-  }
-
   String getWeekdayShortName(int index) {
     final weekdays = [
       'Sunday',
@@ -311,46 +244,6 @@ class EventController extends GetxController {
       'Saturday',
     ];
     return weekdays[index].tr;
-  }
-
-  void onMonthChanged(int month) {
-    selectedDate = HijriDate()
-      ..hYear = selectedDate.hYear
-      ..hMonth = month + 1
-      ..hDay = selectedDate.hDay;
-    update();
-  }
-
-  void onYearChanged(int year) {
-    selectedDate = HijriDate()
-      ..hYear = year
-      ..hMonth = selectedDate.hMonth
-      ..hDay = selectedDate.hDay;
-    initializeMonths();
-    update();
-  }
-
-  void showEvent(int day, int month) {
-    for (Event event in events) {
-      if (event.month == month && event.day.contains(day)) {
-        // String hadithText = event.hadith.map((h) => h.hadith).join('\n\n');
-        // String bookInfo = event.hadith.map((h) => h.bookInfo).join('\n\n');
-
-        // customBottomSheet(
-        //   textTitle: 'events',
-        //   child: ReminderEventBottomSheet(
-        //     lottieFile: event.lottiePath,
-        //     title: event.title.tr,
-        //     hadith: hadithText,
-        //     bookInfo: bookInfo,
-        //     titleString: titleString(event.id, event.month),
-        //     svgPath: event.svgPath,
-        //     day: day,
-        //     month: month,
-        //   ),
-        // );
-      }
-    }
   }
 
   void increaseDay() {
@@ -377,10 +270,10 @@ class EventController extends GetxController {
 
   // حساب السنة المناسبة للمناسبة (الحالية أو القادمة) - Calculate appropriate year for the event (current or next)
   int getEventYear(int month, int day) {
-    HijriDate hijriDate = HijriDate();
+    HijriDate hijriCalendar = HijriDate();
     DateTime start = DateTime.now().add(Duration(days: adjustHijriDays.value));
     DateTime currentYearEnd =
-        hijriDate.hijriToGregorian(hijriNow.hYear, month, day);
+        hijriCalendar.hijriToGregorian(hijriNow.hYear, month, day);
 
     if (!start.isAfter(currentYearEnd)) {
       // إذا كان تاريخ المناسبة لم يحن بعد في السنة الحالية - If the event date hasn't arrived yet in current year

@@ -628,5 +628,15 @@
   "@skip": {
     "type": "text",
     "placeholders": {}
+  },
+  "reset": "ڕیسێت کردنەوە",
+  "@reset": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fastingReminder": "بیرهێنانەوەی ڕۆژوو",
+  "@fastingReminder": {
+    "type": "text",
+    "placeholders": {}
   }
 }

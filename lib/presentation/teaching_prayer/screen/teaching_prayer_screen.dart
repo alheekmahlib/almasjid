@@ -84,6 +84,7 @@ class TeachingPrayerScreen extends StatelessWidget {
                           ],
                         ),
                         const Gap(8),
+                        const SunnahsAndHeresies(),
                         ListView.builder(
                           shrinkWrap: true,
                           physics: const BouncingScrollPhysics(),

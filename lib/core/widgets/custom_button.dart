@@ -123,7 +123,7 @@ class CustomButton extends StatelessWidget {
 
   Widget _svgBuildWithCustomColor(BuildContext context) {
     return customSvgWithCustomColor(
-      svgPath ?? SvgPath.svgHomePrayerFill,
+      svgPath ?? SvgPath.svgAlert,
       width: iconSize ?? 40,
       color: svgColor ?? context.theme.primaryColorLight,
     );
@@ -131,7 +131,7 @@ class CustomButton extends StatelessWidget {
 
   Widget _svgBuild(BuildContext context) {
     return customSvgWithColor(
-      svgPath ?? SvgPath.svgHomePrayerFill,
+      svgPath ?? SvgPath.svgAlert,
       width: iconSize ?? 40,
       color: svgColor ?? context.theme.colorScheme.secondaryContainer,
     );

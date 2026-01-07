@@ -15,6 +15,8 @@ class CustomSwitchWidget<T extends GetxController> extends StatelessWidget {
   final double? topMargin;
   final double? endMargin;
   final double? bottomMargin;
+  final Widget? titleWidget;
+  final Color? continerColor;
   const CustomSwitchWidget({
     super.key,
     required this.value,
@@ -30,6 +32,8 @@ class CustomSwitchWidget<T extends GetxController> extends StatelessWidget {
     this.topMargin = 1.0,
     this.endMargin = 0.0,
     this.bottomMargin = 1.0,
+    this.titleWidget,
+    this.continerColor,
   });
 
   @override
@@ -41,7 +45,8 @@ class CustomSwitchWidget<T extends GetxController> extends StatelessWidget {
         padding: EdgeInsetsDirectional.fromSTEB(startPadding ?? 0.0,
             topPadding ?? 0.0, endPadding ?? 0.0, bottomPadding ?? 0.0),
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.surface.withValues(alpha: .3),
+          color: continerColor ??
+              Theme.of(context).colorScheme.surface.withValues(alpha: .3),
           borderRadius: BorderRadius.circular(8),
         ),
         child: Row(
@@ -50,19 +55,20 @@ class CustomSwitchWidget<T extends GetxController> extends StatelessWidget {
             Expanded(
               child: Align(
                 alignment: AlignmentDirectional.centerStart,
-                child: FittedBox(
-                  fit: BoxFit.scaleDown,
-                  child: Text(
-                    title.tr,
-                    style: TextStyle(
-                      fontFamily: 'cairo',
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      color: context.theme.colorScheme.inversePrimary
-                          .withValues(alpha: .7),
+                child: titleWidget ??
+                    FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Text(
+                        title.tr,
+                        style: TextStyle(
+                          fontFamily: 'cairo',
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: context.theme.colorScheme.inversePrimary
+                              .withValues(alpha: .7),
+                        ),
+                      ),
                     ),
-                  ),
-                ),
               ),
             ),
             GetBuilder<T>(

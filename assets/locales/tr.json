@@ -628,5 +628,15 @@
   "@skip": {
     "type": "text",
     "placeholders": {}
+  },
+  "reset": "Sıfırla",
+  "@reset": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fastingReminder": "Oruc Hatırlatması",
+  "@fastingReminder": {
+    "type": "text",
+    "placeholders": {}
   }
 }

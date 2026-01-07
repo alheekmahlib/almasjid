@@ -24,87 +24,70 @@ extension BottomSheetExtension on void {
             maxWidth:
                 Get.context!.customOrientation(Get.width, Get.width * .5)),
         builder: (context) {
-          return Padding(
-            padding: const EdgeInsets.only(right: 8.0, left: 8.0),
-            child: Container(
-              padding: const EdgeInsets.only(top: 8.0, right: 8.0, left: 8.0),
-              decoration: BoxDecoration(
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(16),
-                  topRight: Radius.circular(16),
-                ),
-                border: Border.all(
-                  width: 1,
-                  color: Theme.of(Get.context!).colorScheme.primary,
-                ),
+          return Container(
+            padding: const EdgeInsets.only(bottom: 16.0),
+            decoration: BoxDecoration(
+              color:
+                  containerColor ?? Theme.of(Get.context!).colorScheme.primary,
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(16),
+                topRight: Radius.circular(16),
               ),
-              child: Container(
-                padding: const EdgeInsets.only(bottom: 16.0),
-                decoration: BoxDecoration(
-                  color: containerColor ??
-                      Theme.of(Get.context!).colorScheme.primary,
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(16),
-                    topRight: Radius.circular(16),
-                  ),
-                ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Stack(
+                  alignment: Alignment.center,
                   children: [
-                    Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        const SizedBox().customSvgWithColor(
-                          SvgPath.svgCloseCarve,
-                          width: 120,
-                          color:
-                              Theme.of(Get.context!).colorScheme.inversePrimary,
-                        ),
-                        Container(
-                          width: 70,
-                          height: 4,
-                          decoration: BoxDecoration(
-                            color: Theme.of(Get.context!)
-                                .colorScheme
-                                .primaryContainer,
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                        )
-                      ],
-                    ),
-                    const Gap(8),
-                    Get.context!.hDivider(
+                    const SizedBox().customSvgWithColor(
+                      SvgPath.svgCloseCarve,
+                      width: 120,
                       color: Theme.of(Get.context!).colorScheme.inversePrimary,
-                      height: 1,
+                    ),
+                    Container(
                       width: 70,
-                    ),
-                    titleChild ??
-                        Text(
-                          textTitle?.tr ?? '',
-                          style: TextStyle(
-                            color: Theme.of(Get.context!)
-                                .colorScheme
-                                .inversePrimary,
-                            fontFamily: 'cairo',
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                          ),
-                        ),
-                    const Gap(8),
-                    Flexible(
-                      child: SingleChildScrollView(
-                        physics: const ClampingScrollPhysics(),
-                        child: Column(
-                          children: [
-                            child,
-                          ],
-                        ),
+                      height: 4,
+                      decoration: BoxDecoration(
+                        color:
+                            Theme.of(Get.context!).colorScheme.primaryContainer,
+                        borderRadius: BorderRadius.circular(8),
                       ),
-                    ),
-                    const Gap(32),
+                    )
                   ],
                 ),
-              ),
+                const Gap(8),
+                Get.context!.hDivider(
+                  color: Theme.of(Get.context!).colorScheme.inversePrimary,
+                  height: 1,
+                  width: 70,
+                ),
+                if (textTitle != null || titleChild != null) ...[
+                  titleChild ??
+                      Text(
+                        textTitle?.tr ?? '',
+                        style: TextStyle(
+                          color:
+                              Theme.of(Get.context!).colorScheme.inversePrimary,
+                          fontFamily: 'cairo',
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                        ),
+                      ),
+                ],
+                const Gap(8),
+                Flexible(
+                  child: SingleChildScrollView(
+                    physics: const ClampingScrollPhysics(),
+                    child: Column(
+                      children: [
+                        child,
+                      ],
+                    ),
+                  ),
+                ),
+                const Gap(32),
+              ],
             ),
           );
         });

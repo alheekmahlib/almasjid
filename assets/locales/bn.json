@@ -628,5 +628,15 @@
   "@skip": {
     "type": "text",
     "placeholders": {}
+  },
+  "reset": "রিসেট করুন",
+  "@reset": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fastingReminder": "রোজার তাগাদা",
+  "@fastingReminder": {
+    "type": "text",
+    "placeholders": {}
   }
 }

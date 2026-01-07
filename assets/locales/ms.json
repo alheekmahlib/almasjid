@@ -628,5 +628,15 @@
   "@skip": {
     "type": "text",
     "placeholders": {}
+  },
+  "reset": "Tetap Semula",
+  "@reset": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fastingReminder": "Peringatan Puasa",
+  "@fastingReminder": {
+    "type": "text",
+    "placeholders": {}
   }
 }

@@ -628,5 +628,15 @@
   "@skip": {
     "type": "text",
     "placeholders": {}
+  },
+  "reset": "I-reset",
+  "@reset": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fastingReminder": "Paalala sa Pag-aayuno",
+  "@fastingReminder": {
+    "type": "text",
+    "placeholders": {}
   }
 }
