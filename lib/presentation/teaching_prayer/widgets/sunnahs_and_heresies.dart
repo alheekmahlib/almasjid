@@ -24,30 +24,38 @@ class SunnahsAndHeresies extends StatelessWidget {
     final heresies = ctrl.getHeresiesForMonth(currentMonth);
     final lang = ctrl.currentLang;
 
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 16.0),
-      decoration: BoxDecoration(
-        color: context.theme.colorScheme.surface.withValues(alpha: .06),
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: context.theme.colorScheme.surface.withValues(alpha: .2),
-        ),
-      ),
-      child: Column(
-        children: [
-          CustomOpenContainer(
-            closedColor: Colors.transparent,
-            closedRadius: 16,
+    return Column(
+      children: [
+        CustomOpenContainer(
+          closedColor: Colors.transparent,
+          closedRadius: 16,
 
-            // حجم المفتوح
-            openWidth: Get.width,
-            openHeight: Get.height,
-            openColor: context.theme.colorScheme.primaryContainer,
-            openRadius: 8,
-            withBoxShadow: false,
-            closedChild: Container(
+          // حجم المفتوح
+          openWidth: Get.width,
+          openHeight: Get.height,
+          openColor: context.theme.colorScheme.primaryContainer,
+          openRadius: 8,
+          withBoxShadow: false,
+          closedChild: Container(
+            margin: const EdgeInsets.symmetric(vertical: 3.0, horizontal: 3.0),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 12.0, vertical: 6.0),
+            decoration: BoxDecoration(
+              color: context.theme.colorScheme.surface.withValues(alpha: .08),
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(
+                color: context.theme.colorScheme.surface.withValues(alpha: .15),
+              ),
+            ),
+            child: customSvgWithColor(
+              'assets/svg/hijri/${monthData.number}.svg',
+              height: 60,
+              color: context.theme.colorScheme.surface,
+            ),
+          ),
+          openChild: Container(
               margin:
-                  const EdgeInsets.symmetric(vertical: 3.0, horizontal: 3.0),
+                  const EdgeInsets.symmetric(vertical: 3.0, horizontal: 8.0),
               padding:
                   const EdgeInsets.symmetric(horizontal: 12.0, vertical: 6.0),
               decoration: BoxDecoration(
@@ -58,30 +66,19 @@ class SunnahsAndHeresies extends StatelessWidget {
                       context.theme.colorScheme.surface.withValues(alpha: .15),
                 ),
               ),
-              child: customSvgWithColor(
-                'assets/svg/hijri/${monthData.number}.svg',
-                height: 60,
-                color: context.theme.colorScheme.surface,
-              ),
+              child:
+                  SingleChildScrollView(child: _HadithCard(hadith: hadith!))),
+        ),
+        Container(
+          margin: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 16.0),
+          decoration: BoxDecoration(
+            color: context.theme.colorScheme.surface.withValues(alpha: .06),
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(
+              color: context.theme.colorScheme.surface.withValues(alpha: .2),
             ),
-            openChild: Container(
-                margin:
-                    const EdgeInsets.symmetric(vertical: 3.0, horizontal: 8.0),
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 12.0, vertical: 6.0),
-                decoration: BoxDecoration(
-                  color:
-                      context.theme.colorScheme.surface.withValues(alpha: .08),
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(
-                    color: context.theme.colorScheme.surface
-                        .withValues(alpha: .15),
-                  ),
-                ),
-                child:
-                    SingleChildScrollView(child: _HadithCard(hadith: hadith!))),
           ),
-          ListView(
+          child: ListView(
             shrinkWrap: true,
             physics: const BouncingScrollPhysics(),
             padding:
@@ -92,7 +89,6 @@ class SunnahsAndHeresies extends StatelessWidget {
 
               // عرض السنن
               if (sunnahs.isNotEmpty) ...[
-                const Gap(12),
                 _CategoryHeader(
                   title: _getLocalizedText('sunnahs', lang),
                   icon: Icons.check_circle_outline,
@@ -104,11 +100,11 @@ class SunnahsAndHeresies extends StatelessWidget {
                   lang: lang,
                   isSunnah: true,
                 ),
+                const Gap(8),
               ],
 
               // عرض البدع
               if (heresies.isNotEmpty) ...[
-                const Gap(16),
                 _CategoryHeader(
                   title: _getLocalizedText('heresies', lang),
                   icon: Icons.warning_amber_rounded,
@@ -122,11 +118,11 @@ class SunnahsAndHeresies extends StatelessWidget {
                 ),
               ],
 
-              const Gap(16),
+              const Gap(8),
             ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
@@ -267,81 +263,6 @@ class _ItemsGrid extends StatelessWidget {
           // isSunnah: isSunnah,
         );
       }).toList(),
-    );
-  }
-}
-
-/// عنصر واحد (سُنّة أو بدعة)
-class _ItemTile extends StatelessWidget {
-  final String name;
-  final String description;
-  final bool isSunnah;
-
-  const _ItemTile({
-    required this.name,
-    required this.description,
-    required this.isSunnah,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final accentColor = isSunnah ? Colors.green : Colors.orange;
-
-    return GestureDetector(
-      onTap: () => _showDetails(context),
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
-        decoration: BoxDecoration(
-          color: accentColor.withValues(alpha: .08),
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(
-            color: accentColor.withValues(alpha: .25),
-          ),
-        ),
-        child: Text(
-          name,
-          style: TextStyle(
-            color:
-                context.theme.colorScheme.inversePrimary.withValues(alpha: .9),
-            fontWeight: FontWeight.w600,
-            fontSize: 14,
-            fontFamily: 'cairo',
-          ),
-        ),
-      ),
-    );
-  }
-
-  void _showDetails(BuildContext context) {
-    if (description.isEmpty) return;
-
-    customBottomSheet(
-      child: Container(
-        margin: const EdgeInsets.symmetric(vertical: 3.0, horizontal: 8.0),
-        padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 6.0),
-        decoration: BoxDecoration(
-          color: context.theme.colorScheme.surface.withValues(alpha: .08),
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(
-            color: context.theme.colorScheme.surface.withValues(alpha: .15),
-          ),
-        ),
-        child: ArabicJustifiedRichText(
-          textSpan: TextSpan(
-            children: description.buildTextString(),
-            style: TextStyle(
-              color: context.theme.colorScheme.inversePrimary
-                  .withValues(alpha: .9),
-              fontSize: 15,
-              fontFamily: 'cairo',
-              height: 1.7,
-            ),
-          ),
-          textAlign: TextAlign.justify,
-        ),
-      ),
-      textTitle: name,
-      containerColor: context.theme.colorScheme.primaryContainer,
     );
   }
 }

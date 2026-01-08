@@ -38,5 +38,4 @@ part 'widgets/qada_calendar_widget.dart';
 part 'widgets/qada_progress_widget.dart';
 part 'widgets/quran_tracker_widget.dart';
 part 'widgets/ramadan_notifications_settings.dart';
-part 'widgets/ramadan_timetable_widget.dart';
 part 'widgets/reminder_event_bottom_sheet.dart';

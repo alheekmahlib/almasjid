@@ -377,29 +377,6 @@ class RamadanController extends GetxController {
     log('Fasting notifications rescheduled', name: 'RamadanController');
   }
 
-  // ==================== الإمساكية ====================
-
-  List<Map<String, dynamic>> getRamadanTimetable() {
-    final dateFormat = intl.DateFormat('HH:mm');
-
-    return List.generate(ramadanDaysCount, (index) {
-      final day = index + 1;
-      final gregorianDate = HijriDate.fromHijri(hijriNow.hYear, 9, day)
-          .hijriToGregorian(hijriNow.hYear, 9, day);
-      final prayerTimes =
-          MonthlyPrayerCache.getPrayerTimesForDate(gregorianDate);
-
-      return {
-        'day': day,
-        'fajr':
-            prayerTimes != null ? dateFormat.format(prayerTimes.fajr) : '--:--',
-        'maghrib': prayerTimes != null
-            ? dateFormat.format(prayerTimes.maghrib)
-            : '--:--',
-      };
-    });
-  }
-
   // ==================== المساعدات ====================
 
   bool get isRamadan => hijriNow.hMonth == 9;

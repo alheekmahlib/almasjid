@@ -9,7 +9,7 @@ class QadaCalendarWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final ctrl = RamadanController.instance;
     final isDark = context.theme.brightness == Brightness.dark;
-    final weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    final weekDays = ['Fri', 'Sat', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu'];
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -58,6 +58,16 @@ class QadaCalendarWidget extends StatelessWidget {
           final __ = ctrl.fastedDays.length;
           final daysInMonth = ctrl.ramadanDaysCount;
 
+          // حساب يوم الأسبوع لأول يوم رمضان (الجمعة = 5، السبت = 6، الأحد = 0...)
+          final firstDayOfRamadan =
+              HijriDate.fromHijri(ctrl.hijriNow.hYear, 9, 1)
+                  .hijriToGregorian(ctrl.hijriNow.hYear, 9, 1);
+          final firstWeekday = firstDayOfRamadan.weekday; // 1=Mon, 7=Sun
+          // تحويل ليبدأ من الجمعة: الجمعة=0, السبت=1, الأحد=2, الاثنين=3, الثلاثاء=4, الأربعاء=5, الخميس=6
+          final startOffset =
+              (firstWeekday + 1) % 7; // +1 لأن الجمعة=5 في Dart تصبح 0
+          final totalCells = startOffset + daysInMonth;
+
           return GridView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
@@ -66,9 +76,14 @@ class QadaCalendarWidget extends StatelessWidget {
               mainAxisSpacing: 6,
               crossAxisSpacing: 6,
             ),
-            itemCount: daysInMonth,
+            itemCount: totalCells,
             itemBuilder: (context, index) {
-              final day = index + 1;
+              // إذا كان Index أقل من startOffset، عرض خلية فارغة
+              if (index < startOffset) {
+                return const SizedBox.shrink();
+              }
+
+              final day = index - startOffset + 1;
               final isMissed = ctrl.isDayMissed(day);
               final isFasted = ctrl.isDayFasted(day);
 
