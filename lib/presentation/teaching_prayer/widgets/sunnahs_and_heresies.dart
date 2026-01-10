@@ -19,109 +19,51 @@ class SunnahsAndHeresies extends StatelessWidget {
       return const SizedBox.shrink();
     }
 
-    final hadith = ctrl.getHadithForMonth(currentMonth);
     final sunnahs = ctrl.getSunnahsForMonth(currentMonth);
     final heresies = ctrl.getHeresiesForMonth(currentMonth);
     final lang = ctrl.currentLang;
 
-    return Column(
+    return ListView(
+      shrinkWrap: true,
+      physics: const BouncingScrollPhysics(),
       children: [
-        CustomOpenContainer(
-          closedColor: Colors.transparent,
-          closedRadius: 16,
+        // عرض الحديث/الآية إن وُجد
+        // if (hadith != null) _HadithCard(hadith: hadith),
 
-          // حجم المفتوح
-          openWidth: Get.width,
-          openHeight: Get.height,
-          openColor: context.theme.colorScheme.primaryContainer,
-          openRadius: 8,
-          withBoxShadow: false,
-          closedChild: Container(
-            margin: const EdgeInsets.symmetric(vertical: 3.0, horizontal: 3.0),
-            padding:
-                const EdgeInsets.symmetric(horizontal: 12.0, vertical: 6.0),
-            decoration: BoxDecoration(
-              color: context.theme.colorScheme.surface.withValues(alpha: .08),
-              borderRadius: BorderRadius.circular(12),
-              border: Border.all(
-                color: context.theme.colorScheme.surface.withValues(alpha: .15),
-              ),
-            ),
-            child: customSvgWithColor(
-              'assets/svg/hijri/${monthData.number}.svg',
-              height: 60,
-              color: context.theme.colorScheme.surface,
-            ),
+        // عرض السنن
+        if (sunnahs.isNotEmpty) ...[
+          _CategoryHeader(
+            title: _getLocalizedText('sunnahs', lang),
+            icon: Icons.check_circle_outline,
+            color: Colors.green,
           ),
-          openChild: Container(
-              margin:
-                  const EdgeInsets.symmetric(vertical: 3.0, horizontal: 8.0),
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 12.0, vertical: 6.0),
-              decoration: BoxDecoration(
-                color: context.theme.colorScheme.surface.withValues(alpha: .08),
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(
-                  color:
-                      context.theme.colorScheme.surface.withValues(alpha: .15),
-                ),
-              ),
-              child:
-                  SingleChildScrollView(child: _HadithCard(hadith: hadith!))),
-        ),
-        Container(
-          margin: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 16.0),
-          decoration: BoxDecoration(
-            color: context.theme.colorScheme.surface.withValues(alpha: .06),
-            borderRadius: BorderRadius.circular(16),
-            border: Border.all(
-              color: context.theme.colorScheme.surface.withValues(alpha: .2),
-            ),
+          const Gap(8),
+          _ItemsGrid(
+            items: sunnahs,
+            lang: lang,
+            title: _getLocalizedText('sunnahs', lang),
+            isSunnah: true,
           ),
-          child: ListView(
-            shrinkWrap: true,
-            physics: const BouncingScrollPhysics(),
-            padding:
-                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-            children: [
-              // عرض الحديث/الآية إن وُجد
-              // if (hadith != null) _HadithCard(hadith: hadith),
+          const Gap(8),
+        ],
 
-              // عرض السنن
-              if (sunnahs.isNotEmpty) ...[
-                _CategoryHeader(
-                  title: _getLocalizedText('sunnahs', lang),
-                  icon: Icons.check_circle_outline,
-                  color: Colors.green,
-                ),
-                const Gap(8),
-                _ItemsGrid(
-                  items: sunnahs,
-                  lang: lang,
-                  isSunnah: true,
-                ),
-                const Gap(8),
-              ],
-
-              // عرض البدع
-              if (heresies.isNotEmpty) ...[
-                _CategoryHeader(
-                  title: _getLocalizedText('heresies', lang),
-                  icon: Icons.warning_amber_rounded,
-                  color: Colors.orange,
-                ),
-                const Gap(8),
-                _ItemsGrid(
-                  items: heresies,
-                  lang: lang,
-                  isSunnah: false,
-                ),
-              ],
-
-              const Gap(8),
-            ],
+        // عرض البدع
+        if (heresies.isNotEmpty) ...[
+          // _CategoryHeader(
+          //   title: _getLocalizedText('heresies', lang),
+          //   icon: Icons.warning_amber_rounded,
+          //   color: Colors.orange,
+          // ),
+          const Gap(8),
+          _ItemsGrid(
+            items: heresies,
+            lang: lang,
+            title: _getLocalizedText('heresies', lang),
+            isSunnah: false,
           ),
-        ),
+        ],
+
+        const Gap(8),
       ],
     );
   }
@@ -168,7 +110,7 @@ class _HadithCard extends StatelessWidget {
             children: hadith.ayahOrHadith.buildTextString(),
             style: TextStyle(
               color: context.theme.colorScheme.inversePrimary,
-              fontSize: 15,
+              fontSize: 8,
               fontFamily: 'cairo',
               height: 1.8,
             ),
@@ -230,18 +172,20 @@ class _ItemsGrid extends StatelessWidget {
   final List<dynamic> items;
   final String lang;
   final bool isSunnah;
+  final String title;
 
   const _ItemsGrid({
     required this.items,
     required this.lang,
     required this.isSunnah,
+    required this.title,
   });
 
   @override
   Widget build(BuildContext context) {
     return Wrap(
-      spacing: 6,
-      runSpacing: 6,
+      // spacing: 6,
+      // runSpacing: 6,
       children: items.map((item) {
         final name = isSunnah
             ? (item as SunnahItem).resolveName(lang)
@@ -252,11 +196,12 @@ class _ItemsGrid extends StatelessWidget {
 
         return _BranchTile(
           name: name,
-          title: name,
+          title: title,
           subtitle: description,
-          closedColor: isSunnah
-              ? Colors.green.withValues(alpha: .08)
-              : Colors.orange.withValues(alpha: .08),
+          isSunnah: isSunnah,
+          // closedColor: isSunnah
+          //     ? Colors.green.withValues(alpha: .08)
+          //     : Colors.orange.withValues(alpha: .08),
           // openColor: isSunnah
           //     ? Colors.green.withValues(alpha: .15)
           //     : Colors.orange.withValues(alpha: .08),

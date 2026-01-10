@@ -23,7 +23,7 @@ class HomeScreen extends StatelessWidget {
               child: FloatyNavBar(
                 backgroundColor:
                     context.theme.colorScheme.primary.withValues(alpha: .8),
-                shape: const SquircleShape(),
+                shape: const CircleShape(),
                 gap: 32,
                 selectedTab: controller.currentIndex,
                 tabs: NavBarTab.values

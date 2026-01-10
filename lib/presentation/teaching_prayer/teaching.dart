@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math' as math;
 
 import 'package:arabic_justified_text/arabic_justified_text.dart';
 import 'package:flutter/material.dart';
@@ -9,8 +10,12 @@ import 'package:get/get.dart';
 import '/core/utils/constants/extensions/svg_extensions.dart';
 import '/core/utils/constants/extensions/text_span_extension.dart';
 import '/core/widgets/app_bar_widget.dart';
+import '../../core/utils/constants/extensions/bottom_sheet_extension.dart';
 import '../../core/utils/constants/svg_constants.dart';
+import '../../core/widgets/floating_menu_panel/floating_menu_panel.dart';
+import '../../core/widgets/floating_menu_panel/floating_menu_panel_controller.dart';
 import '../calendar/events.dart';
+import '../prayers/prayers.dart';
 
 part 'controller/teaching_prayer_controller.dart';
 part 'data/model/sunnahs_and_heresies_model.dart';

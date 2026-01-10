@@ -4,8 +4,20 @@ class SlideCountdownWidget extends StatelessWidget {
   final double fontSize;
   final Color? color;
   final Duration? duration;
-  SlideCountdownWidget(
-      {super.key, required this.fontSize, this.color, this.duration});
+  final bool? shouldShowHours;
+  final bool? shouldShowMinutes;
+  final bool? shouldShowSeconds;
+  final double? fontHeight;
+  SlideCountdownWidget({
+    super.key,
+    required this.fontSize,
+    this.color,
+    this.duration,
+    this.shouldShowHours,
+    this.shouldShowMinutes,
+    this.shouldShowSeconds,
+    this.fontHeight,
+  });
 
   final adhanCtrl = AdhanController.instance;
 
@@ -30,6 +42,9 @@ class SlideCountdownWidget extends StatelessWidget {
           color: Colors.transparent,
         ),
         showZeroValue: true,
+        shouldShowHours: (_) => shouldShowHours ?? true,
+        shouldShowMinutes: (_) => shouldShowMinutes ?? true,
+        shouldShowSeconds: (_) => shouldShowSeconds ?? true,
         shouldShowDays: (_) => false,
         onDone: () => Get.forceAppUpdate(),
         slideDirection: SlideDirection.up,
@@ -40,7 +55,7 @@ class SlideCountdownWidget extends StatelessWidget {
           fontSize: fontSize,
           fontFamily: 'cairo',
           fontWeight: FontWeight.bold,
-          height: 1.5,
+          height: fontHeight ?? 1.5,
         ),
         style: TextStyle(
           color: color ?? Colors.white,
@@ -48,7 +63,7 @@ class SlideCountdownWidget extends StatelessWidget {
           fontFamily: 'cairo',
           fontSize: fontSize,
           fontWeight: FontWeight.bold,
-          height: 1.5,
+          height: fontHeight ?? 1.5,
         ),
       ),
     );

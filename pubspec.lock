@@ -105,6 +105,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.1.3"
+  bubble_lens:
+    dependency: "direct main"
+    description:
+      name: bubble_lens
+      sha256: "6c066e00e830a3cdb1bdfd71d602c62c0f489beb90d83ff1fced2b831783cb9a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0"
   carousel_slider_plus:
     dependency: transitive
     description:
@@ -1093,6 +1101,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.2"
+  sliding_panel_kit:
+    dependency: "direct main"
+    description:
+      name: sliding_panel_kit
+      sha256: "423d0569d915f6ca175683d0bcc5036430e96383996e8fe05e976564856b0d98"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.3.0"
   smooth_page_indicator:
     dependency: "direct main"
     description:
@@ -1462,5 +1478,5 @@ packages:
     source: hosted
     version: "3.1.3"
 sdks:
-  dart: ">=3.9.0 <4.0.0"
+  dart: ">=3.10.0 <4.0.0"
   flutter: ">=3.35.0"

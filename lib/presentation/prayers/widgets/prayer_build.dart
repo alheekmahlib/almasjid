@@ -1,27 +1,49 @@
 part of '../prayers.dart';
 
 class PrayerBuild extends StatelessWidget {
-  const PrayerBuild({super.key});
+  final bool isCurrentPrayerOnly;
+  const PrayerBuild({super.key, this.isCurrentPrayerOnly = false});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(
-          right: 8.0, left: 8.0, top: 16.0, bottom: 120.0),
+      padding: EdgeInsets.only(
+          right: 8.0,
+          left: 8.0,
+          top: 16.0,
+          bottom: isCurrentPrayerOnly ? 16.0 : 120.0),
       child: GetBuilder<AdhanController>(
         id: 'init_athan',
         builder: (adhanCtrl) => Column(
-          children: List.generate(
-            adhanCtrl.prayerNameList.length,
-            (index) {
-              final prayerList = adhanCtrl.prayerNameList.toList();
+          mainAxisSize: MainAxisSize.min,
+          children: () {
+            final prayerList = adhanCtrl.prayerNameList.toList();
+
+            final List<int> visibleIndices;
+            if (isCurrentPrayerOnly) {
+              final currentIndex = adhanCtrl.currentPrayerIndex;
+              visibleIndices =
+                  currentIndex >= 0 && currentIndex < prayerList.length
+                      ? <int>[currentIndex]
+                      : <int>[];
+            } else {
+              visibleIndices = List<int>.generate(prayerList.length, (i) => i);
+            }
+
+            return List.generate(visibleIndices.length, (i) {
+              final index = visibleIndices[i];
               final String prayerTitle = prayerList[index]['title'];
               final String prayerTime = prayerList[index]['time'];
 
               return _buildPrayerRowWithTimeline(
-                  context, index, prayerTitle, prayerTime, adhanCtrl);
-            },
-          ),
+                context,
+                index,
+                prayerTitle,
+                prayerTime,
+                adhanCtrl,
+              );
+            });
+          }(),
         ),
       ),
     );
@@ -39,36 +61,38 @@ class PrayerBuild extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           // عمود التايم لاين
-          SizedBox(
-            width: 80,
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                // الخط العلوي
-                // if (index > 0) ...[
-                Container(
-                  width: 5,
-                  decoration: BoxDecoration(
-                    color: index <= adhanCtrl.currentPrayerIndex
-                        ? Theme.of(context).colorScheme.surface
-                        : Theme.of(context)
-                            .colorScheme
-                            .surface
-                            .withValues(alpha: 0.3),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                ),
-                // ],
+          !isCurrentPrayerOnly
+              ? SizedBox(
+                  width: 80,
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      // الخط العلوي
+                      // if (index > 0) ...[
+                      Container(
+                        width: 5,
+                        decoration: BoxDecoration(
+                          color: index <= adhanCtrl.currentPrayerIndex
+                              ? Theme.of(context).colorScheme.surface
+                              : Theme.of(context)
+                                  .colorScheme
+                                  .surface
+                                  .withValues(alpha: 0.3),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
+                      // ],
 
-                // المؤشر
-                Container(
-                  margin: const EdgeInsets.symmetric(vertical: 4),
-                  child: _buildTimelineIndicator(
-                      context, index, isCurrentPrayer, isPastPrayer, adhanCtrl),
-                ),
-              ],
-            ),
-          ),
+                      // المؤشر
+                      Container(
+                        margin: const EdgeInsets.symmetric(vertical: 4),
+                        child: _buildTimelineIndicator(context, index,
+                            isCurrentPrayer, isPastPrayer, adhanCtrl),
+                      ),
+                    ],
+                  ),
+                )
+              : const SizedBox.shrink(),
           Gap(16.h),
 
           // محتوى الصلاة
@@ -222,14 +246,18 @@ Widget _prayerTimeBuild(BuildContext context, int index, String prayerTime,
 
 Widget _prayerIconBuild(BuildContext context, int index,
     AdhanController adhanCtrl, bool isCurrentPrayer,
-    {bool? isCustomColor = true}) {
+    {bool? isCustomColor = true,
+    double? newSize,
+    double? oldSize,
+    Color? color}) {
   return Icon(
     adhanCtrl.prayerNameList[index]['icon'],
-    size: isCurrentPrayer ? 28 : 16,
-    color: isCustomColor!
-        ? index == 1 || index == 2 || index == 3 || index == 4
-            ? const Color.fromARGB(255, 242, 181, 15)
-            : Theme.of(context).canvasColor
-        : Theme.of(context).canvasColor,
+    size: isCurrentPrayer ? (newSize ?? 28) : (oldSize ?? 16),
+    color: color ??
+        (isCustomColor!
+            ? index == 1 || index == 2 || index == 3 || index == 4
+                ? const Color.fromARGB(255, 242, 181, 15)
+                : Theme.of(context).canvasColor
+            : Theme.of(context).canvasColor),
   );
 }

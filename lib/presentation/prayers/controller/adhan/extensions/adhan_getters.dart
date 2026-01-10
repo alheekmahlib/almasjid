@@ -296,6 +296,40 @@ extension AdhanGetters on AdhanController {
     return segments;
   }
 
+  /// حساب قطع المؤشر (Gauge Segments) بناءً على أوقات الصلوات
+  /// Calculate gauge segments based on prayer times
+  List<Gradient> get getPrayerGradients {
+    // ألوان مختلفة لكل فترة صلاة
+    final List<Gradient> prayerColors = [
+      const RadialGradient(
+        colors: [Color(0xff000000), Color(0xff4b4c4f)],
+      ),
+      const RadialGradient(
+        colors: [Color.fromARGB(255, 235, 254, 251), Color(0xff4b4c4f)],
+      ), // الفجر إلى الشروق - أزرق داكن (فجر)
+      const RadialGradient(
+        colors: [Color(0xffB8E0EA), Color(0xff0098EE)],
+      ), // الشروق إلى الظهر - ذهبي (صباح)
+      const RadialGradient(
+        colors: [Color(0xff0098EE), Color(0xffc5deed)],
+      ), // الظهر إلى العصر - أزرق فاتح (ظهيرة)
+      const RadialGradient(
+        colors: [Color(0xfff2dfd9), Color(0xfff8a159)],
+      ), // العصر إلى المغرب - برتقالي (عصر)
+      const RadialGradient(
+        colors: [Color(0xff4b4c4f), Color(0xff000000)],
+      ), // المغرب إلى العشاء - بنفسجي (مغرب)
+      const RadialGradient(
+        colors: [Color(0xff000000), Color(0xff000000)],
+      ), // العشاء إلى منتصف الليل
+      const RadialGradient(
+        colors: [Color(0xff000000), Color(0xff000000)],
+      ), // منتصف الليل إلى الثلث الأخير
+    ];
+
+    return prayerColors;
+  }
+
   /// الحصول على اسم الفترة الحالية للصلاة
   /// Get current prayer period name
   String get getCurrentPrayerPeriodName {

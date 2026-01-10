@@ -10,6 +10,7 @@ import 'package:timezone/timezone.dart' as tz;
 
 import '/core/widgets/local_notification/controller/local_notifications_controller.dart';
 import '/presentation/controllers/settings_controller.dart';
+import '../../presentation/calendar/events.dart';
 import '../../presentation/controllers/theme_controller.dart';
 import '../../presentation/ourApp/controller/our_apps_controller.dart';
 import '../../presentation/prayers/prayers.dart';
@@ -74,6 +75,9 @@ class ServicesLocator {
 
     sl.registerLazySingleton<OurAppsController>(
         () => Get.put<OurAppsController>(OurAppsController(), permanent: true));
+
+    sl.registerLazySingleton<RamadanController>(
+        () => Get.put<RamadanController>(RamadanController(), permanent: true));
 
     Get.put(InternetConnectionService(), permanent: true);
     Get.put(InternetConnectionController(), permanent: true);

@@ -37,7 +37,6 @@ class _SectionCard extends StatelessWidget {
               children: List.generate(section.branches.length, (i) {
                 final b = section.branches[i];
                 final name = b.resolveName(lang);
-                final title = b.resolveTitle(lang);
                 final subtitle = b.resolveSubtitle(lang);
                 return _BranchTile(
                     name: name, title: title, subtitle: subtitle);
