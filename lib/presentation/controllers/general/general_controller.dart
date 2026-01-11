@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:nominatim_geocoding/nominatim_geocoding.dart';
 
 import '../../../core/services/background_services.dart';
+import '../../../core/services/internet_connection_controller.dart';
 import '../../../core/services/location/locations.dart';
 import '../../../core/utils/constants/shared_preferences_constants.dart';
 import '../../../core/widgets/home_widget/home_widget.dart';
@@ -31,10 +31,6 @@ class GeneralController extends GetxController with WidgetsBindingObserver {
     state.activeLocation.value = state.box.read(ACTIVE_LOCATION) ?? false;
 
     if (state.activeLocation.value) {
-      if (Platform.isMacOS || Platform.isLinux || Platform.isWindows) {
-        await NominatimGeocoding.init();
-        log('Location service is not supported on this platform');
-      }
       // استرداد بيانات الموقع المحفوظة
       // Restore saved location data
       Location.instance.restoreFromStorage();
@@ -118,6 +114,18 @@ class GeneralController extends GetxController with WidgetsBindingObserver {
   Future<void> initLocation({bool? isOpenSettings = true}) async {
     try {
       state.isLocationLoading.value = true;
+
+      // عند عدم وجود إنترنت ومع وجود موقع محفوظ: لا نعمل fetch لموقع جديد.
+      final storedPosition = Location.instance.position;
+      final hasStoredLocation = storedPosition != null;
+      final isConnected = InternetConnectionController.instance.isConnected;
+      if (!isConnected && hasStoredLocation) {
+        log('No internet: using stored location without fetching a new one',
+            name: 'GeneralController');
+        await _activateLocation();
+        return;
+      }
+
       await Geolocator.checkPermission();
       LocationPermission permission = await Geolocator.checkPermission();
       bool isEnabled = await Geolocator.isLocationServiceEnabled();
@@ -172,17 +180,31 @@ class GeneralController extends GetxController with WidgetsBindingObserver {
 
   // ✅ دالة منفصلة لتفعيل الموقع
   Future<void> _activateLocation() async {
-    await LocationHelper.instance.getPositionDetails().then((_) async {
-      log('Location activated: ${Location.instance.position}', name: 'Main');
-      state.box.write(ACTIVE_LOCATION, true);
-      state.box.write(IS_LOCATION_ACTIVE, true);
-      state.box.write(FIRST_LAUNCH, true);
-      await AdhanController.instance.initializeStoredAdhan().then((_) async {
-        AdhanController.instance.state.location =
-            await AdhanController.instance.localizedLocation;
-        Get.forceAppUpdate();
-      });
-    });
+    final isConnected = InternetConnectionController.instance.isConnected;
+
+    final stored = PrayerCacheManager.getStoredLocation();
+    final shouldUseStoredOnly = !isConnected && stored != null;
+
+    if (shouldUseStoredOnly) {
+      log('No internet: skip fetching new position', name: 'GeneralController');
+    } else {
+      await LocationHelper.instance.getPositionDetails();
+    }
+
+    final pos = Location.instance.position;
+    final effectiveLocation =
+        pos != null ? LatLng(pos.latitude, pos.longitude) : stored;
+
+    log('Location activated: $pos', name: 'Main');
+    state.box.write(ACTIVE_LOCATION, true);
+    state.box.write(IS_LOCATION_ACTIVE, true);
+    state.box.write(FIRST_LAUNCH, true);
+
+    await AdhanController.instance
+        .initializeStoredAdhan(newLocation: effectiveLocation);
+    AdhanController.instance.state.location =
+        await AdhanController.instance.localizedLocation;
+    Get.forceAppUpdate();
   }
 
   /// Initialize location with manual selection (for Huawei devices)

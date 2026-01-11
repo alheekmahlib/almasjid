@@ -221,46 +221,52 @@ class PrayerScreen extends StatelessWidget {
   Padding updateLocationBuild(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24.0),
-      child: ContainerButtonWidget(
-        onPressed: () async {
-          final success = await generalCtrl.updateLocationAndPrayerTimes();
-          if (success) {
-            Get.forceAppUpdate();
-            log(
-              'Location and prayer times updated successfully',
-              name: 'PrayerScreen',
-            );
-          }
-        },
-        height: 60,
-        svgHeight: 80,
-        width: Get.width,
-        withShape: false,
-        useGradient: false,
-        backgroundColor: Colors.transparent,
-        borderColor:
-            Theme.of(context).colorScheme.surface.withValues(alpha: .2),
-        child: Stack(
-          alignment: AlignmentDirectional.centerStart,
-          children: [
-            Icon(Icons.place_rounded,
-                color: context.theme.colorScheme.surface.withValues(alpha: .1),
-                size: 70),
-            Text(
-              adhanCtrl.state.location,
-              style: TextStyle(
-                fontFamily: 'cairo',
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                color: context.theme.colorScheme.inversePrimary,
-                height: 1.3,
+      child: FutureBuilder<String>(
+          future: adhanCtrl.localizedLocation,
+          builder: (context, snapshot) {
+            return ContainerButtonWidget(
+              onPressed: () async {
+                final success =
+                    await generalCtrl.updateLocationAndPrayerTimes();
+                if (success) {
+                  Get.forceAppUpdate();
+                  log(
+                    'Location and prayer times updated successfully',
+                    name: 'PrayerScreen',
+                  );
+                }
+              },
+              height: 60,
+              svgHeight: 80,
+              width: Get.width,
+              withShape: false,
+              useGradient: false,
+              backgroundColor: Colors.transparent,
+              borderColor:
+                  Theme.of(context).colorScheme.surface.withValues(alpha: .2),
+              child: Stack(
+                alignment: AlignmentDirectional.centerStart,
+                children: [
+                  Icon(Icons.place_rounded,
+                      color: context.theme.colorScheme.surface
+                          .withValues(alpha: .1),
+                      size: 70),
+                  Text(
+                    snapshot.data ?? '',
+                    style: TextStyle(
+                      fontFamily: 'cairo',
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: context.theme.colorScheme.inversePrimary,
+                      height: 1.3,
+                    ),
+                    maxLines: 2,
+                    textAlign: TextAlign.center,
+                  )
+                ],
               ),
-              maxLines: 2,
-              textAlign: TextAlign.center,
-            )
-          ],
-        ),
-      ),
+            );
+          }),
     );
   }
 }

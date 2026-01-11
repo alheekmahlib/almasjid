@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:developer' show log;
 import 'dart:io' show Directory, File, Platform;
-import 'dart:math' as math;
 import 'dart:typed_data';
 
 import 'package:adhan/adhan.dart';
@@ -26,7 +25,6 @@ import 'package:horizontal_week_calendar/horizontal_week_calendar.dart';
 import 'package:intl/intl.dart' as intl;
 import 'package:just_audio/just_audio.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:nominatim_geocoding/nominatim_geocoding.dart' as nominatim;
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';

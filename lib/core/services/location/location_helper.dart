@@ -131,36 +131,25 @@ class LocationHelper {
         GetStorage().write(ACTIVE_LOCATION, true);
         GeneralController.instance.state.activeLocation.value = true;
       } catch (e) {
-        GetStorage().write(ACTIVE_LOCATION, false);
-        GeneralController.instance.state.activeLocation.value = false;
-        log('Error updating location details: $e', name: 'LocationHelper');
+        // نجاح الحصول على الإحداثيات أهم من اسم المدينة؛ لا نوقف تفعيل الموقع.
+        GetStorage().write(ACTIVE_LOCATION, true);
+        GeneralController.instance.state.activeLocation.value = true;
+        log('Reverse geocoding failed (location remains active): $e',
+            name: 'LocationHelper');
       }
     }
   }
 
   /// تحويل الإحداثيات إلى عنوان باستخدام Nominatim (OpenStreetMap)
   Future<void> _reverseGeocode(Position position) async {
-    await NominatimGeocoding.init();
-    final geocoding = await NominatimGeocoding.to.reverseGeoCoding(
-      Coordinate(latitude: position.latitude, longitude: position.longitude),
-      // locale: Locale.AR,
+    final result = await NominatimReverseGeocodingService.instance.reverse(
+      latitude: position.latitude,
+      longitude: position.longitude,
     );
 
-    // Nominatim قد يُرجع city أو town أو village أو state حسب الموقع
-    final address = geocoding.address;
-    final city = address.city.isNotEmpty
-        ? address.city
-        : address.district.isNotEmpty
-            ? address.district
-            : address.suburb.isNotEmpty
-                ? address.suburb
-                : address.state.isNotEmpty
-                    ? address.state
-                    : 'Unknown';
-
     Location().updateLocation(
-      city: city,
-      country: address.country.isNotEmpty ? address.country : 'Unknown',
+      city: result.city,
+      country: result.country,
       position: position,
     );
   }
@@ -174,7 +163,12 @@ class LocationHelper {
       ),
     );
 
-    await _reverseGeocode(position);
+    try {
+      await _reverseGeocode(position);
+    } catch (e) {
+      log('Reverse geocoding failed on desktop (location remains active): $e',
+          name: 'LocationHelper');
+    }
     GetStorage().write(ACTIVE_LOCATION, true);
     GeneralController.instance.state.activeLocation.value = true;
   }

@@ -102,8 +102,16 @@ class AdhanController extends GetxController {
         state.params =
             (await state.selectedCountry.value.getCalculationParameters());
       } else {
-        state.params =
-            (await Location.instance.country.getCalculationParameters());
+        final method =
+            await getCalculationParametersFromJson(Location.instance.country);
+        if (method != null) {
+          state.params = method.getParameters();
+        } else {
+          // Offline/Localization safe: إذا كان اسم الدولة ليس بالإنجليزية
+          // (فتفشل المطابقة في madhab.json)، استخدم params المخزنة من الكاش الشهري.
+          state.params = _readMonthlyCachedParams() ??
+              CalculationMethod.other.getParameters();
+        }
       }
       state.adjustments = OurPrayerAdjustments.fromGetStorage();
       state.params.adjustments = state.adjustments;
@@ -127,6 +135,19 @@ class AdhanController extends GetxController {
     }
   }
 
+  CalculationParameters? _readMonthlyCachedParams() {
+    try {
+      final raw = GetStorage().read(MonthlyPrayerCache.MONTHLY_PRAYER_DATA);
+      if (raw is! Map) return null;
+      final monthly =
+          MonthlyPrayerData.fromJson(Map<String, dynamic>.from(raw));
+      return monthly.params;
+    } catch (e) {
+      log('Failed to read monthly cached params: $e', name: 'AdhanController');
+      return null;
+    }
+  }
+
   /// تهيئة بيانات الأذان المخزنة مع التحقق من الحاجة للتحديث
   /// Initialize stored adhan data with update check
   Future<void> initializeStoredAdhan(
@@ -134,6 +155,8 @@ class AdhanController extends GetxController {
       LatLng? newLocation,
       bool forceUpdate = false}) async {
     try {
+      final bool isOffline = !InternetConnectionController.instance.isConnected;
+
       // تعيين حالة التحميل إلى true
       state.isLoadingPrayerData.value = true;
       update(['loading_state']);
@@ -147,6 +170,34 @@ class AdhanController extends GetxController {
         log('No location available', name: 'AdhanController');
         state.isLoadingPrayerData.value = false;
         update(['loading_state']);
+        return;
+      }
+
+      // Offline: استخدم البيانات المخزنة قدر الإمكان (موقع + صلوات) بدون محاولة "تحديث".
+      if (isOffline) {
+        log('Offline mode: using stored location/prayer data',
+            name: 'AdhanController');
+
+        // 1) جرّب الكاش الشهري (حتى لو لم نتحقق من صلاحيته عبر isMonthlyDataValid).
+        if (await _loadFromMonthlyCache()) {
+          return;
+        }
+
+        // 2) جرّب الكاش اليومي حتى لو كان غير صالح (أفضل من لا شيء عند عدم توفر الشهري).
+        final cachedData = PrayerCacheManager.getCachedPrayerData();
+        if (cachedData != null && state.fromJson(cachedData)) {
+          await _finalizePrayerTimeInitialization();
+          return;
+        }
+
+        // 3) كحل أخير: احسب محليًا باستخدام الموقع المخزن و params من الكاش الشهري إن وجدت.
+        if (GeneralController.instance.state.activeLocation.value) {
+          await _fetchAndCalculatePrayerTimes(currentLocation);
+          await _finalizePrayerTimeInitialization();
+        } else {
+          state.isLoadingPrayerData.value = false;
+          update(['loading_state']);
+        }
         return;
       }
 
@@ -531,8 +582,14 @@ class AdhanController extends GetxController {
       state.params =
           (await state.selectedCountry.value.getCalculationParameters());
     } else {
-      state.params =
-          (await Location.instance.country.getCalculationParameters());
+      final method =
+          await getCalculationParametersFromJson(Location.instance.country);
+      if (method != null) {
+        state.params = method.getParameters();
+      } else {
+        state.params = _readMonthlyCachedParams() ??
+            CalculationMethod.other.getParameters();
+      }
     }
     state.adjustments = OurPrayerAdjustments.fromGetStorage();
     state.params.adjustments = state.adjustments;

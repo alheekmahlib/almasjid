@@ -62,14 +62,16 @@ class PrayerCacheManager {
   /// Check if location is valid (within threshold)
   static bool _isLocationValid(dynamic storedLocation, LatLng currentLocation) {
     try {
-      if (storedLocation is! Map<String, dynamic> ||
+      if (storedLocation is! Map ||
           !storedLocation.containsKey('latitude') ||
           !storedLocation.containsKey('longitude')) {
         return false;
       }
 
-      final storedLat = storedLocation['latitude']?.toDouble();
-      final storedLng = storedLocation['longitude']?.toDouble();
+      final locationMap = Map<String, dynamic>.from(storedLocation);
+
+      final storedLat = locationMap['latitude']?.toDouble();
+      final storedLng = locationMap['longitude']?.toDouble();
 
       if (storedLat == null || storedLng == null) {
         return false;
@@ -116,10 +118,15 @@ class PrayerCacheManager {
       // حفظ الموقع إذا تم توفيره
       // Save location if provided
       if (location != null) {
-        _storage.write(CURRENT_LOCATION, {
-          'latitude': location.latitude,
-          'longitude': location.longitude,
-        });
+        final existing = _storage.read(CURRENT_LOCATION);
+        final merged = (existing is Map)
+            ? Map<String, dynamic>.from(existing)
+            : <String, dynamic>{};
+
+        merged['latitude'] = location.latitude;
+        merged['longitude'] = location.longitude;
+
+        _storage.write(CURRENT_LOCATION, merged);
       }
 
       log('Prayer data saved successfully', name: _tag);
@@ -145,12 +152,13 @@ class PrayerCacheManager {
   static LatLng? getStoredLocation() {
     try {
       final storedLocation = _storage.read(CURRENT_LOCATION);
-      if (storedLocation is Map<String, dynamic> &&
+      if (storedLocation is Map &&
           storedLocation.containsKey('latitude') &&
           storedLocation.containsKey('longitude')) {
+        final locationMap = Map<String, dynamic>.from(storedLocation);
         return LatLng(
-          storedLocation['latitude']?.toDouble() ?? 0.0,
-          storedLocation['longitude']?.toDouble() ?? 0.0,
+          locationMap['latitude']?.toDouble() ?? 0.0,
+          locationMap['longitude']?.toDouble() ?? 0.0,
         );
       }
     } catch (e) {

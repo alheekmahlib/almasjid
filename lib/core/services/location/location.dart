@@ -43,18 +43,26 @@ class Location {
   void restoreFromStorage() {
     try {
       final storedLocation = _storage.read(CURRENT_LOCATION);
-      if (storedLocation is Map<String, dynamic>) {
-        _city = storedLocation['city'] ?? '';
-        _country = storedLocation['country'] ?? '';
+      if (storedLocation is Map) {
+        final locationMap = Map<String, dynamic>.from(storedLocation);
+
+        _city = (locationMap['city'] ?? '').toString();
+        _country = (locationMap['country'] ?? '').toString();
 
         // استرداد Position إذا كانت البيانات متوفرة
         // Restore Position if data is available
-        final lat = storedLocation['latitude'];
-        final lng = storedLocation['longitude'];
+        final lat = locationMap['latitude'];
+        final lng = locationMap['longitude'];
         if (lat != null && lng != null) {
+          final latDouble =
+              lat is num ? lat.toDouble() : double.tryParse('$lat');
+          final lngDouble =
+              lng is num ? lng.toDouble() : double.tryParse('$lng');
+          if (latDouble == null || lngDouble == null) return;
+
           _position = Position(
-            latitude: lat.toDouble(),
-            longitude: lng.toDouble(),
+            latitude: latDouble,
+            longitude: lngDouble,
             timestamp: DateTime.now(),
             accuracy: 0,
             altitude: 0,

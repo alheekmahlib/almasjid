@@ -4,6 +4,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:hijri_date/hijri_date.dart';
 import 'package:latlong2/latlong.dart';
 
+import '/core/services/internet_connection_controller.dart';
 import '/core/services/location/locations.dart';
 import '/core/services/notifications_helper.dart';
 // import '/core/widgets/home_widget/home_widget.dart';
@@ -69,6 +70,14 @@ class PrayerBackgroundManager {
   /// Get current location
   static Future<LatLng?> _getCurrentLocation() async {
     try {
+      if (!InternetConnectionController.instance.isConnected) {
+        final stored = PrayerCacheManager.getStoredLocation();
+        if (stored != null) {
+          log('No internet: using stored location', name: _tag);
+          return stored;
+        }
+      }
+
       final position = await LocationHelper().fetchCurrentPosition;
       if (position != null) {
         return LatLng(position.latitude, position.longitude);

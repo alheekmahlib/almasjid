@@ -3,65 +3,60 @@ part of '../../../prayers.dart';
 extension AdhanGetters on AdhanController {
   /// -------- [Getters] ----------
 
-  /// تحويل كود اللغة إلى Locale الخاص بـ Nominatim
-  nominatim.Locale get _nominatimLocale {
-    switch (Get.locale?.languageCode) {
-      case 'ar':
-        return nominatim.Locale.AR;
-      case 'en':
-        return nominatim.Locale.EN;
-      case 'tr':
-        return nominatim.Locale.TR;
-      case 'ur':
-        return nominatim.Locale.UR;
-      case 'id':
-        return nominatim.Locale.ID;
-      case 'ms':
-        return nominatim.Locale.MS;
-      case 'bn':
-        return nominatim.Locale.BN;
-      case 'es':
-        return nominatim.Locale.ES;
-      case 'ku':
-        return nominatim.Locale.KU;
-      case 'so':
-        return nominatim.Locale.SO;
-      default:
-        return nominatim.Locale.EN;
-    }
-  }
-
-  /// جلب بيانات الموقع من Nominatim (استدعاء واحد فقط)
-  Future<nominatim.Geocoding> get _nominatimLocation async =>
-      await nominatim.NominatimGeocoding.to.reverseGeoCoding(
-        nominatim.Coordinate(
-            latitude: Location.instance.position!.latitude,
-            longitude: Location.instance.position!.longitude),
-        locale: _nominatimLocale,
-      );
-
   /// اسم المدينة والدولة بلغة المستخدم (استدعاء واحد فقط للـ API)
   Future<String> get localizedLocation async {
+    final storedCity = Location.instance.city;
+    final storedCountry = Location.instance.country;
+    final pos = Location.instance.position;
+
+    // Offline: لا نجري أي طلب شبكة، ونستخدم المخزون/الكاش فقط.
+    if (!InternetConnectionController.instance.isConnected) {
+      final hasStored =
+          storedCity.trim().isNotEmpty || storedCountry.trim().isNotEmpty;
+      if (hasStored) {
+        return '$storedCity\n$storedCountry';
+      }
+
+      // if (pos != null) {
+      //   final cached = NominatimReverseGeocodingService.instance.reverse(
+      //     latitude: pos.latitude,
+      //     longitude: pos.longitude,
+      //     languageCode: Get.locale?.languageCode,
+      //   );
+      //   if (cached != null) {
+      //     return '${cached.city}\n${cached.country}';
+      //   }
+      // }
+
+      return '$storedCity\n$storedCountry';
+    }
+
+    // Online
+    if (pos == null) {
+      return '$storedCity\n$storedCountry';
+    }
+
     try {
-      final nominatim.Address address = (await _nominatimLocation).address;
+      final result = await NominatimReverseGeocodingService.instance.reverse(
+        latitude: pos.latitude,
+        longitude: pos.longitude,
+        languageCode: Get.locale?.languageCode,
+      );
 
-      final cityName = address.city.isNotEmpty
-          ? address.city
-          : address.district.isNotEmpty
-              ? address.district
-              : address.suburb.isNotEmpty
-                  ? address.suburb
-                  : address.state.isNotEmpty
-                      ? address.state
-                      : 'Unknown';
+      final cityOk = result.city.trim().isNotEmpty && result.city != 'Unknown';
+      final countryOk =
+          result.country.trim().isNotEmpty && result.country != 'Unknown';
+      if (cityOk && countryOk) {
+        Location().updateLocation(
+          city: result.city,
+          country: result.country,
+          position: pos,
+        );
+      }
 
-      final countryName =
-          address.country.isNotEmpty ? address.country : 'Unknown';
-
-      return '$cityName\n$countryName';
-    } catch (e) {
-      // في حالة الخطأ، استخدم البيانات المخزنة
-      return '${Location.instance.city}\n${Location.instance.country}';
+      return '${result.city}\n${result.country}';
+    } catch (_) {
+      return '$storedCity\n$storedCountry';
     }
   }
 
@@ -776,11 +771,14 @@ extension AdhanGetters on AdhanController {
   int get currentPrayerIndex => getCurrentPrayerByDateTime();
 
   int getCurrentPrayerByDateTime() {
-    final prayer = state.prayerTimes;
+    final prayer = state.prayerTimes!;
 
     final sunnah = state.sunnahTimes!;
 
     int value = 0;
+    // if (prayer == null || sunnah == null) {
+    //   return 0;
+    // }
 
     // log('Current time: ${state.now}');
 
@@ -790,7 +788,7 @@ extension AdhanGetters on AdhanController {
 
     // log('middleOfTheNight: ${sunnah.middleOfTheNight}');
 
-    if (state.now.isBefore(prayer!.fajr)) {
+    if (state.now.isBefore(prayer.fajr)) {
       log('Time is before Fajr');
 
       // تحديد التاريخ الصحيح لأوقات منتصف الليل والثلث الأخير
