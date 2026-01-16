@@ -382,7 +382,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "locate": "Ubicar",
+  "locate": "Detectar Automáticamente",
   "@locate": {
     "type": "text",
     "placeholders": {}
@@ -444,7 +444,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "What'sNewDetails10": "۞ Solucionado problema de visualización de notificaciones.\n۞ Mejoras generales de rendimiento y estabilidad.",
+  "What'sNewDetails10": "۞ Añadida sección de Ramadán.\n۞ Añadidas Sunna e innovaciones de cada mes.\n۞ Mejoras generales en rendimiento y estabilidad.",
   "@What'sNewDetails10": {
     "type": "text",
     "placeholders": {}
@@ -636,6 +636,11 @@
   },
   "fastingReminder": "Recordatorio de Ayuno",
   "@fastingReminder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "aboutMonth": "Acerca del Mes",
+  "@aboutMonth": {
     "type": "text",
     "placeholders": {}
   }

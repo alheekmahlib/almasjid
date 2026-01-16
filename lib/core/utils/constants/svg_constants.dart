@@ -128,6 +128,19 @@ class SvgPath {
   /// assets/svg/qibla/qibla.svg
   static const String svgQiblaQibla = "assets/svg/qibla/qibla.svg";
 
+  /// Assets for svgRamadanCannon
+  /// assets/svg/ramadan/cannon.svg
+  static const String svgRamadanCannon = "assets/svg/ramadan/cannon.svg";
+
+  /// Assets for svgRamadanRamadanCalendar
+  /// assets/svg/ramadan/ramadan-calendar.svg
+  static const String svgRamadanRamadanCalendar =
+      "assets/svg/ramadan/ramadan-calendar.svg";
+
+  /// Assets for svgRamadanSuhoor
+  /// assets/svg/ramadan/suhoor.svg
+  static const String svgRamadanSuhoor = "assets/svg/ramadan/suhoor.svg";
+
   /// Assets for svgShareShare
   /// assets/svg/share/share.svg
   static const String svgShareShare = "assets/svg/share/share.svg";

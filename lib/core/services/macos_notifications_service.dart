@@ -1,6 +1,7 @@
 import 'dart:developer' show log;
 
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_timezone/flutter_timezone.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
@@ -15,6 +16,7 @@ class MacOSNotificationsService {
 
   final _plugin = FlutterLocalNotificationsPlugin();
   bool _initialized = false;
+  bool _tzInitialized = false;
 
   // أصوات الأذان المتاحة
   static const _defaultSound = 'aqsa_athan';
@@ -37,6 +39,8 @@ class MacOSNotificationsService {
   Future<void> initialize() async {
     if (_initialized) return;
 
+    await _ensureTimeZoneInitialized();
+
     const settings = DarwinInitializationSettings(
       requestAlertPermission: true,
       requestBadgePermission: true,
@@ -50,6 +54,21 @@ class MacOSNotificationsService {
 
     _initialized = true;
     log('macOS Notifications initialized', name: 'MacOSNotifications');
+  }
+
+  Future<void> _ensureTimeZoneInitialized() async {
+    if (_tzInitialized) return;
+    tz.initializeTimeZones();
+    try {
+      final timeZoneInfo = await FlutterTimezone.getLocalTimezone();
+      final timeZoneName = timeZoneInfo.identifier;
+      tz.setLocalLocation(tz.getLocation(timeZoneName));
+      log('Local timezone: $timeZoneName', name: 'MacOSNotifications');
+    } catch (e) {
+      // fallback: tz.local (قد يكون UTC على بعض البيئات)
+      log('Failed to resolve local timezone: $e', name: 'MacOSNotifications');
+    }
+    _tzInitialized = true;
   }
 
   /// طلب صلاحيات الإشعارات
@@ -75,6 +94,9 @@ class MacOSNotificationsService {
     Map<String, String>? payload,
   }) async {
     if (!_initialized) await initialize();
+    await _ensureTimeZoneInitialized();
+
+    final safeTime = _ensureFuture(scheduledTime);
 
     final sound = _resolveSound(soundType, isFajr);
     final details = _buildNotificationDetails(sound);
@@ -83,13 +105,21 @@ class MacOSNotificationsService {
       id,
       title,
       body,
-      _toTZDateTime(scheduledTime),
+      _toTZDateTime(safeTime),
       details,
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
       payload: payload?.entries.map((e) => '${e.key}=${e.value}').join('&'),
     );
 
-    log('Scheduled: $title at $scheduledTime', name: 'MacOSNotifications');
+    log('Scheduled: $title at $safeTime', name: 'MacOSNotifications');
+  }
+
+  DateTime _ensureFuture(DateTime dateTime) {
+    final now = DateTime.now();
+    if (dateTime.isAfter(now.add(const Duration(seconds: 2)))) return dateTime;
+    final bumped = now.add(const Duration(seconds: 5));
+    log('Bumped past schedule time to: $bumped', name: 'MacOSNotifications');
+    return bumped;
   }
 
   /// إرسال إشعار فوري
@@ -155,17 +185,8 @@ class MacOSNotificationsService {
   }
 
   tz.TZDateTime _toTZDateTime(DateTime dateTime) {
-    tz.initializeTimeZones();
-    final location = tz.local;
-    return tz.TZDateTime(
-      location,
-      dateTime.year,
-      dateTime.month,
-      dateTime.day,
-      dateTime.hour,
-      dateTime.minute,
-      dateTime.second,
-    );
+    // يجب أن تكون tz.local مضبوطة بواسطة _ensureTimeZoneInitialized
+    return tz.TZDateTime.from(dateTime, tz.local);
   }
 
   void _onNotificationTap(NotificationResponse response) {

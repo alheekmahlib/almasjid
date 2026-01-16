@@ -382,7 +382,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "locate": "অবস্থান নির্ধারণ",
+  "locate": "স্বয়ংক্রিয় সনাক্ত",
   "@locate": {
     "type": "text",
     "placeholders": {}
@@ -444,7 +444,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "What'sNewDetails10": "۞ বিজ্ঞপ্তি প্রদর্শনের সমস্যা সমাধান করা হয়েছে।\n۞ সাধারণ পারফরমেন্স এবং স্থিতিশীলতা উন্নতি।",
+  "What'sNewDetails10": "۞ রমজান বিভাগ যোগ করা হয়েছে।\n۞ প্রতি মাসের সুন্নাহ ও বিদাত যোগ করা হয়েছে।\n۞ সাধারণ কার্যকারিতা ও স্থিতিশীলতার উন্নতি।",
   "@What'sNewDetails10": {
     "type": "text",
     "placeholders": {}
@@ -636,6 +636,11 @@
   },
   "fastingReminder": "রোজার তাগাদা",
   "@fastingReminder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "aboutMonth": "মাস সম্পর্কে",
+  "@aboutMonth": {
     "type": "text",
     "placeholders": {}
   }

@@ -382,7 +382,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "locate": "تحديد الموقع",
+  "locate": "تحديد تلقائي",
   "@locate": {
     "type": "text",
     "placeholders": {}
@@ -444,7 +444,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "What'sNewDetails10": "۞ إصلاح مشكلة عدم ظهور الإشعارات.\n۞ تحسينات عامة في الأداء والاستقرار.",
+  "What'sNewDetails10": "۞ إضافة قسم رمضان.\n۞ إضافة سُنن وبدع كل شهر.\n۞ تحسينات عامة في الأداء والاستقرار.",
   "@What'sNewDetails10": {
     "type": "text",
     "placeholders": {}
@@ -906,6 +906,11 @@
   },
   "fastingReminder": "تذكير الصيام",
   "@fastingReminder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "aboutMonth": "عن الشهر",
+  "@aboutMonth": {
     "type": "text",
     "placeholders": {}
   }

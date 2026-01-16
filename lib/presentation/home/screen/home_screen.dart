@@ -11,6 +11,7 @@ class HomeScreen extends StatelessWidget {
     return GetBuilder<HomeController>(
       builder: (controller) {
         return Scaffold(
+          backgroundColor: context.theme.colorScheme.primaryContainer,
           body: NavBarTab.values
               .map((nav) => nav.currentScreen)
               .toList()[controller.currentIndex],

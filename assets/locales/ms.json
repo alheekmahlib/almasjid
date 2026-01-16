@@ -382,7 +382,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "locate": "Tetapkan Lokasi",
+  "locate": "Kesan Automatik",
   "@locate": {
     "type": "text",
     "placeholders": {}
@@ -444,7 +444,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "What'sNewDetails10": "۞ Membetulkan masalah paparan pemberitahuan.\n۞ Peningkatan prestasi dan kestabilan secara umum.",
+  "What'sNewDetails10": "۞ Ditambah bahagian Ramadan.\n۞ Ditambah Sunnah dan bidaah setiap bulan.\n۞ Penambahbaikan umum prestasi dan kestabilan.",
   "@What'sNewDetails10": {
     "type": "text",
     "placeholders": {}
@@ -636,6 +636,11 @@
   },
   "fastingReminder": "Peringatan Puasa",
   "@fastingReminder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "aboutMonth": "Mengenai Bulan",
+  "@aboutMonth": {
     "type": "text",
     "placeholders": {}
   }

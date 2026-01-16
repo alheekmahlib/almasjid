@@ -382,7 +382,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "locate": "Konumu Belirle",
+  "locate": "Otomatik Tespit",
   "@locate": {
     "type": "text",
     "placeholders": {}
@@ -444,7 +444,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "What'sNewDetails10": "۞ Bildirim görüntüleme sorunu düzeltildi.\n۞ Genel performans ve kararlılık iyileştirmeleri.",
+  "What'sNewDetails10": "۞ Ramazan bölümü eklendi.\n۞ Her ayın sünnet ve bidatleri eklendi.\n۞ Genel performans ve kararlılık iyileştirmeleri.",
   "@What'sNewDetails10": {
     "type": "text",
     "placeholders": {}
@@ -636,6 +636,11 @@
   },
   "fastingReminder": "Oruc Hatırlatması",
   "@fastingReminder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "aboutMonth": "Ay Hakkında",
+  "@aboutMonth": {
     "type": "text",
     "placeholders": {}
   }

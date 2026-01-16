@@ -382,7 +382,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "locate": "Goobta ogaansha",
+  "locate": "Ogaansi Otomaatig",
   "@locate": {
     "type": "text",
     "placeholders": {}
@@ -444,7 +444,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "What'sNewDetails10": "۞ Waxaa lagu hagaajiyay dhibaatada muuqaalka ogeysiisyada.\n۞ Hagaajinta guud ee waxqabadka iyo xasiloonida.",
+  "What'sNewDetails10": "۞ Waxaa lagu daray qaybta Ramadaan.\n۞ Waxaa lagu daray Sunnada iyo bidcada bil kasta.\n۞ Hagaajin guud oo ku saabsan waxqabadka iyo xasilloonida.",
   "@What'sNewDetails10": {
     "type": "text",
     "placeholders": {}
@@ -636,6 +636,11 @@
   },
   "fastingReminder": "Xusuusin Soon",
   "@fastingReminder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "aboutMonth": "Ku saabsan Bisha",
+  "@aboutMonth": {
     "type": "text",
     "placeholders": {}
   }

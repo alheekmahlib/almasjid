@@ -16,7 +16,7 @@ class RamadanNotificationsSettings extends StatelessWidget {
           children: [
             // تنبيه السحور
             _ModernNotificationTile(
-              icon: SolarIconsBold.moon,
+              icon: SvgPath.svgRamadanSuhoor,
               title: 'suhoorReminder'.tr,
               subtitle:
                   '${'beforeFajr'.tr} ${ctrl.suhoorMinutes.value} ${'minutes'.tr}'
@@ -37,7 +37,7 @@ class RamadanNotificationsSettings extends StatelessWidget {
 
             // تنبيه الإفطار
             _ModernNotificationTile(
-              icon: SolarIconsBold.sun,
+              icon: SvgPath.svgRamadanCannon,
               title: 'iftarReminder'.tr,
               subtitle:
                   '${'beforeMaghrib'.tr} ${ctrl.iftarMinutes.value} ${'minutes'.tr}'
@@ -58,7 +58,7 @@ class RamadanNotificationsSettings extends StatelessWidget {
 
             // تنبيهات العشر الأواخر
             _ModernNotificationTile(
-              icon: SolarIconsBold.starsMinimalistic,
+              icon: SvgPath.svgRamadanRamadanCalendar,
               title: 'lastTenNights'.tr,
               subtitle: 'lastTenNightsDesc'.tr,
               value: ctrl.lastTenNightsEnabled.value,
@@ -201,7 +201,7 @@ class RamadanNotificationsSettings extends StatelessWidget {
 
 /// عنصر تنبيه محسّن
 class _ModernNotificationTile extends StatelessWidget {
-  final IconData icon;
+  final String icon;
   final String title;
   final String subtitle;
   final bool value;
@@ -236,17 +236,17 @@ class _ModernNotificationTile extends StatelessWidget {
       titleWidget: Row(
         children: [
           Container(
-            padding: const EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              color: context.theme.canvasColor.withValues(alpha: .5),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Icon(
-              icon,
-              size: 22,
-              color: context.theme.colorScheme.inversePrimary,
-            ),
-          ),
+              height: 45,
+              width: 45,
+              padding: const EdgeInsets.all(8),
+              margin: const EdgeInsets.symmetric(vertical: 4),
+              decoration: BoxDecoration(
+                color: context.theme.colorScheme.primaryContainer
+                    .withValues(alpha: .5),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: customSvgWithColor(icon,
+                  color: context.theme.colorScheme.surface, width: 25)),
           const Gap(16),
           Expanded(
             child: Column(
@@ -256,7 +256,7 @@ class _ModernNotificationTile extends StatelessWidget {
                   title,
                   style: TextStyle(
                     height: 1.4,
-                    fontSize: 14,
+                    fontSize: 16,
                     fontFamily: 'cairo',
                     fontWeight: FontWeight.bold,
                     color: value ? color : color.withValues(alpha: .5),
@@ -267,7 +267,7 @@ class _ModernNotificationTile extends StatelessWidget {
                   subtitle,
                   style: TextStyle(
                     height: 1.4,
-                    fontSize: 10,
+                    fontSize: 12,
                     fontFamily: 'cairo',
                     color: context.theme.colorScheme.inversePrimary
                         .withValues(alpha: .7),

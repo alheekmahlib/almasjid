@@ -382,7 +382,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "locate": "مقام کا تعین",
+  "locate": "خودکار تشخیص",
   "@locate": {
     "type": "text",
     "placeholders": {}
@@ -444,7 +444,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "What'sNewDetails10": "۞ اطلاعات ظاہر نہ ہونے کے مسئلے کو حل کیا گیا۔\n۞ کارکردگی اور استحکام میں عمومی بہتری۔",
+  "What'sNewDetails10": "۞ رمضان کا سیکشن شامل کیا گیا۔\n۞ ہر مہینے کی سنن اور بدعات شامل کی گئیں۔\n۞ کارکردگی اور استحکام میں عام بہتری۔",
   "@What'sNewDetails10": {
     "type": "text",
     "placeholders": {}
@@ -636,6 +636,11 @@
   },
   "fastingReminder": "روزے کی یاد دہانی",
   "@fastingReminder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "aboutMonth": "مہینے کے بارے میں",
+  "@aboutMonth": {
     "type": "text",
     "placeholders": {}
   }

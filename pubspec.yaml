@@ -3,7 +3,7 @@ description: "A Prayer and qibla application."
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-version: 1.2.3+9
+version: 1.2.4+10
 
 environment:
   sdk: ^3.6.1
@@ -26,6 +26,7 @@ dependencies:
       ref: master
       url: https://github.com/alheekmahlib/drawing_animation.git
   either_dart: ^1.0.0
+  floating_menu_expendable: ^0.1.1+1
   floaty_nav_bar: ^1.0.2
   flutter:
     sdk: flutter
@@ -52,7 +53,7 @@ dependencies:
       ref: dev
       url: https://github.com/alheekmahlib/google_huawei_availability.git
   hijri_date: ^1.0.0
-  home_widget: ^0.8.1
+  home_widget: ^0.9.0
   horizontal_week_calendar:
     git:
       ref: main
@@ -130,6 +131,7 @@ flutter:
     - assets/svg/prayer/
     - assets/svg/theme/
     - assets/svg/share/
+    - assets/svg/ramadan/
     - assets/images/
     - assets/svg/hijri/
     - assets/json/

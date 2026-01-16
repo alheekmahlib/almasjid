@@ -382,7 +382,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "locate": "Tukuyin ang Lokasyon",
+  "locate": "Awtomatikong Tukuyin",
   "@locate": {
     "type": "text",
     "placeholders": {}
@@ -444,7 +444,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "What'sNewDetails10": "۞ Naayos ang problema sa pagpapakita ng notifications.\n۞ Pangkalahatang pagpapabuti sa performance at stability.",
+  "What'sNewDetails10": "۞ Dinagdag ang seksyon ng Ramadan.\n۞ Dinagdag ang Sunnah at mga innovation ng bawat buwan.\n۞ Pangkalahatang pagpapabuti sa performance at stability.",
   "@What'sNewDetails10": {
     "type": "text",
     "placeholders": {}
@@ -636,6 +636,11 @@
   },
   "fastingReminder": "Paalala sa Pag-aayuno",
   "@fastingReminder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "aboutMonth": "Tungkol sa Buwan",
+  "@aboutMonth": {
     "type": "text",
     "placeholders": {}
   }

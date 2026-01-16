@@ -4,11 +4,12 @@ import 'package:gap/gap.dart';
 import 'package:get/get_utils/get_utils.dart';
 
 import '/core/utils/constants/lottie_constants.dart';
-import '../../../../../core/utils/constants/extensions/extensions.dart';
-import '../../../../../core/utils/constants/lottie.dart';
-import '../../../../core/widgets/container_button_widget.dart';
-import '../../controller/our_apps_controller.dart';
-import '../../data/models/our_app_model.dart';
+import '../../../../core/utils/constants/extensions/extensions.dart';
+import '../../../../core/utils/constants/lottie.dart';
+import '../../../core/services/internet_connection_controller.dart';
+import '../../../core/widgets/container_button_widget.dart';
+import '../controller/our_apps_controller.dart';
+import '../data/models/our_app_model.dart';
 
 class OurAppsBuild extends StatelessWidget {
   OurAppsBuild({super.key});
@@ -17,6 +18,12 @@ class OurAppsBuild extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (!InternetConnectionController.instance.isConnected) {
+      return customLottieWithColor(LottieConstants.assetsLottieNoInternet,
+          width: 150.0,
+          height: 150.0,
+          color: context.theme.colorScheme.surface.withValues(alpha: .7));
+    }
     return FutureBuilder<List<OurAppInfo>>(
       future: ourApps.fetchApps(),
       builder: (context, snapshot) {
@@ -48,14 +55,17 @@ class OurAppsBuild extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      SvgPicture.network(
-                        apps[index].appLogo,
-                        height: 40,
-                        width: 40,
+                      Expanded(
+                        flex: 2,
+                        child: SvgPicture.network(
+                          apps[index].appLogo,
+                          height: 40,
+                          width: 40,
+                        ),
                       ),
-                      const Gap(24.0),
                       context.vDivider(height: 40.0),
                       Expanded(
+                        flex: 7,
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,

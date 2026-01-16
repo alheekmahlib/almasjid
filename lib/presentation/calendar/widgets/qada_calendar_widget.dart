@@ -143,7 +143,7 @@ class QadaCalendarWidget extends StatelessWidget {
                 child: Text(
                   'tapToSelectMissedDays'.tr,
                   style: TextStyle(
-                    fontSize: 10,
+                    fontSize: 14,
                     fontFamily: 'cairo',
                     color: context.theme.colorScheme.inversePrimary,
                   ),
@@ -271,7 +271,7 @@ class _LegendItem extends StatelessWidget {
         Text(
           label,
           style: TextStyle(
-            fontSize: 12,
+            fontSize: 14,
             fontFamily: 'cairo',
             color:
                 context.theme.colorScheme.inversePrimary.withValues(alpha: .6),
@@ -361,7 +361,7 @@ class _ModernDayCell extends StatelessWidget {
                 '$day'.convertNumbers(),
                 style: TextStyle(
                   color: textColor,
-                  fontSize: 14,
+                  fontSize: 18,
                   fontFamily: 'cairo',
                   height: 1.4,
                   fontWeight:

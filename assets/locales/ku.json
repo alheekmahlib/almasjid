@@ -382,7 +382,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "locate": "شوێن دیاری بکە",
+  "locate": "دۆزینەوەی خودکار",
   "@locate": {
     "type": "text",
     "placeholders": {}
@@ -444,7 +444,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "What'sNewDetails10": "۞ چارەسەرکردنی کێشەی پیشاندانی ئاگادارییەکان.\n۞ باشترکردنی گشتی لە کارایی و سەقامگیری.",
+  "What'sNewDetails10": "۞ بەشی ڕەمەزان زیادکراوە۔\n۞ سوننە و بدعەتی هەر مانگێک زیادکراوە۔\n۞ باشترکری گشتی کارئی و جێگیری۔",
   "@What'sNewDetails10": {
     "type": "text",
     "placeholders": {}
@@ -636,6 +636,11 @@
   },
   "fastingReminder": "بیرهێنانەوەی ڕۆژوو",
   "@fastingReminder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "aboutMonth": "دەربارەی مانگەکە",
+  "@aboutMonth": {
     "type": "text",
     "placeholders": {}
   }

@@ -24,6 +24,7 @@ class GeneralController extends GetxController with WidgetsBindingObserver {
 
   GeneralState state = GeneralState();
   Completer<void>? _settingsCompleter;
+  bool _isActivatingLocation = false;
 
   // @override
   @override
@@ -34,7 +35,7 @@ class GeneralController extends GetxController with WidgetsBindingObserver {
       // استرداد بيانات الموقع المحفوظة
       // Restore saved location data
       Location.instance.restoreFromStorage();
-      await initLocation(isOpenSettings: false);
+      await initLocation(isOpenSettings: false, refreshUI: false);
 
       if (Platform.isIOS || Platform.isAndroid) {
         await BGServices().registerTask();
@@ -111,7 +112,8 @@ class GeneralController extends GetxController with WidgetsBindingObserver {
     await Future.delayed(const Duration(milliseconds: 500));
   }
 
-  Future<void> initLocation({bool? isOpenSettings = true}) async {
+  Future<void> initLocation(
+      {bool? isOpenSettings = true, bool refreshUI = true}) async {
     try {
       state.isLocationLoading.value = true;
 
@@ -122,7 +124,7 @@ class GeneralController extends GetxController with WidgetsBindingObserver {
       if (!isConnected && hasStoredLocation) {
         log('No internet: using stored location without fetching a new one',
             name: 'GeneralController');
-        await _activateLocation();
+        await _activateLocation(refreshUI: false);
         return;
       }
 
@@ -142,7 +144,7 @@ class GeneralController extends GetxController with WidgetsBindingObserver {
 
         if (permission == LocationPermission.always ||
             permission == LocationPermission.whileInUse) {
-          await _activateLocation();
+          await _activateLocation(refreshUI: refreshUI);
         } else {
           // المستخدم لم يفعّل الموقع
           log('User did not enable location permission');
@@ -152,10 +154,7 @@ class GeneralController extends GetxController with WidgetsBindingObserver {
         // ✅ الإذن موجود - تفعيل مباشر
 
         await Geolocator.requestPermission().then((_) async {
-          await _activateLocation();
-          if (Platform.isMacOS) {
-            Get.forceAppUpdate();
-          }
+          await _activateLocation(refreshUI: refreshUI);
         });
       } else if (permission == LocationPermission.denied) {
         // ✅ طلب الإذن لأول مرة
@@ -164,10 +163,7 @@ class GeneralController extends GetxController with WidgetsBindingObserver {
         if (permission == LocationPermission.always ||
             permission == LocationPermission.whileInUse) {
           await Geolocator.requestPermission().then((_) async {
-            await _activateLocation();
-            if (Platform.isMacOS) {
-              Get.forceAppUpdate();
-            }
+            await _activateLocation(refreshUI: refreshUI);
           });
         }
       }
@@ -179,32 +175,45 @@ class GeneralController extends GetxController with WidgetsBindingObserver {
   }
 
   // ✅ دالة منفصلة لتفعيل الموقع
-  Future<void> _activateLocation() async {
-    final isConnected = InternetConnectionController.instance.isConnected;
-
-    final stored = PrayerCacheManager.getStoredLocation();
-    final shouldUseStoredOnly = !isConnected && stored != null;
-
-    if (shouldUseStoredOnly) {
-      log('No internet: skip fetching new position', name: 'GeneralController');
-    } else {
-      await LocationHelper.instance.getPositionDetails();
+  Future<void> _activateLocation({required bool refreshUI}) async {
+    if (_isActivatingLocation) {
+      log('Activation already in progress; skipping',
+          name: 'GeneralController');
+      return;
     }
+    _isActivatingLocation = true;
+    try {
+      final isConnected = InternetConnectionController.instance.isConnected;
 
-    final pos = Location.instance.position;
-    final effectiveLocation =
-        pos != null ? LatLng(pos.latitude, pos.longitude) : stored;
+      final stored = PrayerCacheManager.getStoredLocation();
+      final shouldUseStoredOnly = !isConnected && stored != null;
 
-    log('Location activated: $pos', name: 'Main');
-    state.box.write(ACTIVE_LOCATION, true);
-    state.box.write(IS_LOCATION_ACTIVE, true);
-    state.box.write(FIRST_LAUNCH, true);
+      if (shouldUseStoredOnly) {
+        log('No internet: skip fetching new position',
+            name: 'GeneralController');
+      } else {
+        await LocationHelper.instance.getPositionDetails();
+      }
 
-    await AdhanController.instance
-        .initializeStoredAdhan(newLocation: effectiveLocation);
-    AdhanController.instance.state.location =
-        await AdhanController.instance.localizedLocation;
-    Get.forceAppUpdate();
+      final pos = Location.instance.position;
+      final effectiveLocation =
+          pos != null ? LatLng(pos.latitude, pos.longitude) : stored;
+
+      log('Location activated: $pos', name: 'Main');
+      state.box.write(ACTIVE_LOCATION, true);
+      state.box.write(IS_LOCATION_ACTIVE, true);
+      state.box.write(FIRST_LAUNCH, true);
+
+      await AdhanController.instance
+          .initializeStoredAdhan(newLocation: effectiveLocation);
+      AdhanController.instance.state.location =
+          await AdhanController.instance.localizedLocation;
+      if (refreshUI) {
+        Get.forceAppUpdate();
+      }
+    } finally {
+      _isActivatingLocation = false;
+    }
   }
 
   /// Initialize location with manual selection (for Huawei devices)
@@ -258,7 +267,7 @@ class GeneralController extends GetxController with WidgetsBindingObserver {
         await _openSettingsAndWait();
         await Future.delayed(const Duration(seconds: 3));
         if (await LocationHelper.instance.checkPermission()) {
-          await _activateLocation();
+          await _activateLocation(refreshUI: true);
           // await initLocation().then((_) async {
           //   state.activeLocation.value = true;
           //   await AdhanController.instance.initializeStoredAdhan().then((_) {
@@ -269,7 +278,7 @@ class GeneralController extends GetxController with WidgetsBindingObserver {
         }
         log('Location services are already enabled.');
       } else {
-        await _activateLocation();
+        await _activateLocation(refreshUI: true);
         // await initLocation().then((_) async {
         //   state.activeLocation.value = true;
         //   await AdhanController.instance.initializeStoredAdhan().then((_) {
@@ -291,7 +300,13 @@ class GeneralController extends GetxController with WidgetsBindingObserver {
   /// Update location and recalculate prayer times
   Future<bool> updateLocationAndPrayerTimes() async {
     final currentLocation = LocationHelper().currentLocation;
-    final position = await LocationHelper().fetchCurrentPosition;
+    Position? position;
+    try {
+      position = await LocationHelper().fetchCurrentPosition;
+    } catch (e) {
+      log('fetchCurrentPosition failed: $e', name: 'GeneralController');
+      position = null;
+    }
     if (position == null) {
       Get.context!.showSearchBottomSheet(Get.context!);
       return false;

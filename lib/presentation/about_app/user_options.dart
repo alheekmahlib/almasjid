@@ -41,7 +41,6 @@ class UserOptions extends StatelessWidget {
                       color: context.theme.colorScheme.inversePrimary
                           .withValues(alpha: .6),
                       fontFamily: 'cairo',
-                      fontStyle: FontStyle.italic,
                       fontWeight: FontWeight.bold,
                       fontSize: 14,
                     ),
@@ -74,7 +73,6 @@ class UserOptions extends StatelessWidget {
                       color: context.theme.colorScheme.inversePrimary
                           .withValues(alpha: .6),
                       fontFamily: 'cairo',
-                      fontStyle: FontStyle.italic,
                       fontWeight: FontWeight.bold,
                       fontSize: 14,
                     ),
@@ -104,7 +102,6 @@ class UserOptions extends StatelessWidget {
                       color: context.theme.colorScheme.inversePrimary
                           .withValues(alpha: .6),
                       fontFamily: 'cairo',
-                      fontStyle: FontStyle.italic,
                       fontWeight: FontWeight.bold,
                       fontSize: 14,
                     ),

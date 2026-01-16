@@ -12,7 +12,6 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:hijri_date/hijri_date.dart';
-import 'package:intl/intl.dart' as intl;
 import 'package:solar_icons/solar_icons.dart';
 
 import '../../../core/widgets/reactive_number_text.dart';
@@ -22,6 +21,7 @@ import '../../core/utils/constants/extensions/extensions.dart';
 import '../../core/utils/constants/extensions/svg_extensions.dart';
 import '../../core/utils/constants/extensions/text_span_extension.dart';
 import '../../core/utils/constants/lottie.dart';
+import '../../core/utils/constants/svg_constants.dart';
 import '../../core/widgets/custom_switch_widget.dart';
 import '../prayers/prayers.dart';
 

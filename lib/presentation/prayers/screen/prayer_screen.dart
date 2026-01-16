@@ -20,7 +20,8 @@ class PrayerScreen extends StatelessWidget {
         Get.back();
       },
       child: Scaffold(
-        backgroundColor: context.theme.colorScheme.surface,
+        backgroundColor:
+            context.theme.colorScheme.surface.withValues(alpha: .1),
         body: SafeArea(
           child: Container(
             color: context.theme.colorScheme.primaryContainer,

@@ -382,7 +382,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "locate": "Locate",
+  "locate": "Auto Detect",
   "@locate": {
     "type": "text",
     "placeholders": {}
@@ -444,7 +444,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "What'sNewDetails10": "۞ Fixed notification display issue.\n۞ General performance and stability improvements.",
+  "What'sNewDetails10": "۞ Added Ramadan section.\n۞ Added Sunnah and innovations for each month.\n۞ General performance and stability improvements.",
   "@What'sNewDetails10": {
     "type": "text",
     "placeholders": {}
@@ -754,6 +754,11 @@
   },
   "fastingReminder": "Fasting Reminder",
   "@fastingReminder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "aboutMonth": "About the Month",
+  "@aboutMonth": {
     "type": "text",
     "placeholders": {}
   }

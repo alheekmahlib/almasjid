@@ -18,7 +18,7 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: context.theme.colorScheme.surface,
+      backgroundColor: context.theme.colorScheme.surface.withValues(alpha: .1),
       body: SafeArea(
         child: Container(
           height: Get.height,

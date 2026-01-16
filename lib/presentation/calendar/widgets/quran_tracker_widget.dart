@@ -12,7 +12,7 @@ class QuranTrackerWidget extends StatelessWidget {
     return Row(
       children: [
         Container(
-          width: 20,
+          width: 30,
           height: 150,
           alignment: Alignment.center,
           decoration: BoxDecoration(
@@ -24,7 +24,7 @@ class QuranTrackerWidget extends StatelessWidget {
             child: Text(
               'quranSection'.tr,
               style: TextStyle(
-                fontSize: 12,
+                fontSize: 16,
                 fontFamily: 'cairo',
                 fontWeight: FontWeight.bold,
                 color: context.theme.canvasColor,

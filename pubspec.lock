@@ -338,6 +338,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.1"
+  floating_menu_expendable:
+    dependency: "direct main"
+    description:
+      name: floating_menu_expendable
+      sha256: "40b6a5615fe72dbb0fb789da3596fa98134e170c8c8a387092f271f0ca6499ac"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.1+1"
   floaty_nav_bar:
     dependency: "direct main"
     description:
@@ -627,10 +635,10 @@ packages:
     dependency: "direct main"
     description:
       name: home_widget
-      sha256: "908d033514a981f829fd98213909e11a428104327be3b422718aa643ac9d084a"
+      sha256: d794a73894012459a4c63b94a6dc2cb3ccaa6eb08fb15b974aa7ac642594aed5
       url: "https://pub.dev"
     source: hosted
-    version: "0.8.1"
+    version: "0.9.0"
   horizontal_week_calendar:
     dependency: "direct main"
     description:
@@ -1478,5 +1486,5 @@ packages:
     source: hosted
     version: "3.1.3"
 sdks:
-  dart: ">=3.10.0 <4.0.0"
+  dart: ">=3.10.4 <4.0.0"
   flutter: ">=3.35.0"

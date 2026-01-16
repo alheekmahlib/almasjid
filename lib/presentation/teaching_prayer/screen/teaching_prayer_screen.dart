@@ -9,10 +9,10 @@ class TeachingPrayerScreen extends StatelessWidget {
     final ctrl = TeachingPrayerController.instance;
     final eventCtrl = EventController.instance;
     final currentMonth = eventCtrl.hijriNow.hMonth;
-    final controller = FloatingMenuPanelController();
+    final controller = FloatingMenuExpendableController();
 
     return Scaffold(
-      backgroundColor: context.theme.colorScheme.surface,
+      backgroundColor: context.theme.colorScheme.surface.withValues(alpha: .1),
       body: SafeArea(
         child: Container(
           color: context.theme.colorScheme.primaryContainer,
@@ -175,7 +175,7 @@ class FloatingMenuWidget extends StatelessWidget {
 
   final TeachingPrayerController ctrl;
   final int currentMonth;
-  final FloatingMenuPanelController controller;
+  final FloatingMenuExpendableController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -188,14 +188,30 @@ class FloatingMenuWidget extends StatelessWidget {
       if (hadith == null || monthData == null) {
         return const SizedBox.shrink();
       }
-      return FloatingMenuPanel(
+      return FloatingMenuExpendable(
           controller: controller,
           panelWidth: 460,
           panelHeight: 360,
           handleWidth: 130,
           handleHeight: 52,
+          expandPanelFromHandle: true,
           initialPosition: const Offset(12, 12),
-          openMode: FloatingMenuPanelOpenMode.vertical,
+          openMode: FloatingMenuExpendableOpenMode.vertical,
+          style: FloatingMenuExpendableStyle(
+            // Background barrier
+            showBarrierWhenOpen: true,
+            barrierDismissible: true,
+            barrierColor: context.theme.colorScheme.primaryContainer
+                .withValues(alpha: 0.3),
+            barrierBlurSigmaX: 10,
+            barrierBlurSigmaY: 10,
+            panelDecoration: BoxDecoration(
+              color: context.theme.colorScheme.surface.withValues(alpha: 0.1),
+              borderRadius: const BorderRadius.all(Radius.circular(8)),
+            ),
+            // Panel
+            panelBorderRadius: const BorderRadius.all(Radius.circular(8)),
+          ),
           handleChild: ValueListenableBuilder<FloatingMenuPanelPhysicalSide?>(
               valueListenable: controller.physicalSide,
               builder: (context, horizontalSide, _) {
@@ -240,96 +256,103 @@ class FloatingMenuWidget extends StatelessWidget {
                       );
                     });
               }),
-          panelChild: DefaultTabController(
-            length:
-                hadith.isNotEmpty && sunnahs.isNotEmpty && heresies.isNotEmpty
-                    ? 3
-                    : hadith.isNotEmpty && sunnahs.isNotEmpty
-                        ? 2
-                        : hadith.isNotEmpty && heresies.isNotEmpty
-                            ? 2
-                            : heresies.isNotEmpty && sunnahs.isNotEmpty
-                                ? 2
-                                : 1,
-            child: Container(
-              margin: const EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
-              padding: const EdgeInsets.all(6.0),
-              decoration: BoxDecoration(
-                color: context.theme.colorScheme.primaryContainer,
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(
-                  color:
-                      context.theme.colorScheme.surface.withValues(alpha: .15),
-                ),
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Flexible(
-                    child: TabBar(
-                      indicatorColor: context.theme.colorScheme.surface,
-                      labelColor: context.theme.colorScheme.surface,
-                      unselectedLabelColor: context.theme.colorScheme.surface
-                          .withValues(alpha: .6),
-                      tabs: [
-                        if (hadith.isNotEmpty)
-                          Tab(
-                            child: Text(
-                              'aboutMonth'.tr,
-                              style: const TextStyle(
-                                fontFamily: 'cairo',
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                              ),
-                            ),
-                          ),
-                        if (sunnahs.isNotEmpty)
-                          Tab(
-                            child: Text(
-                              _getLocalizedText('sunnahs', lang),
-                              style: const TextStyle(
-                                fontFamily: 'cairo',
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                              ),
-                            ),
-                          ),
-                        if (heresies.isNotEmpty)
-                          Tab(
-                            child: Text(
-                              _getLocalizedText('heresies', lang),
-                              style: const TextStyle(
-                                fontFamily: 'cairo',
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                              ),
-                            ),
-                          ),
-                      ],
-                    ),
+          panelChild: Container(
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: context.theme.colorScheme.primaryContainer,
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: DefaultTabController(
+              length:
+                  hadith.isNotEmpty && sunnahs.isNotEmpty && heresies.isNotEmpty
+                      ? 3
+                      : hadith.isNotEmpty && sunnahs.isNotEmpty
+                          ? 2
+                          : hadith.isNotEmpty && heresies.isNotEmpty
+                              ? 2
+                              : heresies.isNotEmpty && sunnahs.isNotEmpty
+                                  ? 2
+                                  : 1,
+              child: Container(
+                margin: const EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
+                padding: const EdgeInsets.all(6.0),
+                decoration: BoxDecoration(
+                  color: context.theme.colorScheme.primaryContainer,
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(
+                    color: context.theme.colorScheme.surface
+                        .withValues(alpha: .15),
                   ),
-                  Expanded(
-                    flex: 7,
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 6.0),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        color: context.theme.colorScheme.surface
-                            .withValues(alpha: .08),
-                      ),
-                      child: TabBarView(
-                        children: [
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Flexible(
+                      child: TabBar(
+                        indicatorColor: context.theme.colorScheme.surface,
+                        labelColor: context.theme.colorScheme.surface,
+                        unselectedLabelColor: context.theme.colorScheme.surface
+                            .withValues(alpha: .6),
+                        tabs: [
                           if (hadith.isNotEmpty)
-                            SingleChildScrollView(
-                              child: _HadithCard(hadith: hadith),
+                            Tab(
+                              child: Text(
+                                'aboutMonth'.tr,
+                                style: const TextStyle(
+                                  fontFamily: 'cairo',
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                ),
+                              ),
                             ),
-                          if (sunnahs.isNotEmpty) const SunnahsAndHeresies(),
-                          if (heresies.isNotEmpty) const SunnahsAndHeresies(),
+                          if (sunnahs.isNotEmpty)
+                            Tab(
+                              child: Text(
+                                _getLocalizedText('sunnahs', lang),
+                                style: const TextStyle(
+                                  fontFamily: 'cairo',
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ),
+                          if (heresies.isNotEmpty)
+                            Tab(
+                              child: Text(
+                                _getLocalizedText('heresies', lang),
+                                style: const TextStyle(
+                                  fontFamily: 'cairo',
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ),
                         ],
                       ),
                     ),
-                  ),
-                ],
+                    Expanded(
+                      flex: 7,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 6.0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          color: context.theme.colorScheme.surface
+                              .withValues(alpha: .08),
+                        ),
+                        child: TabBarView(
+                          children: [
+                            if (hadith.isNotEmpty)
+                              SingleChildScrollView(
+                                child: _HadithCard(hadith: hadith),
+                              ),
+                            if (sunnahs.isNotEmpty) const SunnahsAndHeresies(),
+                            if (heresies.isNotEmpty) const SunnahsAndHeresies(),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ));

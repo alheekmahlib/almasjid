@@ -142,7 +142,7 @@ class NotifyHelper {
         body: body,
         scheduledTime: time,
         soundType: soundType,
-        isFajr: false,
+        isFajr: isFajr,
       );
     } else {
       await service.showNotification(
@@ -150,7 +150,7 @@ class NotifyHelper {
         title: title,
         body: body,
         soundType: soundType,
-        isFajr: false,
+        isFajr: isFajr,
       );
     }
   }
