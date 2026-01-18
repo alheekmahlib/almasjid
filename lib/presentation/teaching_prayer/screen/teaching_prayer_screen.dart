@@ -129,40 +129,6 @@ class TeachingPrayerScreen extends StatelessWidget {
       ),
     );
   }
-
-  Widget monthWidget(HijriMonthData? monthData, BuildContext context,
-      TeachingPrayerController ctrl, int currentMonth) {
-    final hadith = ctrl.getHadithForMonth(currentMonth);
-    return GestureDetector(
-      onTap: () => customBottomSheet(
-        containerColor: context.theme.colorScheme.primaryContainer,
-        titleChild: customSvgWithColor(
-          'assets/svg/hijri/${monthData.number}.svg',
-          height: 80,
-          color: context.theme.colorScheme.surface,
-        ),
-        child: Container(
-          margin: const EdgeInsets.symmetric(vertical: 3.0, horizontal: 8.0),
-          padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 6.0),
-          decoration: BoxDecoration(
-            color: context.theme.colorScheme.surface.withValues(alpha: .08),
-            borderRadius: BorderRadius.circular(12),
-            border: Border.all(
-              color: context.theme.colorScheme.surface.withValues(alpha: .15),
-            ),
-          ),
-          child: SingleChildScrollView(
-            child: _HadithCard(hadith: hadith!),
-          ),
-        ),
-      ),
-      child: customSvgWithColor(
-        'assets/svg/hijri/${monthData!.number}.svg',
-        height: 80,
-        color: context.theme.colorScheme.surface,
-      ),
-    );
-  }
 }
 
 class FloatingMenuWidget extends StatelessWidget {
@@ -185,13 +151,14 @@ class FloatingMenuWidget extends StatelessWidget {
       final hadith = ctrl.getHadithForMonth(currentMonth);
       final sunnahs = ctrl.getSunnahsForMonth(currentMonth);
       final heresies = ctrl.getHeresiesForMonth(currentMonth);
-      if (hadith == null || monthData == null) {
-        return const SizedBox.shrink();
-      }
+      final isEmpty = hadith == null || monthData == null;
+      // if (hadith == null || monthData == null) {
+      //   return const SizedBox.shrink();
+      // }
       return FloatingMenuExpendable(
           controller: controller,
-          panelWidth: 460,
-          panelHeight: 360,
+          panelWidth: isEmpty ? 130 : 460,
+          panelHeight: isEmpty ? 52 : 360,
           handleWidth: 130,
           handleHeight: 52,
           expandPanelFromHandle: true,
@@ -199,8 +166,8 @@ class FloatingMenuWidget extends StatelessWidget {
           openMode: FloatingMenuExpendableOpenMode.vertical,
           style: FloatingMenuExpendableStyle(
             // Background barrier
-            showBarrierWhenOpen: true,
-            barrierDismissible: true,
+            showBarrierWhenOpen: isEmpty ? false : true,
+            barrierDismissible: isEmpty ? false : true,
             barrierColor: context.theme.colorScheme.primaryContainer
                 .withValues(alpha: 0.3),
             barrierBlurSigmaX: 10,
@@ -256,106 +223,113 @@ class FloatingMenuWidget extends StatelessWidget {
                       );
                     });
               }),
-          panelChild: Container(
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              color: context.theme.colorScheme.primaryContainer,
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: DefaultTabController(
-              length:
-                  hadith.isNotEmpty && sunnahs.isNotEmpty && heresies.isNotEmpty
-                      ? 3
-                      : hadith.isNotEmpty && sunnahs.isNotEmpty
-                          ? 2
-                          : hadith.isNotEmpty && heresies.isNotEmpty
-                              ? 2
-                              : heresies.isNotEmpty && sunnahs.isNotEmpty
-                                  ? 2
-                                  : 1,
-              child: Container(
-                margin: const EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
-                padding: const EdgeInsets.all(6.0),
-                decoration: BoxDecoration(
-                  color: context.theme.colorScheme.primaryContainer,
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(
-                    color: context.theme.colorScheme.surface
-                        .withValues(alpha: .15),
+          panelChild: isEmpty
+              ? const SizedBox.shrink()
+              : Container(
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: context.theme.colorScheme.primaryContainer,
+                    borderRadius: BorderRadius.circular(8),
                   ),
-                ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Flexible(
-                      child: TabBar(
-                        indicatorColor: context.theme.colorScheme.surface,
-                        labelColor: context.theme.colorScheme.surface,
-                        unselectedLabelColor: context.theme.colorScheme.surface
-                            .withValues(alpha: .6),
-                        tabs: [
-                          if (hadith.isNotEmpty)
-                            Tab(
-                              child: Text(
-                                'aboutMonth'.tr,
-                                style: const TextStyle(
-                                  fontFamily: 'cairo',
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16,
-                                ),
+                  child: DefaultTabController(
+                    length: hadith.isNotEmpty &&
+                            sunnahs.isNotEmpty &&
+                            heresies.isNotEmpty
+                        ? 3
+                        : hadith.isNotEmpty && sunnahs.isNotEmpty
+                            ? 2
+                            : hadith.isNotEmpty && heresies.isNotEmpty
+                                ? 2
+                                : heresies.isNotEmpty && sunnahs.isNotEmpty
+                                    ? 2
+                                    : 1,
+                    child: Container(
+                      margin: const EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
+                      padding: const EdgeInsets.all(6.0),
+                      decoration: BoxDecoration(
+                        color: context.theme.colorScheme.primaryContainer,
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(
+                          color: context.theme.colorScheme.surface
+                              .withValues(alpha: .15),
+                        ),
+                      ),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Flexible(
+                            child: TabBar(
+                              indicatorColor: context.theme.colorScheme.surface,
+                              labelColor: context.theme.colorScheme.surface,
+                              unselectedLabelColor: context
+                                  .theme.colorScheme.surface
+                                  .withValues(alpha: .6),
+                              tabs: [
+                                if (hadith.isNotEmpty)
+                                  Tab(
+                                    child: Text(
+                                      'aboutMonth'.tr,
+                                      style: const TextStyle(
+                                        fontFamily: 'cairo',
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ),
+                                if (sunnahs.isNotEmpty)
+                                  Tab(
+                                    child: Text(
+                                      _getLocalizedText('sunnahs', lang),
+                                      style: const TextStyle(
+                                        fontFamily: 'cairo',
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ),
+                                if (heresies.isNotEmpty)
+                                  Tab(
+                                    child: Text(
+                                      _getLocalizedText('heresies', lang),
+                                      style: const TextStyle(
+                                        fontFamily: 'cairo',
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ),
+                              ],
+                            ),
+                          ),
+                          Expanded(
+                            flex: 7,
+                            child: Container(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 6.0),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(12),
+                                color: context.theme.colorScheme.surface
+                                    .withValues(alpha: .08),
+                              ),
+                              child: TabBarView(
+                                children: [
+                                  if (hadith.isNotEmpty)
+                                    SingleChildScrollView(
+                                      child: _HadithCard(hadith: hadith),
+                                    ),
+                                  if (sunnahs.isNotEmpty)
+                                    const SunnahsAndHeresies(),
+                                  if (heresies.isNotEmpty)
+                                    const SunnahsAndHeresies(),
+                                ],
                               ),
                             ),
-                          if (sunnahs.isNotEmpty)
-                            Tab(
-                              child: Text(
-                                _getLocalizedText('sunnahs', lang),
-                                style: const TextStyle(
-                                  fontFamily: 'cairo',
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16,
-                                ),
-                              ),
-                            ),
-                          if (heresies.isNotEmpty)
-                            Tab(
-                              child: Text(
-                                _getLocalizedText('heresies', lang),
-                                style: const TextStyle(
-                                  fontFamily: 'cairo',
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16,
-                                ),
-                              ),
-                            ),
+                          ),
                         ],
                       ),
                     ),
-                    Expanded(
-                      flex: 7,
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 6.0),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          color: context.theme.colorScheme.surface
-                              .withValues(alpha: .08),
-                        ),
-                        child: TabBarView(
-                          children: [
-                            if (hadith.isNotEmpty)
-                              SingleChildScrollView(
-                                child: _HadithCard(hadith: hadith),
-                              ),
-                            if (sunnahs.isNotEmpty) const SunnahsAndHeresies(),
-                            if (heresies.isNotEmpty) const SunnahsAndHeresies(),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ));
+                  ),
+                ));
     });
   }
 

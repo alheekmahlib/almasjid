@@ -184,8 +184,6 @@ class _ItemsGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Wrap(
-      // spacing: 6,
-      // runSpacing: 6,
       children: items.map((item) {
         final name = isSunnah
             ? (item as SunnahItem).resolveName(lang)
@@ -199,13 +197,6 @@ class _ItemsGrid extends StatelessWidget {
           title: title,
           subtitle: description,
           isSunnah: isSunnah,
-          // closedColor: isSunnah
-          //     ? Colors.green.withValues(alpha: .08)
-          //     : Colors.orange.withValues(alpha: .08),
-          // openColor: isSunnah
-          //     ? Colors.green.withValues(alpha: .15)
-          //     : Colors.orange.withValues(alpha: .08),
-          // isSunnah: isSunnah,
         );
       }).toList(),
     );

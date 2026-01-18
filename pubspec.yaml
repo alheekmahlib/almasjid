@@ -26,8 +26,11 @@ dependencies:
       ref: master
       url: https://github.com/alheekmahlib/drawing_animation.git
   either_dart: ^1.0.0
-  floating_menu_expendable: ^0.1.1+1
-  floaty_nav_bar: ^1.0.2
+  floating_menu_expendable: ^1.0.0
+  floaty_nav_bar: #^1.0.2
+    git:
+      ref: main
+      url: https://github.com/alheekmahlib/floaty_nav_bar.git
   flutter:
     sdk: flutter
   flutter_app_info: ^3.0.3

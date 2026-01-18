@@ -4,6 +4,7 @@ enum NavBarTab {
   qibla,
   prayer,
   liatafaqahuu,
+  cites,
   settings;
 
   String get label {
@@ -14,6 +15,8 @@ enum NavBarTab {
         return 'prayer';
       case NavBarTab.liatafaqahuu:
         return 'liatafaqahuu';
+      case NavBarTab.cites:
+        return 'cites';
       case NavBarTab.settings:
         return 'settings';
     }
@@ -27,6 +30,8 @@ enum NavBarTab {
         return SvgPath.svgHomeMosque;
       case NavBarTab.liatafaqahuu:
         return SvgPath.svgHomeTeachingPrayer;
+      case NavBarTab.cites:
+        return SvgPath.svgHomeCites;
       case NavBarTab.settings:
         return SvgPath.svgHomeSettings;
     }
@@ -44,6 +49,8 @@ enum NavBarTab {
       case NavBarTab.prayer:
         return PrayerScreen();
       case NavBarTab.liatafaqahuu:
+        return const TeachingPrayerScreen();
+      case NavBarTab.cites:
         return const TeachingPrayerScreen();
       case NavBarTab.settings:
         return const SettingsScreen();

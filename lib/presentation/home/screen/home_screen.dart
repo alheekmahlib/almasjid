@@ -20,36 +20,39 @@ class HomeScreen extends StatelessWidget {
           floatingActionButton: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: FittedBox(
-              fit: BoxFit.scaleDown,
+              fit: BoxFit.fitWidth,
               child: FloatyNavBar(
+                height: 60,
                 backgroundColor:
-                    context.theme.colorScheme.primary.withValues(alpha: .8),
+                    context.theme.colorScheme.surface.withValues(alpha: .8),
+                // glassEffect: const FloatyGlassEffect.light(),
                 shape: const CircleShape(),
-                gap: 32,
+                gap: 16,
                 selectedTab: controller.currentIndex,
                 tabs: NavBarTab.values
                     .map((nav) => FloatyTab(
+                          height: 50,
+                          width: 65,
+                          enableHaptics: true,
                           isSelected: controller.currentIndex == nav.tapIndex,
                           title: nav.label.tr,
-                          margin: const EdgeInsets.symmetric(
-                              horizontal: 16.0, vertical: 8.0),
-                          selectedColor: context.theme.colorScheme.surface,
+                          margin: const EdgeInsets.symmetric(horizontal: 16.0),
+                          selectedColor: context.theme.colorScheme.primary,
                           unselectedColor: Colors.transparent,
+                          selectedDisplayMode: FloatyTabDisplayMode.titleOnly,
+                          unselectedDisplayMode: FloatyTabDisplayMode.iconOnly,
                           titleStyle: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontFamily: 'cairo',
                             fontSize: 18,
-                            color:
-                                context.theme.canvasColor.withValues(alpha: .6),
+                            height: 1.4,
+                            color: context.theme.colorScheme.surface,
                           ),
                           icon: customSvgWithColor(
                             height: 30,
                             width: 30,
                             nav.icon,
-                            color: controller.currentIndex == nav.tapIndex
-                                ? context.theme.colorScheme.primary
-                                : context.theme.colorScheme.surface
-                                    .withValues(alpha: .6),
+                            color: context.theme.colorScheme.primary,
                           ),
                           onTap: () => controller.changeIndex(nav.tapIndex),
                           floatyActionButton: FloatyActionButton(

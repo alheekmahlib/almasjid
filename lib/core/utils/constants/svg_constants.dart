@@ -70,6 +70,10 @@ class SvgPath {
   /// assets/svg/hijri/9.svg
   static const String svgHijri9 = "assets/svg/hijri/9.svg";
 
+  /// Assets for svgHomeCites
+  /// assets/svg/home/cites.svg
+  static const String svgHomeCites = "assets/svg/home/cites.svg";
+
   /// Assets for svgHomeKaaba
   /// assets/svg/home/kaaba.svg
   static const String svgHomeKaaba = "assets/svg/home/kaaba.svg";

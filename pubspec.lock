@@ -342,17 +342,18 @@ packages:
     dependency: "direct main"
     description:
       name: floating_menu_expendable
-      sha256: "40b6a5615fe72dbb0fb789da3596fa98134e170c8c8a387092f271f0ca6499ac"
+      sha256: "7d293ac61eb0584b580142166407143d7fc132f01b27df2e723f073dc9b3b369"
       url: "https://pub.dev"
     source: hosted
-    version: "0.1.1+1"
+    version: "1.0.0"
   floaty_nav_bar:
     dependency: "direct main"
     description:
-      name: floaty_nav_bar
-      sha256: f7c6ac723d326b3dc3990eb6632663a88d9a6363ab230ee71fc59076e96838c7
-      url: "https://pub.dev"
-    source: hosted
+      path: "."
+      ref: main
+      resolved-ref: d8fcea0e6ba886007e5e6cb4165d31b00627b926
+      url: "https://github.com/alheekmahlib/floaty_nav_bar.git"
+    source: git
     version: "1.0.2"
   flutter:
     dependency: "direct main"
