@@ -31,10 +31,10 @@ class PrayersOfCites extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
                                 Text(
-                                  'citiesPrayerTimesTitle'.tr,
+                                  'cites'.tr,
                                   style: TextStyle(
                                     fontFamily: 'cairo',
-                                    fontSize: 24,
+                                    fontSize: 34,
                                     fontWeight: FontWeight.bold,
                                     color: context
                                         .theme.colorScheme.inversePrimary,
@@ -293,7 +293,7 @@ class _CityCard extends StatelessWidget {
     return ContainerButtonWidget(
       onPressed: onTap,
       width: Get.width,
-      height: 100,
+      height: 90,
       backgroundColor:
           context.theme.colorScheme.surface.withValues(alpha: 0.15),
       borderColor: Colors.transparent,
@@ -342,30 +342,36 @@ class _CityCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
-                            displayCity,
-                            style: TextStyle(
-                              height: 1.3,
-                              fontFamily: 'cairo',
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: context.theme.colorScheme.inversePrimary,
+                          FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: Text(
+                              displayCity,
+                              style: TextStyle(
+                                height: 1.3,
+                                fontFamily: 'cairo',
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: context.theme.colorScheme.inversePrimary,
+                              ),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
                             ),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
                           ),
                           const Gap(6),
-                          Text(
-                            displayCountry,
-                            style: TextStyle(
-                              height: 1.3,
-                              fontFamily: 'cairo',
-                              fontSize: 14,
-                              color: context.theme.colorScheme.inversePrimary
-                                  .withValues(alpha: 0.7),
+                          FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: Text(
+                              displayCountry,
+                              style: TextStyle(
+                                height: 1.3,
+                                fontFamily: 'cairo',
+                                fontSize: 14,
+                                color: context.theme.colorScheme.inversePrimary
+                                    .withValues(alpha: 0.7),
+                              ),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
                             ),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
                           ),
                         ],
                       );

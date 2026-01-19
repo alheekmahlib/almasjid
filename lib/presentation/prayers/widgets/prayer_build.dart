@@ -236,9 +236,9 @@ Widget _buildPrayerContentCore(
     duration: const Duration(milliseconds: 300),
     curve: Curves.easeInOut,
     decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(12),
+      borderRadius: BorderRadius.circular(16),
       color: isCurrentPrayer
-          ? Theme.of(context).colorScheme.surface.withValues(alpha: 0.2)
+          ? Theme.of(context).colorScheme.surface.withValues(alpha: 0.5)
           : Colors.transparent,
     ),
     child: ContainerButtonWidget(
