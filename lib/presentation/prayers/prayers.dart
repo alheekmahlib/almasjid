@@ -81,6 +81,7 @@ part 'widgets/prayer_build.dart';
 part 'widgets/prayer_details.dart';
 part 'widgets/prohibition_details.dart';
 part 'widgets/settings/adhan_sounds.dart';
+part 'widgets/settings/country_picker_bottom_sheet.dart';
 part 'widgets/settings/pick_calculation_method.dart';
 part 'widgets/settings/play_button.dart';
 part 'widgets/settings/prayer_settings.dart';

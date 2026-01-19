@@ -457,6 +457,30 @@
     "type": "text",
     "placeholders": {}
   },
+  "selectCountry": "Dooro Dalka",
+  "@selectCountry": {
+    "description": "Country picker title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterCountryName": "Raadi dal...",
+  "@enterCountryName": {
+    "description": "Country search hint",
+    "type": "text",
+    "placeholders": {}
+  },
+  "noResults": "Natiijo ma jirto",
+  "@noResults": {
+    "description": "Shown when search has no matches",
+    "type": "text",
+    "placeholders": {}
+  },
+  "failedToLoadCountries": "Ku guuldareystay soo dejinta dalalka",
+  "@failedToLoadCountries": {
+    "description": "Countries list loading error",
+    "type": "text",
+    "placeholders": {}
+  },
   "What's New": "Maxaa cusub",
   "@What's New": {
     "type": "text",

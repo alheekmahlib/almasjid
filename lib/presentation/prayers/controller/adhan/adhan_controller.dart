@@ -44,7 +44,7 @@ class AdhanController extends GetxController {
   /// -------- [Methods] ----------
 
   Future<void> fetchCountryList() async {
-    state.countryListFuture = getCountryList();
+    state.countryListFuture ??= getCountryList();
   }
 
   String prayerNameFromEnum(Prayer prayer) {
@@ -258,7 +258,7 @@ class AdhanController extends GetxController {
     try {
       await initializeAdhanVariables();
       await fetchCountryList();
-      await getCountryList().then((c) => state.countries = c);
+      await state.countryListFuture;
 
       // حفظ البيانات الجديدة
       // Save new data
@@ -397,15 +397,33 @@ class AdhanController extends GetxController {
   }
 
   Future<List<String>> getCountryList() async {
-    final jsonString = await rootBundle.loadString('assets/json/madhabV2.json');
-    final jsonData = jsonDecode(jsonString) as List<dynamic>; // Decode as List
-
-    // List<String> countries = [];
-    for (var item in jsonData) {
-      // Assuming each item is a map with a "country" key
-      state.countries.add(item['country'] as String);
+    // Normalize existing cache (useful after hot-reload or legacy code paths)
+    if (state.countries.isNotEmpty) {
+      final normalized = state.countries
+          .map((c) => c.trim())
+          .where((c) => c.isNotEmpty)
+          .toSet()
+          .toList()
+        ..sort((a, b) => a.toLowerCase().compareTo(b.toLowerCase()));
+      state.countries = normalized;
+      return state.countries;
     }
-    return state.countries;
+
+    final jsonString = await rootBundle.loadString('assets/json/madhabV2.json');
+    final jsonData = jsonDecode(jsonString) as List<dynamic>;
+
+    final countriesSet = <String>{};
+    for (final rawItem in jsonData) {
+      if (rawItem is! Map) continue;
+      final country = (rawItem['country'] as String?)?.trim();
+      if (country == null || country.isEmpty) continue;
+      countriesSet.add(country);
+    }
+
+    final countries = countriesSet.toList()
+      ..sort((a, b) => a.toLowerCase().compareTo(b.toLowerCase()));
+    state.countries = countries;
+    return countries;
   }
 
   void updateProgress() {

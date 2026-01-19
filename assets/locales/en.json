@@ -457,6 +457,30 @@
     "type": "text",
     "placeholders": {}
   },
+  "selectCountry": "Select Country",
+  "@selectCountry": {
+    "description": "Country picker title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterCountryName": "Search for a country...",
+  "@enterCountryName": {
+    "description": "Country search hint",
+    "type": "text",
+    "placeholders": {}
+  },
+  "noResults": "No results",
+  "@noResults": {
+    "description": "Shown when search has no matches",
+    "type": "text",
+    "placeholders": {}
+  },
+  "failedToLoadCountries": "Failed to load countries",
+  "@failedToLoadCountries": {
+    "description": "Countries list loading error",
+    "type": "text",
+    "placeholders": {}
+  },
   "What's New": "What's New",
   "@What's New": {
     "type": "text",

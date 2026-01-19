@@ -457,6 +457,30 @@
     "type": "text",
     "placeholders": {}
   },
+  "selectCountry": "Ülke Seç",
+  "@selectCountry": {
+    "description": "Country picker title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterCountryName": "Ülke ara...",
+  "@enterCountryName": {
+    "description": "Country search hint",
+    "type": "text",
+    "placeholders": {}
+  },
+  "noResults": "Sonuç yok",
+  "@noResults": {
+    "description": "Shown when search has no matches",
+    "type": "text",
+    "placeholders": {}
+  },
+  "failedToLoadCountries": "Ülkeler yüklenemedi",
+  "@failedToLoadCountries": {
+    "description": "Countries list loading error",
+    "type": "text",
+    "placeholders": {}
+  },
   "What's New": "Yenilikler",
   "@What's New": {
     "type": "text",

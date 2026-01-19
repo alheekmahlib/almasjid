@@ -457,6 +457,30 @@
     "type": "text",
     "placeholders": {}
   },
+  "selectCountry": "وڵات هەڵبژێرە",
+  "@selectCountry": {
+    "description": "Country picker title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterCountryName": "گەڕان بۆ وڵات...",
+  "@enterCountryName": {
+    "description": "Country search hint",
+    "type": "text",
+    "placeholders": {}
+  },
+  "noResults": "هیچ ئەنجامێک نییە",
+  "@noResults": {
+    "description": "Shown when search has no matches",
+    "type": "text",
+    "placeholders": {}
+  },
+  "failedToLoadCountries": "شکستی هێنا لە بارکردنی وڵاتەکان",
+  "@failedToLoadCountries": {
+    "description": "Countries list loading error",
+    "type": "text",
+    "placeholders": {}
+  },
   "What's New": "چی نوێیە",
   "@What's New": {
     "type": "text",

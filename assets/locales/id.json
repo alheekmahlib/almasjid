@@ -457,6 +457,30 @@
     "type": "text",
     "placeholders": {}
   },
+  "selectCountry": "Pilih Negara",
+  "@selectCountry": {
+    "description": "Country picker title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterCountryName": "Cari negara...",
+  "@enterCountryName": {
+    "description": "Country search hint",
+    "type": "text",
+    "placeholders": {}
+  },
+  "noResults": "Tidak ada hasil",
+  "@noResults": {
+    "description": "Shown when search has no matches",
+    "type": "text",
+    "placeholders": {}
+  },
+  "failedToLoadCountries": "Gagal memuat negara",
+  "@failedToLoadCountries": {
+    "description": "Countries list loading error",
+    "type": "text",
+    "placeholders": {}
+  },
   "What's New": "Apa yang Baru",
   "@What's New": {
     "type": "text",

@@ -20,105 +20,196 @@ class PrayersOfCites extends StatelessWidget {
                 children: [
                   const AppBarWidget(withBackButton: false),
                   const Gap(16),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Text(
-                          'citiesPrayerTimesTitle'.tr,
-                          style: TextStyle(
-                            fontFamily: 'cairo',
-                            fontSize: 24.sp,
-                            fontWeight: FontWeight.bold,
-                            color: context.theme.colorScheme.inversePrimary,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                        const Gap(12),
-                        _SearchBar(
-                          onTap: () => context.showSearchBottomSheet(
-                            context,
-                            onCitySelected: controller.addFromSearchResult,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const Gap(16),
                   Expanded(
-                    child: controller.isLoading
-                        ? const Center(child: CircularProgressIndicator())
-                        : controller.cities.isEmpty
-                            ? Center(
-                                child: Text(
-                                  'citiesPrayerTimesSearchHint'.tr,
+                    child: context.customOrientation(
+                      Column(
+                        children: [
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 16.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                Text(
+                                  'citiesPrayerTimesTitle'.tr,
                                   style: TextStyle(
                                     fontFamily: 'cairo',
-                                    fontSize: 14.sp,
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
                                     color: context
-                                        .theme.colorScheme.inversePrimary
-                                        .withValues(alpha: 0.7),
+                                        .theme.colorScheme.inversePrimary,
                                   ),
                                   textAlign: TextAlign.center,
                                 ),
-                              )
-                            : ReorderableListView.builder(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 16.0),
-                                itemCount: controller.cities.length,
-                                onReorder: controller.reorder,
-                                itemBuilder: (context, index) {
-                                  final city = controller.cities[index];
-
-                                  return Padding(
-                                    key: ValueKey(city.id),
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 3.0),
-                                    child: _CityCard(
-                                      city: city,
-                                      onDelete: () =>
-                                          controller.removeCity(city.id),
-                                      onTap: () => customBottomSheet(
-                                        containerColor: context
-                                            .theme.colorScheme.primaryContainer,
-                                        child:
-                                            CityPrayerTimesScreen(city: city),
-                                      ),
-                                      dragHandle: ReorderableDragStartListener(
-                                        index: index,
-                                        child: Icon(
-                                          Icons.drag_handle,
-                                          color: context
-                                              .theme.colorScheme.inversePrimary
-                                              .withValues(alpha: 0.7),
+                                const Gap(12),
+                                _SearchBar(
+                                  onTap: () => context.showSearchBottomSheet(
+                                    context,
+                                    onCitySelected:
+                                        controller.addFromSearchResult,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const Gap(16),
+                          Expanded(
+                            child: controller.isLoading
+                                ? const Center(
+                                    child: CircularProgressIndicator())
+                                : controller.cities.isEmpty
+                                    ? Center(
+                                        child: Text(
+                                          'citiesPrayerTimesSearchHint'.tr,
+                                          style: TextStyle(
+                                            fontFamily: 'cairo',
+                                            fontSize: 14,
+                                            color: context.theme.colorScheme
+                                                .inversePrimary
+                                                .withValues(alpha: 0.7),
+                                          ),
+                                          textAlign: TextAlign.center,
                                         ),
+                                      )
+                                    : ReorderableListView.builder(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 16.0),
+                                        itemCount: controller.cities.length,
+                                        onReorder: controller.reorder,
+                                        itemBuilder: (context, index) {
+                                          final city = controller.cities[index];
+
+                                          return Padding(
+                                            key: ValueKey(city.id),
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 3.0),
+                                            child: _CityCard(
+                                              city: city,
+                                              onDelete: () => controller
+                                                  .removeCity(city.id),
+                                              onTap: () => customBottomSheet(
+                                                containerColor: context
+                                                    .theme
+                                                    .colorScheme
+                                                    .primaryContainer,
+                                                child: CityPrayerTimesScreen(
+                                                    city: city),
+                                              ),
+                                              dragHandle:
+                                                  ReorderableDragStartListener(
+                                                index: index,
+                                                child: Icon(
+                                                  Icons.drag_handle,
+                                                  color: context
+                                                      .theme
+                                                      .colorScheme
+                                                      .inversePrimary
+                                                      .withValues(alpha: 0.7),
+                                                ),
+                                              ),
+                                            ),
+                                          );
+                                        },
                                       ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 16.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: [
+                                  Text(
+                                    'citiesPrayerTimesTitle'.tr,
+                                    style: TextStyle(
+                                      fontFamily: 'cairo',
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.bold,
+                                      color: context
+                                          .theme.colorScheme.inversePrimary,
                                     ),
-                                  );
-                                },
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  const Gap(12),
+                                  _SearchBar(
+                                    onTap: () => context.showSearchBottomSheet(
+                                      context,
+                                      onCitySelected:
+                                          controller.addFromSearchResult,
+                                    ),
+                                  ),
+                                ],
                               ),
-                  ),
-                  // Padding(
-                  //   padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
-                  //   child: ContainerButtonWidget(
-                  //     onPressed: () => context.showSearchBottomSheet(
-                  //       context,
-                  //       onCitySelected: controller.addFromSearchResult,
-                  //     ),
-                  //     width: Get.width,
-                  //     height: 52,
-                  //     child: Text(
-                  //       'add'.tr,
-                  //       style: TextStyle(
-                  //         fontFamily: 'cairo',
-                  //         fontWeight: FontWeight.bold,
-                  //         fontSize: 16.sp,
-                  //         color: context.theme.colorScheme.inversePrimary,
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
+                            ),
+                          ),
+                          const Gap(16),
+                          Expanded(
+                            child: controller.isLoading
+                                ? const Center(
+                                    child: CircularProgressIndicator())
+                                : controller.cities.isEmpty
+                                    ? Center(
+                                        child: Text(
+                                          'citiesPrayerTimesSearchHint'.tr,
+                                          style: TextStyle(
+                                            fontFamily: 'cairo',
+                                            fontSize: 14,
+                                            color: context.theme.colorScheme
+                                                .inversePrimary
+                                                .withValues(alpha: 0.7),
+                                          ),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      )
+                                    : ReorderableListView.builder(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 16.0),
+                                        itemCount: controller.cities.length,
+                                        onReorder: controller.reorder,
+                                        itemBuilder: (context, index) {
+                                          final city = controller.cities[index];
+
+                                          return Padding(
+                                            key: ValueKey(city.id),
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 3.0),
+                                            child: _CityCard(
+                                              city: city,
+                                              onDelete: () => controller
+                                                  .removeCity(city.id),
+                                              onTap: () => customBottomSheet(
+                                                containerColor: context
+                                                    .theme
+                                                    .colorScheme
+                                                    .primaryContainer,
+                                                child: CityPrayerTimesScreen(
+                                                    city: city),
+                                              ),
+                                              dragHandle:
+                                                  ReorderableDragStartListener(
+                                                index: index,
+                                                child: Icon(
+                                                  Icons.drag_handle,
+                                                  color: context
+                                                      .theme
+                                                      .colorScheme
+                                                      .inversePrimary
+                                                      .withValues(alpha: 0.7),
+                                                ),
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
                 ],
               );
             },
@@ -256,7 +347,7 @@ class _CityCard extends StatelessWidget {
                             style: TextStyle(
                               height: 1.3,
                               fontFamily: 'cairo',
-                              fontSize: 20.sp,
+                              fontSize: 20,
                               fontWeight: FontWeight.bold,
                               color: context.theme.colorScheme.inversePrimary,
                             ),
@@ -269,7 +360,7 @@ class _CityCard extends StatelessWidget {
                             style: TextStyle(
                               height: 1.3,
                               fontFamily: 'cairo',
-                              fontSize: 14.sp,
+                              fontSize: 14,
                               color: context.theme.colorScheme.inversePrimary
                                   .withValues(alpha: 0.7),
                             ),
@@ -300,7 +391,7 @@ class _CityCard extends StatelessWidget {
                         style: TextStyle(
                           height: 1.3,
                           fontFamily: 'cairo',
-                          fontSize: 14.sp,
+                          fontSize: 14,
                           fontWeight: FontWeight.w600,
                           color: context.theme.colorScheme.inversePrimary
                               .withValues(alpha: 0.8),
@@ -326,7 +417,7 @@ class _CityCard extends StatelessWidget {
                           style: TextStyle(
                             height: 1.3,
                             fontFamily: 'cairo',
-                            fontSize: 14.sp,
+                            fontSize: 14,
                             fontWeight: FontWeight.w600,
                             color: context.theme.colorScheme.inversePrimary
                                 .withValues(alpha: 0.8),
@@ -338,7 +429,7 @@ class _CityCard extends StatelessWidget {
                           style: TextStyle(
                             height: 1.3,
                             fontFamily: 'cairo',
-                            fontSize: 24.sp,
+                            fontSize: 24,
                             fontWeight: FontWeight.bold,
                             color: context.theme.colorScheme.inversePrimary,
                           ),

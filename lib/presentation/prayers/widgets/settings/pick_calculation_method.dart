@@ -7,70 +7,51 @@ class PickCalculationMethod extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final countryFuture =
+        adhanCtrl.state.countryListFuture ??= adhanCtrl.getCountryList();
     return FutureBuilder<List<String>>(
-        future: adhanCtrl.state.countryListFuture,
+        future: countryFuture,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return PopupMenuButton(
-              position: PopupMenuPosition.under,
-              color: context.theme.colorScheme.primaryContainer,
-              itemBuilder: (context) => List.generate(
-                  adhanCtrl.state.countries.length,
-                  (index) => PopupMenuItem(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                        child: Column(
-                          children: [
-                            ListTile(
-                              title: Text(
-                                adhanCtrl.state.countries[index],
-                                style: TextStyle(
-                                    color: context
-                                        .theme.colorScheme.inversePrimary
-                                        .withValues(alpha: .7),
-                                    fontSize: 16,
-                                    fontFamily: 'cairo'),
-                              ),
-                              onTap: () {
-                                adhanCtrl.state.selectedCountry.value =
-                                    adhanCtrl.state.countries[index];
-                                Get.back();
-                              },
-                            ),
-                          ],
-                        ),
-                      )),
-              child: Semantics(
+            return Obx(
+              () => Semantics(
                 button: true,
                 enabled: true,
                 label: adhanCtrl.state.selectedCountry.value,
-                child: Container(
-                  height: 37,
-                  width: Get.width,
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 8.0, horizontal: 16.0),
-                  decoration: BoxDecoration(
-                    color:
-                        context.theme.colorScheme.surface.withValues(alpha: .2),
-                    borderRadius: const BorderRadius.all(Radius.circular(8)),
+                child: ContainerButtonWidget(
+                  onPressed: () => customBottomSheet(
+                    textTitle: 'selectCountry'.tr,
+                    containerColor: context.theme.colorScheme.primaryContainer,
+                    child: CountryPickerBottomSheet(),
                   ),
+                  height: 47,
+                  width: Get.width,
+                  useGradient: false,
+                  withShape: false,
+                  borderRadius: 8,
+                  borderColor: Colors.transparent,
+                  shadowColor: Colors.transparent,
+                  backgroundColor:
+                      context.theme.colorScheme.surface.withValues(alpha: .2),
+                  horizontalPadding: 16,
+                  verticalPadding: 8,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Obx(() => Text(
-                            adhanCtrl.state.selectedCountry.value,
-                            style: TextStyle(
-                                color: context.theme.colorScheme.inversePrimary
-                                    .withValues(alpha: .7),
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                                fontFamily: 'cairo'),
-                          )),
-                      Semantics(
-                        button: true,
-                        enabled: true,
-                        label: adhanCtrl.state.selectedCountry.value,
-                        child: Icon(Icons.keyboard_arrow_down_outlined,
-                            size: 20, color: context.theme.colorScheme.primary),
+                      Text(
+                        adhanCtrl.state.selectedCountry.value,
+                        style: TextStyle(
+                          color: context.theme.colorScheme.inversePrimary
+                              .withValues(alpha: .7),
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'cairo',
+                        ),
+                      ),
+                      Icon(
+                        Icons.keyboard_arrow_down_outlined,
+                        size: 20,
+                        color: context.theme.colorScheme.primary,
                       ),
                     ],
                   ),
@@ -78,7 +59,7 @@ class PickCalculationMethod extends StatelessWidget {
               ),
             );
           } else if (snapshot.hasError) {
-            return Text('Error loading countries: ${snapshot.error}');
+            return Text('failedToLoadCountries'.tr);
           } else {
             return CircularProgressIndicator(
               color: context.theme.canvasColor,
