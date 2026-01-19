@@ -17,6 +17,24 @@
     "type": "text",
     "placeholders": {}
   },
+  "cites": "Mga Lungsod",
+  "@cites": {
+    "description": "Bottom nav: cities tab",
+    "type": "text",
+    "placeholders": {}
+  },
+  "citiesPrayerTimesTitle": "Oras ng Dasal sa Lungsod",
+  "@citiesPrayerTimesTitle": {
+    "description": "Cities prayer times screen title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "citiesPrayerTimesSearchHint": "Maghanap ng lungsod upang makita ang oras ng dasal",
+  "@citiesPrayerTimesSearchHint": {
+    "description": "Cities search hint",
+    "type": "text",
+    "placeholders": {}
+  },
   "Fajr": "Fajr",
   "@Fajr": {
     "type": "text",

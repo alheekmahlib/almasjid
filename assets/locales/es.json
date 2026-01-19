@@ -17,6 +17,24 @@
     "type": "text",
     "placeholders": {}
   },
+  "cites": "Ciudades",
+  "@cites": {
+    "description": "Bottom nav: cities tab",
+    "type": "text",
+    "placeholders": {}
+  },
+  "citiesPrayerTimesTitle": "Horarios de Oración (Ciudades)",
+  "@citiesPrayerTimesTitle": {
+    "description": "Cities prayer times screen title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "citiesPrayerTimesSearchHint": "Busca una ciudad para ver sus horarios de oración",
+  "@citiesPrayerTimesSearchHint": {
+    "description": "Cities search hint",
+    "type": "text",
+    "placeholders": {}
+  },
   "Fajr": "Fajr",
   "@Fajr": {
     "type": "text",

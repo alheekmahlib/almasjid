@@ -17,6 +17,24 @@
     "type": "text",
     "placeholders": {}
   },
+  "cites": "Şehirler",
+  "@cites": {
+    "description": "Bottom nav: cities tab",
+    "type": "text",
+    "placeholders": {}
+  },
+  "citiesPrayerTimesTitle": "Şehir Namaz Vakitleri",
+  "@citiesPrayerTimesTitle": {
+    "description": "Cities prayer times screen title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "citiesPrayerTimesSearchHint": "Namaz vakitlerini görmek için şehir ara",
+  "@citiesPrayerTimesSearchHint": {
+    "description": "Cities search hint",
+    "type": "text",
+    "placeholders": {}
+  },
   "Fajr": "Fecr",
   "@Fajr": {
     "type": "text",

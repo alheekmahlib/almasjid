@@ -17,6 +17,24 @@
     "type": "text",
     "placeholders": {}
   },
+  "cites": "Kota",
+  "@cites": {
+    "description": "Bottom nav: cities tab",
+    "type": "text",
+    "placeholders": {}
+  },
+  "citiesPrayerTimesTitle": "Waktu Salat Kota",
+  "@citiesPrayerTimesTitle": {
+    "description": "Cities prayer times screen title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "citiesPrayerTimesSearchHint": "Cari kota untuk melihat waktu salatnya",
+  "@citiesPrayerTimesSearchHint": {
+    "description": "Cities search hint",
+    "type": "text",
+    "placeholders": {}
+  },
   "Fajr": "Subuh",
   "@Fajr": {
     "type": "text",

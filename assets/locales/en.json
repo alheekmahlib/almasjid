@@ -17,6 +17,24 @@
     "type": "text",
     "placeholders": {}
   },
+  "cites": "Cities",
+  "@cites": {
+    "description": "Bottom nav: cities tab",
+    "type": "text",
+    "placeholders": {}
+  },
+  "citiesPrayerTimesTitle": "City Prayer Times",
+  "@citiesPrayerTimesTitle": {
+    "description": "Cities prayer times screen title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "citiesPrayerTimesSearchHint": "Search for a city to view its prayer times",
+  "@citiesPrayerTimesSearchHint": {
+    "description": "Cities search hint",
+    "type": "text",
+    "placeholders": {}
+  },
   "Fajr": "Fajr",
   "@Fajr": {
     "type": "text",

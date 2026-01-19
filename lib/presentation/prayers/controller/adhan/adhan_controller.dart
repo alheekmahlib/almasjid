@@ -108,7 +108,7 @@ class AdhanController extends GetxController {
           state.params = method.getParameters();
         } else {
           // Offline/Localization safe: إذا كان اسم الدولة ليس بالإنجليزية
-          // (فتفشل المطابقة في madhab.json)، استخدم params المخزنة من الكاش الشهري.
+          // (فتفشل المطابقة في madhabV2.json)، استخدم params المخزنة من الكاش الشهري.
           state.params = _readMonthlyCachedParams() ??
               CalculationMethod.other.getParameters();
         }
@@ -397,7 +397,7 @@ class AdhanController extends GetxController {
   }
 
   Future<List<String>> getCountryList() async {
-    final jsonString = await rootBundle.loadString('assets/json/madhab.json');
+    final jsonString = await rootBundle.loadString('assets/json/madhabV2.json');
     final jsonData = jsonDecode(jsonString) as List<dynamic>; // Decode as List
 
     // List<String> countries = [];

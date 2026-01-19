@@ -36,7 +36,7 @@ extension LocationExtension on String {
 Future<CalculationMethod?> getCalculationParametersFromJson(
     String countryName) async {
   try {
-    final jsonString = await rootBundle.loadString('assets/json/madhab.json');
+    final jsonString = await rootBundle.loadString('assets/json/madhabV2.json');
     final jsonData = jsonDecode(jsonString) as List;
     final countryData = jsonData.cast<Map<String, dynamic>>().firstWhereOrNull(
           (item) => item['country'] == countryName,

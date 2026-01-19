@@ -272,6 +272,8 @@ class HuaweiLocationHelper {
               '';
 
           String country = address['country'] ?? '';
+          final String countryCode =
+              (address['country_code'] as String?)?.toUpperCase() ?? '';
 
           if (cityName.isNotEmpty &&
               item['lat'] != null &&
@@ -279,6 +281,7 @@ class HuaweiLocationHelper {
             cities.add({
               'name': cityName,
               'country': country,
+              'countryCode': countryCode,
               'latitude': double.tryParse(item['lat'].toString()) ?? 0.0,
               'longitude': double.tryParse(item['lon'].toString()) ?? 0.0,
               'fullAddress':
@@ -350,7 +353,11 @@ class HuaweiLocationHelper {
       );
 
       // استدعاء العنوان
-      final location = await getAddressFromLatLng(latitude, longitude);
+      final location = await getAddressFromLatLng(
+        latitude,
+        longitude,
+        languageCode: Get.locale?.languageCode,
+      );
 
       final address = location?['address'] ?? {};
       final cityName = address['city'] ??
@@ -380,8 +387,15 @@ class HuaweiLocationHelper {
 
 // ==== دالة Nominatim =====
   Future<Map<String, dynamic>?> getAddressFromLatLng(
-      double lat, double lon) async {
+    double lat,
+    double lon, {
+    String? languageCode,
+  }) async {
     final dio = Dio();
+
+    final resolvedLanguage = (languageCode?.trim().isNotEmpty ?? false)
+        ? languageCode!.trim()
+        : (Get.locale?.languageCode ?? 'en');
 
     try {
       final response = await dio.get(
@@ -390,11 +404,12 @@ class HuaweiLocationHelper {
           'format': 'json',
           'lat': lat,
           'lon': lon,
-          'accept-language': 'en',
+          'accept-language': resolvedLanguage,
         },
         options: Options(
           headers: {
             'User-Agent': 'Aqim/1.0 (contact: haozo89@gmail.com)',
+            'Accept-Language': resolvedLanguage,
           },
         ),
       );

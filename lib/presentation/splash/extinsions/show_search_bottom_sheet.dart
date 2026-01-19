@@ -4,7 +4,10 @@ final generalCtrl = GeneralController.instance;
 final mapCtrl = FlutterMapController.instance;
 
 extension ShowSearchBottomSheet on BuildContext {
-  void showSearchBottomSheet(BuildContext context) {
+  void showSearchBottomSheet(
+    BuildContext context, {
+    ValueChanged<Map<String, dynamic>>? onCitySelected,
+  }) {
     const SizedBox().customBottomSheet(
       textTitle: 'searchForCity'.tr,
       containerColor: context.theme.colorScheme.primaryContainer,
@@ -103,7 +106,16 @@ extension ShowSearchBottomSheet on BuildContext {
                           ),
                           trailing: Icon(Icons.location_on,
                               color: context.theme.colorScheme.surface),
-                          onTap: () => mapCtrl.selectCity(city),
+                          onTap: () {
+                            if (onCitySelected != null) {
+                              onCitySelected(city);
+                              mapCtrl.searchController.clear();
+                              mapCtrl.searchResults.clear();
+                              Get.back();
+                              return;
+                            }
+                            mapCtrl.selectCity(city);
+                          },
                         );
                       },
                     ),

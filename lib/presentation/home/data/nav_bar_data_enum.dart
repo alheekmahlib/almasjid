@@ -51,7 +51,7 @@ enum NavBarTab {
       case NavBarTab.liatafaqahuu:
         return const TeachingPrayerScreen();
       case NavBarTab.cites:
-        return const TeachingPrayerScreen();
+        return const PrayersOfCites();
       case NavBarTab.settings:
         return const SettingsScreen();
     }

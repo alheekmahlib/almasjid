@@ -17,17 +17,6 @@ extension AdhanGetters on AdhanController {
         return '$storedCity\n$storedCountry';
       }
 
-      // if (pos != null) {
-      //   final cached = NominatimReverseGeocodingService.instance.reverse(
-      //     latitude: pos.latitude,
-      //     longitude: pos.longitude,
-      //     languageCode: Get.locale?.languageCode,
-      //   );
-      //   if (cached != null) {
-      //     return '${cached.city}\n${cached.country}';
-      //   }
-      // }
-
       return '$storedCity\n$storedCountry';
     }
 
