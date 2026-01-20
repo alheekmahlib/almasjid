@@ -110,38 +110,38 @@
     "type": "text",
     "placeholders": {}
   },
-  "SundayFullName": "Axad",
-  "@SundayFullName": {
+  "Sunday": "Axad",
+  "@Sunday": {
     "type": "text",
     "placeholders": {}
   },
-  "MondayFullName": "Isniin",
-  "@MondayFullName": {
+  "Monday": "Isniin",
+  "@Monday": {
     "type": "text",
     "placeholders": {}
   },
-  "TuesdayFullName": "Talaado",
-  "@TuesdayFullName": {
+  "Tuesday": "Talaado",
+  "@Tuesday": {
     "type": "text",
     "placeholders": {}
   },
-  "WednesdayFullName": "Arbaco",
-  "@WednesdayFullName": {
+  "Wednesday": "Arbaco",
+  "@Wednesday": {
     "type": "text",
     "placeholders": {}
   },
-  "ThursdayFullName": "Khamiis",
-  "@ThursdayFullName": {
+  "Thursday": "Khamiis",
+  "@Thursday": {
     "type": "text",
     "placeholders": {}
   },
-  "FridayFullName": "Jimco",
-  "@FridayFullName": {
+  "Friday": "Jimco",
+  "@Friday": {
     "type": "text",
     "placeholders": {}
   },
-  "SaturdayFullName": "Sabti",
-  "@SaturdayFullName": {
+  "Saturday": "Sabti",
+  "@Saturday": {
     "type": "text",
     "placeholders": {}
   },

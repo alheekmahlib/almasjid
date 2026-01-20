@@ -34,6 +34,12 @@ class EventController extends GetxController {
     });
   }
 
+  @override
+  void onClose() {
+    pageController.dispose();
+    super.onClose();
+  }
+
   void initializeMonths() {
     months = List.generate(12, (index) {
       var hijri = HijriDate.fromHijri(
@@ -226,12 +232,6 @@ class EventController extends GetxController {
   }
 
   bool get isLastDayOfMonth => hijriNow.hDay == getLengthOfMonth ? true : false;
-
-  @override
-  void onClose() {
-    pageController.dispose();
-    super.onClose();
-  }
 
   String getWeekdayShortName(int index) {
     final weekdays = [

@@ -110,38 +110,38 @@
     "type": "text",
     "placeholders": {}
   },
-  "SundayFullName": "Pazar",
-  "@SundayFullName": {
+  "Sunday": "Pazar",
+  "@Sunday": {
     "type": "text",
     "placeholders": {}
   },
-  "MondayFullName": "Pazartesi",
-  "@MondayFullName": {
+  "Monday": "Pazartesi",
+  "@Monday": {
     "type": "text",
     "placeholders": {}
   },
-  "TuesdayFullName": "Salı",
-  "@TuesdayFullName": {
+  "Tuesday": "Salı",
+  "@Tuesday": {
     "type": "text",
     "placeholders": {}
   },
-  "WednesdayFullName": "Çarşamba",
-  "@WednesdayFullName": {
+  "Wednesday": "Çarşamba",
+  "@Wednesday": {
     "type": "text",
     "placeholders": {}
   },
-  "ThursdayFullName": "Perşembe",
-  "@ThursdayFullName": {
+  "Thursday": "Perşembe",
+  "@Thursday": {
     "type": "text",
     "placeholders": {}
   },
-  "FridayFullName": "Cuma",
-  "@FridayFullName": {
+  "Friday": "Cuma",
+  "@Friday": {
     "type": "text",
     "placeholders": {}
   },
-  "SaturdayFullName": "Cumartesi",
-  "@SaturdayFullName": {
+  "Saturday": "Cumartesi",
+  "@Saturday": {
     "type": "text",
     "placeholders": {}
   },

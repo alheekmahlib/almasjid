@@ -9,6 +9,7 @@ import 'package:get_storage/get_storage.dart';
 
 import '/core/services/prayer_background_manager.dart';
 import '../utils/constants/shared_preferences_constants.dart';
+import '../widgets/home_widget/home_widget.dart';
 // import '../widgets/home_widget/home_widget.dart';
 
 /// مُعالج المهام في الخلفية
@@ -41,10 +42,10 @@ Future<void> _executeBackgroundTasks() async {
     if (GetStorage().read(ACTIVE_LOCATION)) {
       await PrayerBackgroundManager.executePeriodicTasks();
       if (Platform.isIOS || Platform.isAndroid) {
-        // await HijriWidgetConfig.initialize();
-        // await PrayersWidgetConfig.initialize();
-        // await HijriWidgetConfig().updateHijriDate();
-        // await PrayersWidgetConfig().updatePrayersDate();
+        await HijriWidgetConfig.initialize();
+        await PrayersWidgetConfig.initialize();
+        await HijriWidgetConfig().updateHijriDate();
+        await PrayersWidgetConfig().updatePrayersDate();
       }
     }
   } catch (e) {

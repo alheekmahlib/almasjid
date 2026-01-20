@@ -90,7 +90,7 @@ extension AdhanGetters on AdhanController {
 
   String get getFridayDhuhrName =>
       intl.DateFormat('EEEE').format(state.now) == 'Friday'
-          ? 'FridayFullName'
+          ? 'Friday'
           : 'Dhuhr';
 
   String get getMaghribName => EventController.instance.hijriNow.hMonth == 9

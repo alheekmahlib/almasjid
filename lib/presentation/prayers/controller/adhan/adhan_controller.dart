@@ -18,6 +18,9 @@ class AdhanController extends GetxController {
       //   geo.setLocaleIdentifier('en');
       // }
       getShared;
+      // بعد تحديث نظام IDs للإشعارات: ألغِ IDs القديمة مرة واحدة لتفادي إشعارات مزدوجة.
+      await PrayersNotificationsCtrl.instance
+          .cancelLegacyPrayerNotificationsIfNeeded();
       // ابدأ التهيئة فورًا بدل التأخير لتجنّب نافذة null
       unawaited(initializeStoredAdhan());
       Future.delayed(

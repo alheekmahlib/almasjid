@@ -110,38 +110,38 @@
     "type": "text",
     "placeholders": {}
   },
-  "SundayFullName": "Sunday",
-  "@SundayFullName": {
+  "Sunday": "Sunday",
+  "@Sunday": {
     "type": "text",
     "placeholders": {}
   },
-  "MondayFullName": "Monday",
-  "@MondayFullName": {
+  "Monday": "Monday",
+  "@Monday": {
     "type": "text",
     "placeholders": {}
   },
-  "TuesdayFullName": "Tuesday",
-  "@TuesdayFullName": {
+  "Tuesday": "Tuesday",
+  "@Tuesday": {
     "type": "text",
     "placeholders": {}
   },
-  "WednesdayFullName": "Wednesday",
-  "@WednesdayFullName": {
+  "Wednesday": "Wednesday",
+  "@Wednesday": {
     "type": "text",
     "placeholders": {}
   },
-  "ThursdayFullName": "Thursday",
-  "@ThursdayFullName": {
+  "Thursday": "Thursday",
+  "@Thursday": {
     "type": "text",
     "placeholders": {}
   },
-  "FridayFullName": "Friday",
-  "@FridayFullName": {
+  "Friday": "Friday",
+  "@Friday": {
     "type": "text",
     "placeholders": {}
   },
-  "SaturdayFullName": "Saturday",
-  "@SaturdayFullName": {
+  "Saturday": "Saturday",
+  "@Saturday": {
     "type": "text",
     "placeholders": {}
   },

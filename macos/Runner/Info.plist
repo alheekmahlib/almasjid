@@ -32,20 +32,18 @@
 	<string>NSApplication</string>
   <key>LSApplicationCategoryType</key>
   <string>public.app-category.lifestyle</string>
-	<key>NSLocationUsageDescription</key>
-	<string>This app needs access to location.</string>
-    <key>NSLocationWhenInUseUsageDescription</key>
-    <string>We use your location to show accurate prayer times and Qibla direction.</string>
+  <key>NSLocationUsageDescription</key>
+  <string>نحتاج إلى الوصول لموقعك لتحديد أوقات الصلاة بدقة وعرض اتجاه القبلة الصحيح حسب مكانك الحالي. على سبيل المثال، عند سفرك لمدينة جديدة، سيقوم التطبيق بتحديث أوقات الصلاة تلقائيًا.</string>
 	<key>NSLocationTemporaryUsageDescriptionDictionary</key>
 	<dict>
-  		<key>Location</key>
-  		<string>The example App requires temporary access to the device&apos;s precise location.</string>
+  <key>Location</key>
+  <string>The example App requires temporary access to the device&apos;s precise location.</string>
 	</dict>
 	<key>BGTaskSchedulerPermittedIdentifiers</key>
 	<array>
-		<string>com.transistorsoft.fetchNotifications</string>
-		<string>com.transistorsoft.fetchEvery24Hours</string>
-		<string>com.alheekmah.alheekmahLibrary.dailyTask</string>
+	<string>com.transistorsoft.fetchNotifications</string>
+	<string>com.transistorsoft.fetchEvery24Hours</string>
+	<string>com.alheekmah.alheekmahLibrary.dailyTask</string>
 	</array>
 </dict>
 </plist>

@@ -39,11 +39,6 @@ Future<void> initializeApp() async {
   NotifyHelper.initAwesomeNotifications();
   NotifyHelper().setNotificationsListeners();
 
-  // Mobile-specific initialization
-  // if (Platform.isAndroid || Platform.isIOS) {
-  //   await setLocaleIdentifier('en');
-  // }
-
   // Ensure splash is removed on all platforms
   FlutterNativeSplash.remove();
 }

@@ -14,6 +14,7 @@ class HijriDateWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final hijri = EventController.instance.hijriNow;
     return Align(
       alignment: alignment ?? AlignmentDirectional.centerEnd,
       child: Padding(
@@ -22,7 +23,7 @@ class HijriDateWidget extends StatelessWidget {
           alignment: Alignment.center,
           children: [
             customSvgWithColor(
-              'assets/svg/hijri/${EventController.instance.hijriNow.hMonth}.svg',
+              'assets/svg/hijri/${hijri.hMonth}.svg',
               color:
                   (svgColor ?? context.theme.canvasColor).withValues(alpha: .4),
               height: 48,
@@ -30,9 +31,7 @@ class HijriDateWidget extends StatelessWidget {
             Column(
               children: [
                 Text(
-                  EventController.instance.hijriNow.hDay
-                      .toString()
-                      .convertNumbers(),
+                  hijri.hDay.toString().convertNumbers(),
                   style: TextStyle(
                     fontSize: 24,
                     fontFamily: 'cairo',
@@ -43,8 +42,7 @@ class HijriDateWidget extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '${EventController.instance.hijriNow.getDayName()}FullName'
-                      .tr,
+                  weekDaysFullName[hijri.weekDay() - 1].tr,
                   style: TextStyle(
                     fontSize: 18,
                     fontFamily: 'cairo',

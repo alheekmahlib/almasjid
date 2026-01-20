@@ -110,38 +110,38 @@
     "type": "text",
     "placeholders": {}
   },
-  "SundayFullName": "یەکشەممە",
-  "@SundayFullName": {
+  "Sunday": "یەکشەممە",
+  "@Sunday": {
     "type": "text",
     "placeholders": {}
   },
-  "MondayFullName": "دووشەممە",
-  "@MondayFullName": {
+  "Monday": "دووشەممە",
+  "@Monday": {
     "type": "text",
     "placeholders": {}
   },
-  "TuesdayFullName": "سێشەممە",
-  "@TuesdayFullName": {
+  "Tuesday": "سێشەممە",
+  "@Tuesday": {
     "type": "text",
     "placeholders": {}
   },
-  "WednesdayFullName": "چوارشەممە",
-  "@WednesdayFullName": {
+  "Wednesday": "چوارشەممە",
+  "@Wednesday": {
     "type": "text",
     "placeholders": {}
   },
-  "ThursdayFullName": "پێنجشەممە",
-  "@ThursdayFullName": {
+  "Thursday": "پێنجشەممە",
+  "@Thursday": {
     "type": "text",
     "placeholders": {}
   },
-  "FridayFullName": "هەینی",
-  "@FridayFullName": {
+  "Friday": "هەینی",
+  "@Friday": {
     "type": "text",
     "placeholders": {}
   },
-  "SaturdayFullName": "شەممە",
-  "@SaturdayFullName": {
+  "Saturday": "شەممە",
+  "@Saturday": {
     "type": "text",
     "placeholders": {}
   },

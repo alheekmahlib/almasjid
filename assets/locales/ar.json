@@ -110,38 +110,38 @@
     "type": "text",
     "placeholders": {}
   },
-  "SundayFullName": "الأحد",
-  "@SundayFullName": {
+  "Sunday": "الأحد",
+  "@Sunday": {
     "type": "text",
     "placeholders": {}
   },
-  "MondayFullName": "الإثنين",
-  "@MondayFullName": {
+  "Monday": "الإثنين",
+  "@Monday": {
     "type": "text",
     "placeholders": {}
   },
-  "TuesdayFullName": "الثلاثاء",
-  "@TuesdayFullName": {
+  "Tuesday": "الثلاثاء",
+  "@Tuesday": {
     "type": "text",
     "placeholders": {}
   },
-  "WednesdayFullName": "الأربعاء",
-  "@WednesdayFullName": {
+  "Wednesday": "الأربعاء",
+  "@Wednesday": {
     "type": "text",
     "placeholders": {}
   },
-  "ThursdayFullName": "الخميس",
-  "@ThursdayFullName": {
+  "Thursday": "الخميس",
+  "@Thursday": {
     "type": "text",
     "placeholders": {}
   },
-  "FridayFullName": "الجمعة",
-  "@FridayFullName": {
+  "Friday": "الجمعة",
+  "@Friday": {
     "type": "text",
     "placeholders": {}
   },
-  "SaturdayFullName": "السبت",
-  "@SaturdayFullName": {
+  "Saturday": "السبت",
+  "@Saturday": {
     "type": "text",
     "placeholders": {}
   },

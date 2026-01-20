@@ -208,11 +208,11 @@ final prayerColorList = [
 ];
 
 const List<String> weekDaysFullName = [
-  'MondayFullName',
-  'TuesdayFullName',
-  'WednesdayFullName',
-  'ThursdayFullName',
-  'FridayFullName',
-  'SaturdayFullName',
-  'SundayFullName',
+  'Monday',
+  'Tuesday',
+  'Wednesday',
+  'Thursday',
+  'Friday',
+  'Saturday',
+  'Sunday',
 ];

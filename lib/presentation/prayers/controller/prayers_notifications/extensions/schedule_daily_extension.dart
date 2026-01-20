@@ -1,5 +1,82 @@
 part of '../../../prayers.dart';
 
+const int _kPrayerNotificationsBaseId = 20000;
+const int _kPrayerNotificationsDayStride = 10;
+const int _kPrayerOpenAppReminderBaseId = 21000;
+const String _kLegacyPrayerNotificationsCancelledFlag =
+    'legacy_prayer_notifications_cancelled_v2';
+
+int _prayerKeyFromIndex(int prayerIndex) {
+  switch (prayerIndex) {
+    case 0:
+      return 0; // Fajr
+    case 2:
+      return 1; // Dhuhr
+    case 3:
+      return 2; // Asr
+    case 4:
+      return 3; // Maghrib
+    case 5:
+      return 4; // Isha
+    default:
+      throw ArgumentError.value(prayerIndex, 'prayerIndex', 'Unsupported');
+  }
+}
+
+int _scheduledPrayerNotificationId({required int prayerKey, required int day}) {
+  return _kPrayerNotificationsBaseId +
+      (day * _kPrayerNotificationsDayStride) +
+      prayerKey;
+}
+
+int _openAppReminderIdForPrayer(int prayerKey) {
+  return _kPrayerOpenAppReminderBaseId + prayerKey;
+}
+
+int _daysToSchedule() {
+  // مطابقة للمنطق الحالي: iOS/macOS أقل لتجنب الحدود.
+  return (Platform.isIOS || Platform.isMacOS) ? 10 : 30;
+}
+
+Future<void> _cancelLegacyPrayerNotificationsForPrayerIndex(
+    int prayerIndex) async {
+  // النظام القديم كان يعتمد: baseId ثم +5 لكل يوم.
+  final dayLength = Platform.isAndroid ? 61 : 10;
+  for (int i = 0; i < dayLength; i++) {
+    final legacyBaseId = prayerIndex + (5 * i);
+    await NotifyHelper().cancelNotification(legacyBaseId);
+
+    // في بعض الإصدارات كان iOS يرسل "الأذان الكامل" عبر عدة إشعارات متتالية.
+    if (Platform.isIOS) {
+      for (int offset = 1; offset <= 6; offset++) {
+        await NotifyHelper().cancelNotification(legacyBaseId + offset);
+      }
+    }
+  }
+
+  // تذكير "افتح التطبيق" في النظام القديم كان: 1000 + (baseId + 5*n)
+  // (نبدأ من 1 لتجنب المساس بـ 1000/1001 الخاصين برمضان).
+  for (int n = 1; n <= dayLength; n++) {
+    await NotifyHelper().cancelNotification(1000 + prayerIndex + (5 * n));
+  }
+}
+
+Future<void> _cancelLegacyPrayerNotificationsIfNeeded() async {
+  final storage = GetStorage();
+  final alreadyCancelled =
+      storage.read<bool>(_kLegacyPrayerNotificationsCancelledFlag) ?? false;
+  if (alreadyCancelled) return;
+
+  const prayerIndexes = <int>[0, 2, 3, 4, 5];
+  for (final prayerIndex in prayerIndexes) {
+    await _cancelLegacyPrayerNotificationsForPrayerIndex(prayerIndex);
+  }
+
+  await storage.write(_kLegacyPrayerNotificationsCancelledFlag, true);
+  log('Legacy prayer notification IDs cancelled (migration)',
+      name: 'ScheduleDailyExtension');
+}
+
 extension ScheduleDailyExtension on PrayersNotificationsCtrl {
   Future<void> scheduleDailyNotificationsForPrayer(
       int prayerIndex, String prayerName, String notificationType) async {
@@ -17,8 +94,8 @@ extension ScheduleDailyExtension on PrayersNotificationsCtrl {
       return;
     }
 
-    int notificationId = prayerIndex;
-    int daysToSchedule = Platform.isIOS ? 10 : 30;
+    final prayerKey = _prayerKeyFromIndex(prayerIndex);
+    final daysToSchedule = _daysToSchedule();
 
     DateTime? lastPrayerTime;
     final now = DateTime.now();
@@ -76,6 +153,11 @@ extension ScheduleDailyExtension on PrayersNotificationsCtrl {
         continue;
       }
 
+      final notificationId = _scheduledPrayerNotificationId(
+        prayerKey: prayerKey,
+        day: day,
+      );
+
       /// this code is for full athan on ios
       // if (Platform.isIOS) {
       //   for (int i = 1; i <= 6; i++) {
@@ -111,17 +193,12 @@ extension ScheduleDailyExtension on PrayersNotificationsCtrl {
       // log('موعد صلاة ${DateFormatter.formatPrayerTime(prayerTime).tr}');
 
       lastPrayerTime = prayerTime;
-
-      notificationId += 5;
-
-      if (Platform.isAndroid && day >= 30) break;
-      if ((Platform.isIOS || Platform.isMacOS) && day >= 10) break;
     }
 
     if (lastPrayerTime != null) {
       DateTime reminderTime = lastPrayerTime.add(const Duration(minutes: 5));
       await NotifyHelper().scheduledNotification(
-        reminderId: notificationId + 1000,
+        reminderId: _openAppReminderIdForPrayer(prayerKey),
         title: 'reminder'.tr,
         summary: 'openAppReminderTitle'.tr,
         body: 'openAppReminderBody'.tr,
@@ -155,6 +232,11 @@ extension ScheduleDailyExtension on PrayersNotificationsCtrl {
   // }
 
   Future<void> reschedulePrayers() async {
+    log('إعادة جدولة إشعارات الصلوات اليومية...',
+        name: 'ScheduleDailyExtension');
+
+    // تنظيف IDs القديمة مرة واحدة بعد التحديث لتفادي الإشعارات المكررة.
+    await _cancelLegacyPrayerNotificationsIfNeeded();
     final adhanStorage = GetStorage('AdhanSounds');
     const prayers = <({int index, String name})>[
       (index: 0, name: 'Fajr'),
@@ -173,36 +255,65 @@ extension ScheduleDailyExtension on PrayersNotificationsCtrl {
       log('notification: $notificationType', name: 'ScheduleDailyExtension');
 
       if (notificationType != null && notificationType != 'nothing') {
-        Future.microtask(() async {
-          await PrayersNotificationsCtrl.instance
-              .scheduleDailyNotificationsForPrayer(
-                  prayer.index, prayerName, notificationType);
-        });
+        await PrayersNotificationsCtrl.instance
+            .scheduleDailyNotificationsForPrayer(
+          prayer.index,
+          prayerName,
+          notificationType,
+        );
       }
     }
 
     // إعادة جدولة إشعارات الصيام (السحور/الإفطار/العشر الأواخر)
-    Future.microtask(() async {
-      await RamadanController.instance.rescheduleFastingNotifications();
-    });
+    await RamadanController.instance.rescheduleFastingNotifications();
   }
 
   Future<void> cancelAllPrayerNotifications() async {
-    const prayerNotificationIds = <int>[0, 2, 3, 4, 5];
-    for (final id in prayerNotificationIds) {
-      await NotifyHelper().cancelNotification(id);
+    const prayerIndexes = <int>[0, 2, 3, 4, 5];
+
+    // تنظيف الجداول القديمة (مرة واحدة) لتفادي تداخل الإصدارات.
+    await _cancelLegacyPrayerNotificationsIfNeeded();
+
+    final daysToCancel = _daysToSchedule();
+    for (int day = 0; day < daysToCancel; day++) {
+      for (final prayerIndex in prayerIndexes) {
+        final prayerKey = _prayerKeyFromIndex(prayerIndex);
+        final id =
+            _scheduledPrayerNotificationId(prayerKey: prayerKey, day: day);
+        await NotifyHelper().cancelNotification(id);
+      }
     }
+
+    for (int prayerKey = 0; prayerKey < 5; prayerKey++) {
+      await NotifyHelper()
+          .cancelNotification(_openAppReminderIdForPrayer(prayerKey));
+    }
+
     log('تم إلغاء جميع إشعارات الصلاة.', name: 'ScheduleDailyExtension');
   }
 
   Future<void> cancelPrayerNotificationsForAllDay(
       int prayerNotificationId) async {
-    final dayLength = Platform.isAndroid ? 61 : 10;
-    for (int i = 0; i < dayLength; i++) {
-      await NotifyHelper().cancelNotification(prayerNotificationId);
-      prayerNotificationId += 5;
+    final originalPrayerIndex = prayerNotificationId;
+
+    // تنظيف من النظام القديم.
+    await _cancelLegacyPrayerNotificationsForPrayerIndex(originalPrayerIndex);
+
+    final prayerKey = _prayerKeyFromIndex(originalPrayerIndex);
+    final daysToCancel = _daysToSchedule();
+    for (int day = 0; day < daysToCancel; day++) {
+      final id = _scheduledPrayerNotificationId(prayerKey: prayerKey, day: day);
+      await NotifyHelper().cancelNotification(id);
     }
-    log('تم إلغاء جميع إشعارات صلاة $prayerNotificationId.',
+    await NotifyHelper()
+        .cancelNotification(_openAppReminderIdForPrayer(prayerKey));
+
+    log('تم إلغاء جميع إشعارات صلاة $originalPrayerIndex.',
         name: 'ScheduleDailyExtension');
+  }
+
+  /// إلغاء IDs القديمة مرة واحدة بعد التحديث.
+  Future<void> cancelLegacyPrayerNotificationsIfNeeded() async {
+    await _cancelLegacyPrayerNotificationsIfNeeded();
   }
 }
