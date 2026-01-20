@@ -8,6 +8,10 @@
 import WidgetKit
 import SwiftUI
 
+// هذا الملف كان يحتوي كل كود الـ Widget.
+// تم تقسيمه الآن إلى ملفات متعددة داخل نفس المجلد (Provider/Entry/View/Helpers...)
+// نُبقي المحتوى القديم هنا معطّلًا فقط لتجنب التعريفات المكررة إذا كان ما زال موجودًا في المشروع.
+#if false
 struct Provider: AppIntentTimelineProvider {
     typealias Entry = PrayerWidgetEntry
     typealias Intent = ConfigurationAppIntent
@@ -1320,4 +1324,6 @@ func debugDumpPrayerWidgetKeys(_ ud: UserDefaults?) {
         print("[Widget][UD][Warn] fajrTime مفقود؛ سيتم استخدام قيم افتراضية. افتح التطبيق بعد تعديل App Group للتحديث.")
     }
 }
+
+#endif
 
