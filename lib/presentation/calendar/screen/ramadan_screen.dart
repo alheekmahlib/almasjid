@@ -20,7 +20,7 @@ class RamadanScreen extends StatelessWidget {
               customSvgWithColor(
                 'assets/svg/hijri/9.svg',
                 width: 250,
-                color: context.theme.colorScheme.surface.withValues(alpha: 0.5),
+                color: context.theme.colorScheme.surface,
               ),
               _sectionTitle(context, 'qadaSection'),
               const Gap(16),

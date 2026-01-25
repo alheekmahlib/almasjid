@@ -162,13 +162,14 @@ extension AdhanGetters on AdhanController {
   /// Calculate progress from Fajr to Isha prayer
   RxDouble get getPrayerDayProgress {
     final PrayerTimes? prayerTimes = state.prayerTimes;
+    final SunnahTimes? sunnahTimes = state.sunnahTimes;
 
-    if (prayerTimes == null) {
+    if (prayerTimes == null || sunnahTimes == null) {
       return 0.0.obs;
     }
 
     final DateTime fajrTime = prayerTimes.fajr;
-    final DateTime ishaTime = prayerTimes.isha;
+    final DateTime lastThirdOfTheNight = sunnahTimes.lastThirdOfTheNight;
 
     // إذا كان الوقت الحالي قبل الفجر، فالتقدم يكون 0
     if (state.now.isBefore(fajrTime)) {
@@ -176,12 +177,12 @@ extension AdhanGetters on AdhanController {
     }
 
     // إذا كان الوقت الحالي بعد العشاء، فالتقدم يكون 100%
-    if (state.now.isAfter(ishaTime)) {
+    if (state.now.isAfter(lastThirdOfTheNight)) {
       return 100.0.obs;
     }
 
     // حساب المدة الإجمالية من الفجر إلى العشاء بالدقائق
-    final totalDuration = ishaTime.difference(fajrTime).inMinutes;
+    final totalDuration = lastThirdOfTheNight.difference(fajrTime).inMinutes;
 
     // حساب المدة المنقضية من الفجر حتى الآن بالدقائق
     final elapsedDuration = state.now.difference(fajrTime).inMinutes;
@@ -202,8 +203,9 @@ extension AdhanGetters on AdhanController {
   /// Calculate gauge segments based on prayer times
   List<GaugeSegment> get getPrayerGaugeSegments {
     final PrayerTimes? prayerTimes = state.prayerTimes;
+    final SunnahTimes? sunnahTimes = state.sunnahTimes;
 
-    if (prayerTimes == null) {
+    if (prayerTimes == null || sunnahTimes == null) {
       return [];
     }
 
@@ -215,6 +217,8 @@ extension AdhanGetters on AdhanController {
       prayerTimes.asr, // العصر
       prayerTimes.maghrib, // المغرب
       prayerTimes.isha, // العشاء
+      sunnahTimes.middleOfTheNight, // منتصف الليل
+      sunnahTimes.lastThirdOfTheNight, // الثلث الأخير
     ];
 
     // ألوان مختلفة لكل فترة صلاة
@@ -236,14 +240,27 @@ extension AdhanGetters on AdhanController {
         colorStops: [0.0, 1.0],
       ), // العصر إلى المغرب - برتقالي (عصر)
       const GaugeAxisGradient(
-        colors: [Color(0xff4b4c4f), Color(0xff000000)],
+        colors: [Color(0xfff8a159), Color(0xff000000)],
         colorStops: [0.0, 1.0],
       ), // المغرب إلى العشاء - بنفسجي (مغرب)
+      const GaugeAxisGradient(
+        colors: [Color(0xff4b4c4f), Color(0xff000000)],
+        colorStops: [0.0, 1.0],
+      ), // العشاء إلى منتصف الليل - بنفسجي (عشاء)
+      const GaugeAxisGradient(
+        colors: [Color(0xff000000), Color(0xff000000)],
+        colorStops: [0.0, 1.0],
+      ), // العشاء إلى منتصف الليل - بنفسجي (عشاء)
+      const GaugeAxisGradient(
+        colors: [Color(0xff000000), Color(0xff000000)],
+        colorStops: [0.0, 1.0],
+      ), // بعد الثلث الاخير بنصف ساعة
     ];
 
     final DateTime fajrTime = prayers[0];
-    final DateTime ishaTime = prayers[5];
-    final int totalDuration = ishaTime.difference(fajrTime).inMinutes;
+    final DateTime lastThirdOfTheNight = prayers[7];
+    final int totalDuration =
+        lastThirdOfTheNight.difference(fajrTime).inMinutes;
 
     if (totalDuration <= 0) {
       return [];
@@ -282,63 +299,63 @@ extension AdhanGetters on AdhanController {
 
   /// حساب قطع المؤشر (Gauge Segments) بناءً على أوقات الصلوات
   /// Calculate gauge segments based on prayer times
-  List<Gradient> get getPrayerGradients {
-    // ألوان مختلفة لكل فترة صلاة
-    final List<Gradient> prayerColors = [
-      const RadialGradient(
-        colors: [Color(0xff000000), Color(0xff4b4c4f)],
-      ),
-      const RadialGradient(
-        colors: [Color.fromARGB(255, 235, 254, 251), Color(0xff4b4c4f)],
-      ), // الفجر إلى الشروق - أزرق داكن (فجر)
-      const RadialGradient(
-        colors: [Color(0xffB8E0EA), Color(0xff0098EE)],
-      ), // الشروق إلى الظهر - ذهبي (صباح)
-      const RadialGradient(
-        colors: [Color(0xff0098EE), Color(0xffc5deed)],
-      ), // الظهر إلى العصر - أزرق فاتح (ظهيرة)
-      const RadialGradient(
-        colors: [Color(0xfff2dfd9), Color(0xfff8a159)],
-      ), // العصر إلى المغرب - برتقالي (عصر)
-      const RadialGradient(
-        colors: [Color(0xff4b4c4f), Color(0xff000000)],
-      ), // المغرب إلى العشاء - بنفسجي (مغرب)
-      const RadialGradient(
-        colors: [Color(0xff000000), Color(0xff000000)],
-      ), // العشاء إلى منتصف الليل
-      const RadialGradient(
-        colors: [Color(0xff000000), Color(0xff000000)],
-      ), // منتصف الليل إلى الثلث الأخير
-    ];
+  // List<Gradient> get getPrayerGradients {
+  //   // ألوان مختلفة لكل فترة صلاة
+  //   final List<Gradient> prayerColors = [
+  //     const RadialGradient(
+  //       colors: [Color(0xff000000), Color(0xff4b4c4f)],
+  //     ),
+  //     const RadialGradient(
+  //       colors: [Color.fromARGB(255, 235, 254, 251), Color(0xff4b4c4f)],
+  //     ), // الفجر إلى الشروق - أزرق داكن (فجر)
+  //     const RadialGradient(
+  //       colors: [Color(0xffB8E0EA), Color(0xff0098EE)],
+  //     ), // الشروق إلى الظهر - ذهبي (صباح)
+  //     const RadialGradient(
+  //       colors: [Color(0xff0098EE), Color(0xffc5deed)],
+  //     ), // الظهر إلى العصر - أزرق فاتح (ظهيرة)
+  //     const RadialGradient(
+  //       colors: [Color(0xfff2dfd9), Color(0xfff8a159)],
+  //     ), // العصر إلى المغرب - برتقالي (عصر)
+  //     const RadialGradient(
+  //       colors: [Color(0xff4b4c4f), Color(0xff000000)],
+  //     ), // المغرب إلى العشاء - بنفسجي (مغرب)
+  //     const RadialGradient(
+  //       colors: [Color(0xff000000), Color(0xff000000)],
+  //     ), // العشاء إلى منتصف الليل
+  //     const RadialGradient(
+  //       colors: [Color(0xff000000), Color(0xff000000)],
+  //     ), // منتصف الليل إلى الثلث الأخير
+  //   ];
 
-    return prayerColors;
-  }
+  //   return prayerColors;
+  // }
 
-  /// الحصول على اسم الفترة الحالية للصلاة
-  /// Get current prayer period name
-  String get getCurrentPrayerPeriodName {
-    final PrayerTimes? prayerTimes = state.prayerTimes;
+  // /// الحصول على اسم الفترة الحالية للصلاة
+  // /// Get current prayer period name
+  // String get getCurrentPrayerPeriodName {
+  //   final PrayerTimes? prayerTimes = state.prayerTimes;
 
-    if (prayerTimes == null) {
-      return 'غير محدد';
-    }
+  //   if (prayerTimes == null) {
+  //     return 'غير محدد';
+  //   }
 
-    if (state.now.isBefore(prayerTimes.fajr)) {
-      return 'قبل الفجر';
-    } else if (state.now.isBefore(prayerTimes.sunrise)) {
-      return 'فترة الفجر';
-    } else if (state.now.isBefore(prayerTimes.dhuhr)) {
-      return 'فترة الصباح';
-    } else if (state.now.isBefore(prayerTimes.asr)) {
-      return 'فترة الظهيرة';
-    } else if (state.now.isBefore(prayerTimes.maghrib)) {
-      return 'فترة العصر';
-    } else if (state.now.isBefore(prayerTimes.isha)) {
-      return 'فترة المغرب';
-    } else {
-      return 'فترة العشاء';
-    }
-  }
+  //   if (state.now.isBefore(prayerTimes.fajr)) {
+  //     return 'قبل الفجر';
+  //   } else if (state.now.isBefore(prayerTimes.sunrise)) {
+  //     return 'فترة الفجر';
+  //   } else if (state.now.isBefore(prayerTimes.dhuhr)) {
+  //     return 'فترة الصباح';
+  //   } else if (state.now.isBefore(prayerTimes.asr)) {
+  //     return 'فترة الظهيرة';
+  //   } else if (state.now.isBefore(prayerTimes.maghrib)) {
+  //     return 'فترة العصر';
+  //   } else if (state.now.isBefore(prayerTimes.isha)) {
+  //     return 'فترة المغرب';
+  //   } else {
+  //     return 'فترة العشاء';
+  //   }
+  // }
 
   RxDouble getTimeLeftForPrayerByIndex(int index) {
     if (index < 0 || index >= prayerNameList.length) {
@@ -838,23 +855,23 @@ extension AdhanGetters on AdhanController {
         );
       }
 
-      log('Adjusted middleOfTheNight: $adjustedMiddleOfNight');
+      // log('Adjusted middleOfTheNight: $adjustedMiddleOfNight');
 
-      log('Adjusted lastThirdOfTheNight: $adjustedLastThirdOfNight');
+      // log('Adjusted lastThirdOfTheNight: $adjustedLastThirdOfNight');
 
       // إذا كان الوقت بعد الثلث الأخير من الليل وقبل الفجر، ننتقل للفجر
 
       if (state.now.isAfter(adjustedLastThirdOfNight)) {
-        log('Time is after lastThirdOfTheNight - returning 0 (Fajr)');
+        // log('Time is after lastThirdOfTheNight - returning 0 (Fajr)');
 
         value = 0; // fajr - بعد الثلث الأخير ننتقل للفجر
       } else if (state.now.isAfter(adjustedMiddleOfNight)) {
-        log('Time is after middleOfTheNight - returning 7 (LastThird)');
+        // log('Time is after middleOfTheNight - returning 7 (LastThird)');
 
         value =
             7; // lastQuarterOfNight - بعد منتصف الليل مباشرة ننتقل للثلث الأخير
       } else {
-        log('Time is before middleOfTheNight - returning 6');
+        // log('Time is before middleOfTheNight - returning 6');
 
         value = 6; // midnightTime (فترة ما قبل منتصف الليل)
       }

@@ -1,7 +1,8 @@
 part of '../teaching.dart';
 
 class SunnahsAndHeresies extends StatelessWidget {
-  const SunnahsAndHeresies({super.key});
+  final bool isSunnah;
+  const SunnahsAndHeresies({super.key, required this.isSunnah});
 
   @override
   Widget build(BuildContext context) {
@@ -31,12 +32,12 @@ class SunnahsAndHeresies extends StatelessWidget {
         // if (hadith != null) _HadithCard(hadith: hadith),
 
         // عرض السنن
-        if (sunnahs.isNotEmpty) ...[
-          _CategoryHeader(
-            title: _getLocalizedText('sunnahs', lang),
-            icon: Icons.check_circle_outline,
-            color: Colors.green,
-          ),
+        if (isSunnah && sunnahs.isNotEmpty) ...[
+          // _CategoryHeader(
+          //   title: _getLocalizedText('sunnahs', lang),
+          //   icon: Icons.check_circle_outline,
+          //   color: Colors.green,
+          // ),
           const Gap(8),
           _ItemsGrid(
             items: sunnahs,
@@ -48,7 +49,7 @@ class SunnahsAndHeresies extends StatelessWidget {
         ],
 
         // عرض البدع
-        if (heresies.isNotEmpty) ...[
+        if (!isSunnah && heresies.isNotEmpty) ...[
           // _CategoryHeader(
           //   title: _getLocalizedText('heresies', lang),
           //   icon: Icons.warning_amber_rounded,

@@ -319,7 +319,7 @@ Widget _prayerNameBuild(
       prayerTitle.tr,
       style: TextStyle(
         fontFamily: 'cairo',
-        fontSize: currentPrayerIndex == index ? 18.sp : 14,
+        fontSize: currentPrayerIndex == index ? 18.sp : 16,
         fontWeight: FontWeight.bold,
         height: 1.4,
         color: Theme.of(context).colorScheme.inversePrimary,
@@ -340,7 +340,7 @@ Widget _prayerTimeBuild(
       text: prayerTime.toString(),
       style: TextStyle(
         fontFamily: 'cairo',
-        fontSize: currentPrayerIndex == index ? 22 : 18,
+        fontSize: currentPrayerIndex == index ? 22 : 19,
         fontWeight: FontWeight.bold,
         height: 1.4,
         color: Theme.of(context).colorScheme.inversePrimary,

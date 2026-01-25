@@ -164,7 +164,7 @@ class PrayerScreen extends StatelessWidget {
           // Calculate prayer times for selected date
           await adhanCtrl.updateSelectedDate(date);
         },
-        carouselHeight: 60,
+        carouselHeight: 65,
         showTopNavbar: false,
         monthFormat: 'MMMM yyyy',
         showNavigationButtons: true,
@@ -195,21 +195,21 @@ class PrayerScreen extends StatelessWidget {
           'Sat'.tr,
         ],
         dayTextStyle: TextStyle(
-          fontSize: 20,
+          fontSize: 22,
           fontFamily: 'cairo',
           fontWeight: FontWeight.bold,
           color: context.theme.colorScheme.inversePrimary,
           height: 1.1,
         ),
         monthTextStyle: TextStyle(
-          fontSize: 16,
+          fontSize: 18,
           fontFamily: 'cairo',
           fontWeight: FontWeight.bold,
           color: context.theme.colorScheme.inversePrimary,
           height: 1.5,
         ),
         dayNameTextStyle: TextStyle(
-          fontSize: 14,
+          fontSize: 16,
           fontFamily: 'cairo',
           fontWeight: FontWeight.bold,
           color: context.theme.colorScheme.inversePrimary,

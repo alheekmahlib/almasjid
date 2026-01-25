@@ -318,9 +318,9 @@ class FloatingMenuWidget extends StatelessWidget {
                                       child: _HadithCard(hadith: hadith),
                                     ),
                                   if (sunnahs.isNotEmpty)
-                                    const SunnahsAndHeresies(),
+                                    const SunnahsAndHeresies(isSunnah: true),
                                   if (heresies.isNotEmpty)
-                                    const SunnahsAndHeresies(),
+                                    const SunnahsAndHeresies(isSunnah: false),
                                 ],
                               ),
                             ),
