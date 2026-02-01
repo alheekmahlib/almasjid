@@ -14,6 +14,26 @@ class PrayersWidgetConfig {
           adhanCtrl.state.sunnahTimes == null) {
         log('Prayer times not initialized', name: 'PrayersWidgetConfig');
 
+        // macOS: حتى لو لم تكتمل تهيئة الأوقات، جرّب على الأقل دفع بيانات الشهر
+        // المخزنة (إن وُجدت) كي لا يظهر الودجت بقيم fallback مثل 12:00.
+        if (Platform.isMacOS) {
+          try {
+            final box = GetStorage();
+            final monthlyRaw = box.read('MONTHLY_PRAYER_DATA');
+            if (monthlyRaw != null) {
+              await MacOSWidgetService.instance.updateMonthlyPrayerData(
+                jsonEncode(monthlyRaw),
+                appLanguage: Get.locale?.languageCode ?? 'ar',
+              );
+              log('Pushed cached monthly_prayer_data to macOS widget (pre-init)',
+                  name: 'PrayersWidgetConfig');
+            }
+          } catch (e) {
+            log('Failed pushing monthly cache to macOS widget: $e',
+                name: 'PrayersWidgetConfig');
+          }
+        }
+
         // إعادة المحاولة بعد ثانيتين إذا لم تتجاوز الحد الأقصى
         // Retry after 2 seconds if not exceeded max retries
         if (_retryCount < _maxRetries) {
@@ -61,13 +81,47 @@ class PrayersWidgetConfig {
       final lastThirdOfTheNightName =
           adhanCtrl.prayerNameList[7]['title'] as String;
 
-      if (Platform.isIOS || Platform.isMacOS) {
-        // محاولة جلب بيانات الشهر: إن وُجدت لا حاجة لتمرير كل الأوقات منفصلة
-        final box = GetStorage();
-        final monthlyRaw = box.read('MONTHLY_PRAYER_DATA');
-        final hasMonthly = monthlyRaw != null;
+      // محاولة جلب بيانات الشهر (لـ iOS/macOS)
+      final box = GetStorage();
+      final monthlyRaw = box.read('MONTHLY_PRAYER_DATA');
+      final hasMonthly = monthlyRaw != null;
 
-        // حفظ الأوقات الفردية دائماً لتسهيل المقارنة والتشخيص حتى مع وجود الشهري
+      if (Platform.isMacOS) {
+        // macOS: لا تستدعي HomeWidget (غير مدعوم) — ادفع البيانات عبر قناة Swift فقط.
+        await MacOSWidgetService.instance.updatePrayerData(
+          fajrTime: fajrTime,
+          sunriseTime: sunriseTime,
+          dhuhrTime: dhuhrTime,
+          asrTime: asrTime,
+          maghribTime: maghribTime,
+          ishaTime: ishaTime,
+          middleOfTheNightTime: middleOfTheNightTime,
+          lastThirdOfTheNightTime: lastThirdOfTheNightTime,
+          fajrName: fajrName.tr,
+          sunriseName: sunriseName.tr,
+          dhuhrName: dhuhrName.tr,
+          asrName: asrName.tr,
+          maghribName: maghribName.tr,
+          ishaName: ishaName.tr,
+          middleOfTheNightName: middleOfTheNightName.tr,
+          lastThirdOfTheNightName: lastThirdOfTheNightName.tr,
+          hijriDay: '${hijri.hDay}',
+          hijriDayName: weekDaysFullName[hijri.weekDay() - 1].tr,
+          hijriMonth: '${hijri.hMonth}',
+          hijriYear: '${hijri.hYear}',
+          currentPrayerName:
+              adhanCtrl.getPrayerDetails(isNextPrayer: false).prayerName,
+          nextPrayerName:
+              adhanCtrl.getPrayerDetails(isNextPrayer: true).prayerName,
+          currentPrayerTime:
+              adhanCtrl.getPrayerDetails(isNextPrayer: false).prayerTime,
+          nextPrayerTime:
+              adhanCtrl.getPrayerDetails(isNextPrayer: true).prayerTime,
+          appLanguage: Get.locale?.languageCode ?? 'ar',
+          monthlyPrayerData: hasMonthly ? jsonEncode(monthlyRaw) : null,
+        );
+      } else if (Platform.isIOS) {
+        // iOS: استخدم HomeWidget كما هو.
         await HomeWidget.saveWidgetData('fajrTime', '$fajrTime');
         await HomeWidget.saveWidgetData('dhuhrTime', '$dhuhrTime');
         await HomeWidget.saveWidgetData('asrTime', '$asrTime');
@@ -109,38 +163,6 @@ class PrayersWidgetConfig {
         } catch (e) {
           log('Failed monthly_prayer_data save: $e',
               name: 'PrayersWidgetConfig');
-        }
-        if (Platform.isMacOS) {
-          await MacOSWidgetService.instance.updatePrayerData(
-            fajrTime: fajrTime,
-            sunriseTime: sunriseTime,
-            dhuhrTime: dhuhrTime,
-            asrTime: asrTime,
-            maghribTime: maghribTime,
-            ishaTime: ishaTime,
-            middleOfTheNightTime: middleOfTheNightTime,
-            lastThirdOfTheNightTime: lastThirdOfTheNightTime,
-            fajrName: fajrName.tr,
-            sunriseName: sunriseName.tr,
-            dhuhrName: dhuhrName.tr,
-            asrName: asrName.tr,
-            maghribName: maghribName.tr,
-            ishaName: ishaName.tr,
-            middleOfTheNightName: middleOfTheNightName.tr,
-            lastThirdOfTheNightName: lastThirdOfTheNightName.tr,
-            hijriDay: '${hijri.hDay}',
-            hijriDayName: weekDaysFullName[hijri.weekDay() - 1].tr,
-            hijriMonth: '${hijri.hMonth}',
-            hijriYear: '${hijri.hYear}',
-            currentPrayerName:
-                adhanCtrl.getPrayerDetails(isNextPrayer: false).prayerName,
-            nextPrayerName:
-                adhanCtrl.getPrayerDetails(isNextPrayer: true).prayerName,
-            currentPrayerTime:
-                adhanCtrl.getPrayerDetails(isNextPrayer: false).prayerTime,
-            nextPrayerTime:
-                adhanCtrl.getPrayerDetails(isNextPrayer: true).prayerTime,
-          );
         }
       } else if (Platform.isAndroid) {
         // حفظ طوابع زمنية لدعم عدّاد الوديجت (Chronometer)
@@ -212,20 +234,21 @@ class PrayersWidgetConfig {
             'app_language', Get.locale?.languageCode ?? 'ar');
       }
 
-      // حدّث جميع مزوّدات أندرويد (كبير وصغير)
-      await HomeWidget.updateWidget(
-        iOSName: StringConstants.iosPrayersWidget,
-        androidName: StringConstants.androidPrayersWidget,
-        qualifiedAndroidName: 'com.alheekmah.alheekmahLibrary.PrayerWidget',
-      );
-      await HomeWidget.updateWidget(
-        iOSName: StringConstants.iosPrayersWidget,
-        androidName: StringConstants.androidPrayersWidget,
-        qualifiedAndroidName:
-            'com.alheekmah.alheekmahLibrary.PrayerWidgetSmall',
-      );
       if (Platform.isMacOS) {
         await MacOSWidgetService.instance.reloadAllTimelines();
+      } else {
+        // حدّث جميع مزوّدات أندرويد (كبير وصغير) + iOS
+        await HomeWidget.updateWidget(
+          iOSName: StringConstants.iosPrayersWidget,
+          androidName: StringConstants.androidPrayersWidget,
+          qualifiedAndroidName: 'com.alheekmah.alheekmahLibrary.PrayerWidget',
+        );
+        await HomeWidget.updateWidget(
+          iOSName: StringConstants.iosPrayersWidget,
+          androidName: StringConstants.androidPrayersWidget,
+          qualifiedAndroidName:
+              'com.alheekmah.alheekmahLibrary.PrayerWidgetSmall',
+        );
       }
       _scheduleNextUpdate();
       _startProgressUpdates();
@@ -296,8 +319,37 @@ class PrayersWidgetConfig {
 
   static Future<void> initialize() async {
     try {
-      await HomeWidget.setAppGroupId(StringConstants.groupId);
-      await onPrayerWidgetClicked();
+      if (Platform.isMacOS) {
+        // HomeWidget قد لا يدعم macOS بالكامل؛ نعتمد على قناة Swift المخصصة.
+        await MacOSWidgetService.instance.initialize();
+
+        // ادفع بيانات الشهر المخزنة (إن وُجدت) مباشرة بعد التهيئة.
+        // هذا يضمن أن الودجت يقرأ monthly_prayer_data حتى لو تأخرت تهيئة الأوقات.
+        try {
+          final box = GetStorage();
+          final monthlyRaw = box.read('MONTHLY_PRAYER_DATA');
+          if (monthlyRaw != null) {
+            await MacOSWidgetService.instance.updateMonthlyPrayerData(
+              jsonEncode(monthlyRaw),
+              appLanguage: Get.locale?.languageCode ?? 'ar',
+            );
+            log('Pushed cached monthly_prayer_data to macOS widget (init bootstrap)',
+                name: 'PrayersWidgetConfig');
+          }
+        } catch (e) {
+          log('Failed init bootstrap monthly_prayer_data for macOS: $e',
+              name: 'PrayersWidgetConfig');
+        }
+
+        // جرّب تحديث كامل سريعًا (مع آلية retries الموجودة داخل updatePrayersDate).
+        Future.delayed(const Duration(seconds: 1), () {
+          PrayersWidgetConfig().updatePrayersDate();
+        });
+      } else {
+        await HomeWidget.setAppGroupId(StringConstants.groupId);
+        await onPrayerWidgetClicked();
+      }
+
       PrayersWidgetConfig()._startProgressUpdates();
     } catch (e) {
       log('Failed to initialize widget: $e', name: 'PrayersWidgetConfig');

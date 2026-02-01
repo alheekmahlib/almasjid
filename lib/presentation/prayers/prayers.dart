@@ -32,6 +32,7 @@ import 'package:slide_countdown/slide_countdown.dart';
 import 'package:solar_icons/solar_icons.dart';
 import 'package:square_percent_indicater/square_percent_indicater.dart';
 
+import '/core/services/macos_widget_service.dart';
 import '/core/utils/constants/extensions/bottom_sheet_extension.dart';
 import '/core/utils/constants/extensions/convert_number_extension.dart';
 import '/core/utils/constants/extensions/extensions.dart';

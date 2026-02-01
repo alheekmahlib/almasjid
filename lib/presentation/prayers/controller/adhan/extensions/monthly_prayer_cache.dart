@@ -44,22 +44,31 @@ class MonthlyPrayerCache {
       // مزامنة البيانات الشهرية إلى App Group للويدجت مباشرةً
       // Sync monthly data to App Group so the widget doesn't need the app to open daily
       try {
-        await HomeWidget.setAppGroupId(StringConstants.groupId);
-        await HomeWidget.saveWidgetData(
-          'monthly_prayer_data',
-          jsonEncode(monthlyData.toJson()),
-        );
-        log('Monthly prayer data mirrored to App Group for widget', name: _tag);
+        final monthlyJson = jsonEncode(monthlyData.toJson());
 
-        // إخطار الـ widget بتحديث البيانات (ضروري لتفعيل إعادة قراءة البيانات)
-        // Notify widget to update (required to trigger data reload)
-        if (Platform.isIOS || Platform.isMacOS) {
-          await HomeWidget.updateWidget(
-            iOSName: StringConstants.iosPrayersWidget,
-            androidName: StringConstants.androidPrayersWidget,
-            qualifiedAndroidName: 'com.alheekmah.alheekmahLibrary.PrayerWidget',
+        if (Platform.isMacOS) {
+          await MacOSWidgetService.instance.updateMonthlyPrayerData(
+            monthlyJson,
+            appLanguage: Get.locale?.languageCode ?? 'ar',
           );
-          log('Widget notified after monthly data save', name: _tag);
+          log('macOS widget notified after monthly data save', name: _tag);
+        } else {
+          await HomeWidget.setAppGroupId(StringConstants.groupId);
+          await HomeWidget.saveWidgetData('monthly_prayer_data', monthlyJson);
+          log('Monthly prayer data mirrored to App Group for widget',
+              name: _tag);
+
+          // إخطار الـ widget بتحديث البيانات (ضروري لتفعيل إعادة قراءة البيانات)
+          // Notify widget to update (required to trigger data reload)
+          if (Platform.isIOS) {
+            await HomeWidget.updateWidget(
+              iOSName: StringConstants.iosPrayersWidget,
+              androidName: StringConstants.androidPrayersWidget,
+              qualifiedAndroidName:
+                  'com.alheekmah.alheekmahLibrary.PrayerWidget',
+            );
+            log('iOS widget notified after monthly data save', name: _tag);
+          }
         }
       } catch (e) {
         log('Failed mirroring monthly data to App Group: $e', name: _tag);

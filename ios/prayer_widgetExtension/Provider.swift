@@ -125,50 +125,16 @@ struct Provider: AppIntentTimelineProvider {
         var prayerTimes: [(name: String, time: String)] = []
         var mainPrayers: [(name: String, time: String)] = []
 
-        // التحقق من وجود البيانات الفردية أولاً - Check for individual data first
+        // نعتمد على بيانات الشهر متى ما كانت متوفرة وصالحة لليوم
+        // Prefer monthly data whenever available and valid for the current day
         let hasDailyData = userDefaults?.string(forKey: "fajrTime") != nil
+        var usedMonthly = false
 
-        if hasDailyData {
-            // استخدام البيانات الفردية (الأحدث) - Use individual data (most recent)
-            print("[Widget] Using daily individual prayer times (preferred)")
-            let fajrDaily = userDefaults?.string(forKey: "fajrTime") ?? "\(currentDateString.prefix(10)) 05:48:00.000"
-            let sunriseDaily = userDefaults?.string(forKey: "sunriseTime") ?? "\(currentDateString.prefix(10)) 07:15:00.000"
-            let dhuhrDaily = userDefaults?.string(forKey: "dhuhrTime") ?? "\(currentDateString.prefix(10)) 11:56:00.000"
-            let asrDaily = userDefaults?.string(forKey: "asrTime") ?? "\(currentDateString.prefix(10)) 14:13:00.000"
-            let maghribDaily = userDefaults?.string(forKey: "maghribTime") ?? "\(currentDateString.prefix(10)) 16:35:00.000"
-            let ishaDaily = userDefaults?.string(forKey: "ishaTime") ?? "\(currentDateString.prefix(10)) 18:01:00.000"
-
-            print("[Widget][Daily] fajr=\(fajrDaily), dhuhr=\(dhuhrDaily), asr=\(asrDaily), maghrib=\(maghribDaily), isha=\(ishaDaily)")
-
-            prayerTimes = [
-                (name: userDefaults?.string(forKey: "fajrName") ?? "الفجر",
-                 time: convertPrayerTimeToToday(timeString: fajrDaily)),
-                (name: userDefaults?.string(forKey: "sunriseName") ?? "الشروق",
-                 time: convertPrayerTimeToToday(timeString: sunriseDaily)),
-                (name: userDefaults?.string(forKey: "dhuhrName") ?? "الظهر",
-                 time: convertPrayerTimeToToday(timeString: dhuhrDaily)),
-                (name: userDefaults?.string(forKey: "asrName") ?? "العصر",
-                 time: convertPrayerTimeToToday(timeString: asrDaily)),
-                (name: userDefaults?.string(forKey: "maghribName") ?? "المغرب",
-                 time: convertPrayerTimeToToday(timeString: maghribDaily)),
-                (name: userDefaults?.string(forKey: "ishaName") ?? "العشاء",
-                 time: convertPrayerTimeToToday(timeString: ishaDaily))
-            ]
-
-            mainPrayers = [
-                (name: prayerTimes[0].name, time: prayerTimes[0].time),
-                (name: prayerTimes[2].name, time: prayerTimes[2].time),
-                (name: prayerTimes[3].name, time: prayerTimes[3].time),
-                (name: prayerTimes[4].name, time: prayerTimes[4].time),
-                (name: prayerTimes[5].name, time: prayerTimes[5].time)
-            ]
-        } else if let monthlyJSONString = userDefaults?.string(forKey: "monthly_prayer_data"),
+        if let monthlyJSONString = userDefaults?.string(forKey: "monthly_prayer_data"),
            let data = monthlyJSONString.data(using: .utf8),
            let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
            let dailyTimes = json["dailyTimes"] as? [String: Any] {
-            // Fallback للبيانات الشهرية إذا لم تكن البيانات الفردية موجودة
-            // Fallback to monthly data if individual data not available
-            print("[Widget][Fallback] Using monthly data (no daily data found)")
+            print("[Widget] Using monthly prayer data (preferred)")
             let day = calendar.component(.day, from: currentDate)
             if let dayDict = dailyTimes["\(day)"] as? [String: Any] {
                 // طباعة القيم الخام لليوم من JSON الشهري قبل أي تحويل
@@ -252,7 +218,45 @@ struct Provider: AppIntentTimelineProvider {
                 // Store midnight/lastThird for entry creation
                 userDefaults?.set(midnight, forKey: "__monthly_midnight")
                 userDefaults?.set(lastThird, forKey: "__monthly_lastThird")
+
+                usedMonthly = true
             }
+        }
+
+        if !usedMonthly, hasDailyData {
+            // استخدام البيانات الفردية (الأحدث) كـ fallback - Use individual data as fallback
+            print("[Widget][Fallback] Using daily individual prayer times (monthly missing/invalid)")
+            let fajrDaily = userDefaults?.string(forKey: "fajrTime") ?? "\(currentDateString.prefix(10)) 05:48:00.000"
+            let sunriseDaily = userDefaults?.string(forKey: "sunriseTime") ?? "\(currentDateString.prefix(10)) 07:15:00.000"
+            let dhuhrDaily = userDefaults?.string(forKey: "dhuhrTime") ?? "\(currentDateString.prefix(10)) 11:56:00.000"
+            let asrDaily = userDefaults?.string(forKey: "asrTime") ?? "\(currentDateString.prefix(10)) 14:13:00.000"
+            let maghribDaily = userDefaults?.string(forKey: "maghribTime") ?? "\(currentDateString.prefix(10)) 16:35:00.000"
+            let ishaDaily = userDefaults?.string(forKey: "ishaTime") ?? "\(currentDateString.prefix(10)) 18:01:00.000"
+
+            print("[Widget][Daily] fajr=\(fajrDaily), dhuhr=\(dhuhrDaily), asr=\(asrDaily), maghrib=\(maghribDaily), isha=\(ishaDaily)")
+
+            prayerTimes = [
+                (name: userDefaults?.string(forKey: "fajrName") ?? "الفجر",
+                 time: convertPrayerTimeToToday(timeString: fajrDaily)),
+                (name: userDefaults?.string(forKey: "sunriseName") ?? "الشروق",
+                 time: convertPrayerTimeToToday(timeString: sunriseDaily)),
+                (name: userDefaults?.string(forKey: "dhuhrName") ?? "الظهر",
+                 time: convertPrayerTimeToToday(timeString: dhuhrDaily)),
+                (name: userDefaults?.string(forKey: "asrName") ?? "العصر",
+                 time: convertPrayerTimeToToday(timeString: asrDaily)),
+                (name: userDefaults?.string(forKey: "maghribName") ?? "المغرب",
+                 time: convertPrayerTimeToToday(timeString: maghribDaily)),
+                (name: userDefaults?.string(forKey: "ishaName") ?? "العشاء",
+                 time: convertPrayerTimeToToday(timeString: ishaDaily))
+            ]
+
+            mainPrayers = [
+                (name: prayerTimes[0].name, time: prayerTimes[0].time),
+                (name: prayerTimes[2].name, time: prayerTimes[2].time),
+                (name: prayerTimes[3].name, time: prayerTimes[3].time),
+                (name: prayerTimes[4].name, time: prayerTimes[4].time),
+                (name: prayerTimes[5].name, time: prayerTimes[5].time)
+            ]
         }
 
         if prayerTimes.isEmpty {

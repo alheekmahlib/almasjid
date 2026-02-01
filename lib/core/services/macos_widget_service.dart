@@ -8,13 +8,15 @@ import 'package:flutter/services.dart';
 /// macOS Widget integration service with prayer times system
 class MacOSWidgetService {
   static MacOSWidgetService? _instance;
-  static MacOSWidgetService get instance => _instance ??= MacOSWidgetService._();
-  
+  static MacOSWidgetService get instance =>
+      _instance ??= MacOSWidgetService._();
+
   MacOSWidgetService._();
-  
+
   // قناة التواصل مع Swift - Communication channel with Swift
-  static const MethodChannel _channel = MethodChannel('com.alheekmah.alheekmahLibrary/macos_widget');
-  
+  static const MethodChannel _channel =
+      MethodChannel('com.alheekmah.aqimApp.prayer-widget');
+
   /// تحديث بيانات الصلاة في ويدجت macOS
   /// Update prayer data in macOS widget
   Future<void> updatePrayerData({
@@ -42,22 +44,26 @@ class MacOSWidgetService {
     required String nextPrayerName,
     required DateTime? currentPrayerTime,
     required DateTime? nextPrayerTime,
+    required String appLanguage,
+    String? monthlyPrayerData,
   }) async {
     try {
       if (!Platform.isMacOS) return;
-      
+
       // تحضير البيانات للإرسال - Prepare data for sending
       final Map<String, dynamic> prayerData = {
         // أوقات الصلاة - Prayer times
-        'fajrTime': fajrTime.toIso8601String(),
-        'sunriseTime': sunriseTime.toIso8601String(),
-        'dhuhrTime': dhuhrTime.toIso8601String(),
-        'asrTime': asrTime.toIso8601String(),
-        'maghribTime': maghribTime.toIso8601String(),
-        'ishaTime': ishaTime.toIso8601String(),
-        'middleOfTheNightTime': middleOfTheNightTime.toIso8601String(),
-        'lastThirdOfTheNightTime': lastThirdOfTheNightTime.toIso8601String(),
-        
+        // ملاحظة: نستخدم DateTime.toString() لتطابق صيغة iOS/HomeWidget
+        // (yyyy-MM-dd HH:mm:ss.SSS) لتسهيل parsing داخل Swift Widget.
+        'fajrTime': fajrTime.toString(),
+        'sunriseTime': sunriseTime.toString(),
+        'dhuhrTime': dhuhrTime.toString(),
+        'asrTime': asrTime.toString(),
+        'maghribTime': maghribTime.toString(),
+        'ishaTime': ishaTime.toString(),
+        'middleOfTheNightTime': middleOfTheNightTime.toString(),
+        'lastThirdOfTheNightTime': lastThirdOfTheNightTime.toString(),
+
         // أسماء الصلاة - Prayer names
         'fajrName': fajrName,
         'sunriseName': sunriseName,
@@ -67,26 +73,32 @@ class MacOSWidgetService {
         'ishaName': ishaName,
         'middleOfTheNightName': middleOfTheNightName,
         'lastThirdOfTheNightName': lastThirdOfTheNightName,
-        
+
         // التاريخ الهجري - Hijri date
         'hijriDay': hijriDay,
         'hijriDayName': hijriDayName,
         'hijriMonth': hijriMonth,
         'hijriYear': hijriYear,
-        
+
         // الصلاة الحالية والقادمة - Current and next prayer
         'currentPrayerName': currentPrayerName,
         'nextPrayerName': nextPrayerName,
-        'currentPrayerTime': currentPrayerTime?.toIso8601String() ?? '',
-        'nextPrayerTime': nextPrayerTime?.toIso8601String() ?? '',
-        
+        'currentPrayerTime': currentPrayerTime?.toString() ?? '',
+        'nextPrayerTime': nextPrayerTime?.toString() ?? '',
+
+        // لغة التطبيق لتوجيه الـ widget
+        'appLanguage': appLanguage,
+
+        // بيانات الشهر (اختياري)
+        if (monthlyPrayerData != null) 'monthly_prayer_data': monthlyPrayerData,
+
         // طابع زمني للتحديث - Update timestamp
-        'lastUpdated': DateTime.now().toIso8601String(),
+        'lastUpdated': DateTime.now().toString(),
       };
-      
+
       // إرسال البيانات إلى Swift - Send data to Swift
       await _channel.invokeMethod('updatePrayerData', prayerData);
-      
+
       log('تم إرسال بيانات الصلاة إلى ويدجت macOS - Prayer data sent to macOS widget successfully',
           name: 'MacOSWidgetService');
     } catch (e) {
@@ -94,15 +106,15 @@ class MacOSWidgetService {
           name: 'MacOSWidgetService');
     }
   }
-  
+
   /// إعادة تحميل جميع timelines للويدجت
   /// Reload all widget timelines
   Future<void> reloadAllTimelines() async {
     try {
       if (!Platform.isMacOS) return;
-      
+
       await _channel.invokeMethod('reloadAllTimelines');
-      
+
       log('تم إعادة تحميل timelines للويدجت - Widget timelines reloaded successfully',
           name: 'MacOSWidgetService');
     } catch (e) {
@@ -110,15 +122,39 @@ class MacOSWidgetService {
           name: 'MacOSWidgetService');
     }
   }
-  
+
+  /// تحديث بيانات الشهر فقط (بدون الحاجة لإرسال كل الحقول)
+  /// Update monthly prayer JSON only (no need to send all fields)
+  Future<void> updateMonthlyPrayerData(
+    String monthlyPrayerData, {
+    String? appLanguage,
+  }) async {
+    try {
+      if (!Platform.isMacOS) return;
+
+      await _channel.invokeMethod('updatePrayerData', <String, dynamic>{
+        'monthly_prayer_data': monthlyPrayerData,
+        if (appLanguage != null) 'appLanguage': appLanguage,
+        'lastUpdated': DateTime.now().toString(),
+      });
+
+      await reloadAllTimelines();
+
+      log('تم تحديث بيانات الشهر وإعادة تحميل الويدجت على macOS',
+          name: 'MacOSWidgetService');
+    } catch (e) {
+      log('خطأ في تحديث بيانات الشهر لـ macOS: $e', name: 'MacOSWidgetService');
+    }
+  }
+
   /// تحديث ويدجت معين
   /// Update specific widget
   Future<void> reloadTimeline(String widgetKind) async {
     try {
       if (!Platform.isMacOS) return;
-      
+
       await _channel.invokeMethod('reloadTimeline', {'widgetKind': widgetKind});
-      
+
       log('تم إعادة تحميل timeline للويدجت $widgetKind - Timeline reloaded for widget $widgetKind',
           name: 'MacOSWidgetService');
     } catch (e) {
@@ -126,15 +162,15 @@ class MacOSWidgetService {
           name: 'MacOSWidgetService');
     }
   }
-  
+
   /// تهيئة الخدمة
   /// Initialize service
   Future<void> initialize() async {
     try {
       if (!Platform.isMacOS) return;
-      
+
       await _channel.invokeMethod('initialize');
-      
+
       log('تم تهيئة خدمة ويدجت macOS - macOS widget service initialized successfully',
           name: 'MacOSWidgetService');
     } catch (e) {
