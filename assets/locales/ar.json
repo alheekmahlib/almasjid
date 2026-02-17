@@ -496,7 +496,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sharePrayerTime": "شارك وقت الصلاة",
+  "sharePrayerTime": "وقت الصلاة القادمة",
   "@sharePrayerTime": {
     "type": "text",
     "placeholders": {}

@@ -496,7 +496,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sharePrayerTime": "Bagikan Waktu Shalat",
+  "sharePrayerTime": "Waktu Sholat Berikutnya",
   "@sharePrayerTime": {
     "type": "text",
     "placeholders": {}

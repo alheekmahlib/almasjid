@@ -496,7 +496,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sharePrayerTime": "Share Prayer Time",
+  "sharePrayerTime": "Next Prayer Time",
   "@sharePrayerTime": {
     "type": "text",
     "placeholders": {}

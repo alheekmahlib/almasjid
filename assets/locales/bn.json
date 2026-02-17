@@ -496,7 +496,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sharePrayerTime": "নামাজের সময় শেয়ার করুন",
+  "sharePrayerTime": "পরবর্তী নামাজের সময়",
   "@sharePrayerTime": {
     "type": "text",
     "placeholders": {}

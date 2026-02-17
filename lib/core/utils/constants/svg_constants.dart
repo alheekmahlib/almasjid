@@ -120,6 +120,10 @@ class SvgPath {
   /// assets/svg/prayer/play-arrow.svg
   static const String svgPrayerPlayArrow = "assets/svg/prayer/play-arrow.svg";
 
+  /// Assets for svgPrayerRefresh
+  /// assets/svg/prayer/refresh.svg
+  static const String svgPrayerRefresh = "assets/svg/prayer/refresh.svg";
+
   /// Assets for svgQiblaArrow4
   /// assets/svg/qibla/arrow4.svg
   static const String svgQiblaArrow4 = "assets/svg/qibla/arrow4.svg";

@@ -85,7 +85,7 @@ class ShareController extends GetxController {
         final params = ShareParams(
           text: shareText,
           files: [XFile(imagePath.path, name: 'prayer_times.png')],
-          subject: 'Prayer Times - Al-Masjid App',
+          // subject: 'appName'.tr,
         );
 
         final result = await SharePlus.instance.share(params);

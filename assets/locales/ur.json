@@ -496,7 +496,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sharePrayerTime": "نماز کا وقت شیئر کریں",
+  "sharePrayerTime": "اگلی نماز کا وقت",
   "@sharePrayerTime": {
     "type": "text",
     "placeholders": {}

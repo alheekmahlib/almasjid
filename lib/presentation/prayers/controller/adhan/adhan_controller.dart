@@ -237,7 +237,7 @@ class AdhanController extends GetxController {
 
       if (GeneralController.instance.state.activeLocation.value) {
         await _fetchAndCalculatePrayerTimes(newLocation ?? currentLocation);
-        await _saveToMonthlyCache(currentLocation);
+        await _saveToMonthlyCache(newLocation ?? currentLocation);
         await _finalizePrayerTimeInitialization();
       } else {
         // إيقاف حالة التحميل إذا لم يكن الموقع نشطاً

@@ -496,7 +496,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sharePrayerTime": "Namaz Vaktini Paylaş",
+  "sharePrayerTime": "Sonraki Namaz Vakti",
   "@sharePrayerTime": {
     "type": "text",
     "placeholders": {}

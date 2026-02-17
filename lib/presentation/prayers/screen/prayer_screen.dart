@@ -225,47 +225,71 @@ class PrayerScreen extends StatelessWidget {
       child: FutureBuilder<String>(
           future: adhanCtrl.localizedLocation,
           builder: (context, snapshot) {
-            return ContainerButtonWidget(
-              onPressed: () async {
-                final success =
-                    await generalCtrl.updateLocationAndPrayerTimes();
-                if (success) {
-                  Get.forceAppUpdate();
-                  log(
-                    'Location and prayer times updated successfully',
-                    name: 'PrayerScreen',
-                  );
-                }
-              },
-              height: 60,
-              svgHeight: 80,
-              width: Get.width,
-              withShape: false,
-              useGradient: false,
-              backgroundColor: Colors.transparent,
-              borderColor:
-                  Theme.of(context).colorScheme.surface.withValues(alpha: .2),
-              child: Stack(
-                alignment: AlignmentDirectional.centerStart,
-                children: [
-                  Icon(Icons.place_rounded,
-                      color: context.theme.colorScheme.surface
-                          .withValues(alpha: .1),
-                      size: 70),
-                  Text(
-                    snapshot.data ?? '',
-                    style: TextStyle(
-                      fontFamily: 'cairo',
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: context.theme.colorScheme.inversePrimary,
-                      height: 1.3,
+            return Stack(
+              alignment: Alignment.topCenter,
+              children: [
+                ContainerButtonWidget(
+                  onPressed: () async {
+                    final success =
+                        await generalCtrl.updateLocationAndPrayerTimes();
+                    if (success) {
+                      Get.forceAppUpdate();
+                      log(
+                        'Location and prayer times updated successfully',
+                        name: 'PrayerScreen',
+                      );
+                    }
+                  },
+                  height: 60,
+                  svgHeight: 80,
+                  width: Get.width,
+                  withShape: false,
+                  useGradient: false,
+                  backgroundColor: Colors.transparent,
+                  borderColor: Theme.of(context)
+                      .colorScheme
+                      .surface
+                      .withValues(alpha: .2),
+                  child: Stack(
+                    alignment: AlignmentDirectional.centerStart,
+                    children: [
+                      Icon(Icons.place_rounded,
+                          color: context.theme.colorScheme.surface
+                              .withValues(alpha: .1),
+                          size: 70),
+                      Text(
+                        snapshot.data ?? '',
+                        style: TextStyle(
+                          fontFamily: 'cairo',
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: context.theme.colorScheme.inversePrimary,
+                          height: 1.3,
+                        ),
+                        maxLines: 2,
+                        textAlign: TextAlign.center,
+                      )
+                    ],
+                  ),
+                ),
+                Align(
+                  alignment: AlignmentDirectional.topEnd,
+                  child: Container(
+                    height: 30,
+                    width: 30,
+                    padding: const EdgeInsets.all(4),
+                    decoration: BoxDecoration(
+                      color: context.theme.colorScheme.surface,
+                      borderRadius: BorderRadius.circular(8),
                     ),
-                    maxLines: 2,
-                    textAlign: TextAlign.center,
-                  )
-                ],
-              ),
+                    child: customSvgWithColor(
+                      SvgPath.svgPrayerRefresh,
+                      height: 24,
+                      color: context.theme.canvasColor,
+                    ),
+                  ),
+                )
+              ],
             );
           }),
     );

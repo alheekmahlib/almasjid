@@ -496,7 +496,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sharePrayerTime": "Kongsi Waktu Solat",
+  "sharePrayerTime": "Waktu Solat Seterusnya",
   "@sharePrayerTime": {
     "type": "text",
     "placeholders": {}

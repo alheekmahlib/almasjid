@@ -3,7 +3,7 @@ description: "A Prayer and qibla application."
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-version: 1.2.7+13
+version: 1.2.8+14
 
 environment:
   sdk: ^3.6.1
@@ -20,7 +20,7 @@ dependencies:
   compassx: ^1.0.1
   connectivity_plus: ^7.0.0
   cupertino_icons: ^1.0.8
-  dio: ^5.9.0
+  dio: ^5.9.1
   drawing_animation:
     git:
       ref: master

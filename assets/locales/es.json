@@ -496,7 +496,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sharePrayerTime": "Compartir horario de oración",
+  "sharePrayerTime": "Próximo Horario de Oración",
   "@sharePrayerTime": {
     "type": "text",
     "placeholders": {}
