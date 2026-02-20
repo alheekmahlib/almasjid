@@ -685,5 +685,10 @@
   "@aboutMonth": {
     "type": "text",
     "placeholders": {}
+  },
+  "ramadanMaghribName": "Berbuka Puasa",
+  "@ramadanMaghribName": {
+    "type": "text",
+    "placeholders": {}
   }
 }

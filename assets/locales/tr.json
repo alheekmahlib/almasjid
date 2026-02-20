@@ -685,5 +685,10 @@
   "@aboutMonth": {
     "type": "text",
     "placeholders": {}
+  },
+  "ramadanMaghribName": "İftar",
+  "@ramadanMaghribName": {
+    "type": "text",
+    "placeholders": {}
   }
 }

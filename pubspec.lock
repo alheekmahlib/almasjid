@@ -628,10 +628,10 @@ packages:
     dependency: "direct main"
     description:
       name: hijri_date
-      sha256: f58b61ec167dd67622e7a2970e3c37903a45a844cb1e65c09d52775460887a9f
+      sha256: "9e30faf0984244175a339bb318774bcc13a6b3721efc89e1d737d9f73462c444"
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.0"
+    version: "1.0.1"
   home_widget:
     dependency: "direct main"
     description:

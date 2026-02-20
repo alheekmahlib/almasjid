@@ -685,5 +685,10 @@
   "@aboutMonth": {
     "type": "text",
     "placeholders": {}
+  },
+  "ramadanMaghribName": "ইফতার",
+  "@ramadanMaghribName": {
+    "type": "text",
+    "placeholders": {}
   }
 }
