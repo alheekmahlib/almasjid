@@ -146,7 +146,7 @@ class PrayerBuild extends StatelessWidget {
                   ? EdgeInsetsDirectional.fromSTEB(
                       0.0, 0.0, 16.0, index == 7 ? 0.0 : 6.0)
                   : EdgeInsetsDirectional.fromSTEB(
-                      0.0, 0.0, 32.0, index == 7 ? 0.0 : 6.0),
+                      0.0, 0.0, 16.0, index == 7 ? 0.0 : 6.0),
               child: _buildPrayerContent(
                 context,
                 index,

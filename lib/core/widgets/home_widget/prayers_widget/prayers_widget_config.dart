@@ -86,6 +86,41 @@ class PrayersWidgetConfig {
       final monthlyRaw = box.read('MONTHLY_PRAYER_DATA');
       final hasMonthly = monthlyRaw != null;
 
+      // تصحيح بيانات اليوم في الكاش الشهري قبل إرسالها للويدجت
+      // Ensure today's times in monthly data match the fresh calculation
+      // so the widget never shows stale cached values for today
+      String? monthlyJsonForWidget;
+      if (hasMonthly) {
+        try {
+          final patched =
+              jsonDecode(jsonEncode(monthlyRaw)) as Map<String, dynamic>;
+          final dailyTimes = patched['dailyTimes'];
+          if (dailyTimes is Map) {
+            final today = DateTime.now().day.toString();
+            if (dailyTimes.containsKey(today)) {
+              final now = DateTime.now();
+              (dailyTimes as Map<String, dynamic>)[today] = <String, dynamic>{
+                'date': DateTime(now.year, now.month, now.day)
+                    .toIso8601String(),
+                'fajr': fajrTime.toIso8601String(),
+                'sunrise': sunriseTime.toIso8601String(),
+                'dhuhr': dhuhrTime.toIso8601String(),
+                'asr': asrTime.toIso8601String(),
+                'maghrib': maghribTime.toIso8601String(),
+                'isha': ishaTime.toIso8601String(),
+                'midnight': middleOfTheNightTime.toIso8601String(),
+                'lastThird': lastThirdOfTheNightTime.toIso8601String(),
+              };
+            }
+          }
+          monthlyJsonForWidget = jsonEncode(patched);
+        } catch (e) {
+          log('Patch today in monthly data failed, using raw: $e',
+              name: 'PrayersWidgetConfig');
+          monthlyJsonForWidget = jsonEncode(monthlyRaw);
+        }
+      }
+
       if (Platform.isMacOS) {
         // macOS: لا تستدعي HomeWidget (غير مدعوم) — ادفع البيانات عبر قناة Swift فقط.
         await MacOSWidgetService.instance.updatePrayerData(
@@ -118,7 +153,7 @@ class PrayersWidgetConfig {
           nextPrayerTime:
               adhanCtrl.getPrayerDetails(isNextPrayer: true).prayerTime,
           appLanguage: Get.locale?.languageCode ?? 'ar',
-          monthlyPrayerData: hasMonthly ? jsonEncode(monthlyRaw) : null,
+          monthlyPrayerData: monthlyJsonForWidget,
         );
       } else if (Platform.isIOS) {
         // iOS: استخدم HomeWidget كما هو.
@@ -152,10 +187,11 @@ class PrayersWidgetConfig {
         await HomeWidget.saveWidgetData(
             'appLanguage', Get.locale?.languageCode ?? 'ar');
         try {
-          if (hasMonthly) {
+          if (monthlyJsonForWidget != null) {
             await HomeWidget.saveWidgetData(
-                'monthly_prayer_data', jsonEncode(monthlyRaw));
-            log('Saved monthly_prayer_data JSON', name: 'PrayersWidgetConfig');
+                'monthly_prayer_data', monthlyJsonForWidget);
+            log('Saved monthly_prayer_data JSON (today patched)',
+                name: 'PrayersWidgetConfig');
           } else {
             log('Monthly data missing; relying on individual times',
                 name: 'PrayersWidgetConfig');

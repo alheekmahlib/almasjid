@@ -38,13 +38,6 @@ class SplashScreen extends StatelessWidget {
                     ),
                   ),
                   Align(
-                    alignment: Alignment.topRight,
-                    child: Padding(
-                        padding: const EdgeInsets.only(top: 56.0),
-                        child: SplashScreenController.instance
-                            .ramadhanOrEidGreeting()),
-                  ),
-                  Align(
                     alignment: Alignment.center,
                     child: GetX<SplashScreenController>(
                       builder: (s) => s.customWidget,
@@ -57,34 +50,12 @@ class SplashScreen extends StatelessWidget {
                 child: Stack(
                   alignment: Alignment.center,
                   children: [
-                    Row(
-                      children: [
-                        Expanded(
-                          flex: 4,
-                          child: Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              AnimatedDrawingWidget(
-                                  opacity: .02,
-                                  width: Get.width,
-                                  height: Get.width * .6),
-                            ],
-                          ),
-                        ),
-                        GetX<SplashScreenController>(
-                          builder: (s) => s.state.customWidgetIndex.value == 0
-                              ? const Expanded(
-                                  flex: 4,
-                                  child: AlheekmahAndLoading(),
-                                )
-                              : const SizedBox.shrink(),
-                        ),
-                      ],
-                    ),
-                    Align(
-                      alignment: Alignment.topCenter,
-                      child: SplashScreenController.instance
-                          .ramadhanOrEidGreeting(),
+                    AnimatedDrawingWidget(
+                        opacity: .02, width: Get.width, height: Get.width * .6),
+                    GetX<SplashScreenController>(
+                      builder: (s) => s.state.customWidgetIndex.value == 0
+                          ? const AlheekmahAndLoading()
+                          : const SizedBox.shrink(),
                     ),
                     Align(
                       alignment: Alignment.center,

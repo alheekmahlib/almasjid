@@ -290,21 +290,22 @@ struct Provider: AppIntentTimelineProvider {
 
         let nextPrayer = getNextPrayer(currentTime: currentDate, prayerTimes: mainPrayers)
 
-        // حساب بدائل التاريخ الهجري محليًا عند غياب بيانات التطبيق - Compute Hijri fallbacks locally if app data missing
+        // حساب التاريخ الهجري محليًا دائمًا بناءً على currentDate لأن UserDefaults لا تُحدَّث بدون فتح التطبيق
+        // Always compute Hijri date locally from currentDate since UserDefaults aren't updated without opening the app
         let hijriCalendar = Calendar(identifier: .islamicUmmAlQura)
-        var fallbackHijriDay = "1"
-        var fallbackHijriMonth = "1"
-        var fallbackHijriYear = "1446"
-        var fallbackHijriDayName = appLanguage == "ar" ? "الجمعة" : "Friday"
+        var computedHijriDay = "1"
+        var computedHijriMonth = "1"
+        var computedHijriYear = "1446"
+        var computedHijriDayName = appLanguage == "ar" ? "الجمعة" : "Friday"
         let hijriComponents = hijriCalendar.dateComponents([.day, .month, .year], from: currentDate)
-        if let d = hijriComponents.day { fallbackHijriDay = convertNumbers(String(d), languageCode: appLanguage) }
-        if let m = hijriComponents.month { fallbackHijriMonth = String(m) }
-        if let y = hijriComponents.year { fallbackHijriYear = convertNumbers(String(y), languageCode: appLanguage) }
+        if let d = hijriComponents.day { computedHijriDay = convertNumbers(String(d), languageCode: appLanguage) }
+        if let m = hijriComponents.month { computedHijriMonth = String(m) }
+        if let y = hijriComponents.year { computedHijriYear = convertNumbers(String(y), languageCode: appLanguage) }
         let hijriNameFormatter = DateFormatter()
         hijriNameFormatter.calendar = hijriCalendar
         hijriNameFormatter.locale = Locale(identifier: appLanguage)
         hijriNameFormatter.dateFormat = "EEEE"
-        fallbackHijriDayName = hijriNameFormatter.string(from: currentDate)
+        computedHijriDayName = hijriNameFormatter.string(from: currentDate)
 
         // إنشاء PrayerWidgetEntry - Create PrayerWidgetEntry
         return PrayerWidgetEntry(
@@ -321,10 +322,10 @@ struct Provider: AppIntentTimelineProvider {
             lastThirdOfTheNightName: userDefaults?.string(forKey: "lastThirdOfTheNightName") ?? "ثلث الليل الأخير",
             lastThirdOfTheNightDate: (userDefaults?.string(forKey: "__monthly_lastThird")
                                      ?? convertPrayerTimeToToday(timeString: userDefaults?.string(forKey: "lastThirdOfTheNightTime") ?? "\(currentDateString.prefix(10)) 00:00:00.000")),
-            hijriDay: convertNumbers(userDefaults?.string(forKey: "hijriDay") ?? fallbackHijriDay, languageCode: appLanguage),
-            hijriDayName: userDefaults?.string(forKey: "hijriDayName") ?? fallbackHijriDayName,
-            hijriMonth: userDefaults?.string(forKey: "hijriMonth") ?? fallbackHijriMonth,
-            hijriYear: convertNumbers(userDefaults?.string(forKey: "hijriYear") ?? fallbackHijriYear, languageCode: appLanguage),
+            hijriDay: computedHijriDay,
+            hijriDayName: computedHijriDayName,
+            hijriMonth: computedHijriMonth,
+            hijriYear: computedHijriYear,
             nextPrayerDate: nextPrayer?.date ?? Date().addingTimeInterval(3600),
             currentPrayerTime: currentDate,
             appLanguage: appLanguage,

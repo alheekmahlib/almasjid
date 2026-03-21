@@ -21,8 +21,9 @@ class AdhanController extends GetxController {
       // بعد تحديث نظام IDs للإشعارات: ألغِ IDs القديمة مرة واحدة لتفادي إشعارات مزدوجة.
       await PrayersNotificationsCtrl.instance
           .cancelLegacyPrayerNotificationsIfNeeded();
-      // ابدأ التهيئة فورًا بدل التأخير لتجنّب نافذة null
-      unawaited(initializeStoredAdhan());
+      // لا نستدعي initializeStoredAdhan هنا — _activateLocation في
+      // GeneralController تستدعيها بالفعل مع await. الاستدعاء المزدوج
+      // كان يسبب سباق (race condition) يؤدي لبيانات خاطئة في الويدجت.
       Future.delayed(
           const Duration(seconds: 8),
           () async =>
