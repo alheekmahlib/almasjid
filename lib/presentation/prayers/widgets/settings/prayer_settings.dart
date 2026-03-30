@@ -19,7 +19,7 @@ class PrayerSettings extends StatelessWidget {
               onChanged: (bool value) => generalCtrl.toggleLocationService(),
             ),
             const Gap(8),
-            AdhanSounds(),
+            isWeb ? const SizedBox.shrink() : AdhanSounds(),
             const Gap(8),
             SetTimingCalculations(),
           ],

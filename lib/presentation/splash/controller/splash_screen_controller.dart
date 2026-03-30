@@ -52,6 +52,10 @@ class SplashScreenController extends GetxController {
   }
 
   Future<void> isNotificationAllowed() async {
+    if (isWeb) {
+      hasNewFeatures();
+      return;
+    }
     bool isAllowed = await NotifyHelper().isNotificationAllowed();
     if (!isAllowed) {
       toggleSlider(duration: 0);
@@ -100,7 +104,7 @@ class SplashScreenController extends GetxController {
   Future<void> activateNotifications() async {
     try {
       state.isNotificationLoading.value = true;
-      if (Platform.isMacOS || Platform.isLinux || Platform.isWindows) {
+      if (isDesktop) {
         await MacOSNotificationsService.instance.initialize();
         final granted =
             await MacOSNotificationsService.instance.requestPermissions();

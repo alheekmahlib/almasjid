@@ -116,30 +116,33 @@ class PrayerScreen extends StatelessWidget {
               )),
         ),
         Expanded(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Gap(16),
-              const PrayerNowWidget(),
-              const Gap(16),
-              context.hDivider(width: Get.width * .5),
-              const Gap(16),
-              Row(
-                children: [
-                  Expanded(
-                    child: updateLocationBuild(context),
-                  ),
-                  Expanded(
-                    child: HijriDateWidget(
-                      svgColor: context.theme.colorScheme.surface,
-                      horizontalPadding: 24.0,
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Gap(16),
+                const PrayerNowWidget(),
+                const Gap(16),
+                context.hDivider(width: Get.width * .5),
+                const Gap(16),
+                Row(
+                  children: [
+                    Expanded(
+                      child: updateLocationBuild(context),
                     ),
-                  ),
-                ],
-              ),
-              const Gap(8),
-              const ProhibitionWidget(),
-            ],
+                    Expanded(
+                      child: HijriDateWidget(
+                        svgColor: context.theme.colorScheme.surface,
+                        horizontalPadding: 24.0,
+                      ),
+                    ),
+                  ],
+                ),
+                const Gap(8),
+                const ProhibitionWidget(),
+                const Gap(90),
+              ],
+            ),
           ),
         ),
       ],

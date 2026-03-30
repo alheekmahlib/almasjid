@@ -690,5 +690,65 @@
   "@ramadanMaghribName": {
     "type": "text",
     "placeholders": {}
+  },
+  "startHijriYear": "Hicri Yılbaşı",
+  "@startHijriYear": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reminderToFastTasoo'a": "Tasu'a orucu için hatırlatma",
+  "@reminderToFastTasoo'a": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reminderToFastAshura": "Aşure orucu için hatırlatma",
+  "@reminderToFastAshura": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ashura": "Aşure Günü",
+  "@ashura": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ramadhan": "Ramazan",
+  "@ramadhan": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nightOfQadir": "Kadir Gecesi",
+  "@nightOfQadir": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "EidAl-Fitr": "Ramazan Bayramı",
+  "@EidAl-Fitr": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sexShawwal": "Şevval'in altı günü",
+  "@sexShawwal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "arafahReminder": "Arefe günü orucu için hatırlatma",
+  "@arafahReminder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "arafah": "Arefe Günü",
+  "@arafah": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tenDaysOfDhul-Hijjah": "Zilhicce'nin ilk on günü",
+  "@tenDaysOfDhul-Hijjah": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "EidAl-Adha": "Kurban Bayramı",
+  "@EidAl-Adha": {
+    "type": "text",
+    "placeholders": {}
   }
 }

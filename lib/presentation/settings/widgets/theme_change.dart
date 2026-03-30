@@ -1,6 +1,5 @@
 import 'package:almasjid/core/utils/constants/extensions/svg_extensions.dart';
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 
 import '../../../core/utils/constants/lists.dart';
@@ -16,7 +15,7 @@ class ThemeChange extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: SizedBox(
         width: double.infinity,
         child: Column(
@@ -32,11 +31,10 @@ class ThemeChange extends StatelessWidget {
                 fontSize: 14,
               ),
             ),
-            const Gap(4),
             Container(
               decoration: BoxDecoration(
-                  border: Border.all(
-                      color: context.theme.highlightColor, width: 1.5),
+                  border:
+                      Border.all(color: context.theme.canvasColor, width: 1.5),
                   borderRadius: BorderRadius.circular(16)),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,

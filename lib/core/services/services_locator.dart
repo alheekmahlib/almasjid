@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:flutter_timezone/flutter_timezone.dart';
 import 'package:get/get.dart';
@@ -16,9 +15,7 @@ import '../../presentation/ourApp/controller/our_apps_controller.dart';
 import '../../presentation/prayers/prayers.dart';
 import '../../presentation/splash/splash.dart';
 import '../../presentation/whats_new/whats_new.dart';
-// import '../../presentation/screens/prayers/prayers.dart';
-// import '../../presentation/screens/splash/splash.dart';
-// import '../../presentation/screens/whats_new/whats_new.dart';
+import '../utils/helpers/platform_helper.dart';
 import '../utils/helpers/rate_app_helper.dart';
 import 'connectivity_service.dart';
 import 'internet_connection_controller.dart';
@@ -82,7 +79,7 @@ class ServicesLocator {
     Get.put(InternetConnectionService(), permanent: true);
     Get.put(InternetConnectionController(), permanent: true);
 
-    if (Platform.isIOS || Platform.isAndroid || Platform.isFuchsia) {
+    if (isMobile || isFuchsia) {
       RateAppHelper.rateMyApp.init();
     }
     try {

@@ -59,28 +59,33 @@ class PrayersOfCites extends StatelessWidget {
                                     child: CircularProgressIndicator())
                                 : controller.cities.isEmpty
                                     ? Center(
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            customSvgWithColor(
-                                              SvgPath.svgHomeCites,
-                                              width: 150,
-                                              color: context.theme.hintColor
-                                                  .withValues(alpha: 0.8),
-                                            ),
-                                            const Gap(8),
-                                            Text(
-                                              'citiesPrayerTimesSearchHint'.tr,
-                                              style: TextStyle(
-                                                fontFamily: 'cairo',
-                                                fontSize: 14,
-                                                color: context.theme.colorScheme
-                                                    .inversePrimary
-                                                    .withValues(alpha: 0.7),
+                                        child: SingleChildScrollView(
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              customSvgWithColor(
+                                                SvgPath.svgHomeCites,
+                                                width: 150,
+                                                color: context.theme.hintColor
+                                                    .withValues(alpha: 0.8),
                                               ),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          ],
+                                              const Gap(8),
+                                              Text(
+                                                'citiesPrayerTimesSearchHint'
+                                                    .tr,
+                                                style: TextStyle(
+                                                  fontFamily: 'cairo',
+                                                  fontSize: 14,
+                                                  color: context
+                                                      .theme
+                                                      .colorScheme
+                                                      .inversePrimary
+                                                      .withValues(alpha: 0.7),
+                                                ),
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       )
                                     : ReorderableListView.builder(

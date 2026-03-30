@@ -1,13 +1,12 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:developer' show log;
-import 'dart:io' show Directory, File, Platform;
 import 'dart:typed_data';
 
 import 'package:adhan/adhan.dart';
+import 'package:almasjid/core/utils/helpers/platform_helper.dart';
 import 'package:arabic_justified_text/arabic_justified_text.dart';
 import 'package:archive/archive.dart' show ZipDecoder;
-import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show MethodChannel, rootBundle;
@@ -19,13 +18,11 @@ import 'package:gauge_indicator/gauge_indicator.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:hijri_date/hijri_date.dart';
-import 'package:home_widget/home_widget.dart';
 import 'package:horizontal_week_calendar/horizontal_week_calendar.dart';
 import 'package:intl/intl.dart' as intl;
 import 'package:just_audio/just_audio.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:path/path.dart' as path;
-import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:slide_countdown/slide_countdown.dart';
@@ -38,6 +35,14 @@ import '/core/utils/constants/extensions/convert_number_extension.dart';
 import '/core/utils/constants/extensions/extensions.dart';
 import '/core/utils/constants/extensions/svg_extensions.dart';
 import '/core/utils/constants/string_constants.dart';
+import '/core/utils/helpers/web_stubs/awesome_notifications_stub.dart'
+    if (dart.library.io) 'package:awesome_notifications/awesome_notifications.dart';
+import '/core/utils/helpers/web_stubs/home_widget_stub.dart'
+    if (dart.library.io) 'package:home_widget/home_widget.dart';
+import '/core/utils/helpers/web_stubs/io_stub.dart'
+    if (dart.library.io) 'dart:io' show Directory, File, Platform;
+import '/core/utils/helpers/web_stubs/path_provider_stub.dart'
+    if (dart.library.io) 'package:path_provider/path_provider.dart';
 import '/core/widgets/home_widget/home_widget.dart';
 import '../../../core/services/location/locations.dart';
 import '../../../core/services/notifications_helper.dart';

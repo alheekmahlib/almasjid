@@ -777,14 +777,14 @@ extension AdhanGetters on AdhanController {
   int get currentPrayerIndex => getCurrentPrayerByDateTime();
 
   int getCurrentPrayerByDateTime() {
-    final prayer = state.prayerTimes!;
+    final prayer = state.prayerTimes;
+    final sunnah = state.sunnahTimes;
 
-    final sunnah = state.sunnahTimes!;
+    if (prayer == null || sunnah == null) {
+      return 0;
+    }
 
     int value = 0;
-    // if (prayer == null || sunnah == null) {
-    //   return 0;
-    // }
 
     // log('Current time: ${state.now}');
 

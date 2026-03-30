@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
             builder: (themeCtrl) => GetMaterialApp(
               // navigatorKey: sl<GeneralController>().navigatorNotificationKey,
               debugShowCheckedModeBanner: false,
-              title: 'Al Quran Al Kareem',
+              title: 'أقِم - مكتبة الحكمة',
               localizationsDelegates: const [
                 GlobalMaterialLocalizations.delegate,
                 GlobalWidgetsLocalizations.delegate,

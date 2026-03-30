@@ -1,4 +1,4 @@
-part of '../home_widget.dart';
+part of '../home_widget_native.dart';
 
 class PrayersWidgetConfig {
   final adhanCtrl = AdhanController.instance;
@@ -16,7 +16,7 @@ class PrayersWidgetConfig {
 
         // macOS: حتى لو لم تكتمل تهيئة الأوقات، جرّب على الأقل دفع بيانات الشهر
         // المخزنة (إن وُجدت) كي لا يظهر الودجت بقيم fallback مثل 12:00.
-        if (Platform.isMacOS) {
+        if (isMacOS) {
           try {
             final box = GetStorage();
             final monthlyRaw = box.read('MONTHLY_PRAYER_DATA');
@@ -100,8 +100,8 @@ class PrayersWidgetConfig {
             if (dailyTimes.containsKey(today)) {
               final now = DateTime.now();
               (dailyTimes as Map<String, dynamic>)[today] = <String, dynamic>{
-                'date': DateTime(now.year, now.month, now.day)
-                    .toIso8601String(),
+                'date':
+                    DateTime(now.year, now.month, now.day).toIso8601String(),
                 'fajr': fajrTime.toIso8601String(),
                 'sunrise': sunriseTime.toIso8601String(),
                 'dhuhr': dhuhrTime.toIso8601String(),
@@ -121,7 +121,7 @@ class PrayersWidgetConfig {
         }
       }
 
-      if (Platform.isMacOS) {
+      if (isMacOS) {
         // macOS: لا تستدعي HomeWidget (غير مدعوم) — ادفع البيانات عبر قناة Swift فقط.
         await MacOSWidgetService.instance.updatePrayerData(
           fajrTime: fajrTime,
@@ -155,7 +155,7 @@ class PrayersWidgetConfig {
           appLanguage: Get.locale?.languageCode ?? 'ar',
           monthlyPrayerData: monthlyJsonForWidget,
         );
-      } else if (Platform.isIOS) {
+      } else if (isIOS) {
         // iOS: استخدم HomeWidget كما هو.
         await HomeWidget.saveWidgetData('fajrTime', '$fajrTime');
         await HomeWidget.saveWidgetData('dhuhrTime', '$dhuhrTime');
@@ -200,7 +200,7 @@ class PrayersWidgetConfig {
           log('Failed monthly_prayer_data save: $e',
               name: 'PrayersWidgetConfig');
         }
-      } else if (Platform.isAndroid) {
+      } else if (isAndroid) {
         // حفظ طوابع زمنية لدعم عدّاد الوديجت (Chronometer)
         final currentPrayer = adhanCtrl.getPrayerDetails(isNextPrayer: false);
         final nextPrayer = adhanCtrl.getPrayerDetails(isNextPrayer: true);
@@ -270,7 +270,7 @@ class PrayersWidgetConfig {
             'app_language', Get.locale?.languageCode ?? 'ar');
       }
 
-      if (Platform.isMacOS) {
+      if (isMacOS) {
         await MacOSWidgetService.instance.reloadAllTimelines();
       } else {
         // حدّث جميع مزوّدات أندرويد (كبير وصغير) + iOS
@@ -355,7 +355,7 @@ class PrayersWidgetConfig {
 
   static Future<void> initialize() async {
     try {
-      if (Platform.isMacOS) {
+      if (isMacOS) {
         // HomeWidget قد لا يدعم macOS بالكامل؛ نعتمد على قناة Swift المخصصة.
         await MacOSWidgetService.instance.initialize();
 

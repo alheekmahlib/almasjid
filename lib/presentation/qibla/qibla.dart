@@ -2,7 +2,6 @@ import 'dart:developer' show log;
 import 'dart:ui' as ui;
 
 import 'package:adhan/adhan.dart';
-import 'package:compassx/compassx.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -20,6 +19,8 @@ import '/core/utils/constants/extensions/svg_extensions.dart';
 import '/core/utils/constants/lottie.dart';
 import '/core/utils/constants/lottie_constants.dart';
 import '/core/utils/constants/svg_constants.dart';
+import '/core/utils/helpers/web_stubs/compassx_stub.dart'
+    if (dart.library.io) 'package:compassx/compassx.dart';
 import '/core/widgets/active_location_button.dart';
 import '/core/widgets/custom_button.dart';
 import '/presentation/controllers/theme_controller.dart';

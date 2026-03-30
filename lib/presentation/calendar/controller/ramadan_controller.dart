@@ -55,7 +55,7 @@ class RamadanController extends GetxController {
   final iftarMinutes = 30.obs;
 
   /// عدد أيام الجدولة حسب المنصة
-  int get _scheduleDaysCount => Platform.isIOS ? 5 : 15;
+  int get _scheduleDaysCount => isIOS ? 5 : 15;
 
   @override
   void onInit() {

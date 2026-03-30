@@ -30,35 +30,15 @@ class ReminderEventBottomSheet extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
-          child: context.customOrientation(
-              SingleChildScrollView(
-                physics: const ClampingScrollPhysics(),
-                child: Column(
-                  children: [
-                    headerWidget(context),
-                    bodyWidget(context),
-                  ],
-                ),
-              ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                    flex: 4,
-                    child: headerWidget(context),
-                  ),
-                  Flexible(
-                    child: SingleChildScrollView(
-                      physics: const ClampingScrollPhysics(),
-                      child: Column(
-                        children: [
-                          bodyWidget(context),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              )),
+          child: SingleChildScrollView(
+            physics: const ClampingScrollPhysics(),
+            child: Column(
+              children: [
+                headerWidget(context),
+                bodyWidget(context),
+              ],
+            ),
+          ),
         ),
       ],
     );

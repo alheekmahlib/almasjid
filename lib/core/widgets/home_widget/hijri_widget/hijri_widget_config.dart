@@ -1,9 +1,9 @@
-part of '../home_widget.dart';
+part of '../home_widget_native.dart';
 
 class HijriWidgetConfig {
   Future<void> updateHijriDate() async {
     final eventCtrl = EventController.instance;
-    if (Platform.isIOS) {
+    if (isIOS) {
       try {
         HijriDate.setLocal('ar');
         await HomeWidget.saveWidgetData<String>(

@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -17,6 +15,7 @@ import '../../core/services/macos_notifications_service.dart';
 import '../../core/services/notifications_helper.dart';
 import '../../core/utils/constants/extensions/bottom_sheet_extension.dart';
 import '../../core/utils/helpers/app_router.dart';
+import '../../core/utils/helpers/platform_helper.dart';
 import '../calendar/events.dart';
 import '../controllers/general/general_controller.dart';
 import '../controllers/huawei_map_controller.dart';

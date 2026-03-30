@@ -1,5 +1,8 @@
+import 'package:almasjid/core/utils/constants/extensions/extensions.dart';
+import 'package:almasjid/core/utils/helpers/platform_helper.dart';
 import 'package:floaty_nav_bar/floaty_nav_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import '../../../core/utils/constants/svg_constants.dart';

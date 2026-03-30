@@ -1,5 +1,5 @@
-import 'dart:io';
-
+import 'package:flutter/foundation.dart'
+    show kIsWeb, defaultTargetPlatform, TargetPlatform;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -9,8 +9,12 @@ extension ContextExtensions on BuildContext {
     return orientation == Orientation.portrait ? n1 : n2;
   }
 
-  dynamic definePlatform(var p1, var p2) =>
-      (Platform.isIOS || Platform.isAndroid || Platform.isFuchsia) ? p1 : p2;
+  dynamic definePlatform(var p1, var p2) => (!kIsWeb &&
+          (defaultTargetPlatform == TargetPlatform.iOS ||
+              defaultTargetPlatform == TargetPlatform.android ||
+              defaultTargetPlatform == TargetPlatform.fuchsia))
+      ? p1
+      : p2;
 
   Widget vDivider({double? height, Color? color}) {
     return Container(

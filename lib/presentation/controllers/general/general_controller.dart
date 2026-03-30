@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:developer';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
@@ -11,6 +10,7 @@ import '../../../core/services/background_services.dart';
 import '../../../core/services/internet_connection_controller.dart';
 import '../../../core/services/location/locations.dart';
 import '../../../core/utils/constants/shared_preferences_constants.dart';
+import '../../../core/utils/helpers/platform_helper.dart';
 import '../../../core/widgets/home_widget/home_widget.dart';
 import '../../prayers/prayers.dart';
 import '../../qibla/qibla.dart';
@@ -37,7 +37,7 @@ class GeneralController extends GetxController with WidgetsBindingObserver {
       Location.instance.restoreFromStorage();
       await initLocation(isOpenSettings: false, refreshUI: false);
 
-      if (Platform.isIOS || Platform.isAndroid) {
+      if (isMobile) {
         await BGServices().registerTask();
         // await HijriWidgetConfig.initialize();
         await PrayersWidgetConfig.initialize();
@@ -46,7 +46,7 @@ class GeneralController extends GetxController with WidgetsBindingObserver {
           PrayersWidgetConfig().updatePrayersDate();
         });
         await BackgroundTaskHandler.initializeHandler();
-      } else if (Platform.isMacOS) {
+      } else if (isMacOS) {
         // على macOS لا نستخدم BGServices، لكن نحتاج دفع بيانات الودجت
         // إلى App Group حتى لا يظهر fallback (12:00).
         await PrayersWidgetConfig.initialize();
@@ -58,7 +58,7 @@ class GeneralController extends GetxController with WidgetsBindingObserver {
 
     // macOS: حتى لو لم يكن الموقع مفعلًا، نهيّئ الودجت ونحاول دفع الكاش (إن وُجد)
     // لتجنب ظهور قيم fallback مثل 12:00.
-    if (Platform.isMacOS && !state.activeLocation.value) {
+    if (isMacOS && !state.activeLocation.value) {
       await PrayersWidgetConfig.initialize();
       Future.delayed(const Duration(seconds: 2)).then((_) {
         PrayersWidgetConfig().updatePrayersDate();
@@ -105,8 +105,7 @@ class GeneralController extends GetxController with WidgetsBindingObserver {
 
       // تحديث الـ widget عند عودة التطبيق من الخلفية
       // Update widget when app returns from background
-      if (state.activeLocation.value &&
-          (Platform.isIOS || Platform.isAndroid || Platform.isMacOS)) {
+      if (state.activeLocation.value && (isMobile || isMacOS)) {
         Future.delayed(const Duration(milliseconds: 500), () {
           PrayersWidgetConfig().updatePrayersDate();
           log('Widget updated on app resume', name: 'GeneralController');
