@@ -23,6 +23,30 @@ jobs:
         with:
           channel: stable
 
+      - name: Create debug keystore for CI
+        run: |
+          mkdir -p ~/.android
+          keytool -genkeypair -v -keystore ~/.android/debug.keystore \
+            -storepass android -alias androiddebugkey -keypass android \
+            -keyalg RSA -keysize 2048 -validity 10000 \
+            -dname "CN=Android Debug,O=Android,C=US" 2>/dev/null || true
+
+      - name: Create key.properties (fallback to debug)
+        working-directory: android
+        run: |
+          if [ ! -f key.properties ]; then
+            echo "storeFile=$HOME/.android/debug.keystore" > key.properties
+            echo "storePassword=android" >> key.properties
+            echo "keyAlias=androiddebugkey" >> key.properties
+            echo "keyPassword=android" >> key.properties
+          fi
+          if [ ! -f google-play-key.properties ]; then
+            echo "googlePlayStoreFile=$HOME/.android/debug.keystore" > google-play-key.properties
+            echo "googlePlayStorePassword=android" >> google-play-key.properties
+            echo "googlePlayKeyAlias=androiddebugkey" >> google-play-key.properties
+            echo "googlePlayKeyPassword=android" >> google-play-key.properties
+          fi
+
       - name: Get dependencies
         run: flutter pub get
 
