@@ -157,8 +157,6 @@ class AppDelegate: FlutterAppDelegate {
       "hijriDay", "hijriDayName", "hijriMonth", "hijriYear",
       "currentPrayerName", "nextPrayerName", "currentPrayerTime", "nextPrayerTime",
       "appLanguage",
-      // الشهرية
-      "monthly_prayer_data",
       // تشخيص
       "lastUpdated"
     ]
@@ -178,18 +176,7 @@ class AppDelegate: FlutterAppDelegate {
         continue
       }
 
-      // monthly_prayer_data قد يصل كـ Map/Array حسب المصدر؛ نحوله إلى JSON String.
-      if key == "monthly_prayer_data", let anyValue = args[key] {
-        if JSONSerialization.isValidJSONObject(anyValue),
-           let data = try? JSONSerialization.data(withJSONObject: anyValue, options: []),
-           let json = String(data: data, encoding: .utf8) {
-          ud.set(json, forKey: key)
-          payload[key] = json
-        } else if let json = anyValue as? String {
-          ud.set(json, forKey: key)
-          payload[key] = json
-        }
-      }
+
     }
 
     // Diagnostic marker

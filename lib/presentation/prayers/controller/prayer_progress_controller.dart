@@ -15,6 +15,15 @@ class PrayerProgressController extends GetxController {
   // }
 
   void updateProgress() {
+    // Guard: تجنّب Null crash إذا لم تكن أوقات الصلاة مهيأة بعد
+    if (adhanCtrl.state.prayerTimes == null ||
+        adhanCtrl.state.sunnahTimes == null) {
+      log('PrayerProgressController: prayer data not ready, retrying in 1 min',
+          name: 'PrayerProgress');
+      Future.delayed(const Duration(minutes: 1), updateProgress);
+      return;
+    }
+
     final now = DateTime.now();
     final fajr = adhanCtrl.state.prayerTimes!.fajr;
     final middle = adhanCtrl.state.sunnahTimes!.middleOfTheNight;

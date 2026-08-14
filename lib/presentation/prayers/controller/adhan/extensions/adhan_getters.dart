@@ -85,8 +85,16 @@ extension AdhanGetters on AdhanController {
   //     return state.adjustments[state.adjustmentIndex.value].value;
   //   }
   //   return 0;
-  // }  RxInt get currentPrayer => (state.prayerTimes!.currentPrayer().index - 1).obs;
-  int get nextPrayer => state.prayerTimes!.nextPrayer().index;
+  // }
+  RxInt get currentPrayer {
+    if (state.prayerTimes == null) return 0.obs;
+    return (state.prayerTimes!.currentPrayer().index - 1).obs;
+  }
+
+  int get nextPrayer {
+    if (state.prayerTimes == null) return 0;
+    return state.prayerTimes!.nextPrayer().index;
+  }
 
   String get getFridayDhuhrName =>
       intl.DateFormat('EEEE').format(state.now) == 'Friday'
@@ -98,6 +106,13 @@ extension AdhanGetters on AdhanController {
       : 'Maghrib';
 
   PrayerDetail getPrayerDetails({required bool isNextPrayer}) {
+    if (state.prayerTimes == null) {
+      return PrayerDetail(
+        prayerName: '',
+        prayerTime: null,
+        prayerDisplayTime: '',
+      );
+    }
     final Prayer currentPrayer = state.prayerTimes!.currentPrayer();
     final Prayer? targetPrayer;
 
@@ -127,6 +142,7 @@ extension AdhanGetters on AdhanController {
   }
 
   RxDouble get getTimeLeftPercentage {
+    if (state.prayerTimes == null) return 0.0.obs;
     final Prayer currentPrayer = state.prayerTimes!.currentPrayer();
     final Prayer? nextPrayer;
 
@@ -201,7 +217,7 @@ extension AdhanGetters on AdhanController {
 
   /// حساب قطع المؤشر (Gauge Segments) بناءً على أوقات الصلوات
   /// Calculate gauge segments based on prayer times
-  List<GaugeSegment> get getPrayerGaugeSegments {
+  List<GaugeZone> get getPrayerGaugeSegments {
     final PrayerTimes? prayerTimes = state.prayerTimes;
     final SunnahTimes? sunnahTimes = state.sunnahTimes;
 
@@ -266,7 +282,7 @@ extension AdhanGetters on AdhanController {
       return [];
     }
 
-    List<GaugeSegment> segments = [];
+    List<GaugeZone> segments = [];
     double currentFrom = 0.0;
 
     // إنشاء segment لكل فترة بين صلاتين متتاليتين
@@ -283,7 +299,7 @@ extension AdhanGetters on AdhanController {
       final double currentTo = currentFrom + prayerPercentage;
 
       segments.add(
-        GaugeSegment(
+        GaugeZone(
           from: currentFrom,
           to: currentTo,
           gradient: prayerColors[i],
@@ -590,6 +606,9 @@ extension AdhanGetters on AdhanController {
   }
 
   DateTime get getTimeLeftForHomeWidgetNextPrayer {
+    if (state.prayerTimes == null) {
+      return state.now.add(const Duration(hours: 1));
+    }
     final Prayer nextPrayer = state.prayerTimes!.nextPrayer();
     final DateTime? nextPrayerDateTime =
         state.prayerTimes!.timeForPrayer(nextPrayer);
@@ -616,6 +635,13 @@ extension AdhanGetters on AdhanController {
   PrayerDetail get getNextPrayerDetail => getPrayerDetails(isNextPrayer: true);
 
   LinearGradient getTimeNowColor() {
+    // Guard: أرجع لوناً افتراضياً عند عدم توفر البيانات لتفادي Null crash
+    if (state.prayerTimes == null) {
+      return const LinearGradient(
+          colors: [Color(0xff0a0f29), Color(0xff081e37)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight);
+    }
     DateTime sunrise = state.prayerTimes!.sunrise;
     DateTime dhuhr = state.prayerTimes!.dhuhr;
     DateTime maghrib = state.prayerTimes!.maghrib;
@@ -662,6 +688,10 @@ extension AdhanGetters on AdhanController {
   /// دالة لمعرفة أوقات النهي عن الصلاة
   /// Function to get prayer prohibition times
   RxBool get prohibitionTimesBool {
+    if (state.prayerTimes == null) {
+      state.prohibitionTimesIndex.value = -1;
+      return false.obs;
+    }
     PrayerTimes dateTime = state.prayerTimes!;
 
     // 1- من طلوع الفجر الصادق حتى تطلع الشمس (أو من بعد صلاة الفجر)
@@ -714,6 +744,9 @@ extension AdhanGetters on AdhanController {
   }
 
   Duration get getDelayUntilNextIsha {
+    if (state.prayerTimes == null) {
+      return const Duration(hours: 1);
+    }
     DateTime nextIsha = state.prayerTimes!.isha;
 
     // If today's Isha time is already passed, schedule for tomorrow
@@ -777,14 +810,14 @@ extension AdhanGetters on AdhanController {
   int get currentPrayerIndex => getCurrentPrayerByDateTime();
 
   int getCurrentPrayerByDateTime() {
-    final prayer = state.prayerTimes!;
+    final prayer = state.prayerTimes;
+    final sunnah = state.sunnahTimes;
 
-    final sunnah = state.sunnahTimes!;
+    if (prayer == null || sunnah == null) {
+      return 0;
+    }
 
     int value = 0;
-    // if (prayer == null || sunnah == null) {
-    //   return 0;
-    // }
 
     // log('Current time: ${state.now}');
 

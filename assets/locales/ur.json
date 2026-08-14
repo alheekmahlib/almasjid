@@ -690,5 +690,55 @@
   "@ramadanMaghribName": {
     "type": "text",
     "placeholders": {}
+  },
+  "startHijriYear": "ہجری سال کا آغاز",
+  "@startHijriYear": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reminderToFastTasoo'a": "تاسوعا کے روزے کی یاددہانی",
+  "@reminderToFastTasoo'a": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reminderToFastAshura": "عاشورہ کے روزے کی یاددہانی",
+  "@reminderToFastAshura": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ramadhan": "ماہ رمضان",
+  "@ramadhan": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nightOfQadir": "شب قدر کی یاددہانی",
+  "@nightOfQadir": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "EidAl-Fitr": "عید الفطر",
+  "@EidAl-Fitr": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sexShawwal": "شوال کے چھ روزوں کی یاددہانی",
+  "@sexShawwal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "arafahReminder": "یوم عرفہ کے روزے کی یاددہانی",
+  "@arafahReminder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tenDaysOfDhul-Hijjah": "اور دس راتیں",
+  "@tenDaysOfDhul-Hijjah": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "EidAl-Adha": "عید الاضحی",
+  "@EidAl-Adha": {
+    "type": "text",
+    "placeholders": {}
   }
 }

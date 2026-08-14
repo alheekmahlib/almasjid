@@ -1,6 +1,6 @@
 part of '../../prayers.dart';
 
-class _CountryPickerSheetController extends GetxController {
+class CountryPickerSheetController extends GetxController {
   final adhanCtrl = AdhanController.instance;
   final TextEditingController searchController = TextEditingController();
   final RxString query = ''.obs;
@@ -32,26 +32,26 @@ class _CountryPickerSheetController extends GetxController {
 
 class CountryPickerBottomSheet extends StatelessWidget {
   CountryPickerBottomSheet({super.key})
-      : controller = Get.isRegistered<_CountryPickerSheetController>()
-            ? Get.find<_CountryPickerSheetController>()
-            : Get.put(_CountryPickerSheetController()) {
+      : controller = Get.isRegistered<CountryPickerSheetController>()
+            ? Get.find<CountryPickerSheetController>()
+            : Get.put(CountryPickerSheetController()) {
     controller.clearSearch();
   }
 
-  final _CountryPickerSheetController controller;
+  final CountryPickerSheetController controller;
 
   void _disposeControllerIfNeeded() {
-    if (Get.isRegistered<_CountryPickerSheetController>()) {
-      Get.delete<_CountryPickerSheetController>();
+    if (Get.isRegistered<CountryPickerSheetController>()) {
+      Get.delete<CountryPickerSheetController>();
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
+    return PopScope(
+      onPopInvokedWithResult: (b, t) async {
         _disposeControllerIfNeeded();
-        return true;
+        // return true;
       },
       child: SizedBox(
         height: Get.height * 0.75,

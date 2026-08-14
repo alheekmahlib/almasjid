@@ -24,7 +24,11 @@ class QiblaScreen extends StatelessWidget {
                     future: QiblaController.instance.checkCompassAvailability(),
                     builder: (context, snapshot) {
                       // أثناء الفحص، نعرض البوصلة افتراضيًا لعدم تعطيل الواجهة، أو يمكن عرض لودينغ خفيف
-                      final hasCompass = snapshot.data ?? true;
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        // أثناء الفحص نعرض إنديكتر تحميل خفيف
+                        return const Center(child: CircularProgressIndicator.adaptive());
+                      }
+                      final hasCompass = snapshot.data ?? false;
                       if (hasCompass) {
                         return GetBuilder<QiblaController>(
                           init: QiblaController.instance,

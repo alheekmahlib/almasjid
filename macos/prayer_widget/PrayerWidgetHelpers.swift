@@ -173,6 +173,14 @@ func getPrayerTimesForProgress(
         }
     }
 
+    // قبل الفجر (بعد منتصف الليل): الصلاة الحالية هي عشاء أمس
+    // Before Fajr (after midnight): current prayer is yesterday's Isha
+    if let firstPrayer = todayPrayers.first, currentTime < firstPrayer.date,
+       let lastRegularPrayer = todayPrayers.dropLast().last,
+       let yesterdayDate = calendar.date(byAdding: .day, value: -1, to: lastRegularPrayer.date) {
+        return ((name: lastRegularPrayer.name, date: yesterdayDate), firstPrayer)
+    }
+
     if let lastPrayer = todayPrayers.dropLast().last, let nextDayFajr = nextDayFajr {
         if currentTime >= lastPrayer.date {
             return (lastPrayer, nextDayFajr)
@@ -247,7 +255,7 @@ func debugDumpPrayerWidgetKeys(_ ud: UserDefaults?) {
         "fajrName", "sunriseName", "dhuhrName", "asrName", "maghribName", "ishaName",
         "middleOfTheNightName", "lastThirdOfTheNightName",
         "hijriDay", "hijriDayName", "hijriMonth", "hijriYear",
-        "appLanguage", "monthly_prayer_data",
+        "appLanguage",
         "lastUpdated", "__macos_widget_initialized", "__macos_widget_last_write"
     ]
 

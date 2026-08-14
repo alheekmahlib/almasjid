@@ -40,7 +40,7 @@ class ShareController extends GetxController {
   // Hijri date text
   String get hijriDateText {
     final h = EventController.instance.hijriNow;
-    return '${'${h.hDay}'.convertNumbers()} ${h.getLongMonthName().tr} ${'${h.hYear}'.convertNumbers()}';
+    return '${'${h.hDay}'.convertNumbers(Get.locale!.languageCode)} ${h.getLongMonthName().tr} ${'${h.hYear}'.convertNumbers(Get.locale!.languageCode)}';
   }
 
   // City, Country

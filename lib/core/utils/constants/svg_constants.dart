@@ -74,6 +74,10 @@ class SvgPath {
   /// assets/svg/home/cites.svg
   static const String svgHomeCites = "assets/svg/home/cites.svg";
 
+  /// Assets for svgHomeClose
+  /// assets/svg/home/close.svg
+  static const String svgHomeClose = "assets/svg/home/close.svg";
+
   /// Assets for svgHomeKaaba
   /// assets/svg/home/kaaba.svg
   static const String svgHomeKaaba = "assets/svg/home/kaaba.svg";

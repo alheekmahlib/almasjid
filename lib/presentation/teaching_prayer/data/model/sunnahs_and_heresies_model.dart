@@ -161,7 +161,6 @@ class HeresyItem {
 // Helpers الخاصة بهذا الموديل
 // ─────────────────────────────────────────────────────────────────────────────
 
-/// تحويل Map ديناميكية إلى Map<String, String>
 Map<String, String> _parseLocalizedMap(dynamic value) {
   if (value is Map) {
     return value.map(

@@ -1,9 +1,10 @@
-import 'package:floaty_nav_bar/floaty_nav_bar.dart';
+import 'package:floatica/floatica.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../core/utils/constants/svg_constants.dart';
 import '../../core/utils/constants/extensions/bottom_sheet_extension.dart';
+import '../../core/utils/constants/extensions/extensions.dart';
 import '../../core/utils/constants/extensions/svg_extensions.dart';
 import '../calendar/events.dart';
 import '../prayers/prayers.dart';

@@ -1,4 +1,5 @@
 import 'dart:developer' show log;
+import 'dart:io' show Platform;
 
 import 'package:get_storage/get_storage.dart';
 import 'package:hijri_date/hijri_date.dart';
@@ -7,7 +8,7 @@ import 'package:latlong2/latlong.dart';
 import '/core/services/internet_connection_controller.dart';
 import '/core/services/location/locations.dart';
 import '/core/services/notifications_helper.dart';
-// import '/core/widgets/home_widget/home_widget.dart';
+import '/core/widgets/home_widget/home_widget.dart';
 import '/core/widgets/local_notification/controller/local_notifications_controller.dart';
 import '../../presentation/prayers/prayers.dart';
 
@@ -205,14 +206,14 @@ class PrayerBackgroundManager {
       // Check prayer times
       final updated = await checkAndUpdatePrayerTimes();
 
-      // await PrayersWidgetConfig.initialize();
-      // await HijriWidgetConfig.initialize();
-
-      // // تحديث ويدجت الصلوات في كل مرة - Update prayers widget every time
-      // await PrayersWidgetConfig().updatePrayersDate();
-
-      // // إجبار تحديث الويدجت حتى لو لم تتغير الأوقات - Force widget update even if times haven't changed
-      // await HijriWidgetConfig().updateHijriDate();
+      // تحديث ويدجت الصلوات في كل مرة - Update prayers widget every time
+      if (Platform.isIOS || Platform.isAndroid) {
+        try {
+          await PrayersWidgetConfig().updatePrayersDate();
+        } catch (e) {
+          log('Periodic widget update failed: $e', name: _tag);
+        }
+      }
 
       // التحقق من المهام اليومية إذا لزم الأمر
       // Check daily tasks if needed

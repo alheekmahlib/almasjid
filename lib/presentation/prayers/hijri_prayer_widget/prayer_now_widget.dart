@@ -27,6 +27,12 @@ class PrayerNowWidget extends StatelessWidget {
                 Obx(
                   () {
                     int currentPrayer = adhanCtrl.currentPrayerIndex;
+                    final prayerList = adhanCtrl.prayerNameList;
+                    if (prayerList.isEmpty ||
+                        currentPrayer < 0 ||
+                        currentPrayer >= prayerList.length) {
+                      return const SizedBox.shrink();
+                    }
                     return AnimatedRadialGauge(
                       /// The animation duration.
                       duration: const Duration(seconds: 1),
@@ -50,14 +56,14 @@ class PrayerNowWidget extends StatelessWidget {
                         max: 100,
 
                         /// Render the gauge as a 180-degree arc.
-                        degrees: 200,
+                        sweepDegrees: 200,
 
                         /// Set the background color and axis thickness.
                         style: GaugeAxisStyle(
                           thickness: 30.h,
                           background:
                               context.theme.colorScheme.primaryContainer,
-                          segmentSpacing: 10,
+                          zoneSpacing: 10,
                           cornerRadius: const Radius.circular(8.0),
                         ),
                         pointer: GaugePointer.circle(
@@ -73,13 +79,13 @@ class PrayerNowWidget extends StatelessWidget {
                         ),
 
                         /// Define axis segments (optional).
-                        segments: adhanCtrl.getPrayerGaugeSegments,
+                        zones: adhanCtrl.getPrayerGaugeSegments,
                       ),
                       builder: (context, child, value) => Stack(
                         alignment: Alignment.bottomCenter,
                         children: [
                           Icon(
-                            adhanCtrl.prayerNameList[currentPrayer]['icon'],
+                            prayerList[currentPrayer]['icon'],
                             size: 130.h,
                             color: currentPrayer == 1 ||
                                     currentPrayer == 2 ||
@@ -96,8 +102,7 @@ class PrayerNowWidget extends StatelessWidget {
                               FittedBox(
                                 fit: BoxFit.scaleDown,
                                 child: Text(
-                                  '${adhanCtrl.prayerNameList[currentPrayer]['title']}'
-                                      .tr,
+                                  '${prayerList[currentPrayer]['title']}'.tr,
                                   style: TextStyle(
                                     fontFamily: 'cairo',
                                     fontSize: 26.sp.clamp(26, 36),
@@ -110,8 +115,7 @@ class PrayerNowWidget extends StatelessWidget {
                                 ),
                               ),
                               ReactiveNumberText(
-                                text: adhanCtrl.prayerNameList[currentPrayer]
-                                    ['time'],
+                                text: prayerList[currentPrayer]['time'],
                                 style: TextStyle(
                                   fontFamily: 'cairo',
                                   fontSize: 26.sp.clamp(26, 36),

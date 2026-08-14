@@ -34,6 +34,11 @@ class QiblaController extends GetxController {
   /// Check if device has a working compass sensor
   Future<bool> checkCompassAvailability(
       {Duration timeout = const Duration(seconds: 2)}) async {
+    // compassx يدعم Android و iOS فقط — نتجنب استدعاء Platform Channel على macOS أو غيرها
+    if (!Platform.isAndroid && !Platform.isIOS) {
+      log('Compass not supported on this platform', name: 'QiblaController');
+      return false;
+    }
     try {
       final stream = CompassX.events;
       final event = await stream.first.timeout(timeout);

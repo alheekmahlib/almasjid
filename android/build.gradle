@@ -1,11 +1,11 @@
 ext {
-    compileSdkVersion = 36
-    targetSdkVersion = 35
+    compileSdkVersion = 37
+    targetSdkVersion = 37
     appCompatVersion = "1.4.2"
 }
 
 buildscript {
-    ext.kotlin_version = '2.2.0'
+    ext.kotlin_version = '2.2.10'
     repositories {
         google()
         mavenCentral()
@@ -14,7 +14,7 @@ buildscript {
 
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath 'com.android.tools.build:gradle:8.12.3'
+        classpath 'com.android.tools.build:gradle:9.3.0'
         classpath 'com.huawei.agconnect:agcp:1.9.1.301'
     }
 }
@@ -36,6 +36,25 @@ subprojects {
 }
 subprojects {
     project.evaluationDependsOn(':app')
+}
+gradle.afterProject { project ->
+    if (project.plugins.hasPlugin('com.android.library') ||
+        project.plugins.hasPlugin('com.android.application')) {
+        project.android {
+            compileSdkVersion 37
+            compileOptions {
+                sourceCompatibility JavaVersion.VERSION_17
+                targetCompatibility JavaVersion.VERSION_17
+            }
+        }
+        project.tasks.withType(JavaCompile).configureEach {
+            sourceCompatibility = JavaVersion.VERSION_17
+            targetCompatibility = JavaVersion.VERSION_17
+        }
+        project.tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+            kotlinOptions { jvmTarget = '17' }
+        }
+    }
 }
 
 tasks.register("clean", Delete) {

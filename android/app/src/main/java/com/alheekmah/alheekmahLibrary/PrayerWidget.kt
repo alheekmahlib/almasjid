@@ -20,6 +20,7 @@ import android.appwidget.AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import com.caverock.androidsvg.SVG
+import org.json.JSONObject
 
 open class PrayerWidget : HomeWidgetProvider() {
 
@@ -76,32 +77,131 @@ open class PrayerWidget : HomeWidgetProvider() {
     ) {
         val lang = prefs.getString("app_language", "ar") ?: "ar"
 
+        // محاولة قراءة بيانات الشهر الكامل لأوقات اليوم الدقيقة
+        // Try monthly data for accurate daily prayer times
+        var monthlyFajr: String? = null
+        var monthlySunrise: String? = null
+        var monthlyDhuhr: String? = null
+        var monthlyAsr: String? = null
+        var monthlyMaghrib: String? = null
+        var monthlyIsha: String? = null
+        var monthlyMidnight: String? = null
+        var monthlyLastThird: String? = null
+        var monthlyCurrentEpoch: Long = -1L
+        var monthlyNextEpoch: Long = -1L
+        var monthlyCurrentName: String? = null
+        var monthlyNextName: String? = null
+        var monthlyCurrentTime: String? = null
+        var monthlyNextTime: String? = null
+
+        try {
+            val monthlyJson = prefs.getString("monthly_prayer_times", null)
+            if (monthlyJson != null) {
+                val json = JSONObject(monthlyJson)
+                val cal = Calendar.getInstance()
+                val curYear = cal.get(Calendar.YEAR)
+                val curMonth = cal.get(Calendar.MONTH) + 1
+                val curDay = cal.get(Calendar.DAY_OF_MONTH)
+
+                if (json.getInt("year") == curYear && json.getInt("month") == curMonth) {
+                    val days = json.getJSONObject("days")
+                    val dayStr = days.optString("$curDay", "")
+                    if (dayStr.isNotEmpty()) {
+                        val parts = dayStr.split("|")
+                        if (parts.size == 8) {
+                            val sdf = SimpleDateFormat("h:mm a", Locale(lang))
+
+                            fun hhmmToCalendar(hhmm: String): Calendar {
+                                val (h, m) = hhmm.split(":").map { it.toInt() }
+                                val c = Calendar.getInstance()
+                                c.set(Calendar.HOUR_OF_DAY, h)
+                                c.set(Calendar.MINUTE, m)
+                                c.set(Calendar.SECOND, 0)
+                                c.set(Calendar.MILLISECOND, 0)
+                                return c
+                            }
+
+                            fun fmtHhmm(hhmm: String): String {
+                                return toArabicDigits(sdf.format(hhmmToCalendar(hhmm).time), lang)
+                            }
+
+                            monthlyFajr = fmtHhmm(parts[0])
+                            monthlySunrise = fmtHhmm(parts[1])
+                            monthlyDhuhr = fmtHhmm(parts[2])
+                            monthlyAsr = fmtHhmm(parts[3])
+                            monthlyMaghrib = fmtHhmm(parts[4])
+                            monthlyIsha = fmtHhmm(parts[5])
+                            monthlyMidnight = fmtHhmm(parts[6])
+                            monthlyLastThird = fmtHhmm(parts[7])
+
+                            // حساب الصلاة الحالية والتالية من أوقات اليوم
+                            val nowMillis = System.currentTimeMillis()
+                            val prayerEpochs = listOf(
+                                "fajr" to hhmmToCalendar(parts[0]).timeInMillis,
+                                "dhuhr" to hhmmToCalendar(parts[2]).timeInMillis,
+                                "asr" to hhmmToCalendar(parts[3]).timeInMillis,
+                                "maghrib" to hhmmToCalendar(parts[4]).timeInMillis,
+                                "isha" to hhmmToCalendar(parts[5]).timeInMillis,
+                            )
+                            val prayerDisplayTimes = listOf(monthlyFajr, monthlyDhuhr, monthlyAsr, monthlyMaghrib, monthlyIsha)
+                            val prayerNames = listOf(
+                                prefs.getString("fajr_name", "الفجر") ?: "الفجر",
+                                prefs.getString("dhuhr_name", "الظهر") ?: "الظهر",
+                                prefs.getString("asr_name", "العصر") ?: "العصر",
+                                prefs.getString("maghrib_name", "المغرب") ?: "المغرب",
+                                prefs.getString("isha_name", "العشاء") ?: "العشاء",
+                            )
+
+                            var foundCurrent = false
+                            for (i in prayerEpochs.indices.reversed()) {
+                                if (nowMillis >= prayerEpochs[i].second) {
+                                    monthlyCurrentEpoch = prayerEpochs[i].second
+                                    monthlyCurrentName = prayerNames[i]
+                                    monthlyCurrentTime = prayerDisplayTimes[i]
+                                    if (i < prayerEpochs.size - 1) {
+                                        monthlyNextEpoch = prayerEpochs[i + 1].second
+                                        monthlyNextName = prayerNames[i + 1]
+                                        monthlyNextTime = prayerDisplayTimes[i + 1]
+                                    } else {
+                                        // بعد العشاء → الفجر غدًا
+                                        monthlyNextEpoch = hhmmToCalendar(parts[0]).timeInMillis + 86_400_000L
+                                        monthlyNextName = prayerNames[0]
+                                        monthlyNextTime = prayerDisplayTimes[0]
+                                    }
+                                    foundCurrent = true
+                                    break
+                                }
+                            }
+                            if (!foundCurrent) {
+                                // قبل الفجر
+                                monthlyCurrentEpoch = hhmmToCalendar(parts[5]).timeInMillis - 86_400_000L
+                                monthlyCurrentName = prayerNames[4]
+                                monthlyCurrentTime = prayerDisplayTimes[4]
+                                monthlyNextEpoch = prayerEpochs[0].second
+                                monthlyNextName = prayerNames[0]
+                                monthlyNextTime = prayerDisplayTimes[0]
+                            }
+                        }
+                    }
+                }
+            }
+        } catch (_: Exception) {}
+
         // Hijri values from Flutter (already Arabic digits), with local fallback
         val hijriDay = prefs.getString("hijri_day_number", null) ?: toArabicDigits(getHijriDay().toString(), lang)
         val hijriYear = prefs.getString("hijri_year", null) ?: toArabicDigits(getHijriYear().toString(), lang)
         val hijriMonthIdx = prefs.getString("hijri_month_image", null) ?: "1"
         val dayName = prefs.getString("hijri_day_name", null) ?: weekdayName(Locale(lang))
 
-        val currentPrayerName = prefs.getString("current_prayer_name", null) ?: ""
-            val nextPrayerName = (prefs.getString("next_prayer_name", null)
+        val currentPrayerName = monthlyCurrentName ?: prefs.getString("current_prayer_name", null) ?: ""
+        val nextPrayerName = monthlyNextName ?: (prefs.getString("next_prayer_name", null)
                 ?: prefs.getString("althuluth_alakhir_name", null)) ?: ""
-        var currentPrayerTime = prefs.getString("current_prayer_time", "--:--") ?: "--:--"
-        var nextPrayerTime = prefs.getString("next_prayer_time", "--:--") ?: "--:--"
+        var currentPrayerTime = monthlyCurrentTime ?: prefs.getString("current_prayer_time", "--:--") ?: "--:--"
+        var nextPrayerTime = monthlyNextTime ?: prefs.getString("next_prayer_time", "--:--") ?: "--:--"
 
         // Epochs for countdown (milliseconds since epoch). Add fallback to now to avoid crash.
-        var currentEpoch = prefs.getLong("current_prayer_epoch", -1L)
-        var nextEpoch = prefs.getLong("next_prayer_epoch", -1L)
-
-        // Fallback: حاول ملء أوقات اليوم من كاش شهري إن وُجد
-        if ((currentEpoch <= 0L || nextEpoch <= 0L || nextEpoch <= currentEpoch) ||
-            (nextPrayerTime == "--:--")) {
-            tryFillFromMonthlyCache(context, prefs)?.let { filled ->
-                currentEpoch = filled.currentEpoch
-                nextEpoch = filled.nextEpoch
-                currentPrayerTime = filled.currentTime ?: currentPrayerTime
-                nextPrayerTime = filled.nextTime ?: nextPrayerTime
-            }
-        }
+        var currentEpoch = if (monthlyCurrentEpoch > 0) monthlyCurrentEpoch else prefs.getLong("current_prayer_epoch", -1L)
+        var nextEpoch = if (monthlyNextEpoch > 0) monthlyNextEpoch else prefs.getLong("next_prayer_epoch", -1L)
 
         val layoutId = resolveLayout(manager, appWidgetId)
         val views = RemoteViews(context.packageName, layoutId)
@@ -165,31 +265,31 @@ open class PrayerWidget : HomeWidgetProvider() {
             setProgressIfExists(views, R.id.progress, percent)
         }
 
-        // Fill names/times in large grid if present
+        // Fill names/times in large grid if present (monthly data overrides stale prefs)
         setTextIfExists(context, views, R.id.fajr_name, prefs.getString("fajr_name", "الفجر")?:"الفجر")
-        setTextIfExists(context, views, R.id.fajr_time, prefs.getString("fajr_time", "--:--")?:"--:--")
+        setTextIfExists(context, views, R.id.fajr_time, monthlyFajr ?: prefs.getString("fajr_time", "--:--")?:"--:--")
         setImageResIfExists(views, R.id.fajr_icon, R.drawable.ic_moon)
         setTextIfExists(context, views, R.id.sunrise_name, prefs.getString("shuroq_name", "الشروق")?:"الشروق")
-        setTextIfExists(context, views, R.id.sunrise_time, prefs.getString("shuroq_time", "--:--")?:"--:--")
+        setTextIfExists(context, views, R.id.sunrise_time, monthlySunrise ?: prefs.getString("shuroq_time", "--:--")?:"--:--")
         setImageResIfExists(views, R.id.sunrise_icon, R.drawable.ic_sun)
         setTextIfExists(context, views, R.id.dhuhr_name, prefs.getString("dhuhr_name", "الظهر")?:"الظهر")
-        setTextIfExists(context, views, R.id.dhuhr_time, prefs.getString("dhuhr_time", "--:--")?:"--:--")
+        setTextIfExists(context, views, R.id.dhuhr_time, monthlyDhuhr ?: prefs.getString("dhuhr_time", "--:--")?:"--:--")
         setImageResIfExists(views, R.id.dhuhr_icon, R.drawable.ic_sun)
         setTextIfExists(context, views, R.id.asr_name, prefs.getString("asr_name", "العصر")?:"العصر")
-        setTextIfExists(context, views, R.id.asr_time, prefs.getString("asr_time", "--:--")?:"--:--")
+        setTextIfExists(context, views, R.id.asr_time, monthlyAsr ?: prefs.getString("asr_time", "--:--")?:"--:--")
         setImageResIfExists(views, R.id.asr_icon, R.drawable.ic_sun)
         setTextIfExists(context, views, R.id.maghrib_name, prefs.getString("maghrib_name", "المغرب")?:"المغرب")
-        setTextIfExists(context, views, R.id.maghrib_time, prefs.getString("maghrib_time", "--:--")?:"--:--")
+        setTextIfExists(context, views, R.id.maghrib_time, monthlyMaghrib ?: prefs.getString("maghrib_time", "--:--")?:"--:--")
         setImageResIfExists(views, R.id.maghrib_icon, R.drawable.ic_moon)
         setTextIfExists(context, views, R.id.isha_name, prefs.getString("isha_name", "العشاء")?:"العشاء")
-        setTextIfExists(context, views, R.id.isha_time, prefs.getString("isha_time", "--:--")?:"--:--")
+        setTextIfExists(context, views, R.id.isha_time, monthlyIsha ?: prefs.getString("isha_time", "--:--")?:"--:--")
         setImageResIfExists(views, R.id.isha_icon, R.drawable.ic_moon)
 
         // Midnight / last third
         setTextIfExists(context, views, R.id.midnight_name, prefs.getString("muntasaf_allayl_name", "منتصف الليل")?:"منتصف الليل")
-        setTextIfExists(context, views, R.id.midnight_time, prefs.getString("muntasaf_allayl_time", "--:--")?:"--:--")
+        setTextIfExists(context, views, R.id.midnight_time, monthlyMidnight ?: prefs.getString("muntasaf_allayl_time", "--:--")?:"--:--")
         setTextIfExists(context, views, R.id.last_third_name, prefs.getString("althuluth_alakhir_name", "ثلث الليل الأخير")?:"ثلث الليل الأخير")
-        setTextIfExists(context, views, R.id.last_third_time, prefs.getString("althuluth_alakhir_time", "--:--")?:"--:--")
+        setTextIfExists(context, views, R.id.last_third_time, monthlyLastThird ?: prefs.getString("althuluth_alakhir_time", "--:--")?:"--:--")
 
         // Highlight NEXT prayer (small layout) ليتطابق مع الكبير
         val nextSmall = nextPrayerName
@@ -229,68 +329,6 @@ open class PrayerWidget : HomeWidgetProvider() {
         if (nextEpoch > System.currentTimeMillis()) {
             scheduleNextUpdate(context, appWidgetId, nextEpoch + 60_000) // بعد دقيقة من الأذان
         }
-    }
-
-    // نموذج بيانات مساعدة تعبئة من الكاش
-    private data class Filled(
-        val currentEpoch: Long,
-        val nextEpoch: Long,
-        val currentTime: String?,
-        val nextTime: String?
-    )
-
-    // يحاول قراءة كاش شهري مخزّن كسلسلة JSON في SharedPreferences باسم "prayers_month_cache"
-    // الصيغة المتوقعة: كائن بمفاتيح على شكل yyyy-MM-dd وقيم: {fajr:"HH:mm", sunrise:"HH:mm", dhuhr:"HH:mm", asr:"HH:mm", maghrib:"HH:mm", isha:"HH:mm"}
-    private fun tryFillFromMonthlyCache(context: Context, prefs: SharedPreferences): Filled? {
-        return try {
-            val json = prefs.getString("prayers_month_cache", null) ?: return null
-            val today = java.text.SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(java.util.Date())
-            val obj = org.json.JSONObject(json)
-            if (!obj.has(today)) return null
-            val day = obj.getJSONObject(today)
-            val map = mutableMapOf<String, String>()
-            for (k in arrayOf("fajr","sunrise","dhuhr","asr","maghrib","isha")) {
-                if (day.has(k)) map[k] = day.getString(k)
-            }
-            if (map.isEmpty()) return null
-
-            fun hhmmToEpoch(hhmm: String): Long {
-                val parts = hhmm.split(":")
-                val cal = Calendar.getInstance()
-                cal.set(Calendar.SECOND, 0)
-                cal.set(Calendar.MILLISECOND, 0)
-                cal.set(Calendar.HOUR_OF_DAY, parts[0].toInt())
-                cal.set(Calendar.MINUTE, parts[1].toInt())
-                return cal.timeInMillis
-            }
-
-            // جهّز قائمة مرتبة بالأوقات القادمة من الآن
-            val now = System.currentTimeMillis()
-            val ordered = listOf("fajr","sunrise","dhuhr","asr","maghrib","isha")
-                .mapNotNull { k -> map[k]?.let { k to hhmmToEpoch(it) } }
-                .sortedBy { it.second }
-
-            if (ordered.isEmpty()) return null
-
-            // حدّد الحالي والقادم ببساطة
-            var currentIdx = -1
-            for (i in ordered.indices) {
-                if (ordered[i].second <= now) currentIdx = i else break
-            }
-            val nextIdx = (currentIdx + 1).coerceAtMost(ordered.size - 1)
-            val currentPair = if (currentIdx >= 0) ordered[currentIdx] else null
-            val nextPair = ordered[nextIdx]
-
-            val currentTime = currentPair?.let { toArabicDigits(SimpleDateFormat("HH:mm", Locale.getDefault()).format(java.util.Date(it.second)), prefs.getString("app_language","ar")?:"ar") }
-            val nextTime = toArabicDigits(SimpleDateFormat("HH:mm", Locale.getDefault()).format(java.util.Date(nextPair.second)), prefs.getString("app_language","ar")?:"ar")
-
-            Filled(
-                currentEpoch = currentPair?.second ?: now,
-                nextEpoch = nextPair.second,
-                currentTime = currentTime,
-                nextTime = nextTime
-            )
-        } catch (_: Exception) { null }
     }
 
     private fun getHijriDay(): Int {

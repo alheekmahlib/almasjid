@@ -690,5 +690,55 @@
   "@ramadanMaghribName": {
     "type": "text",
     "placeholders": {}
+  },
+  "startHijriYear": "হিজরি বছরের শুরু",
+  "@startHijriYear": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reminderToFastTasoo'a": "তাসুআ রোজা রাখার স্মরণ",
+  "@reminderToFastTasoo'a": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reminderToFastAshura": "আশুরা রোজা রাখার স্মরণ",
+  "@reminderToFastAshura": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ramadhan": "রমজান মাস",
+  "@ramadhan": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nightOfQadir": "লাইলাতুল কদর স্মরণ",
+  "@nightOfQadir": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "EidAl-Fitr": "ঈদুল ফিতর",
+  "@EidAl-Fitr": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sexShawwal": "শাওয়ালের ছয় রোজা রাখার স্মরণ",
+  "@sexShawwal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "arafahReminder": "আরাফাহ দিবসের রোজা রাখার স্মরণ",
+  "@arafahReminder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tenDaysOfDhul-Hijjah": "এবং দশ রাত্রি",
+  "@tenDaysOfDhul-Hijjah": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "EidAl-Adha": "ঈদুল আযহা",
+  "@EidAl-Adha": {
+    "type": "text",
+    "placeholders": {}
   }
 }

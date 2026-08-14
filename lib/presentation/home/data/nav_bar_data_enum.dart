@@ -4,8 +4,7 @@ enum NavBarTab {
   qibla,
   prayer,
   liatafaqahuu,
-  cites,
-  settings;
+  cites;
 
   String get label {
     switch (this) {
@@ -17,8 +16,19 @@ enum NavBarTab {
         return 'liatafaqahuu';
       case NavBarTab.cites:
         return 'cites';
-      case NavBarTab.settings:
-        return 'settings';
+    }
+  }
+
+  String get urlPath {
+    switch (this) {
+      case NavBarTab.qibla:
+        return '/qibla';
+      case NavBarTab.prayer:
+        return '/prayer';
+      case NavBarTab.liatafaqahuu:
+        return '/learn';
+      case NavBarTab.cites:
+        return '/cities';
     }
   }
 
@@ -32,8 +42,6 @@ enum NavBarTab {
         return SvgPath.svgHomeTeachingPrayer;
       case NavBarTab.cites:
         return SvgPath.svgHomeCites;
-      case NavBarTab.settings:
-        return SvgPath.svgHomeSettings;
     }
   }
 
@@ -52,8 +60,6 @@ enum NavBarTab {
         return const TeachingPrayerScreen();
       case NavBarTab.cites:
         return const PrayersOfCites();
-      case NavBarTab.settings:
-        return const SettingsScreen();
     }
   }
 }

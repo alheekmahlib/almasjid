@@ -7,6 +7,7 @@
 		<string>com.transistorsoft.fetchNotifications</string>
 		<string>com.transistorsoft.fetchEvery24Hours</string>
 		<string>com.alheekmah.alheekmahLibrary.dailyTask</string>
+		<string>com.alheekmah.midnightWidgetUpdate</string>
 	</array>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>

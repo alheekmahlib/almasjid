@@ -690,5 +690,55 @@
   "@ramadanMaghribName": {
     "type": "text",
     "placeholders": {}
+  },
+  "startHijriYear": "Simula ng Hijri na Taon",
+  "@startHijriYear": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reminderToFastTasoo'a": "Paalala sa pag-aayuno ng Tasu'a",
+  "@reminderToFastTasoo'a": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reminderToFastAshura": "Paalala sa pag-aayuno ng Ashura",
+  "@reminderToFastAshura": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ramadhan": "Buwan ng Ramadan",
+  "@ramadhan": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nightOfQadir": "Paalala sa Laylat al-Qadr",
+  "@nightOfQadir": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "EidAl-Fitr": "Eid al-Fitr",
+  "@EidAl-Fitr": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sexShawwal": "Paalala sa pag-aayuno ng Anim na Shawwal",
+  "@sexShawwal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "arafahReminder": "Paalala sa pag-aayuno ng Araw ng Arafah",
+  "@arafahReminder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tenDaysOfDhul-Hijjah": "At ang Sampung Gabi",
+  "@tenDaysOfDhul-Hijjah": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "EidAl-Adha": "Eid al-Adha",
+  "@EidAl-Adha": {
+    "type": "text",
+    "placeholders": {}
   }
 }

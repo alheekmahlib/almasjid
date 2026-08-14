@@ -14,7 +14,7 @@ class LanguageList extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<LocalizationController>(
       builder: (localCtrl) => Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24.0),
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

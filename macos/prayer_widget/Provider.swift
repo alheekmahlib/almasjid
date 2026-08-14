@@ -178,115 +178,13 @@ struct Provider: TimelineProvider {
         var mainPrayers: [(name: String, time: String)] = []
 
         let hasDailyData = store.string(forKey: "fajrTime") != nil
-        var usedMonthly = false
 
         var middleOfTheNightDate: String = "\(currentDateString.prefix(10)) 00:00:00.000"
         var lastThirdOfTheNightDate: String = "\(currentDateString.prefix(10)) 00:00:00.000"
 
-        if let monthlyJSONString = store.string(forKey: "monthly_prayer_data"),
-           let data = monthlyJSONString.data(using: .utf8),
-           let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
-           let dailyTimes = json["dailyTimes"] as? [String: Any] {
+        if hasDailyData {
             #if DEBUG
-            if debug { print("[Widget] Using monthly prayer data (preferred)") }
-            #endif
-
-            let day = calendar.component(.day, from: currentDate)
-            if let dayDict = dailyTimes["\(day)"] as? [String: Any] {
-                #if DEBUG
-                if debug {
-                    let rawPairs = dayDict.keys.sorted().map { k -> String in
-                        if let v = dayDict[k] { return "\(k)=\(v)" } else { return "\(k)=<nil>" }
-                    }.joined(separator: ", ")
-                    print("[Widget][Monthly][RawDay] day=\(day) " + rawPairs)
-                }
-                #endif
-
-                let localFormatter3: DateFormatter = {
-                    let f = DateFormatter()
-                    f.calendar = Calendar(identifier: .gregorian)
-                    f.locale = Locale(identifier: "en_US_POSIX")
-                    f.timeZone = TimeZone.current
-                    f.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS"
-                    return f
-                }()
-                let localFormatter6: DateFormatter = {
-                    let f = DateFormatter()
-                    f.calendar = Calendar(identifier: .gregorian)
-                    f.locale = Locale(identifier: "en_US_POSIX")
-                    f.timeZone = TimeZone.current
-                    f.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS"
-                    return f
-                }()
-
-                let tzRegex = try? NSRegularExpression(pattern: "(Z|[+-]\\d{2}:?\\d{2})$")
-
-                func parse(_ key: String) -> String? {
-                    guard let s = dayDict[key] as? String else { return nil }
-                    let range = NSRange(location: 0, length: s.utf16.count)
-                    let hasTZ = tzRegex?.firstMatch(in: s, options: [], range: range) != nil
-                    var d: Date? = nil
-                    if hasTZ {
-                        d = isoFormatter.date(from: s)
-                        #if DEBUG
-                        if debug, d == nil { print("[Widget][Parse][TZ][Fail] key=\(key) raw=\(s)") }
-                        #endif
-                    } else {
-                        d = localFormatter6.date(from: s)
-                        if d == nil { d = localFormatter3.date(from: s) }
-                        #if DEBUG
-                        if debug, d == nil { print("[Widget][Parse][Local][Fail] key=\(key) raw=\(s)") }
-                        #endif
-                    }
-                    guard let dateObj = d else { return nil }
-                    let formatted = defaultFormatter.string(from: dateObj)
-                    #if DEBUG
-                    if debug { print("[Widget][Parse] key=\(key) raw=\(s) hasTZ=\(hasTZ) used=\(formatted)") }
-                    #endif
-                    return formatted
-                }
-
-                let fajr = parse("fajr") ?? "\(currentDateString.prefix(10)) 06:00:00.000"
-                let sunrise = parse("sunrise") ?? "\(currentDateString.prefix(10)) 07:00:00.000"
-                let dhuhr = parse("dhuhr") ?? "\(currentDateString.prefix(10)) 12:00:00.000"
-                let asr = parse("asr") ?? "\(currentDateString.prefix(10)) 15:00:00.000"
-                let maghrib = parse("maghrib") ?? "\(currentDateString.prefix(10)) 18:00:00.000"
-                let isha = parse("isha") ?? "\(currentDateString.prefix(10)) 19:00:00.000"
-                middleOfTheNightDate = parse("midnight") ?? "\(currentDateString.prefix(10)) 00:00:00.000"
-                lastThirdOfTheNightDate = parse("lastThird") ?? "\(currentDateString.prefix(10)) 00:00:00.000"
-
-                let fajrName = store.string(forKey: "fajrName") ?? "الفجر"
-                let sunriseName = store.string(forKey: "sunriseName") ?? "الشروق"
-                let dhuhrName = store.string(forKey: "dhuhrName") ?? "الظهر"
-                let asrName = store.string(forKey: "asrName") ?? "العصر"
-                let maghribName = store.string(forKey: "maghribName") ?? "المغرب"
-                let ishaName = store.string(forKey: "ishaName") ?? "العشاء"
-
-                prayerTimes = [
-                    (name: fajrName, time: fajr),
-                    (name: sunriseName, time: sunrise),
-                    (name: dhuhrName, time: dhuhr),
-                    (name: asrName, time: asr),
-                    (name: maghribName, time: maghrib),
-                    (name: ishaName, time: isha)
-                ]
-                mainPrayers = [
-                    (name: fajrName, time: fajr),
-                    (name: dhuhrName, time: dhuhr),
-                    (name: asrName, time: asr),
-                    (name: maghribName, time: maghrib),
-                    (name: ishaName, time: isha)
-                ]
-
-                store.userDefaults?.set(middleOfTheNightDate, forKey: "__monthly_midnight")
-                store.userDefaults?.set(lastThirdOfTheNightDate, forKey: "__monthly_lastThird")
-                usedMonthly = true
-            }
-        }
-
-        if !usedMonthly, hasDailyData {
-            #if DEBUG
-            if debug { print("[Widget][Fallback] Using daily individual prayer times (monthly missing/invalid)") }
+            if debug { print("[Widget] Using daily individual prayer times") }
             #endif
 
             let fajrDaily = store.string(forKey: "fajrTime") ?? "\(currentDateString.prefix(10)) 05:48:00.000"
@@ -319,10 +217,8 @@ struct Provider: TimelineProvider {
                 (name: prayerTimes[5].name, time: prayerTimes[5].time)
             ]
 
-            middleOfTheNightDate = (store.string(forKey: "__monthly_midnight")
-                                    ?? convertPrayerTimeToToday(timeString: store.string(forKey: "middleOfTheNightTime") ?? "\(currentDateString.prefix(10)) 00:00:00.000"))
-            lastThirdOfTheNightDate = (store.string(forKey: "__monthly_lastThird")
-                                       ?? convertPrayerTimeToToday(timeString: store.string(forKey: "lastThirdOfTheNightTime") ?? "\(currentDateString.prefix(10)) 00:00:00.000"))
+            middleOfTheNightDate = convertPrayerTimeToToday(timeString: store.string(forKey: "middleOfTheNightTime") ?? "\(currentDateString.prefix(10)) 00:00:00.000")
+            lastThirdOfTheNightDate = convertPrayerTimeToToday(timeString: store.string(forKey: "lastThirdOfTheNightTime") ?? "\(currentDateString.prefix(10)) 00:00:00.000")
         }
 
         if prayerTimes.isEmpty {

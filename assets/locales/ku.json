@@ -690,5 +690,55 @@
   "@ramadanMaghribName": {
     "type": "text",
     "placeholders": {}
+  },
+  "startHijriYear": "سەرەتای ساڵی کۆچی",
+  "@startHijriYear": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reminderToFastTasoo'a": "بیرخەرەوەی ڕۆژووی تاسوعا",
+  "@reminderToFastTasoo'a": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reminderToFastAshura": "بیرخەرەوەی ڕۆژووی عاشوورا",
+  "@reminderToFastAshura": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ramadhan": "مانگی ڕەمەزان",
+  "@ramadhan": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nightOfQadir": "بیرخەرەوەی شەوی قەدر",
+  "@nightOfQadir": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "EidAl-Fitr": "جەژنی ڕەمەزان",
+  "@EidAl-Fitr": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sexShawwal": "بیرخەرەوەی ڕۆژووی شەش شەووال",
+  "@sexShawwal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "arafahReminder": "بیرخەرەوەی ڕۆژووی ڕۆژی عەرەفە",
+  "@arafahReminder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tenDaysOfDhul-Hijjah": "و شەوەکانی دە",
+  "@tenDaysOfDhul-Hijjah": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "EidAl-Adha": "جەژنی قوربان",
+  "@EidAl-Adha": {
+    "type": "text",
+    "placeholders": {}
   }
 }

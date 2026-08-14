@@ -41,10 +41,6 @@ class GeneralController extends GetxController with WidgetsBindingObserver {
         await BGServices().registerTask();
         // await HijriWidgetConfig.initialize();
         await PrayersWidgetConfig.initialize();
-        Future.delayed(const Duration(seconds: 5)).then((_) {
-          // HijriWidgetConfig().updateHijriDate();
-          PrayersWidgetConfig().updatePrayersDate();
-        });
         await BackgroundTaskHandler.initializeHandler();
       } else if (Platform.isMacOS) {
         // على macOS لا نستخدم BGServices، لكن نحتاج دفع بيانات الودجت
@@ -103,12 +99,44 @@ class GeneralController extends GetxController with WidgetsBindingObserver {
         _settingsCompleter!.complete();
       }
 
+      // إعادة جدولة Timer منتصف الليل عند العودة للتطبيق
+      // Reschedule foreground midnight timer on resume
+      if (Platform.isIOS || Platform.isAndroid) {
+        BGServices.scheduleForegroundMidnightTimer();
+      }
+
       // تحديث الـ widget عند عودة التطبيق من الخلفية
       // Update widget when app returns from background
       if (state.activeLocation.value &&
           (Platform.isIOS || Platform.isAndroid || Platform.isMacOS)) {
-        Future.delayed(const Duration(milliseconds: 500), () {
-          PrayersWidgetConfig().updatePrayersDate();
+        Future.delayed(const Duration(milliseconds: 500), () async {
+          // التحقق من تغيّر اليوم لتحديث التاريخ الهجري والصلوات
+          // Check if date changed to update Hijri date and prayers
+          final today = DateTime.now().toIso8601String().substring(0, 10);
+          final lastDate = state.box.read('last_widget_update_date') as String?;
+          if (lastDate != today) {
+            // إعادة حساب أوقات الصلاة لليوم الجديد
+            // Recalculate prayer times for new day
+            await AdhanController.instance
+                .initializeStoredAdhan(forceUpdate: false);
+
+            // تحديث الويدجت صراحةً بعد إعادة الحساب
+            // Explicitly update widget after recalculation
+            // await HijriWidgetConfig.initialize();
+            await PrayersWidgetConfig.initialize();
+            // await HijriWidgetConfig().updateHijriDate();
+            await PrayersWidgetConfig().updatePrayersDate();
+
+            // كتابة التاريخ بعد نجاح التحديث فقط
+            // Write date only after successful update
+            if (PrayersWidgetConfig.lastUpdateSucceeded) {
+              state.box.write('last_widget_update_date', today);
+            }
+            log('Date changed on resume: recalculated prayer times',
+                name: 'GeneralController');
+          } else {
+            PrayersWidgetConfig().updatePrayersDate();
+          }
           log('Widget updated on app resume', name: 'GeneralController');
         });
       }

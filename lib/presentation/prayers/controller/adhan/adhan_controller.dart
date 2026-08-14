@@ -21,6 +21,22 @@ class AdhanController extends GetxController {
       // بعد تحديث نظام IDs للإشعارات: ألغِ IDs القديمة مرة واحدة لتفادي إشعارات مزدوجة.
       await PrayersNotificationsCtrl.instance
           .cancelLegacyPrayerNotificationsIfNeeded();
+
+      // ✅ FIX (race condition): انتظر تحميل بيانات الأذان من الكاش/الحساب
+      // قبل بدء أي مؤقت يعتمد على state.prayerTimes. previously كانت المؤقتات
+      // تبدأ فوراً بينما initializeStoredAdhan (المستدعاة من GeneralController)
+      // لم تكتمل بعد، مما يؤدي لـ Null crash.
+      // نترك initializeStoredAdhan للـ GeneralController._activateLocation لتجنب
+      // الاستدعاء المزدوج، لكن نضمن أن المؤقتات لا تبدأ إلا بعد توفر البيانات.
+      _startTimersWhenReady();
+    }
+  }
+
+  /// يبدأ المؤقتات الدورية فقط بعد أن تصبح بيانات الصلاة جاهزة.
+  /// إذا لم تكن جاهزة بعد، يعيد المحاولة بعد ثانيتين (لمدة محدودة).
+  void _startTimersWhenReady({int retries = 15}) {
+    if (state.prayerTimes != null && state.sunnahTimes != null) {
+      // البيانات جاهزة — ابدأ المؤقتات بأمان
       // لا نستدعي initializeStoredAdhan هنا — _activateLocation في
       // GeneralController تستدعيها بالفعل مع await. الاستدعاء المزدوج
       // كان يسبب سباق (race condition) يؤدي لبيانات خاطئة في الويدجت.
@@ -35,7 +51,18 @@ class AdhanController extends GetxController {
       });
       Future.delayed(const Duration(seconds: 2),
           () async => state.location = await localizedLocation);
+      return;
     }
+
+    if (retries <= 0) {
+      log('Timers not started: prayer data never became ready after retries',
+          name: 'AdhanController');
+      return;
+    }
+
+    // أعد المحاولة بعد ثانيتين
+    Future.delayed(const Duration(seconds: 2),
+        () => _startTimersWhenReady(retries: retries - 1));
   }
 
   @override
@@ -71,6 +98,12 @@ class AdhanController extends GetxController {
   }
 
   Future<void> initTimes() async {
+    // Guard: لا تحاول قراءة الأوقات إذا لم تكن مهيأة بعد
+    if (state.prayerTimes == null || state.sunnahTimes == null) {
+      log('initTimes skipped: prayer data not ready yet',
+          name: 'AdhanController');
+      return;
+    }
     log('====================');
     log('Updating times...');
     log('====================');
@@ -98,8 +131,9 @@ class AdhanController extends GetxController {
 
   Future<void> initializeAdhanVariables() async {
     if (GeneralController.instance.state.activeLocation.value) {
-      state.coordinates = Coordinates(Location.instance.position!.latitude,
-          Location.instance.position!.longitude);
+      final pos = Location.instance.position;
+      if (pos == null) return;
+      state.coordinates = Coordinates(pos.latitude, pos.longitude);
       state.dateComponents = DateComponents.from(state.now);
 
       if (!state.autoCalculationMethod.value) {
@@ -295,7 +329,7 @@ class AdhanController extends GetxController {
 
     // تحديث الـ widget بعد تهيئة أوقات الصلاة مباشرة
     // Update widget immediately after prayer times initialization
-    if (Platform.isIOS || Platform.isAndroid) {
+    if (Platform.isIOS || Platform.isAndroid || Platform.isMacOS) {
       Future.delayed(const Duration(milliseconds: 500), () {
         PrayersWidgetConfig().updatePrayersDate();
         log('Widget update triggered after prayer times initialization',
@@ -332,20 +366,13 @@ class AdhanController extends GetxController {
   Future<void> _convertDayPrayerTimesToState(DayPrayerTimes dayTimes) async {
     // تعيين الإحداثيات والمعاملات (يجب الحصول عليها من المخزن أو إعادة حسابها)
     if (GeneralController.instance.state.activeLocation.value) {
-      state.coordinates = Coordinates(
-        Location.instance.position!.latitude,
-        Location.instance.position!.longitude,
-      );
+      final pos = Location.instance.position;
+      if (pos == null) return;
+      state.coordinates = Coordinates(pos.latitude, pos.longitude);
       state.dateComponents = DateComponents.from(dayTimes.date);
 
-      // الحصول على المعاملات المحفوظة
+      // الحصول على المعاملات المحفوظة وإنشاء PrayerTimes
       await initializeAdhanVariables();
-
-      // إنشاء PrayerTimes من البيانات المحفوظة
-      state.prayerTimesNow =
-          PrayerTimes(state.coordinates, state.dateComponents, state.params);
-      state.sunnahTimes = SunnahTimes(state.prayerTimesNow!);
-      state.prayerTimes = state.prayerTimesNow;
     }
   }
 
@@ -596,8 +623,9 @@ class AdhanController extends GetxController {
   /// حساب بيانات التاريخ المختار يدوياً
   /// Calculate selected date data manually
   Future<void> _calculateSelectedDateManually(DateTime selectedDate) async {
-    state.coordinates = Coordinates(Location.instance.position!.latitude,
-        Location.instance.position!.longitude);
+    final pos = Location.instance.position;
+    if (pos == null) return;
+    state.coordinates = Coordinates(pos.latitude, pos.longitude);
     state.dateComponents = DateComponents.from(selectedDate);
 
     if (!state.autoCalculationMethod.value) {

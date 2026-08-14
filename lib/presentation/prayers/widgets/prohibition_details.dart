@@ -7,23 +7,29 @@ class ProhibitionWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<AdhanController>(
       id: 'prohibitionTimes',
-      builder: (adhanCtrl) => adhanCtrl.prohibitionTimesBool.value
-          ? ContainerButtonWidget(
-              onPressed: () => context.customBottomSheet(
-                textTitle: 'prohibitionTimes'.tr,
-                containerColor: context.theme.colorScheme.primaryContainer,
-                child: prohibitionDetails(
-                    context, adhanCtrl.state.prohibitionTimesIndex.value),
-              ),
-              title: 'prohibitionTimes'.tr,
-              horizontalMargin: 24.0,
-              backgroundColor: const Color(0xfff8a159).withValues(alpha: .2),
-              borderColor: context.theme.colorScheme.surface,
-              titleColor: context.theme.colorScheme.inversePrimary,
-              useGradient: false,
-              withShape: false,
-            )
-          : const SizedBox.shrink(),
+      builder: (adhanCtrl) {
+        // Guard: لا تعرض widget أوقات النهي إذا لم تكن البيانات جاهزة
+        if (adhanCtrl.state.prayerTimes == null) {
+          return const SizedBox.shrink();
+        }
+        return adhanCtrl.prohibitionTimesBool.value
+            ? ContainerButtonWidget(
+                onPressed: () => context.customBottomSheet(
+                  textTitle: 'prohibitionTimes'.tr,
+                  containerColor: context.theme.colorScheme.primaryContainer,
+                  child: prohibitionDetails(
+                      context, adhanCtrl.state.prohibitionTimesIndex.value),
+                ),
+                title: 'prohibitionTimes'.tr,
+                horizontalMargin: 24.0,
+                backgroundColor: const Color(0xfff8a159).withValues(alpha: .2),
+                borderColor: context.theme.colorScheme.surface,
+                titleColor: context.theme.colorScheme.inversePrimary,
+                useGradient: false,
+                withShape: false,
+              )
+            : const SizedBox.shrink();
+      },
     );
   }
 

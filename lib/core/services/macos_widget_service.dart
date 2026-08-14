@@ -45,7 +45,6 @@ class MacOSWidgetService {
     required DateTime? currentPrayerTime,
     required DateTime? nextPrayerTime,
     required String appLanguage,
-    String? monthlyPrayerData,
   }) async {
     try {
       if (!Platform.isMacOS) return;
@@ -89,9 +88,6 @@ class MacOSWidgetService {
         // لغة التطبيق لتوجيه الـ widget
         'appLanguage': appLanguage,
 
-        // بيانات الشهر (اختياري)
-        if (monthlyPrayerData != null) 'monthly_prayer_data': monthlyPrayerData,
-
         // طابع زمني للتحديث - Update timestamp
         'lastUpdated': DateTime.now().toString(),
       };
@@ -120,30 +116,6 @@ class MacOSWidgetService {
     } catch (e) {
       log('خطأ في إعادة تحميل timelines: $e - Error reloading timelines: $e',
           name: 'MacOSWidgetService');
-    }
-  }
-
-  /// تحديث بيانات الشهر فقط (بدون الحاجة لإرسال كل الحقول)
-  /// Update monthly prayer JSON only (no need to send all fields)
-  Future<void> updateMonthlyPrayerData(
-    String monthlyPrayerData, {
-    String? appLanguage,
-  }) async {
-    try {
-      if (!Platform.isMacOS) return;
-
-      await _channel.invokeMethod('updatePrayerData', <String, dynamic>{
-        'monthly_prayer_data': monthlyPrayerData,
-        if (appLanguage != null) 'appLanguage': appLanguage,
-        'lastUpdated': DateTime.now().toString(),
-      });
-
-      await reloadAllTimelines();
-
-      log('تم تحديث بيانات الشهر وإعادة تحميل الويدجت على macOS',
-          name: 'MacOSWidgetService');
-    } catch (e) {
-      log('خطأ في تحديث بيانات الشهر لـ macOS: $e', name: 'MacOSWidgetService');
     }
   }
 

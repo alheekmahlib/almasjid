@@ -181,7 +181,19 @@ func getPrayerTimesForProgress(
     // إيجاد الصلاة الحالية والقادمة - Find current and next prayer
     for i in 0..<todayPrayers.count {
         if todayPrayers[i].date > currentTime {
-            let currentPrayer = i > 0 ? todayPrayers[i - 1] : todayPrayers.last
+            let currentPrayer: (name: String, date: Date)?
+            if i > 0 {
+                currentPrayer = todayPrayers[i - 1]
+            } else {
+                // قبل الفجر (بعد منتصف الليل): الصلاة الحالية هي عشاء أمس
+                // Before Fajr (after midnight): current prayer is yesterday's Isha
+                if let lastRegularPrayer = todayPrayers.dropLast().last,
+                   let yesterdayDate = calendar.date(byAdding: .day, value: -1, to: lastRegularPrayer.date) {
+                    currentPrayer = (name: lastRegularPrayer.name, date: yesterdayDate)
+                } else {
+                    currentPrayer = todayPrayers.last
+                }
+            }
             let nextPrayer = todayPrayers[i]
 
             print("[Progress] الصلاة الحالية: \(currentPrayer?.name ?? "غير محدد") - \(currentPrayer?.date ?? Date())")
@@ -253,18 +265,14 @@ func debugDumpPrayerWidgetKeys(_ ud: UserDefaults?) {
     }
     let expectedKeys = [
         "fajrTime","sunriseTime","dhuhrTime","asrTime","maghribTime","ishaTime",
-        "middleOfTheNightTime","lastThirdOfTheNightTime","monthly_prayer_data",
+        "middleOfTheNightTime","lastThirdOfTheNightTime",
         "fajrName","sunriseName","dhuhrName","asrName","maghribName","ishaName",
         "middleOfTheNightName","lastThirdOfTheNightName","hijriDay","hijriMonth","hijriYear","appLanguage"
     ]
     var lines: [String] = []
     for k in expectedKeys {
         if let v = ud.object(forKey: k) {
-            if k == "monthly_prayer_data", let s = v as? String {
-                lines.append("\(k)=len:\(s.count)")
-            } else {
-                lines.append("\(k)=\(v)")
-            }
+            lines.append("\(k)=\(v)")
         } else {
             lines.append("\(k)=<missing>")
         }

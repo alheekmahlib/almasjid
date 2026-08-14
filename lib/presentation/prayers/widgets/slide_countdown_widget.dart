@@ -27,16 +27,16 @@ class SlideCountdownWidget extends StatelessWidget {
       textDirection: TextDirection.ltr,
       child: SlideCountdown(
         digitsNumber: [
-          '0'.convertNumbers(),
-          '1'.convertNumbers(),
-          '2'.convertNumbers(),
-          '3'.convertNumbers(),
-          '4'.convertNumbers(),
-          '5'.convertNumbers(),
-          '6'.convertNumbers(),
-          '7'.convertNumbers(),
-          '8'.convertNumbers(),
-          '9'.convertNumbers()
+          '0'.convertNumbers(Get.locale!.languageCode),
+          '1'.convertNumbers(Get.locale!.languageCode),
+          '2'.convertNumbers(Get.locale!.languageCode),
+          '3'.convertNumbers(Get.locale!.languageCode),
+          '4'.convertNumbers(Get.locale!.languageCode),
+          '5'.convertNumbers(Get.locale!.languageCode),
+          '6'.convertNumbers(Get.locale!.languageCode),
+          '7'.convertNumbers(Get.locale!.languageCode),
+          '8'.convertNumbers(Get.locale!.languageCode),
+          '9'.convertNumbers(Get.locale!.languageCode)
         ],
         decoration: const BoxDecoration(
           color: Colors.transparent,
@@ -49,7 +49,10 @@ class SlideCountdownWidget extends StatelessWidget {
         onDone: () => Get.forceAppUpdate(),
         slideDirection: SlideDirection.up,
         countUpAtDuration: true,
-        duration: duration ?? adhanCtrl.getTimeLeftForNextPrayer,
+        duration: duration ??
+            (adhanCtrl.state.prayerTimes == null
+                ? const Duration(hours: 1)
+                : adhanCtrl.getTimeLeftForNextPrayer),
         separatorStyle: TextStyle(
           color: color ?? Colors.white,
           fontSize: fontSize,

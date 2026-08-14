@@ -136,38 +136,6 @@ class _HadithCard extends StatelessWidget {
   }
 }
 
-/// عنوان القسم (سنن / بدع)
-class _CategoryHeader extends StatelessWidget {
-  final String title;
-  final IconData icon;
-  final Color color;
-
-  const _CategoryHeader({
-    required this.title,
-    required this.icon,
-    required this.color,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Icon(icon, color: color, size: 22),
-        const Gap(8),
-        Text(
-          title,
-          style: TextStyle(
-            color: context.theme.colorScheme.inversePrimary,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'cairo',
-            fontSize: 18,
-          ),
-        ),
-      ],
-    );
-  }
-}
-
 /// شبكة عرض العناصر (سنن أو بدع)
 class _ItemsGrid extends StatelessWidget {
   final List<dynamic> items;

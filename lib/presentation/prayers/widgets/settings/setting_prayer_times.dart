@@ -84,7 +84,8 @@ class SettingPrayerTimes extends StatelessWidget {
                                 ReactiveNumberText(
                                   text:
                                       '${adhanCtrl.state.adjustments.getAdjustmentByIndex(index)}'
-                                          .convertNumbers(),
+                                          .convertNumbers(
+                                              Get.locale!.languageCode),
                                   style: TextStyle(
                                     fontFamily: 'cairo',
                                     fontSize: 14,

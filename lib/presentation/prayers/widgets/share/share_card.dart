@@ -115,7 +115,7 @@ class _ShareCard extends StatelessWidget {
                     // Time left chip
                     Center(
                       child: Text(
-                        '${'timeLeft:'.tr} ${share.timeLeftLabel.convertNumbers()}',
+                        '${'timeLeft:'.tr} ${share.timeLeftLabel.convertNumbers(Get.locale!.languageCode)}',
                         style: TextStyle(
                           fontSize: 14,
                           fontFamily: 'cairo',

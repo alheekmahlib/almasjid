@@ -5,73 +5,107 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // تهيئة الكنترولر
-    Get.put(HomeController());
-
     return GetBuilder<HomeController>(
-      builder: (controller) {
+      init: HomeController.instance,
+      builder: (ctrl) {
         return Scaffold(
+          extendBody: false,
           backgroundColor: context.theme.colorScheme.primaryContainer,
-          body: NavBarTab.values
-              .map((nav) => nav.currentScreen)
-              .toList()[controller.currentIndex],
-          floatingActionButtonLocation:
-              FloatingActionButtonLocation.centerDocked,
-          floatingActionButton: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: FittedBox(
-              fit: BoxFit.fitWidth,
-              child: FloatyNavBar(
-                height: 60,
-                backgroundColor:
-                    context.theme.colorScheme.surface.withValues(alpha: .8),
-                // glassEffect: const FloatyGlassEffect.light(),
-                shape: const CircleShape(),
-                gap: 16,
-                selectedTab: controller.currentIndex,
-                tabs: NavBarTab.values
-                    .map((nav) => FloatyTab(
-                          height: 50,
-                          width: 65,
-                          enableHaptics: true,
-                          isSelected: controller.currentIndex == nav.tapIndex,
-                          title: nav.label.tr,
-                          margin: const EdgeInsets.symmetric(horizontal: 16.0),
-                          selectedColor: context.theme.colorScheme.primary,
-                          unselectedColor: Colors.transparent,
-                          selectedDisplayMode: FloatyTabDisplayMode.titleOnly,
-                          unselectedDisplayMode: FloatyTabDisplayMode.iconOnly,
-                          titleStyle: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'cairo',
-                            fontSize: 18,
-                            height: 1.4,
-                            color: context.theme.colorScheme.surface,
-                          ),
-                          icon: customSvgWithColor(
-                            height: 30,
-                            width: 30,
-                            nav.icon,
-                            color: context.theme.colorScheme.primary,
-                          ),
-                          onTap: () => controller.changeIndex(nav.tapIndex),
-                          floatyActionButton: FloatyActionButton(
-                            icon: customSvgWithColor(
-                              height: 30,
-                              width: 30,
-                              SvgPath.svgHomeRamadan,
-                              color: context.theme.colorScheme.primary,
-                            ),
-                            backgroundColor: context.theme.colorScheme.surface,
-                            onTap: () => customBottomSheet(
-                              containerColor:
-                                  context.theme.colorScheme.primaryContainer,
-                              child: RamadanScreen(),
-                            ),
-                          ),
-                        ))
-                    .toList(),
-              ),
+          body: SafeArea(
+            child: Stack(
+              children: [
+                NavBarTab.values
+                    .map((nav) => nav.currentScreen)
+                    .toList()[ctrl.currentIndex],
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: FloatyNavBar(
+                    height: 45,
+                    backgroundColor:
+                        context.theme.colorScheme.surface.withValues(alpha: .8),
+                    // glassEffect: const FloaticaGlassEffect.liquidGlass(),
+                    selectedTab: ctrl.currentIndex,
+                    margin: EdgeInsets.symmetric(
+                        horizontal:
+                            context.customOrientation(16.0, Get.width * .2),
+                        vertical: 16.0),
+                    borderRadius: BorderRadius.circular(32),
+                    menu: FloaticaMenu(
+                      height: context.customOrientation(400.0, Get.height * .7),
+                      controller: ctrl.floatyMenuController,
+                      child: const SettingsScreen(),
+                      icon: Obx(
+                        () => customSvgWithColor(
+                          height: 30,
+                          ctrl.floatyMenuController.isOpen.obs.value
+                              ? SvgPath.svgHomeClose
+                              : SvgPath.svgHomeSettings,
+                          color: context.theme.hintColor,
+                        ),
+                      ),
+                      title: 'settings'.tr,
+                      titleStyle: TextStyle(
+                        fontFamily: 'cairo',
+                        fontSize: 12,
+                        height: 1,
+                        color: context.theme.hintColor,
+                      ),
+                      selectedColor:
+                          context.theme.canvasColor.withValues(alpha: .2),
+                      unselectedColor: Colors.transparent,
+                      selectedDisplayMode: FloaticaTabDisplayMode.iconOnly,
+                      unselectedDisplayMode: FloaticaTabDisplayMode.iconOnly,
+                      labelPosition: FloaticaLabelPosition.bottom,
+                    ),
+                    tabs: NavBarTab.values
+                        .map((nav) => FloaticaTab(
+                              height: 35,
+                              indicatorColor: context.theme.colorScheme.primary,
+                              enableHaptics: true,
+                              isSelected: ctrl.currentIndex == nav.tapIndex,
+                              title: nav.label.tr,
+                              margin: EdgeInsets.zero,
+                              selectedColor: context.theme.canvasColor
+                                  .withValues(alpha: .2),
+                              unselectedColor: Colors.transparent,
+                              selectedDisplayMode:
+                                  FloaticaTabDisplayMode.iconOnly,
+                              unselectedDisplayMode:
+                                  FloaticaTabDisplayMode.iconOnly,
+                              labelPosition: FloaticaLabelPosition.bottom,
+                              titleStyle: TextStyle(
+                                fontFamily: 'cairo',
+                                fontSize: 12,
+                                height: 1,
+                                color: context.theme.hintColor,
+                              ),
+                              icon: customSvgWithColor(
+                                height: 30,
+                                nav.icon,
+                                color: context.theme.hintColor,
+                              ),
+                              onTap: () => ctrl.changeIndex(nav.tapIndex),
+                              floatyActionButton: FloaticaActionButton(
+                                size: 50,
+                                icon: customSvgWithColor(
+                                  height: 30,
+                                  SvgPath.svgHomeRamadan,
+                                  color: context.theme.hintColor,
+                                ),
+                                backgroundColor: context
+                                    .theme.colorScheme.surface
+                                    .withValues(alpha: .8),
+                                onTap: () => customBottomSheet(
+                                  containerColor: context
+                                      .theme.colorScheme.primaryContainer,
+                                  child: RamadanScreen(),
+                                ),
+                              ),
+                            ))
+                        .toList(),
+                  ),
+                ),
+              ],
             ),
           ),
         );

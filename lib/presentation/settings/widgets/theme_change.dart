@@ -16,7 +16,7 @@ class ThemeChange extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: SizedBox(
         width: double.infinity,
         child: Column(

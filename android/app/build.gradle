@@ -37,8 +37,8 @@ if (googlePlayKeyPropertiesFile.exists()) {
 
 android {
     namespace = "com.alheekmah.aqimApp"
-    compileSdk = 36 // flutter.compileSdkVersion
-    ndkVersion = "27.0.12077973" // flutter.ndkVersion
+    compileSdk = 37 // flutter.compileSdkVersion
+    ndkVersion = flutter.ndkVersion
 
     signingConfigs {
         // Huawei AppGallery signing
@@ -82,8 +82,8 @@ android {
         applicationId = "com.alheekmah.aqimApp"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
-        minSdk = 24 // flutter.minSdkVersion
-        targetSdk = 36 // flutter.targetSdkVersion
+        minSdk = 27 // flutter.minSdkVersion
+        targetSdk = 37 // flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
         multiDexEnabled true
@@ -114,6 +114,13 @@ android {
 
 flutter {
     source = "../.."
+}
+
+configurations.all {
+    resolutionStrategy {
+        force 'androidx.glance:glance-appwidget:1.1.1'
+    }
+    exclude group: 'androidx.glance', module: 'glance-appwidget'
 }
 
 dependencies {

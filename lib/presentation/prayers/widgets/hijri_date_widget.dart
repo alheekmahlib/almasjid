@@ -31,7 +31,9 @@ class HijriDateWidget extends StatelessWidget {
             Column(
               children: [
                 Text(
-                  hijri.hDay.toString().convertNumbers(),
+                  hijri.hDay
+                      .toString()
+                      .convertNumbers(Get.locale!.languageCode),
                   style: TextStyle(
                     fontSize: 24,
                     fontFamily: 'cairo',

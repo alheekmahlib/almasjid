@@ -1,6 +1,11 @@
 part of '../../prayers.dart';
 
 List<Map<String, dynamic>> generatePrayerNameList(AdhanState state) {
+  // Guard: لا تستخدم state.prayerTimes! إذا كانت البيانات غير مهيأة
+  if (state.prayerTimes == null || state.sunnahTimes == null) {
+    return const [];
+  }
+
   // تحديد ما إذا كنا نستخدم أوقات الصلاة للتاريخ المختار أم اليوم الحالي
   // Determine if we're using selected date prayer times or current day
   // ملاحظة: لا نعتمد على selectedDatePrayerTimes لأنها قد لا تُملأ عند التحميل من الكاش الشهري.

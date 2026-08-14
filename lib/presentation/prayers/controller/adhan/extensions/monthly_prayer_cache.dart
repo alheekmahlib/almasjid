@@ -41,39 +41,6 @@ class MonthlyPrayerCache {
         'longitude': location.longitude,
       });
 
-      // مزامنة البيانات الشهرية إلى App Group للويدجت مباشرةً
-      // Sync monthly data to App Group so the widget doesn't need the app to open daily
-      try {
-        final monthlyJson = jsonEncode(monthlyData.toJson());
-
-        if (Platform.isMacOS) {
-          await MacOSWidgetService.instance.updateMonthlyPrayerData(
-            monthlyJson,
-            appLanguage: Get.locale?.languageCode ?? 'ar',
-          );
-          log('macOS widget notified after monthly data save', name: _tag);
-        } else {
-          await HomeWidget.setAppGroupId(StringConstants.groupId);
-          await HomeWidget.saveWidgetData('monthly_prayer_data', monthlyJson);
-          log('Monthly prayer data mirrored to App Group for widget',
-              name: _tag);
-
-          // إخطار الـ widget بتحديث البيانات (ضروري لتفعيل إعادة قراءة البيانات)
-          // Notify widget to update (required to trigger data reload)
-          if (Platform.isIOS) {
-            await HomeWidget.updateWidget(
-              iOSName: StringConstants.iosPrayersWidget,
-              androidName: StringConstants.androidPrayersWidget,
-              qualifiedAndroidName:
-                  'com.alheekmah.alheekmahLibrary.PrayerWidget',
-            );
-            log('iOS widget notified after monthly data save', name: _tag);
-          }
-        }
-      } catch (e) {
-        log('Failed mirroring monthly data to App Group: $e', name: _tag);
-      }
-
       log('Monthly prayer data saved successfully', name: _tag);
     } catch (e) {
       log('Error saving monthly prayer data: $e', name: _tag);
@@ -101,10 +68,51 @@ class MonthlyPrayerCache {
       final monthlyData = MonthlyPrayerData.fromJson(storedData);
       final now = DateTime.now();
 
-      return monthlyData.containsDate(now);
+      if (!monthlyData.containsDate(now)) {
+        return false;
+      }
+
+      // التحقق من تطابق معاملات الحساب (المذهب وقاعدة خطوط العرض)
+      if (!_areParamsValid(monthlyData.params)) {
+        log('Monthly cache params mismatch', name: _tag);
+        return false;
+      }
+
+      return true;
     } catch (e) {
       log('Error validating monthly cache: $e', name: _tag);
       return false;
+    }
+  }
+
+  /// التحقق من تطابق معاملات الحساب المخزنة مع التفضيلات الحالية
+  /// Check if stored calculation params match current user preferences
+  static bool _areParamsValid(CalculationParameters storedParams) {
+    try {
+      final isHanafi = _storage.read(SHAFI) ?? true;
+      final expectedMadhab = isHanafi ? Madhab.hanafi : Madhab.shafi;
+      if (storedParams.madhab != expectedMadhab) return false;
+
+      final ruleIndex = _storage.read(HIGH_LATITUDE_RULE) ?? 0;
+      final expectedRule = _highLatitudeRuleFromIndex(ruleIndex);
+      if (storedParams.highLatitudeRule != expectedRule) return false;
+
+      return true;
+    } catch (e) {
+      return true; // عند الخطأ نتجاوز فحص المعاملات
+    }
+  }
+
+  static HighLatitudeRule _highLatitudeRuleFromIndex(int index) {
+    switch (index) {
+      case 0:
+        return HighLatitudeRule.middle_of_the_night;
+      case 1:
+        return HighLatitudeRule.seventh_of_the_night;
+      case 2:
+        return HighLatitudeRule.twilight_angle;
+      default:
+        return HighLatitudeRule.middle_of_the_night;
     }
   }
 

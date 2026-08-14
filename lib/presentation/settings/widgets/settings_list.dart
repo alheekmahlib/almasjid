@@ -20,46 +20,42 @@ class SettingsList extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<ThemeController>(builder: (_) {
       return Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.symmetric(vertical: 8.0),
         child: Column(
           children: [
-            Column(
-              children: [
-                const LanguageList(),
-                const Gap(8),
-                ThemeChange(),
-                const Gap(8),
-                Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 24.0),
-                  padding: const EdgeInsets.all(6.0),
-                  decoration: BoxDecoration(
-                      border: Border.all(
-                          color: context.theme.highlightColor, width: 1.5),
-                      borderRadius: BorderRadius.circular(16)),
-                  child: Column(
-                    children: [
-                      _customButtonWidget(
-                        context,
-                        title: 'ourApps',
-                        svgPath: SvgPath.svgAlheekmahLogo,
-                        onTap: () => Get.toNamed(
-                          AppRouter.ourApps,
-                        ),
-                      ),
-                      const Gap(4),
-                      _customButtonWidget(
-                        context,
-                        title: 'aboutApp',
-                        iconWidth: 40.0,
-                        svgPath: SvgPath.svgLogoAqemLogo,
-                        onTap: () => Get.toNamed(
-                          AppRouter.aboutApp,
-                        ),
-                      ),
-                    ],
+            const LanguageList(),
+            const Gap(8),
+            ThemeChange(),
+            const Gap(8),
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 16.0),
+              padding: const EdgeInsets.all(6.0),
+              decoration: BoxDecoration(
+                  border: Border.all(
+                      color: context.theme.highlightColor, width: 1.5),
+                  borderRadius: BorderRadius.circular(16)),
+              child: Column(
+                children: [
+                  _customButtonWidget(
+                    context,
+                    title: 'ourApps',
+                    svgPath: SvgPath.svgAlheekmahLogo,
+                    onTap: () => Get.toNamed(
+                      AppRouter.ourApps,
+                    ),
                   ),
-                ),
-              ],
+                  const Gap(4),
+                  _customButtonWidget(
+                    context,
+                    title: 'aboutApp',
+                    iconWidth: 40.0,
+                    svgPath: SvgPath.svgLogoAqemLogo,
+                    onTap: () => Get.toNamed(
+                      AppRouter.aboutApp,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
@@ -74,15 +70,14 @@ class SettingsList extends StatelessWidget {
     required String title,
     double? iconWidth,
   }) {
-    return ContainerButtonWidget(
-      onPressed: onTap,
-      backgroundColor: context.theme.colorScheme.primaryContainer,
-      svgColor: context.theme.colorScheme.surface,
-      shapeColor: context.theme.colorScheme.surface.withValues(alpha: 0.1),
-      borderRadius: 10.0,
-      verticalPadding: 0.0,
-      child: SizedBox(
-        height: 45,
+    return SizedBox(
+      height: 45,
+      child: ContainerButtonWidget(
+        onPressed: onTap,
+        backgroundColor: context.theme.colorScheme.primaryContainer,
+        svgColor: context.theme.colorScheme.surface,
+        shapeColor: context.theme.colorScheme.surface.withValues(alpha: 0.1),
+        verticalPadding: 0.0,
         child: Row(
           children: [
             Expanded(

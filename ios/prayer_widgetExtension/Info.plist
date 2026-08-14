@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleShortVersionString</key>
-	<string>1.2.10</string>
+	<string>1.2.12</string>
 	<key>CFBundleVersion</key>
-	<string>16</string>
+	<string>18</string>
 	<key>NSExtension</key>
 	<dict>
 		<key>NSExtensionPointIdentifier</key>
