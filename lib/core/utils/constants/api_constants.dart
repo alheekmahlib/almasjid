@@ -16,9 +16,9 @@ class ApiConstants {
   /// كتالوج أصوات الأذان البعيد؛ النسخة المدمجة assets/json/adhanSounds.json
   /// تُستخدم كاحتياط عند تعذر الجلب.
   static const String adhanSoundsCatalogUrl =
-      'alheekmahlib/data/blob/main/adhan_sounds/adhan_sounds.json?raw=true';
+      'alheekmahlib/data/blob/main/adhan_sounds/adhanSounds.json?raw=true';
   static const String adhanSoundsCatalogFallbackUrl =
-      '$adhanSoundsBaseGitlab/adhan_sounds.json';
+      '$adhanSoundsBaseGitlab/adhanSounds.json';
   static const String ourAppsUrl =
       'alheekmahlib/thegarlanded/blob/master/ourApps.json?raw=true';
   static const String mapLightUrl =
