@@ -12,7 +12,6 @@ dependencies:
   adhan: ^2.0.0+1
   arabic_justified_text: ^1.0.4
   archive: ^4.0.9
-  awesome_notifications: ^0.12.1
   background_fetch: ^1.7.0
   badges: ^3.2.0
   bot_toast: ^4.1.3

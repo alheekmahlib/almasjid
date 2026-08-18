@@ -24,15 +24,17 @@
 <uses-permission android:name="com.huawei.hms.permission.LOCATION" />
 <!-- Huawei Location permissions -->
 
-<!-- awesome_notifications permissions -->
+<!-- flutter_local_notifications permissions (تُستخدم أيضاً لمستقبلات الويدجت) -->
   <uses-permission android:name="android.permission.VIBRATE"/>
   <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
-<!-- Awesome Notifications permissions -->
+<!-- flutter_local_notifications permissions -->
 
         <!-- flutter_local_notifications (Android 13+) -->
         <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
         <!-- Required for exact alarm scheduling on some Android versions/devices -->
         <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+        <!-- إشعار أذان بملء الشاشة (بديل wakeUpScreen السابق) -->
+        <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
 
     <uses-permission android:name="android.permission.INTERNET" />
     <application

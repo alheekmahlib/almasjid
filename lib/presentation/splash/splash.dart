@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -13,7 +11,6 @@ import '../../../core/utils/constants/lottie_constants.dart';
 import '../../../core/utils/constants/svg_constants.dart';
 import '../../../core/widgets/animated_drawing_widget.dart';
 import '../../core/services/location/locations.dart';
-import '../../core/services/macos_notifications_service.dart';
 import '../../core/services/notifications_helper.dart';
 import '../../core/utils/constants/extensions/bottom_sheet_extension.dart';
 import '../../core/utils/helpers/app_router.dart';

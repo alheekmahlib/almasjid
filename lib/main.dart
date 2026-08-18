@@ -19,12 +19,12 @@ Future<void> main() async {
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   Map<String, Map<String, String>> languages = await dep.init();
   await initializeApp();
-  runApp(AppInfo(
-    data: await AppInfoData.get(),
-    child: MyApp(
-      languages: languages,
+  runApp(
+    AppInfo(
+      data: await AppInfoData.get(),
+      child: MyApp(languages: languages),
     ),
-  ));
+  );
 }
 
 Future<void> initializeApp() async {
@@ -36,8 +36,7 @@ Future<void> initializeApp() async {
   if (Platform.isMacOS || Platform.isLinux || Platform.isWindows) {
     await NominatimGeocoding.init();
   }
-  NotifyHelper.initAwesomeNotifications();
-  NotifyHelper().setNotificationsListeners();
+  await NotifyHelper().ensureInitialized();
 
   // Ensure splash is removed on all platforms
   FlutterNativeSplash.remove();

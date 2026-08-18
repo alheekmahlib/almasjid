@@ -2,27 +2,23 @@ part of '../../../prayers.dart';
 
 extension PrayersNotiUi on PrayersNotificationsCtrl {
   Future<void> playButtonOnTap(List<AdhanData>? adhanData, int i) async {
-    final isDownloaded =
-        state.downloadedAdhanData.any((d) => d.index == adhanData![i].index);
+    final isDownloaded = state.downloadedAdhanData.any(
+      (d) => d.index == adhanData![i].index,
+    );
     if (isDownloaded) {
-      AdhanData? adhan = state.downloadedAdhanData
-          .firstWhere((a) => a.index == adhanData![i].index);
+      AdhanData? adhan = state.downloadedAdhanData.firstWhere(
+        (a) => a.index == adhanData![i].index,
+      );
       await state.audioPlayer
-          .setAudioSource(
-            AudioSource.file(
-              adhan.adhanPath!,
-            ),
-          )
+          .setAudioSource(AudioSource.file(adhan.adhanPath!))
           .then((_) async => await state.audioPlayer.play());
       log('AdhanPath: ${adhan.adhanPath} index: ${adhanData![i].index}');
     } else {
-      log('urlPlayAdhan: ${adhanData![i].urlPlayAdhan} index: ${adhanData[i].index}');
+      log(
+        'urlPlayAdhan: ${adhanData![i].urlPlayAdhan} index: ${adhanData[i].index}',
+      );
       await state.audioPlayer
-          .setAudioSource(
-            AudioSource.uri(
-              Uri.parse(adhanData[i].urlPlayAdhan),
-            ),
-          )
+          .setAudioSource(AudioSource.uri(Uri.parse(adhanData[i].urlPlayAdhan)))
           .then((_) async => await state.audioPlayer.play());
     }
   }
@@ -74,25 +70,32 @@ extension PrayersNotiUi on PrayersNotificationsCtrl {
 
     // تخزين المسارات المختارة في GetStorage
     GetStorage('AdhanSounds').write(ADHAN_PATH, state.selectedAdhanPath.value);
-    GetStorage('AdhanSounds')
-        .write(ADHAN_PATH_FAJIR, state.selectedAdhanPathFajir.value);
+    GetStorage(
+      'AdhanSounds',
+    ).write(ADHAN_PATH_FAJIR, state.selectedAdhanPathFajir.value);
 
-    log('Adhan selected: $index, Path: ${state.selectedAdhanPath.value}',
-        name: 'PrayersNotiUi');
-    log('Adhan Fajir Path: ${state.selectedAdhanPathFajir.value}',
-        name: 'PrayersNotiUi');
+    log(
+      'Adhan selected: $index, Path: ${state.selectedAdhanPath.value}',
+      name: 'PrayersNotiUi',
+    );
+    log(
+      'Adhan Fajir Path: ${state.selectedAdhanPathFajir.value}',
+      name: 'PrayersNotiUi',
+    );
   }
 
   RxBool isAdhanSelectByIndex(int adhanIndex) =>
       state.adhanList[adhanIndex].adhanLocalPath ==
-              state.selectedAdhanPath.value
-          ? true.obs
-          : false.obs;
+          state.selectedAdhanPath.value
+      ? true.obs
+      : false.obs;
 
-  RxBool isAdhanDownloadedByIndex(int adhanIndex) => (null !=
-          state.downloadedAdhanData
-              .firstWhereOrNull((e) => e.index == adhanIndex))
-      .obs;
+  RxBool isAdhanDownloadedByIndex(int adhanIndex) =>
+      (null !=
+              state.downloadedAdhanData.firstWhereOrNull(
+                (e) => e.index == adhanIndex,
+              ))
+          .obs;
 
   RxBool isAdhanPathDownloadedByIndex(int adhanIndex) =>
       (state.selectedAdhanPath.value ==
@@ -110,69 +113,70 @@ extension PrayersNotiUi on PrayersNotificationsCtrl {
     }
   }
 
-  void onNotificationActionReceived(ReceivedAction receivedAction) async {
+  Future<void> onNotificationActionReceived(
+    LocalReceivedNotification receivedAction,
+  ) async {
     if (DateTime.now().isBefore(
-        receivedAction.displayedDate!.add(const Duration(minutes: 5)))) {
+      receivedAction.displayedDate!.add(const Duration(minutes: 5)),
+    )) {
       Get.bottomSheet(
-              Container(
-                padding: const EdgeInsets.only(top: 8.0, right: 8.0, left: 8.0),
-                margin: const EdgeInsets.only(right: 8.0, left: 8.0),
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(16),
-                    topRight: Radius.circular(16),
-                  ),
-                  border: Border.all(
-                    width: 1,
-                    color: Theme.of(Get.context!).colorScheme.primary,
-                  ),
-                ),
-                child: Container(
-                  padding: const EdgeInsets.only(bottom: 16.0),
-                  decoration: BoxDecoration(
-                    color: Theme.of(Get.context!).colorScheme.primaryContainer,
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(16),
-                      topRight: Radius.circular(16),
-                    ),
-                  ),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          const SizedBox().customSvgWithColor(
-                            SvgPath.svgCloseCarve,
-                            width: 120,
-                            color: Theme.of(Get.context!)
-                                .colorScheme
-                                .inversePrimary,
-                          ),
-                          Container(
-                            width: 70,
-                            height: 4,
-                            decoration: BoxDecoration(
-                              color: Theme.of(Get.context!)
-                                  .colorScheme
-                                  .primaryContainer,
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                          )
-                        ],
-                      ),
-                      const Gap(8),
-                      PrayerDetails(
-                        prayerNameTranslated: receivedAction.title,
-                        prayerSummary: receivedAction.summary,
-                        payload: receivedAction.payload!,
-                      ),
-                    ],
-                  ),
-                ),
+        Container(
+          padding: const EdgeInsets.only(top: 8.0, right: 8.0, left: 8.0),
+          margin: const EdgeInsets.only(right: 8.0, left: 8.0),
+          decoration: BoxDecoration(
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(16),
+              topRight: Radius.circular(16),
+            ),
+            border: Border.all(
+              width: 1,
+              color: Theme.of(Get.context!).colorScheme.primary,
+            ),
+          ),
+          child: Container(
+            padding: const EdgeInsets.only(bottom: 16.0),
+            decoration: BoxDecoration(
+              color: Theme.of(Get.context!).colorScheme.primaryContainer,
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(16),
+                topRight: Radius.circular(16),
               ),
-              isScrollControlled: true)
-          .then((_) async => await state.adhanPlayer.stop());
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    const SizedBox().customSvgWithColor(
+                      SvgPath.svgCloseCarve,
+                      width: 120,
+                      color: Theme.of(Get.context!).colorScheme.inversePrimary,
+                    ),
+                    Container(
+                      width: 70,
+                      height: 4,
+                      decoration: BoxDecoration(
+                        color: Theme.of(
+                          Get.context!,
+                        ).colorScheme.primaryContainer,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                  ],
+                ),
+                const Gap(8),
+                PrayerDetails(
+                  prayerNameTranslated: receivedAction.title,
+                  prayerSummary: receivedAction.summary,
+                  payload: receivedAction.payload,
+                ),
+              ],
+            ),
+          ),
+        ),
+        isScrollControlled: true,
+      ).then((_) async => await state.adhanPlayer.stop());
       await playAudio(receivedAction.id, receivedAction.title);
     }
   }
@@ -180,13 +184,17 @@ extension PrayersNotiUi on PrayersNotificationsCtrl {
   Future<void> playAudio(int? id, String? title) async {
     final String athanIndex =
         GetStorage('AdhanSounds').read(ADHAN_PATH_INDEX) ?? '0';
-    String? audioPath =
-        GetStorage('AdhanSounds').read<String?>('$athanIndex$ADHAN_PATH_AUDIO');
-    String? audioFajirPath = GetStorage('AdhanSounds')
-        .read<String?>('$athanIndex$ADHAN_PATH_FAJIR_AUDIO');
+    String? audioPath = GetStorage(
+      'AdhanSounds',
+    ).read<String?>('$athanIndex$ADHAN_PATH_AUDIO');
+    String? audioFajirPath = GetStorage(
+      'AdhanSounds',
+    ).read<String?>('$athanIndex$ADHAN_PATH_FAJIR_AUDIO');
 
-    log('Audio paths: audioPath=$audioPath, audioFajirPath=$audioFajirPath, id=$id',
-        name: 'NotifyHelper');
+    log(
+      'Audio paths: audioPath=$audioPath, audioFajirPath=$audioFajirPath, id=$id',
+      name: 'NotifyHelper',
+    );
 
     // تحديد مسار الصوت المناسب (فجر أو عادي)
     final String? targetPath = id == 0 ? audioFajirPath : audioPath;
@@ -199,8 +207,12 @@ extension PrayersNotiUi on PrayersNotificationsCtrl {
         await state.adhanPlayer.play();
         return;
       } catch (e, stack) {
-        log('Error playing downloaded audio: $e',
-            error: e, stackTrace: stack, name: 'NotifyHelper');
+        log(
+          'Error playing downloaded audio: $e',
+          error: e,
+          stackTrace: stack,
+          name: 'NotifyHelper',
+        );
       }
     }
 
@@ -210,13 +222,15 @@ extension PrayersNotiUi on PrayersNotificationsCtrl {
         // قراءة المسار المحدد للأذان من التخزين
         final String selectedPath = id == 0
             ? (GetStorage('AdhanSounds').read<String?>(ADHAN_PATH_FAJIR) ??
-                'resource://raw/aqsa_fajir_athan')
+                  'resource://raw/aqsa_fajir_athan')
             : (GetStorage('AdhanSounds').read<String?>(ADHAN_PATH) ??
-                'resource://raw/aqsa_athan');
+                  'resource://raw/aqsa_athan');
 
         // استخراج اسم الملف من المسار
-        final String fileName =
-            selectedPath.replaceFirst('resource://raw/', '');
+        final String fileName = selectedPath.replaceFirst(
+          'resource://raw/',
+          '',
+        );
 
         log('Getting raw audio path for: $fileName', name: 'NotifyHelper');
 
@@ -234,8 +248,12 @@ extension PrayersNotiUi on PrayersNotificationsCtrl {
           return;
         }
       } catch (e, stack) {
-        log('Error playing raw audio via MethodChannel: $e',
-            error: e, stackTrace: stack, name: 'NotifyHelper');
+        log(
+          'Error playing raw audio via MethodChannel: $e',
+          error: e,
+          stackTrace: stack,
+          name: 'NotifyHelper',
+        );
       }
     }
 
@@ -248,8 +266,12 @@ extension PrayersNotiUi on PrayersNotificationsCtrl {
         await state.adhanPlayer.play();
         return;
       } catch (e, stack) {
-        log('Error playing fallback audio: $e',
-            error: e, stackTrace: stack, name: 'NotifyHelper');
+        log(
+          'Error playing fallback audio: $e',
+          error: e,
+          stackTrace: stack,
+          name: 'NotifyHelper',
+        );
       }
     }
 
