@@ -1,10 +1,14 @@
 part of '../prayers.dart';
 
-/// تنزيل أصوات الأذان من الكتالوج واستخراجها حسب المنصة:
-/// - أندرويد: الأذان كاملاً (عادي + فجري) إلى `<Documents>/Sounds/audio/`
-///   لتشغّله خدمة التشغيل المباشر عند وقت الصلاة.
-/// - iOS: مقطع ≤30 ثانية إلى Library/Sounds مباشرة، لأن UNNotificationSound
-///   يحل أسماء الملفات من هذا المجلد فقط (غير المدمج من الحزمة).
+/// تنزيل أصوات الأذان من الكتالوج حسب المنصة (GitHub ثم GitLab احتياطاً):
+/// - أندرويد: ملفا WAV مباشرة — العادي والفجري (أذان الفجر مختلف) —
+///   إلى `<Documents>/Sounds/audio/` لتشغّلهما خدمة التشغيل المباشر
+///   وخصية تشغيل الأذان الكامل داخل التطبيق.
+/// - iOS: حزمة zip تحتوي الأذان الكامل (عادي + فجري بصيغة m4a)
+///   والمقطع القصير ≤30 ثانية (aiff)؛ يُستخرج كل شيء إلى Library/Sounds
+///   لأن UNNotificationSound يحل أسماء الملفات من هناك، ويُخزن مسار
+///   المقطع بمفتاح مستقل لصوت الإشعار بينما المفاتيح العادية تحمل
+///   الأذان الكامل للتشغيل داخل التطبيق.
 /// - macOS: غير مدعوم في هذه المرحلة (يبقى على الأصوات المدمجة).
 class AudioDownloader {
   final notiCtrl = PrayersNotificationsCtrl.instance;
@@ -24,62 +28,28 @@ class AudioDownloader {
   }) async {
     if (Platform.isMacOS) return adhanData;
 
-    final url = Platform.isIOS
-        ? adhanData.urlIosAdhanZip
-        : adhanData.urlAndroidAdhanZip;
-
     if (Platform.isIOS) {
-      final segmentPath = await _downloadAndExtractIosSegment(
-        adhanData.index,
-        url,
-        adhanData.adhanFileName,
-        onReceiveProgress: onReceiveProgress,
-      );
-      return AdhanData(
-        index: adhanData.index,
-        adhanFileName: adhanData.adhanFileName,
-        adhanLocalPath: adhanData.adhanLocalPath,
-        isBundled: adhanData.isBundled,
-        adhanName: adhanData.adhanName,
-        urlAndroidAdhanZip: adhanData.urlAndroidAdhanZip,
-        urlIosAdhanZip: adhanData.urlIosAdhanZip,
-        urlPlayAdhan: adhanData.urlPlayAdhan,
-        androidFilePath: adhanData.androidFilePath,
-        iosFilePath: segmentPath,
-        androidFajirFilePath: adhanData.androidFajirFilePath,
-        adhanPath: segmentPath,
-      );
+      return _downloadIos(adhanData, onReceiveProgress);
     }
-
-    final androidFilePath = await _downloadAndExtractAndroid(
-      adhanData.index,
-      url,
-      adhanData.adhanFileName,
-      onReceiveProgress: onReceiveProgress,
-    );
-
-    return AdhanData(
-      index: adhanData.index,
-      adhanFileName: adhanData.adhanFileName,
-      adhanLocalPath: adhanData.adhanLocalPath,
-      isBundled: adhanData.isBundled,
-      adhanName: adhanData.adhanName,
-      urlAndroidAdhanZip: adhanData.urlAndroidAdhanZip,
-      urlIosAdhanZip: adhanData.urlIosAdhanZip,
-      urlPlayAdhan: adhanData.urlPlayAdhan,
-      androidFilePath: androidFilePath,
-      iosFilePath: adhanData.iosFilePath,
-      androidFajirFilePath: notiCtrl.state.tempAdhanPathFajir.value,
-      adhanPath: androidFilePath,
-    );
+    return _downloadAndroid(adhanData, onReceiveProgress);
   }
 
-  /// مسار الصوت المحمّل للمقرئ إن وُجد الملف فعلاً على القرص.
-  static String? downloadedAudioPathFor(int index) {
+  /// مسار الصوت الكامل المحمّل للمقرئ (الفجري عند الطلب) إن وُجد فعلاً.
+  static String? downloadedAudioPathFor(int index, {bool fajr = false}) {
+    final box = GetStorage('AdhanSounds');
+    final key = fajr
+        ? '$index$ADHAN_PATH_FAJIR_AUDIO'
+        : '$index$ADHAN_PATH_AUDIO';
+    final path = box.read<String?>(key);
+    return (path != null && File(path).existsSync()) ? path : null;
+  }
+
+  /// اسم ملف مقطع iOS (≤30 ثانية) المحمّل، أو null للرجوع للمدمج.
+  static String? downloadedIosSegmentNameFor(int index) {
     final path = GetStorage(
       'AdhanSounds',
-    ).read<String?>('$index$ADHAN_PATH_AUDIO');
-    return (path != null && File(path).existsSync()) ? path : null;
+    ).read<String?>('$index$ADHAN_PATH_SEGMENT_AUDIO');
+    return (path != null && File(path).existsSync()) ? _basename(path) : null;
   }
 
   /// حذف ملفات مقرئ محمّل ومفاتيح التخزين الخاصة به.
@@ -88,6 +58,7 @@ class AudioDownloader {
     for (final key in [
       '${adhanData.index}$ADHAN_PATH_AUDIO',
       '${adhanData.index}$ADHAN_PATH_FAJIR_AUDIO',
+      '${adhanData.index}$ADHAN_PATH_SEGMENT_AUDIO',
     ]) {
       final path = box.read<String?>(key);
       if (path != null) {
@@ -105,161 +76,207 @@ class AudioDownloader {
     }
   }
 
-  Future<List<int>?> _downloadZipBytes(
-    String url, {
-    void Function(int, int)? onReceiveProgress,
-  }) async {
-    final response = await Dio().get(
-      url,
-      options: Options(
-        responseType: ResponseType.bytes,
-        followRedirects: false,
-        receiveTimeout: const Duration(seconds: 60),
-      ),
-      onReceiveProgress: onReceiveProgress,
-    );
-    return response.data as List<int>?;
-  }
+  // ─── iOS ───
 
-  /// iOS: استخراج المقطع الأول (مرتباً بالاسم) إلى Library/Sounds مباشرة.
-  Future<String?> _downloadAndExtractIosSegment(
-    int index,
-    String url,
-    String fileName, {
+  Future<AdhanData> _downloadIos(
+    AdhanData adhanData,
     void Function(int, int)? onReceiveProgress,
-  }) async {
+  ) async {
+    final zipUrl = adhanData.urlIosAdhan;
+    if (zipUrl == null) return adhanData;
+
     try {
-      final bytes = await _downloadZipBytes(
-        url,
+      final bytes = await _downloadBytes(
+        AdhanSoundsCatalog.resolveUrl(zipUrl),
+        fallbackUrl: AdhanSoundsCatalog.resolveFallbackUrl(zipUrl),
         onReceiveProgress: onReceiveProgress,
       );
-      if (bytes == null) return null;
+      if (bytes == null) return adhanData;
 
       // Library/Sounds هو المجلد الوحيد (غير حزمة التطبيق) الذي يحل منه
-      // iOS أصوات الإشعارات.
+      // iOS أصوات الإشعارات؛ نستخرج فيه كل الملفات.
       final libraryDir = await getLibraryDirectory();
       final soundsDir = Directory(path.join(libraryDir.path, 'Sounds'));
       if (!soundsDir.existsSync()) {
         soundsDir.createSync(recursive: true);
       }
 
-      final zipFile = File(path.join(soundsDir.path, '$fileName.zip'));
-      await zipFile.writeAsBytes(bytes);
-      final archive = ZipDecoder().decodeBytes(zipFile.readAsBytesSync());
-      await zipFile.delete();
+      final archive = ZipDecoder().decodeBytes(bytes);
 
-      final audioFiles =
-          archive
-              .where(
-                (file) =>
-                    file.isFile &&
-                    _audioExtensions.any(
-                      (ext) => file.name.toLowerCase().endsWith(ext),
-                    ),
-              )
-              .toList()
-            ..sort((a, b) => a.name.compareTo(b.name));
-      if (audioFiles.isEmpty) return null;
-
-      final first = audioFiles.first;
-      final extractedFile = File(path.join(soundsDir.path, first.name));
-      await extractedFile.writeAsBytes(first.content as List<int>);
-
-      GetStorage(
-        'AdhanSounds',
-      ).write('$index$ADHAN_PATH_AUDIO', extractedFile.path);
-      log(
-        'iOS segment extracted: ${extractedFile.path}',
-        name: 'AudioDownloader',
-      );
-      return extractedFile.path;
-    } catch (e) {
-      log('Error downloading iOS adhan segment: $e', name: 'AudioDownloader');
-      return null;
-    }
-  }
-
-  /// أندرويد: استخراج الأذان كاملاً (عادي + فجري إن وُجد) إلى Sounds/audio/.
-  Future<String?> _downloadAndExtractAndroid(
-    int index,
-    String url,
-    String fileName, {
-    void Function(int, int)? onReceiveProgress,
-  }) async {
-    try {
-      final bytes = await _downloadZipBytes(
-        url,
-        onReceiveProgress: onReceiveProgress,
-      );
-      if (bytes == null) return null;
-
-      final appDir = await getApplicationDocumentsDirectory();
-      final soundsDir = Directory(path.join(appDir.path, 'Sounds'));
-      if (!soundsDir.existsSync()) {
-        soundsDir.createSync(recursive: true);
-      }
-
-      final zipFile = File(path.join(soundsDir.path, '$fileName.zip'));
-      await zipFile.writeAsBytes(bytes);
-      final archive = ZipDecoder().decodeBytes(zipFile.readAsBytesSync());
-      await zipFile.delete();
-
-      String? extractedFilePath;
-      String? extractedFilePathFajir;
+      String? fullRegularPath;
+      String? fullFajirPath;
+      String? segmentPath;
 
       for (var file in archive) {
-        if (file.isFile &&
-            _audioExtensions.any(
-              (ext) => file.name.toLowerCase().endsWith(ext),
-            )) {
-          final outputPath = path.join(soundsDir.path, 'audio');
-          final extractedFile = File(path.join(outputPath, file.name));
-          await extractedFile.create(recursive: true);
-          await extractedFile.writeAsBytes(file.content as List<int>);
+        final name = file.name.split('/').last;
+        final isJunk = file.name.contains('__MACOSX') || name.startsWith('.');
+        if (!file.isFile ||
+            isJunk ||
+            !_audioExtensions.any((ext) => name.toLowerCase().endsWith(ext))) {
+          continue;
+        }
 
-          if (file.name.toLowerCase().contains('fajir')) {
-            extractedFilePathFajir = extractedFile.path;
-            GetStorage(
-              'AdhanSounds',
-            ).write('$index$ADHAN_PATH_FAJIR_AUDIO', extractedFile.path);
-            log(
-              'extractedFilePathFajir: ${extractedFile.path}',
-              name: 'AudioDownloader',
-            );
-          } else {
-            extractedFilePath = extractedFile.path;
-            GetStorage(
-              'AdhanSounds',
-            ).write('$index$ADHAN_PATH_AUDIO', extractedFile.path);
-            log(
-              'extractedFilePath: ${extractedFile.path}',
-              name: 'AudioDownloader',
-            );
-          }
+        final extractedFile = File(path.join(soundsDir.path, name));
+        await extractedFile.writeAsBytes(file.content as List<int>);
+
+        final isFajir = name.toLowerCase().contains('fajir');
+        // aiff = المقطع القصير لصوت الإشعار؛ m4a = الأذان الكامل للتشغيل.
+        final isSegment =
+            name.toLowerCase().endsWith('.aiff') ||
+            name.toLowerCase().endsWith('.aif');
+        if (isFajir) {
+          fullFajirPath = extractedFile.path;
+        } else if (isSegment) {
+          segmentPath = extractedFile.path;
+        } else {
+          fullRegularPath = extractedFile.path;
         }
       }
-      GetStorage('AdhanSounds').write(ADHAN_PATH_INDEX, index.toString());
 
-      // الملف الفجري اختياري؛ بعض الحزم لا تحتوي نسخة فجرية.
-      if (extractedFilePath == null) {
-        throw Exception('Failed to extract audio files.');
+      final box = GetStorage('AdhanSounds');
+      if (fullRegularPath != null) {
+        box.write('${adhanData.index}$ADHAN_PATH_AUDIO', fullRegularPath);
       }
-      notiCtrl.state.tempAdhanPathFajir.value =
-          extractedFilePathFajir ?? extractedFilePath;
-      notiCtrl.state.tempAdhanPath.value = extractedFilePath;
+      if (fullFajirPath != null) {
+        box.write('${adhanData.index}$ADHAN_PATH_FAJIR_AUDIO', fullFajirPath);
+      }
+      if (segmentPath != null) {
+        box.write('${adhanData.index}$ADHAN_PATH_SEGMENT_AUDIO', segmentPath);
+      }
+      box.write(ADHAN_PATH_INDEX, adhanData.index.toString());
+
       log(
-        'Final tempAdhanPath: ${notiCtrl.state.tempAdhanPath.value}',
-        name: 'AudioDownloader',
-      );
-      log(
-        'Final tempAdhanPathFajir: ${notiCtrl.state.tempAdhanPathFajir.value}',
+        'iOS adhan extracted: full=$fullRegularPath, '
+        'fajir=$fullFajirPath, segment=$segmentPath',
         name: 'AudioDownloader',
       );
 
-      return extractedFilePath;
+      return _copyWithDownloaded(
+        adhanData,
+        mainPath: fullRegularPath,
+        fajirPath: fullFajirPath,
+        ios: true,
+      );
     } catch (e) {
-      log('Error downloading or extracting file: $e', name: 'AudioDownloader');
-      return null;
+      log('Error downloading iOS adhan package: $e', name: 'AudioDownloader');
+      return adhanData;
     }
   }
+
+  // ─── Android ───
+
+  Future<AdhanData> _downloadAndroid(
+    AdhanData adhanData,
+    void Function(int, int)? onReceiveProgress,
+  ) async {
+    final regularUrl = adhanData.urlAndroidAdhan;
+    if (regularUrl == null) return adhanData;
+
+    try {
+      final appDir = await getApplicationDocumentsDirectory();
+      final audioDir = Directory(path.join(appDir.path, 'Sounds', 'audio'));
+      if (!audioDir.existsSync()) {
+        audioDir.createSync(recursive: true);
+      }
+
+      String? regularPath;
+      String? fajirPath;
+
+      // العادي (إجباري)
+      final regularBytes = await _downloadBytes(
+        AdhanSoundsCatalog.resolveUrl(regularUrl),
+        fallbackUrl: AdhanSoundsCatalog.resolveFallbackUrl(regularUrl),
+        onReceiveProgress: onReceiveProgress,
+      );
+      if (regularBytes != null) {
+        final file = File(path.join(audioDir.path, regularUrl.split('/').last));
+        await file.writeAsBytes(regularBytes);
+        regularPath = file.path;
+      }
+
+      // الفجري (اختياري — أذان الفجر يختلف عن باقي الصلوات)
+      final fajirUrl = adhanData.urlAndroidFajirAdhan;
+      if (fajirUrl != null) {
+        final fajirBytes = await _downloadBytes(
+          AdhanSoundsCatalog.resolveUrl(fajirUrl),
+          fallbackUrl: AdhanSoundsCatalog.resolveFallbackUrl(fajirUrl),
+        );
+        if (fajirBytes != null) {
+          final file = File(path.join(audioDir.path, fajirUrl.split('/').last));
+          await file.writeAsBytes(fajirBytes);
+          fajirPath = file.path;
+        }
+      }
+
+      if (regularPath == null) {
+        throw Exception('Failed to download adhan audio files.');
+      }
+
+      final box = GetStorage('AdhanSounds');
+      box.write('${adhanData.index}$ADHAN_PATH_AUDIO', regularPath);
+      if (fajirPath != null) {
+        box.write('${adhanData.index}$ADHAN_PATH_FAJIR_AUDIO', fajirPath);
+      }
+      box.write(ADHAN_PATH_INDEX, adhanData.index.toString());
+
+      notiCtrl.state.tempAdhanPath.value = regularPath;
+      notiCtrl.state.tempAdhanPathFajir.value = fajirPath ?? regularPath;
+      log(
+        'Android adhan saved: regular=$regularPath, fajir=$fajirPath',
+        name: 'AudioDownloader',
+      );
+
+      return _copyWithDownloaded(
+        adhanData,
+        mainPath: regularPath,
+        fajirPath: fajirPath,
+        ios: false,
+      );
+    } catch (e) {
+      log('Error downloading Android adhan: $e', name: 'AudioDownloader');
+      return adhanData;
+    }
+  }
+
+  // ─── أدوات مساعدة ───
+
+  Future<List<int>?> _downloadBytes(
+    String url, {
+    String? fallbackUrl,
+    void Function(int, int)? onReceiveProgress,
+  }) async {
+    final result = await ApiClient().downloadFile(
+      url: url,
+      fallbackUrl: fallbackUrl,
+      onProgress: onReceiveProgress,
+      timeout: const Duration(minutes: 5),
+      options: Options(responseType: ResponseType.bytes),
+    );
+    return result.isRight ? result.right as List<int>? : null;
+  }
+
+  AdhanData _copyWithDownloaded(
+    AdhanData adhanData, {
+    required String? mainPath,
+    required String? fajirPath,
+    required bool ios,
+  }) {
+    return AdhanData(
+      index: adhanData.index,
+      adhanFileName: adhanData.adhanFileName,
+      adhanLocalPath: adhanData.adhanLocalPath,
+      isBundled: adhanData.isBundled,
+      adhanName: adhanData.adhanName,
+      urlAndroidAdhan: adhanData.urlAndroidAdhan,
+      urlAndroidFajirAdhan: adhanData.urlAndroidFajirAdhan,
+      urlIosAdhan: adhanData.urlIosAdhan,
+      urlPlayAdhan: adhanData.urlPlayAdhan,
+      androidFilePath: ios ? adhanData.androidFilePath : mainPath,
+      iosFilePath: ios ? mainPath : adhanData.iosFilePath,
+      androidFajirFilePath: fajirPath,
+      adhanPath: mainPath,
+    );
+  }
+
+  static String _basename(String filePath) => filePath.split('/').last;
 }

@@ -123,6 +123,11 @@ class NotifyHelper {
     final scheduledTime =
         time ?? DateTime.now().add(const Duration(minutes: 2));
 
+    // نظام معرفات إشعارات الصلوات: 20000 + day*10 + prayerKey (الفجر=0)،
+    // فالمعرف المنتهي بصفر ضمن النطاق هو إشعار فجر — له صوته الفجري الخاص.
+    final bool isFajrPrayer =
+        reminderId >= 20000 && reminderId < 21000 && reminderId % 10 == 0;
+
     log(
       'audioPath: $audioPath\nsound_type: $soundType\nreminderId: $reminderId',
       name: 'NotifyHelper',
@@ -136,14 +141,14 @@ class NotifyHelper {
         summary: summary,
         scheduledTime: scheduledTime,
         soundType: soundType,
-        isFajr: reminderId == 0,
+        isFajr: isFajrPrayer || reminderId == 0,
         payload: fullPayload,
         badgeNumber: LocalNotificationsController.instance.unreadCount,
         isRepeats: isRepeats,
       );
 
       // أندرويد: إشعار الأذان صامت؛ خدمة التشغيل الأمامية هي مصدر الصوت،
-      // لذا نجدول إنذاراً موازياً بنفس المعرف والوقت.
+      // لذا نجدول إنذاراً موازياً بنفس المعرف والوقت — بالنسخة الفجرية للفجر.
       if (Platform.isAndroid &&
           soundType == 'sound' &&
           time != null &&
@@ -152,7 +157,9 @@ class NotifyHelper {
           AdhanAlarm(
             id: reminderId,
             time: time,
-            filePath: LocalNotificationsService.selectedAdhanAudioPath(),
+            filePath: LocalNotificationsService.selectedAdhanAudioPath(
+              fajr: isFajrPrayer,
+            ),
           ),
         ]);
       }

@@ -97,10 +97,10 @@ class LocalNotificationsService {
     return 'aqsa';
   }
 
-  /// مسار الصوت المحمّل للمقرئ المختار، إن وُجد الملف فعلاً على القرص.
-  /// يستخدمه مشغّل الأذان (أندرويد) وتسمية مقطع iOS؛ null يعني الرجوع
-  /// للمورد الافتراضي المدمج (الأقصى).
-  static String? selectedAdhanAudioPath() {
+  /// مسار الصوت الكامل المحمّل للمقرئ المختار (الفجري عند الطلب)، إن وُجد
+  /// الملف فعلاً على القرص. يستخدمه مشغّل أذان أندرويد وتشغيل الأذان
+  /// الكامل داخل التطبيق؛ null يعني الرجوع للمورد الافتراضي المدمج.
+  static String? selectedAdhanAudioPath({bool fajr = false}) {
     try {
       final box = GetStorage('AdhanSounds');
       final selectedIndex = int.tryParse(
@@ -109,20 +109,35 @@ class LocalNotificationsService {
             '',
       );
       if (selectedIndex == null) return null;
-      final path = box.read<String?>('$selectedIndex$ADHAN_PATH_AUDIO');
+      final key = fajr
+          ? '$selectedIndex$ADHAN_PATH_FAJIR_AUDIO'
+          : '$selectedIndex$ADHAN_PATH_AUDIO';
+      final path = box.read<String?>(key);
       return (path != null && File(path).existsSync()) ? path : null;
     } catch (_) {
       return null;
     }
   }
 
-  /// اسم ملف مقطع iOS المحمّل في Library/Sounds (يحله UNNotificationSound)،
-  /// أو null للرجوع للصوت المدمج من حزمة التطبيق.
-  String? get _downloadedIosSegmentName {
+  /// اسم ملف مقطع iOS المحمّل (≤30 ثانية) في Library/Sounds — يُحله
+  /// UNNotificationSound — أو null للرجوع للصوت المدمج من حزمة التطبيق.
+  /// لا توجد مقاطع فجرية منفصلة حالياً؛ مقطع الفجر يرجع للعادي.
+  String? _downloadedIosSegmentName() {
     if (!Platform.isIOS) return null;
-    final path = selectedAdhanAudioPath();
-    if (path == null) return null;
-    return path.split(Platform.pathSeparator).last;
+    try {
+      final box = GetStorage('AdhanSounds');
+      final selectedIndex = int.tryParse(
+        box.read<String?>(ADHAN_SELECTED_INDEX) ??
+            box.read<String?>(ADHAN_PATH_INDEX) ??
+            '',
+      );
+      if (selectedIndex == null) return null;
+      final path = box.read<String?>('$selectedIndex$ADHAN_PATH_SEGMENT_AUDIO');
+      if (path == null || !File(path).existsSync()) return null;
+      return path.split(Platform.pathSeparator).last;
+    } catch (_) {
+      return null;
+    }
   }
 
   /// تهيئة الخدمة. يمكن استدعاؤها أكثر من مرة؛ أول استدعاء يهيئ المنصة،
@@ -385,7 +400,7 @@ class LocalNotificationsService {
     switch (soundType) {
       case 'sound':
         darwinSoundFile = Platform.isIOS
-            ? (_downloadedIosSegmentName ?? 'aqsa_athan.aiff')
+            ? (_downloadedIosSegmentName() ?? 'aqsa_athan.aiff')
             : '${_selectedReciter}_athan.aiff';
       case 'bell':
         darwinSoundFile = 'notification.aiff';

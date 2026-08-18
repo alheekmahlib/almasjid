@@ -14,11 +14,13 @@ extension PrayersNotiUi on PrayersNotificationsCtrl {
           .then((_) async => await state.audioPlayer.play());
       log('AdhanPath: ${adhan.adhanPath} index: ${adhanData![i].index}');
     } else {
-      log(
-        'urlPlayAdhan: ${adhanData![i].urlPlayAdhan} index: ${adhanData[i].index}',
+      // رابط المعاينة مسار نسبي في الكتالوج؛ يُحل حسب المستودع النشط.
+      final previewUrl = AdhanSoundsCatalog.resolveUrl(
+        adhanData![i].urlPlayAdhan,
       );
+      log('urlPlayAdhan: $previewUrl index: ${adhanData[i].index}');
       await state.audioPlayer
-          .setAudioSource(AudioSource.uri(Uri.parse(adhanData[i].urlPlayAdhan)))
+          .setAudioSource(AudioSource.uri(Uri.parse(previewUrl)))
           .then((_) async => await state.audioPlayer.play());
     }
   }
@@ -181,13 +183,18 @@ extension PrayersNotiUi on PrayersNotificationsCtrl {
       'AdhanSounds',
     ).read<String?>('$athanIndex$ADHAN_PATH_FAJIR_AUDIO');
 
+    // أذان الفجر له نسخته الخاصة؛ يُكشف من العنوان (المعرفات الحالية لا
+    // تعود 0 أبداً، والفجر هو الوحيد الذي يمرر عنوانه هنا).
+    final bool isFajr = id == 0 || (title != null && title == 'Fajr'.tr);
+
     log(
-      'Audio paths: audioPath=$audioPath, audioFajirPath=$audioFajirPath, id=$id',
+      'Audio paths: audioPath=$audioPath, audioFajirPath=$audioFajirPath, '
+      'id=$id, isFajr=$isFajr',
       name: 'NotifyHelper',
     );
 
     // تحديد مسار الصوت المناسب (فجر أو عادي)
-    final String? targetPath = id == 0 ? audioFajirPath : audioPath;
+    final String? targetPath = isFajr ? audioFajirPath : audioPath;
 
     // التحقق من وجود الملف المُحمّل
     if (targetPath != null && File(targetPath).existsSync()) {
@@ -210,7 +217,7 @@ extension PrayersNotiUi on PrayersNotificationsCtrl {
     if (Platform.isAndroid) {
       try {
         // قراءة المسار المحدد للأذان من التخزين
-        final String selectedPath = id == 0
+        final String selectedPath = isFajr
             ? (GetStorage('AdhanSounds').read<String?>(ADHAN_PATH_FAJIR) ??
                   'resource://raw/aqsa_fajir_athan')
             : (GetStorage('AdhanSounds').read<String?>(ADHAN_PATH) ??
@@ -248,7 +255,7 @@ extension PrayersNotiUi on PrayersNotificationsCtrl {
     }
 
     // إذا لم يكن الملف متوفراً، جرّب الملف الآخر كـ fallback
-    final String? fallbackPath = id == 0 ? audioPath : audioFajirPath;
+    final String? fallbackPath = isFajr ? audioPath : audioFajirPath;
     if (fallbackPath != null && File(fallbackPath).existsSync()) {
       try {
         log('Playing fallback audio: $fallbackPath', name: 'NotifyHelper');

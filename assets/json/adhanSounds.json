@@ -3,54 +3,66 @@
     "index": 0,
     "adhanFileName": "aqsa",
     "adhanLocalPath": "resource://raw/aqsa_athan",
+    "isBundled": true,
     "adhanName": "aqsa",
-    "urlAndroidAdhanZip": "https://raw.githubusercontent.com/alheekmahlib/data/main/adhan_sounds/aqsa.zip",
-    "urlIosAdhanZip": "https://raw.githubusercontent.com/alheekmahlib/adhan_sounds/main/aqsa_part.zip",
-    "urlPlayAdhan": "https://raw.githubusercontent.com/alheekmahlib/data/main/adhan_sounds/aqsa_athan.m4a"
+    "urlAndroidAdhan": null,
+    "urlAndroidFajirAdhan": null,
+    "urlIosAdhan": null,
+    "urlPlayAdhan": "aqsa_athan.m4a"
   },
   {
     "index": 1,
     "adhanFileName": "saqqaf",
-    "adhanLocalPath": "resource://raw/saqqaf_athan",
+    "adhanLocalPath": null,
+    "isBundled": false,
     "adhanName": "saqqaf",
-    "urlAndroidAdhanZip": "https://raw.githubusercontent.com/alheekmahlib/data/main/adhan_sounds/saqqaf.zip",
-    "urlIosAdhanZip": "https://raw.githubusercontent.com/alheekmahlib/adhan_sounds/main/Al-Saqqaf_part.zip",
-    "urlPlayAdhan": "https://raw.githubusercontent.com/alheekmahlib/data/main/adhan_sounds/saqqaf_athan.m4a"
+    "urlAndroidAdhan": "android/saqqaf_athan.wav",
+    "urlAndroidFajirAdhan": "android/saqqaf_fajir_athan.wav",
+    "urlIosAdhan": "ios/saqqaf.zip",
+    "urlPlayAdhan": "saqqaf_athan.m4a"
   },
   {
     "index": 2,
     "adhanFileName": "sarihi",
-    "adhanLocalPath": "resource://raw/sarihi_athan",
+    "adhanLocalPath": null,
+    "isBundled": false,
     "adhanName": "sarihi",
-    "urlAndroidAdhanZip": "https://raw.githubusercontent.com/alheekmahlib/data/main/adhan_sounds/sarihi.zip",
-    "urlIosAdhanZip": "https://raw.githubusercontent.com/alheekmahlib/adhan_sounds/main/Al-Saqqaf_part.zip",
-    "urlPlayAdhan": "https://raw.githubusercontent.com/alheekmahlib/data/main/adhan_sounds/sarihi_athanF.m4a"
+    "urlAndroidAdhan": "android/sarihi_athan.wav",
+    "urlAndroidFajirAdhan": "android/sarihi_athan_fajir.wav",
+    "urlIosAdhan": "ios/sarihi.zip",
+    "urlPlayAdhan": "sarihi_athanF.m4a"
   },
   {
     "index": 3,
     "adhanFileName": "baset",
-    "adhanLocalPath": "resource://raw/baset_athan",
+    "adhanLocalPath": null,
+    "isBundled": false,
     "adhanName": "baset",
-    "urlAndroidAdhanZip": "https://raw.githubusercontent.com/alheekmahlib/data/main/adhan_sounds/baset.zip",
-    "urlIosAdhanZip": "https://raw.githubusercontent.com/alheekmahlib/adhan_sounds/main/Al-Saqqaf_part.zip",
-    "urlPlayAdhan": "https://raw.githubusercontent.com/alheekmahlib/data/main/adhan_sounds/baset_athan.m4a"
+    "urlAndroidAdhan": "android/baset_athan.wav",
+    "urlAndroidFajirAdhan": "android/baset_fajir_athan.wav",
+    "urlIosAdhan": "ios/baset.zip",
+    "urlPlayAdhan": "baset_athan.m4a"
   },
   {
     "index": 4,
     "adhanFileName": "qatami",
-    "adhanLocalPath": "resource://raw/qatami_athan",
+    "adhanLocalPath": null,
+    "isBundled": false,
     "adhanName": "qatami",
-    "urlAndroidAdhanZip": "https://raw.githubusercontent.com/alheekmahlib/data/main/adhan_sounds/qatami.zip",
-    "urlIosAdhanZip": "https://raw.githubusercontent.com/alheekmahlib/adhan_sounds/main/Al-Saqqaf_part.zip",
-    "urlPlayAdhan": "https://raw.githubusercontent.com/alheekmahlib/data/main/adhan_sounds/qatami_athan.m4a"
+    "urlAndroidAdhan": "android/qatami_athan.wav",
+    "urlAndroidFajirAdhan": "android/qatami_fajir_athan.wav",
+    "urlIosAdhan": "ios/qatami.zip",
+    "urlPlayAdhan": "qatami_athan.m4a"
   },
   {
     "index": 5,
     "adhanFileName": "salah",
-    "adhanLocalPath": "resource://raw/salah_athan",
+    "adhanLocalPath": null,
+    "isBundled": false,
     "adhanName": "salah",
-    "urlAndroidAdhanZip": "https://raw.githubusercontent.com/alheekmahlib/data/main/adhan_sounds/salah.zip",
-    "urlIosAdhanZip": "https://raw.githubusercontent.com/alheekmahlib/adhan_sounds/main/Al-Saqqaf_part.zip",
-    "urlPlayAdhan": "https://raw.githubusercontent.com/alheekmahlib/data/main/adhan_sounds/salah_athan.m4a"
+    "urlAndroidAdhan": "android/salah_athan.wav",
+    "urlAndroidFajirAdhan": "android/salah_fajir_athan.wav",
+    "urlIosAdhan": "ios/salah.zip",
+    "urlPlayAdhan": "salah_athan.m4a"
   }
 ]
