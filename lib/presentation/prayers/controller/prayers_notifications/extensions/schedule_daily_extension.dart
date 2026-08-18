@@ -39,7 +39,8 @@ int _daysToSchedule() {
 }
 
 Future<void> _cancelLegacyPrayerNotificationsForPrayerIndex(
-    int prayerIndex) async {
+  int prayerIndex,
+) async {
   // النظام القديم كان يعتمد: baseId ثم +5 لكل يوم.
   final dayLength = Platform.isAndroid ? 61 : 10;
   for (int i = 0; i < dayLength; i++) {
@@ -73,21 +74,27 @@ Future<void> _cancelLegacyPrayerNotificationsIfNeeded() async {
   }
 
   await storage.write(_kLegacyPrayerNotificationsCancelledFlag, true);
-  log('Legacy prayer notification IDs cancelled (migration)',
-      name: 'ScheduleDailyExtension');
+  log(
+    'Legacy prayer notification IDs cancelled (migration)',
+    name: 'ScheduleDailyExtension',
+  );
 }
 
 extension ScheduleDailyExtension on PrayersNotificationsCtrl {
   Future<void> scheduleDailyNotificationsForPrayer(
-      int prayerIndex, String prayerName, String notificationType) async {
+    int prayerIndex,
+    String prayerName,
+    String notificationType,
+  ) async {
     final athanCtrl = AdhanController.instance;
     if ('nothing' == notificationType) {
       GetStorage('AdhanSounds').remove('scheduledAdhan_$prayerName');
       log('منبة صلاة $prayerName removed', name: 'ScheduleDailyExtension');
       return cancelPrayerNotificationsForAllDay(prayerIndex);
     }
-    GetStorage('AdhanSounds')
-        .write('scheduledAdhan_$prayerName', notificationType);
+    GetStorage(
+      'AdhanSounds',
+    ).write('scheduledAdhan_$prayerName', notificationType);
 
     if (athanCtrl.state.prayerTimes == null ||
         athanCtrl.state.sunnahTimes == null) {
@@ -101,8 +108,9 @@ extension ScheduleDailyExtension on PrayersNotificationsCtrl {
     final now = DateTime.now();
 
     for (int day = 0; day < daysToSchedule; day++) {
-      DateComponents dateComponents =
-          DateComponents.from(DateTime.now().add(Duration(days: day)));
+      DateComponents dateComponents = DateComponents.from(
+        DateTime.now().add(Duration(days: day)),
+      );
 
       PrayerTimes prayerTimes = PrayerTimes(
         athanCtrl.state.coordinates,
@@ -176,19 +184,22 @@ extension ScheduleDailyExtension on PrayersNotificationsCtrl {
       //   }
       // } else {
       await NotifyHelper().scheduledNotification(
-          reminderId: notificationId,
-          title: athanCtrl.prayerNameFromEnum(selectedPrayer).tr,
-          summary:
-              '${'timeForPrayer'.tr} ${athanCtrl.prayerNameFromEnum(selectedPrayer).tr}',
-          body: selectedBody.tr,
-          isRepeats: false,
-          time: prayerTime,
-          payload: {'sound_type': notificationType},
-          soundIndex: 1);
+        reminderId: notificationId,
+        title: athanCtrl.prayerNameFromEnum(selectedPrayer).tr,
+        summary:
+            '${'timeForPrayer'.tr} ${athanCtrl.prayerNameFromEnum(selectedPrayer).tr}',
+        body: selectedBody.tr,
+        isRepeats: false,
+        time: prayerTime,
+        payload: {'sound_type': notificationType},
+        soundIndex: 1,
+      );
       // }
 
-      log('تم جدولة صلاة ${athanCtrl.prayerNameFromEnum(selectedPrayer).tr}',
-          name: 'ScheduleDailyExtension');
+      log(
+        'تم جدولة صلاة ${athanCtrl.prayerNameFromEnum(selectedPrayer).tr}',
+        name: 'ScheduleDailyExtension',
+      );
       log('notificationId: $notificationId', name: 'ScheduleDailyExtension');
       // log('موعد صلاة ${DateFormatter.formatPrayerTime(prayerTime).tr}');
 
@@ -232,8 +243,10 @@ extension ScheduleDailyExtension on PrayersNotificationsCtrl {
   // }
 
   Future<void> reschedulePrayers() async {
-    log('إعادة جدولة إشعارات الصلوات اليومية...',
-        name: 'ScheduleDailyExtension');
+    log(
+      'إعادة جدولة إشعارات الصلوات اليومية...',
+      name: 'ScheduleDailyExtension',
+    );
 
     // تنظيف IDs القديمة مرة واحدة بعد التحديث لتفادي الإشعارات المكررة.
     await _cancelLegacyPrayerNotificationsIfNeeded();
@@ -250,17 +263,18 @@ extension ScheduleDailyExtension on PrayersNotificationsCtrl {
 
     for (final prayer in prayers) {
       final prayerName = prayer.name;
-      final String? notificationType =
-          adhanStorage.read('scheduledAdhan_$prayerName');
+      final String? notificationType = adhanStorage.read(
+        'scheduledAdhan_$prayerName',
+      );
       log('notification: $notificationType', name: 'ScheduleDailyExtension');
 
       if (notificationType != null && notificationType != 'nothing') {
         await PrayersNotificationsCtrl.instance
             .scheduleDailyNotificationsForPrayer(
-          prayer.index,
-          prayerName,
-          notificationType,
-        );
+              prayer.index,
+              prayerName,
+              notificationType,
+            );
       }
     }
 
@@ -278,22 +292,26 @@ extension ScheduleDailyExtension on PrayersNotificationsCtrl {
     for (int day = 0; day < daysToCancel; day++) {
       for (final prayerIndex in prayerIndexes) {
         final prayerKey = _prayerKeyFromIndex(prayerIndex);
-        final id =
-            _scheduledPrayerNotificationId(prayerKey: prayerKey, day: day);
+        final id = _scheduledPrayerNotificationId(
+          prayerKey: prayerKey,
+          day: day,
+        );
         await NotifyHelper().cancelNotification(id);
       }
     }
 
     for (int prayerKey = 0; prayerKey < 5; prayerKey++) {
-      await NotifyHelper()
-          .cancelNotification(_openAppReminderIdForPrayer(prayerKey));
+      await NotifyHelper().cancelNotification(
+        _openAppReminderIdForPrayer(prayerKey),
+      );
     }
 
     log('تم إلغاء جميع إشعارات الصلاة.', name: 'ScheduleDailyExtension');
   }
 
   Future<void> cancelPrayerNotificationsForAllDay(
-      int prayerNotificationId) async {
+    int prayerNotificationId,
+  ) async {
     final originalPrayerIndex = prayerNotificationId;
 
     // تنظيف من النظام القديم.
@@ -305,11 +323,14 @@ extension ScheduleDailyExtension on PrayersNotificationsCtrl {
       final id = _scheduledPrayerNotificationId(prayerKey: prayerKey, day: day);
       await NotifyHelper().cancelNotification(id);
     }
-    await NotifyHelper()
-        .cancelNotification(_openAppReminderIdForPrayer(prayerKey));
+    await NotifyHelper().cancelNotification(
+      _openAppReminderIdForPrayer(prayerKey),
+    );
 
-    log('تم إلغاء جميع إشعارات صلاة $originalPrayerIndex.',
-        name: 'ScheduleDailyExtension');
+    log(
+      'تم إلغاء جميع إشعارات صلاة $originalPrayerIndex.',
+      name: 'ScheduleDailyExtension',
+    );
   }
 
   /// إلغاء IDs القديمة مرة واحدة بعد التحديث.

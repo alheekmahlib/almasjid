@@ -39,6 +39,15 @@ extension AdhanUi on AdhanController {
       prayerNameList[prayerIndex]['title'],
       notificationOptions[i]['title'],
     );
+    // await NotifyHelper().scheduledNotification(
+    //   reminderId: 99999,
+    //   title: 'Fajr'.tr,
+    //   summary: 'وقت صلاة الفجر',
+    //   body: 'fajrBody'.tr,
+    //   isRepeats: false,
+    //   time: DateTime.now().add(const Duration(seconds: 10)),
+    //   payload: {'sound_type': 'sound'},
+    // );
     update(['change_notification']);
   }
 }
