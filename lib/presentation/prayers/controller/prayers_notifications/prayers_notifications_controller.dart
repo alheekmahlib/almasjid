@@ -64,34 +64,41 @@ class PrayersNotificationsCtrl extends GetxController {
     );
   }
 
-  /// مقرئ مختار غير محمّل (بعد تحويل غير الافتراضي إلى تحميل عند الطلب)
-  /// → تحميل صامت في الخلفية؛ حتى اكتماله يعود التشغيل للأقصى الافتراضي.
+  /// مقرئ مختار غير محمّل → تحميل صامت في الخلفية:
+  /// - iOS: يحتاج الحزمة الكاملة (الأذان الكامل m4a + مقطع الإشعار) حتى
+  ///   للافتراضي متى توفرت حزمته في الكتالوج — كما كان التطبيق القديم
+  ///   يحمّل حزمة الأقصى تلقائياً.
+  /// - أندرويد: المسارات resource://raw لغير الافتراضي لم تعد مضمونة في
+  ///   الحزمة؛ حتى اكتمال التحميل يعود التشغيل للأقصى المدمج.
   Future<void> _migrateSelectedAdhanIfNeeded() async {
     if (Platform.isMacOS) return;
     try {
       final box = state.box;
-      final path = box.read<String?>(ADHAN_PATH) ?? '';
       final selectedIndex =
           int.tryParse(box.read<String?>(ADHAN_SELECTED_INDEX) ?? '') ?? 0;
-      final alreadyHaveFile =
-          AudioDownloader.downloadedAudioPathFor(selectedIndex) != null;
-
-      final needsDownload =
-          !alreadyHaveFile &&
-          path.startsWith('resource://raw/') &&
-          !path.contains('aqsa');
-      if (!needsDownload) return;
+      // التحقق من وجود الملف فعلاً (قائمة المحمّلات قد تحوي مدخلات قديمة).
+      if (AudioDownloader.downloadedAudioPathFor(selectedIndex) != null) {
+        return;
+      }
 
       final entry = state.adhanList.firstWhereOrNull(
         (e) => e.index == selectedIndex,
       );
-      if (entry != null && !isAdhanDownloadedByIndex(selectedIndex).value) {
-        log(
-          'Migrating selected adhan ${entry.adhanName}: downloading silently',
-          name: 'PrayersNotificationsCtrl',
-        );
-        await adhanDownload(entry);
-      }
+      if (entry == null) return;
+
+      final String path = box.read<String?>(ADHAN_PATH) ?? '';
+      final bool needsDownload = Platform.isIOS
+          ? entry.urlIosAdhan != null
+          : (entry.urlAndroidAdhan != null &&
+                path.startsWith('resource://raw/') &&
+                !path.contains('aqsa'));
+      if (!needsDownload) return;
+
+      log(
+        'Downloading selected adhan ${entry.adhanName} in background',
+        name: 'PrayersNotificationsCtrl',
+      );
+      await adhanDownload(entry);
     } catch (e) {
       log('Adhan migration failed: $e', name: 'PrayersNotificationsCtrl');
     }

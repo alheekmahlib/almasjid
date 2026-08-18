@@ -174,14 +174,16 @@ extension PrayersNotiUi on PrayersNotificationsCtrl {
   }
 
   Future<void> playAudio(int? id, String? title) async {
+    final box = GetStorage('AdhanSounds');
+    // مفاتيح المقرئ *المختار* — وليس آخر مقرئ حُمّل.
     final String athanIndex =
-        GetStorage('AdhanSounds').read(ADHAN_PATH_INDEX) ?? '0';
-    String? audioPath = GetStorage(
-      'AdhanSounds',
-    ).read<String?>('$athanIndex$ADHAN_PATH_AUDIO');
-    String? audioFajirPath = GetStorage(
-      'AdhanSounds',
-    ).read<String?>('$athanIndex$ADHAN_PATH_FAJIR_AUDIO');
+        box.read<String?>(ADHAN_SELECTED_INDEX) ??
+        box.read<String?>(ADHAN_PATH_INDEX) ??
+        '0';
+    String? audioPath = box.read<String?>('$athanIndex$ADHAN_PATH_AUDIO');
+    String? audioFajirPath = box.read<String?>(
+      '$athanIndex$ADHAN_PATH_FAJIR_AUDIO',
+    );
 
     // أذان الفجر له نسخته الخاصة؛ يُكشف من العنوان (المعرفات الحالية لا
     // تعود 0 أبداً، والفجر هو الوحيد الذي يمرر عنوانه هنا).
@@ -265,6 +267,30 @@ extension PrayersNotiUi on PrayersNotificationsCtrl {
       } catch (e, stack) {
         log(
           'Error playing fallback audio: $e',
+          error: e,
+          stackTrace: stack,
+          name: 'NotifyHelper',
+        );
+      }
+    }
+
+    // الحل الأخير: بث الأذان الكامل (m4a) من الكتالوج — يغطي الافتراضي
+    // غير المحمّل على iOS/macOS (أندرويد مغطى بموارد raw أعلاه).
+    final entry = state.adhanList.firstWhereOrNull(
+      (e) => e.index == int.tryParse(athanIndex),
+    );
+    if (entry?.urlPlayAdhan != null) {
+      try {
+        final streamUrl = AdhanSoundsCatalog.resolveUrl(entry!.urlPlayAdhan);
+        log('Streaming full adhan: $streamUrl', name: 'NotifyHelper');
+        await state.adhanPlayer.setAudioSource(
+          AudioSource.uri(Uri.parse(streamUrl)),
+        );
+        await state.adhanPlayer.play();
+        return;
+      } catch (e, stack) {
+        log(
+          'Error streaming adhan: $e',
           error: e,
           stackTrace: stack,
           name: 'NotifyHelper',
