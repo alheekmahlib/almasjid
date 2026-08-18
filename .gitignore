@@ -82,3 +82,6 @@ android/key.properties
 # Build scripts (optional - remove this section if you want to track them)
 build-play-store.sh
 quick-build-playstore.sh
+
+# Xcode CLI build artifacts
+ios/build/
