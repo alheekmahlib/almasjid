@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:developer' show log;
+import 'dart:io' show Platform;
 
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -8,6 +9,7 @@ import '../../presentation/prayers/prayers.dart';
 import '../utils/constants/lists.dart';
 import '../utils/constants/shared_preferences_constants.dart';
 import '../widgets/local_notification/controller/local_notifications_controller.dart';
+import 'adhan_alarms_scheduler.dart';
 import 'local_notifications_service.dart';
 
 export 'local_notifications_service.dart' show LocalReceivedNotification;
@@ -139,6 +141,22 @@ class NotifyHelper {
         badgeNumber: LocalNotificationsController.instance.unreadCount,
         isRepeats: isRepeats,
       );
+
+      // أندرويد: إشعار الأذان صامت؛ خدمة التشغيل الأمامية هي مصدر الصوت،
+      // لذا نجدول إنذاراً موازياً بنفس المعرف والوقت.
+      if (Platform.isAndroid &&
+          soundType == 'sound' &&
+          time != null &&
+          time.isAfter(DateTime.now())) {
+        await AdhanAlarmsScheduler.schedule([
+          AdhanAlarm(
+            id: reminderId,
+            time: time,
+            filePath: LocalNotificationsService.selectedAdhanAudioPath(),
+          ),
+        ]);
+      }
+
       log(
         'Notification successfully scheduled (id: $reminderId)',
         name: 'NotifyHelper',
@@ -155,6 +173,9 @@ class NotifyHelper {
 
   Future<void> cancelNotification(int reminderId) async {
     log('Notification ID $reminderId was cancelled', name: 'NotifyHelper');
+    if (Platform.isAndroid) {
+      await AdhanAlarmsScheduler.cancel([reminderId]);
+    }
     return LocalNotificationsService.instance.cancel(reminderId);
   }
 

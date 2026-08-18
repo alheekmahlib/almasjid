@@ -32,26 +32,69 @@ class PrayersNotificationsCtrl extends GetxController {
     if (null != downloadedSoundData) {
       state.downloadedAdhanData.value =
           (jsonDecode(downloadedSoundData) as List<dynamic>?)?.map((e) {
-                return AdhanData.fromJson(e as Map<String, dynamic>);
-              }).toList() ??
-              [];
+            return AdhanData.fromJson(e as Map<String, dynamic>);
+          }).toList() ??
+          [];
       log('Parsed Data Length: ${state.downloadedAdhanData.length}');
     }
   }
 
   Future<List<AdhanData>> loadAdhanData() async {
     log('Loading Adhan Data...', name: 'PrayersNotificationsCtrl');
-    final jsonString =
-        await rootBundle.loadString('assets/json/adhanSounds.json');
-    final List<dynamic> jsonData = jsonDecode(jsonString);
-    // state.adhanList.add(AdhanData.fromJson(data));
-    state.adhanList = jsonData.map((data) => AdhanData.fromJson(data)).toList();
-    if (!Platform.isMacOS && !Platform.isAndroid) {
-      isAdhanDownloadedByIndex(0).value
-          ? null
-          : adhanDownload(state.adhanList[0]);
-    }
+    state.adhanList = await AdhanSoundsCatalog.load();
+    _deriveSelectedIndexIfNeeded();
+    unawaited(_migrateSelectedAdhanIfNeeded());
     return state.adhanList;
+  }
+
+  /// اشتقاق فهرس المقرئ المختار من المسار المخزن (توافق مع البيانات القديمة).
+  void _deriveSelectedIndexIfNeeded() {
+    if (state.box.read<String?>(ADHAN_SELECTED_INDEX) != null) return;
+    final path =
+        state.box.read<String?>(ADHAN_PATH) ?? 'resource://raw/aqsa_athan';
+    final entry = state.adhanList.firstWhereOrNull(
+      (e) =>
+          e.adhanLocalPath == path ||
+          (e.adhanFileName.isNotEmpty && path.contains(e.adhanFileName)),
+    );
+    state.box.write(ADHAN_SELECTED_INDEX, (entry?.index ?? 0).toString());
+    log(
+      'Derived selected adhan index: ${entry?.index ?? 0}',
+      name: 'PrayersNotificationsCtrl',
+    );
+  }
+
+  /// مقرئ مختار غير محمّل (بعد تحويل غير الافتراضي إلى تحميل عند الطلب)
+  /// → تحميل صامت في الخلفية؛ حتى اكتماله يعود التشغيل للأقصى الافتراضي.
+  Future<void> _migrateSelectedAdhanIfNeeded() async {
+    if (Platform.isMacOS) return;
+    try {
+      final box = state.box;
+      final path = box.read<String?>(ADHAN_PATH) ?? '';
+      final selectedIndex =
+          int.tryParse(box.read<String?>(ADHAN_SELECTED_INDEX) ?? '') ?? 0;
+      final alreadyHaveFile =
+          AudioDownloader.downloadedAudioPathFor(selectedIndex) != null;
+
+      final needsDownload =
+          !alreadyHaveFile &&
+          path.startsWith('resource://raw/') &&
+          !path.contains('aqsa');
+      if (!needsDownload) return;
+
+      final entry = state.adhanList.firstWhereOrNull(
+        (e) => e.index == selectedIndex,
+      );
+      if (entry != null && !isAdhanDownloadedByIndex(selectedIndex).value) {
+        log(
+          'Migrating selected adhan ${entry.adhanName}: downloading silently',
+          name: 'PrayersNotificationsCtrl',
+        );
+        await adhanDownload(entry);
+      }
+    } catch (e) {
+      log('Adhan migration failed: $e', name: 'PrayersNotificationsCtrl');
+    }
   }
 
   Future<void> adhanDownload(AdhanData adhanData) async {
@@ -62,16 +105,29 @@ class PrayersNotificationsCtrl extends GetxController {
     await AudioDownloader()
         .downloadAndUnzipAdhan(adhanData, onReceiveProgress: onReceiveProgress)
         .then((d) {
-      state.downloadedAdhanData.add(d);
-      final downloadedAdanSoundsAsMap =
-          jsonEncode(state.downloadedAdhanData.map((e) => e.toJson()).toList());
-      state.box
-          .write('Downloaded_Adhan_Sounds_Data', downloadedAdanSoundsAsMap);
-      // log('Saved Data: $downloadedAdanSoundsAsMap');
-      if (state.downloadedAdhanData.length == 1) {
-        switchAdhanOnTap(0);
-      }
-    });
+          final valid = d.adhanPath != null && File(d.adhanPath!).existsSync();
+          if (!valid) {
+            log(
+              'Adhan download failed: ${adhanData.adhanName}',
+              name: 'PrayersNotificationsCtrl',
+            );
+            return;
+          }
+          state.downloadedAdhanData.add(d);
+          final downloadedAdanSoundsAsMap = jsonEncode(
+            state.downloadedAdhanData.map((e) => e.toJson()).toList(),
+          );
+          state.box.write(
+            'Downloaded_Adhan_Sounds_Data',
+            downloadedAdanSoundsAsMap,
+          );
+
+          // تحديث مسارات الاختيار إن كان المقرئ المحمّل هو المختار حالياً.
+          if (state.box.read<String?>(ADHAN_SELECTED_INDEX) ==
+              d.index.toString()) {
+            switchAdhanOnTap(d.index);
+          }
+        });
 
     state.isDownloading.toggle();
   }

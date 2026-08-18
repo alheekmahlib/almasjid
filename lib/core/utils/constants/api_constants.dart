@@ -5,6 +5,11 @@ class ApiConstants {
   static const baseUrl = 'https://github.com/';
   static const String notificationsUrl =
       'alheekmahlib/thegarlanded/blob/master/noti.json?raw=true';
+
+  /// كتالوج أصوات الأذان البعيد؛ النسخة المدمجة assets/json/adhanSounds.json
+  /// تُستخدم كاحتياط عند تعذر الجلب.
+  static const String adhanSoundsCatalogUrl =
+      'alheekmahlib/data/blob/main/adhan_sounds/adhan_sounds.json?raw=true';
   static const String ourAppsUrl =
       'alheekmahlib/thegarlanded/blob/master/ourApps.json?raw=true';
   static const String mapLightUrl =

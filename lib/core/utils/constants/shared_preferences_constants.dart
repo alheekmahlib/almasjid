@@ -30,6 +30,9 @@ const String PRAYER_TIME = 'PRAYER_TIME';
 const String ADHAN_PATH_AUDIO = 'ADHAN_PATH_AUDIO';
 const String ADHAN_PATH_FAJIR_AUDIO = 'ADHAN_PATH_FAJIR_AUDIO';
 const String ADHAN_PATH_INDEX = 'ADHAN_PATH_INDEX';
+
+/// فهرس المقرئ المختار حالياً في كتالوج أصوات الأذان.
+const String ADHAN_SELECTED_INDEX = 'ADHAN_SELECTED_INDEX';
 const String FIRST_LAUNCH = 'FIRST_LAUNCH';
 
 // Cities feature

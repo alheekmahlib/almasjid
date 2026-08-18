@@ -3,7 +3,12 @@ import 'package:get/get.dart';
 class AdhanData {
   final int index;
   final String adhanFileName;
-  final String adhanLocalPath;
+
+  /// مسار الصوت المدمج (resource://raw/...) أو null للمقرئين البعيدين فقط.
+  final String? adhanLocalPath;
+
+  /// true إذا كان الصوت مدمجاً في حزمة التطبيق (الافتراضي: الأقصى فقط).
+  final bool isBundled;
   final String adhanName;
   final String urlAndroidAdhanZip;
   final String urlIosAdhanZip;
@@ -16,7 +21,8 @@ class AdhanData {
   AdhanData({
     required this.index,
     required this.adhanFileName,
-    required this.adhanLocalPath,
+    this.adhanLocalPath,
+    this.isBundled = false,
     required this.adhanName,
     required this.urlAndroidAdhanZip,
     required this.urlIosAdhanZip,
@@ -31,10 +37,12 @@ class AdhanData {
       GetPlatform.isIOS || GetPlatform.isMacOS ? iosFilePath : androidFilePath;
 
   factory AdhanData.fromJson(Map<String, dynamic> json) {
+    final localPath = json['adhanLocalPath'] as String?;
     return AdhanData(
       index: json['index'] as int,
       adhanFileName: json['adhanFileName'] as String,
-      adhanLocalPath: json['adhanLocalPath'] as String,
+      adhanLocalPath: localPath,
+      isBundled: json['isBundled'] as bool? ?? localPath != null,
       adhanName: json['adhanName'] as String,
       urlAndroidAdhanZip: json['urlAndroidAdhanZip'] as String,
       urlIosAdhanZip: json['urlIosAdhanZip'] as String,
@@ -51,6 +59,7 @@ class AdhanData {
       'index': index,
       'adhanFileName': adhanFileName,
       'adhanLocalPath': adhanLocalPath,
+      'isBundled': isBundled,
       'adhanName': adhanName,
       'urlAndroidAdhanZip': urlAndroidAdhanZip,
       'urlIosAdhanZip': urlIosAdhanZip,

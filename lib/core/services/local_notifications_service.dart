@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:developer' show log;
-import 'dart:io' show Platform;
+import 'dart:io' show File, Platform;
 
 import 'package:flutter/services.dart' show PlatformException;
 import 'package:flutter/widgets.dart'
@@ -53,7 +53,6 @@ class LocalNotificationsService {
   static const String _pendingTapKey = 'pending_notification_tap';
 
   // ─── قنوات Android ───
-  static const String adhanChannelPrefix = 'prayers_adhan_';
   static const String bellChannelId = 'prayers_bell';
   static const String silentChannelId = 'prayers_silent';
 
@@ -67,7 +66,8 @@ class LocalNotificationsService {
     'salah',
   ];
 
-  /// قنوات awesome_notifications القديمة تُحذف مرة عند التهيئة (هجرة نظيفة).
+  /// قنوات awesome_notifications القديمة (وقنوات المرحلة الأولى المؤقتة
+  /// لكل مقرئ) تُحذف مرة عند التهيئة (هجرة نظيفة).
   static const List<String> _legacyAwesomeChannelIds = [
     'prayers_notifications_channel_ak',
     'prayers_notifications_channel_ak_saqqaf',
@@ -76,6 +76,11 @@ class LocalNotificationsService {
     'prayers_notifications_channel_ak_qatami',
     'prayers_notifications_channel_ak_salah',
     'prayers_notifications_channel_ak_notification',
+    'prayers_adhan_saqqaf',
+    'prayers_adhan_sarihi',
+    'prayers_adhan_baset',
+    'prayers_adhan_qatami',
+    'prayers_adhan_salah',
   ];
 
   /// الصوت المختار من التخزين بصيغة `resource://raw/<name>`
@@ -90,6 +95,34 @@ class LocalNotificationsService {
       if (raw.startsWith(reciter)) return reciter;
     }
     return 'aqsa';
+  }
+
+  /// مسار الصوت المحمّل للمقرئ المختار، إن وُجد الملف فعلاً على القرص.
+  /// يستخدمه مشغّل الأذان (أندرويد) وتسمية مقطع iOS؛ null يعني الرجوع
+  /// للمورد الافتراضي المدمج (الأقصى).
+  static String? selectedAdhanAudioPath() {
+    try {
+      final box = GetStorage('AdhanSounds');
+      final selectedIndex = int.tryParse(
+        box.read<String?>(ADHAN_SELECTED_INDEX) ??
+            box.read<String?>(ADHAN_PATH_INDEX) ??
+            '',
+      );
+      if (selectedIndex == null) return null;
+      final path = box.read<String?>('$selectedIndex$ADHAN_PATH_AUDIO');
+      return (path != null && File(path).existsSync()) ? path : null;
+    } catch (_) {
+      return null;
+    }
+  }
+
+  /// اسم ملف مقطع iOS المحمّل في Library/Sounds (يحله UNNotificationSound)،
+  /// أو null للرجوع للصوت المدمج من حزمة التطبيق.
+  String? get _downloadedIosSegmentName {
+    if (!Platform.isIOS) return null;
+    final path = selectedAdhanAudioPath();
+    if (path == null) return null;
+    return path.split(Platform.pathSeparator).last;
   }
 
   /// تهيئة الخدمة. يمكن استدعاؤها أكثر من مرة؛ أول استدعاء يهيئ المنصة،
@@ -197,19 +230,6 @@ class LocalNotificationsService {
           AndroidFlutterLocalNotificationsPlugin
         >();
     if (android == null) return;
-
-    for (final reciter in _reciters) {
-      await android.createNotificationChannel(
-        AndroidNotificationChannel(
-          '$adhanChannelPrefix$reciter',
-          'مواقيت الصلاة - أذان $reciter',
-          description: 'إشعار أذان الصلاة بصوت $reciter',
-          importance: Importance.max,
-          playSound: true,
-          sound: RawResourceAndroidNotificationSound('${reciter}_athan'),
-        ),
-      );
-    }
 
     await android.createNotificationChannel(
       const AndroidNotificationChannel(
@@ -336,46 +356,37 @@ class LocalNotificationsService {
     final isAdhan = soundType == 'sound';
     final isSilent = soundType == 'nothing' || soundType == 'silent';
 
-    // Android: الصوت يأتي من القناة؛ كل مقرئ له قناة بصوته.
-    final String androidChannelId;
-    final String androidChannelName;
+    // Android: إشعار الأذان صامت (heads-up) لأن خدمة التشغيل الأمامية
+    // (AdhanPlaybackService) هي مصدر الصوت الفعلي عند وقت الصلاة.
+    final muteAndroidNotification = isSilent || isAdhan;
     final AndroidNotificationSound? androidSound;
-    switch (soundType) {
-      case 'sound':
-        final reciter = _selectedReciter;
-        androidChannelId = '$adhanChannelPrefix$reciter';
-        androidChannelName = 'مواقيت الصلاة - أذان $reciter';
-        androidSound = RawResourceAndroidNotificationSound('${reciter}_athan');
-      case 'bell':
-        androidChannelId = bellChannelId;
-        androidChannelName = 'تنبيهات التطبيق';
-        androidSound = const RawResourceAndroidNotificationSound(
-          'notification',
-        );
-      default:
-        androidChannelId = silentChannelId;
-        androidChannelName = 'إشعارات صامتة';
-        androidSound = null;
+    if (soundType == 'bell') {
+      androidSound = const RawResourceAndroidNotificationSound('notification');
+    } else {
+      androidSound = null;
     }
 
     final androidDetails = AndroidNotificationDetails(
-      androidChannelId,
-      androidChannelName,
+      soundType == 'bell' ? bellChannelId : silentChannelId,
+      soundType == 'bell' ? 'تنبيهات التطبيق' : 'إشعارات صامتة',
       importance: Importance.max,
       priority: Priority.max,
-      playSound: !isSilent,
-      sound: isSilent ? null : androidSound,
+      playSound: !muteAndroidNotification,
+      sound: muteAndroidNotification ? null : androidSound,
       category: AndroidNotificationCategory.alarm,
       // wakeUpScreen السابق: شاشة كاملة لإشعار الأذان فقط.
       fullScreenIntent: isAdhan,
       visibility: NotificationVisibility.public,
     );
 
-    // iOS/macOS: الصوت يُحل من حزمة التطبيق (وبمكتبة Apple من Library/Sounds).
+    // iOS: مقطع محمّل من Library/Sounds أو الصوت المدمج (الأقصى).
+    // macOS: أصوات المقرئين المدمجة تبقى من حزمة التطبيق في هذه المرحلة.
     final String? darwinSoundFile;
     switch (soundType) {
       case 'sound':
-        darwinSoundFile = '${_selectedReciter}_athan.aiff';
+        darwinSoundFile = Platform.isIOS
+            ? (_downloadedIosSegmentName ?? 'aqsa_athan.aiff')
+            : '${_selectedReciter}_athan.aiff';
       case 'bell':
         darwinSoundFile = 'notification.aiff';
       default:

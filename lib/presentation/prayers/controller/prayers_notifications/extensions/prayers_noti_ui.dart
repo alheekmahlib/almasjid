@@ -23,56 +23,39 @@ extension PrayersNotiUi on PrayersNotificationsCtrl {
     }
   }
 
+  /// اختيار مقرئ من الكتالوج (مدمج أو محمّل) وتخزين مساراته.
   void switchAdhanOnTap(int index) {
-    switch (index) {
-      case 0:
-        state.selectedAdhanPath.value = 'resource://raw/aqsa_athan';
-        state.selectedAdhanPathFajir.value = Platform.isIOS
-            ? 'resource://raw/aqsa_athan'
-            : 'resource://raw/aqsa_fajir_athan';
-        break;
-      case 1:
-        state.selectedAdhanPath.value = 'resource://raw/saqqaf_athan';
-        state.selectedAdhanPathFajir.value = Platform.isIOS
-            ? 'resource://raw/saqqaf_athan'
-            : 'resource://raw/saqqaf_fajir_athan';
-        break;
-      case 2:
-        state.selectedAdhanPath.value = 'resource://raw/sarihi_athan';
-        state.selectedAdhanPathFajir.value = Platform.isIOS
-            ? 'resource://raw/sarihi_athan'
-            : 'resource://raw/sarihi_athan_fajir';
-        break;
-      case 3:
-        state.selectedAdhanPath.value = 'resource://raw/baset_athan';
-        state.selectedAdhanPathFajir.value = Platform.isIOS
-            ? 'resource://raw/baset_athan'
-            : 'resource://raw/baset_fajir_athan';
-        break;
-      case 4:
-        state.selectedAdhanPath.value = 'resource://raw/qatami_athan';
-        state.selectedAdhanPathFajir.value = Platform.isIOS
-            ? 'resource://raw/qatami_athan'
-            : 'resource://raw/qatami_fajir_athan';
-        break;
-      case 5:
-        state.selectedAdhanPath.value = 'resource://raw/salah_athan';
-        state.selectedAdhanPathFajir.value = Platform.isIOS
-            ? 'resource://raw/salah_athan'
-            : 'resource://raw/salah_fajir_athan';
-        break;
-      default:
-        state.selectedAdhanPath.value = 'resource://raw/aqsa_athan';
-        state.selectedAdhanPathFajir.value = Platform.isIOS
-            ? 'resource://raw/aqsa_athan'
-            : 'resource://raw/aqsa_fajir_athan';
+    final box = GetStorage('AdhanSounds');
+    final downloadedPath = AudioDownloader.downloadedAudioPathFor(index);
+
+    final String regularPath;
+    final String fajirPath;
+    if (downloadedPath != null) {
+      regularPath = downloadedPath;
+      final fajir = box.read<String?>('$index$ADHAN_PATH_FAJIR_AUDIO');
+      fajirPath = (fajir != null && File(fajir).existsSync())
+          ? fajir
+          : downloadedPath;
+    } else {
+      final entry = state.adhanList.length > index
+          ? state.adhanList[index]
+          : null;
+      final fileName = entry?.adhanFileName ?? 'aqsa';
+      regularPath = entry?.adhanLocalPath ?? 'resource://raw/${fileName}_athan';
+      // iOS لا يحتوي نسخاً فجرية مدمجة؛ وsarihi له تسمية خاصة في raw.
+      final fajirRaw = fileName == 'sarihi'
+          ? 'sarihi_athan_fajir'
+          : '${fileName}_fajir_athan';
+      fajirPath = Platform.isIOS ? regularPath : 'resource://raw/$fajirRaw';
     }
 
-    // تخزين المسارات المختارة في GetStorage
-    GetStorage('AdhanSounds').write(ADHAN_PATH, state.selectedAdhanPath.value);
-    GetStorage(
-      'AdhanSounds',
-    ).write(ADHAN_PATH_FAJIR, state.selectedAdhanPathFajir.value);
+    state.selectedAdhanPath.value = regularPath;
+    state.selectedAdhanPathFajir.value = fajirPath;
+
+    // تخزين المسارات والفهرس المختار في GetStorage
+    box.write(ADHAN_PATH, regularPath);
+    box.write(ADHAN_PATH_FAJIR, fajirPath);
+    box.write(ADHAN_SELECTED_INDEX, index.toString());
 
     log(
       'Adhan selected: $index, Path: ${state.selectedAdhanPath.value}',
@@ -84,11 +67,18 @@ extension PrayersNotiUi on PrayersNotificationsCtrl {
     );
   }
 
-  RxBool isAdhanSelectByIndex(int adhanIndex) =>
-      state.adhanList[adhanIndex].adhanLocalPath ==
-          state.selectedAdhanPath.value
-      ? true.obs
-      : false.obs;
+  RxBool isAdhanSelectByIndex(int adhanIndex) {
+    final storedIndex = state.box.read<String?>(ADHAN_SELECTED_INDEX);
+    if (storedIndex != null) {
+      return RxBool(storedIndex == adhanIndex.toString());
+    }
+    // توافق مع البيانات القديمة قبل اشتقاق الفهرس.
+    return RxBool(
+      state.adhanList.length > adhanIndex &&
+          state.adhanList[adhanIndex].adhanLocalPath ==
+              state.selectedAdhanPath.value,
+    );
+  }
 
   RxBool isAdhanDownloadedByIndex(int adhanIndex) =>
       (null !=

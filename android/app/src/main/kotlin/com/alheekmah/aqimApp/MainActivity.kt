@@ -1,7 +1,11 @@
 package com.alheekmah.aqimApp
 
+import android.app.AlarmManager
+import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
 import android.media.MediaPlayer
+import android.os.Build
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
@@ -10,6 +14,8 @@ import java.io.FileOutputStream
 
 class MainActivity : FlutterActivity() {
     private val CHANNEL = "com.alheekmah.aqimApp/raw_audio"
+    private val ALARMS_CHANNEL = "com.alheekmah.aqimApp/adhan_alarms"
+    private val ADHAN_ALARM_ACTION = "com.alheekmah.aqimApp.ADAN_ALARM"
     private var mediaPlayer: MediaPlayer? = null
 
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
@@ -46,7 +52,90 @@ class MainActivity : FlutterActivity() {
                 else -> result.notImplemented()
             }
         }
+
+        MethodChannel(flutterEngine.dartExecutor.binaryMessenger, ALARMS_CHANNEL).setMethodCallHandler { call, result ->
+            when (call.method) {
+                "scheduleAdhanAlarms" -> {
+                    val alarms = call.argument<List<Map<String, Any?>>>("alarms") ?: emptyList()
+                    scheduleAdhanAlarms(alarms)
+                    result.success(true)
+                }
+                "cancelAdhanAlarms" -> {
+                    val ids = call.argument<List<Int>>("ids") ?: emptyList()
+                    cancelAdhanAlarms(ids)
+                    result.success(true)
+                }
+                "hasExactAlarmPermission" -> {
+                    result.success(hasExactAlarmPermission())
+                }
+                else -> result.notImplemented()
+            }
+        }
     }
+
+    // ─── جدولة أذان المنبة الدقيقة (بالتوازي مع إشعارات FLN) ───
+
+    private fun alarmManager(): AlarmManager =
+        getSystemService(Context.ALARM_SERVICE) as AlarmManager
+
+    private fun hasExactAlarmPermission(): Boolean =
+        Build.VERSION.SDK_INT < Build.VERSION_CODES.S ||
+            alarmManager().canScheduleExactAlarms()
+
+    private fun alarmPendingIntent(id: Int, filePath: String?): PendingIntent {
+        val intent = Intent(this, AdhanAlarmReceiver::class.java)
+            .setAction(ADHAN_ALARM_ACTION)
+            .putExtra(AdhanPlaybackService.EXTRA_FILE_PATH, filePath)
+        return PendingIntent.getBroadcast(
+            this,
+            id,
+            intent,
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+        )
+    }
+
+    private fun scheduleAdhanAlarms(alarms: List<Map<String, Any?>>) {
+        val manager = alarmManager()
+        val canExact = hasExactAlarmPermission()
+        for (alarm in alarms) {
+            val id = (alarm["id"] as Number).toInt()
+            val triggerAtMillis = (alarm["triggerAtMillis"] as Number).toLong()
+            val filePath = alarm["filePath"] as String?
+            val pendingIntent = alarmPendingIntent(id, filePath)
+            try {
+                if (canExact) {
+                    manager.setExactAndAllowWhileIdle(
+                        AlarmManager.RTC_WAKEUP,
+                        triggerAtMillis,
+                        pendingIntent
+                    )
+                } else {
+                    manager.setAndAllowWhileIdle(
+                        AlarmManager.RTC_WAKEUP,
+                        triggerAtMillis,
+                        pendingIntent
+                    )
+                }
+            } catch (e: SecurityException) {
+                // سُحب إذن الإنذارات الدقيقة أثناء التشغيل؛ تراجع لجدولة مرنة.
+                manager.setAndAllowWhileIdle(
+                    AlarmManager.RTC_WAKEUP,
+                    triggerAtMillis,
+                    pendingIntent
+                )
+            }
+        }
+    }
+
+    private fun cancelAdhanAlarms(ids: List<Int>) {
+        val manager = alarmManager()
+        for (id in ids) {
+            // filterEquals يتجاهل الإضافات؛ نفس المعرف يلغي الإنذار نفسه.
+            manager.cancel(alarmPendingIntent(id, null))
+        }
+    }
+
+    // ─── تشغيل موارد raw الخام (للمعاينة داخل التطبيق) ───
 
     private fun copyRawToCache(fileName: String): String? {
         return try {
