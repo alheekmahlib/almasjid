@@ -53,6 +53,8 @@ void main() {
       expect(entries.first.adhanFileName, 'aqsa');
       expect(entries.first.isBundled, isTrue);
       expect(entries.first.urlAndroidAdhan, isNull);
+      // حزمة iOS للأقصى متاحة للتحميل التلقائي (أذان كامل أوفلاين).
+      expect(entries.first.urlIosAdhan, 'ios/aqsa.zip');
       expect(entries.sublist(1).every((e) => !e.isBundled), isTrue);
       expect(entries[1].urlAndroidAdhan, 'android/saqqaf_athan.wav');
       expect(entries[1].urlIosAdhan, 'ios/saqqaf.zip');
