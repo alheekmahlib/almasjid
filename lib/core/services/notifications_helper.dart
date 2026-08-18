@@ -126,18 +126,31 @@ class NotifyHelper {
       name: 'NotifyHelper',
     );
 
-    await LocalNotificationsService.instance.scheduleNotification(
-      id: reminderId,
-      title: title,
-      body: body,
-      summary: summary,
-      scheduledTime: scheduledTime,
-      soundType: soundType,
-      isFajr: reminderId == 0,
-      payload: fullPayload,
-      badgeNumber: LocalNotificationsController.instance.unreadCount,
-      isRepeats: isRepeats,
-    );
+    try {
+      await LocalNotificationsService.instance.scheduleNotification(
+        id: reminderId,
+        title: title,
+        body: body,
+        summary: summary,
+        scheduledTime: scheduledTime,
+        soundType: soundType,
+        isFajr: reminderId == 0,
+        payload: fullPayload,
+        badgeNumber: LocalNotificationsController.instance.unreadCount,
+        isRepeats: isRepeats,
+      );
+      log(
+        'Notification successfully scheduled (id: $reminderId)',
+        name: 'NotifyHelper',
+      );
+    } catch (e, stack) {
+      log(
+        'Error scheduling notification: $e',
+        error: e,
+        stackTrace: stack,
+        name: 'NotifyHelper',
+      );
+    }
   }
 
   Future<void> cancelNotification(int reminderId) async {
