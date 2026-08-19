@@ -1047,5 +1047,11 @@
     "description": "stopAdhan",
     "type": "text",
     "placeholders": {}
+  },
+  "download": "تحميل",
+  "@download": {
+    "description": "download",
+    "type": "text",
+    "placeholders": {}
   }
 }

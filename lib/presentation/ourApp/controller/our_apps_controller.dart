@@ -1,85 +1,78 @@
 import 'dart:convert';
 import 'dart:developer' show log;
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '/core/services/api_client.dart';
+import '../../../core/services/error_handling_system.dart';
 import '../../../core/utils/constants/api_constants.dart';
 import '../data/models/our_app_model.dart';
 
+/// OurAppsController - تحكم في شاشة "تطبيقاتنا"
+/// يجلب التطبيقات من واجهة Vexaltech عبر ApiClient ويفلترها حسب الشركة.
 class OurAppsController extends GetxController {
   static OurAppsController get instance =>
       GetInstance().putOrFind(() => OurAppsController());
 
-  // جلب بيانات التطبيقات باستخدام ApiClient
-  // Fetch apps data using ApiClient
-  Future<List<OurAppInfo>> fetchApps() async {
+  /// حالة التحميل - Loading state
+  final RxBool isLoading = false.obs;
+
+  /// قائمة التطبيقات المفلترة - Filtered apps list
+  final RxList<OurAppInfo> apps = <OurAppInfo>[].obs;
+
+  /// رسالة الخطأ - Error message
+  final RxString errorMessage = ''.obs;
+
+  @override
+  void onInit() {
+    super.onInit();
+    fetchApps();
+  }
+
+  /// جلب التطبيقات من Vexaltech ثم الفلترة بحسب
+  /// companyName == 'Alheekmah Library'
+  Future<void> fetchApps() async {
     try {
-      final apiClient = ApiClient();
-      final result = await apiClient.request(
+      isLoading.value = true;
+      errorMessage.value = '';
+
+      final response = await ApiClient().request(
         endpoint: ApiConstants.ourAppsUrl,
         method: HttpMethod.get,
       );
 
-      return result.fold(
-        (failure) {
-          log('فشل في جلب البيانات: ${failure.message}',
-              name: 'OurAppsController');
-          log('Failed to fetch data: ${failure.message}',
-              name: 'OurAppsController');
-          throw Exception('Failed to load data: ${failure.message}');
-        },
-        (data) {
-          log('تم جلب البيانات بنجاح', name: 'OurAppsController');
-          log('Data fetched successfully', name: 'OurAppsController');
-
-          // تحويل البيانات من String إلى List إذا لزم الأمر
-          // Convert data from String to List if needed
-          List<dynamic> jsonData;
-          if (data is String) {
-            jsonData = jsonDecode(data) as List<dynamic>;
-          } else {
-            jsonData = data as List<dynamic>;
-          }
-
-          return jsonData.map((item) => OurAppInfo.fromJson(item)).toList();
-        },
-      );
-    } catch (e) {
-      log('خطأ في جلب البيانات: $e', name: 'OurAppsController');
-      log('Error fetching data: $e', name: 'OurAppsController');
-      throw Exception('Failed to load data');
+      response.fold((failure) => errorMessage.value = failure.message, (data) {
+        final decoded = data is String ? jsonDecode(data) : data;
+        final List<dynamic> raw = decoded['apps'] as List<dynamic>;
+        final all = raw
+            .map((e) => OurAppInfo.fromJson(e as Map<String, dynamic>))
+            .toList();
+        apps.value = all
+            .where((a) => a.companyName == 'Alheekmah Library')
+            .toList();
+      });
+    } catch (e, s) {
+      log('Exception details:\n $e', name: 'OurAppsController');
+      log('Stack trace:\n $s', name: 'OurAppsController');
+      errorMessage.value = DataSource.DEFAULT.getFailure().message;
+    } finally {
+      isLoading.value = false;
     }
   }
 
-  // إطلاق رابط التطبيق حسب النظام الأساسي
-  // Launch app URL based on platform
-  Future<void> launchURL(
-      BuildContext context, int index, OurAppInfo ourAppInfo) async {
-    if (!kIsWeb) {
-      if (context.theme.platform == TargetPlatform.iOS) {
-        if (await canLaunchUrl(Uri.parse(ourAppInfo.urlAppStore))) {
-          await launchUrl(Uri.parse(ourAppInfo.urlAppStore));
-        } else {
-          throw 'Could not launch ${ourAppInfo.urlAppStore}';
-        }
-      } else {
-        if (await canLaunchUrl(Uri.parse(ourAppInfo.urlAppGallery))) {
-          await launchUrl(Uri.parse(ourAppInfo.urlAppGallery));
-        } else {
-          throw 'Could not launch ${ourAppInfo.urlAppGallery}';
-        }
-        // }
-      }
+  /// يفتح صفحة تنزيل التطبيق عبر dynamicLink القادم من Vexaltech
+  /// (يُشتق من slug داخل الموديل إن غاب الرابط الصريح).
+  Future<void> launchApp(OurAppInfo app) async {
+    if (app.dynamicLink.isEmpty) {
+      log('No download link for app ${app.id}', name: 'OurAppsController');
+      return;
+    }
+    final uri = Uri.parse(app.dynamicLink);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
     } else {
-      if (await canLaunchUrl(Uri.parse(ourAppInfo.urlMacAppStore))) {
-        await launchUrl(Uri.parse(ourAppInfo.urlMacAppStore));
-      } else {
-        throw 'Could not launch ${ourAppInfo.urlMacAppStore}';
-      }
+      log('No url client found', name: 'OurAppsController');
     }
   }
 }

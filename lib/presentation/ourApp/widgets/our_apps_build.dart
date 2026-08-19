@@ -1,115 +1,60 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:gap/gap.dart';
-import 'package:get/get_utils/get_utils.dart';
+import 'package:get/get.dart';
 
 import '/core/utils/constants/lottie_constants.dart';
+import '../../../../core/services/internet_connection_controller.dart';
+import '../../../../core/services/services_locator.dart';
 import '../../../../core/utils/constants/extensions/extensions.dart';
 import '../../../../core/utils/constants/lottie.dart';
-import '../../../core/services/internet_connection_controller.dart';
-import '../../../core/widgets/container_button_widget.dart';
 import '../controller/our_apps_controller.dart';
-import '../data/models/our_app_model.dart';
+import 'app_card.dart';
 
+/// بناء قائمة "تطبيقاتنا" مع حالات التحميل والخطأ وانقطاع الاتصال.
 class OurAppsBuild extends StatelessWidget {
-  OurAppsBuild({super.key});
-
-  final ourApps = OurAppsController.instance;
+  const OurAppsBuild({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final ourApps = sl<OurAppsController>();
     if (!InternetConnectionController.instance.isConnected) {
-      return customLottieWithColor(LottieConstants.assetsLottieNoInternet,
+      return Center(
+        child: customLottieWithColor(
+          LottieConstants.assetsLottieNoInternet,
           width: 150.0,
           height: 150.0,
-          color: context.theme.colorScheme.surface.withValues(alpha: .7));
+          color: context.theme.colorScheme.surface.withValues(alpha: .7),
+        ),
+      );
     }
-    return FutureBuilder<List<OurAppInfo>>(
-      future: ourApps.fetchApps(),
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          List<OurAppInfo>? apps = snapshot.data;
-          return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
-            child: ListView.separated(
-              primary: false,
-              shrinkWrap: true,
-              padding: EdgeInsets.zero,
-              itemCount: apps!.length,
-              separatorBuilder: (context, i) => Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 32.0),
-                child: context.hDivider(width: 10.0),
-              ),
-              itemBuilder: (context, index) {
-                return ContainerButtonWidget(
-                  onPressed: () =>
-                      ourApps.launchURL(context, index, apps[index]),
-                  height: 55,
-                  horizontalMargin: 32.0,
-                  verticalPadding: 0.0,
-                  backgroundColor:
-                      Theme.of(context).colorScheme.primaryContainer,
-                  shapeColor:
-                      context.theme.colorScheme.surface.withValues(alpha: .1),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        flex: 2,
-                        child: SvgPicture.network(
-                          apps[index].appLogo,
-                          height: 40,
-                          width: 40,
-                        ),
-                      ),
-                      context.vDivider(height: 40.0),
-                      Expanded(
-                        flex: 7,
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              apps[index].appTitle,
-                              style: TextStyle(
-                                color: context.theme.colorScheme.inversePrimary,
-                                fontSize: 13,
-                                height: 1.7,
-                                fontFamily: 'cairo',
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            const Gap(8.0),
-                            Text(
-                              apps[index].body,
-                              style: TextStyle(
-                                color: context.theme.colorScheme.surface
-                                    .withValues(alpha: .7),
-                                fontSize: 11,
-                                height: 1.7,
-                                fontFamily: 'cairo',
-                                fontWeight: FontWeight.bold,
-                              ),
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                );
-              },
-            ),
-          );
-        } else if (snapshot.hasError) {
-          return customLottie(LottieConstants.assetsLottieNoInternet,
-              width: 150.0, height: 150.0);
-        }
-        return customLottie(LottieConstants.assetsLottieSplashLoading,
-            width: 200.0, height: 200.0);
-      },
-    );
+    return Obx(() {
+      if (ourApps.isLoading.value) {
+        return Center(
+          child: customLottie(
+            LottieConstants.assetsLottieSplashLoading,
+            width: 200.0,
+            height: 200.0,
+          ),
+        );
+      }
+      if (ourApps.errorMessage.value.isNotEmpty) {
+        return Center(
+          child: customLottie(
+            LottieConstants.assetsLottieNoInternet,
+            width: 150.0,
+            height: 150.0,
+          ),
+        );
+      }
+      return ListView.separated(
+        padding: EdgeInsets.zero,
+        itemCount: ourApps.apps.length,
+        separatorBuilder: (context, i) => Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 32.0),
+          child: context.hDivider(),
+        ),
+        itemBuilder: (context, index) =>
+            AppCard(app: ourApps.apps[index], onLaunch: ourApps.launchApp),
+      );
+    });
   }
 }

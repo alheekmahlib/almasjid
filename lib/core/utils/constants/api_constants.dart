@@ -19,8 +19,9 @@ class ApiConstants {
       'alheekmahlib/data/blob/main/adhan_sounds/adhanSounds.json?raw=true';
   static const String adhanSoundsCatalogFallbackUrl =
       '$adhanSoundsBaseGitlab/adhanSounds.json';
-  static const String ourAppsUrl =
-      'alheekmahlib/thegarlanded/blob/master/ourApps.json?raw=true';
+
+  /// كتالوج تطبيقات مكتبة الحكمة من لوحة Vexaltech.
+  static const String ourAppsUrl = 'https://dash.vexaltech.dev/api/apps';
   static const String mapLightUrl =
       'https://basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}.png';
   static const String mapDarkUrl =

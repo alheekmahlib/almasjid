@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 
@@ -17,82 +16,76 @@ class OurApps extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    sl<OurAppsController>().fetchApps();
-    return Container(
+    // إنشاء المتحكم عبر حاوية DI يطلق fetchApps من onInit
+    sl<OurAppsController>();
+    return Material(
       color: context.theme.colorScheme.primaryContainer,
-      child: Scaffold(
-        backgroundColor:
-            context.theme.colorScheme.surface.withValues(alpha: .1),
-        body: SafeArea(
-          child: Container(
-            color: context.theme.colorScheme.primaryContainer,
-            child: Column(
-              children: [
-                const AppBarWidget(withBackButton: true),
-                context.customOrientation(
-                  Flexible(
-                    child: Column(
-                      children: [
-                        const Gap(64),
-                        AnimatedDrawingWidget(
-                            opacity: 1,
-                            width: Get.width * .6,
-                            height: Get.width * .3),
-                        const Gap(64),
-                        OurAppsBuild(),
-                        const Spacer(),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 32.0),
-                          child: customSvgWithColor(SvgPath.svgAlheekmahLogo,
-                              width: 80.0,
-                              color:
-                                  Theme.of(context).colorScheme.inversePrimary),
-                        ),
-                      ],
+      child: SafeArea(
+        child: Column(
+          children: [
+            const AppBarWidget(withBackButton: true),
+            context.customOrientation(
+              Expanded(
+                child: Column(
+                  children: [
+                    const Gap(16),
+                    AnimatedDrawingWidget(
+                      opacity: 1,
+                      width: Get.width * .6,
+                      height: Get.width * .3,
                     ),
-                  ),
-                  Flexible(
-                    child: Row(
-                      children: [
-                        Expanded(
-                          flex: 4,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              AnimatedDrawingWidget(
-                                  opacity: 1,
-                                  width: Get.width * .4,
-                                  height: Get.width * .2),
-                              Padding(
-                                padding: context.customOrientation(
-                                    const EdgeInsets.symmetric(vertical: 40.0)
-                                        .r,
-                                    const EdgeInsets.symmetric(vertical: 32.0)
-                                        .r),
-                                child: customSvgWithColor(
-                                    SvgPath.svgAlheekmahLogo,
-                                    width: 80.0,
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .inversePrimary),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Expanded(
-                          flex: 4,
-                          child: SingleChildScrollView(
-                            primary: false,
-                            child: OurAppsBuild(),
-                          ),
-                        ),
-                      ],
+                    const Gap(32),
+                    const Expanded(child: OurAppsBuild()),
+                    customSvgWithColor(
+                      SvgPath.svgAlheekmahLogo,
+                      width: 40.0,
+                      color: context.theme.colorScheme.inversePrimary,
                     ),
-                  ),
+                    const Gap(32),
+                  ],
                 ),
-              ],
+              ),
+              Expanded(
+                child: Row(
+                  children: [
+                    Expanded(
+                      flex: 4,
+                      child: Column(
+                        children: [
+                          const Spacer(),
+                          AnimatedDrawingWidget(
+                            opacity: 1,
+                            width: Get.width * .4,
+                            height: Get.width * .2,
+                          ),
+                          const Spacer(),
+                          customSvgWithColor(
+                            SvgPath.svgAlheekmahLogo,
+                            width: 60.0,
+                            color: context.theme.colorScheme.inversePrimary,
+                          ),
+                          const Gap(32),
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      flex: 4,
+                      child: Container(
+                        margin: const EdgeInsets.symmetric(horizontal: 32.0),
+                        decoration: BoxDecoration(
+                          color: context.theme.canvasColor,
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(8),
+                          ),
+                        ),
+                        child: const OurAppsBuild(),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );
