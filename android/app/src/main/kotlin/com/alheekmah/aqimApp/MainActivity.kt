@@ -68,6 +68,14 @@ class MainActivity : FlutterActivity() {
                 "hasExactAlarmPermission" -> {
                     result.success(hasExactAlarmPermission())
                 }
+                "stopAdhanPlayback" -> {
+                    // التطبيق في الواجهة عند الاستدعاء؛ startService مسموح.
+                    startService(
+                        Intent(this, AdhanPlaybackService::class.java)
+                            .setAction(AdhanPlaybackService.ACTION_STOP)
+                    )
+                    result.success(true)
+                }
                 else -> result.notImplemented()
             }
         }

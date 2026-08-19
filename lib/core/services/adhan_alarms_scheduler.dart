@@ -64,6 +64,18 @@ class AdhanAlarmsScheduler {
     }
   }
 
+  /// إيقاف خدمة تشغيل الأذان (تُستدعى عندما يتولى التطبيق التشغيل
+  /// داخل الواجهة عند نقر الإشعار — لمنع تراكب صوتين).
+  static Future<void> stopPlayback() async {
+    if (!Platform.isAndroid) return;
+    try {
+      await _channel.invokeMethod('stopAdhanPlayback');
+      log('Adhan playback service stopped', name: 'AdhanAlarms');
+    } catch (e) {
+      log('Failed stopping adhan playback: $e', name: 'AdhanAlarms');
+    }
+  }
+
   static Future<void> cancel(List<int> ids) async {
     if (!Platform.isAndroid || ids.isEmpty) return;
     try {

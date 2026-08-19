@@ -35,6 +35,7 @@ import '/core/utils/constants/extensions/svg_extensions.dart';
 import '/core/widgets/home_widget/home_widget.dart';
 import '../../../core/services/location/locations.dart';
 import '../../../core/services/notifications_helper.dart';
+import '../../../core/services/adhan_alarms_scheduler.dart';
 import '../../../core/services/api_client.dart';
 import '../../../core/utils/constants/api_constants.dart';
 import '../../../core/utils/constants/lists.dart';

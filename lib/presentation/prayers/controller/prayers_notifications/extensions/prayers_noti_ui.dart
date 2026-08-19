@@ -111,6 +111,9 @@ extension PrayersNotiUi on PrayersNotificationsCtrl {
     if (DateTime.now().isBefore(
       receivedAction.displayedDate!.add(const Duration(minutes: 5)),
     )) {
+      // تسليم منظم: نقر الإشعار يعني تولّي التطبيق التشغيل داخل الواجهة؛
+      // نوقف خدمة التشغيل الأمامية أولاً حتى لا يتراكب صوتان.
+      await AdhanAlarmsScheduler.stopPlayback();
       Get.bottomSheet(
         Container(
           padding: const EdgeInsets.only(top: 8.0, right: 8.0, left: 8.0),
