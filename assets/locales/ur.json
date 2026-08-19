@@ -782,5 +782,137 @@
     "description": "stopAdhan",
     "type": "text",
     "placeholders": {}
+  },
+  "feedbackSendNote": "رائے بھیجیں",
+  "@feedbackSendNote": {
+    "description": "feedbackSendNote",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackSubtitle": "اپنی رائے شیئر کریں یا مسئلہ کی اطلاع دیں",
+  "@feedbackSubtitle": {
+    "description": "feedbackSubtitle",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackMessageHint": "اپنی رائے یہاں لکھیں...",
+  "@feedbackMessageHint": {
+    "description": "feedbackMessageHint",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackContactOptional": "رابطے کا ای میل (اختیاری)",
+  "@feedbackContactOptional": {
+    "description": "feedbackContactOptional",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackSentSuccess": "آپ کی رائے کامیابی سے بھیج دی گئی",
+  "@feedbackSentSuccess": {
+    "description": "feedbackSentSuccess",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackSentError": "رائے نہیں بھیجی جا سکی، دوبارہ کوشش کریں",
+  "@feedbackSentError": {
+    "description": "feedbackSentError",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackNoNotesYet": "ابھی کوئی رائے نہیں",
+  "@feedbackNoNotesYet": {
+    "description": "feedbackNoNotesYet",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackReplyHint": "اپنی رائے پر تفصیل لکھیں...",
+  "@feedbackReplyHint": {
+    "description": "feedbackReplyHint",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackReplyTitle": "ایڈمن کا جواب",
+  "@feedbackReplyTitle": {
+    "description": "feedbackReplyTitle",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackStatusPlanned": "منصوبہ بند",
+  "@feedbackStatusPlanned": {
+    "description": "feedbackStatusPlanned",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackStatusInProgress": "جاری ہے",
+  "@feedbackStatusInProgress": {
+    "description": "feedbackStatusInProgress",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackStatusComplete": "مکمل",
+  "@feedbackStatusComplete": {
+    "description": "feedbackStatusComplete",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackAdminRole": "ایڈمن",
+  "@feedbackAdminRole": {
+    "description": "feedbackAdminRole",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackYouRole": "میں",
+  "@feedbackYouRole": {
+    "description": "feedbackYouRole",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackPickImages": "تصاویر",
+  "@feedbackPickImages": {
+    "description": "feedbackPickImages",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackPickVideo": "ویڈیو",
+  "@feedbackPickVideo": {
+    "description": "feedbackPickVideo",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackMaxFiles": "زیادہ سے زیادہ 5 فائلیں",
+  "@feedbackMaxFiles": {
+    "description": "feedbackMaxFiles",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackFileTooLarge": "فائل بہت بڑی ہے",
+  "@feedbackFileTooLarge": {
+    "description": "feedbackFileTooLarge",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackInvalidType": "غیر معاون فائل کی قسم",
+  "@feedbackInvalidType": {
+    "description": "feedbackInvalidType",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackUploading": "اپ لوڈ ہو رہی ہے",
+  "@feedbackUploading": {
+    "description": "feedbackUploading",
+    "type": "text",
+    "placeholders": {}
+  },
+  "charactersRemaining": "حروف باقی",
+  "@charactersRemaining": {
+    "description": "charactersRemaining",
+    "type": "text",
+    "placeholders": {}
+  },
+  "retry": "دوبارہ کوشش کریں",
+  "@retry": {
+    "description": "retry",
+    "type": "text",
+    "placeholders": {}
   }
 }

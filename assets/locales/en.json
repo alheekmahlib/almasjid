@@ -901,5 +901,137 @@
     "description": "download",
     "type": "text",
     "placeholders": {}
+  },
+  "feedbackSendNote": "Send Feedback",
+  "@feedbackSendNote": {
+    "description": "feedbackSendNote",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackSubtitle": "Share your feedback or report an issue",
+  "@feedbackSubtitle": {
+    "description": "feedbackSubtitle",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackMessageHint": "Write your feedback here...",
+  "@feedbackMessageHint": {
+    "description": "feedbackMessageHint",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackContactOptional": "Contact email (optional)",
+  "@feedbackContactOptional": {
+    "description": "feedbackContactOptional",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackSentSuccess": "Your feedback was sent successfully",
+  "@feedbackSentSuccess": {
+    "description": "feedbackSentSuccess",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackSentError": "Could not send feedback, please try again",
+  "@feedbackSentError": {
+    "description": "feedbackSentError",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackNoNotesYet": "No feedback yet",
+  "@feedbackNoNotesYet": {
+    "description": "feedbackNoNotesYet",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackReplyHint": "Write a follow-up on your feedback...",
+  "@feedbackReplyHint": {
+    "description": "feedbackReplyHint",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackReplyTitle": "Admin Reply",
+  "@feedbackReplyTitle": {
+    "description": "feedbackReplyTitle",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackStatusPlanned": "Planned",
+  "@feedbackStatusPlanned": {
+    "description": "feedbackStatusPlanned",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackStatusInProgress": "In Progress",
+  "@feedbackStatusInProgress": {
+    "description": "feedbackStatusInProgress",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackStatusComplete": "Complete",
+  "@feedbackStatusComplete": {
+    "description": "feedbackStatusComplete",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackAdminRole": "Admin",
+  "@feedbackAdminRole": {
+    "description": "feedbackAdminRole",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackYouRole": "Me",
+  "@feedbackYouRole": {
+    "description": "feedbackYouRole",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackPickImages": "Photos",
+  "@feedbackPickImages": {
+    "description": "feedbackPickImages",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackPickVideo": "Video",
+  "@feedbackPickVideo": {
+    "description": "feedbackPickVideo",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackMaxFiles": "Maximum 5 files",
+  "@feedbackMaxFiles": {
+    "description": "feedbackMaxFiles",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackFileTooLarge": "File is too large",
+  "@feedbackFileTooLarge": {
+    "description": "feedbackFileTooLarge",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackInvalidType": "Unsupported file type",
+  "@feedbackInvalidType": {
+    "description": "feedbackInvalidType",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackUploading": "Uploading",
+  "@feedbackUploading": {
+    "description": "feedbackUploading",
+    "type": "text",
+    "placeholders": {}
+  },
+  "charactersRemaining": "characters remaining",
+  "@charactersRemaining": {
+    "description": "charactersRemaining",
+    "type": "text",
+    "placeholders": {}
+  },
+  "retry": "Retry",
+  "@retry": {
+    "description": "retry",
+    "type": "text",
+    "placeholders": {}
   }
 }

@@ -782,5 +782,137 @@
     "description": "stopAdhan",
     "type": "text",
     "placeholders": {}
+  },
+  "feedbackSendNote": "ناردنی تێبینیەکە",
+  "@feedbackSendNote": {
+    "description": "feedbackSendNote",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackSubtitle": "تێبینیەکەت پێ بڵێ یان کێشەیەک ڕاپۆرت بکە",
+  "@feedbackSubtitle": {
+    "description": "feedbackSubtitle",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackMessageHint": "تێبینیەکەت لێرە بنووسە...",
+  "@feedbackMessageHint": {
+    "description": "feedbackMessageHint",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackContactOptional": "ئیمەیڵ بۆ پەیوەندی (ئارەزوومەندانە)",
+  "@feedbackContactOptional": {
+    "description": "feedbackContactOptional",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackSentSuccess": "تێبینیەکەت بە سەرکەوتوویی نێردرا",
+  "@feedbackSentSuccess": {
+    "description": "feedbackSentSuccess",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackSentError": "نەتوانرا تێبینیەکە بنێردرێت، دووبارە هەوڵ بدەوە",
+  "@feedbackSentError": {
+    "description": "feedbackSentError",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackNoNotesYet": "هێشتا هیچ تێبینییەک نییە",
+  "@feedbackNoNotesYet": {
+    "description": "feedbackNoNotesYet",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackReplyHint": "بەدواداچوونێک بۆ تێبینیەکەت بنووسە...",
+  "@feedbackReplyHint": {
+    "description": "feedbackReplyHint",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackReplyTitle": "وەڵامی بەڕێوەبەر",
+  "@feedbackReplyTitle": {
+    "description": "feedbackReplyTitle",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackStatusPlanned": "پلان بۆ داڕێژراو",
+  "@feedbackStatusPlanned": {
+    "description": "feedbackStatusPlanned",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackStatusInProgress": "لە جێبەجێکردندایە",
+  "@feedbackStatusInProgress": {
+    "description": "feedbackStatusInProgress",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackStatusComplete": "تەواو بوو",
+  "@feedbackStatusComplete": {
+    "description": "feedbackStatusComplete",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackAdminRole": "بەڕێوەبەر",
+  "@feedbackAdminRole": {
+    "description": "feedbackAdminRole",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackYouRole": "من",
+  "@feedbackYouRole": {
+    "description": "feedbackYouRole",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackPickImages": "وێنەکان",
+  "@feedbackPickImages": {
+    "description": "feedbackPickImages",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackPickVideo": "ڤیدیۆ",
+  "@feedbackPickVideo": {
+    "description": "feedbackPickVideo",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackMaxFiles": "زۆرترین ٥ فایل",
+  "@feedbackMaxFiles": {
+    "description": "feedbackMaxFiles",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackFileTooLarge": "قەبارەی فایل زۆر گەورەیە",
+  "@feedbackFileTooLarge": {
+    "description": "feedbackFileTooLarge",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackInvalidType": "جۆری فایل پشتگیری نەکراوە",
+  "@feedbackInvalidType": {
+    "description": "feedbackInvalidType",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackUploading": "بارکردن",
+  "@feedbackUploading": {
+    "description": "feedbackUploading",
+    "type": "text",
+    "placeholders": {}
+  },
+  "charactersRemaining": "پیتەی ماوە",
+  "@charactersRemaining": {
+    "description": "charactersRemaining",
+    "type": "text",
+    "placeholders": {}
+  },
+  "retry": "دووبارە هەوڵ بدەوە",
+  "@retry": {
+    "description": "retry",
+    "type": "text",
+    "placeholders": {}
   }
 }

@@ -1053,5 +1053,137 @@
     "description": "download",
     "type": "text",
     "placeholders": {}
+  },
+  "feedbackSendNote": "إرسال الملاحظة",
+  "@feedbackSendNote": {
+    "description": "feedbackSendNote",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackSubtitle": "شاركنا ملاحظتك أو أبلغ عن مشكلة",
+  "@feedbackSubtitle": {
+    "description": "feedbackSubtitle",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackMessageHint": "اكتب ملاحظتك هنا...",
+  "@feedbackMessageHint": {
+    "description": "feedbackMessageHint",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackContactOptional": "بريد إلكتروني للتواصل (اختياري)",
+  "@feedbackContactOptional": {
+    "description": "feedbackContactOptional",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackSentSuccess": "تم إرسال ملاحظتك بنجاح",
+  "@feedbackSentSuccess": {
+    "description": "feedbackSentSuccess",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackSentError": "تعذّر إرسال الملاحظة، حاول مرة أخرى",
+  "@feedbackSentError": {
+    "description": "feedbackSentError",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackNoNotesYet": "لا توجد ملاحظات بعد",
+  "@feedbackNoNotesYet": {
+    "description": "feedbackNoNotesYet",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackReplyHint": "اكتب متابعة على ملاحظتك...",
+  "@feedbackReplyHint": {
+    "description": "feedbackReplyHint",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackReplyTitle": "رد المشرف",
+  "@feedbackReplyTitle": {
+    "description": "feedbackReplyTitle",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackStatusPlanned": "مُخطّط",
+  "@feedbackStatusPlanned": {
+    "description": "feedbackStatusPlanned",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackStatusInProgress": "قيد التنفيذ",
+  "@feedbackStatusInProgress": {
+    "description": "feedbackStatusInProgress",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackStatusComplete": "مكتمل",
+  "@feedbackStatusComplete": {
+    "description": "feedbackStatusComplete",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackAdminRole": "المشرف",
+  "@feedbackAdminRole": {
+    "description": "feedbackAdminRole",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackYouRole": "أنا",
+  "@feedbackYouRole": {
+    "description": "feedbackYouRole",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackPickImages": "صور",
+  "@feedbackPickImages": {
+    "description": "feedbackPickImages",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackPickVideo": "فيديو",
+  "@feedbackPickVideo": {
+    "description": "feedbackPickVideo",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackMaxFiles": "الحد الأقصى 5 ملفات",
+  "@feedbackMaxFiles": {
+    "description": "feedbackMaxFiles",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackFileTooLarge": "حجم الملف كبير جداً",
+  "@feedbackFileTooLarge": {
+    "description": "feedbackFileTooLarge",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackInvalidType": "نوع الملف غير مدعوم",
+  "@feedbackInvalidType": {
+    "description": "feedbackInvalidType",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackUploading": "جارٍ الرفع",
+  "@feedbackUploading": {
+    "description": "feedbackUploading",
+    "type": "text",
+    "placeholders": {}
+  },
+  "charactersRemaining": "حرفاً متبقياً",
+  "@charactersRemaining": {
+    "description": "charactersRemaining",
+    "type": "text",
+    "placeholders": {}
+  },
+  "retry": "إعادة المحاولة",
+  "@retry": {
+    "description": "retry",
+    "type": "text",
+    "placeholders": {}
   }
 }

@@ -782,5 +782,137 @@
     "description": "stopAdhan",
     "type": "text",
     "placeholders": {}
+  },
+  "feedbackSendNote": "মন্তব্য পাঠান",
+  "@feedbackSendNote": {
+    "description": "feedbackSendNote",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackSubtitle": "আপনার মতামত জানান বা সমস্যা রিপোর্ট করুন",
+  "@feedbackSubtitle": {
+    "description": "feedbackSubtitle",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackMessageHint": "এখানে আপনার মন্তব্য লিখুন...",
+  "@feedbackMessageHint": {
+    "description": "feedbackMessageHint",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackContactOptional": "যোগাযোগের ইমেইল (ঐচ্ছিক)",
+  "@feedbackContactOptional": {
+    "description": "feedbackContactOptional",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackSentSuccess": "আপনার মন্তব্য সফলভাবে পাঠানো হয়েছে",
+  "@feedbackSentSuccess": {
+    "description": "feedbackSentSuccess",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackSentError": "মন্তব্য পাঠানো যায়নি, আবার চেষ্টা করুন",
+  "@feedbackSentError": {
+    "description": "feedbackSentError",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackNoNotesYet": "এখনও কোনো মন্তব্য নেই",
+  "@feedbackNoNotesYet": {
+    "description": "feedbackNoNotesYet",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackReplyHint": "আপনার মন্তব্যের উত্তর লিখুন...",
+  "@feedbackReplyHint": {
+    "description": "feedbackReplyHint",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackReplyTitle": "অ্যাডমিনের উত্তর",
+  "@feedbackReplyTitle": {
+    "description": "feedbackReplyTitle",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackStatusPlanned": "পরিকল্পিত",
+  "@feedbackStatusPlanned": {
+    "description": "feedbackStatusPlanned",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackStatusInProgress": "চলমান",
+  "@feedbackStatusInProgress": {
+    "description": "feedbackStatusInProgress",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackStatusComplete": "সম্পন্ন",
+  "@feedbackStatusComplete": {
+    "description": "feedbackStatusComplete",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackAdminRole": "অ্যাডমিন",
+  "@feedbackAdminRole": {
+    "description": "feedbackAdminRole",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackYouRole": "আমি",
+  "@feedbackYouRole": {
+    "description": "feedbackYouRole",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackPickImages": "ছবি",
+  "@feedbackPickImages": {
+    "description": "feedbackPickImages",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackPickVideo": "ভিডিও",
+  "@feedbackPickVideo": {
+    "description": "feedbackPickVideo",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackMaxFiles": "সর্বোচ্চ ৫টি ফাইল",
+  "@feedbackMaxFiles": {
+    "description": "feedbackMaxFiles",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackFileTooLarge": "ফাইলটি অনেক বড়",
+  "@feedbackFileTooLarge": {
+    "description": "feedbackFileTooLarge",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackInvalidType": "অসমর্থিত ফাইল",
+  "@feedbackInvalidType": {
+    "description": "feedbackInvalidType",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackUploading": "আপলোড হচ্ছে",
+  "@feedbackUploading": {
+    "description": "feedbackUploading",
+    "type": "text",
+    "placeholders": {}
+  },
+  "charactersRemaining": "অক্ষর বাকি",
+  "@charactersRemaining": {
+    "description": "charactersRemaining",
+    "type": "text",
+    "placeholders": {}
+  },
+  "retry": "আবার চেষ্টা করুন",
+  "@retry": {
+    "description": "retry",
+    "type": "text",
+    "placeholders": {}
   }
 }
