@@ -159,3 +159,8 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+
+dependency_overrides:
+  # مؤقتًا: إصلاح منعلال حالة قائمة floatica (1.2.1 محليًا) حتى يُنشر الإصدار
+  floatica:
+    path: ../floatica

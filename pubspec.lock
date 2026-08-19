@@ -333,11 +333,10 @@ packages:
   floatica:
     dependency: "direct main"
     description:
-      name: floatica
-      sha256: fdb4444e7d99a5b1ed9ccaba4536471eec5615b4a603eb2fb9c8061cf58433bb
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.2.0"
+      path: "../floatica"
+      relative: true
+    source: path
+    version: "1.2.1"
   floating_menu_expendable:
     dependency: "direct main"
     description:

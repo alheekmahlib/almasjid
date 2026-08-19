@@ -41,7 +41,7 @@ class AppBarWidget extends StatelessWidget {
                     svgColor: context.theme.colorScheme.inversePrimary,
                   ),
                 )
-              : const SizedBox.shrink()
+              : const SizedBox.shrink(),
         ],
       ),
     );
