@@ -39,7 +39,9 @@
 	<dict>
 		<key>Location</key>
 		<string>This app uses your precise location to calculate accurate prayer times and Qibla direction. For example, prayer times in Riyadh differ from those in London, so we need your exact location for precision.</string>
-	</dict>
+		<key>NSPhotoLibraryUsageDescription</key>
+	<string>لإرفاق صور أو مقاطع فيديو بملاحظاتك عند التواصل معنا.</string>
+</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>This app uses your location to calculate accurate prayer times based on your current position and to determine the correct Qibla direction for prayer. For example, when you're in New York, the app will show prayer times specific to that location and point towards Mecca.</string>
 	<key>UIApplicationSceneManifest</key>

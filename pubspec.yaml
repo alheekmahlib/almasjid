@@ -26,7 +26,7 @@ dependencies:
       url: https://github.com/alheekmahlib/drawing_animation.git
   either_dart: ^1.0.0
   floating_menu_expendable: ^1.1.1
-  floatica: ^1.2.0
+  floatica: ^1.2.1
     # git:
     #   ref: main
     #   url: https://github.com/alheekmahlib/floaty_nav_bar.git
@@ -58,6 +58,7 @@ dependencies:
   home_widget: ^0.9.3
   huawei_location: ^6.17.0+300
   huawei_site: ^6.5.1+303
+  image_picker: ^1.2.3
   intl: ^0.20.2
   just_audio: ^0.10.6
   latlong2: ^0.10.1
