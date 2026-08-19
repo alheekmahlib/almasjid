@@ -150,23 +150,29 @@ class _FeedbackSendSheetState extends State<FeedbackSendSheet> {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // صف الأزرار: + صور + فيديو + عدّاد.
-          Row(
+          // صف الأزرار: + صور + فيديو + عدّاد (Wrap لتفادي تجاوز العرض).
+          Wrap(
+            alignment: WrapAlignment.spaceBetween,
+            crossAxisAlignment: WrapCrossAlignment.center,
             children: [
-              _pickerButton(
-                context: context,
-                icon: Icons.add_photo_alternate_outlined,
-                label: 'feedbackPickImages',
-                onPressed: uploading ? null : () => _pickImages(context),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  _pickerButton(
+                    context: context,
+                    icon: Icons.add_photo_alternate_outlined,
+                    label: 'feedbackPickImages',
+                    onPressed: uploading ? null : () => _pickImages(context),
+                  ),
+                  Gap(8.w),
+                  _pickerButton(
+                    context: context,
+                    icon: Icons.videocam_outlined,
+                    label: 'feedbackPickVideo',
+                    onPressed: uploading ? null : () => _pickVideo(context),
+                  ),
+                ],
               ),
-              Gap(8.w),
-              _pickerButton(
-                context: context,
-                icon: Icons.videocam_outlined,
-                label: 'feedbackPickVideo',
-                onPressed: uploading ? null : () => _pickVideo(context),
-              ),
-              const Spacer(),
               Text(
                 '${files.length}/${FeedbackController.maxFiles}',
                 style: TextStyle(
