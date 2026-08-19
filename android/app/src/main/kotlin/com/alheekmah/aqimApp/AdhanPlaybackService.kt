@@ -35,6 +35,9 @@ class AdhanPlaybackService : Service() {
         const val EXTRA_NOTIF_TITLE = "notifTitle"
         const val EXTRA_NOTIF_TEXT = "notifText"
         const val EXTRA_STOP_ACTION_LABEL = "stopActionLabel"
+
+        /// true = حذف الإشعار عند التوقف (تسليم التشغيل للتطبيق عند النقر).
+        const val EXTRA_REMOVE_ON_STOP = "removeOnStop"
         const val ACTION_STOP = "com.alheekmah.aqimApp.ACTION_STOP_ADHAN"
 
         /// نفس قناة إشعارات الأذان الصامتة في flutter_local_notifications.
@@ -55,23 +58,29 @@ class AdhanPlaybackService : Service() {
 
     override fun onBind(intent: Intent?): IBinder? = null
 
-    /// معرف إشعار الصلاة المدمج؛ يُتذكر لإزالته عند الضغط على إيقاف.
+    /// معرف إشعار الصلاة المدمج؛ يُتذكر لإعادة نشره/إزالته عند التوقف.
     private var activeNotifId: Int = NOTIFICATION_ID
+    private var lastTitle: String? = null
+    private var lastText: String? = null
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         if (intent?.action == ACTION_STOP) {
-            // ضغط صريح من المستخدم: أوقف واحذف الإشعار أيضاً.
-            stopAdhan(removeNotification = true)
+            // زر الإيقاف: يتوقف الصوت ويبقى الإشعار (قابلاً للمسح)؛ أما
+            // طلب التطبيق (تسليم التشغيل عند نقر الإشعار) فيحذفه.
+            val remove = intent.getBooleanExtra(EXTRA_REMOVE_ON_STOP, false)
+            stopAdhan(removeOnStop = remove)
             return START_NOT_STICKY
         }
 
         val notifId = intent?.getIntExtra(EXTRA_NOTIF_ID, NOTIFICATION_ID)
             ?: NOTIFICATION_ID
         activeNotifId = notifId
+        lastTitle = intent?.getStringExtra(EXTRA_NOTIF_TITLE)
+        lastText = intent?.getStringExtra(EXTRA_NOTIF_TEXT)
         startForegroundWithType(
             notifId,
-            intent?.getStringExtra(EXTRA_NOTIF_TITLE),
-            intent?.getStringExtra(EXTRA_NOTIF_TEXT),
+            lastTitle,
+            lastText,
             intent?.getStringExtra(EXTRA_STOP_ACTION_LABEL)
         )
         playAdhan(intent?.getStringExtra(EXTRA_FILE_PATH))
@@ -84,7 +93,7 @@ class AdhanPlaybackService : Service() {
         text: String?,
         stopLabel: String?
     ) {
-        val notification = buildNotification(title, text, stopLabel)
+        val notification = buildNotification(title, text, stopLabel, ongoing = true)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             startForeground(
                 notifId,
@@ -99,7 +108,8 @@ class AdhanPlaybackService : Service() {
     private fun buildNotification(
         title: String?,
         text: String?,
-        stopLabel: String?
+        stopLabel: String?,
+        ongoing: Boolean
     ): Notification {
         val manager =
             getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
@@ -115,18 +125,6 @@ class AdhanPlaybackService : Service() {
             )
         }
 
-        val stopIntent = PendingIntent.getService(
-            this,
-            0,
-            Intent(this, AdhanPlaybackService::class.java).setAction(ACTION_STOP),
-            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
-        )
-        val stopAction = Notification.Action.Builder(
-            Icon.createWithResource(this, android.R.drawable.ic_media_pause),
-            stopLabel ?: FALLBACK_STOP,
-            stopIntent
-        ).build()
-
         val openAppIntent = PendingIntent.getActivity(
             this,
             0,
@@ -134,15 +132,34 @@ class AdhanPlaybackService : Service() {
             PendingIntent.FLAG_IMMUTABLE
         )
 
-        return Notification.Builder(this, CHANNEL_ID)
+        val builder = Notification.Builder(this, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_notification)
             .setContentTitle(title ?: FALLBACK_TITLE)
             .setContentText(text ?: "")
-            .setOngoing(true)
             .setContentIntent(openAppIntent)
-            .addAction(stopAction)
             .setCategory(Notification.CATEGORY_SERVICE)
-            .build()
+
+        if (ongoing) {
+            // أثناء التشغيل: مثبت مع زر إيقاف.
+            val stopIntent = PendingIntent.getService(
+                this,
+                0,
+                Intent(this, AdhanPlaybackService::class.java).setAction(ACTION_STOP),
+                PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+            )
+            builder.setOngoing(true).addAction(
+                Notification.Action.Builder(
+                    Icon.createWithResource(this, android.R.drawable.ic_media_pause),
+                    stopLabel ?: FALLBACK_STOP,
+                    stopIntent
+                ).build()
+            )
+        } else {
+            // بعد التشغيل: نسخة عادية قابلة للمسح (ongoing يمنع المسح).
+            builder.setAutoCancel(true)
+        }
+
+        return builder.build()
     }
 
     private fun playAdhan(filePath: String?) {
@@ -195,11 +212,12 @@ class AdhanPlaybackService : Service() {
     }
 
     /**
-     * [removeNotification]: true عند الضغط الصريح على زر الإيقاف — يحذف
-     * إشعار الصلاة أيضاً؛ وعند الاكتمال الطبيعي يُفصل ويبقى ظاهراً
-     * (كما يبقى إشعار iOS في المركز بعد انتهاء الصوت).
+     * [removeOnStop]: true عند تسليم التشغيل للتطبيق (نقر الإشعار وحده
+     * يحذفه عبر autoCancel فلا نعيد نشره). عند زر الإيقاف أو الاكتمال
+     * الطبيعي يُعاد نشر الإشعار نسخةً عادية قابلة للمسح — لأن علم
+     * ongoing الملتصق به أثناء الخدمة يمنع مسحه نهائياً.
      */
-    private fun stopAdhan(removeNotification: Boolean = false) {
+    private fun stopAdhan(removeOnStop: Boolean = false) {
         try {
             mediaPlayer?.let {
                 // تفريغ المستمعين قبل stop/release يمنع تحذير
@@ -216,13 +234,17 @@ class AdhanPlaybackService : Service() {
         audioFocusRequest?.let { audioManager?.abandonAudioFocusRequest(it) }
         audioFocusRequest = null
 
-        if (removeNotification) {
+        val manager =
+            getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        if (removeOnStop) {
             stopForeground(STOP_FOREGROUND_REMOVE)
-            // يشمل الحالة التي انفصل فيها الإشعار سابقاً (خدمة منتهية).
-            (getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager)
-                .cancel(activeNotifId)
+            manager.cancel(activeNotifId)
         } else {
             stopForeground(STOP_FOREGROUND_DETACH)
+            manager.notify(
+                activeNotifId,
+                buildNotification(lastTitle, lastText, null, ongoing = false)
+            )
         }
         stopSelf()
     }

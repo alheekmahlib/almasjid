@@ -70,9 +70,12 @@ class MainActivity : FlutterActivity() {
                 }
                 "stopAdhanPlayback" -> {
                     // التطبيق في الواجهة عند الاستدعاء؛ startService مسموح.
+                    // النقر على الإشعار يحذفه (autoCancel)، فنمرر remove=true
+                    // حتى لا يعاد نشره بعد توقف الخدمة.
                     startService(
                         Intent(this, AdhanPlaybackService::class.java)
                             .setAction(AdhanPlaybackService.ACTION_STOP)
+                            .putExtra(AdhanPlaybackService.EXTRA_REMOVE_ON_STOP, true)
                     )
                     result.success(true)
                 }
