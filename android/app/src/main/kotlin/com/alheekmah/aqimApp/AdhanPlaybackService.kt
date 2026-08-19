@@ -55,14 +55,19 @@ class AdhanPlaybackService : Service() {
 
     override fun onBind(intent: Intent?): IBinder? = null
 
+    /// معرف إشعار الصلاة المدمج؛ يُتذكر لإزالته عند الضغط على إيقاف.
+    private var activeNotifId: Int = NOTIFICATION_ID
+
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         if (intent?.action == ACTION_STOP) {
-            stopAdhan()
+            // ضغط صريح من المستخدم: أوقف واحذف الإشعار أيضاً.
+            stopAdhan(removeNotification = true)
             return START_NOT_STICKY
         }
 
         val notifId = intent?.getIntExtra(EXTRA_NOTIF_ID, NOTIFICATION_ID)
             ?: NOTIFICATION_ID
+        activeNotifId = notifId
         startForegroundWithType(
             notifId,
             intent?.getStringExtra(EXTRA_NOTIF_TITLE),
@@ -189,9 +194,18 @@ class AdhanPlaybackService : Service() {
             AudioManager.AUDIOFOCUS_REQUEST_GRANTED
     }
 
-    private fun stopAdhan() {
+    /**
+     * [removeNotification]: true عند الضغط الصريح على زر الإيقاف — يحذف
+     * إشعار الصلاة أيضاً؛ وعند الاكتمال الطبيعي يُفصل ويبقى ظاهراً
+     * (كما يبقى إشعار iOS في المركز بعد انتهاء الصوت).
+     */
+    private fun stopAdhan(removeNotification: Boolean = false) {
         try {
             mediaPlayer?.let {
+                // تفريغ المستمعين قبل stop/release يمنع تحذير
+                // "mediaplayer went away with unhandled events".
+                it.setOnCompletionListener(null)
+                it.setOnErrorListener(null)
                 if (it.isPlaying) it.stop()
                 it.release()
             }
@@ -202,9 +216,14 @@ class AdhanPlaybackService : Service() {
         audioFocusRequest?.let { audioManager?.abandonAudioFocusRequest(it) }
         audioFocusRequest = null
 
-        // فصل الإشعار عن الخدمة مع إبقائه ظاهراً كإشعار صلاة عادي
-        // (كما يبقى إشعار iOS في المركز بعد انتهاء الصوت).
-        stopForeground(STOP_FOREGROUND_DETACH)
+        if (removeNotification) {
+            stopForeground(STOP_FOREGROUND_REMOVE)
+            // يشمل الحالة التي انفصل فيها الإشعار سابقاً (خدمة منتهية).
+            (getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager)
+                .cancel(activeNotifId)
+        } else {
+            stopForeground(STOP_FOREGROUND_DETACH)
+        }
         stopSelf()
     }
 
