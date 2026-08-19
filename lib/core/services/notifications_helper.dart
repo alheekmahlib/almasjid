@@ -5,8 +5,10 @@ import 'dart:io' show Platform;
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
+import '../../presentation/feedback/controller/feedback_controller.dart';
 import '../../presentation/prayers/prayers.dart';
 import '../utils/constants/lists.dart';
+import '../utils/helpers/app_router.dart';
 import '../utils/constants/shared_preferences_constants.dart';
 import '../widgets/local_notification/controller/local_notifications_controller.dart';
 import 'adhan_alarms_scheduler.dart';
@@ -57,6 +59,15 @@ class NotifyHelper {
       'Received Action ID: ${notification.id}',
       name: 'NotifyHelper',
     );
+    // إشعار رد مشرف على ملاحظة → افتح المحادثة مباشرة.
+    if (notification.payload['type'] == 'feedback_reply') {
+      final token = notification.payload['feedback_token'];
+      if (token != null && token.isNotEmpty) {
+        await FeedbackController.instance.openConversation(token);
+        Get.toNamed(AppRouter.feedbackConversation);
+      }
+      return;
+    }
     if (notification.title != null &&
         prayerListList.contains(notification.title)) {
       await PrayersNotificationsCtrl.instance.onNotificationActionReceived(

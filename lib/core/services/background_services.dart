@@ -9,6 +9,7 @@ import 'package:flutter/services.dart';
 import 'package:get_storage/get_storage.dart';
 
 import '/core/services/prayer_background_manager.dart';
+import '../../presentation/feedback/controller/feedback_controller.dart';
 import '../../presentation/prayers/prayers.dart';
 import '../widgets/home_widget/home_widget.dart';
 
@@ -33,30 +34,34 @@ class BGServices {
     await BackgroundFetch.registerHeadlessTask(backgroundFetchHeadlessTask);
 
     await BackgroundFetch.configure(
-      BackgroundFetchConfig(
-        minimumFetchInterval: 20,
-        stopOnTerminate: false,
-        enableHeadless: true,
-        requiresBatteryNotLow: false,
-        requiresCharging: false,
-        requiresStorageNotLow: false,
-        requiresDeviceIdle: false,
-        requiredNetworkType: NetworkType.ANY,
-      ),
-      _onFetch,
-      _onTimeOut,
-    ).then((int status) {
-      log('configure success: $status', name: 'Background service');
-    }).catchError((e) {
-      log('configure ERROR: $e', name: 'Background service');
-    });
+          BackgroundFetchConfig(
+            minimumFetchInterval: 20,
+            stopOnTerminate: false,
+            enableHeadless: true,
+            requiresBatteryNotLow: false,
+            requiresCharging: false,
+            requiresStorageNotLow: false,
+            requiresDeviceIdle: false,
+            requiredNetworkType: NetworkType.ANY,
+          ),
+          _onFetch,
+          _onTimeOut,
+        )
+        .then((int status) {
+          log('configure success: $status', name: 'Background service');
+        })
+        .catchError((e) {
+          log('configure ERROR: $e', name: 'Background service');
+        });
 
-    await BackgroundFetch.start().then((v) async {
-      await _executeBackgroundTask('initial');
-      log('Background Service Started $v', name: 'Background service');
-    }).catchError((e) {
-      log('Error on Background Service $e', name: 'Background service');
-    });
+    await BackgroundFetch.start()
+        .then((v) async {
+          await _executeBackgroundTask('initial');
+          log('Background Service Started $v', name: 'Background service');
+        })
+        .catchError((e) {
+          log('Error on Background Service $e', name: 'Background service');
+        });
 
     // مهمة دورية كل 20 دقيقة (Android فقط — على iOS يكفي configure)
     if (Platform.isAndroid) {
@@ -93,15 +98,19 @@ class BGServices {
     final delay = nextMidnight.difference(now);
 
     _midnightTimer = Timer(delay, () async {
-      log('Foreground midnight timer fired at ${DateTime.now()}',
-          name: 'Background service');
+      log(
+        'Foreground midnight timer fired at ${DateTime.now()}',
+        name: 'Background service',
+      );
       await _executeBackgroundTask('foreground_midnight');
       // إعادة جدولة Timer التالي
       scheduleForegroundMidnightTimer();
     });
 
-    log('Foreground midnight timer scheduled for $nextMidnight (${delay.inMinutes} min)',
-        name: 'Background service');
+    log(
+      'Foreground midnight timer scheduled for $nextMidnight (${delay.inMinutes} min)',
+      name: 'Background service',
+    );
   }
 
   /// إلغاء Timer منتصف الليل
@@ -113,8 +122,9 @@ class BGServices {
 
 /// معالج المهام في الخلفية المحلي (MethodChannel)
 class BackgroundTaskHandler {
-  static const MethodChannel platform =
-      MethodChannel('com.alheekmah.alheekmahLibrary/background_tasks');
+  static const MethodChannel platform = MethodChannel(
+    'com.alheekmah.alheekmahLibrary/background_tasks',
+  );
 
   static Future<void> initializeHandler() async {
     platform.setMethodCallHandler((call) async {
@@ -138,21 +148,33 @@ Future<void> _executeBackgroundTask(String taskId) async {
     // المهام الدورية (إشعارات وغيرها)
     await PrayerBackgroundManager.executePeriodicTasks();
 
+    // فحص ردود المشرف على ملاحظات المستخدم (مثل تطبيق القرآن).
+    try {
+      await FeedbackController.checkNewRepliesBackground();
+    } catch (e) {
+      log('feedback replies check failed: $e', name: 'Background service');
+    }
+
     // التحقق من تغيّر التاريخ (يوم جديد بعد منتصف الليل)
     final today = DateTime.now().toIso8601String().substring(0, 10);
     final lastDate = storage.read('last_widget_update_date') as String?;
 
     if (lastDate == null || lastDate != today) {
-      log('New day detected ($lastDate -> $today), updating prayers & widget',
-          name: 'Background service');
+      log(
+        'New day detected ($lastDate -> $today), updating prayers & widget',
+        name: 'Background service',
+      );
 
       // محاولة إعادة حساب أوقات الصلاة لليوم الجديد
       try {
-        await AdhanController.instance
-            .initializeStoredAdhan(forceUpdate: false);
+        await AdhanController.instance.initializeStoredAdhan(
+          forceUpdate: false,
+        );
       } catch (e) {
-        log('initializeStoredAdhan failed (will try cache fallback): $e',
-            name: 'Background service');
+        log(
+          'initializeStoredAdhan failed (will try cache fallback): $e',
+          name: 'Background service',
+        );
       }
       await PrayerBackgroundManager.executeDailyTasks();
 
@@ -167,8 +189,10 @@ Future<void> _executeBackgroundTask(String taskId) async {
       if (PrayersWidgetConfig.lastUpdateSucceeded) {
         storage.write('last_widget_update_date', today);
       } else {
-        log('Prayer widget update failed — will retry on next background task',
-            name: 'Background service');
+        log(
+          'Prayer widget update failed — will retry on next background task',
+          name: 'Background service',
+        );
       }
     }
   } catch (e) {

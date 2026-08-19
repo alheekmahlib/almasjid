@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 
 import '../../../presentation/about_app/about_app.dart';
+import '../../../presentation/feedback/screens/feedback_conversation_screen.dart';
 import '../../../presentation/feedback/screens/feedback_thread_screen.dart';
 import '../../../presentation/home/home.dart';
 import '../../../presentation/ourApp/screen/our_apps_screen.dart';
@@ -52,6 +53,11 @@ class AppRouter {
     GetPage(
       name: feedback,
       page: () => const FeedbackThreadScreen(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: feedbackConversation,
+      page: () => const FeedbackConversationScreen(),
       transition: Transition.fadeIn,
     ),
   ];
