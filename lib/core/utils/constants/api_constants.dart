@@ -22,6 +22,14 @@ class ApiConstants {
 
   /// كتالوج تطبيقات مكتبة الحكمة من لوحة Vexaltech.
   static const String ourAppsUrl = 'https://dash.vexaltech.dev/api/apps';
+
+  /// Feedback API — نطاق مستقل عن baseUrl (يُمرَّر URL كامل في ApiClient.request).
+  static const String feedbackApiUrl = 'https://vexaltech.dev/api/feedback';
+  static const String feedbackEndpoint =
+      '/feedback'; // POST إنشاء + GET /feedback/{token}
+  static const String feedbackReplySuffix =
+      '/reply'; // POST /feedback/{token}/reply
+  static const String feedbackUploadEndpoint = '/upload'; // POST رفع وسائط
   static const String mapLightUrl =
       'https://basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}.png';
   static const String mapDarkUrl =

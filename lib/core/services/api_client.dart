@@ -90,6 +90,40 @@ class ApiClient {
     }
   }
 
+  /// رفع ملف عبر `multipart/form-data` (لرفع وسائط الملاحظات إلى R2).
+  ///
+  /// يُرجع `Either<Failure, dynamic>` كالعادة — الرابط يكون في `response.data['url']`.
+  /// Dio يتجاهل baseUrl عند تمرير URL مطلق في [endpoint].
+  Future<Either<Failure, dynamic>> uploadFile({
+    required String endpoint,
+    required FormData data,
+    Map<String, String>? headers,
+    void Function(int sent, int total)? onSendProgress,
+    bool? printResponse = false,
+  }) async {
+    try {
+      final Response response = await _dio.post(
+        endpoint,
+        data: data,
+        options: Options(headers: headers),
+        onSendProgress: onSendProgress,
+      );
+      if (printResponse!) {
+        log('Upload response received: ${response.data}', name: 'ApiClient');
+      }
+      return Right(response.data);
+    } on DioException catch (e) {
+      log(
+        'Upload DioException: ${e.message}, Status Code: ${e.response?.statusCode}',
+        name: 'ApiClient',
+      );
+      return Left(ErrorHandler.handle(e).failure);
+    } catch (e) {
+      log('Upload error: $e', name: 'ApiClient');
+      return Left(DataSource.DEFAULT.getFailure());
+    }
+  }
+
   /// طلب بديل من GitLab عند فشل GitHub
   Future<Either<Failure, dynamic>> _requestFallback(
     String fallbackUrl,
