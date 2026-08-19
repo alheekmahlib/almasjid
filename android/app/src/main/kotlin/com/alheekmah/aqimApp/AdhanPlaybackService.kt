@@ -20,26 +20,32 @@ import java.io.File
 /**
  * خدمة أمامية (mediaPlayback) تشغّل الأذان كاملاً عند وقت الصلاة.
  * مصدر الصوت: ملف محمّل من الكتالوج إن وُجد، وإلا المورد الخام الافتراضي.
+ *
+ * إشعار الخدمة يُدمج في إشعار الصلاة نفسه (نفس المعرف والقناة الصامتة)،
+ * فيظهر إشعار واحد فقط كما في iOS/macOS، تُضاف له أثناء التشغيل أزرار
+ * الإيقاف فقط.
  */
 class AdhanPlaybackService : Service() {
 
     companion object {
         const val EXTRA_FILE_PATH = "filePath"
 
-        /// نصوص إشعار الخدمة المترجمة، تُمرَّر من Flutter وقت الجدولة.
-        const val EXTRA_NOTIFICATION_TITLE = "notificationTitle"
-        const val EXTRA_NOTIFICATION_TEXT = "notificationText"
+        /// بيانات إشعار الصلاة المدمج فيه، تُمرَّر من Flutter وقت الجدولة.
+        const val EXTRA_NOTIF_ID = "notifId"
+        const val EXTRA_NOTIF_TITLE = "notifTitle"
+        const val EXTRA_NOTIF_TEXT = "notifText"
         const val EXTRA_STOP_ACTION_LABEL = "stopActionLabel"
         const val ACTION_STOP = "com.alheekmah.aqimApp.ACTION_STOP_ADHAN"
-        const val CHANNEL_ID = "adhan_playback_channel"
+
+        /// نفس قناة إشعارات الأذان الصامتة في flutter_local_notifications.
+        const val CHANNEL_ID = "prayers_silent"
         const val NOTIFICATION_ID = 30001
 
         /** المورد الخام الافتراضي عند غياب ملف محمّل (الأقصى). */
         const val DEFAULT_RAW_NAME = "aqsa_athan"
 
-        /** احتياط عربي إن لم تصل النصوص المترجمة (إنذارات قديمة مثلاً). */
-        const val FALLBACK_TITLE = "تشغيل الأذان"
-        const val FALLBACK_TEXT = "إشعار قائم أثناء تشغيل الأذان"
+        /** احتياط إن لم تصل بيانات الإشعار (إنذارات قديمة مثلاً). */
+        const val FALLBACK_TITLE = "الأذان"
         const val FALLBACK_STOP = "إيقاف"
     }
 
@@ -55,9 +61,12 @@ class AdhanPlaybackService : Service() {
             return START_NOT_STICKY
         }
 
+        val notifId = intent?.getIntExtra(EXTRA_NOTIF_ID, NOTIFICATION_ID)
+            ?: NOTIFICATION_ID
         startForegroundWithType(
-            intent?.getStringExtra(EXTRA_NOTIFICATION_TITLE),
-            intent?.getStringExtra(EXTRA_NOTIFICATION_TEXT),
+            notifId,
+            intent?.getStringExtra(EXTRA_NOTIF_TITLE),
+            intent?.getStringExtra(EXTRA_NOTIF_TEXT),
             intent?.getStringExtra(EXTRA_STOP_ACTION_LABEL)
         )
         playAdhan(intent?.getStringExtra(EXTRA_FILE_PATH))
@@ -65,6 +74,7 @@ class AdhanPlaybackService : Service() {
     }
 
     private fun startForegroundWithType(
+        notifId: Int,
         title: String?,
         text: String?,
         stopLabel: String?
@@ -72,12 +82,12 @@ class AdhanPlaybackService : Service() {
         val notification = buildNotification(title, text, stopLabel)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             startForeground(
-                NOTIFICATION_ID,
+                notifId,
                 notification,
                 ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK
             )
         } else {
-            startForeground(NOTIFICATION_ID, notification)
+            startForeground(notifId, notification)
         }
     }
 
@@ -88,16 +98,17 @@ class AdhanPlaybackService : Service() {
     ): Notification {
         val manager =
             getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        val resolvedTitle = title ?: FALLBACK_TITLE
-        val channel = NotificationChannel(
-            CHANNEL_ID,
-            resolvedTitle,
-            NotificationManager.IMPORTANCE_LOW
-        ).apply {
-            description = text ?: FALLBACK_TEXT
-            setSound(null, null)
+
+        // القناة الصامتة نفسها التي أنشأتها FLN؛ إن لم توجد ننشئها دفاعياً.
+        if (manager.getNotificationChannel(CHANNEL_ID) == null) {
+            manager.createNotificationChannel(
+                NotificationChannel(
+                    CHANNEL_ID,
+                    title ?: FALLBACK_TITLE,
+                    NotificationManager.IMPORTANCE_LOW
+                ).apply { setSound(null, null) }
+            )
         }
-        manager.createNotificationChannel(channel)
 
         val stopIntent = PendingIntent.getService(
             this,
@@ -120,8 +131,8 @@ class AdhanPlaybackService : Service() {
 
         return Notification.Builder(this, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_notification)
-            .setContentTitle(resolvedTitle)
-            .setContentText(text ?: FALLBACK_TEXT)
+            .setContentTitle(title ?: FALLBACK_TITLE)
+            .setContentText(text ?: "")
             .setOngoing(true)
             .setContentIntent(openAppIntent)
             .addAction(stopAction)
@@ -191,7 +202,9 @@ class AdhanPlaybackService : Service() {
         audioFocusRequest?.let { audioManager?.abandonAudioFocusRequest(it) }
         audioFocusRequest = null
 
-        stopForeground(STOP_FOREGROUND_REMOVE)
+        // فصل الإشعار عن الخدمة مع إبقائه ظاهراً كإشعار صلاة عادي
+        // (كما يبقى إشعار iOS في المركز بعد انتهاء الصوت).
+        stopForeground(STOP_FOREGROUND_DETACH)
         stopSelf()
     }
 

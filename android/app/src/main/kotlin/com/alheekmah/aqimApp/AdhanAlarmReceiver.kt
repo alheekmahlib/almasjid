@@ -14,12 +14,16 @@ class AdhanAlarmReceiver : BroadcastReceiver() {
                 intent.getStringExtra(AdhanPlaybackService.EXTRA_FILE_PATH)
             )
             .putExtra(
-                AdhanPlaybackService.EXTRA_NOTIFICATION_TITLE,
-                intent.getStringExtra(AdhanPlaybackService.EXTRA_NOTIFICATION_TITLE)
+                AdhanPlaybackService.EXTRA_NOTIF_ID,
+                intent.getIntExtra(AdhanPlaybackService.EXTRA_NOTIF_ID, -1)
             )
             .putExtra(
-                AdhanPlaybackService.EXTRA_NOTIFICATION_TEXT,
-                intent.getStringExtra(AdhanPlaybackService.EXTRA_NOTIFICATION_TEXT)
+                AdhanPlaybackService.EXTRA_NOTIF_TITLE,
+                intent.getStringExtra(AdhanPlaybackService.EXTRA_NOTIF_TITLE)
+            )
+            .putExtra(
+                AdhanPlaybackService.EXTRA_NOTIF_TEXT,
+                intent.getStringExtra(AdhanPlaybackService.EXTRA_NOTIF_TEXT)
             )
             .putExtra(
                 AdhanPlaybackService.EXTRA_STOP_ACTION_LABEL,

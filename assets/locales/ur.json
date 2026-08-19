@@ -777,18 +777,6 @@
     "placeholders": {}
   }
 ,
-  "adhanPlaying": "اذان جاری ہے",
-  "@adhanPlaying": {
-    "description": "adhanPlaying",
-    "type": "text",
-    "placeholders": {}
-  },
-  "adhanPlayingDesc": "اذان کے دوران جاری نوٹیفکیشن",
-  "@adhanPlayingDesc": {
-    "description": "adhanPlayingDesc",
-    "type": "text",
-    "placeholders": {}
-  },
   "stopAdhan": "بند کریں",
   "@stopAdhan": {
     "description": "stopAdhan",

@@ -777,18 +777,6 @@
     "placeholders": {}
   }
 ,
-  "adhanPlaying": "Llamada a la oración",
-  "@adhanPlaying": {
-    "description": "adhanPlaying",
-    "type": "text",
-    "placeholders": {}
-  },
-  "adhanPlayingDesc": "Notificación permanente mientras suena el adhan",
-  "@adhanPlayingDesc": {
-    "description": "adhanPlayingDesc",
-    "type": "text",
-    "placeholders": {}
-  },
   "stopAdhan": "Detener",
   "@stopAdhan": {
     "description": "stopAdhan",

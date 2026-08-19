@@ -82,13 +82,21 @@ class MainActivity : FlutterActivity() {
         Build.VERSION.SDK_INT < Build.VERSION_CODES.S ||
             alarmManager().canScheduleExactAlarms()
 
-    private fun alarmPendingIntent(id: Int, filePath: String?, title: String?, text: String?, stopLabel: String?): PendingIntent {
+    private fun alarmPendingIntent(
+        id: Int,
+        filePath: String?,
+        notifId: Int?,
+        notifTitle: String?,
+        notifText: String?,
+        stopLabel: String?
+    ): PendingIntent {
         val intent = Intent(this, AdhanAlarmReceiver::class.java)
             .setAction(ADHAN_ALARM_ACTION)
             .putExtra(AdhanPlaybackService.EXTRA_FILE_PATH, filePath)
-            .putExtra(AdhanPlaybackService.EXTRA_NOTIFICATION_TITLE, title)
-            .putExtra(AdhanPlaybackService.EXTRA_NOTIFICATION_TEXT, text)
+            .putExtra(AdhanPlaybackService.EXTRA_NOTIF_TITLE, notifTitle)
+            .putExtra(AdhanPlaybackService.EXTRA_NOTIF_TEXT, notifText)
             .putExtra(AdhanPlaybackService.EXTRA_STOP_ACTION_LABEL, stopLabel)
+        notifId?.let { intent.putExtra(AdhanPlaybackService.EXTRA_NOTIF_ID, it) }
         return PendingIntent.getBroadcast(
             this,
             id,
@@ -104,10 +112,12 @@ class MainActivity : FlutterActivity() {
             val id = (alarm["id"] as Number).toInt()
             val triggerAtMillis = (alarm["triggerAtMillis"] as Number).toLong()
             val filePath = alarm["filePath"] as String?
-            val title = alarm["notificationTitle"] as String?
-            val text = alarm["notificationText"] as String?
+            val notifId = (alarm["notifId"] as? Number)?.toInt()
+            val notifTitle = alarm["notifTitle"] as String?
+            val notifText = alarm["notifText"] as String?
             val stopLabel = alarm["stopActionLabel"] as String?
-            val pendingIntent = alarmPendingIntent(id, filePath, title, text, stopLabel)
+            val pendingIntent =
+                alarmPendingIntent(id, filePath, notifId, notifTitle, notifText, stopLabel)
             try {
                 if (canExact) {
                     manager.setExactAndAllowWhileIdle(
@@ -137,7 +147,7 @@ class MainActivity : FlutterActivity() {
         val manager = alarmManager()
         for (id in ids) {
             // filterEquals يتجاهل الإضافات؛ نفس المعرف يلغي الإنذار نفسه.
-            manager.cancel(alarmPendingIntent(id, null, null, null, null))
+            manager.cancel(alarmPendingIntent(id, null, null, null, null, null))
         }
     }
 

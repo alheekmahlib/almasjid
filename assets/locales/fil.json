@@ -777,18 +777,6 @@
     "placeholders": {}
   }
 ,
-  "adhanPlaying": "Tumutugtog ang adhan",
-  "@adhanPlaying": {
-    "description": "adhanPlaying",
-    "type": "text",
-    "placeholders": {}
-  },
-  "adhanPlayingDesc": "Patuloy na abiso habang tumutugtog ang adhan",
-  "@adhanPlayingDesc": {
-    "description": "adhanPlayingDesc",
-    "type": "text",
-    "placeholders": {}
-  },
   "stopAdhan": "Itigil",
   "@stopAdhan": {
     "description": "stopAdhan",

@@ -1042,18 +1042,6 @@
     "placeholders": {}
   }
 ,
-  "adhanPlaying": "تشغيل الأذان",
-  "@adhanPlaying": {
-    "description": "adhanPlaying",
-    "type": "text",
-    "placeholders": {}
-  },
-  "adhanPlayingDesc": "إشعار قائم أثناء تشغيل الأذان",
-  "@adhanPlayingDesc": {
-    "description": "adhanPlayingDesc",
-    "type": "text",
-    "placeholders": {}
-  },
   "stopAdhan": "إيقاف",
   "@stopAdhan": {
     "description": "stopAdhan",

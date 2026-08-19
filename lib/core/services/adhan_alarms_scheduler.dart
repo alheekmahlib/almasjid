@@ -9,8 +9,9 @@ class AdhanAlarm {
     required this.id,
     required this.time,
     this.filePath,
-    this.notificationTitle,
-    this.notificationText,
+    this.notifId,
+    this.notifTitle,
+    this.notifText,
     this.stopActionLabel,
   });
 
@@ -20,9 +21,11 @@ class AdhanAlarm {
   /// مسار الصوت المحمّل؛ null يعني الرجوع للمورد الخام الافتراضي (الأقصى).
   final String? filePath;
 
-  /// نصوص إشعار الخدمة الأمامية مترجمةً من Flutter.
-  final String? notificationTitle;
-  final String? notificationText;
+  /// معرف ونصوص إشعار الصلاة نفسه؛ تدمج الخدمة إشعارها الأمامي فيه
+  /// (نفس المعرف) فيظهر إشعار واحد فقط — تماماً مثل iOS/macOS.
+  final int? notifId;
+  final String? notifTitle;
+  final String? notifText;
   final String? stopActionLabel;
 }
 
@@ -47,8 +50,9 @@ class AdhanAlarmsScheduler {
                 'id': alarm.id,
                 'triggerAtMillis': alarm.time.millisecondsSinceEpoch,
                 'filePath': alarm.filePath,
-                'notificationTitle': alarm.notificationTitle,
-                'notificationText': alarm.notificationText,
+                'notifId': alarm.notifId,
+                'notifTitle': alarm.notifTitle,
+                'notifText': alarm.notifText,
                 'stopActionLabel': alarm.stopActionLabel,
               },
             )

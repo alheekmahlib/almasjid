@@ -777,18 +777,6 @@
     "placeholders": {}
   }
 ,
-  "adhanPlaying": "Azaan ayaa socda",
-  "@adhanPlaying": {
-    "description": "adhanPlaying",
-    "type": "text",
-    "placeholders": {}
-  },
-  "adhanPlayingDesc": "Ogeysiis joogto ah marka azaanku socdo",
-  "@adhanPlayingDesc": {
-    "description": "adhanPlayingDesc",
-    "type": "text",
-    "placeholders": {}
-  },
   "stopAdhan": "Jooji",
   "@stopAdhan": {
     "description": "stopAdhan",
