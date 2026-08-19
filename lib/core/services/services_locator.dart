@@ -12,6 +12,7 @@ import '/core/widgets/local_notification/controller/local_notifications_controll
 import '/presentation/controllers/settings_controller.dart';
 import '../../presentation/calendar/events.dart';
 import '../../presentation/controllers/theme_controller.dart';
+import '../../presentation/feedback/controller/feedback_controller.dart';
 import '../../presentation/ourApp/controller/our_apps_controller.dart';
 import '../../presentation/prayers/prayers.dart';
 import '../../presentation/splash/splash.dart';
@@ -47,37 +48,56 @@ class ServicesLocator {
 
     // Controllers
     sl.registerLazySingleton<ThemeController>(
-        () => Get.put<ThemeController>(ThemeController(), permanent: true));
+      () => Get.put<ThemeController>(ThemeController(), permanent: true),
+    );
 
-    sl.registerLazySingleton<SettingsController>(() =>
-        Get.put<SettingsController>(SettingsController(), permanent: true));
+    sl.registerLazySingleton<SettingsController>(
+      () => Get.put<SettingsController>(SettingsController(), permanent: true),
+    );
 
-    sl.registerLazySingleton<SplashScreenController>(() =>
-        Get.put<SplashScreenController>(SplashScreenController(),
-            permanent: true));
+    sl.registerLazySingleton<SplashScreenController>(
+      () => Get.put<SplashScreenController>(
+        SplashScreenController(),
+        permanent: true,
+      ),
+    );
 
     // sl.registerLazySingleton<OurAppsController>(
     //     () => Get.put<OurAppsController>(OurAppsController(), permanent: true));
 
-    sl.registerLazySingleton<WhatsNewController>(() =>
-        Get.put<WhatsNewController>(WhatsNewController(), permanent: true));
+    sl.registerLazySingleton<WhatsNewController>(
+      () => Get.put<WhatsNewController>(WhatsNewController(), permanent: true),
+    );
 
-    sl.registerLazySingleton<LocalNotificationsController>(() =>
-        Get.put<LocalNotificationsController>(LocalNotificationsController(),
-            permanent: true));
+    sl.registerLazySingleton<LocalNotificationsController>(
+      () => Get.put<LocalNotificationsController>(
+        LocalNotificationsController(),
+        permanent: true,
+      ),
+    );
 
     sl.registerLazySingleton<AdhanController>(
-        () => Get.put<AdhanController>(AdhanController(), permanent: true));
+      () => Get.put<AdhanController>(AdhanController(), permanent: true),
+    );
 
-    sl.registerLazySingleton<PrayersNotificationsCtrl>(() =>
-        Get.put<PrayersNotificationsCtrl>(PrayersNotificationsCtrl(),
-            permanent: true));
+    sl.registerLazySingleton<PrayersNotificationsCtrl>(
+      () => Get.put<PrayersNotificationsCtrl>(
+        PrayersNotificationsCtrl(),
+        permanent: true,
+      ),
+    );
 
     sl.registerLazySingleton<OurAppsController>(
-        () => Get.put<OurAppsController>(OurAppsController(), permanent: true));
+      () => Get.put<OurAppsController>(OurAppsController(), permanent: true),
+    );
+
+    sl.registerLazySingleton<FeedbackController>(
+      () => Get.put<FeedbackController>(FeedbackController(), permanent: true),
+    );
 
     sl.registerLazySingleton<RamadanController>(
-        () => Get.put<RamadanController>(RamadanController(), permanent: true));
+      () => Get.put<RamadanController>(RamadanController(), permanent: true),
+    );
 
     Get.put(InternetConnectionService(), permanent: true);
     Get.put(InternetConnectionController(), permanent: true);
