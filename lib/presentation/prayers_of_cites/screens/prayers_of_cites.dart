@@ -25,8 +25,9 @@ class PrayersOfCites extends StatelessWidget {
                       Column(
                         children: [
                           Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 16.0),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 16.0,
+                            ),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
@@ -37,7 +38,9 @@ class PrayersOfCites extends StatelessWidget {
                                     fontSize: 34,
                                     fontWeight: FontWeight.bold,
                                     color: context
-                                        .theme.colorScheme.inversePrimary,
+                                        .theme
+                                        .colorScheme
+                                        .inversePrimary,
                                   ),
                                   textAlign: TextAlign.center,
                                 ),
@@ -56,59 +59,65 @@ class PrayersOfCites extends StatelessWidget {
                           Expanded(
                             child: controller.isLoading
                                 ? const Center(
-                                    child: CircularProgressIndicator())
+                                    child: CircularProgressIndicator(),
+                                  )
                                 : controller.cities.isEmpty
-                                    ? Center(
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            customSvgWithColor(
-                                              SvgPath.svgHomeCites,
-                                              width: 150,
-                                              color: context.theme.hintColor
-                                                  .withValues(alpha: 0.8),
-                                            ),
-                                            const Gap(8),
-                                            Text(
-                                              'citiesPrayerTimesSearchHint'.tr,
-                                              style: TextStyle(
-                                                fontFamily: 'cairo',
-                                                fontSize: 14,
-                                                color: context.theme.colorScheme
-                                                    .inversePrimary
-                                                    .withValues(alpha: 0.7),
-                                              ),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          ],
+                                ? Center(
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        customSvgWithColor(
+                                          SvgPath.svgHomeCites,
+                                          width: 150,
+                                          color: context.theme.hintColor
+                                              .withValues(alpha: 0.8),
                                         ),
-                                      )
-                                    : ReorderableListView.builder(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 16.0),
-                                        itemCount: controller.cities.length,
-                                        onReorder: controller.reorder,
-                                        itemBuilder: (context, index) {
-                                          final city = controller.cities[index];
+                                        const Gap(8),
+                                        Text(
+                                          'citiesPrayerTimesSearchHint'.tr,
+                                          style: TextStyle(
+                                            fontFamily: 'cairo',
+                                            fontSize: 14,
+                                            color: context
+                                                .theme
+                                                .colorScheme
+                                                .inversePrimary
+                                                .withValues(alpha: 0.7),
+                                          ),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                : ReorderableListView.builder(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 16.0,
+                                    ),
+                                    itemCount: controller.cities.length,
+                                    onReorder: controller.reorder,
+                                    itemBuilder: (context, index) {
+                                      final city = controller.cities[index];
 
-                                          return Padding(
-                                            key: ValueKey(city.id),
-                                            padding: const EdgeInsets.symmetric(
-                                                vertical: 3.0),
-                                            child: _CityCard(
+                                      return Padding(
+                                        key: ValueKey(city.id),
+                                        padding: const EdgeInsets.symmetric(
+                                          vertical: 3.0,
+                                        ),
+                                        child: _CityCard(
+                                          city: city,
+                                          onDelete: () =>
+                                              controller.removeCity(city.id),
+                                          onTap: () => customBottomSheet(
+                                            containerColor: context
+                                                .theme
+                                                .colorScheme
+                                                .primaryContainer,
+                                            child: CityPrayerTimesScreen(
                                               city: city,
-                                              onDelete: () => controller
-                                                  .removeCity(city.id),
-                                              onTap: () => customBottomSheet(
-                                                containerColor: context
-                                                    .theme
-                                                    .colorScheme
-                                                    .primaryContainer,
-                                                child: CityPrayerTimesScreen(
-                                                    city: city),
-                                              ),
-                                              dragHandle:
-                                                  ReorderableDragStartListener(
+                                            ),
+                                          ),
+                                          dragHandle:
+                                              ReorderableDragStartListener(
                                                 index: index,
                                                 child: Icon(
                                                   Icons.drag_handle,
@@ -119,10 +128,10 @@ class PrayersOfCites extends StatelessWidget {
                                                       .withValues(alpha: 0.7),
                                                 ),
                                               ),
-                                            ),
-                                          );
-                                        },
-                                      ),
+                                        ),
+                                      );
+                                    },
+                                  ),
                           ),
                         ],
                       ),
@@ -130,8 +139,9 @@ class PrayersOfCites extends StatelessWidget {
                         children: [
                           Expanded(
                             child: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 16.0),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 16.0,
+                              ),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: [
@@ -142,7 +152,9 @@ class PrayersOfCites extends StatelessWidget {
                                       fontSize: 24,
                                       fontWeight: FontWeight.bold,
                                       color: context
-                                          .theme.colorScheme.inversePrimary,
+                                          .theme
+                                          .colorScheme
+                                          .inversePrimary,
                                     ),
                                     textAlign: TextAlign.center,
                                   ),
@@ -162,59 +174,65 @@ class PrayersOfCites extends StatelessWidget {
                           Expanded(
                             child: controller.isLoading
                                 ? const Center(
-                                    child: CircularProgressIndicator())
+                                    child: CircularProgressIndicator(),
+                                  )
                                 : controller.cities.isEmpty
-                                    ? Center(
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            customSvgWithColor(
-                                              SvgPath.svgHomeCites,
-                                              width: 150,
-                                              color: context.theme.hintColor
-                                                  .withValues(alpha: 0.8),
-                                            ),
-                                            const Gap(8),
-                                            Text(
-                                              'citiesPrayerTimesSearchHint'.tr,
-                                              style: TextStyle(
-                                                fontFamily: 'cairo',
-                                                fontSize: 14,
-                                                color: context.theme.colorScheme
-                                                    .inversePrimary
-                                                    .withValues(alpha: 0.7),
-                                              ),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          ],
+                                ? Center(
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        customSvgWithColor(
+                                          SvgPath.svgHomeCites,
+                                          width: 150,
+                                          color: context.theme.hintColor
+                                              .withValues(alpha: 0.8),
                                         ),
-                                      )
-                                    : ReorderableListView.builder(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 16.0),
-                                        itemCount: controller.cities.length,
-                                        onReorder: controller.reorder,
-                                        itemBuilder: (context, index) {
-                                          final city = controller.cities[index];
+                                        const Gap(8),
+                                        Text(
+                                          'citiesPrayerTimesSearchHint'.tr,
+                                          style: TextStyle(
+                                            fontFamily: 'cairo',
+                                            fontSize: 14,
+                                            color: context
+                                                .theme
+                                                .colorScheme
+                                                .inversePrimary
+                                                .withValues(alpha: 0.7),
+                                          ),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                : ReorderableListView.builder(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 16.0,
+                                    ),
+                                    itemCount: controller.cities.length,
+                                    onReorder: controller.reorder,
+                                    itemBuilder: (context, index) {
+                                      final city = controller.cities[index];
 
-                                          return Padding(
-                                            key: ValueKey(city.id),
-                                            padding: const EdgeInsets.symmetric(
-                                                vertical: 3.0),
-                                            child: _CityCard(
+                                      return Padding(
+                                        key: ValueKey(city.id),
+                                        padding: const EdgeInsets.symmetric(
+                                          vertical: 3.0,
+                                        ),
+                                        child: _CityCard(
+                                          city: city,
+                                          onDelete: () =>
+                                              controller.removeCity(city.id),
+                                          onTap: () => customBottomSheet(
+                                            containerColor: context
+                                                .theme
+                                                .colorScheme
+                                                .primaryContainer,
+                                            child: CityPrayerTimesScreen(
                                               city: city,
-                                              onDelete: () => controller
-                                                  .removeCity(city.id),
-                                              onTap: () => customBottomSheet(
-                                                containerColor: context
-                                                    .theme
-                                                    .colorScheme
-                                                    .primaryContainer,
-                                                child: CityPrayerTimesScreen(
-                                                    city: city),
-                                              ),
-                                              dragHandle:
-                                                  ReorderableDragStartListener(
+                                            ),
+                                          ),
+                                          dragHandle:
+                                              ReorderableDragStartListener(
                                                 index: index,
                                                 child: Icon(
                                                   Icons.drag_handle,
@@ -225,15 +243,15 @@ class PrayersOfCites extends StatelessWidget {
                                                       .withValues(alpha: 0.7),
                                                 ),
                                               ),
-                                            ),
-                                          );
-                                        },
-                                      ),
+                                        ),
+                                      );
+                                    },
+                                  ),
                           ),
                         ],
                       ),
                     ),
-                  )
+                  ),
                 ],
               );
             },
@@ -318,8 +336,9 @@ class _CityCard extends StatelessWidget {
       onPressed: onTap,
       width: Get.width,
       height: 90,
-      backgroundColor:
-          context.theme.colorScheme.surface.withValues(alpha: 0.15),
+      backgroundColor: context.theme.colorScheme.surface.withValues(
+        alpha: 0.15,
+      ),
       borderColor: Colors.transparent,
       shadowColor: Colors.transparent,
       useGradient: false,
@@ -355,8 +374,10 @@ class _CityCard extends StatelessWidget {
                 children: [
                   FutureBuilder<({String city, String country})>(
                     key: ValueKey('${city.id}|$lang'),
-                    future: citesCtrl.localizedCityDisplay(city,
-                        languageCode: lang),
+                    future: citesCtrl.localizedCityDisplay(
+                      city,
+                      languageCode: lang,
+                    ),
                     builder: (context, snapshot) {
                       final displayCity = snapshot.data?.city ?? city.name;
                       final displayCountry =
@@ -411,13 +432,39 @@ class _CityCard extends StatelessWidget {
             ),
             const Gap(6),
             FutureBuilder<CityPrayerTimesResult>(
-                future: service.getForCity(city),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return SizedBox(
-                      width: 110,
-                      child: Text(
-                        '--',
+              future: service.getForCity(city),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return SizedBox(
+                    width: 110,
+                    child: Text(
+                      '--',
+                      style: TextStyle(
+                        height: 1.3,
+                        fontFamily: 'cairo',
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: context.theme.colorScheme.inversePrimary
+                            .withValues(alpha: 0.8),
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  );
+                }
+
+                if (snapshot.hasError || !snapshot.hasData) {
+                  return const SizedBox.shrink();
+                }
+
+                final data = snapshot.data!;
+                return SizedBox(
+                  width: 110,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        '${data.prayerList[data.currentIndex]['title']}'.tr,
                         style: TextStyle(
                           height: 1.3,
                           fontFamily: 'cairo',
@@ -426,48 +473,23 @@ class _CityCard extends StatelessWidget {
                           color: context.theme.colorScheme.inversePrimary
                               .withValues(alpha: 0.8),
                         ),
-                        textAlign: TextAlign.center,
                       ),
-                    );
-                  }
-
-                  if (snapshot.hasError || !snapshot.hasData) {
-                    return const SizedBox.shrink();
-                  }
-
-                  final data = snapshot.data!;
-                  return SizedBox(
-                    width: 110,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          '${data.prayerList[data.currentIndex]['title']}'.tr,
-                          style: TextStyle(
-                            height: 1.3,
-                            fontFamily: 'cairo',
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                            color: context.theme.colorScheme.inversePrimary
-                                .withValues(alpha: 0.8),
-                          ),
+                      const Gap(6),
+                      Text(
+                        data.prayerList[data.currentIndex]['time'],
+                        style: TextStyle(
+                          height: 1.3,
+                          fontFamily: 'cairo',
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: context.theme.colorScheme.inversePrimary,
                         ),
-                        const Gap(6),
-                        Text(
-                          data.prayerList[data.currentIndex]['time'],
-                          style: TextStyle(
-                            height: 1.3,
-                            fontFamily: 'cairo',
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                            color: context.theme.colorScheme.inversePrimary,
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                }),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
           ],
         ),
       ),

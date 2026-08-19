@@ -1,6 +1,319 @@
 {
   "manths": [
     {
+      "number": 1,
+      "hadith": {
+        "ayahOrHadith": "{إِنَّ عِدَّةَ الشُّهور عِنْدَ اللَّهِ اثْنَا عَشَرَ شَهْرًا فِي كِتَابِ اللَّهِ يَوْمَ خَلَقَ السَّمَوَاتِ وَالْأَرْضَ مِنْهَا أَرْبَعَةٌ حُرُمٌ ذَلِكَ الدِّينُ الْقَيِّمُ فَلا تَظْلِمُوا فِيهِنَّ أَنْفُسَكُمْ}",
+        "bookInfo": "(التوبة - 36)"
+      },
+      "sunnahs": [
+        {
+          "name": {
+            "ar": "تحريمُ القتالِ فيهِ",
+            "en": "Prohibition of Initiating Fighting in It",
+            "bn": "এ মাসে যুদ্ধ শুরু করা নিষিদ্ধ",
+            "es": "Prohibición de iniciar el combate en él",
+            "id": "Larangan Memulai Perang di Bulan Ini",
+            "ur": "اس مہینے میں جنگ کا آغاز حرام ہونا",
+            "tr": "Bu Ayda Savaş Başlatmanın Haram Oluşu",
+            "ku": "قەدەغەکردنی دەستپێکردنی شەڕ تێیدا",
+            "ms": "Larangan Memulakan Peperangan Padanya",
+            "fil": "Pagbabawal sa Pagsisimula ng Digmaan sa Buwan na Ito",
+            "so": "Xaranta Bilowga Dagaalka Bishaan"
+          },
+          "description": {
+            "ar": "فمن أحكامِ شهرِ الله المُحَرَّم تحريمُ ابتداءِ القتالِ فيه؛ قال ابنُ كثير رحمه الله: وقد اختلف العُلماءُ في تحريمِ ابتداءِ القتالِ في الشَّهرِ الحرامِ: هل هو منسوخٌ أو مُحكَمٌ؟ على قولينِ:\nأحدُهما، وهو الأشهَرُ: أنَّه منسوخٌ؛ لأنَّه تعالى قال هاهنا: {فَلَا تَظْلِمُوا فِيهِنَّ أَنفُسَكُمْ} وأمَرَ بقتالِ المشركين.\nوالقولُ الآخَرُ: أنَّ ابتداءَ القِتالِ في الشَّهرِ الحرامِ حرامٌ، وأنَّه لم يُنسَخْ تحريمُ الشَّهرِ الحرامِ؛ لقولِه تعالى: {الشَّهْرُ الْحَرَامُ بِالشَّهْرِ الْحَرَامِ وَالْحُرُمَاتُ قِصَاصٌ فَمَنِ اعْتَدَى عَلَيْكُمْ فَاعْتَدُوا عَلَيْهِ بِمِثْلِ مَا اعْتَدَى عَلَيْكُمْ} الآية. وقال: {فَإِذَا انسَلَخَ الأَشْهُرُ الْحُرُمُ فَاقْتُلُوا الْمُشْرِكِينَ} الآية [تفسير القرآن العظيم 2-468-469، وقد ذكر ابنُ كثير رحمه الله الأدِلَّةَ والرَّدَّ عليها؛ فلتراجَعْ هناك].\nوقد كانت العرَبُ تعَظِّمُه في الجاهليَّةِ، وكان يسمَّى بشهرِ اللهِ الأصَمِّ؛ مِن شدةِ تحريمِه.. والصَّومُ في شهرِ محَرَّم مِن أفضل التطوُّعِ؛ فقد أخرج مسلمٌ من حديث أبي هريرةَ أنَّ النبيَّ صلَّى اللهُ عليه وسلَّم قال: (أفضلُ الصِّيامِ بعد شَهرِ رمضانَ شهرُ اللهِ الذي تَدْعونَه المُحَرَّمَ، وأفضَلُ الصَّلاةِ بعد الفَريضةِ قيامُ الليلِ).",
+            "en": "Among the rulings of the month of Allah, Muharram, is the prohibition of initiating fighting during it. Ibn Kathir رحمه الله said: The scholars have differed over the prohibition of initiating fighting in the sacred month — is it abrogated or firmly established? — holding two views:\nThe first, which is the most prominent: that it is abrogated, because Allah the Exalted said here: {فَلَا تَظْلِمُوا فِيهِنَّ أَنفُسَكُمْ}, and He commanded fighting the polytheists.\nThe second view: that initiating fighting in the sacred month is forbidden, and that the prohibition of the sacred month was not abrogated, because of the statement of Allah the Exalted: {الشَّهْرُ الْحَرَامُ بِالشَّهْرِ الْحَرَامِ وَالْحُرُمَاتُ قِصَاصٌ فَمَنِ اعْتَدَى عَلَيْكُمْ فَاعْتَدُوا عَلَيْهِ بِمِثْلِ مَا اعْتَدَى عَلَيْكُمْ} to the end of the verse. And He said: {فَإِذَا انسَلَخَ الأَشْهُرُ الْحُرُمُ فَاقْتُلُوا الْمُشْرِكِينَ} to the end of the verse [Tafsir al-Qur'an al-'Azhim 2/468-469; Ibn Kathir رحمه الله mentioned there the evidences and the responses to them, so refer to it].\nThe Arabs used to venerate it in pre-Islamic times, and it was called the deaf month of Allah (شهر الله الأصم) because of the strictness of its sanctity... Fasting during the month of Muharram is among the best voluntary deeds, for Muslim recorded in the hadith of Abu Hurayrah رضي الله عنه that the Prophet صلى الله عليه وسلم said: (أفضلُ الصِّيامِ بعد شَهرِ رمضانَ شهرُ اللهِ الذي تَدْعونَه المُحَرَّمَ، وأفضَلُ الصَّلاةِ بعد الفَريضةِ قيامُ الليلِ).",
+            "bn": "আল্লাহর মাস মুহাররমের বিধানসমূহের একটি হলো, এ মাসে যুদ্ধ শুরু করা নিষিদ্ধ। ইবনু কাসীর رحمه الله বলেন: হারাম মাসে যুদ্ধ শুরু করা নিষিদ্ধ হওয়ার ব্যাপারে — এটি কি রহিত নাকি কার্যকর — এ নিয়ে আলিমগণ দুটি মত পোষণ করেছেন:\nপ্রথমটি, যা সর্বাধিক প্রসিদ্ধ: এটি রহিত হয়েছে; কেননা মহান আল্লাহ এখানে বলেছেন: {فَلَا تَظْلِمُوا فِيهِنَّ أَنفُسَكُمْ} এবং মুশরিকদের সাথে যুদ্ধের আদেশ দিয়েছেন।\nঅপর মত: হারাম মাসে যুদ্ধ শুরু করা হারাম এবং হারাম মাসের নিষেধাজ্ঞা রহিত হয়নি; মহান আল্লাহর বাণীর কারণে: {الشَّهْرُ الْحَرَامُ بِالشَّهْرِ الْحَرَامِ وَالْحُرُمَاتُ قِصَاصٌ فَمَنِ اعْتَدَى عَلَيْكُمْ فَاعْتَدُوا عَلَيْهِ بِمِثْلِ مَا اعْتَدَى عَلَيْكُمْ} — আয়াতের শেষ পর্যন্ত। আর তিনি বলেছেন: {فَإِذَا انسَلَخَ الأَشْهُرُ الْحُرُمُ فَاقْتُلُوا الْمُشْرِكِينَ} — আয়াতের শেষ পর্যন্ত [তাফসীরুল কুরআনিল আযীম ২/৪৬৮-৪৬৯; ইবনু কাসীর رحمه الله সেখানে দলিলাদি ও তার জবাব উল্লেখ করেছেন, সুতরাং সেখানেই দেখুন]।\nজাহেলি যুগে আরবরা এ মাসের মর্যাদা দিত এবং এর কঠোর পবিত্রতার কারণে একে আল্লাহর বধির মাস (شهر الله الأصم) বলা হতো... মুহাররম মাসে সিয়াম পালন সর্বোত্তম নফল আমলের অন্যতম; মুসলিম আবু হুরাইরা رضي الله عنه হতে বর্ণিত হাদীস বের করেছেন যে, নবী صلى الله عليه وسلم বলেছেন: (أفضلُ الصِّيامِ بعد شَهرِ رمضانَ شهرُ اللهِ الذي تَدْعونَه المُحَرَّمَ، وأفضَلُ الصَّلاةِ بعد الفَريضةِ قيامُ الليلِ)।",
+            "es": "Entre las normas del mes de Allah, Muharram, está la prohibición de iniciar el combate durante él. Ibn Kathir رحمه الله dijo: Los sabios han discrepado sobre la prohibición de iniciar el combate en el mes sagrado — ¿está abrogada o sigue vigente? — sosteniendo dos opiniones:\nLa primera, que es la más conocida: que está abrogada, porque Allah, el Exaltado, dijo aquí: {فَلَا تَظْلِمُوا فِيهِنَّ أَنفُسَكُمْ}, y ordenó combatir a los politeístas.\nLa otra opinión: que iniciar el combate en el mes sagrado está prohibido, y que la prohibición del mes sagrado no fue abrogada, por la palabra del Exaltado: {الشَّهْرُ الْحَرَامُ بِالشَّهْرِ الْحَرَامِ وَالْحُرُمَاتُ قِصَاصٌ فَمَنِ اعْتَدَى عَلَيْكُمْ فَاعْتَدُوا عَلَيْهِ بِمِثْلِ مَا اعْتَدَى عَلَيْكُمْ} hasta el final de la aleya. Y dijo: {فَإِذَا انسَلَخَ الأَشْهُرُ الْحُرُمُ فَاقْتُلُوا الْمُشْرِكِينَ} hasta el final de la aleya [Tafsir del Corán admirable 2/468-469; Ibn Kathir رحمه الله mencionó allí las evidencias y las respuestas a ellas; consúltese allí].\nLos árabes lo veneraban en la época preislámica, y se le llamaba el mes sordo de Allah (شهر الله الأصم) por la severidad de su sacralidad... El ayuno en el mes de Muharram está entre los mejores actos voluntarios, pues Muslim transmitió del hadiz de Abu Hurayrah رضي الله عنه que el Profeta صلى الله عليه وسلم dijo: (أفضلُ الصِّيامِ بعد شَهرِ رمضانَ شهرُ اللهِ الذي تَدْعونَه المُحَرَّمَ، وأفضَلُ الصَّلاةِ بعد الفَريضةِ قيامُ الليلِ).",
+            "id": "Termasuk hukum bulan Allah, Muharram, adalah dilarangnya memulai perang di dalamnya. Ibnu Katsir رحمه الله berkata: Para ulama berbeda pendapat tentang pengharaman memulai perang pada bulan haram — apakah telah dinasakh (dihapus) atau tetap berlaku? — dengan dua pendapat:\nPertama, dan ini yang paling masyhur: bahwa ketetapan itu telah dinasakh, karena Allah Ta'ala berfirman di sini: {فَلَا تَظْلِمُوا فِيهِنَّ أَنفُسَكُمْ}, dan Dia memerintahkan untuk memerangi orang-orang musyrik.\nPendapat yang lain: bahwa memulai perang pada bulan haram hukumnya haram, dan pengharaman bulan haram tidak dinasakh, berdasarkan firman Allah Ta'ala: {الشَّهْرُ الْحَرَامُ بِالشَّهْرِ الْحَرَامِ وَالْحُرُمَاتُ قِصَاصٌ فَمَنِ اعْتَدَى عَلَيْكُمْ فَاعْتَدُوا عَلَيْهِ بِمِثْلِ مَا اعْتَدَى عَلَيْكُمْ} hingga akhir ayat. Dan Dia berfirman: {فَإِذَا انسَلَخَ الأَشْهُرُ الْحُرُمُ فَاقْتُلُوا الْمُشْرِكِينَ} hingga akhir ayat [Tafsir Al-Qur'an Al-'Azhim 2/468-469; Ibnu Katsir رحمه الله menyebutkan di sana dalil-dalil dan bantahan terhadapnya, maka rujuklah ke sana].\nOrang-orang Arab dahulu memuliakannya pada masa jahiliyah, dan ia disebut bulan Allah yang tuli (شهر الله الأصم) karena sangat sucinya... Puasa pada bulan Muharram termasuk amalan sunnah yang paling utama; Muslim mengeluarkan dari hadis Abu Hurairah رضي الله عنه bahwa Nabi صلى الله عليه وسلم bersabda: (أفضلُ الصِّيامِ بعد شَهرِ رمضانَ شهرُ اللهِ الذي تَدْعونَه المُحَرَّمَ، وأفضَلُ الصَّلاةِ بعد الفَريضةِ قيامُ الليلِ).",
+            "ur": "اللہ کے مہینے محرم کے احکام میں سے ایک یہ ہے کہ اس میں جنگ کا آغاز حرام ہے۔ ابن کثیر رحمہ اللہ کہتے ہیں: حرام مہینے میں جنگ شروع کرنے کی حرمت کے بارے میں — کیا وہ منسوخ ہے یا باقی ہے — علماء کے دو قول ہیں:\nپہلا قول، جو مشہور تر ہے: وہ منسوخ ہے؛ کیونکہ اللہ تعالیٰ نے یہاں فرمایا: {فَلَا تَظْلِمُوا فِيهِنَّ أَنفُسَكُمْ} اور مشرکین سے جنگ کا حکم دیا۔\nدوسرا قول: حرام مہینے میں جنگ کا آغاز حرام ہے اور حرام مہینے کی حرمت منسوخ نہیں ہوئی؛ اللہ تعالیٰ کے فرمان کی وجہ سے: {الشَّهْرُ الْحَرَامُ بِالشَّهْرِ الْحَرَامِ وَالْحُرُمَاتُ قِصَاصٌ فَمَنِ اعْتَدَى عَلَيْكُمْ فَاعْتَدُوا عَلَيْهِ بِمِثْلِ مَا اعْتَدَى عَلَيْكُمْ} آیت کے آخر تک۔ اور فرمایا: {فَإِذَا انسَلَخَ الأَشْهُرُ الْحُرُمُ فَاقْتُلُوا الْمُشْرِكِينَ} آیت کے آخر تک [تفسیر القرآن العظیم 2/468-469، ابن کثیر رحمہ اللہ نے وہاں دلائل اور ان کے جوابات ذکر کیے ہیں؛ سو وہیں رجوع فرمائیں]۔\nجاہلیت میں عرب اس کی تعظیم کرتے تھے اور اس کی شدید حرمت کی وجہ سے اسے اللہ کا بہرا مہینہ (شهر الله الأصم) کہا جاتا تھا.. محرم کے مہینے میں روزہ رکھنا افضل نوافل میں سے ہے؛ مسلم نے ابو ہریرہ رضی اللہ عنہ کی حدیث سے روایت کیا ہے کہ نبی کریم صلی اللہ علیہ وسلم نے فرمایا: (أفضلُ الصِّيامِ بعد شَهرِ رمضانَ شهرُ اللهِ الذي تَدْعونَه المُحَرَّمَ، وأفضَلُ الصَّلاةِ بعد الفَريضةِ قيامُ الليلِ)۔",
+            "tr": "Allah'ın ayı Muharrem'in hükümlerinden biri, bu ayda savaş başlatmanın haram oluşudur. İbn Kesir رحمه الله şöyle demiştir: Haram ayda savaş başlatmanın haramlığının nesh edilip edilmediği veya yürürlükte kalıp kalmadığı konusunda âlimler iki görüşte bulunmuşlardır:\nBiri ve en meşhuru: Nesih edildiği; çünkü Yüce Allah burada: {فَلَا تَظْلِمُوا فِيهِنَّ أَنفُسَكُمْ} buyurmuş ve müşriklerle savaşmayı emretmiştir.\nDiğer görüş: Haram ayda savaş başlatmanın haram olduğu ve haram ayın haramlığının nesh edilmediğidir; Yüce Allah'ın şu buyruğu sebebiyle: {الشَّهْرُ الْحَرَامُ بِالشَّهْرِ الْحَرَامِ وَالْحُرُمَاتُ قِصَاصٌ فَمَنِ اعْتَدَى عَلَيْكُمْ فَاعْتَدُوا عَلَيْهِ بِمِثْلِ مَا اعْتَدَى عَلَيْكُمْ} âyetinin sonuna kadar. Ve buyurmuştur ki: {فَإِذَا انسَلَخَ الأَشْهُرُ الْحُرُمُ فَاقْتُلُوا الْمُشْرِكِينَ} âyetinin sonuna kadar [Tefsîru'l-Kur'âni'l-Azîm 2/468-469; İbn Kesir رحمه الله delilleri ve onlara verilen cevapları orada zikretmiştir; oraya müracaat edilsin].\nAraplar cahiliye döneminde bu ayı ululardı ve haramlığının şiddeti nedeniyle Allah'ın sağır ayı (شهر الله الأصم) olarak adlandırılırdı... Muharrem ayında oruç tutmak en faziletli nafile amellerdendir; Müslim, Ebû Hureyre رضي الله عنه'den rivayet edilen hadiste Nebi صلى الله عليه وسلم'in şöyle buyurduğunu nakletmiştir: (أفضلُ الصِّيامِ بعد شَهرِ رمضانَ شهرُ اللهِ الذي تَدْعونَه المُحَرَّمَ، وأفضَلُ الصَّلاةِ بعد الفَريضةِ قيامُ الليلِ).",
+            "ku": "لە حوکمەکانی مانگی خودا، محەڕەم، قەدەغەکردنی دەستپێکردنی شەڕە تێیدا. ئیبن کەسیر رحمە الله دەڵێت: زانایان لە قەدەغەکردنی دەستپێکردنی شەڕ لە مانگی حەڕامدا — ئایا هەڵوەشاوەتەوە یان کارپێکراوە — دوو ڕایان هەیە:\nیەکەمیان، کە بەناوبانگترینە: هەڵوەشاوەتەوە؛ چونکە خودای گەورە لێرە فەرموویەتی: {فَلَا تَظْلِمُوا فِيهِنَّ أَنفُسَكُمْ} و فەرمانی شەڕکردنی لەگەڵ موشریکەکان داوە.\nڕای دووەم: دەستپێکردنی شەڕ لە مانگی حەڕامدا حەڕامە و حەڕامی مانگی حەڕام هەڵوەشاوەتەوە؛ بەهۆی فەرموونی خودای گەورە: {الشَّهْرُ الْحَرَامُ بِالشَّهْرِ الْحَرَامِ وَالْحُرُمَاتُ قِصَاصٌ فَمَنِ اعْتَدَى عَلَيْكُمْ فَاعْتَدُوا عَلَيْهِ بِمِثْلِ مَا اعْتَدَى عَلَيْكُمْ} هەتا کۆتایی ئایەتەکە. و فەرموویەتی: {فَإِذَا انسَلَخَ الأَشْهُرُ الْحُرُمُ فَاقْتُلُوا الْمُشْرِكِينَ} هەتا کۆتایی ئایەتەکە [تفسیر القرآن العظیم 2/468-469؛ ئیبن کەسیر رحمە الله بەڵگەکان و وەڵامدانەوەیانی لەوێ باس کردووە؛ با لەوێ ببینرێت].\nعەرەبەکان لە سەردەمی جاهیلیدا حورمەتیان گرتووە و بە توندی حەڕامییەوە ناوی مانگی کەڕی خودا (شهر الله الأصم) بووە.. ڕۆژووگرتن لە مانگی محەڕەم لە باشترین خێرەکانە؛ موسلیم لە حدیثی ئەبوو هورەیرە رضي الله عنهوە دەرهێناوە کە پێغەمبەر صلی الله علیه وسلم فەرموویەتی: (أفضلُ الصِّيامِ بعد شَهرِ رمضانَ شهرُ اللهِ الذي تَدْعونَه المُحَرَّمَ، وأفضَلُ الصَّلاةِ بعد الفَريضةِ قيامُ الليلِ).",
+            "ms": "Antara hukum-hukum bulan Allah, Muharram, ialah larangan memulakan peperangan padanya. Ibn Kathir رحمه الله berkata: Para ulama berbeza pendapat mengenai pengharaman memulakan peperangan pada bulan haram — adakah ia mansuh (dihapuskan) atau masih berkuat kuasa? — dengan dua pendapat:\nPertama, yang paling masyhur: ia telah mansuh; kerana Allah Yang Maha Tinggi berfirman di sini: {فَلَا تَظْلِمُوا فِيهِنَّ أَنفُسَكُمْ}, dan Dia memerintahkan memerangi golongan musyrik.\nPendapat yang lain: memulakan peperangan pada bulan haram adalah haram, dan pengharaman bulan haram tidak dimansuhkan; berdasarkan firman Allah Yang Maha Tinggi: {الشَّهْرُ الْحَرَامُ بِالشَّهْرِ الْحَرَامِ وَالْحُرُمَاتُ قِصَاصٌ فَمَنِ اعْتَدَى عَلَيْكُمْ فَاعْتَدُوا عَلَيْهِ بِمِثْلِ مَا اعْتَدَى عَلَيْكُمْ} sehingga akhir ayat. Dan Dia berfirman: {فَإِذَا انسَلَخَ الأَشْهُرُ الْحُرُمُ فَاقْتُلُوا الْمُشْرِكِينَ} sehingga akhir ayat [Tafsir Al-Quran Al-Azim 2/468-469; Ibn Kathir رحمه الله menyebutkan di sana dalil-dalil dan jawapan kepadanya, maka rujuklah di sana].\nOrang-orang Arab dahulu memuliakannya pada zaman jahiliyah, dan ia dinamakan bulan Allah yang pekak (شهر الله الأصم) kerana kerasnya kesuciannya... Berpuasa pada bulan Muharram adalah antara amalan sunnah yang paling afdal; Muslim mengeluarkan daripada hadis Abu Hurairah رضي الله عنه bahawa Nabi صلى الله عليه وسلم bersabda: (أفضلُ الصِّيامِ بعد شَهرِ رمضانَ شهرُ اللهِ الذي تَدْعونَه المُحَرَّمَ، وأفضَلُ الصَّلاةِ بعد الفَريضةِ قيامُ الليلِ).",
+            "fil": "Kabilang sa mga batas ng buwan ng Allah, ang Muharram, ang pagbabawal sa pagsisimula ng digmaan dito. Sinabi ni Ibn Kathir رحمه الله: Nagkaiba-iba ang mga iskolar sa pagbabawal sa pagsisimula ng digmaan sa banal na buwan — ito ba ay binawi na o nananatiling may-bisa? — na may dalawang opinyon:\nAng una, na ang pinakatanyag: na ito ay binawi na; sapagkat sinabi ng Kataas-taasan dito: {فَلَا تَظْلِمُوا فِيهِنَّ أَنفُسَكُمْ}, at Kanyang iniutos ang pakikipaglaban sa mga politeista.\nAng isa pang opinyon: na ang pagsisimula ng digmaan sa banal na buwan ay ipinagbabawal, at ang pagbabawal sa banal na buwan ay hindi binawi; dahil sa pahayag ng Kataas-taasan: {الشَّهْرُ الْحَرَامُ بِالشَّهْرِ الْحَرَامِ وَالْحُرُمَاتُ قِصَاصٌ فَمَنِ اعْتَدَى عَلَيْكُمْ فَاعْتَدُوا عَلَيْهِ بِمِثْلِ مَا اعْتَدَى عَلَيْكُمْ} hanggang sa katapusan ng talata. At Kanyang sinabi: {فَإِذَا انسَلَخَ الأَشْهُرُ الْحُرُمُ فَاقْتُلُوا الْمُشْرِكِينَ} hanggang sa katapusan ng talata [Tafsir al-Quran al-Azim 2/468-469; binanggit ni Ibn Kathir رحمه الله doon ang mga patunay at mga sagot sa mga ito; tingnan doon].\nIginagalang ng mga Arabo ito noong panahon ng pre-Islam, at ito ay tinawag na binging buwan ng Allah (شهر الله الأصم) dahil sa tigas ng pagiging banal nito... Ang pag-aayuno sa buwan ng Muharram ay kabilang sa mga pinakamahusay na boluntaryong gawain; isinulat ni Muslim mula sa hadith ni Abu Hurayrah رضي الله عنه na sinabi ng Propeta صلى الله عليه وسلم: (أفضلُ الصِّيامِ بعد شَهرِ رمضانَ شهرُ اللهِ الذي تَدْعونَه المُحَرَّمَ، وأفضَلُ الصَّلاةِ بعد الفَريضةِ قيامُ الليلِ).",
+            "so": "Mid ka mid ah xukunnada bisha Ilaahay, Muxarram, waa in bilowga dagaalka lama bilaabo bishaas. Ibn Kastiir رحمه الله wuxuu yidhi: Culimada way iskhilaafeen xaranta bilowga dagaalka bisha xaaramka ah — miyaa la joojiyay mise wuu sii jiraa? — waxayna ku dhaafeen labo ra'yi:\nKii koowaad, oo ah kii ugu caansan: waa la joojiyay; maaddaama Ilaaha Sarreeyah halkan yidhi: {فَلَا تَظْلِمُوا فِيهِنَّ أَنفُسَكُمْ}, oo amray in la dagaallamo mushrikiinta.\nRa'yigii labaad: bilowga dagaalka bisha xaaramka ah waa xaaraan, xaranna bisha xaaramka ah lama joojin; awgood qawlka Ilaaha Sarreeyah: {الشَّهْرُ الْحَرَامُ بِالشَّهْرِ الْحَرَامِ وَالْحُرُمَاتُ قِصَاصٌ فَمَنِ اعْتَدَى عَلَيْكُمْ فَاعْتَدُوا عَلَيْهِ بِمِثْلِ مَا اعْتَدَى عَلَيْكُمْ} ilaa dhamaadka aayadda. Oo wuxuu yidhi: {فَإِذَا انسَلَخَ الأَشْهُرُ الْحُرُمُ فَاقْتُلُوا الْمُشْرِكِينَ} ilaa dhamaadka aayadda [Tafsiirka Quraanka Weyn 2/468-469; Ibn Kastiir رحمه الله wuxuu halkaas sheegay daliilada iyo jawaabaha laga bixiyay; ee halkaas fiiri].\nCarabtu waxay weynaysan jirtay waqtigii jaahiliyadda, waxaana la odhan jiray bisha Ilaahay ee dhegaha la (شهر الله الأصم), awgood xaqdarrada aysan ku adagayd... Soonka bisha Muxarram wuxuu ka mid yahay soonaska sunnadda ee ugu fadli badan; Muslim wuxuu soo saaray xadiis Abuu Hurayrah رضي الله عنه in Nebigu صلى الله عليه وسلم yidhi: (أفضلُ الصِّيامِ بعد شَهرِ رمضانَ شهرُ اللهِ الذي تَدْعونَه المُحَرَّمَ، وأفضَلُ الصَّلاةِ بعد الفَريضةِ قيامُ الليلِ)."
+          }
+        },
+        {
+          "name": {
+            "ar": "فَضلُ صيامِه",
+            "en": "The Virtue of Fasting It",
+            "bn": "এ মাসে সিয়ামের ফযীলত",
+            "es": "La virtud de ayunarlo",
+            "id": "Keutamaan Berpuasa di Bulan Ini",
+            "ur": "اس کے روزے کی فضیلت",
+            "tr": "Bu Ayda Oruç Tutmanın Fazileti",
+            "ku": "فەزڵی ڕۆژووگرتنی تێیدا",
+            "ms": "Kelebihan Berpuasa Padanya",
+            "fil": "Ang Kahalagahan ng Pag-aayuno sa Buwan na Ito",
+            "so": "Fadliga Soomida Bishaan"
+          },
+          "description": {
+            "ar": "بيَّن رسولُ الله صلَّى اللهُ عليه وسلَّم فَضْلَ صيامِ شَهرِ اللهِ المُحَرَّمِ بقَولِه: ((أفضَلُ الصِّيامِ بعد رمضانَ شَهرُ اللهِ المُحَرَّمُ)) [رواه مسلم]. واختلف أهلُ العلمِ -رحمهم الله- في مدلولِ الحديثِ: هل يدلُّ الحديثُ على صيامِ الشهرِ كاملًا أم أكثَرِه؟ وظاهِرُ الحديثِ -واللهُ أعلَمُ- يدُلُّ على فَضلِ صيامِ شهرِ المُحَرَّمِ كاملًا، وحمَلَه بعضُ العُلماءِ على الترغيبِ في الإكثارِ من الصِّيامِ في شهرِ المُحَرَّم لا صومِه كُلِّه؛ لقولِ عائشةَ رضي الله عنها: (ما رأيتُ رسولَ الله صلَّى اللهُ عليه وسلَّم استكمَلَ صيامَ شَهرٍ قَطُّ إلَّا رمضانَ، وما رأيتُه في شهرٍ أكثَرَ منه صيامًا في شعبانَ) أخرجه مسلم [رواه مسلم]، ولكِنْ قد يقال: إنَّ عائشةَ رضي الله عنها ذكَرَت ما رأَتْه هنا، ولكِنَّ النَّصَّ يدُلُّ على صيامِ الشَّهرِ كاملًا.",
+            "en": "The Messenger of Allah صلى الله عليه وسلم clarified the virtue of fasting the month of Allah, Muharram, with his statement: ((أفضَلُ الصِّيامِ بعد رمضانَ شَهرُ اللهِ المُحَرَّمُ)) [رواه مسلم]. The people of knowledge, may Allah have mercy on them, differed over the meaning of the hadith: does it indicate fasting the entire month or most of it? The apparent meaning of the hadith — and Allah knows best — indicates the virtue of fasting the entire month of Muharram. However, some scholars understood it as encouragement to fast abundantly during Muharram rather than fasting all of it, based on the statement of Aisha رضي الله عنها: (ما رأيتُ رسولَ الله صلَّى اللهُ عليه وسلَّم استكمَلَ صيامَ شَهرٍ قَطُّ إلَّا رمضانَ، وما رأيتُه في شهرٍ أكثَرَ منه صيامًا في شعبانَ), recorded by Muslim [رواه مسلم]. Yet it may be said that Aisha رضي الله عنها only mentioned what she herself witnessed, whereas the text indicates fasting the entire month.",
+            "bn": "রাসূলুল্লাহ صلى الله عليه وسلم তাঁর বাণীর মাধ্যমে আল্লাহর মাস মুহাররমে সিয়ামের ফযীলত স্পষ্ট করেছেন: ((أفضَلُ الصِّيامِ بعد رمضانَ شَهرُ اللهِ المُحَرَّمُ)) [رواه مسلم]। আহলুল ইলম — আল্লাহ তাঁদের প্রতি রহম করুন — হাদীসের অর্থ নিয়ে মতভেদ করেছেন: হাদীস কি পূর্ণ মাস সিয়ামের নির্দেশ দেয় নাকি অধিকাংশের দিকে? হাদীসের প্রকাশ্য অর্থ — ওয়াল্লাহু আ'লাম — পূর্ণ মুহাররম মাস সিয়ামের ফযীলতেরই দিকে নির্দেশ করে। তবে কিছু আলিম এটিকে মুহাররমে অধিক সিয়াম রাখার উৎসাহ হিসেবে গ্রহণ করেছেন, পূর্ণ মাস সিয়াম হিসেবে নয়; আয়িশা رضي الله عنها-এর বক্তব্যের কারণে: (ما رأيتُ رسولَ الله صلَّى اللهُ عليه وسلَّم استكمَلَ صيامَ شَهرٍ قَطُّ إلَّا رمضانَ، وما رأيتُه في شهرٍ أكثَرَ منه صيامًا في شعبانَ) — মুসলিম বর্ণনা করেছেন [رواه مسلم]। কিন্তু বলা যেতে পারে: আয়িশা رضي الله عنها এখানে যা দেখেছেন তা-ই উল্লেখ করেছেন, অথচ নস পূর্ণ মাস সিয়ামেরই নির্দেশ দেয়।",
+            "es": "El Mensajero de Allah صلى الله عليه وسلم aclaró la virtud de ayunar el mes de Allah, Muharram, con sus palabras: ((أفضَلُ الصِّيامِ بعد رمضانَ شَهرُ اللهِ المُحَرَّمُ)) [رواه مسلم]. La gente de conocimiento — que Allah tenga misericordia de ellos — difirió sobre el significado del hadiz: ¿indica el hadiz ayunar el mes completo o la mayor parte de él? El sentido aparente del hadiz — y Allah sabe más — indica la virtud de ayunar el mes de Muharram completo. No obstante, algunos eruditos lo interpretaron como un estímulo para abundar en el ayuno durante Muharram y no ayunarlo por completo, por el dicho de Aisha رضي الله عنها: (ما رأيتُ رسولَ الله صلَّى اللهُ عليه وسلَّم استكمَلَ صيامَ شَهرٍ قَطُّ إلَّا رمضانَ، وما رأيتُه في شهرٍ أكثَرَ منه صيامًا في شعبانَ), transmitido por Muslim [رواه مسلم]. Sin embargo, puede decirse que Aisha رضي الله عنها mencionó solo lo que presenció, mientras que el texto indica el ayuno del mes completo.",
+            "id": "Rasulullah صلى الله عليه وسلم menjelaskan keutamaan berpuasa di bulan Allah, Muharram, dengan sabdanya: ((أفضَلُ الصِّيامِ بعد رمضانَ شَهرُ اللهِ المُحَرَّمُ)) [رواه مسلم]. Ahli ilmu — semoga Allah merahmati mereka — berbeda pendapat tentang maksud hadis tersebut: apakah hadis itu menunjukkan puasa sebulan penuh atau sebagian besarnya? Zhahir hadis — wallahu a'lam — menunjukkan keutamaan berpuasa sebulan penuh di bulan Muharram. Namun sebagian ulama memahaminya sebagai anjuran untuk memperbanyak puasa pada bulan Muharram, bukan berpuasa sebulan penuh, berdasarkan perkataan Aisyah رضي الله عنها: (ما رأيتُ رسولَ الله صلَّى اللهُ عليه وسلَّم استكمَلَ صيامَ شَهرٍ قَطُّ إلَّا رمضانَ، وما رأيتُه في شهرٍ أكثَرَ منه صيامًا في شعبانَ) yang dikeluarkan oleh Muslim [رواه مسلم]. Akan tetapi dapat dikatakan bahwa Aisyah رضي الله عنها hanya menyebutkan apa yang pernah ia saksikan, sedangkan nash menunjukkan puasa sebulan penuh.",
+            "ur": "رسول اللہ صلی اللہ علیہ وسلم نے اپنے فرمان سے اللہ کے مہینے محرم کے روزے کی فضیلت بیان فرمائی: ((أفضَلُ الصِّيامِ بعد رمضانَ شَهرُ اللهِ المُحَرَّمُ)) [رواه مسلم]۔ اہل علم — اللہ ان پر رحم کرے — حدیث کے مفہوم میں اختلاف کرتے ہیں: کیا حدیث پورے مہینے کے روزوں کی طرف اشارہ کرتی ہے یا اس کے بیشتر حصے کی؟ حدیث کا ظاہر — واللہ اعلم — پورے محرم کے روزوں کی فضیلت کی طرف اشارہ کرتا ہے۔ لیکن بعض علماء نے اسے محرم میں کثرت سے روزے رکھنے کی ترغیب سمجھا ہے، پورا مہینہ روزہ رکھنا نہیں؛ عائشہ رضی اللہ عنہا کے قول کی بناء پر: (ما رأيتُ رسولَ الله صلَّى اللهُ عليه وسلَّم استكمَلَ صيامَ شَهرٍ قَطُّ إلَّا رمضانَ، وما رأيتُه في شهرٍ أكثَرَ منه صيامًا في شعبانَ) — مسلم نے روایت کیا [رواه مسلم]۔ لیکن کہا جا سکتا ہے کہ عائشہ رضی اللہ عنہا نے یہاں صرف وہی ذکر کیا جو انہوں نے دیکھا تھا، جبکہ نص پورے مہینے کے روزے کی طرف دلالت کرتا ہے۔",
+            "tr": "Allah'ın Resûlü صلى الله عليه وسلم, Allah'ın ayı Muharrem'de oruç tutmanın faziletini şu sözüyle açıklamıştır: ((أفضَلُ الصِّيامِ بعد رمضانَ شَهرُ اللهِ المُحَرَّمُ)) [رواه مسلم]. İlim ehli — Allah onlara rahmet etsin — hadisin delalet ettiği mana konusunda ihtilaf etmişlerdir: Hadis, ayın tamamının mı yoksa çoğunun mu oruçlu geçirilmesine işaret etmektedir? Hadisin zahir anlamı — ve Allah en iyi bilendir — Muharrem ayının tamamını oruçlu geçirmenin faziletine işaret eder. Ancak bazı âlimler bunu, ayın tamamını oruçlu geçirmek değil de Muharrem'de orucu çok yapmaya teşvik olarak yorumlamışlardır; Âişe رضي الله عنها'nın şu sözü sebebiyle: (ما رأيتُ رسولَ الله صلَّى اللهُ عليه وسلَّم استكمَلَ صيامَ شَهرٍ قَطُّ إلَّا رمضانَ، وما رأيتُه في شهرٍ أكثَرَ منه صيامًا في شعبانَ), Müslim'in naklettiği gibi [رواه مسلم]. Bununla birlikte, Âişe رضي الله عنها burada yalnızca gördüğünü zikretmiştir denilebilir; hâlbuki nas, ayın tamamının oruç tutulmasına delalet etmektedir.",
+            "ku": "پەیامبەری خودا صلی الله علیه وسلم بە قسەکەیەوە فەزڵی ڕۆژووگرتنی مانگی خودا، محەڕەمی ڕوونکردەوە: ((أفضَلُ الصِّيامِ بعد رمضانَ شَهرُ اللهِ المُحَرَّمُ)) [رواه مسلم]. خاوەنانی زانست — خوا رەحمەتیان لێ بکات — لە مەبەستی حدیثدا جیاوازن: ئایا حدیث ئاماژەیە بۆ ڕۆژووگرتنی تەواوی مانگەکە یان زۆربەی؟ دەرکەوتنی حدیث — خودا زاناترە — ئاماژەیە بۆ فەزڵی ڕۆژووگرتنی تەواوی مانگی محەڕەم. بەڵام هەندێک لە زانایان وەک هانیکردنێک بۆ زۆرکردنی ڕۆژوو لە محەڕەمدا وەرگرتوویانە، نەک ڕۆژووگرتنی هەمووی؛ بەهۆی قسەی عائیشە رضي الله عنها: (ما رأيتُ رسولَ الله صلَّى اللهُ عليه وسلَّم استكمَلَ صيامَ شَهرٍ قَطُّ إلَّا رمضانَ، وما رأيتُه في شهرٍ أكثَرَ منه صيامًا في شعبانَ) — موسلیم دەرهێناوە [رواه مسلم]. بەڵام دەکرێت بگوترێت: عائیشە رضي الله عنها لێرە تەنها ئەوەی بینیوەتی باس کردووە، لەکاتێکدا دەق ئاماژەیە بۆ ڕۆژووگرتنی تەواوی مانگەکە.",
+            "ms": "Rasulullah صلى الله عليه وسلم telah menjelaskan kelebihan berpuasa pada bulan Allah, Muharram, dengan sabda baginda: ((أفضَلُ الصِّيامِ بعد رمضانَ شَهرُ اللهِ المُحَرَّمُ)) [رواه مسلم]. Ahli ilmu — semoga Allah merahmati mereka — berbeza pendapat tentang maksud hadis tersebut: adakah hadis itu menunjukkan berpuasa sepanjang bulan atau sebahagian besarnya? Zahir hadis — wallahu a'lam — menunjukkan kelebihan berpuasa sepanjang bulan Muharram. Walau bagaimanapun, sebahagian ulama memahaminya sebagai galakan untuk memperbanyak puasa dalam bulan Muharram dan bukan berpuasa sepanjang bulannya, berdasarkan perkataan Aisyah رضي الله عنها: (ما رأيتُ رسولَ الله صلَّى اللهُ عليه وسلَّم استكمَلَ صيامَ شَهرٍ قَطُّ إلَّا رمضانَ، وما رأيتُه في شهرٍ أكثَرَ منه صيامًا في شعبانَ), dikeluarkan oleh Muslim [رواه مسلم]. Namun boleh dikatakan bahawa Aisyah رضي الله عنها hanya menyebutkan apa yang pernah dilihatnya, sedangkan nas menunjukkan berpuasa sepanjang bulan.",
+            "fil": "Ipinaliwanag ng Sugo ng Allah صلى الله عليه وسلم ang kahalagahan ng pag-aayuno sa buwan ng Allah, ang Muharram, sa kanyang pahayag: ((أفضَلُ الصِّيامِ بعد رمضانَ شَهرُ اللهِ المُحَرَّمُ)) [رواه مسلم]. Nagkaiba-iba ang mga tao ng kaalaman — nawa'y maawa sa kanila ang Allah — sa kahulugan ng hadith: ito ba ay nagpapahiwatig ng pag-aayuno ng buong buwan o karamihan nito? Ang maliwanag na kahulugan ng hadith — at ang Allah ang nakakaalam — ay nagpapahiwatig ng kahalagahan ng pag-aayuno ng buong buwan ng Muharram. Gayunpaman, ilang iskolar ay binigyang-kahulugan ito bilang paghikayat na madalas mag-ayuno sa buwan ng Muharram sa halip na buong buwan, batay sa pahayag ni Aisha رضي الله عنها: (ما رأيتُ رسولَ الله صلَّى اللهُ عليه وسلَّم استكمَلَ صيامَ شَهرٍ قَطُّ إلَّا رمضانَ، وما رأيتُه في شهرٍ أكثَرَ منه صيامًا في شعبانَ), na isinulat ni Muslim [رواه مسلم]. Gayunpaman, maaaring sabihin na si Aisha رضي الله عنها ay nabanggit lamang ang kanyang nasaksihan, habang ang teksto ay nagpapahiwatig ng pag-aayuno ng buong buwan.",
+            "so": "Rasuulka Allah صلى الله عليه وسلم wuxuu eregiisa u sharaxay fadliga soomida bisha Ilaahay, Muxarram: ((أفضَلُ الصِّيامِ بعد رمضانَ شَهرُ اللهِ المُحَرَّمُ)) [رواه مسلم]. Ehlu-ʿilmka — Ilaahaa ha u naxariisto — way iskhilaafeen macnaha xadiiska: miyuu xadiisku tilmaamayaa soomid bil oo dhan mise badankeeda? Muuqaalka xadiiska — Ilaahaa og — wuxuu tilmaamayaa fadliga soomida bisha Muxarram oo dhan. Laakiin qaar ka mid ah culimada waxay fahmeen inuu yahay dhiirrigelin ah in la badsado soomida bisha Muxarram, oo aan ahayn soomid bil oo buuxda; qawlka Aisha رضي الله عنها dartii: (ما رأيتُ رسولَ الله صلَّى اللهُ عليه وسلَّم استكمَلَ صيامَ شَهرٍ قَطُّ إلَّا رمضانَ، وما رأيتُه في شهرٍ أكثَرَ منه صيامًا في شعبانَ) wuxuu soo saaray Muslim [رواه مسلم]. Laakiin waxaa la odhan karaa: Aisha رضي الله عنها waxay halkan sheegtay oo keliya waxay arkay, halka naska uu tilmaamayo soomida bisha oo dhan."
+          }
+        },
+        {
+          "name": {
+            "ar": "عاشوراء",
+            "en": "Ashura",
+            "bn": "আশূরা",
+            "es": "Ashura",
+            "id": "Asyura",
+            "ur": "عاشورہ",
+            "tr": "Aşure Günü",
+            "ku": "عاشورا",
+            "ms": "Hari Asyura",
+            "fil": "Araw ng Ashura",
+            "so": "Maalinta Cuuraa (Ashuuraa)"
+          },
+          "description": {
+            "ar": "عاشوراءُ: هو اليومُ الذي أنجى اللهُ تعالى فيه موسى وقومَه، وأغرقَ فرعونَ وقومَه؛ فصامه موسى شُكرًا، ثم صامه النبيُّ صلَّى اللهُ عليه وسلَّم؛ لِما رواه ابنُ عبَّاسٍ رضي الله عنهما قال: (قَدِمَ رسولُ اللهِ صلَّى اللهُ عليه وسلَّم المدينةَ، فوجد اليهودَ يصومون يومَ عاشوراءَ، فسُئِلوا عن ذلك، فقالوا: هذا اليومُ الذي أظهر اللهُ فيه موسى وبني إسرائيلَ على فِرعونَ؛ فنحن نصومُه تعظيمًا له، فقال رسولُ الله صلَّى اللهُ عليه وسلَّم: ((نحن أَولى بموسى منكم، فأمَرَ بصيامِه))[انظر: لطائف المعارف 96-102]، وفي روايةٍ لمسلمٍ: ((فصامه موسى شُكرًا، فنحن نصومُه...)).",
+            "en": "Ashura is the day on which Allah the Exalted saved Musa (Moses) and his people and drowned Pharaoh and his people; Musa fasted it in gratitude, and then the Prophet صلى الله عليه وسلم fasted it, based on what was narrated by Ibn Abbas رضي الله عنهما, who said: (قَدِمَ رسولُ اللهِ صلَّى اللهُ عليه وسلَّم المدينةَ، فوجد اليهودَ يصومون يومَ عاشوراءَ، فسُئِلوا عن ذلك، فقالوا: هذا اليومُ الذي أظهر اللهُ فيه موسى وبني إسرائيلَ على فِرعونَ؛ فنحن نصومُه تعظيمًا له، فقال رسولُ الله صلَّى اللهُ عليه وسلَّم: ((نحن أَولى بموسى منكم، فأمَرَ بصيامِه))) [see: Lata'if al-Ma'arif, pp. 96-102]. And in a narration by Muslim: ((فصامه موسى شُكرًا، فنحن نصومُه...)).",
+            "bn": "আশূরা: এই দিনে মহান আল্লাহ মূসা আলাইহিস সালাম ও তাঁর কওমকে মুক্তি দিয়ে ফেরাউন ও তার কওমকে নিমজ্জিত করেছিলেন; কৃতজ্ঞতা স্বরূপ মূসা আলাইহিস সালাম এ দিনে সিয়াম পালন করেন, পরে নবী صلى الله عليه وسلم-ও এ দিনে সিয়াম পালন করেন; ইবনু আব্বাস رضي الله عنهما বর্ণিত হাদীসের কারণে, তিনি বলেন: (قَدِمَ رسولُ اللهِ صلَّى اللهُ عليه وسلَّم المدينةَ، فوجد اليهودَ يصومون يومَ عاشوراءَ، فسُئِلوا عن ذلك، فقالوا: هذا اليومُ الذي أظهر اللهُ فيه موسى وبني إسرائيلَ على فِرعونَ؛ فنحن نصومُه تعظيمًا له، فقال رسولُ الله صلَّى اللهُ عليه وسلَّم: ((نحن أَولى بموسى منكم، فأمَرَ بصيامِه))) [দেখুন: লাতায়িফুল মাআরিফ ৯৬-১০২]। মুসলিমের এক বর্ণনায়: ((فصامه موسى شُكرًا، فنحن نصومُه...))।",
+            "es": "Ashura es el día en que Allah el Exaltado salvó a Musa (Moisés) y a su pueblo, y ahogó a Faraón y a su pueblo; Musa lo ayunó en agradecimiento, y luego lo ayunó el Profeta صلى الله عليه وسلم, por lo que narró Ibn Abbas رضي الله عنهما, quien dijo: (قَدِمَ رسولُ اللهِ صلَّى اللهُ عليه وسلَّم المدينةَ، فوجد اليهودَ يصومون يومَ عاشوراءَ، فسُئِلوا عن ذلك، فقالوا: هذا اليومُ الذي أظهر اللهُ فيه موسى وبني إسرائيلَ على فِرعونَ؛ فنحن نصومُه تعظيمًا له، فقال رسولُ الله صلَّى اللهُ عليه وسلَّم: ((نحن أَولى بموسى منكم، فأمَرَ بصيامِه))) [véase: Lata'if al-Ma'arif, págs. 96-102]. Y en una narración de Muslim: ((فصامه موسى شُكرًا، فنحن نصومُه...)).",
+            "id": "Asyura adalah hari ketika Allah Ta'ala menyelamatkan Musa dan kaumnya serta menenggelamkan Fir'aun dan kaumnya; Musa berpuasa pada hari itu sebagai rasa syukur, kemudian Nabi صلى الله عليه وسلم juga berpuasa padanya, berdasarkan riwayat Ibnu Abbas رضي الله عنهما yang berkata: (قَدِمَ رسولُ اللهِ صلَّى اللهُ عليه وسلَّم المدينةَ، فوجد اليهودَ يصومون يومَ عاشوراءَ، فسُئِلوا عن ذلك، فقالوا: هذا اليومُ الذي أظهر اللهُ فيه موسى وبني إسرائيلَ على فِرعونَ؛ فنحن نصومُه تعظيمًا له، فقال رسولُ الله صلَّى اللهُ عليه وسلَّم: ((نحن أَولى بموسى منكم، فأمَرَ بصيامِه))) [lihat: Latha'if al-Ma'arif, hlm. 96-102]. Dalam satu riwayat Muslim: ((فصامه موسى شُكرًا، فنحن نصومُه...)).",
+            "ur": "عاشورہ: وہ دن ہے جس میں اللہ تعالیٰ نے موسیٰ علیہ السلام اور ان کی قوم کو نجات دی اور فرعون اور اس کی قوم کو غرق کر دیا؛ پس موسیٰ علیہ السلام نے شکرانے کے طور پر اس دن روزہ رکھا، پھر نبی کریم صلی اللہ علیہ وسلم نے بھی اس کا روزہ رکھا؛ ابن عباس رضی اللہ عنہما کی روایت کی بناء پر، انہوں نے کہا: (قَدِمَ رسولُ اللهِ صلَّى اللهُ عليه وسلَّم المدينةَ، فوجد اليهودَ يصومون يومَ عاشوراءَ، فسُئِلوا عن ذلك، فقالوا: هذا اليومُ الذي أظهر اللهُ فيه موسى وبني إسرائيلَ على فِرعونَ؛ فنحن نصومُه تعظيمًا له، فقال رسولُ الله صلَّى اللهُ عليه وسلَّم: ((نحن أَولى بموسى منكم، فأمَرَ بصيامِه))) [دیکھیے: لطائف المعارف ۹۶-۱۰۲]۔ اور مسلم کی ایک روایت میں: ((فصامه موسى شُكرًا، فنحن نصومُه...))۔",
+            "tr": "Aşure, Allah Teâlâ'nın Mûsa ve kavmini kurtardığı, Firavun ve kavmini ise sulara gömdüğü gündür; Mûsa şükür olarak o günü oruçlu geçirmiş, sonra Nebi صلى الله عليه وسلم de onu oruçlu geçirmiştir. İbn Abbas رضي الله عنهما'nın rivayet ettiği şu hadis sebebiyle, o şöyle demiştir: (قَدِمَ رسولُ اللهِ صلَّى اللهُ عليه وسلَّم المدينةَ، فوجد اليهودَ يصومون يومَ عاشوراءَ، فسُئِلوا عن ذلك، فقالوا: هذا اليومُ الذي أظهر اللهُ فيه موسى وبني إسرائيلَ على فِرعونَ؛ فنحن نصومُه تعظيمًا له، فقال رسولُ الله صلَّى اللهُ عليه وسلَّم: ((نحن أَولى بموسى منكم، فأمَرَ بصيامِه))) [bkz.: Latâifü'l-Meârif, s. 96-102]. Müslim'in bir rivayetinde ise: ((فصامه موسى شُكرًا، فنحن نصومُه...)).",
+            "ku": "عاشورا: ئەو ڕۆژەیە کە خودای گەورە مووسا و گەلەکەی ڕزگار کرد و فیرعەون و گەلەکەی خنکاند؛ مووساش بە سوپاسەوە ڕۆژووی گرت، پاشان پێغەمبەر صلی الله علیه وسلمیش ڕۆژووی گرت؛ بەهۆی ئەوەی لە ئیبن عەباس رضي الله عنهماوە گێڕدراوەتەوە، کەوتووە: (قَدِمَ رسولُ اللهِ صلَّى اللهُ عليه وسلَّم المدينةَ، فوجد اليهودَ يصومون يومَ عاشوراءَ، فسُئِلوا عن ذلك، فقالوا: هذا اليومُ الذي أظهر اللهُ فيه موسى وبني إسرائيلَ على فِرعونَ؛ فنحن نصومُه تعظيمًا له، فقال رسولُ الله صلَّى اللهُ عليه وسلَّم: ((نحن أَولى بموسى منكم، فأمَرَ بصيامِه))) [ببینە: لەتائیفول-مەعارف، لاپەڕە 96-102]. لە یەکێک لە ڕیوایەتەکانی موسلیم: ((فصامه موسى شُكرًا، فنحن نصومُه...)).",
+            "ms": "Asyura ialah hari ketika Allah Yang Maha Tinggi menyelamatkan Musa dan kaumnya serta menenggelamkan Firaun dan kaumnya; Musa berpuasa pada hari itu sebagai tanda kesyukuran, kemudian Nabi صلى الله عليه وسلم turut berpuasa padanya, berdasarkan riwayat Ibn Abbas رضي الله عنهما yang berkata: (قَدِمَ رسولُ اللهِ صلَّى اللهُ عليه وسلَّم المدينةَ، فوجد اليهودَ يصومون يومَ عاشوراءَ، فسُئِلوا عن ذلك، فقالوا: هذا اليومُ الذي أظهر اللهُ فيه موسى وبني إسرائيلَ على فِرعونَ؛ فنحن نصومُه تعظيمًا له، فقال رسولُ الله صلَّى اللهُ عليه وسلَّم: ((نحن أَولى بموسى منكم، فأمَرَ بصيامِه))) [lihat: Lata'if al-Ma'arif, ms. 96-102]. Dalam satu riwayat Muslim: ((فصامه موسى شُكرًا، فنحن نصومُه...)).",
+            "fil": "Ang Ashura ay ang araw kung kailan iniligtas ng Allah na Kataas-taasan si Musa (Moises) at ang kanyang bayan, at binalahan si Paraon at ang kanyang bayan; nag-ayuno si Musa bilang pasasalamat, at pagkatapos ay nag-ayuno rin ang Propeta صلى الله عليه وسلم, batay sa ibinulatkat ni Ibn Abbas رضي الله عنهما, na nagsabi: (قَدِمَ رسولُ اللهِ صلَّى اللهُ عليه وسلَّم المدينةَ، فوجد اليهودَ يصومون يومَ عاشوراءَ، فسُئِلوا عن ذلك، فقالوا: هذا اليومُ الذي أظهر اللهُ فيه موسى وبني إسرائيلَ على فِرعونَ؛ فنحن نصومُه تعظيمًا له، فقال رسولُ الله صلَّى اللهُ عليه وسلَّم: ((نحن أَولى بموسى منكم، فأمَرَ بصيامِه))) [tingnan: Lata'if al-Ma'arif, pp. 96-102]. At sa isang salaysay ni Muslim: ((فصامه موسى شُكرًا، فنحن نصومُه...)).",
+            "so": "Cuuraa (Ashuuraa) waa maalintii Ilaahay Sarreebah u badbaadiyay Muuse iyo qoomkiis, oona halleelay Fircoon iyo qoomkiis; Muuse wuu soomay mahadna awgood, kaddibna Nebigu صلى الله عليه وسلم wuu soomay; sida ay warinayso Ibnu Caabis رضي الله عنهما, oo yidhi: (قَدِمَ رسولُ اللهِ صلَّى اللهُ عليه وسلَّم المدينةَ، فوجد اليهودَ يصومون يومَ عاشوراءَ، فسُئِلوا عن ذلك، فقالوا: هذا اليومُ الذي أظهر اللهُ فيه موسى وبني إسرائيلَ على فِرعونَ؛ فنحن نصومُه تعظيمًا له، فقال رسولُ الله صلَّى اللهُ عليه وسلَّم: ((نحن أَولى بموسى منكم، فأمَرَ بصيامِه))) [ee fiiri: Lataa'if al-Ma'aarif, bogagga 96-102]. Riwaayad Muslim ah ayaa ahayd: ((فصامه موسى شُكرًا، فنحن نصومُه...))."
+          }
+        }
+      ],
+      "heresies": [
+        {
+          "name": {
+            "ar": "",
+            "en": "",
+            "bn": "",
+            "es": "",
+            "id": "",
+            "ur": "",
+            "tr": "",
+            "ku": "",
+            "ms": "",
+            "fil": "",
+            "so": ""
+          },
+          "description": {
+            "ar": "",
+            "en": "",
+            "bn": "",
+            "es": "",
+            "id": "",
+            "ur": "",
+            "tr": "",
+            "ku": "",
+            "ms": "",
+            "fil": "",
+            "so": ""
+          }
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "hadith": {
+        "ayahOrHadith": "عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللَّهُ عَنْهُ، عَنْ النَّبِيِّ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ قَالَ: «لا عَدْوَى، وَلَا طِيَرَةَ، وَلَا هَامَةَ، وَلَا صَفَرَ»",
+        "bookInfo": "رواه البخاري (5776)، ومسلم (2220)"
+      },
+      "sunnahs": [
+        {
+          "name": {
+            "ar": "العبادات المطلقة",
+            "en": "Absolute Acts of Worship",
+            "bn": "সাধারণ ইবাদত",
+            "es": "Actos de adoración absolutos",
+            "id": "Ibadah Mutlak",
+            "ur": "مطلق عبادات",
+            "tr": "Mutlak İbadetler",
+            "ku": "ئیبادەتی ڕەها",
+            "ms": "Ibadah Mutlak",
+            "fil": "Mga Gawain ng Pagsamba na Walang Tiyak",
+            "so": "Cibaadooyinka guud"
+          },
+          "description": {
+            "ar": "لا توجد سنن أو عبادات تخص شهر صفر بعينه، بل يُستحب فيه ما يُستحب في سائر الشهور من النوافل المطلقة كصيام الاثنين والخميس، والأيام البيض، والصدقة، وقراءة القرآن.",
+            "en": "There are no specific Sunnahs or acts of worship dedicated to the month of Safar. Rather, it is recommended to do what is recommended in all other months, such as absolute voluntary acts like fasting on Mondays and Thursdays, the white days, giving charity, and reading the Qur'an.",
+            "bn": "সফর মাসের জন্য নির্দিষ্ট কোনো সুন্নাত বা ইবাদত নেই। বরং এই মাসেও অন্য মাসের মতো সাধারণ নফল ইবাদত যেমন সোমবার ও বৃহস্পতিবারের রোজা, সাদাকা ও কুরআন তিলাওয়াত করার সুপারিশ করা হয়।",
+            "es": "No hay sunnas ni actos de adoración específicos para el mes de Safar. Más bien, se recomienda hacer lo que se recomienda en los demás meses, como actos voluntarios absolutos como ayunar los lunes y jueves, los días blancos, dar caridad y leer el Corán.",
+            "id": "Tidak ada sunnah atau ibadah khusus yang ditujukan untuk bulan Shafar. Sebaliknya, dianjurkan untuk melakukan apa yang dianjurkan di bulan-bulan lain, seperti ibadah sunnah mutlak seperti puasa Senin dan Kamis, hari-hari putih, bersedekah, dan membaca Al-Qur'an.",
+            "ur": "صفر کے مہینے کے لیے کوئی خاص سنتیں یا عبادات مخصوص نہیں ہیں، بلکہ اس میں وہی چیزیں مستحب ہیں جو دوسرے مہینوں میں مستحب ہیں، جیسے سوموار اور جمعرات کے روزے، ایامِ بیض، صدقہ اور قرآن کی تلاوت۔",
+            "tr": "Safar ayı için özel sünnetler veya ibadetler yoktur. Aksine, diğer aylarda tavsiye edilen mutlak nafile ibadetler, pazartesi ve perşembe oruçları, beyaz günler, sadaka vermek ve Kur'an okumak gibi şeyleri yapmak tavsiye edilir.",
+            "ku": "هیچ سنەت یان ئیبادەتێکی تایبەت بۆ مانگی سەفەر نییە، بەڵکو ئەوەی کە لە مانگەکانی تردا پەسەندە وەک ڕۆژووی دووشەممە و پێنجشەممە و ڕۆژە سپییەکان و خێر و خوێندنەوەی قورئان، لەم مانگەشدا پەسەندە.",
+            "ms": "Tiada sunat atau ibadah khusus yang ditujukan untuk bulan Safar. Sebaliknya, digalakkan melakukan apa yang digalakkan dalam bulan-bulan lain seperti ibadah sunat mutlak seperti puasa Isnin dan Khamis, hari-hari putih, bersedekah, dan membaca Al-Quran.",
+            "fil": "Walang mga tiyak na Sunnah o gawaing pagsamba na nakalaan para sa buwan ng Safar. Sa halip, inirerekomenda na gawin ang inirerekomenda sa lahat ng ibang buwan, tulad ng mga boluntaryong gawain tulad ng pag-aayuno sa Lunes at Huwebes, mga puting araw, pagbibigay ng kawanggawa, at pagbabasa ng Qur'an.",
+            "so": "Ma jiraan sunnooyin ama cibaadooyin gaar ah oo loo qoondeeyay bisha Safar. Waxaa lagu dhiirigelinayaa in la sameeyo waxa lagu dhiirigeliyo bilaha kale, sida soonka Isniinta iyo Khamiista, maalmaha cadcad, sadaqada, iyo akhrinta Qur'aanka."
+          }
+        }
+      ],
+      "heresies": [
+        {
+          "name": {
+            "ar": "التشاؤم بشهر صفر",
+            "en": "Pessimism and Bad Omens regarding Safar",
+            "bn": "সফর মাস সম্পর্কে কুসংস্কার ও খারাপ ধারণা",
+            "es": "Pesimismo y malos augurios respecto al mes de Safar",
+            "id": "Tathayyur (menganggap sial) terhadap bulan Shafar",
+            "ur": "صفر کے مہینے کو شگونِ بد سمجھنا",
+            "tr": "Safar ayı hakkında kötü uğursuzluk ve uğursuzluk inançları",
+            "ku": "بدبینی و شومی بە مانگی سەفەر",
+            "ms": "Bersangka buruk (tathayyur) terhadap bulan Safar",
+            "fil": "Pessimismo at masasamang palatandaan tungkol sa buwan ng Safar",
+            "so": "Ka shakisan iyo rumaysiga xun ee bisha Safar"
+          },
+          "description": {
+            "ar": "كان العرب في الجاهلية يتطيرون من شهر صفر ويظنون أنه شهر نحس يجلب الشر والمرض، وهذا اعتقاد باطل يخالف العقيدة الإسلامية. فقد نفى النبي ﷺ ذلك بقوله: «لا صَفَرَ»، أي لا نوء ولا مرض يعدي بطبعه دون قدر الله، ورد على من يتشاءم بهذا الشهر.",
+            "en": "The pre-Islamic Arabs used to believe that the month of Safar was an ominous month that brought evil and disease. This is a false belief that contradicts Islamic creed. The Prophet ﷺ refuted this by saying: 'There is no Safar', meaning no ominous month or self-transmitting disease without Allah's decree.",
+            "bn": "জাহিলী যুগের আরবরা সফর মাসকে অশুভ মনে করত এবং ধারণা করত এটি অমঙ্গল ও রোগব্যাধি বয়ে আনে। এটি ইসলামী আকিদার পরিপন্থী একটি বাতিল ধারণা। নবী ﷺ বলেছেন: 'কোনো সফর (অশুভ মাস) নেই', অর্থাৎ আল্লাহর তকদীর ছাড়া কোনো মাস নিজে থেকে অশুভ বা রোগ ছড়াতে পারে না।",
+            "es": "Los árabes preislámicos solían creer que el mes de Safar era un mes ominoso que traía el mal y la enfermedad. Esta es una creencia falsa que contradice el credo islámico. El Profeta ﷺ refutó esto diciendo: 'No hay Safar', es decir, no hay un mes ominoso ni enfermedad que se transmita por sí misma sin el decreto de Allah.",
+            "id": "Orang-orang Arab pra-Islam menganggap bulan Shafar sebagai bulan sial yang membawa keburukan dan penyakit. Ini adalah keyakinan batil yang bertentangan dengan akidah Islam. Nabi ﷺ membantah hal ini dengan bersabda: 'Tidak ada Shafar (yang sial)', artinya tidak ada bulan sial atau penyakit yang menular dengan sendirinya tanpa takdir Allah.",
+            "ur": "جاهلیت کے عرب صفر کے مہینے کو شگونِ بد سمجھتے تھے اور خیال کرتے تھے کہ یہ شر اور بیماری لاتا ہے۔ یہ ایک باطل عقیدہ ہے جو اسلامی عقیدے کے خلاف ہے۔ نبی ﷺ نے فرمایا: 'کوئی صفر (شگونِ بد) نہیں'، یعنی اللہ کے حکم کے بغیر کوئی مہینہ خود بخود شگونِ بد یا بیماری نہیں پھیلا سکتا۔",
+            "tr": "Cahiliye Arapları, Safar ayının kötülük ve hastalık getiren uğursuz bir ay olduğuna inanırlardı. Bu, İslam inancına aykırı batıl bir inançtır. Peygamber ﷺ bunu 'Safar (uğursuzluk) yoktur' diyerek reddetmiş, yani Allah'ın takdiri olmadan hiçbir ayın kendi kendine uğursuzluk veya hastalık yayamayacağını belirtmiştir.",
+            "ku": "عەرەبی پێش ئیسلام پێیان وابوو مانگی سەفەر مانگێکی شومە کە خراپە و نەخۆشی دێنێت. ئەمە بڕوایەکی هەڵەیە کە دژ بە عەقیدەی ئیسلامییە. پەیامبەر ﷺ ڕەتیکردەوە بە وتنی: 'سەفەر نییە'، واتە هیچ مانگێکی شوم یان نەخۆشییەک بەبێ بەرنامەی خودا خۆی بڵاو نابێتەوە.",
+            "ms": "Orang Arab pra-Islam menganggap bulan Safar sebagai bulan malang yang membawa keburukan dan penyakit. Ini adalah kepercayaan batil yang bercanggah dengan akidah Islam. Nabi ﷺ menafikan hal ini dengan sabdanya: 'Tiada Safar (yang malang)', bermaksud tiada bulan malang atau penyakit yang berjangkit dengan sendirinya tanpa takdir Allah.",
+            "fil": "Ang mga Arabe bago ang Islam ay naniniwala na ang buwan ng Safar ay isang masamang buwan na nagdudulot ng kasamaan at sakit. Ito ay isang maling paniniwala na sumasalungat sa pananampalatayang Islam. Itinanggi ito ng Propeta ﷺ sa pagsasabing: 'Walang Safar', ibig sabihin walang masamang buwan o sakit na nagpapalaganap ng sarili nang walang utos ni Allah.",
+            "so": "Carabigii Jaahiliga ahaa waxay aaminsanaayeen in bisha Safar ay tahay bil xun oo keenta shar iyo cudur. Tani waa rumaysad baadil ah oo ka hor imanaya caqiidada Islaamka. Nebigu ﷺ wuxuu beeniyay isagoo yiri: 'Safar ma jiro', macnaheedu waa in aanay jirin bil xun ama cudur iskiis u faafa aan ahayn qaddarka Ilaahay."
+          }
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "hadith": {
+        "ayahOrHadith": "شهر ربيع الأول هو الشهر الذي وُلد فيه النبي محمد صلى الله عليه وسلم، وقد كان ﷺ يصوم يوم الاثنين ويقول: «ذَاكَ يَوْمٌ وُلِدْتُ فِيهِ، وَيَوْمٌ بُعِثْتُ أَوْ أُنْزِلَ عَلَيَّ فِيهِ»",
+        "bookInfo": "رواه مسلم (1162)"
+      },
+      "sunnahs": [],
+      "heresies": [
+        {
+          "name": {
+            "ar": "الاحتفال بالمولد النبوي",
+            "en": "Celebrating the Prophet's Birthday (Mawlid)",
+            "bn": "মিলাদুন্নবী উদ্‌যাপন",
+            "es": "Celebración del nacimiento del Profeta (Mawlid)",
+            "id": "Perayaan Maulid Nabi",
+            "ur": "جشنِ میلاد النبی ﷺ",
+            "tr": "Mevlid Kandili veya Mevlid kutlamaları",
+            "ku": "جەژنی لەدایکبوونی پەیامبەر",
+            "ms": "Perayaan Maulid Nabi",
+            "fil": "Pagdiriwang ng Kapanganakan ng Propeta (Mawlid)",
+            "so": "Xuska dhalashada Nebiga (Mawlid)"
+          },
+          "description": {
+            "ar": "الاحتفال بالمولد النبوي في هذا الشهر بدعة محدثة لم يفعلها النبي ﷺ ولا أصحابه ولا القرون المفضلة. وهو يتضمن غالباً اجتماعات على أذكار وأطعمة وقصائد لم تأتِ بها الشريعة، وقد حذر العلماء مثل ابن تيمية وابن باز وابن عثيمين من ذلك، وعدّوه من البدع المحدثة في الدين.",
+            "en": "Celebrating the Prophet's birthday (Mawlid) in this month is an innovated practice (bid'ah) that was not done by the Prophet ﷺ, his Companions, or the preferred generations. It often involves gatherings with specific supplications, foods, and poems not legislated in Islam. Scholars like Ibn Taymiyyah, Ibn Baz, and Ibn Uthaymeen warned against it and considered it an innovation in religion.",
+            "bn": "এই মাসে মিলাদুন্নবী উদ্‌যাপন একটি নব উদ্ভাবিত বিদআহ, যা নবী ﷺ, তাঁর সাহাবী বা উত্তম যুগের মানুষরা করেননি। এতে সাধারণত এমন কিছু জিকির, খাবার ও কবিতার আয়োজন থাকে যা শরীয়তসম্মত নয়। ইবনে তাইমিয়া, ইবনে বায ও ইবনে উসাইমীনের মতো আলেমরা এটি থেকে সতর্ক করেছেন এবং একে দ্বীনে নব উদ্ভাবিত বিদআহ বলেছেন।",
+            "es": "Celebrar el nacimiento del Profeta (Mawlid) en este mes es una práctica innovada (bid'ah) que no fue realizada por el Profeta ﷺ, sus Compañeros ni las generaciones preferidas. A menudo implica reuniones con súplicas, alimentos y poemas específicos no legislados en el Islam. Eruditos como Ibn Taymiyyah, Ibn Baz e Ibn Uthaymeen advirtieron contra esto y lo consideraron una innovación en la religión.",
+            "id": "Merayakan Maulid Nabi di bulan ini adalah bid'ah yang diada-adakan yang tidak dilakukan oleh Nabi ﷺ, para sahabatnya, atau generasi terbaik. Ini sering melibatkan pertemuan dengan zikir, makanan, dan puisi tertentu yang tidak disyariatkan dalam Islam. Ulama seperti Ibnu Taimiyah, Ibnu Baz, dan Ibnu Utsaimin memperingatkan hal ini dan menganggapnya sebagai bid'ah dalam agama.",
+            "ur": "اس مہینے میں جشنِ میلاد النبی ﷺ منانا ایک نئی ایجاد کردہ بدعت ہے جسے نبی ﷺ، ان کے صحابہ یا مفضل صدیوں نے نہیں کیا۔ اس میں اکثر ایسی مخصوص دعائیں، کھانے اور نظمیں شامل ہوتی ہیں جن کی شریعت میں اجازت نہیں ہے۔ ابن تیمیہ، ابن باز اور ابن عثیمین جیسے علماء نے اس سے خبردار کیا ہے اور اسے دین میں نئی ایجاد کردہ بدعت قرار دیا ہے۔",
+            "tr": "Bu ayda Peygamber'in doğum günü (Mevlid) kutlaması, Peygamber ﷺ, Sahabeleri veya seçkin nesiller tarafından yapılmayan yeni uydurulmuş bir bid'attir. Genellikle İslam'da meşru olmayan belirli dualar, yiyecekler ve şiirlerle yapılan toplantıları içerir. İbn Teymiyye, İbn Baz ve İbn Useymîn gibi âlimler buna karşı uyarıda bulunmuş ve bunu dinde yeni bir bid'at olarak kabul etmişlerdir.",
+            "ku": "جەژنی گرتنی لەدایکبوونی پەیامبەر لەم مانگەدا بدعەیەکی نوێیە کە پەیامبەر ﷺ و هاوەڵەکانی و نەوە باشەکان ئەنجامیان نەداوە. ئەمە زۆرجار کۆبوونەوە لەسەر ذکری تایبەت و خواردن و هۆنراوەی شەرع نەهاتوو دەگرێتەوە. زانایان وەک ابن تیمیە و ابن باز و ابن عوسەیمین ئاگاداریان کردووەتەوە و بە بدعەیەکی نوێ لە دیندا دایان ناوە.",
+            "ms": "Perayaan Maulid Nabi pada bulan ini adalah bid'ah yang diada-adakan yang tidak dilakukan oleh Nabi ﷺ, para sahabatnya, atau generasi yang diutamakan. Ia sering melibatkan perhimpunan dengan zikir, makanan, dan puisi tertentu yang tidak disyariatkan dalam Islam. Ulama seperti Ibnu Taimiyyah, Ibnu Baz, dan Ibnu Uthaimin telah memberi amaran mengenainya dan menganggapnya sebagai bid'ah yang diada-adakan dalam agama.",
+            "fil": "Ang pagdiriwang ng kapanganakan ng Propeta (Mawlid) sa buwang ito ay isang bagong imbensyon (bid'ah) na hindi ginawa ng Propeta ﷺ, ng kanyang mga Kasama, o ng mga piniling henerasyon. Madalas itong kinasasangkutan ng mga pagpupulong na may mga tiyak na panalangin, pagkain, at tula na hindi pinahihintulutan sa Islam. Binabalaan nito ng mga iskolar tulad nina Ibn Taymiyyah, Ibn Baz, at Ibn Uthaymeen at itinuring itong isang imbensyon sa relihiyon.",
+            "so": "Xuska dhalashada Nebiga (Mawlid) bishan waa bidco cusub oo aanay sameynin Nebiga ﷺ, asxaabtiisa, ama jiilalkii ugu wanaagsanaa. Inta badan waxay ku lug leedahay kulamo leh baryo, cunto, iyo gabayo gaar ah oo aan shareecada Islaamka ku jirin. Culimada sida Ibn Taymiyyah, Ibn Baz, iyo Ibn Uthaymeen ayaa ka digay waxayna u arkeen inay tahay bidco diinta lagu soo kordhiyay."
+          }
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "hadith": {
+        "ayahOrHadith": "الأشهر عند الله اثنا عشر شهراً، لا فضل لشهر منها على آخر في ذاته إلا ما خصه الشرع بعبادة معينة.",
+        "bookInfo": "مستفاد من قوله تعالى: {إِنَّ عِدَّةَ الشُّهُورِ عِنْدَ اللَّهِ اثْنَا عَشَرَ شَهْرًا} [التوبة: 36]"
+      },
+      "sunnahs": [],
+      "heresies": []
+    },
+    {
+      "number": 5,
+      "hadith": {
+        "ayahOrHadith": "الأشهر عند الله اثنا عشر شهراً، لا فضل لشهر منها على آخر في ذاته إلا ما خصه الشرع بعبادة معينة.",
+        "bookInfo": "مستفاد من قوله تعالى: {إِنَّ عِدَّةَ الشُّهُورِ عِنْدَ اللَّهِ اثْنَا عَشَرَ شَهْرًا} [التوبة: 36]"
+      },
+      "sunnahs": [],
+      "heresies": []
+    },
+    {
+      "number": 6,
+      "hadith": {
+        "ayahOrHadith": "عَنْ عَائِشَةَ رَضِيَ اللَّهُ عَنْهَا، أَنَّ رَسُولَ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ قَالَ: «أَحَبُّ الأَعْمَالِ إِلَى اللَّهِ أَدْوَمُهَا وَإِنْ قَلَّ»",
+        "bookInfo": "رواه البخاري (6464)، ومسلم (783)"
+      },
+      "sunnahs": [
+        {
+          "name": {
+            "ar": "العبادات المطلقة والمداومة عليها",
+            "en": "Absolute Acts of Worship and Consistency",
+            "bn": "সাধারণ ইবাদত ও তাতে ধারাবাহিকতা",
+            "es": "Actos de adoración absolutos y la constancia en ellos",
+            "id": "Ibadah Mutlak dan Konsisten Melakukannya",
+            "ur": "مطلق عبادات اور ان پر مداومت",
+            "tr": "Mutlak İbadetler ve Bunlarda Devamlılık",
+            "ku": "ئیبادەتی ڕەها و بەردەوامبوون لەسەری",
+            "ms": "Ibadah Mutlak dan Istiqamah Melakukannya",
+            "fil": "Mga Gawain ng Pagsambang Walang Tiyak at Pagiging Konsistente",
+            "so": "Cibaadooyinka guud iyo joogtayntooda"
+          },
+          "description": {
+            "ar": "لا تختص جمادى الآخرة بعبادات أو سنن معينة لم ترد في الشريعة، بل يُستحب للمسلم أن يداوم على الطاعات المطلقة التي تُشرع في سائر الشهور، مثل: صيام الاثنين والخميس، والأيام البيض، وقيام الليل، وقراءة القرآن، والذكر، والصدقة. والمسلم مأمور بالمداومة على العمل الصالح وإن قلّ، كما في الحديث الصحيح.",
+            "en": "Jumada al-Akhirah is not specified with any particular acts of worship or Sunnahs not mentioned in the Sharia. Rather, it is recommended for a Muslim to consistently perform absolute acts of worship legislated in all months, such as fasting on Mondays and Thursdays, the white days, night prayer, Qur'an recitation, dhikr, and charity. A Muslim is commanded to be consistent in righteous deeds, even if they are small, as stated in the authentic hadith.",
+            "bn": "জুমাদাল আখিরাহ মাসের জন্য শরীয়তে কোনো নির্দিষ্ট ইবাদত বা সুন্নাত নির্দিষ্ট করা হয়নি। বরং মুসলিমদের জন্য সকল মাসেই যে সাধারণ ইবাদতগুলো বিধান রয়েছে, যেমন: সোমবার ও বৃহস্পতিবারের রোজা, সাদাকা, কুরআন তিলাওয়াত, জিকির ইত্যাদি, সেগুলোতে ধারাবাহিকতা বজায় রাখা মুস্তাহাব। সহিহ হাদিসে যেমন এসেছে, মুসলিমকে অল্প হলেও সৎকর্মে ধারাবাহিক থাকার আদেশ দেওয়া হয়েছে।",
+            "es": "El mes de Yumada al-Ajira no está especificado con actos de adoración o sunnas particulares que no estén mencionados en la Sharia. Más bien, se recomienda al musulmán mantener la constancia en los actos de adoración absolutos legislados en todos los meses, como ayunar los lunes y jueves, los días blancos, la oración nocturna, la recitación del Corán, el dhikr y la caridad. Se ordena al musulmán ser constante en las obras justas, aunque sean pequeñas, como se menciona en el hadiz auténtico.",
+            "id": "Bulan Jumadil Akhir tidak dikhususkan dengan ibadah atau sunnah tertentu yang tidak disebutkan dalam syariat. Sebaliknya, dianjurkan bagi seorang muslim untuk konsisten melakukan ibadah-ibadah mutlak yang disyariatkan di semua bulan, seperti puasa Senin dan Kamis, hari-hari putih, shalat malam, membaca Al-Qur'an, zikir, dan sedekah. Seorang muslim diperintahkan untuk istiqamah dalam amal saleh meskipun sedikit, sebagaimana disebutkan dalam hadis yang sahih.",
+            "ur": "جمادی الثانی کے لیے شریعت میں کوئی خاص عبادات یا سنتیں مخصوص نہیں ہیں، بلکہ مسلمان کے لیے یہ مستحب ہے کہ وہ ان مطلق عبادات پر مداومت کرے جو تمام مہینوں میں مشروع ہیں، جیسے: پیر اور جمعرات کے روزے، ایامِ بیض، قیام اللیل، قرآن کی تلاوت، ذکر اور صدقہ۔ صحیح حدیث کے مطابق مسلمان کو حکم دیا گیا ہے کہ وہ نیک عمل پر تھوڑا ہی سہی لیکن مسلسل عمل کرتا رہے۔",
+            "tr": "Cemaziye'l-Ahir ayı, şeriatta belirtilmeyen belirli ibadetler veya sünnetlerle özelleştirilmemiştir. Aksine, bir Müslümanın tüm aylarda meşru kılınan mutlak ibadetlerde (Pazartesi ve Perşembe oruçları, beyaz günler, gece namazı, Kur'an okuma, zikir ve sadaka gibi) istikrarlı olması tavsiye edilir. Sahih hadiste belirtildiği gibi, Müslümandan az da olsa salih amelde devamlı olması istenir.",
+            "ku": "مانگی جومادای دووەم بە هیچ جۆرە ئیبادەت یان سنەتێکی تایبەتەوە کە لە شەریعەتدا نەهاتبێت، تایبەت نەکراوە. بەڵکو پەسەندە بۆ موسڵمانێک کە بەردەوام بێت لەسەر ئیبادەتە ڕەهاکان کە لە هەموو مانگەکاندا ڕەوایە، وەک: ڕۆژووی دووشەممە و پێنجشەممە، ڕۆژە سپییەکان، نوێژی شەو، خوێندنەوەی قورئان، زیکر و خێر. موسڵمان فەرمانی پێکراوە کە بەردەوام بێت لەسەر کرداری چاک، تەنانەت ئەگەر کەمیش بێت، وەک لە فەرموودەی ڕاستدا هاتووە.",
+            "ms": "Bulan Jamadil Akhir tidak dikhususkan dengan sebarang ibadah atau sunat tertentu yang tidak disebut dalam syariat. Sebaliknya, digalakkan bagi seorang Muslim untuk istiqamah dalam ibadah-ibadah mutlak yang disyariatkan dalam semua bulan, seperti puasa Isnin dan Khamis, hari-hari putih, qiyamullail, membaca Al-Quran, zikir, dan sedekah. Seorang Muslim diperintahkan untuk istiqamah dalam amal soleh walaupun sedikit, sebagaimana dinyatakan dalam hadis yang sahih.",
+            "fil": "Ang buwan ng Jumada al-Akhirah ay hindi tinukoy na may mga tiyak na gawaing pagsamba o mga Sunnah na hindi nabanggit sa Sharia. Sa halip, inirerekomenda na maging konsistente ang isang Muslim sa paggawa ng mga absolutong pagsambang itinatag sa lahat ng buwan, tulad ng pag-aayuno sa Lunes at Huwebes, mga puting araw, panalangin sa gabi, pagbabasa ng Qur'an, dhikr, at kawanggawa. Utos sa Muslim na maging konsistente sa mga mabubuting gawa, kahit na maliit, gaya ng sinabi sa autentikong hadith.",
+            "so": "Bisha Jumada al-Aakhirah lama gaar yeelin cibaadooyin ama sunnooyin gaar ah oo aan ku xusnayn Shareecada. Balse, waxaa lagu dhiirigelinayaa Muslimka inuu joogteeyo cibaadooyinka guud ee bannaan ee dhammaan bilaha, sida soonka Isniinta iyo Khamiista, maalmaha cadcad, tukashada habeenkii, akhrinta Qur'aanka, xuska, iyo sadaqada. Muslimka waxaa lagu amray inuu joogteeyo camalka wanaagsan xataa hadduu yar yahay, sida ku xusan xadiiska saxiixa ah."
+          }
+        }
+      ],
+      "heresies": [
+        {
+          "name": {
+            "ar": "تخصيص هذا الشهر بعبادات أو أذكار مبتدعة",
+            "en": "Specifying this month with innovated acts of worship or dhikr",
+            "bn": "এই মাসকে নির্দিষ্ট করে নতুন উদ্ভাবিত ইবাদত বা জিকির নির্ধারণ করা",
+            "es": "Especificar este mes con actos de adoración o dhikr innovados",
+            "id": "Mengkhususkan bulan ini dengan ibadah atau zikir yang diada-adakan",
+            "ur": "اس مہینے کو نئی ایجاد کردہ عبادات یا اذکار کے ساتھ مخصوص کرنا",
+            "tr": "Bu ayı uydurma ibadetler veya zikirlerle özelleştirmek",
+            "ku": "تایبەتکردنی ئەم مانگە بە ئیبادەت یان زیکری بدعە",
+            "ms": "Mengkhususkan bulan ini dengan ibadah atau zikir yang diada-adakan",
+            "fil": "Pagtutukoy sa buwang ito ng mga imbensyon na gawaing pagsamba o dhikr",
+            "so": "Gaaryeynta bishan cibaadooyin ama xus cusub oo la hindisay"
+          },
+          "description": {
+            "ar": "لا توجد بدع مشهورة أو خاصة بشهر جمادى الآخرة في كتب العقيدة والسنة، ولكن يحذر من ابتداع أذكار أو صلوات أو صيام مخصوص لهذا الشهر دون دليل شرعي، أو الاعتقاد بأن له فضيلة خاصة لم يرد بها نص صحيح. فالشهر كغيره من الأشهر العادية، والعبادة فيه كسائر الشهور، ومن أحدث فيه شيئاً فعمله مردود.",
+            "en": "There are no well-known or specific heresies (bid'ah) for the month of Jumada al-Akhirah in the books of creed and Sunnah. However, one must beware of inventing specific dhikr, prayers, or fasting for this month without Sharia evidence, or believing it has a special virtue not supported by authentic text. The month is like other regular months, and worship in it is like other months; whoever invents something in it, their deed is rejected.",
+            "bn": "আকিদা ও সুন্নাহর কিতাবগুলোতে জুমাদাল আখিরাহ মাসের জন্য কোনো বিখ্যাত বা নির্দিষ্ট বিদআত নেই। তবে শরয়ী দলিল ছাড়া এই মাসের জন্য কোনো বিশেষ জিকির, নামাজ বা রোজা উদ্ভাবন করা বা এটির কোনো বিশেষ ফজিলত আছে বলে বিশ্বাস করা থেকে সতর্ক থাকতে হবে, যার কোনো সহিহ দলিল নেই। এই মাসটি অন্য সাধারণ মাসগুলোর মতোই, এবং এতে ইবাদতও সাধারণ মাসগুলোর মতোই। কেউ এতে কিছু নতুন উদ্ভাবন করলে তার সেই আমল প্রত্যাখ্যাত হবে।",
+            "es": "No hay herejías (bid'ah) conocidas o específicas para el mes de Yumada al-Ajira en los libros de credo y Sunnah. Sin embargo, se debe tener cuidado de inventar dhikr, oraciones o ayunos específicos para este mes sin evidencia de la Sharia, o creer que tiene una virtud especial no respaldada por un texto auténtico. El mes es como otros meses normales, y la adoración en él es como en otros meses; quien invente algo en él, su obra será rechazada.",
+            "id": "Tidak ada bid'ah yang terkenal atau khusus untuk bulan Jumadil Akhir dalam kitab-kitab akidah dan sunnah. Namun, seseorang harus berhati-hati untuk tidak mengada-adakan zikir, shalat, atau puasa khusus untuk bulan ini tanpa dalil syar'i, atau meyakini bahwa bulan ini memiliki keutamaan khusus yang tidak didukung oleh teks yang sahih. Bulan ini seperti bulan-bulan biasa lainnya, dan ibadah di dalamnya seperti bulan-bulan lainnya; barang siapa mengada-adakan sesuatu di dalamnya, maka amalnya tertolak.",
+            "ur": "عقیدہ اور سنت کی کتابوں میں جمادی الثانی کے مہینے کے لیے کوئی مشہور یا خاص بدعت نہیں ہے۔ تاہم، شریعت کے کسی دلیل کے بغیر اس مہینے کے لیے کوئی خاص ذکر، نماز یا روزہ ایجاد کرنے، یا یہ اعتقاد رکھنے سے بچنا چاہیے کہ اس کی کوئی خاص فضیلت ہے جس کی کوئی صحیح نص موجود نہ ہو۔ یہ مہینہ دیگر معمولی مہینوں کی طرح ہے، اور اس میں عبادت بھی دیگر مہینوں کی طرح ہے؛ جو شخص اس میں کوئی چیز ایجاد کرے گا، اس کا عمل رد کر دیا جائے گا۔",
+            "tr": "Akaid ve sünnet kitaplarında Cemaziye'l-Ahir ayı için bilinen veya özel bir bidat yoktur. Ancak, bu ay için şer'i bir delil olmaksızın özel zikirler, namazlar veya oruçlar uydurmaktan veya sahih bir metinle desteklenmeyen özel bir fazileti olduğuna inanmaktan kaçınılmalıdır. Bu ay, diğer normal aylar gibidir ve içindeki ibadet de diğer aylar gibidir; kim bu ayda bir şey uydurursa, o kişinin ameli reddedilir.",
+            "ku": "هیچ بدعەیەکی ناسراو یان تایبەت بۆ مانگی جومادای دووەم لە کتێبەکانی عەقیدە و سوننەتدا نییە. بەڵام، دەبێت ئاگادار بیت لە دروستکردنی زیکر، نوێژ یان ڕۆژووی تایبەت بۆ ئەم مانگە بەبێ بەڵگەی شەرعی، یان بڕوابوون بەوەی کە فەزڵێکی تایبەتی هەیە کە بە دەقێکی ڕاست پشتگیری نەکراوە. ئەم مانگە وەک مانگە ئاساییەکانی ترە، و ئیبادەت تێیدا وەک مانگەکانی ترە؛ هەر کەسێک شتێکی تێدا دروست بکات، کردەوەکەی ڕەت دەکرێتەوە.",
+            "ms": "Tiada bid'ah yang terkenal atau khusus untuk bulan Jamadil Akhir dalam kitab-kitak akidah dan sunnah. Walau bagaimanapun, seseorang harus berwaspada daripada mereka cipta zikir, solat, atau puasa khusus untuk bulan ini tanpa dalil syarak, atau mempercayai bahawa ia mempunyai keutamaan khusus yang tidak disokong oleh teks yang sahih. Bulan ini adalah seperti bulan-bulan biasa yang lain, dan ibadah di dalamnya adalah seperti bulan-bulan yang lain; sesiapa yang mereka cipta sesuatu di dalamnya, amalnya akan ditolak.",
+            "fil": "Walang mga kilala o tiyak na bid'ah para sa buwan ng Jumada al-Akhirah sa mga aklat ng pananampalataya at Sunnah. Gayunpaman, dapat mag-ingat ang isa na gumawa ng mga tiyak na dhikr, panalangin, o pag-aayuno para sa buwang ito nang walang ebidensya ng Sharia, o maniwala na mayroon itong espesyal na birtud na hindi suportado ng autentikong teksto. Ang buwan ay tulad ng iba pang karaniwang buwan, at ang pagsamba dito ay tulad ng iba pang buwan; sinumang gumawa ng bago rito, ang kanyang gawa ay itinatakwil.",
+            "so": "Ma jiraan bidcooyin caan ah ama gaar ah oo loo yaqaano bisha Jumada al-Aakhirah ee buugaagta caqiidada iyo sunnaha. Si kastaba ha ahaatee, waa in qofku ka feejignaadaa inuu hindiso xus, salaado, ama soon gaar ah oo loo sameeyo bishan iyadoo aan lahayn daliil shareeco, ama inuu aaminsan yahay inay leedahay fadli gaar ah oo aan lagu taageerin qoraal saxiix ah. Bishu waa sida bilaha caadiga ah ee kale, cibaadaduna waa sida bilaha kale; qofkii wax ku hindisa bishan, camalkiisu waa la diidayaa."
+          }
+        }
+      ]
+    },
+    {
       "number": 7,
       "hadith": {
         "ayahOrHadith": "شهر رجب هو أحد الأشهر الحرم التي قال الله تعالى فيها: إِنَّ عِدَّةَ الشُّهُورِ عِنْدَ اللَّهِ اثْنَا عَشَرَ شَهْراً فِي كِتَابِ اللَّهِ يَوْمَ خَلَقَ السَّمَاوَاتِ وَالأَرْضَ مِنْهَا أَرْبَعَةٌ حُرُمٌ ذَلِكَ الدِّينُ الْقَيِّمُ فَلا تَظْلِمُوا فِيهِنَّ أَنْفُسَكُمْ (1)، والأشهر الحرم هي: رجب، وذو القعدة، وذو الحجة، والمحرم.\n عَنْ أَبِي بَكْرَةَ رضي الله عنه عَنْ النَّبِيِّ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ قَالَ: السَّنَةُ اثْنَا عَشَرَ شَهْرًا، مِنْهَا أَرْبَعَةٌ حُرُمٌ، ثَلاثٌ مُتَوَالِيَاتٌ: ذُو الْقَعْدَةِ وَذُو الْحِجَّةِ وَالْمُحَرَّمُ، وَرَجَبُ مُضَرَ الَّذِي بَيْنَ جُمَادَى وَشَعْبَانَ (2).\nوقد سميت هذه الأشهر حرماً لأمرين:\n1- لتحريم القتال فيها إلا أن يبدأ العدو.\n2- لأن حرمة انتهاك المحارم فيها أشد من غيرها.\nولهذا نهانا الله تعالى عن ارتكاب المعاصي في هذه الأشهر فقال: فَلا تَظْلِمُوا فِيهِنَّ أَنْفُسَكُمْ، مع أن ارتكاب المعصية محرم ومنهي عنه في هذه الأشهر وغيرها، إلا أنه في هذه الأشهر أشد تحريماً .\nقال السعدي رحمه الله (3):\n'فَلا تَظْلِمُوا فِيهِنَّ أَنْفُسَكُمْ يحتمل أن الضمير يعود إلى الاثني عشر شهرا، وأن اللّه تعالى بَيَّن أنه جعلها مقادير للعباد، وأن تعمر بطاعته، ويشكر اللّه تعالى على مِنَّتِهِ بها، وتقييضها لمصالح العباد، فلتحذروا من ظلم أنفسكم فيها. ويحتمل أن الضمير يعود إلى الأربعة الحرم، وأن هذا نهي لهم عن الظلم فيها خصوصاً، مع النهي عن الظلم كل وقت، لزيادة تحريمها، وكون الظلم فيها أشد منه في غيرها.' انتهى.",
@@ -789,191 +1102,342 @@
       ]
     },
     {
-      "number": 1,
+      "number": 10,
       "hadith": {
-        "ayahOrHadith": "{إِنَّ عِدَّةَ الشُّهور عِنْدَ اللَّهِ اثْنَا عَشَرَ شَهْرًا فِي كِتَابِ اللَّهِ يَوْمَ خَلَقَ السَّمَوَاتِ وَالْأَرْضَ مِنْهَا أَرْبَعَةٌ حُرُمٌ ذَلِكَ الدِّينُ الْقَيِّمُ فَلا تَظْلِمُوا فِيهِنَّ أَنْفُسَكُمْ}",
-        "bookInfo": "(التوبة - 36)"
+        "ayahOrHadith": "مَنْ صَامَ رَمَضَانَ ثُمَّ أَتْبَعَهُ سِتًّا مِنْ شَوَّالٍ، كَانَ كَصِيَامِ الدَّهْرِ",
+        "bookInfo": "رواه مسلم (1164)"
       },
       "sunnahs": [
         {
           "name": {
-            "ar": "تحريمُ القتالِ فيهِ",
-            "en": "",
-            "bn": "",
-            "es": "",
-            "id": "",
-            "ur": "",
-            "tr": "",
-            "ku": "",
-            "ms": "",
-            "fil": "",
-            "so": ""
+            "ar": "صيام ستة أيام من شوال",
+            "en": "Fasting Six Days of Shawwal",
+            "bn": "শাওয়ালের ছয় দিন সিয়াম",
+            "es": "El ayuno de seis días de Shawwal",
+            "id": "Puasa Enam Hari Bulan Syawal",
+            "ur": "شوال کے چھ روزے",
+            "tr": "Şevval'de Altı Gün Oruç",
+            "ku": "ڕۆژووی شەش ڕۆژی شەووال",
+            "ms": "Puasa Enam Hari Bulan Syawal",
+            "fil": "Pag-aayuno ng Anim na Araw ng Shawwal",
+            "so": "Soomidda Lix Maalmood ee Showwaal"
           },
           "description": {
-            "ar": "فمن أحكامِ شهرِ الله المُحَرَّم تحريمُ ابتداءِ القتالِ فيه؛ قال ابنُ كثير رحمه الله: وقد اختلف العُلماءُ في تحريمِ ابتداءِ القتالِ في الشَّهرِ الحرامِ: هل هو منسوخٌ أو مُحكَمٌ؟ على قولينِ:\nأحدُهما، وهو الأشهَرُ: أنَّه منسوخٌ؛ لأنَّه تعالى قال هاهنا: {فَلَا تَظْلِمُوا فِيهِنَّ أَنفُسَكُمْ} وأمَرَ بقتالِ المشركين.\nوالقولُ الآخَرُ: أنَّ ابتداءَ القِتالِ في الشَّهرِ الحرامِ حرامٌ، وأنَّه لم يُنسَخْ تحريمُ الشَّهرِ الحرامِ؛ لقولِه تعالى: {الشَّهْرُ الْحَرَامُ بِالشَّهْرِ الْحَرَامِ وَالْحُرُمَاتُ قِصَاصٌ فَمَنِ اعْتَدَى عَلَيْكُمْ فَاعْتَدُوا عَلَيْهِ بِمِثْلِ مَا اعْتَدَى عَلَيْكُمْ} الآية. وقال: {فَإِذَا انسَلَخَ الأَشْهُرُ الْحُرُمُ فَاقْتُلُوا الْمُشْرِكِينَ} الآية [تفسير القرآن العظيم 2-468-469، وقد ذكر ابنُ كثير رحمه الله الأدِلَّةَ والرَّدَّ عليها؛ فلتراجَعْ هناك].\nوقد كانت العرَبُ تعَظِّمُه في الجاهليَّةِ، وكان يسمَّى بشهرِ اللهِ الأصَمِّ؛ مِن شدةِ تحريمِه.. والصَّومُ في شهرِ محَرَّم مِن أفضل التطوُّعِ؛ فقد أخرج مسلمٌ من حديث أبي هريرةَ أنَّ النبيَّ صلَّى اللهُ عليه وسلَّم قال: (أفضلُ الصِّيامِ بعد شَهرِ رمضانَ شهرُ اللهِ الذي تَدْعونَه المُحَرَّمَ، وأفضَلُ الصَّلاةِ بعد الفَريضةِ قيامُ الليلِ).",
-            "en": "",
-            "bn": "",
-            "es": "",
-            "id": "",
-            "ur": "",
-            "tr": "",
-            "ku": "",
-            "ms": "",
-            "fil": "",
-            "so": ""
-          }
-        },
-        {
-          "name": {
-            "ar": "فَضلُ صيامِه",
-            "en": "",
-            "bn": "",
-            "es": "",
-            "id": "",
-            "ur": "",
-            "tr": "",
-            "ku": "",
-            "ms": "",
-            "fil": "",
-            "so": ""
-          },
-          "description": {
-            "ar": "بيَّن رسولُ الله صلَّى اللهُ عليه وسلَّم فَضْلَ صيامِ شَهرِ اللهِ المُحَرَّمِ بقَولِه: ((أفضَلُ الصِّيامِ بعد رمضانَ شَهرُ اللهِ المُحَرَّمُ)) [رواه مسلم]. واختلف أهلُ العلمِ -رحمهم الله- في مدلولِ الحديثِ: هل يدلُّ الحديثُ على صيامِ الشهرِ كاملًا أم أكثَرِه؟ وظاهِرُ الحديثِ -واللهُ أعلَمُ- يدُلُّ على فَضلِ صيامِ شهرِ المُحَرَّمِ كاملًا، وحمَلَه بعضُ العُلماءِ على الترغيبِ في الإكثارِ من الصِّيامِ في شهرِ المُحَرَّم لا صومِه كُلِّه؛ لقولِ عائشةَ رضي الله عنها: (ما رأيتُ رسولَ الله صلَّى اللهُ عليه وسلَّم استكمَلَ صيامَ شَهرٍ قَطُّ إلَّا رمضانَ، وما رأيتُه في شهرٍ أكثَرَ منه صيامًا في شعبانَ) أخرجه مسلم [رواه مسلم]، ولكِنْ قد يقال: إنَّ عائشةَ رضي الله عنها ذكَرَت ما رأَتْه هنا، ولكِنَّ النَّصَّ يدُلُّ على صيامِ الشَّهرِ كاملًا.",
-            "en": "",
-            "bn": "",
-            "es": "",
-            "id": "",
-            "ur": "",
-            "tr": "",
-            "ku": "",
-            "ms": "",
-            "fil": "",
-            "so": ""
-          }
-        },
-        {
-          "name": {
-            "ar": "عاشوراء",
-            "en": "",
-            "bn": "",
-            "es": "",
-            "id": "",
-            "ur": "",
-            "tr": "",
-            "ku": "",
-            "ms": "",
-            "fil": "",
-            "so": ""
-          },
-          "description": {
-            "ar": "عاشوراءُ: هو اليومُ الذي أنجى اللهُ تعالى فيه موسى وقومَه، وأغرقَ فرعونَ وقومَه؛ فصامه موسى شُكرًا، ثم صامه النبيُّ صلَّى اللهُ عليه وسلَّم؛ لِما رواه ابنُ عبَّاسٍ رضي الله عنهما قال: (قَدِمَ رسولُ اللهِ صلَّى اللهُ عليه وسلَّم المدينةَ، فوجد اليهودَ يصومون يومَ عاشوراءَ، فسُئِلوا عن ذلك، فقالوا: هذا اليومُ الذي أظهر اللهُ فيه موسى وبني إسرائيلَ على فِرعونَ؛ فنحن نصومُه تعظيمًا له، فقال رسولُ الله صلَّى اللهُ عليه وسلَّم: ((نحن أَولى بموسى منكم، فأمَرَ بصيامِه))[انظر: لطائف المعارف 96-102]، وفي روايةٍ لمسلمٍ: ((فصامه موسى شُكرًا، فنحن نصومُه...)).",
-            "en": "",
-            "bn": "",
-            "es": "",
-            "id": "",
-            "ur": "",
-            "tr": "",
-            "ku": "",
-            "ms": "",
-            "fil": "",
-            "so": ""
+            "ar": "يستحب صيام ستة أيام من شوال بعد يوم العيد، فمن صامها كان كصيام الدهر، وذلك لأن الحسنة بعشر أمثالها، فرمضان بعشرة أشهر، وستة أيام بشهرين، فالمجموع سنة كاملة. ويجوز صيامها متتابعة أو متفرقة، والأفضل المبادرة بها بعد العيد مباشرة.",
+            "en": "It is recommended to fast six days of Shawwal after the day of Eid, for whoever fasts them is like one who has fasted a whole lifetime. This is because a good deed is rewarded tenfold: Ramadan counts as ten months and the six days as two months, making a complete year. They may be fasted consecutively or separately, and it is best to hasten to fast them immediately after Eid.",
+            "bn": "ঈদের দিনের পর শাওয়াল মাসের ছয় দিন সিয়াম পালন করা মুস্তাহাব; কেননা যে ব্যক্তি তা পালন করে সে যেন সারা জীবন সিয়াম পালন করল। কারণ একটি নেকির প্রতিদান দশ গুণ: রমাদান দশ মাসের সমান আর ছয় দিন দুই মাসের সমান — মোট এক বছর পূর্ণ হয়। এগুলো একত্রিতভাবে বা পৃথকভাবে পালন করা জায়েয, তবে ঈদের পরপরই দ্রুত পালন করা উত্তম।",
+            "es": "Se recomienda ayunar seis días de Shawwal después del día del Eid, pues quien los ayuna es como si hubiera ayunado toda una vida. Esto es porque la buena obra se multiplica por diez: el Ramadán equivale a diez meses y los seis días a dos meses, completando así un año entero. Es permisible ayunarlos de forma consecutiva o separada, y lo mejor es apresurarse a ayunarlos inmediatamente después del Eid.",
+            "id": "Disunnahkan berpuasa enam hari pada bulan Syawal setelah hari raya, karena siapa pun yang berpuasa enam hari itu seolah-olah telah berpuasa setahun penuh. Hal ini karena satu kebaikan dibalas dengan sepuluh kali lipatnya: Ramadan setara dengan sepuluh bulan dan enam hari setara dengan dua bulan, sehingga genap menjadi satu tahun. Boleh berpuasa secara berturut-turut maupun terpisah, dan yang paling utama adalah menyegerakannya langsung setelah hari raya.",
+            "ur": "عید کے دن کے بعد شوال کے چھ دن روزے رکھنا مستحب ہے، کیونکہ جس نے انہیں روزہ رکھا تو گویا اس نے پوری عمر روزے رکھے۔ اس لیے کہ نیکی کا بدلہ دس گنا ہے: رمضان دس مہینوں کے برابر اور چھ دن دو مہینوں کے برابر، مجموعی طور پر ایک پورا سال بن جاتا ہے۔ انہیں مسلسل یا الگ الگ رکھنا جائز ہے، اور بہتر یہ ہے کہ عید کے فوراً بعد ان کی طرف جلدی کی جائے۔",
+            "tr": "Bayram gününden sonra Şevval ayında altı gün oruç tutmak müstehaptır; zira onları oruçlu geçiren kimse, ömür boyu oruç tutmuş gibidir. Bunun sebebi şudur: Bir iyilik on katıyla mükâfatlandırılır; Ramazan on ay, altı gün ise iki ay eder; toplamda bir yıl tamamlanır. Bu oruçlar art arda veya ayrı ayrı tutulabilir; en güzeli ise bayramdan hemen sonra acele ederek tutmaktır.",
+            "ku": "پەسەندە دوای ڕۆژی جەژن شەش ڕۆژی مانگی شەووال ڕۆژوو بگیرێت؛ چونکە ئەوەی بیگرێت وەک ئەوەیە تەواوی ژیانی ڕۆژوو گرتبێت. ئەمەش لەبەر ئەوەی چاکە بە دە هێندە دادەنرێت: ڕەمەزان دە مانگە و شەش ڕۆژیش دوو مانگە، بەمەش ساڵێکی تەواو دەبێت. ڕێگە پێدراوە یەک لەدوای یەک یان جیاجیا بگیرێن، باشترینیش ئەوەیە دوای جەژن یەکسەر پەلەیان لێ بکرێت.",
+            "ms": "Dianjurkan berpuasa enam hari pada bulan Syawal setelah hari raya, kerana sesiapa yang berpuasanya adalah seperti berpuasa sepanjang tahun. Ini kerana sesuatu kebaikan diganjari sepuluh kali ganda: Ramadan menyamai sepuluh bulan dan enam hari menyamai dua bulan, menjadikan jumlahnya setahun penuh. Boleh berpuasa secara berturut-turut atau berasingan, dan yang paling afdal ialah menyegerakannya terus selepas hari raya.",
+            "fil": "Inirerekomenda ang pag-aayuno ng anim na araw ng Shawwal pagkatapos ng araw ng Eid, sapagkat ang sinumang mag-ayuno nito ay parang nag-ayuno ng buong habang-buhay. Ito ay dahil ang isang mabuting gawain ay gagantimpalaan nang sampung beses: ang Ramadan ay katumbas ng sampung buwan at ang anim na araw ay katumbas ng dalawang buwan, kaya bumubuo ito ng isang buong taon. Maaari itong gawin nang sunud-sunod o hiwa-hiwalay, at ang pinakamabuti ay ang magmadali na gawin ito kaagad pagkatapos ng Eid.",
+            "so": "Waa mustahab in la soomo lix maalmood oo bisha Showwaal ah kadib maalinta ciidda; waayo qofka sooma waxuu la mid yahay ciddii soomaysay nolosheeda oo dhan. Sababtoo ah samaysku wuxuu lagu abaalmarinaa toban la mid: Ramadaanka wuxuu la mid yahay toban bilood, lixda maalmoodna laba bilood, sidaa darteed waa sannad oo buuxa. Waana jaaz in la soomo isku xiran ama kala go'an, tan ugu wanaagsanna waa in la dhaqso laga soo bilaabo isla markiiba kadib ciidda."
           }
         }
       ],
       "heresies": [
         {
           "name": {
-            "ar": "",
-            "en": "",
-            "bn": "",
-            "es": "",
-            "id": "",
-            "ur": "",
-            "tr": "",
-            "ku": "",
-            "ms": "",
-            "fil": "",
-            "so": ""
+            "ar": "تخصيص أيام العيد لزيارة المقابر",
+            "en": "Designating the Days of Eid for Visiting Graves",
+            "bn": "ঈদের দিনসমূহকে কবর যিয়ারতের জন্য নির্দিষ্ট করা",
+            "es": "Destinar los días del Eid para visitar los cementerios",
+            "id": "Mengkhususkan Hari-hari Raya untuk Ziarah Kubur",
+            "ur": "عید کے دنوں کو قبریں زیارت کے لیے مخصوص کرنا",
+            "tr": "Bayram Günlerini Kabir Ziyaretine Ayırmak",
+            "ku": "تایبەتکردنی ڕۆژەکانی جەژن بۆ سەردانی گۆڕستانەکان",
+            "ms": "Mengkhususkan Hari-hari Raya untuk Ziarah Kubur",
+            "fil": "Paghahain ng mga Araw ng Eid para sa Pagbisita sa mga Libingan",
+            "so": "Ugu Takhasuska Maalmaha Ciidda Booqashada Qabuuraha"
           },
           "description": {
-            "ar": "",
-            "en": "",
-            "bn": "",
-            "es": "",
-            "id": "",
-            "ur": "",
-            "tr": "",
-            "ku": "",
-            "ms": "",
-            "fil": "",
-            "so": ""
+            "ar": "من البدع تخصيص أيام العيد لزيارة المقابر، فلم يثبت عن النبي ﷺ ولا عن أصحابه تخصيص العيد للزيارة، بل الزيارة مشروعة في أي وقت من العام دون تخصيص.",
+            "en": "Among the innovations is designating the days of Eid specifically for visiting graves. It is not authentically reported from the Prophet ﷺ or his companions that they singled out Eid for grave visits; rather, visiting graves is legislated at any time of the year without such specification.",
+            "bn": "ঈদের দিনগুলোকে কবর যিয়ারতের জন্য নির্দিষ্ট করা বিদআতসমূহের অন্যতম। ঈদকে যিয়ারতের জন্য একচ্ছত্র করা নবী ﷺ বা তাঁর সাহাবীদের থেকে সাব্যস্ত নয়; বরং এমন কোনো নির্দিষ্টকরণ ছাড়াই বছরের যেকোনো সময় কবর যিয়ারত করা বৈধ।",
+            "es": "De las innovaciones es destinar los días del Eid específicamente para visitar los cementerios. No está establecido del Profeta ﷺ ni de sus compañeros que destinaran el Eid para las visitas; más bien, visitar los cementerios está prescrito en cualquier momento del año, sin tal designación.",
+            "id": "Termasuk bid'ah adalah mengkhususkan hari-hari raya untuk ziarah kubur. Tidak ada yang tsabit (sah) dari Nabi ﷺ maupun para sahabatnya bahwa mereka mengkhususkan hari raya untuk ziarah; ziarah kubur justru disyariatkan pada waktu kapan saja sepanjang tahun tanpa pengkhususan.",
+            "ur": "بدعتوں میں سے ایک یہ ہے کہ عید کے دنوں کو قبروں کی زیارت کے لیے خاص کر دیا جائے۔ عید کو زیارت کے لیے مخصوص کرنا نبی ﷺ یا آپ کے صحابہ کرام سے ثابت نہیں؛ بلکہ قبروں کی زیارت سال کے کسی بھی وقت مشروع ہے، بغیر کسی اس قسم کی تخصیص کے۔",
+            "tr": "Bid'atlerden biri de bayram günlerini kabir ziyaretine tahsis etmektir. Nebi ﷺ'ın veya ashabının bayramı ziyarete ayırdığı sabit olmamıştır; kabir ziyareti böyle bir tahsis olmaksızın yılın herhangi bir zamanında meşrudur.",
+            "ku": "یەکێکە لە بدعەکان تایبەتکردنی ڕۆژەکانی جەژن بۆ سەردانی گۆڕستانەکان. لە پێغەمبەر ﷺ یان هاوەڵانییەوە سەلمێنراو نییە کە جەژنیان بۆ سەردان تایبەت کردبێت؛ بەڵکو سەردانی گۆڕستان لە هەر کاتێکی ساڵدا شەرعییە بەبێ ئەو جۆرە تایبەتمەندییە.",
+            "ms": "Antara bidah ialah mengkhususkan hari-hari raya untuk ziarah kubur. Tidak sabit daripada Nabi ﷺ mahupun para sahabat baginda bahawa mereka mengkhususkan hari raya untuk ziarah; sebaliknya ziarah kubur disyariatkan pada bila-bila masa sepanjang tahun tanpa pengkhususan sedemikian.",
+            "fil": "Kabilang sa mga inobasyon ang pagtatalaga ng mga araw ng Eid para sa pagbisita sa mga libingan. Hindi ito napatunayan mula sa Propeta ﷺ o sa kanyang mga kasamahan na hininalian nila ang Eid para sa pagbisita sa libingan; sa halip, ang pagbisita sa mga libingan ay itinataguyod anumang oras ng taon nang walang ganitong pagtatalaga.",
+            "so": "Mid ka mid ah bida'cada waa in maalmaha ciidda lagu takhasuso booqashada qabuuraha. Nabiga ﷺ iyo asxaabtiisaba lama sheegin inay ciidda u takhasusteen booqashada qabuuraha; laakiin booqashada qabuuraha waa sharci ah waqti kasta oo sanadka ah iyadoo la takhasusin."
+          }
+        },
+        {
+          "name": {
+            "ar": "الاعتقاد بوجوب تتابع صيام الست من شوال",
+            "en": "Believing That the Six Days of Shawwal Must Be Consecutive",
+            "bn": "শাওয়ালের ছয় দিনের সিয়াম একত্রিতভাবে পালন করা ওয়াজিব মনে করা",
+            "es": "Creer que los seis días de Shawwal deben ser consecutivos",
+            "id": "Meyakini Kewajiban Berpuasa Enam Hari Syawal Secara Berturut-turut",
+            "ur": "شوال کے چھ روزوں کے مسلسل ہونے کو واجب سمجھنا",
+            "tr": "Şevvel Orucunun Art Arda Tutulması Gerektiğine İnanmak",
+            "ku": "باوەڕبوون بە واجببوونی یەک لەدوای یەک گرتنی شەش ڕۆژی شەووال",
+            "ms": "Percaya Bahawa Puasa Enam Hari Syawal Mesti Berturut-turut",
+            "fil": "Paniwala na Dapat Sunud-sunod ang Anim na Araw ng Shawwal",
+            "so": "Rumaysadka in Lixda Maalmood ee Showwaal ay Isku Xiran Noqonayaan"
+          },
+          "description": {
+            "ar": "من الأخطاء الشائعة الاعتقاد بأن صيام الست من شوال يجب أن يكون متتابعاً مباشرة بعد العيد أو أنه لا يصح إلا متتابعاً، والصحيح أن تتابعها مستحب ولكن يجوز صيامها متفرقة طوال الشهر، وتقييدها بالتتابع تضييق لما وسعه الله.",
+            "en": "Among the common mistakes is the belief that the six days of Shawwal must be fasted consecutively immediately after Eid, or that the fast is only valid if done consecutively. The correct view is that fasting them consecutively is recommended, but it is permissible to fast them separately throughout the month; restricting them to consecutiveness is an undue restriction of what Allah has made broad.",
+            "bn": "সাধারণ ভুলসমূহের একটি হলো এই ধারণা যে, শাওয়ালের ছয় দিনের সিয়াম ঈদের পরপরই একত্রিতভাবে পালন করা ওয়াজিব, অথবা একত্রিতভাবে পালন না করলে তা শুদ্ধ হবে না। সঠিক মত হলো, একত্রিতভাবে পালন করা মুস্তাহাব, তবে পুরো মাস জুড়ে পৃথকভাবে পালন করা জায়েয; আর এগুলোকে কেবল একত্রিত হওয়ার মধ্যে সীমাবদ্ধ করা আল্লাহ যা চওড়া করেছেন তার অন্যায় সংকীর্ণকরণ।",
+            "es": "De los errores comunes es la creencia de que los seis días de Shawwal deben ayunarse de forma consecutiva inmediatamente después del Eid, o que el ayuno solo es válido si se hace consecutivamente. Lo correcto es que ayunarlos de forma consecutiva es recomendable, pero es permisible ayunarlos por separado a lo largo del mes; restringirlos a la consecutividad es una restricción indebida de lo que Allah ha ampliado.",
+            "id": "Termasuk kesalahan yang umum adalah meyakini bahwa puasa enam hari Syawal harus dilakukan berturut-turut langsung setelah hari raya, atau bahwa puasa tersebut tidak sah kecuali dilakukan secara berurutan. Yang benar, berpuasa secara berturut-turut hukumnya dianjurkan, namun boleh dilakukan secara terpisah sepanjang bulan; membatasinya dengan keharusan berurutan adalah mempersempit kelapangan yang telah Allah luaskan.",
+            "ur": "عام غلطیوں میں سے ایک یہ عقیدہ ہے کہ شوال کے چھ روزے عید کے فوراً بعد مسلسل رکھنا واجب ہے، یا یہ کہ مسلسل رکھے بغیر روزہ صحیح نہیں ہوتا۔ درست بات یہ ہے کہ انہیں مسلسل رکھنا مستحب ہے، لیکن پورے مہینے میں الگ الگ رکھنا بھی جائز ہے؛ انہیں صرف مسلسل ہونے پر محدود کرنا اللہ کی وسعت کو بے جا تنگ کرنا ہے۔",
+            "tr": "Yaygın hatalardan biri, Şevvel'deki altı gün orucun bayramdan hemen sonra art arda tutulması gerektiğine ya da art arda tutulmadıkça geçerli olmayacağına inanmaktır. Doğrusu şudur: Bunları art arda tutmak müstehaptır; ancak ay boyunca ayrı ayrı tutmak da caizdir. Bunları art arda olmaya mahkûm etmek, Allah'ın geniş kıldığını haksız yere daraltmaktır.",
+            "ku": "یەکێکە لە هەڵە باوەکان باوەڕبوونە بەوەی کە شەش ڕۆژی شەووال دەبێت دوای جەژن یەکسەر و یەک لەدوای یەک بگیرێت، یان کە بەبێ یەک لەدوای یەک گرتن دروست نییە. ڕاستەکەی ئەوەیە یەک لەدوای یەک گرتنەکەی پەسەندە، بەڵام ڕێگە پێدراوە لە تەواوی مانگەکەدا جیاجیا بگیرێن؛ سنووردانانیان تەنها بە یەک لەدوای یەک، تەسککردنەوەی بێ کەڵکە بۆ ئەوەی خودا فراوانی کردووە.",
+            "ms": "Antara kesilapan yang lazim ialah kepercayaan bahawa puasa enam hari Syawal mesti dijalankan secara berturut-turut selepas hari raya, atau bahawa puasa itu tidak sah melainkan secara berturut-turut. Yang betul, berpuasa secara berturut-turut adalah digalakkan, tetapi harus berpuasa secara berasingan sepanjang bulan; mengekatkannya dengan keharusan berturut-turut adalah mempersempit keluasan yang telah Allah luaskan.",
+            "fil": "Kabilang sa mga karaniwang pagkakamali ang paniniwala na ang anim na araw ng Shawwal ay dapat gawing sunud-sunod kaagad pagkatapos ng Eid, o na ang pag-aayuno ay wasto lamang kung sunud-sunod. Ang tamang pananaw ay ang paggawa nito nang sunud-sunod ay inirerekomenda, ngunit maaari itong gawin nang hiwa-hiwalay sa buong buwan; ang paghigpit dito sa pagiging sunud-sunod ay isang hindi-kinakailangang pagkipit ng kaluwagan na ginawa ng Allah.",
+            "so": "Mid ka mid ah qaladaha caadada ah waa rumaysadka in lixda maalmood ee Showwaal ay tahay in lagu soomo isku xiran isla markiiba kadib ciidda, ama in aysan sax ahayn haddaan isku xiran aheyn. Saxda ah waxaa weeye: in lagu soomo isku xiran waa mustahab, laakiin waana jaaz in la soomo kala go'go'an waqti kasta oo bil ka mid ah; u go'aaminaysa isku xiranna waa cufid aan xaqa lahayn waxa Ilaahay u waasicay."
           }
         }
       ]
     },
     {
-      "number": 1,
+      "number": 11,
       "hadith": {
-        "ayahOrHadith": "",
-        "bookInfo": ""
+        "ayahOrHadith": "إِنَّ عِدَّةَ الشُّهُورِ عِنْدَ اللَّهِ اثْنَا عَشَرَ شَهْرًا فِي كِتَابِ اللَّهِ يَوْمَ خَلَقَ السَّمَاوَاتِ وَالْأَرْضَ مِنْهَا أَرْبَعَةٌ حُرُمٌ ذَلِكَ الدِّينُ الْقَيِّمُ فَلَا تَظْلِمُوا فِيهِنَّ أَنْفُسَكُمْ",
+        "bookInfo": "سورة التوبة: 36"
       },
       "sunnahs": [
         {
           "name": {
-            "ar": "",
-            "en": "",
-            "bn": "",
-            "es": "",
-            "id": "",
-            "ur": "",
-            "tr": "",
-            "ku": "",
-            "ms": "",
-            "fil": "",
-            "so": ""
+            "ar": "تعظيم الأشهر الحرم والاجتناب عن الظلم",
+            "en": "Honoring the Sacred Months and Avoiding Injustice",
+            "bn": "হারাম মাসসমূহের সম্মান ও অত্যাচার থেকে বেঁচে থাকা",
+            "es": "Honrar los meses sagrados y evitar la injusticia",
+            "id": "Memuliakan Bulan-bulan Haram dan Menjauhi Perbuatan Zalim",
+            "ur": "حرم مہینوں کی تعظیم اور ظلم سے بچنا",
+            "tr": "Haram Ayları Ululamak ve Zulümden Sakınmak",
+            "ku": "گەورەکردنی مانگە حەڕامەکان و خۆپاراستن لە ستەم",
+            "ms": "Memuliakan Bulan-bulan Haram dan Menjauhi Zalim",
+            "fil": "Pagpaparangal sa mga Banal na Buwan at Pag-iwas sa Kawalang-katarungan",
+            "so": "Weynaysinta Bilooyinka Xaaramka ah iyo Iska-ilaalinta Gardararka"
           },
           "description": {
-            "ar": "",
-            "en": "",
-            "bn": "",
-            "es": "",
-            "id": "",
-            "ur": "",
-            "tr": "",
-            "ku": "",
-            "ms": "",
-            "fil": "",
-            "so": ""
+            "ar": "ذو القعدة من الأشهر الحرم الأربعة، فيُستحب فيه تعظيم حرمات الله، والاجتناب عن الظلم والمعاصي أكثر من غيره، والتهيؤ لأداء مناسك الحج لمن أراد ذلك. ولم يرد في الشرع تخصيصه بصيام معين أو عبادة تخصه دون غيره من الأشهر.",
+            "en": "Dhul-Qi'dah is one of the four sacred months, so it is recommended in it to honor the sanctities of Allah, to avoid injustice and sins more than in other months, and to prepare for performing the rites of Hajj for whoever intends it. No specific fasting or worship exclusive to it over the other months has been reported in Islamic law.",
+            "bn": "যিলক্বদ চারটি হারাম মাসের একটি; তাই এ মাসে অন্য মাসের চেয়ে বেশি আল্লাহর হুকুমাতের সম্মান করা, অত্যাচার ও গুনাহ থেকে বেঁচে থাকা এবং যারা হজ করতে চান তাদের হজের মানাসিকের প্রস্তুতি নেওয়া মুস্তাহাব। শরীয়তে এ মাসের জন্য কোনো নির্দিষ্ট সিয়াম বা অন্য মাস থেকে বাড়তি কোনো ইবাদত সাব্যস্ত হয়নি।",
+            "es": "Dul-Qa'dah es uno de los cuatro meses sagrados, por lo que se recomienda en él honrar las sacralidades de Allah, evitar la injusticia y los pecados más que en otros meses, y prepararse para realizar los ritos del Hajj para quien lo desee. No se ha reportado en la legislación islámica un ayuno específico ni una adoración exclusiva de este mes respecto a los demás.",
+            "id": "Dzulqa'dah termasuk salah satu dari empat bulan haram, maka dianjurkan pada bulan ini untuk memuliakan syi'ar-syi'ar Allah, menjauhi kezaliman dan maksiat lebih dari bulan lainnya, serta bersiap untuk menunaikan manasik haji bagi yang hendak melaksanakannya. Tidak ada dalam syariat puasa tertentu ataupun ibadah khusus untuk bulan ini dibanding bulan-bulan lainnya.",
+            "ur": "ذوالقعدہ چار حرم مہینوں میں سے ایک ہے، اس لیے اس میں دوسرے مہینوں کے مقابلے میں اللہ کی حرمتوں کی زیادہ تعظیم کرنا، ظلم اور گناہوں سے بچنا، اور جو حج کرنا چاہے اس کی مناسک حج کی تیاری کرنا مستحب ہے۔ شریعت میں اس مہینے کے لیے کوئی خاص روزہ یا دوسرے مہینوں سے مخصوص کوئی عبادت ثابت نہیں ہوئی۔",
+            "tr": "Zilkade, dört haram aydan biridir; bu sebeple bu ayda, diğer aylara kıyasla Allah'ın haram kılınan şeylerini ululamak, zulüm ve günahlardan sakınmak ve hac yapmayı isteyenin hac menasikine hazırlanması müstehaptır. Şeriatta bu aya mahsus belirli bir oruç ya da diğer aylardan farklı olarak yalnızca ona has bir ibadet nakledilmemiştir.",
+            "ku": "مانگی زولقەعدە یەکێکە لە چوار مانگی حەڕام؛ بۆیە لەم مانگەدا بە بەراورد بە مانگەکانی تر گەورەکردنی حەڕامەکانی خودا، خۆپاراستن لە ستەم و گوناهەکان، و ئامادەکاری بۆ ئەنجامدانی مناسیکەکانی حەج بۆ ئەوەی دەیەوێت، پەسەندە. لە شەریعەتدا هیچ ڕۆژوو یان عیبادەتێکی دیاریکراوی تایبەت بەم مانگە لە دەستی مانگەکانی ترەوە سەلمێنراو نییە.",
+            "ms": "Zulkaedah merupakan salah satu daripada empat bulan haram, maka dianjurkan padanya untuk memuliakan syiar-syiar Allah, menjauhi kezaliman dan maksiat lebih daripada bulan-bulan lain, serta bersiap sedia untuk menunaikan manasik haji bagi sesiapa yang berkehendak. Tiada dalam syariat puasa tertentu atau ibadah khusus bagi bulan ini berbanding bulan-bulan yang lain.",
+            "fil": "Ang Dhul-Qi'dah ay isa sa apat na banal na buwan, kaya inirerekomenda dito ang pagpaparangal sa mga kabanalan ng Allah, pag-iwas sa kawalang-katarungan at mga kasalanan nang higit kaysa sa ibang buwan, at paghahanda para sa pagsasagawa ng mga rito ng Hajj para sa sinumang nais ito. Walang naiulat sa batas ng Islam na anumang partikular na pag-aayuno o pagsamba na tanging para sa buwan na ito lampas sa iba.",
+            "so": "Bisha Dzul-Qacdah waa mid ka mid ah afarta bilo ee xaaramka ah; sidaa darteed bishaan waa mustahab in la weyniyo xaaramyada Ilaahay, la iska ilaaliyo gardarka iyo denbiga in ka sii badan bilooyinka kale, iyo in la diyaariyo soo-icitixaafka manasikada xajka qofka doonaya. Sharciga uma soo gaarin soon gaar ah ama cibaado gaar ah bishaan ka duwan bilooyinka kale."
           }
         }
       ],
       "heresies": [
         {
           "name": {
-            "ar": "",
-            "en": "",
-            "bn": "",
-            "es": "",
-            "id": "",
-            "ur": "",
-            "tr": "",
-            "ku": "",
-            "ms": "",
-            "fil": "",
-            "so": ""
+            "ar": "ابتداع طقوس أو أذكار جماعية في مسارات الحج",
+            "en": "Inventing Rituals or Collective Dhikr Along Hajj Routes",
+            "bn": "হজ পথে রীতিনীতি বা সমষ্টিগত যিকর উদ্ভাবন করা",
+            "es": "Inventar rituales o dhikr colectivo en las rutas del Hajj",
+            "id": "Mengada-adakan Ritual atau Dzikir Berjamaah di Jalur-jalur Haji",
+            "ur": "حج کے راستوں میں رسمیں یا اجتماعی اذکار گھڑنا",
+            "tr": "Hac Güzergâhlarında Ritüeller veya Toplu Zikir Uydurmak",
+            "ku": "دروستکردنی ڕیتوئێل یان زیکری بەکۆمەڵ لە ڕێڕەوەکانی حەجدا",
+            "ms": "Mereka Cipta Ritual atau Zikir Beramai-ramai di Laluan Haji",
+            "fil": "Pag-imbento ng mga Rito o Pangkatang Dhikr sa mga Daan ng Hajj",
+            "so": "Abuuridda Xeerar ama Dhikr Bulsho ah Wadooyinka Xajka"
           },
           "description": {
-            "ar": "",
-            "en": "",
-            "bn": "",
-            "es": "",
-            "id": "",
-            "ur": "",
-            "tr": "",
-            "ku": "",
-            "ms": "",
-            "fil": "",
-            "so": ""
+            "ar": "لا توجد بدع مخصوصة بشهر ذي القعدة في الأصل، إلا ما قد يُحدثه بعض الناس من طقوس أو أذكار جماعية مبتدعة في مسارات الحج أو عند تجاوز المواقيت، وهو من البدع المحدثة التي لا أصل لها في السنة.",
+            "en": "There are no innovations specifically associated with the month of Dhul-Qi'dah in origin, except what some people may introduce of innovated rituals or collective dhikr along the Hajj routes or upon crossing the Miqat boundaries; this is among the newly introduced innovations that have no basis in the Sunnah.",
+            "bn": "মূলত যিলক্বদ মাসের সাথে সংশ্লিষ্ট কোনো বিদআত নেই; তবে কিছু লোক হজ পথে বা মীকাত সীমানা অতিক্রমের সময় উদ্ভাবিত রীতিনীতি বা সমষ্টিগত যিকরের প্রচলন ঘটাতে পারে — এটি সেই নতুন সৃষ্ট বিদআতসমূহের অন্তর্ভুক্ত যার সুন্নাহতে কোনো ভিত্তি নেই।",
+            "es": "No hay en origen innovaciones que se vinculen específicamente con el mes de Dul-Qa'dah, salvo lo que algunas personas puedan introducir de rituales inventados o dhikr colectivo en las rutas del Hajj o al cruzar los límites del Miqat; esto es de las innovaciones recién introducidas que no tienen fundamento en la Sunna.",
+            "id": "Pada dasarnya tidak ada bid'ah yang khusus terkait dengan bulan Dzulqa'dah, kecuali yang mungkin diada-adakan sebagian orang berupa ritual atau dzikir berjamaah bid'ah di jalur-jalur haji atau ketika melewati batas-batas miqat; termasuklah ini bid'ah baru yang tidak memiliki dasar dalam sunnah.",
+            "ur": "بنیادی طور پر ذوالقعدہ کے مہینے سے مخصوص کوئی بدعت نہیں، سوائے اس کے کہ بعض لوگ حج کے راستوں میں یا میقات کی سرحدیں عبور کرتے وقت گھڑی ہوئی رسمیں یا اجتماعی اذکار ایجاد کر لیں؛ یہ ان جدید بدعتوں میں سے ہے جن کی سنت میں کوئی اصل نہیں۔",
+            "tr": "Aslında Zilkade ayına özgü bid'atler yoktur; yalnızca bazı insanların hac güzergâhlarında veya mîkat sınırlarını geçerken uydurulmuş ritüeller veya toplu zikirler ihdas etmesi mümkündür. Bu, sünnette hiçbir temeli olmayan sonradan çıkarılmış bid'atlerdendir.",
+            "ku": "لە بنەڕەتدا هیچ بدعەیەکی تایبەت بە مانگی زولقەعدە نییە، تەنها جگە لەوەی هەندێک لە خەڵک لەوانەیە لە ڕێڕەوەکانی حەج یان لە کاتی تێپەڕاندنی سنوورەکانی میقاتدا ڕیتوئێل یان زیکری بەکۆمەڵی بدعەیان دروست بکەن؛ ئەمەش لە بدعە نوێیەکانە کە هیچ بنەمایەکی لە سوننەتدا نییە.",
+            "ms": "Pada asasnya tiada bidah yang khusus dikaitkan dengan bulan Zulkaedah, melainkan apa yang mungkin diada-adakan oleh sesetengah orang berupa ritual atau zikir beramai-ramai yang direka di laluan-laluan haji atau ketika melintasi sempadan miqat; ini termasuk bidah baharu yang tiada asas dalam sunnah.",
+            "fil": "Sa pinagmulan, walang mga inobasyong partikular na nauugnay sa buwan ng Dhul-Qi'dah, maliban sa maaaring itaguyod ng ilang tao na mga inobadong rito o pangkatang dhikr sa mga daan ng Hajj o sa paglampas sa mga hangganan ng Miqat; ito ay kabilang sa mga bagong-bagong inobasyon na walang batayan sa Sunnah.",
+            "so": "Asal ahaan ma jiraan bida'c gaar ah oo la xidhiidha bisha Dzul-Qacdah, marka laga reebo wax ay dad qaar abuuraan oo xeerar ama dhikr bulsho ah oo la abuuray wadooyinka xajka ama marka la dhaafayo xaduudaha miqaadka; tani waa mid ka mid ah bida'cada cusub ee aan asal ka ahayn sunnadda."
+          }
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "hadith": {
+        "ayahOrHadith": "مَا مِنْ أَيَّامٍ الْعَمَلُ الصَّالِحُ فِيهَا أَحَبُّ إِلَى اللَّهِ مِنْ هَذِهِ الْأَيَّامِ. يَعْنِي أَيَّامَ الْعَشْرِ. قَالُوا: يَا رَسُولَ اللَّهِ، وَلَا الْجِهَادُ فِي سَبِيلِ اللَّهِ؟ قَالَ: وَلَا الْجِهَادُ فِي سَبِيلِ اللَّهِ، إِلَّا رَجُلٌ خَرَجَ بِنَفْسِهِ وَمَالِهِ، فَلَمْ يَرْجِعْ مِنْ ذَلِكَ بِشَيْءٍ",
+        "bookInfo": "رواه البخاري (969)"
+      },
+      "sunnahs": [
+        {
+          "name": {
+            "ar": "صيام العشر من ذي الحجة ويوم عرفة",
+            "en": "Fasting the Ten Days of Dhul-Hijjah and the Day of Arafah",
+            "bn": "যিলহজ্জের দশ দিন ও আরাফাহর দিনে সিয়াম",
+            "es": "El ayuno de los diez días de Dul-Hiyya y el día de Arafat",
+            "id": "Puasa Sepuluh Hari Bulan Dzulhijjah dan Hari Arafah",
+            "ur": "ذوالحجہ کی عشرہ اور دنِ عرفہ کے روزے",
+            "tr": "Zilhicce'nin On Günü ve Arefe Günü Oruçları",
+            "ku": "ڕۆژووی دە ڕۆژی زولحەججە و ڕۆژی عەرەفە",
+            "ms": "Puasa Sepuluh Hari Zulhijjah dan Hari Arafah",
+            "fil": "Pag-aayuno ng Sampung Araw ng Dhul-Hijjah at ng Araw ng Arafah",
+            "so": "Soomista Tobanka Maalmood ee Dzul-Xija iyo Maalinta Crafata"
+          },
+          "description": {
+            "ar": "يستحب صيام الأيام التسعة الأولى من ذي الحجة، ويوم عرفة لغير الحاج خاصة، فهو يكفر ذنوب سنتين: ماضية ومستقبلة.",
+            "en": "It is recommended to fast the first nine days of Dhul-Hijjah, and the day of Arafah specifically for non-pilgrims, for it expiates the sins of two years: the past year and the coming one.",
+            "bn": "যিলহজ্জের প্রথম নয় দিন সিয়াম পালন করা মুস্তাহাব, আর আরাফাহর দিন বিশেষভাবে তাদের জন্য যারা হজে অংশ নিচ্ছে না; কেননা এ দিনের সিয়াম অতীত ও ভবিষ্যৎ — দুই বছরের গুনাহ মাফ করায়।",
+            "es": "Se recomienda ayunar los primeros nueve días de Dul-Hiyya, y el día de Arafat en especial para quien no es peregrino, pues expía los pecados de dos años: el pasado y el venidero.",
+            "id": "Disunnahkan berpuasa pada sembilan hari pertama bulan Dzulhijjah, dan hari Arafah khususnya bagi yang tidak sedang berhaji, karena puasa pada hari itu menghapus dosa dua tahun: tahun yang telah lewat dan tahun yang akan datang.",
+            "ur": "ذوالحجہ کے پہلے نو دنوں کے روزے رکھنا مستحب ہے، اور دنِ عرفہ خاص طور پر غیر حاجی کے لیے؛ کیونکہ اس کا روزہ دو سال کے گناہوں کا کفارہ ہے: گزرا ہوا سال اور آنے والا سال۔",
+            "tr": "Zilhicce'nin ilk dokuz gününde oruç tutmak müstehaptır; Arefe günü orucu ise özellikle hacı olmayanlar içindir; zira bu oruç iki yılın günahlarına kefaret olur: geçmiş yılın ve gelecek yılın.",
+            "ku": "پەسەندە نۆ ڕۆژی یەکەمی زولحەججە ڕۆژوو بگیرێت، و ڕۆژی عەرەفەش بە تایبەتی بۆ ئەو کەسەی حەجی نەکردووە؛ چونکە ڕۆژووی ڕۆژی عەرەفە گوناهەکانی دوو ساڵ دادەپۆشێت: ڕابردوو و داهاتوو.",
+            "ms": "Dianjurkan berpuasa pada sembilan hari pertama Zulhijjah, dan hari Arafah khususnya bagi bukan jemaah haji, kerana puasa pada hari itu menghapuskan dosa dua tahun: tahun yang telah lalu dan tahun yang akan datang.",
+            "fil": "Inirerekomenda ang pag-aayuno ng unang siyam na araw ng Dhul-Hijjah, at ng araw ng Arafah nang partikular para sa mga hindi nagperegrino, sapagkat ito ay nagpapatawad ng mga kasalanan ng dalawang taon: ang nakaraan at ang paparating.",
+            "so": "Waa mustahab in la soomo sagaalka maalmood ee ugu horreysa bisha Dzul-Xija, iyo maalinta Crafata gaar ahaan qofka xajka fulinayn, waayo soomadeedu waa kaffaarad dembiyada laba sanadood ah: kan la soo dhaafay iyo kan imaanaya."
+          }
+        },
+        {
+          "name": {
+            "ar": "الأضحية والتكبير",
+            "en": "The Udhiyah (Sacrifice) and Takbir",
+            "bn": "কুরবানি ও তাকবীর",
+            "es": "El sacrificio (Udhiya) y el takbir",
+            "id": "Kurban dan Takbir",
+            "ur": "قربانی اور تکبیر",
+            "tr": "Kurban ve Tekbir",
+            "ku": "قوربانی و تکبیر",
+            "ms": "Korban dan Takbir",
+            "fil": "Ang Pag-aalay-sakripisyo (Udhiyah) at Takbir",
+            "so": "Udixadda (Qalbiga) iyo Takbiirka"
+          },
+          "description": {
+            "ar": "مشروعية الأضحية لمن قدر عليها يوم النحر وأيام التشريق، والإكثار من التكبير المطلق والمقيد (دبر الصلوات) من بداية العشر حتى عصر آخر أيام التشريق.",
+            "en": "The legitimacy of the Udhiyah (sacrifice) for those who can afford it on the day of Nahr (slaughter) and the days of Tashreeq, and increasing in absolute and restricted takbir (following the prayers) from the beginning of the ten days until the afternoon of the last of the days of Tashreeq.",
+            "bn": "যার সামর্থ্য আছে তার জন্য কুরবানির দিন ও আইয়ামে তাশরীকে কুরবানি করা বৈধ, আর দশ দিনের শুরু থেকে আইয়ামে তাশরীকের শেষ দিনের আসর পর্যন্ত মুতলাক ও মুকায়্যাদ (সালাতের পরের) তাকবীর বেশি বেশি বলা।",
+            "es": "La legitimidad del sacrificio (udhiya) para quien puede costeárselo el día del Nahr (sacrificio) y los días de Tashriq, y abundar en el takbir absoluto y el restringido (tras las oraciones) desde el comienzo de los diez días hasta la tarde del último de los días de Tashriq.",
+            "id": "Disyariatkannya berkurban bagi yang mampu pada hari Nahr (penyembelihan) dan hari-hari Tasyriq, serta memperbanyak takbir mutlak dan muqayyad (setelah salat) sejak awal sepuluh hari hingga waktu Ashar pada hari terakhir dari hari-hari Tasyriq.",
+            "ur": "مقتدر شخص کے لیے دنِ نحر اور ایامِ تشریق میں قربانی کرنا مشروع ہے، اور دس دنوں کے آغاز سے آخری دنِ تشریق کی عصر تک مطلق اور مقید (نمازوں کے بعد) تکبیریں کثرت سے کہنا۔",
+            "tr": "Gücü yeten için Nahr (kurban kesme) gününde ve Teşrik günlerinde kurban kesmenin meşruiyeti; ayrıca on günün başından Teşrik günlerinin sonuncusunun ikindiisine kadar mutlak ve mukayyed (namazlar sonrası) tekbirleri çokça getirmek.",
+            "ku": "شەرعیدانی قوربانی بۆ ئەوەی توانای هەیە لە ڕۆژی نەحر و ڕۆژەکانی تەشریقدا، هەروەها زیادکردنی تکبیری موتلاق و موقەییید (دوای نوێژەکان) لە سەرەتای دە ڕۆژەکەوە هەتا نوێژی عەسری دوایین ڕۆژ لە ڕۆژەکانی تەشریق.",
+            "ms": "Disyariatkannya ibadah korban bagi yang mampu pada hari Nahr (penyembelihan) dan hari-hari Tasyrik, serta memperbanyak takbir mutlak dan muqayyad (selepas solat) daripada awal sepuluh hari sehingga waktu Asar pada hari terakhir hari-hari Tasyrik.",
+            "fil": "Ang pagiging-batas ng pag-aalay-sakripisyo (Udhiyah) para sa mga makakaya sa araw ng Nahr (pagkatay) at sa mga araw ng Tashreeq, at ang pagdami sa ganap at limitadong takbir (matapos ang mga panalangin) mula sa simula ng sampung araw hanggang sa hapon ng huli sa mga araw ng Tashreeq.",
+            "so": "Sharciga ah in qofka kara lahaado uu udxi dhoofiyo maalinta Naxarta iyo maalmaha Tashriiq, iyo in la badsado takbiirka mutlaqka ah iyo kan ku xidhan (kadib salada) laga bilaabo bilowga tobanka maalmood ilaa galabta maalintii ugu dambeysay ee maalmaha Tashriiq."
+          }
+        },
+        {
+          "name": {
+            "ar": "أداء مناسك الحج والعمرة",
+            "en": "Performing the Rites of Hajj and Umrah",
+            "bn": "হজ ও ওমরাহর মানাসিক আদায়",
+            "es": "Realizar los ritos del Hayy y la Umra",
+            "id": "Menunaikan Manasik Haji dan Umrah",
+            "ur": "حج و عمرہ کے مناسک ادا کرنا",
+            "tr": "Hac ve Umre Menasikini Yerine Getirmek",
+            "ku": "ئەنجامدانی مناسیکەکانی حەج و عومرە",
+            "ms": "Menunaikan Manasik Haji dan Umrah",
+            "fil": "Pagsasagawa ng mga Rito ng Hajj at Umrah",
+            "so": "Fulinta Manasikada Xajka iyo Cumrada"
+          },
+          "description": {
+            "ar": "أداء فريضة الحج لمن استطاع إليه سبيلاً، فهو الركن الخامس من أركان الإسلام، وأفضل الأعمال في هذا الشهر.",
+            "en": "Performing the obligation of Hajj for whoever is able to undertake it, for it is the fifth pillar of the pillars of Islam and the best of deeds in this month.",
+            "bn": "যার সামর্থ্য আছে তার জন্য হজের ফরজ আদায় করা; কেননা এটি ইসলামের স্তম্ভসমূহের পঞ্চম স্তম্ভ এবং এ মাসের সর্বোত্তম আমল।",
+            "es": "Cumplir con la obligación del Hayy para quien tiene capacidad de realizarlo, pues es el quinto pilar de los pilares del Islam y la mejor de las obras en este mes.",
+            "id": "Menunaikan kewajiban haji bagi yang mampu, karena ia adalah rukun kelima dari rukun-rukun Islam dan amalan terbaik di bulan ini.",
+            "ur": "استطاعت رکھنے والے پر حج کی فرض ادائیگی؛ کیونکہ یہ اسلام کے ارکان میں پانچواں رکن ہے اور اس مہینے کے بہترین اعمال میں سے ہے۔",
+            "tr": "Gücü yeten için hac farîzasını eda etmek; zira o, İslam'ın şartlarının beşincisidir ve bu aydaki amellerin en faziletlisidir.",
+            "ku": "ئەنجامدانی فەرزی حەج بۆ ئەوەی توانای هەیە؛ چونکە پێنجەمین ستوونە لە ستوونەکانی ئیسلام و باشترین عەمەلە لەم مانگەدا.",
+            "ms": "Menunaikan kewajipan haji bagi sesiapa yang mampu, kerana ia adalah rukun kelima daripada rukun-rukun Islam dan sebaik-baik amalan pada bulan ini.",
+            "fil": "Pagsasagawa ng obligasyon ng Hajj para sa sinumang may kakayahan, sapagkat ito ang ikalimang haligi ng mga haligi ng Islam at ang pinakamabuting gawain sa buwang ito.",
+            "so": "Fulinta waajiba Xajka qofka awoodi karo, waayo waa rukunka shanaad ee rukunka Islaamka, wuxuuna ka mid yahay camalka ugu wanaagsan bishaan."
+          }
+        }
+      ],
+      "heresies": [
+        {
+          "name": {
+            "ar": "تخصيص يوم العيد لزيارة المقابر",
+            "en": "Designating the Day of Eid for Visiting Graves",
+            "bn": "ঈদের দিনকে কবর যিয়ারতের জন্য নির্দিষ্ট করা",
+            "es": "Destinar el día del Eid para visitar los cementerios",
+            "id": "Mengkhususkan Hari Raya untuk Ziarah Kubur",
+            "ur": "دنِ عید کو قبروں کی زیارت کے لیے مخصوص کرنا",
+            "tr": "Bayram Gününü Kabir Ziyaretine Ayırmak",
+            "ku": "تایبەتکردنی ڕۆژی جەژن بۆ سەردانی گۆڕستانەکان",
+            "ms": "Mengkhususkan Hari Raya untuk Ziarah Kubur",
+            "fil": "Paghahain ng Araw ng Eid para sa Pagbisita sa mga Libingan",
+            "so": "Ugu Takhasuska Maalinta Ciidda Booqashada Qabuuraha"
+          },
+          "description": {
+            "ar": "من البدع تخصيص يوم العيد لزيارة المقابر والاجتماع عليها، فلم يثبت عن النبي ﷺ ولا عن السلف تخصيص العيد للزيارة.",
+            "en": "Among the innovations is designating the day of Eid specifically for visiting graves and gathering for that purpose; it is not authentically reported from the Prophet ﷺ or the early generations (the Salaf) that they singled out Eid for grave visits.",
+            "bn": "বিদআতসমূহের অন্যতম হলো ঈদের দিনকে কবর যিয়ারত এবং সে উদ্দেশ্যে সমাবেশের জন্য নির্দিষ্ট করা; ঈদকে যিয়ারতের জন্য একচ্ছত্র করা নবী ﷺ বা সালাফদের থেকে সাব্যস্ত নয়।",
+            "es": "De las innovaciones es destinar el día del Eid específicamente para visitar los cementerios y reunirse para ese fin; no está establecido del Profeta ﷺ ni de las primeras generaciones (los Salaf) que destinaran el Eid para las visitas.",
+            "id": "Termasuk bid'ah adalah mengkhususkan hari raya untuk ziarah kubur dan berkumpul untuk tujuan itu; tidak ada yang tsabit (sah) dari Nabi ﷺ maupun generasi salaf bahwa mereka mengkhususkan hari raya untuk ziarah kubur.",
+            "ur": "بدعتوں میں سے ایک یہ ہے کہ دنِ عید کو قبروں کی زیارت اور اسی مقصد کے لیے اجتماع کے لیے خاص کر دیا جائے؛ عید کو زیارت کے لیے مخصوص کرنا نبی ﷺ یا سلفِ صالحین سے ثابت نہیں۔",
+            "tr": "Bid'atlerden biri de bayram gününü kabir ziyaretine ve bu amaçla toplanmaya tahsis etmektir; Nebi ﷺ'ın veya selef-i salihînin bayramı ziyarete ayırdığı sabit olmamıştır.",
+            "ku": "یەکێکە لە بدعەکان تایبەتکردنی ڕۆژی جەژن بۆ سەردانی گۆڕستانەکان و کۆبوونەوە بۆ ئەو مەبەستە؛ لە پێغەمبەر ﷺ یان پێشینە چاکەکان (سەلەف)ەوە سەلمێنراو نییە کە جەژنیان بۆ سەردانی گۆڕستانەکان تایبەت کردبێت.",
+            "ms": "Antara bidah ialah mengkhususkan hari raya untuk ziarah kubur dan berhimpun untuk tujuan tersebut; tidak sabit daripada Nabi ﷺ mahupun generasi salaf bahawa mereka mengkhususkan hari raya untuk ziarah kubur.",
+            "fil": "Kabilang sa mga inobasyon ang pagtatalaga ng araw ng Eid para sa pagbisita sa mga libingan at pagtitipon para sa layuning iyon; hindi ito napatunayan mula sa Propeta ﷺ o sa mga unang henerasyon (Salaf) na hininalian nila ang Eid para sa pagbisita sa libingan.",
+            "so": "Mid ka mid ah bida'cada waa in maalinta ciidda lagu takhasuso booqashada qabuuraha oo lagu soo ururiro ujeeddadaas; Nabiga ﷺ iyo kuwii hore (salafka) lama sheegin inay ciidda u takhasusteen booqashada qabuuraha."
+          }
+        },
+        {
+          "name": {
+            "ar": "الذبح لغير الله أو في غير أيام النحر",
+            "en": "Slaughtering for Other Than Allah or Outside the Days of Slaughter",
+            "bn": "আল্লাহ ছাড়া অন্যের জন্য বা কুরবানির দিন ছাড়া অন্য দিনে জবাই করা",
+            "es": "Sacrificar para otro que no sea Allah o fuera de los días del sacrificio",
+            "id": "Menyembelih untuk Selain Allah atau di Luar Hari-hari Penyembelihan",
+            "ur": "اللہ کے سوا کسی اور کے لیے یا ایامِ نحر کے علاوہ ذبح کرنا",
+            "tr": "Allah'tan Başkası İçin veya Nahr Günleri Dışında Kesim Yapmak",
+            "ku": "سەربڕین بۆ جگە لە خودا یان لە دەرەوەی ڕۆژەکانی نەحر",
+            "ms": "Menyembelih untuk Selain Allah atau di Luar Hari-hari Penyembelihan",
+            "fil": "Pagkatay para sa Iba maliban sa Allah o sa Labas ng mga Araw ng Pagkatay",
+            "so": "Gowraca cid Ilaahay ka ahayn ama Ka berta Maalmaha Naxarta"
+          },
+          "description": {
+            "ar": "من الشرك أو البدع الذبح لغير الله (كالأولياء أو الجن)، أو الذبح في غير أيام النحر (الثامن، والتاسع، والعاشر، وأيام التشريق) معتقداً أن ذلك من الهدي المشروع.",
+            "en": "Among shirk or innovations is slaughtering for other than Allah (such as for the awliya or the jinn), or slaughtering outside the days of Nahr (the eighth, the ninth, the tenth, and the days of Tashreeq) while believing it to be part of the legislated guidance.",
+            "bn": "শিরক বা বিদআতসমূহের অন্তর্ভুক্ত হলো আল্লাহ ছাড়া অন্যের জন্য (যেমন আউলিয়া বা জিনের জন্য) জবাই করা, অথবা কুরবানির দিনগুলোর (আট তারিখ, নয় তারিখ, দশ তারিখ ও আইয়ামে তাশরীক) বাইরে এমন বিশ্বাস রেখে জবাই করা যে এটি বৈধ হেদায়াতের অন্তর্ভুক্ত।",
+            "es": "Entre el shirk (politeísmo) o las innovaciones está sacrificar para otro que no sea Allah (como para los awliya o los genios), o sacrificar fuera de los días del Nahr (el octavo, el noveno, el décimo y los días de Tashriq) creyendo que ello forma parte de la guía legislada.",
+            "id": "Termasuk syirik atau bid'ah adalah menyembelih untuk selain Allah (seperti untuk para wali atau jin), atau menyembelih di luar hari-hari Nahr (tanggal delapan, sembilan, sepuluh, dan hari-hari Tasyriq) dengan meyakini bahwa hal itu bagian dari petunjuk yang disyariatkan.",
+            "ur": "شرک یا بدعتوں میں سے یہ ہے کہ اللہ کے سوا کسی اور کے لیے (جیسے اولیاء یا جنات کے لیے) ذبح کیا جائے، یا ایامِ نحر (آٹھویں، نویں، دسویں اور ایامِ تشریق) کے علاوہ کسی دن ایسا اعتقاد رکھتے ہوئے ذبح کیا جائے کہ یہ مشروع ہدایت کا حصہ ہے۔",
+            "tr": "Şirk veya bid'atlerden biri, Allah'tan başkası için (veliler ya da cinler için) kesim yapmak ya da Nahr günlerinin (sekizinci, dokuzuncu, onuncu gün ve Teşrik günleri) dışında, bunu meşru bir hidayetin parçası sanarak kesim yapmaktır.",
+            "ku": "لە شرک یان بدعەکانەوە سەربڕینە بۆ جگە لە خودا (وەک بۆ ئەولییا یان جینەکان)، یان سەربڕین لە دەرەوەی ڕۆژەکانی نەحر (هەشتەم، نۆیەم، دەیەم و ڕۆژەکانی تەشریق) بەو باوەڕەی کە بەشێکە لە هیدایەتی شەرعی.",
+            "ms": "Termasuk syirik atau bidah ialah menyembelih untuk selain Allah (seperti untuk para wali atau jin), atau menyembelih di luar hari-hari Nahr (hari kelapan, kesembilan, kesepuluh, dan hari-hari Tasyrik) dengan meyakini bahawa hal itu sebahagian daripada petunjuk yang disyariatkan.",
+            "fil": "Kabilang sa shirk o mga inobasyon ang pagkatay para sa iba maliban sa Allah (tulad ng para sa mga wali o sa mga jinn), o pagkatay sa labas ng mga araw ng Nahr (ang ikawalo, ikasiyam, ikasampu, at ang mga araw ng Tashreeq) habang pinaniniwalaang ito ay bahagi ng itinataguyod na patnubay.",
+            "so": "Waxaa ka mid ah shirkiga ama bida'cada in la gowraco wax Ilaahay ka ah (sida awliyada ama jinnka), ama la gowraco ka berta maalmaha naxarta (sideedaad, sagaalaad, tobnaad, iyo maalmaha Tashriiq) iyadoo la aaminsanayo in taasi qayb ka tahay hanuunka sharciga ah."
+          }
+        },
+        {
+          "name": {
+            "ar": "تخصيص أيام التشريق بزيارات قبور أو أعياد مبتدعة",
+            "en": "Designating the Days of Tashreeq for Grave Visits or Innovated Festivities",
+            "bn": "আইয়ামে তাশরীককে কবর যিয়ারত বা উদ্ভাবিত উৎসবের জন্য নির্দিষ্ট করা",
+            "es": "Destinar los días de Tashriq para visitas a cementerios o festividades inventadas",
+            "id": "Mengkhususkan Hari-hari Tasyriq untuk Ziarah Kubur atau Perayaan yang Diada-adakan",
+            "ur": "ایامِ تشریق کو قبروں کی زیارت یا گھڑی ہوئی عیدوں کے لیے مخصوص کرنا",
+            "tr": "Teşrik Günlerini Kabir Ziyaretine veya Uydurma Bayramlara Ayırmak",
+            "ku": "تایبەتکردنی ڕۆژەکانی تەشریق بۆ سەردانی گۆڕەکان یان جەژنە بدعەییەکان",
+            "ms": "Mengkhususkan Hari-hari Tasyrik untuk Ziarah Kubur atau Perayaan Rekaan",
+            "fil": "Paghahain ng mga Araw ng Tashreeq para sa Pagbisita sa Libingan o mga Inobadong Pagdiriwang",
+            "so": "Ugu Takhasuska Maalmaha Tashriiq Booqasho Qabuur ama Ciido La Abuuray"
+          },
+          "description": {
+            "ar": "اعتقاد أن لأيام التشريق فضلاً يخصها بزيارات قبور أو أعياد مبتدعة، وهي أيام أكل وشرب وذكر لله، وليست مواسم للبدع والخرافات.",
+            "en": "Believing that the days of Tashreeq have a special virtue that calls for grave visits or innovated festivities; they are days of eating, drinking, and remembrance of Allah, not seasons for innovations and superstitions.",
+            "bn": "এই বিশ্বাস করা যে, আইয়ামে তাশরীকের বিশেষ ফযীলত আছে যার কারণে এ দিনগুলোতে কবর যিয়ারত বা উদ্ভাবিত উৎসব করতে হয়; অথচ এগুলো পানাহার ও আল্লাহর যিকরের দিন, বিদআত ও কুসংস্কারের মৌসুম নয়।",
+            "es": "Creer que los días de Tashriq tienen una virtud especial que exige visitas a los cementerios o festividades inventadas; son días de comer, beber y recordar a Allah, no temporadas para innovaciones y supersticiones.",
+            "id": "Meyakini bahwa hari-hari Tasyriq memiliki keutamaan khusus yang menuntut ziarah kubur atau perayaan yang diada-adakan; padahal hari-hari tersebut adalah hari-hari makan, minum, dan mengingat Allah, bukan musim untuk bid'ah dan khurafat.",
+            "ur": "یہ اعتقاد رکھنا کہ ایامِ تشریق کو کوئی خاص فضیلت حاصل ہے جس کی وجہ سے ان میں قبروں کی زیارت یا گھڑی ہوئی عیدیں منائی جائیں؛ حالانکہ یہ کھانے پینے اور اللہ کی یاد کے دن ہیں، بدعتوں اور خرافات کے موسم نہیں۔",
+            "tr": "Teşrik günlerinin, kabir ziyaretlerini ya da uydurulmuş bayramları gerektiren özel bir fazilete sahip olduğuna inanmak; oysa bunlar yeme-içme ve Allah'ı anma günleridir, bid'at ve hurafelerin mevsimi değildir.",
+            "ku": "باوەڕبوون بەوەی کە ڕۆژەکانی تەشریق فەزڵێکی تایبەتیان هەیە کە سەردانی گۆڕەکان یان جەژنە بدعەییەکان دەخوازێت؛ لەکاتێکدا ئەوانە ڕۆژانی خواردن و خواردنەوە و یادکردنەوەی خودان، نەک وەرزی بدعە و خورافات.",
+            "ms": "Meyakini bahawa hari-hari Tasyrik mempunyai kelebihan khusus yang menuntut ziarah kubur atau perayaan yang direka-reka; sedangkan ia adalah hari-hari untuk makan, minum dan mengingati Allah, bukan musim untuk bidah dan khurafat.",
+            "fil": "Paniwala na ang mga araw ng Tashreeq ay may espesyal na kabutihan na nangangailangan ng pagbisita sa libingan o mga inobadong pagdiriwang; samantalang ang mga ito ay mga araw ng pagkain, pag-inom, at pag-alaala sa Allah, hindi mga panahon ng mga inobasyon at pamahiin.",
+            "so": "Rumaysadka in maalmaha Tashriiq ay leeyihiin fadli gaar ah oo u baahan booqasho qabuur ama ciido la abuuray; halka ay tahay maalmaha cunista, cabista iyo xusidda Ilaahay, ma ahana xilli loo takhasushay bida'cada iyo khuraafadaha."
           }
         }
       ]

@@ -109,6 +109,7 @@ class FeedbackThreadScreen extends StatelessWidget {
   void _openSendSheet() {
     const SizedBox().customBottomSheet(
       textTitle: 'feedbackSendNote',
+      containerColor: Get.theme.colorScheme.primaryContainer,
       child: const FeedbackSendSheet(),
     );
   }

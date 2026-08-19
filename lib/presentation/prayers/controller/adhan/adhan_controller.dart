@@ -469,8 +469,9 @@ class AdhanController extends GetxController {
   /// Update progress bar periodically
   void updateProgressBar() {
     Timer.periodic(const Duration(minutes: 1), (timer) {
-      // Refresh progress widgets and lightly rebuild prayer list for visual tweaks
-      update(['update_progress', 'init_athan']);
+      // Refresh progress widgets and lightly rebuild prayer list for visual
+      // tweaks. prohibitionTimes: إعادة تقييم أوقات النهي (getter نقي بلا update)
+      update(['update_progress', 'init_athan', 'prohibitionTimes']);
     });
   }
 

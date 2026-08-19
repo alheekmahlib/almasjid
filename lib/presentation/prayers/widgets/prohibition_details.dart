@@ -12,7 +12,7 @@ class ProhibitionWidget extends StatelessWidget {
         if (adhanCtrl.state.prayerTimes == null) {
           return const SizedBox.shrink();
         }
-        return adhanCtrl.prohibitionTimesBool.value
+        return adhanCtrl.prohibitionTimesBool
             ? ContainerButtonWidget(
                 onPressed: () => context.customBottomSheet(
                   textTitle: 'prohibitionTimes'.tr,

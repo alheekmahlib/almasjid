@@ -713,10 +713,15 @@ extension AdhanGetters on AdhanController {
 
   /// دالة لمعرفة أوقات النهي عن الصلاة
   /// Function to get prayer prohibition times
-  RxBool get prohibitionTimesBool {
+  ///
+  /// ملاحظة: هذا الـ getter يُقرأ داخل مرحلة بناء الواجهة، لذا يجب أن يبقى
+  /// نقيًا (بدون استدعاء update)؛ التحديث الدوري تديره updateProgressBar.
+  /// Note: this getter is read during widget build, so it must stay pure
+  /// (no update calls); periodic refresh is driven by updateProgressBar.
+  bool get prohibitionTimesBool {
     if (state.prayerTimes == null) {
       state.prohibitionTimesIndex.value = -1;
-      return false.obs;
+      return false;
     }
     PrayerTimes dateTime = state.prayerTimes!;
 
@@ -725,8 +730,7 @@ extension AdhanGetters on AdhanController {
     if (state.now.isAfter(dateTime.fajr) &&
         state.now.isBefore(dateTime.sunrise)) {
       state.prohibitionTimesIndex.value = 0;
-      update(['prohibitionTimes']); // تحديث الواجهة لإظهار التغييرات
-      return true.obs;
+      return true;
     }
     // 5- حين يقوم قائم الظهيرة وتتوسط الشمس كبد السماء قبل الزوال (5-10 دقائق قبل الظهر)
     // When the sun is at its zenith before midday (5-10 minutes before Dhuhr)
@@ -735,8 +739,7 @@ extension AdhanGetters on AdhanController {
         ) &&
         state.now.isBefore(dateTime.dhuhr)) {
       state.prohibitionTimesIndex.value = 1;
-      update(['prohibitionTimes']); // تحديث الواجهة لإظهار التغييرات
-      return true.obs;
+      return true;
     }
     // 3- من بعد صلاة العصر حتى تميل إلى الغروب
     // From after Asr prayer until the sun starts to set
@@ -745,12 +748,10 @@ extension AdhanGetters on AdhanController {
           dateTime.maghrib.subtract(const Duration(minutes: 15)),
         )) {
       state.prohibitionTimesIndex.value = 2;
-      update(['prohibitionTimes']); // تحديث الواجهة لإظهار التغييرات
-      return true.obs;
+      return true;
     } else {
       state.prohibitionTimesIndex.value = -1; // لا يوجد وقت نهي
-      update(['prohibitionTimes']); // تحديث الواجهة لإظهار التغييرات
-      return false.obs;
+      return false;
     }
   }
 
