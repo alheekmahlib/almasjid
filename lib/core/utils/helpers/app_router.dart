@@ -14,6 +14,8 @@ class AppRouter {
   static const String ourApps = '/ourApps';
   static const String aboutApp = '/aboutApp';
   static const String teachingPrayer = '/teachingPrayer';
+  static const String feedback = '/feedback';
+  static const String feedbackConversation = '/feedbackConversation';
 
   static List<GetPage> pages = [
     GetPage(
