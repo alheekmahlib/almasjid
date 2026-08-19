@@ -776,4 +776,23 @@
     "type": "text",
     "placeholders": {}
   }
+,
+  "adhanPlaying": "Azan berkumandang",
+  "@adhanPlaying": {
+    "description": "adhanPlaying",
+    "type": "text",
+    "placeholders": {}
+  },
+  "adhanPlayingDesc": "Notifikasi berterusan semasa azan berkumandang",
+  "@adhanPlayingDesc": {
+    "description": "adhanPlayingDesc",
+    "type": "text",
+    "placeholders": {}
+  },
+  "stopAdhan": "Hentikan",
+  "@stopAdhan": {
+    "description": "stopAdhan",
+    "type": "text",
+    "placeholders": {}
+  }
 }

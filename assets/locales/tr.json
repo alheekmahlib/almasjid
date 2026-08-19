@@ -776,4 +776,23 @@
     "type": "text",
     "placeholders": {}
   }
+,
+  "adhanPlaying": "Ezan çalıyor",
+  "@adhanPlaying": {
+    "description": "adhanPlaying",
+    "type": "text",
+    "placeholders": {}
+  },
+  "adhanPlayingDesc": "Ezan çalarken sürekli bildirim",
+  "@adhanPlayingDesc": {
+    "description": "adhanPlayingDesc",
+    "type": "text",
+    "placeholders": {}
+  },
+  "stopAdhan": "Durdur",
+  "@stopAdhan": {
+    "description": "stopAdhan",
+    "type": "text",
+    "placeholders": {}
+  }
 }

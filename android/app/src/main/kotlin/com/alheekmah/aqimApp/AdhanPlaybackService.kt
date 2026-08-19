@@ -25,12 +25,22 @@ class AdhanPlaybackService : Service() {
 
     companion object {
         const val EXTRA_FILE_PATH = "filePath"
+
+        /// نصوص إشعار الخدمة المترجمة، تُمرَّر من Flutter وقت الجدولة.
+        const val EXTRA_NOTIFICATION_TITLE = "notificationTitle"
+        const val EXTRA_NOTIFICATION_TEXT = "notificationText"
+        const val EXTRA_STOP_ACTION_LABEL = "stopActionLabel"
         const val ACTION_STOP = "com.alheekmah.aqimApp.ACTION_STOP_ADHAN"
         const val CHANNEL_ID = "adhan_playback_channel"
         const val NOTIFICATION_ID = 30001
 
         /** المورد الخام الافتراضي عند غياب ملف محمّل (الأقصى). */
         const val DEFAULT_RAW_NAME = "aqsa_athan"
+
+        /** احتياط عربي إن لم تصل النصوص المترجمة (إنذارات قديمة مثلاً). */
+        const val FALLBACK_TITLE = "تشغيل الأذان"
+        const val FALLBACK_TEXT = "إشعار قائم أثناء تشغيل الأذان"
+        const val FALLBACK_STOP = "إيقاف"
     }
 
     private var mediaPlayer: MediaPlayer? = null
@@ -45,13 +55,21 @@ class AdhanPlaybackService : Service() {
             return START_NOT_STICKY
         }
 
-        startForegroundWithType()
+        startForegroundWithType(
+            intent?.getStringExtra(EXTRA_NOTIFICATION_TITLE),
+            intent?.getStringExtra(EXTRA_NOTIFICATION_TEXT),
+            intent?.getStringExtra(EXTRA_STOP_ACTION_LABEL)
+        )
         playAdhan(intent?.getStringExtra(EXTRA_FILE_PATH))
         return START_NOT_STICKY
     }
 
-    private fun startForegroundWithType() {
-        val notification = buildNotification()
+    private fun startForegroundWithType(
+        title: String?,
+        text: String?,
+        stopLabel: String?
+    ) {
+        val notification = buildNotification(title, text, stopLabel)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             startForeground(
                 NOTIFICATION_ID,
@@ -63,15 +81,20 @@ class AdhanPlaybackService : Service() {
         }
     }
 
-    private fun buildNotification(): Notification {
+    private fun buildNotification(
+        title: String?,
+        text: String?,
+        stopLabel: String?
+    ): Notification {
         val manager =
             getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val resolvedTitle = title ?: FALLBACK_TITLE
         val channel = NotificationChannel(
             CHANNEL_ID,
-            "تشغيل الأذان",
+            resolvedTitle,
             NotificationManager.IMPORTANCE_LOW
         ).apply {
-            description = "إشعار قائم أثناء تشغيل الأذان"
+            description = text ?: FALLBACK_TEXT
             setSound(null, null)
         }
         manager.createNotificationChannel(channel)
@@ -84,7 +107,7 @@ class AdhanPlaybackService : Service() {
         )
         val stopAction = Notification.Action.Builder(
             Icon.createWithResource(this, android.R.drawable.ic_media_pause),
-            "إيقاف",
+            stopLabel ?: FALLBACK_STOP,
             stopIntent
         ).build()
 
@@ -97,8 +120,8 @@ class AdhanPlaybackService : Service() {
 
         return Notification.Builder(this, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_notification)
-            .setContentTitle("تشغيل الأذان")
-            .setContentText("جارٍ تشغيل الأذان")
+            .setContentTitle(resolvedTitle)
+            .setContentText(text ?: FALLBACK_TEXT)
             .setOngoing(true)
             .setContentIntent(openAppIntent)
             .addAction(stopAction)

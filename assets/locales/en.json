@@ -889,4 +889,23 @@
     "type": "text",
     "placeholders": {}
   }
+,
+  "adhanPlaying": "Adhan playing",
+  "@adhanPlaying": {
+    "description": "adhanPlaying",
+    "type": "text",
+    "placeholders": {}
+  },
+  "adhanPlayingDesc": "Ongoing notification while the adhan plays",
+  "@adhanPlayingDesc": {
+    "description": "adhanPlayingDesc",
+    "type": "text",
+    "placeholders": {}
+  },
+  "stopAdhan": "Stop",
+  "@stopAdhan": {
+    "description": "stopAdhan",
+    "type": "text",
+    "placeholders": {}
+  }
 }

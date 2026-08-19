@@ -149,6 +149,7 @@ class NotifyHelper {
 
       // أندرويد: إشعار الأذان صامت؛ خدمة التشغيل الأمامية هي مصدر الصوت،
       // لذا نجدول إنذاراً موازياً بنفس المعرف والوقت — بالنسخة الفجرية للفجر.
+      // نصوص إشعار الخدمة تُمرَّر مترجمةً من هنا لتتوحد مع بقية التطبيق.
       if (Platform.isAndroid &&
           soundType == 'sound' &&
           time != null &&
@@ -160,6 +161,9 @@ class NotifyHelper {
             filePath: LocalNotificationsService.selectedAdhanAudioPath(
               fajr: isFajrPrayer,
             ),
+            notificationTitle: 'adhanPlaying'.tr,
+            notificationText: 'adhanPlayingDesc'.tr,
+            stopActionLabel: 'stopAdhan'.tr,
           ),
         ]);
       }

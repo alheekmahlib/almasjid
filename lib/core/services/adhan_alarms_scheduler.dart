@@ -5,13 +5,25 @@ import 'package:flutter/services.dart' show MethodChannel;
 
 /// إنذار تشغيل أذان واحد: نفس معرف إشعار FLN المقابل له.
 class AdhanAlarm {
-  const AdhanAlarm({required this.id, required this.time, this.filePath});
+  const AdhanAlarm({
+    required this.id,
+    required this.time,
+    this.filePath,
+    this.notificationTitle,
+    this.notificationText,
+    this.stopActionLabel,
+  });
 
   final int id;
   final DateTime time;
 
   /// مسار الصوت المحمّل؛ null يعني الرجوع للمورد الخام الافتراضي (الأقصى).
   final String? filePath;
+
+  /// نصوص إشعار الخدمة الأمامية مترجمةً من Flutter.
+  final String? notificationTitle;
+  final String? notificationText;
+  final String? stopActionLabel;
 }
 
 /// جدولة إنذارات تشغيل الأذان على أندرويد بالتوازي مع إشعارات
@@ -35,6 +47,9 @@ class AdhanAlarmsScheduler {
                 'id': alarm.id,
                 'triggerAtMillis': alarm.time.millisecondsSinceEpoch,
                 'filePath': alarm.filePath,
+                'notificationTitle': alarm.notificationTitle,
+                'notificationText': alarm.notificationText,
+                'stopActionLabel': alarm.stopActionLabel,
               },
             )
             .toList(),

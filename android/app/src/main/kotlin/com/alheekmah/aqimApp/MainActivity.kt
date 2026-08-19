@@ -82,10 +82,13 @@ class MainActivity : FlutterActivity() {
         Build.VERSION.SDK_INT < Build.VERSION_CODES.S ||
             alarmManager().canScheduleExactAlarms()
 
-    private fun alarmPendingIntent(id: Int, filePath: String?): PendingIntent {
+    private fun alarmPendingIntent(id: Int, filePath: String?, title: String?, text: String?, stopLabel: String?): PendingIntent {
         val intent = Intent(this, AdhanAlarmReceiver::class.java)
             .setAction(ADHAN_ALARM_ACTION)
             .putExtra(AdhanPlaybackService.EXTRA_FILE_PATH, filePath)
+            .putExtra(AdhanPlaybackService.EXTRA_NOTIFICATION_TITLE, title)
+            .putExtra(AdhanPlaybackService.EXTRA_NOTIFICATION_TEXT, text)
+            .putExtra(AdhanPlaybackService.EXTRA_STOP_ACTION_LABEL, stopLabel)
         return PendingIntent.getBroadcast(
             this,
             id,
@@ -101,7 +104,10 @@ class MainActivity : FlutterActivity() {
             val id = (alarm["id"] as Number).toInt()
             val triggerAtMillis = (alarm["triggerAtMillis"] as Number).toLong()
             val filePath = alarm["filePath"] as String?
-            val pendingIntent = alarmPendingIntent(id, filePath)
+            val title = alarm["notificationTitle"] as String?
+            val text = alarm["notificationText"] as String?
+            val stopLabel = alarm["stopActionLabel"] as String?
+            val pendingIntent = alarmPendingIntent(id, filePath, title, text, stopLabel)
             try {
                 if (canExact) {
                     manager.setExactAndAllowWhileIdle(
@@ -131,7 +137,7 @@ class MainActivity : FlutterActivity() {
         val manager = alarmManager()
         for (id in ids) {
             // filterEquals يتجاهل الإضافات؛ نفس المعرف يلغي الإنذار نفسه.
-            manager.cancel(alarmPendingIntent(id, null))
+            manager.cancel(alarmPendingIntent(id, null, null, null, null))
         }
     }
 

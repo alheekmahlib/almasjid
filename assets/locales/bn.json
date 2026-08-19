@@ -776,4 +776,23 @@
     "type": "text",
     "placeholders": {}
   }
+,
+  "adhanPlaying": "আজান চলছে",
+  "@adhanPlaying": {
+    "description": "adhanPlaying",
+    "type": "text",
+    "placeholders": {}
+  },
+  "adhanPlayingDesc": "আজান চলার সময় চলমান নোটিফিকেশন",
+  "@adhanPlayingDesc": {
+    "description": "adhanPlayingDesc",
+    "type": "text",
+    "placeholders": {}
+  },
+  "stopAdhan": "বন্ধ করুন",
+  "@stopAdhan": {
+    "description": "stopAdhan",
+    "type": "text",
+    "placeholders": {}
+  }
 }
