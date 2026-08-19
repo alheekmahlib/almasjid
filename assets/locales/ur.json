@@ -740,5 +740,40 @@
   "@EidAl-Adha": {
     "type": "text",
     "placeholders": {}
+  },
+  "iqama": "اقامت",
+  "@iqama": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "timeForIqama": "اقامت کا وقت ہے",
+  "@timeForIqama": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iqamaBody": "نماز کے لیے آئیے",
+  "@iqamaBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iqamaNotifications": "اقامت کی اطلاعات",
+  "@iqamaNotifications": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iqamaNotificationsDesc": "ہر نماز کے وقت اقامت پر اطلاع",
+  "@iqamaNotificationsDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "showIqamaTimes": "اقامت کا وقت دکھائیں",
+  "@showIqamaTimes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "minutes": "منٹ",
+  "@minutes": {
+    "type": "text",
+    "placeholders": {}
   }
 }

@@ -740,5 +740,40 @@
   "@EidAl-Adha": {
     "type": "text",
     "placeholders": {}
+  },
+  "iqama": "Iqamah",
+  "@iqama": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "timeForIqama": "Waktu iqamah bagi",
+  "@timeForIqama": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iqamaBody": "Marilah menunaikan solat",
+  "@iqamaBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iqamaNotifications": "Notifikasi iqamah",
+  "@iqamaNotifications": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iqamaNotificationsDesc": "Amaran pada waktu iqamah setiap solat",
+  "@iqamaNotificationsDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "showIqamaTimes": "Tunjukkan waktu iqamah",
+  "@showIqamaTimes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "minutes": "minit",
+  "@minutes": {
+    "type": "text",
+    "placeholders": {}
   }
 }

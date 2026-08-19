@@ -740,5 +740,40 @@
   "@EidAl-Adha": {
     "type": "text",
     "placeholders": {}
+  },
+  "iqama": "ইকামত",
+  "@iqama": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "timeForIqama": "ইকামতের সময় হয়েছে",
+  "@timeForIqama": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iqamaBody": "চলুন নামাজে অংশ নিই",
+  "@iqamaBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iqamaNotifications": "ইকামতের বিজ্ঞপ্তি",
+  "@iqamaNotifications": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iqamaNotificationsDesc": "প্রতি নামাজের ইকামতের সময়ে বিজ্ঞপ্তি",
+  "@iqamaNotificationsDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "showIqamaTimes": "ইকামতের সময় দেখান",
+  "@showIqamaTimes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "minutes": "মিনিট",
+  "@minutes": {
+    "type": "text",
+    "placeholders": {}
   }
 }

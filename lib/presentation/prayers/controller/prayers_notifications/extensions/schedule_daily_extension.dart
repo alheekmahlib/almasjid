@@ -6,6 +6,56 @@ const int _kPrayerOpenAppReminderBaseId = 21000;
 const String _kLegacyPrayerNotificationsCancelledFlag =
     'legacy_prayer_notifications_cancelled_v2';
 
+/// خانات الإقامة داخل كتلة اليوم (الصلوات 0-4 والإقامة 5-9).
+const int _kIqamaSlotOffset = 5;
+
+/// سياسة جدولة الأذان والإقامة ضمن حد iOS البالغ 64 إشعارًا محجوزًا.
+/// iOS يُبقي أقرب 64 إشعارًا زمنيًا ويحذف الباقي بصمت، لذا تُدار الخانات صراحة.
+class IqamaSchedulePolicy {
+  static const int iOSPendingNotificationsLimit = 64;
+
+  /// خانات محجوزة لمنشورات الخادم وإشعارات أخرى خارج نطاق الصلوات.
+  static const int reservedSlots = 4;
+
+  /// نافذة الإقامة على iOS: اليوم + الغد فقط (تتجدد مع كل تشغيل/مهمة خلفية).
+  static const int iOSIqamaWindowDays = 2;
+
+  /// أقصى عدد أيام جدولة أذان على iOS (كما كان قبل الميزانية الديناميكية).
+  static const int iOSAdhanMaxDays = 10;
+
+  /// الحد الأدنى للأفق حتى مع اشتداد الضغط على الخانات.
+  static const int minAdhanDays = 2;
+
+  /// عدد أيام جدولة الأذان على iOS وفق الخانات المتاحة.
+  static int adhanDaysForIOS({
+    required int enabledAdhanCount,
+    required bool iqamaEnabled,
+    required bool ramadanActive,
+  }) {
+    if (enabledAdhanCount <= 0) return minAdhanDays;
+    const adhanCount = 5;
+    final iqamaSlots = iqamaEnabled ? iOSIqamaWindowDays * adhanCount : 0;
+    // رمضان: 3 أنواع × 5 أيام على iOS في أسوأ الأحوال.
+    final ramadanSlots = ramadanActive ? 15 : 0;
+    const openAppReminders = 5;
+    final available =
+        iOSPendingNotificationsLimit -
+        reservedSlots -
+        iqamaSlots -
+        ramadanSlots -
+        openAppReminders;
+    return (available ~/ enabledAdhanCount).clamp(
+      minAdhanDays,
+      iOSAdhanMaxDays,
+    );
+  }
+
+  /// عدد أيام جدولة الإقامة: نافذة قصيرة متجددة على iOS وكامل الأفق فيما عداها.
+  static int iqamaDaysToSchedule() {
+    return Platform.isIOS ? iOSIqamaWindowDays : _daysToSchedule();
+  }
+}
+
 int _prayerKeyFromIndex(int prayerIndex) {
   switch (prayerIndex) {
     case 0:
@@ -29,14 +79,58 @@ int _scheduledPrayerNotificationId({required int prayerKey, required int day}) {
       prayerKey;
 }
 
+int _scheduledIqamaNotificationId({required int prayerKey, required int day}) {
+  return _kPrayerNotificationsBaseId +
+      (day * _kPrayerNotificationsDayStride) +
+      _kIqamaSlotOffset +
+      prayerKey;
+}
+
 int _openAppReminderIdForPrayer(int prayerKey) {
   return _kPrayerOpenAppReminderBaseId + prayerKey;
 }
 
-int _daysToSchedule() {
-  // مطابقة للمنطق الحالي: iOS/macOS أقل لتجنب الحدود.
-  return (Platform.isIOS || Platform.isMacOS) ? 10 : 30;
+/// عدد الأذان المفعلة حاليًا (نوع إشعار غير nothing للصلوات الخمس).
+int _enabledAdhanNotificationCount() {
+  final adhanStorage = GetStorage('AdhanSounds');
+  const prayerNames = ['Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'];
+  int count = 0;
+  for (final name in prayerNames) {
+    final type = adhanStorage.read<String?>('scheduledAdhan_$name');
+    if (type != null && type != 'nothing') count++;
+  }
+  return count;
 }
+
+/// هل إشعارات الصيام (السحور/الإفطار/العشر الأواخر) مفعلة في رمضان حاليًا؟
+bool _isRamadanNotificationsActive() {
+  try {
+    final ramadan = RamadanController.instance;
+    final inRamadan = ramadan.hijriNow.hMonth == 9;
+    if (!inRamadan) return false;
+    return ramadan.suhoorEnabled.value ||
+        ramadan.iftarEnabled.value ||
+        ramadan.lastTenNightsEnabled.value;
+  } catch (_) {
+    return false;
+  }
+}
+
+int _daysToSchedule() {
+  if (Platform.isAndroid) return 30;
+  if (Platform.isMacOS) return 10;
+  // iOS: أفق ديناميكي ضمن ميزانية الـ 64 إشعارًا.
+  return IqamaSchedulePolicy.adhanDaysForIOS(
+    enabledAdhanCount: _enabledAdhanNotificationCount(),
+    iqamaEnabled:
+        AdhanController.instance.state.iqamaNotificationsEnabled.value,
+    ramadanActive: _isRamadanNotificationsActive(),
+  );
+}
+
+/// أقصى مدى للإلغاء: الأفق الديناميكي قد يتقلص بعد جدولة أوسع سابقًا،
+/// فيُلغى دائمًا على أقصى مدى ممكن لكل منصة.
+int _maxDaysToCancel() => Platform.isAndroid ? 30 : 10;
 
 Future<void> _cancelLegacyPrayerNotificationsForPrayerIndex(
   int prayerIndex,
@@ -242,6 +336,90 @@ extension ScheduleDailyExtension on PrayersNotificationsCtrl {
   //   }
   // }
 
+  /// جدولة إشعارات الإقامة عند وقت الإقامة تمامًا لكل صلاة.
+  /// iOS: نافذة اليوم+الغد فقط ضمن ميزانية الـ 64 (تتجدد مع كل تشغيل)؛
+  /// أندرويد/macOS: كامل الأفق.
+  Future<void> scheduleIqamaNotifications() async {
+    final athanCtrl = AdhanController.instance;
+    if (!athanCtrl.state.iqamaNotificationsEnabled.value) return;
+    if (athanCtrl.state.prayerTimes == null ||
+        athanCtrl.state.sunnahTimes == null) {
+      return;
+    }
+
+    await cancelAllIqamaNotifications();
+
+    final days = IqamaSchedulePolicy.iqamaDaysToSchedule();
+    final now = DateTime.now();
+    final iqamaOffsets = athanCtrl.state.iqamaOffsets;
+
+    for (int day = 0; day < days; day++) {
+      final dateComponents = DateComponents.from(
+        DateTime.now().add(Duration(days: day)),
+      );
+
+      final prayerTimes = PrayerTimes(
+        athanCtrl.state.coordinates,
+        dateComponents,
+        athanCtrl.state.params,
+      );
+
+      const prayerEntries = <({int prayerIndex, Prayer prayer})>[
+        (prayerIndex: 0, prayer: Prayer.fajr),
+        (prayerIndex: 2, prayer: Prayer.dhuhr),
+        (prayerIndex: 3, prayer: Prayer.asr),
+        (prayerIndex: 4, prayer: Prayer.maghrib),
+        (prayerIndex: 5, prayer: Prayer.isha),
+      ];
+
+      for (final entry in prayerEntries) {
+        final adhanTime = prayerTimes.timeForPrayer(entry.prayer);
+        if (adhanTime == null) continue;
+        final iqamaTime = adhanTime.add(
+          iqamaOffsets.durationByIndex(entry.prayerIndex),
+        );
+
+        // لا تُجدول إقامة بوقتٍ ماضٍ.
+        if (iqamaTime.isBefore(now)) continue;
+
+        final prayerKey = _prayerKeyFromIndex(entry.prayerIndex);
+        final notificationId = _scheduledIqamaNotificationId(
+          prayerKey: prayerKey,
+          day: day,
+        );
+        final prayerName = athanCtrl.prayerNameFromEnum(entry.prayer).tr;
+
+        await NotifyHelper().scheduledNotification(
+          reminderId: notificationId,
+          title: 'iqama'.tr,
+          summary: '${'timeForIqama'.tr} $prayerName',
+          body: '',
+          isRepeats: false,
+          time: iqamaTime,
+          payload: {'sound_type': 'bell'},
+        );
+
+        log(
+          'تم جدولة إقامة $prayerName ($day): $iqamaTime',
+          name: 'ScheduleDailyExtension',
+        );
+      }
+    }
+  }
+
+  /// إلغاء جميع إشعارات الإقامة (خانات 5-9 في كل كتلة يوم).
+  Future<void> cancelAllIqamaNotifications() async {
+    final daysToCancel = _maxDaysToCancel();
+    for (int day = 0; day < daysToCancel; day++) {
+      for (int prayerKey = 0; prayerKey < 5; prayerKey++) {
+        await NotifyHelper().cancelNotification(
+          _scheduledIqamaNotificationId(prayerKey: prayerKey, day: day),
+        );
+      }
+    }
+    log('تم إلغاء جميع إشعارات الإقامة.', name: 'ScheduleDailyExtension');
+  }
+
   Future<void> reschedulePrayers() async {
     log(
       'إعادة جدولة إشعارات الصلوات اليومية...',
@@ -278,6 +456,13 @@ extension ScheduleDailyExtension on PrayersNotificationsCtrl {
       }
     }
 
+    // إشعارات الإقامة: تُجدول إن كانت مفعلة (وتُلغى إن كانت معطلة).
+    if (AdhanController.instance.state.iqamaNotificationsEnabled.value) {
+      await scheduleIqamaNotifications();
+    } else {
+      await cancelAllIqamaNotifications();
+    }
+
     // إعادة جدولة إشعارات الصيام (السحور/الإفطار/العشر الأواخر)
     await RamadanController.instance.rescheduleFastingNotifications();
   }
@@ -288,7 +473,7 @@ extension ScheduleDailyExtension on PrayersNotificationsCtrl {
     // تنظيف الجداول القديمة (مرة واحدة) لتفادي تداخل الإصدارات.
     await _cancelLegacyPrayerNotificationsIfNeeded();
 
-    final daysToCancel = _daysToSchedule();
+    final daysToCancel = _maxDaysToCancel();
     for (int day = 0; day < daysToCancel; day++) {
       for (final prayerIndex in prayerIndexes) {
         final prayerKey = _prayerKeyFromIndex(prayerIndex);
@@ -306,6 +491,9 @@ extension ScheduleDailyExtension on PrayersNotificationsCtrl {
       );
     }
 
+    // تشمل إشعارات الإقامة (خانات 5-9 في كل كتلة يوم).
+    await cancelAllIqamaNotifications();
+
     log('تم إلغاء جميع إشعارات الصلاة.', name: 'ScheduleDailyExtension');
   }
 
@@ -318,7 +506,7 @@ extension ScheduleDailyExtension on PrayersNotificationsCtrl {
     await _cancelLegacyPrayerNotificationsForPrayerIndex(originalPrayerIndex);
 
     final prayerKey = _prayerKeyFromIndex(originalPrayerIndex);
-    final daysToCancel = _daysToSchedule();
+    final daysToCancel = _maxDaysToCancel();
     for (int day = 0; day < daysToCancel; day++) {
       final id = _scheduledPrayerNotificationId(prayerKey: prayerKey, day: day);
       await NotifyHelper().cancelNotification(id);

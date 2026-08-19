@@ -1010,5 +1010,35 @@
   "@EidAl-Adha": {
     "type": "text",
     "placeholders": {}
+  },
+  "iqama": "الإقامة",
+  "@iqama": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "timeForIqama": "حان وقت إقامة صلاة",
+  "@timeForIqama": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iqamaBody": "هيّا إلى الصلاة",
+  "@iqamaBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iqamaNotifications": "إشعارات الإقامة",
+  "@iqamaNotifications": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iqamaNotificationsDesc": "تنبيه عند وقت الإقامة لكل صلاة",
+  "@iqamaNotificationsDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "showIqamaTimes": "إظهار وقت الإقامة",
+  "@showIqamaTimes": {
+    "type": "text",
+    "placeholders": {}
   }
 }

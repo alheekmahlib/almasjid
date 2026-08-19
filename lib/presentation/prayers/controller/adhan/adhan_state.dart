@@ -3,6 +3,11 @@ part of '../../prayers.dart';
 const allowedMaxAdjustment = 30;
 const allowedMinAdjustment = -30;
 
+/// حدود إزاحة الإقامة بعد الأذان (بالدقائق).
+const int iqamaMinOffset = 5;
+const int iqamaMaxOffset = 60;
+const int iqamaOffsetStep = 5;
+
 class AdhanState {
   /// -------- [Variables] ----------
   final box = GetStorage();
@@ -39,6 +44,9 @@ class AdhanState {
   late final HighLatitudeRule highLatitudeRule;
   RxInt adjustmentIndex = RxInt(0);
   OurPrayerAdjustments adjustments = OurPrayerAdjustments();
+  IqamaOffsets iqamaOffsets = IqamaOffsets();
+  RxBool iqamaNotificationsEnabled = false.obs;
+  RxBool showIqamaTimes = true.obs;
   Future<List<String>>? countryListFuture;
   RxInt prohibitionTimesIndex = 0.obs;
   RxBool isPrayerTimesInitialized = false.obs;
@@ -67,8 +75,16 @@ class AdhanState {
 class OurPrayerAdjustments extends PrayerAdjustments {
   int midnight = 0;
   int lastThird = 0;
-  List<int> get values =>
-      [fajr, sunrise, dhuhr, asr, maghrib, isha, midnight, lastThird];
+  List<int> get values => [
+    fajr,
+    sunrise,
+    dhuhr,
+    asr,
+    maghrib,
+    isha,
+    midnight,
+    lastThird,
+  ];
   OurPrayerAdjustments({
     super.fajr = 0,
     super.sunrise = 0,
@@ -82,7 +98,8 @@ class OurPrayerAdjustments extends PrayerAdjustments {
 
   int getAdjustmentByIndex(int index) {
     return getAdjustmentByPrayerName(
-        AdhanController.instance.prayerNameList[index]['sharedAdjustment']!);
+      AdhanController.instance.prayerNameList[index]['sharedAdjustment']!,
+    );
   }
 
   int getAdjustmentByPrayerName(String prayerName) {
@@ -156,30 +173,40 @@ class OurPrayerAdjustments extends PrayerAdjustments {
         fajr = (fajr + value).clamp(allowedMinAdjustment, allowedMaxAdjustment);
         break;
       case 'ADJUSTMENT_SUNRISE':
-        sunrise =
-            (sunrise + value).clamp(allowedMinAdjustment, allowedMaxAdjustment);
+        sunrise = (sunrise + value).clamp(
+          allowedMinAdjustment,
+          allowedMaxAdjustment,
+        );
         break;
       case 'ADJUSTMENT_DHUHR':
-        dhuhr =
-            (dhuhr + value).clamp(allowedMinAdjustment, allowedMaxAdjustment);
+        dhuhr = (dhuhr + value).clamp(
+          allowedMinAdjustment,
+          allowedMaxAdjustment,
+        );
         break;
       case 'ADJUSTMENT_ASR':
         asr = (asr + value).clamp(allowedMinAdjustment, allowedMaxAdjustment);
         break;
       case 'ADJUSTMENT_MAGHRIB':
-        maghrib =
-            (maghrib + value).clamp(allowedMinAdjustment, allowedMaxAdjustment);
+        maghrib = (maghrib + value).clamp(
+          allowedMinAdjustment,
+          allowedMaxAdjustment,
+        );
         break;
       case 'ADJUSTMENT_ISHA':
         isha = (isha + value).clamp(allowedMinAdjustment, allowedMaxAdjustment);
         break;
       case 'ADJUSTMENT_MIDNIGHT':
-        midnight = (midnight + value)
-            .clamp(allowedMinAdjustment, allowedMaxAdjustment);
+        midnight = (midnight + value).clamp(
+          allowedMinAdjustment,
+          allowedMaxAdjustment,
+        );
         break;
       case 'ADJUSTMENT_LAST_THIRD':
-        lastThird = (lastThird + value)
-            .clamp(allowedMinAdjustment, allowedMaxAdjustment);
+        lastThird = (lastThird + value).clamp(
+          allowedMinAdjustment,
+          allowedMaxAdjustment,
+        );
         break;
       default:
         log('Unknown prayer name: $prayerName');
@@ -198,5 +225,97 @@ class OurPrayerAdjustments extends PrayerAdjustments {
     AdhanController.instance.state.box.write('ADJUSTMENT_ISHA', isha);
     AdhanController.instance.state.box.write('ADJUSTMENT_MIDNIGHT', midnight);
     AdhanController.instance.state.box.write('ADJUSTMENT_THIRD', lastThird);
+  }
+}
+
+/// إزاحات الإقامة بعد الأذان للصلوات الخمس (بالدقائق).
+class IqamaOffsets {
+  int fajr;
+  int dhuhr;
+  int asr;
+  int maghrib;
+  int isha;
+
+  /// حاوية التخزين التي تُكتب فيها التعديلات (قابلة للحقن لأغراض الاختبار).
+  final GetStorage? storage;
+
+  IqamaOffsets({
+    this.fajr = 25,
+    this.dhuhr = 15,
+    this.asr = 15,
+    this.maghrib = 10,
+    this.isha = 15,
+    this.storage,
+  });
+
+  List<int> get values => [fajr, dhuhr, asr, maghrib, isha];
+
+  /// مؤشرات الصلوات الخمس داخل قائمة prayerNameList (0 فجر، 2 ظهر، 3 عصر، 4 مغرب، 5 عشاء).
+  static const List<int> prayerIndexes = [0, 2, 3, 4, 5];
+
+  static bool hasIqama(int prayerIndex) => prayerIndexes.contains(prayerIndex);
+
+  int getByIndex(int prayerIndex) {
+    switch (prayerIndex) {
+      case 0:
+        return fajr;
+      case 2:
+        return dhuhr;
+      case 3:
+        return asr;
+      case 4:
+        return maghrib;
+      case 5:
+        return isha;
+      default:
+        return 0;
+    }
+  }
+
+  Duration durationByIndex(int prayerIndex) =>
+      Duration(minutes: getByIndex(prayerIndex));
+
+  void adjustByIndex(int prayerIndex, int delta) {
+    switch (prayerIndex) {
+      case 0:
+        fajr = (fajr + delta).clamp(iqamaMinOffset, iqamaMaxOffset);
+        break;
+      case 2:
+        dhuhr = (dhuhr + delta).clamp(iqamaMinOffset, iqamaMaxOffset);
+        break;
+      case 3:
+        asr = (asr + delta).clamp(iqamaMinOffset, iqamaMaxOffset);
+        break;
+      case 4:
+        maghrib = (maghrib + delta).clamp(iqamaMinOffset, iqamaMaxOffset);
+        break;
+      case 5:
+        isha = (isha + delta).clamp(iqamaMinOffset, iqamaMaxOffset);
+        break;
+      default:
+        return;
+    }
+    _persist();
+  }
+
+  factory IqamaOffsets.fromGetStorage({GetStorage? storage}) {
+    final box = storage ?? GetStorage();
+    return IqamaOffsets(
+      fajr: box.read(IQAMA_OFFSET_FAJR) ?? 25,
+      dhuhr: box.read(IQAMA_OFFSET_DHUHR) ?? 15,
+      asr: box.read(IQAMA_OFFSET_ASR) ?? 15,
+      maghrib: box.read(IQAMA_OFFSET_MAGHRIB) ?? 10,
+      isha: box.read(IQAMA_OFFSET_ISHA) ?? 15,
+      storage: storage,
+    );
+  }
+
+  void _persist() {
+    final box = storage ?? GetStorage();
+    box.write(IQAMA_OFFSET_FAJR, fajr);
+    box.write(IQAMA_OFFSET_DHUHR, dhuhr);
+    box.write(IQAMA_OFFSET_ASR, asr);
+    box.write(IQAMA_OFFSET_MAGHRIB, maghrib);
+    box.write(IQAMA_OFFSET_ISHA, isha);
   }
 }

@@ -858,5 +858,35 @@
   "@EidAl-Adha": {
     "type": "text",
     "placeholders": {}
+  },
+  "iqama": "Iqama",
+  "@iqama": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "timeForIqama": "Time for the Iqama of",
+  "@timeForIqama": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iqamaBody": "Come to the prayer",
+  "@iqamaBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iqamaNotifications": "Iqama Notifications",
+  "@iqamaNotifications": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iqamaNotificationsDesc": "An alert at each prayer's iqama time",
+  "@iqamaNotificationsDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "showIqamaTimes": "Show Iqama Time",
+  "@showIqamaTimes": {
+    "type": "text",
+    "placeholders": {}
   }
 }

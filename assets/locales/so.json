@@ -740,5 +740,40 @@
   "@EidAl-Adha": {
     "type": "text",
     "placeholders": {}
+  },
+  "iqama": "Iqamada",
+  "@iqama": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "timeForIqama": "Waqtiga iqamada",
+  "@timeForIqama": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iqamaBody": "Ka soo aqo salaadda",
+  "@iqamaBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iqamaNotifications": "Ogeysiintada iqamada",
+  "@iqamaNotifications": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iqamaNotificationsDesc": "Ogeysiis waqtiga iqamada salaadaha",
+  "@iqamaNotificationsDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "showIqamaTimes": "Muujin waqtiga iqamada",
+  "@showIqamaTimes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "minutes": "daqiiqad",
+  "@minutes": {
+    "type": "text",
+    "placeholders": {}
   }
 }

@@ -740,5 +740,40 @@
   "@EidAl-Adha": {
     "type": "text",
     "placeholders": {}
+  },
+  "iqama": "Iqama",
+  "@iqama": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "timeForIqama": "Oras na ng iqama ng",
+  "@timeForIqama": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iqamaBody": "Halika na sa panalangin",
+  "@iqamaBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iqamaNotifications": "Mga abiso ng iqama",
+  "@iqamaNotifications": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iqamaNotificationsDesc": "Abiso sa oras ng iqama ng bawat panalangin",
+  "@iqamaNotificationsDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "showIqamaTimes": "Ipakita ang oras ng iqama",
+  "@showIqamaTimes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "minutes": "minuto",
+  "@minutes": {
+    "type": "text",
+    "placeholders": {}
   }
 }

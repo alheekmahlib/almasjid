@@ -50,4 +50,38 @@ extension AdhanUi on AdhanController {
     // );
     update(['change_notification']);
   }
+
+  /// تعديل إزاحة الإقامة لصلاة معينة بخطوة iqamaOffsetStep.
+  Future<void> adjustIqamaOffset(int index, {bool isAdding = true}) async {
+    if (!IqamaOffsets.hasIqama(index)) return;
+    state.iqamaOffsets.adjustByIndex(
+      index,
+      isAdding ? iqamaOffsetStep : -iqamaOffsetStep,
+    );
+    update(['init_athan']);
+    // تحديث إشعارات الإقامة إن كانت مفعلة (نافذة قصيرة — عملية رخيصة).
+    if (state.iqamaNotificationsEnabled.value) {
+      try {
+        await PrayersNotificationsCtrl.instance.scheduleIqamaNotifications();
+      } catch (e) {
+        log('Failed to refresh iqama notifications: $e', name: 'AdhanUi');
+      }
+    }
+  }
+
+  /// تفعيل/تعطيل إشعارات الإقامة. التبديل يغيّر ميزانية خانات iOS
+  /// فيلزم إعادة جدولة كاملة لاشعارات الأذان.
+  Future<void> toggleIqamaNotifications(bool value) async {
+    state.iqamaNotificationsEnabled.value = value;
+    state.box.write(IQAMA_NOTIFICATIONS_ENABLED, value);
+    await PrayersNotificationsCtrl.instance.reschedulePrayers();
+    update(['init_athan']);
+  }
+
+  /// إظهار/إخفاء وقت الإقامة في قائمة الصلوات (لا يؤثر على الإشعارات).
+  void toggleShowIqamaTimes(bool value) {
+    state.showIqamaTimes.value = value;
+    state.box.write(SHOW_IQAMA_TIMES, value);
+    update(['init_athan']);
+  }
 }

@@ -34,12 +34,14 @@ class PrayerBackgroundManager {
       // التحقق من صحة التخزين الشهري أولاً
       // Check monthly cache validity first
       final isMonthlyValid = MonthlyPrayerCache.isMonthlyDataValid(
-          currentLocation: currentLocation);
+        currentLocation: currentLocation,
+      );
 
       // التحقق من صحة التخزين اليومي
       // Check daily cache validity
-      final isDailyValid =
-          PrayerCacheManager.isCacheValid(currentLocation: currentLocation);
+      final isDailyValid = PrayerCacheManager.isCacheValid(
+        currentLocation: currentLocation,
+      );
 
       if (isMonthlyValid || isDailyValid) {
         log('Prayer times cache is valid, no update needed', name: _tag);
@@ -154,8 +156,9 @@ class PrayerBackgroundManager {
       // Suhoor notification - before Fajr
       if (suhoorEnabled) {
         final suhoorMinutes = storage.read('ramadan_suhoor_minutes') ?? 60;
-        final suhoorTime =
-            prayerTimes.fajr.subtract(Duration(minutes: suhoorMinutes));
+        final suhoorTime = prayerTimes.fajr.subtract(
+          Duration(minutes: suhoorMinutes),
+        );
 
         if (suhoorTime.isAfter(DateTime.now())) {
           await NotifyHelper().scheduledNotification(
@@ -175,8 +178,9 @@ class PrayerBackgroundManager {
       // Iftar notification - before Maghrib
       if (iftarEnabled) {
         final iftarMinutes = storage.read('ramadan_iftar_minutes') ?? 30;
-        final iftarTime =
-            prayerTimes.maghrib.subtract(Duration(minutes: iftarMinutes));
+        final iftarTime = prayerTimes.maghrib.subtract(
+          Duration(minutes: iftarMinutes),
+        );
 
         if (iftarTime.isAfter(DateTime.now())) {
           await NotifyHelper().scheduledNotification(
@@ -206,6 +210,17 @@ class PrayerBackgroundManager {
       // Check prayer times
       final updated = await checkAndUpdatePrayerTimes();
 
+      // تجديد نافذة إشعارات الإقامة (اليوم+الغد على iOS) حتى مع صلاحية الكاش —
+      // iOS لا ينفّذ كودًا عند ظهور إشعار، فالنافذة تتقدم بالتجديد الدوري.
+      // Rolling iqama window refresh even when the cache is still valid.
+      try {
+        if (AdhanController.instance.state.iqamaNotificationsEnabled.value) {
+          await PrayersNotificationsCtrl.instance.scheduleIqamaNotifications();
+        }
+      } catch (e) {
+        log('Iqama notifications refresh failed: $e', name: _tag);
+      }
+
       // تحديث ويدجت الصلوات في كل مرة - Update prayers widget every time
       if (Platform.isIOS || Platform.isAndroid) {
         try {
@@ -221,8 +236,10 @@ class PrayerBackgroundManager {
         await executeDailyTasks();
       }
 
-      log('Periodic tasks completed${updated ? ' (prayer times updated)' : ''} - Widget updated',
-          name: _tag);
+      log(
+        'Periodic tasks completed${updated ? ' (prayer times updated)' : ''} - Widget updated',
+        name: _tag,
+      );
     } catch (e) {
       log('Error executing periodic tasks: $e', name: _tag);
     }
@@ -270,7 +287,8 @@ class PrayerBackgroundManager {
     final currentLocation = PrayerCacheManager.getStoredLocation();
     final isMonthlyValid = currentLocation != null
         ? MonthlyPrayerCache.isMonthlyDataValid(
-            currentLocation: currentLocation)
+            currentLocation: currentLocation,
+          )
         : false;
 
     return {

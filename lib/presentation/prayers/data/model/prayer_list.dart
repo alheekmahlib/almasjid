@@ -12,7 +12,8 @@ List<Map<String, dynamic>> generatePrayerNameList(AdhanState state) {
   // يكفي أن يكون التاريخ المختار مختلفًا عن اليوم الحالي لنعرض الأوقات النصية الخاصة به.
   final bool useSelectedDate = !_isSameDay(state.selectedDate, DateTime.now());
 
-  final bool hasSelectedDateTimes = state.selectedDatePrayerTimes != null &&
+  final bool hasSelectedDateTimes =
+      state.selectedDatePrayerTimes != null &&
       state.selectedDateSunnahTimes != null;
 
   // إن لم تتوفر كائنات PrayerTimes للتاريخ المختار (مسار الكاش الشهري)،
@@ -32,6 +33,12 @@ List<Map<String, dynamic>> generatePrayerNameList(AdhanState state) {
           : state.fajrTime.value,
       'dateTime': prayerTimes.fajr,
       'minuteTime': prayerTimes.fajr.minute,
+      'iqamaDateTime': prayerTimes.fajr.add(
+        state.iqamaOffsets.durationByIndex(0),
+      ),
+      'iqamaTime': DateFormatter.formatPrayerTime(
+        prayerTimes.fajr.add(state.iqamaOffsets.durationByIndex(0)),
+      ),
       'sharedAlarm': 'ALARM_FAJR',
       'sharedAfter': 'AFTER_FAJR',
       'sharedAdjustment': 'ADJUSTMENT_FAJR',
@@ -58,6 +65,12 @@ List<Map<String, dynamic>> generatePrayerNameList(AdhanState state) {
           : state.dhuhrTime.value,
       'dateTime': prayerTimes.dhuhr,
       'minuteTime': prayerTimes.dhuhr.minute,
+      'iqamaDateTime': prayerTimes.dhuhr.add(
+        state.iqamaOffsets.durationByIndex(2),
+      ),
+      'iqamaTime': DateFormatter.formatPrayerTime(
+        prayerTimes.dhuhr.add(state.iqamaOffsets.durationByIndex(2)),
+      ),
       'sharedAlarm': 'ALARM_DHUHR',
       'sharedAfter': 'AFTER_DHUHR',
       'sharedAdjustment': 'ADJUSTMENT_DHUHR',
@@ -71,6 +84,12 @@ List<Map<String, dynamic>> generatePrayerNameList(AdhanState state) {
           : state.asrTime.value,
       'dateTime': prayerTimes.asr,
       'minuteTime': prayerTimes.asr.minute,
+      'iqamaDateTime': prayerTimes.asr.add(
+        state.iqamaOffsets.durationByIndex(3),
+      ),
+      'iqamaTime': DateFormatter.formatPrayerTime(
+        prayerTimes.asr.add(state.iqamaOffsets.durationByIndex(3)),
+      ),
       'sharedAlarm': 'ALARM_ASR',
       'sharedAfter': 'AFTER_ASR',
       'sharedAdjustment': 'ADJUSTMENT_ASR',
@@ -84,6 +103,12 @@ List<Map<String, dynamic>> generatePrayerNameList(AdhanState state) {
           : state.maghribTime.value,
       'dateTime': prayerTimes.maghrib,
       'minuteTime': prayerTimes.maghrib.minute,
+      'iqamaDateTime': prayerTimes.maghrib.add(
+        state.iqamaOffsets.durationByIndex(4),
+      ),
+      'iqamaTime': DateFormatter.formatPrayerTime(
+        prayerTimes.maghrib.add(state.iqamaOffsets.durationByIndex(4)),
+      ),
       'sharedAlarm': 'ALARM_MAGHRIB',
       'sharedAfter': 'AFTER_MAGHRIB',
       'sharedAdjustment': 'ADJUSTMENT_MAGHRIB',
@@ -97,6 +122,12 @@ List<Map<String, dynamic>> generatePrayerNameList(AdhanState state) {
           : state.ishaTime.value,
       'dateTime': prayerTimes.isha,
       'minuteTime': prayerTimes.isha.minute,
+      'iqamaDateTime': prayerTimes.isha.add(
+        state.iqamaOffsets.durationByIndex(5),
+      ),
+      'iqamaTime': DateFormatter.formatPrayerTime(
+        prayerTimes.isha.add(state.iqamaOffsets.durationByIndex(5)),
+      ),
       'sharedAlarm': 'ALARM_ISHA',
       'sharedAfter': 'AFTER_ISHA',
       'sharedAdjustment': 'ADJUSTMENT_ISHA',

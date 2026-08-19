@@ -51,7 +51,8 @@ extension AdhanGetters on AdhanController {
 
   RxBool get isNoInternetAndDataNotInitialized {
     bool state = false;
-    state = (!InternetConnectionController.instance.isConnected &&
+    state =
+        (!InternetConnectionController.instance.isConnected &&
         PrayerCacheManager.getCachedPrayerData() == null);
     return state.obs;
   }
@@ -98,8 +99,8 @@ extension AdhanGetters on AdhanController {
 
   String get getFridayDhuhrName =>
       intl.DateFormat('EEEE').format(state.now) == 'Friday'
-          ? 'Friday'
-          : 'Dhuhr';
+      ? 'Friday'
+      : 'Dhuhr';
 
   String get getMaghribName => EventController.instance.hijriNow.hMonth == 9
       ? 'ramadanMaghribName'
@@ -126,8 +127,9 @@ extension AdhanGetters on AdhanController {
       targetPrayer = currentPrayer;
     }
 
-    DateTime? targetPrayerDateTime =
-        state.prayerTimes!.timeForPrayer(targetPrayer);
+    DateTime? targetPrayerDateTime = state.prayerTimes!.timeForPrayer(
+      targetPrayer,
+    );
     if (isNextPrayer &&
         targetPrayer == Prayer.fajr &&
         currentPrayer == Prayer.isha) {
@@ -152,8 +154,9 @@ extension AdhanGetters on AdhanController {
       nextPrayer = state.prayerTimes!.nextPrayer();
     }
     DateTime? nextPrayerDateTime = state.prayerTimes!.timeForPrayer(nextPrayer);
-    DateTime? currentPrayerDateTime =
-        state.prayerTimes!.timeForPrayer(currentPrayer);
+    DateTime? currentPrayerDateTime = state.prayerTimes!.timeForPrayer(
+      currentPrayer,
+    );
 
     if (nextPrayer == Prayer.fajr && currentPrayer == Prayer.isha) {
       nextPrayerDateTime = nextPrayerDateTime?.add(const Duration(days: 1));
@@ -164,13 +167,16 @@ extension AdhanGetters on AdhanController {
       return 0.0.obs;
     }
 
-    final totalDuration =
-        nextPrayerDateTime.difference(currentPrayerDateTime).inMinutes;
-    final elapsedDuration =
-        state.now.difference(currentPrayerDateTime).inMinutes;
+    final totalDuration = nextPrayerDateTime
+        .difference(currentPrayerDateTime)
+        .inMinutes;
+    final elapsedDuration = state.now
+        .difference(currentPrayerDateTime)
+        .inMinutes;
 
-    double percentage =
-        ((elapsedDuration / totalDuration) * 100).clamp(0, 100).toDouble();
+    double percentage = ((elapsedDuration / totalDuration) * 100)
+        .clamp(0, 100)
+        .toDouble();
     return percentage.obs;
   }
 
@@ -209,8 +215,9 @@ extension AdhanGetters on AdhanController {
     }
 
     // حساب النسبة المئوية (من 0 إلى 100)
-    double percentage =
-        ((elapsedDuration / totalDuration) * 100).clamp(0, 100).toDouble();
+    double percentage = ((elapsedDuration / totalDuration) * 100)
+        .clamp(0, 100)
+        .toDouble();
 
     return percentage.obs;
   }
@@ -275,8 +282,9 @@ extension AdhanGetters on AdhanController {
 
     final DateTime fajrTime = prayers[0];
     final DateTime lastThirdOfTheNight = prayers[7];
-    final int totalDuration =
-        lastThirdOfTheNight.difference(fajrTime).inMinutes;
+    final int totalDuration = lastThirdOfTheNight
+        .difference(fajrTime)
+        .inMinutes;
 
     if (totalDuration <= 0) {
       return [];
@@ -290,8 +298,9 @@ extension AdhanGetters on AdhanController {
     for (int i = 0; i < prayers.length - 1; i++) {
       // حساب مدة الفترة بين الصلاة الحالية والتالية بالدقائق
       // Calculate duration between current and next prayer in minutes
-      final int prayerDuration =
-          prayers[i + 1].difference(prayers[i]).inMinutes;
+      final int prayerDuration = prayers[i + 1]
+          .difference(prayers[i])
+          .inMinutes;
 
       // حساب النسبة المئوية لهذه الفترة من إجمالي اليوم
       // Calculate percentage of this period from total day
@@ -376,7 +385,8 @@ extension AdhanGetters on AdhanController {
   RxDouble getTimeLeftForPrayerByIndex(int index) {
     if (index < 0 || index >= prayerNameList.length) {
       throw ArgumentError(
-          'Index out of range, must be between 0 and ${prayerNameList.length - 1}.');
+        'Index out of range, must be between 0 and ${prayerNameList.length - 1}.',
+      );
     }
 
     Map<String, dynamic> targetPrayerMap = prayerNameList[index];
@@ -392,8 +402,9 @@ extension AdhanGetters on AdhanController {
         targetPrayerDateTime.minute,
       );
       if (targetPrayerDateTime.isBefore(state.now)) {
-        targetPrayerDateTime =
-            targetPrayerDateTime.add(const Duration(days: 1));
+        targetPrayerDateTime = targetPrayerDateTime.add(
+          const Duration(days: 1),
+        );
       }
     }
 
@@ -418,7 +429,8 @@ extension AdhanGetters on AdhanController {
   Rx<Duration> getDurationBetweenPrayerAndNextByIndex(int index) {
     if (index < 0 || index >= prayerNameList.length) {
       throw ArgumentError(
-          'Index out of range, must be between 0 and ${prayerNameList.length - 1}.');
+        'Index out of range, must be between 0 and ${prayerNameList.length - 1}.',
+      );
     }
 
     final Map<String, dynamic> currentPrayerMap = prayerNameList[index];
@@ -438,8 +450,9 @@ extension AdhanGetters on AdhanController {
       nextPrayerDateTime = nextPrayerDateTime.add(const Duration(days: 1));
     }
 
-    final Duration interval =
-        nextPrayerDateTime.difference(currentPrayerDateTime);
+    final Duration interval = nextPrayerDateTime.difference(
+      currentPrayerDateTime,
+    );
     return interval.obs;
   }
 
@@ -456,8 +469,9 @@ extension AdhanGetters on AdhanController {
     }
 
     final Map<String, dynamic> targetPrayerMap = prayerNameList[index];
-    final int prevIndex =
-        (index - 1) < 0 ? (prayerNameList.length - 1) : (index - 1);
+    final int prevIndex = (index - 1) < 0
+        ? (prayerNameList.length - 1)
+        : (index - 1);
     final Map<String, dynamic> prevPrayerMap = prayerNameList[prevIndex];
 
     final DateTime? targetRaw = targetPrayerMap['dateTime'];
@@ -520,15 +534,17 @@ extension AdhanGetters on AdhanController {
     if (elapsedMinutes < 0) elapsedMinutes = 0;
     if (elapsedMinutes > totalMinutes) elapsedMinutes = totalMinutes;
 
-    final double percentage =
-        ((elapsedMinutes / totalMinutes) * 100).clamp(0, 100).toDouble();
+    final double percentage = ((elapsedMinutes / totalMinutes) * 100)
+        .clamp(0, 100)
+        .toDouble();
     return percentage.obs;
   }
 
   Rx<Duration> getDurationLeftForPrayerByIndex(int index) {
     if (index < 0 || index >= prayerNameList.length) {
       throw ArgumentError(
-          'Index out of range, must be between 0 and ${prayerNameList.length - 1}.');
+        'Index out of range, must be between 0 and ${prayerNameList.length - 1}.',
+      );
     }
 
     Map<String, dynamic> targetPrayerMap = prayerNameList[index];
@@ -544,8 +560,9 @@ extension AdhanGetters on AdhanController {
         targetPrayerDateTime.minute,
       );
       if (targetPrayerDateTime.isBefore(state.now)) {
-        targetPrayerDateTime =
-            targetPrayerDateTime.add(const Duration(days: 1));
+        targetPrayerDateTime = targetPrayerDateTime.add(
+          const Duration(days: 1),
+        );
       }
     }
 
@@ -563,8 +580,9 @@ extension AdhanGetters on AdhanController {
     final int currentPrayerIndex = getCurrentPrayerByDateTime();
 
     // تحديد index الصلاة القادمة
-    final int nextPrayerIndex =
-        (currentPrayerIndex) > 7 ? 0 : (currentPrayerIndex);
+    final int nextPrayerIndex = (currentPrayerIndex) > 7
+        ? 0
+        : (currentPrayerIndex);
 
     // الحصول على وقت الصلاة القادمة من prayerNameList
     final Map<String, dynamic> nextPrayerMap = prayerNameList[nextPrayerIndex];
@@ -610,8 +628,9 @@ extension AdhanGetters on AdhanController {
       return state.now.add(const Duration(hours: 1));
     }
     final Prayer nextPrayer = state.prayerTimes!.nextPrayer();
-    final DateTime? nextPrayerDateTime =
-        state.prayerTimes!.timeForPrayer(nextPrayer);
+    final DateTime? nextPrayerDateTime = state.prayerTimes!.timeForPrayer(
+      nextPrayer,
+    );
     if (nextPrayerDateTime == null || nextPrayerDateTime.isBefore(state.now)) {
       return state.now.add(const Duration(hours: 1));
     }
@@ -638,9 +657,10 @@ extension AdhanGetters on AdhanController {
     // Guard: أرجع لوناً افتراضياً عند عدم توفر البيانات لتفادي Null crash
     if (state.prayerTimes == null) {
       return const LinearGradient(
-          colors: [Color(0xff0a0f29), Color(0xff081e37)],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight);
+        colors: [Color(0xff0a0f29), Color(0xff081e37)],
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+      );
     }
     DateTime sunrise = state.prayerTimes!.sunrise;
     DateTime dhuhr = state.prayerTimes!.dhuhr;
@@ -649,39 +669,45 @@ extension AdhanGetters on AdhanController {
     if (state.now.isAfter(sunrise.subtract(const Duration(minutes: 10))) &&
         state.now.isBefore(sunrise.add(const Duration(minutes: 30)))) {
       return const LinearGradient(
-          colors: [Color(0xffbababa), Color(0xff081e37)],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight);
+        colors: [Color(0xffbababa), Color(0xff081e37)],
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+      );
     } else if (state.now.isAfter(sunrise.add(const Duration(minutes: 30))) &&
         state.now.isBefore(dhuhr.subtract(const Duration(hours: 1)))) {
       return const LinearGradient(
-          colors: [Color(0xffB8E0EA), Color(0xff0098EE)],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight);
+        colors: [Color(0xffB8E0EA), Color(0xff0098EE)],
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+      );
     } else if (state.now.isAfter(dhuhr.subtract(const Duration(hours: 1))) &&
         state.now.isBefore(maghrib.subtract(const Duration(hours: 1)))) {
       return const LinearGradient(
-          colors: [Color(0xffB8E0EA), Color(0xff0098EE)],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter);
+        colors: [Color(0xffB8E0EA), Color(0xff0098EE)],
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+      );
     } else if (state.now.isAfter(maghrib.subtract(const Duration(hours: 1))) &&
         state.now.isBefore(maghrib.add(const Duration(minutes: 20)))) {
       return const LinearGradient(
-          colors: [Color(0xffF17148), Color(0xffCF4B6D)],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter);
+        colors: [Color(0xffF17148), Color(0xffCF4B6D)],
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+      );
     } else if (state.now.isAfter(maghrib.add(const Duration(minutes: 20))) ||
         state.now.isBefore(sunrise.subtract(const Duration(minutes: 10)))) {
       return const LinearGradient(
-          colors: [Color(0xff0a0f29), Color(0xff081e37)],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight);
+        colors: [Color(0xff0a0f29), Color(0xff081e37)],
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+      );
     } else {
       state.backgroundColor.value = const Color(0xffbababa);
       return const LinearGradient(
-          colors: [Color(0xffbababa), Color(0xff232323)],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight);
+        colors: [Color(0xffbababa), Color(0xff232323)],
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+      );
     }
   }
 
@@ -702,22 +728,22 @@ extension AdhanGetters on AdhanController {
       update(['prohibitionTimes']); // تحديث الواجهة لإظهار التغييرات
       return true.obs;
     }
-
     // 5- حين يقوم قائم الظهيرة وتتوسط الشمس كبد السماء قبل الزوال (5-10 دقائق قبل الظهر)
     // When the sun is at its zenith before midday (5-10 minutes before Dhuhr)
-    else if (state.now
-            .isAfter(dateTime.dhuhr.subtract(const Duration(minutes: 10))) &&
+    else if (state.now.isAfter(
+          dateTime.dhuhr.subtract(const Duration(minutes: 10)),
+        ) &&
         state.now.isBefore(dateTime.dhuhr)) {
       state.prohibitionTimesIndex.value = 1;
       update(['prohibitionTimes']); // تحديث الواجهة لإظهار التغييرات
       return true.obs;
     }
-
     // 3- من بعد صلاة العصر حتى تميل إلى الغروب
     // From after Asr prayer until the sun starts to set
     else if (state.now.isAfter(dateTime.asr) &&
-        state.now
-            .isBefore(dateTime.maghrib.subtract(const Duration(minutes: 15)))) {
+        state.now.isBefore(
+          dateTime.maghrib.subtract(const Duration(minutes: 15)),
+        )) {
       state.prohibitionTimesIndex.value = 2;
       update(['prohibitionTimes']); // تحديث الواجهة لإظهار التغييرات
       return true.obs;
@@ -733,6 +759,10 @@ extension AdhanGetters on AdhanController {
     state.highLatitudeRuleIndex.value = state.box.read(HIGH_LATITUDE_RULE) ?? 0;
     state.autoCalculationMethod.value =
         state.box.read(AUTO_CALCULATION) ?? true;
+    state.iqamaOffsets = IqamaOffsets.fromGetStorage();
+    state.iqamaNotificationsEnabled.value =
+        state.box.read(IQAMA_NOTIFICATIONS_ENABLED) ?? false;
+    state.showIqamaTimes.value = state.box.read(SHOW_IQAMA_TIMES) ?? true;
     // state.adjustments[0].value = state.box.read(ADJUSTMENT_FAJR) ?? 0;
     // state.adjustments[1].value = state.box.read(ADJUSTMENT_DHUHR) ?? 0;
     // state.adjustments[2].value = state.box.read(ADJUSTMENT_ASR) ?? 0;
@@ -788,7 +818,8 @@ extension AdhanGetters on AdhanController {
     } else {
       log('No change in HighLatitudeRule', name: 'AdhanGetters');
       return getHighLatitudeRuleFromIndex(
-          index); // نرجع القيمة الحالية دون تغيير
+        index,
+      ); // نرجع القيمة الحالية دون تغيير
     }
     // initializeStoredAdhan();
     return getHighLatitudeRuleFromIndex(index);
@@ -943,7 +974,7 @@ extension AdhanGetters on AdhanController {
   int getPrayerNotificationIndexForPrayer(String prayerName) {
     String notiType =
         GetStorage('AdhanSounds').read('scheduledAdhan_$prayerName') ??
-            'nothing';
+        'nothing';
     if ('nothing' == notiType) {
       return 0;
     } else if ('silent' == notiType) {

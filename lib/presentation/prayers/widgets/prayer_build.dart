@@ -22,10 +22,11 @@ class PrayerBuild extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(
-          right: 8.0,
-          left: 8.0,
-          top: 16.0,
-          bottom: isCurrentPrayerOnly ? 16.0 : (bottomPadding ?? 120.0)),
+        right: 8.0,
+        left: 8.0,
+        top: 16.0,
+        bottom: isCurrentPrayerOnly ? 16.0 : (bottomPadding ?? 120.0),
+      ),
       child: _useOverride
           ? _buildPrayerList(
               context,
@@ -58,8 +59,8 @@ class PrayerBuild extends StatelessWidget {
         if (isCurrentPrayerOnly) {
           visibleIndices =
               currentPrayerIndex >= 0 && currentPrayerIndex < prayerList.length
-                  ? <int>[currentPrayerIndex]
-                  : <int>[];
+              ? <int>[currentPrayerIndex]
+              : <int>[];
         } else {
           visibleIndices = List<int>.generate(prayerList.length, (i) => i);
         }
@@ -69,6 +70,7 @@ class PrayerBuild extends StatelessWidget {
           final String prayerTitle =
               prayerList[index]['title']?.toString() ?? '';
           final String prayerTime = prayerList[index]['time']?.toString() ?? '';
+          final String? iqamaTime = prayerList[index]['iqamaTime'] as String?;
           final IconData icon =
               prayerList[index]['icon'] as IconData? ?? Icons.access_time;
 
@@ -77,6 +79,7 @@ class PrayerBuild extends StatelessWidget {
             index,
             prayerTitle,
             prayerTime,
+            iqamaTime,
             currentPrayerIndex,
             icon,
             adhanCtrl,
@@ -88,13 +91,15 @@ class PrayerBuild extends StatelessWidget {
 
   // بناء صف الصلاة مع التايم لاين المخصص
   Widget _buildPrayerRowWithTimeline(
-      BuildContext context,
-      int index,
-      String prayerTitle,
-      String prayerTime,
-      int currentPrayerIndex,
-      IconData icon,
-      AdhanController? adhanCtrl) {
+    BuildContext context,
+    int index,
+    String prayerTitle,
+    String prayerTime,
+    String? iqamaTime,
+    int currentPrayerIndex,
+    IconData icon,
+    AdhanController? adhanCtrl,
+  ) {
     final bool isCurrentPrayer = currentPrayerIndex == index;
     final bool isPastPrayer =
         currentPrayerIndex >= 0 && index < currentPrayerIndex;
@@ -118,10 +123,9 @@ class PrayerBuild extends StatelessWidget {
                         decoration: BoxDecoration(
                           color: index <= currentPrayerIndex
                               ? Theme.of(context).colorScheme.surface
-                              : Theme.of(context)
-                                  .colorScheme
-                                  .surface
-                                  .withValues(alpha: 0.3),
+                              : Theme.of(
+                                  context,
+                                ).colorScheme.surface.withValues(alpha: 0.3),
                           borderRadius: BorderRadius.circular(8),
                         ),
                       ),
@@ -130,8 +134,13 @@ class PrayerBuild extends StatelessWidget {
                       // المؤشر
                       Container(
                         margin: const EdgeInsets.symmetric(vertical: 4),
-                        child: _buildTimelineIndicator(context, index,
-                            isCurrentPrayer, isPastPrayer, icon),
+                        child: _buildTimelineIndicator(
+                          context,
+                          index,
+                          isCurrentPrayer,
+                          isPastPrayer,
+                          icon,
+                        ),
                       ),
                     ],
                   ),
@@ -144,14 +153,23 @@ class PrayerBuild extends StatelessWidget {
             child: Container(
               margin: isCurrentPrayer
                   ? EdgeInsetsDirectional.fromSTEB(
-                      0.0, 0.0, 16.0, index == 7 ? 0.0 : 6.0)
+                      0.0,
+                      0.0,
+                      16.0,
+                      index == 7 ? 0.0 : 6.0,
+                    )
                   : EdgeInsetsDirectional.fromSTEB(
-                      0.0, 0.0, 16.0, index == 7 ? 0.0 : 6.0),
+                      0.0,
+                      0.0,
+                      16.0,
+                      index == 7 ? 0.0 : 6.0,
+                    ),
               child: _buildPrayerContent(
                 context,
                 index,
                 prayerTitle,
                 prayerTime,
+                iqamaTime,
                 currentPrayerIndex,
                 icon,
                 adhanCtrl,
@@ -166,8 +184,13 @@ class PrayerBuild extends StatelessWidget {
 }
 
 // بناء مؤشر التايم لاين باستخدام timelines_plus
-Widget _buildTimelineIndicator(BuildContext context, int index,
-    bool isCurrentPrayer, bool isPastPrayer, IconData icon) {
+Widget _buildTimelineIndicator(
+  BuildContext context,
+  int index,
+  bool isCurrentPrayer,
+  bool isPastPrayer,
+  IconData icon,
+) {
   return AnimatedContainer(
     duration: const Duration(milliseconds: 500),
     curve: Curves.easeInOut,
@@ -176,13 +199,22 @@ Widget _buildTimelineIndicator(BuildContext context, int index,
     decoration: BoxDecoration(
       shape: BoxShape.circle,
       color: _getTimelineIndicatorColor(
-          context, index, isCurrentPrayer, isPastPrayer),
+        context,
+        index,
+        isCurrentPrayer,
+        isPastPrayer,
+      ),
     ),
     child: Center(
       child: AnimatedSwitcher(
         duration: const Duration(milliseconds: 300),
-        child: _prayerIconBuild(context, index, icon, isCurrentPrayer,
-            isCustomColor: false),
+        child: _prayerIconBuild(
+          context,
+          index,
+          icon,
+          isCurrentPrayer,
+          isCustomColor: false,
+        ),
       ),
     ),
   );
@@ -190,20 +222,23 @@ Widget _buildTimelineIndicator(BuildContext context, int index,
 
 // بناء محتوى الصلاة
 Widget _buildPrayerContent(
-    BuildContext context,
-    int index,
-    String prayerTitle,
-    String prayerTime,
-    int currentPrayerIndex,
-    IconData icon,
-    AdhanController? adhanCtrl,
-    bool withOnTap) {
+  BuildContext context,
+  int index,
+  String prayerTitle,
+  String prayerTime,
+  String? iqamaTime,
+  int currentPrayerIndex,
+  IconData icon,
+  AdhanController? adhanCtrl,
+  bool withOnTap,
+) {
   if (adhanCtrl == null) {
     return _buildPrayerContentCore(
       context,
       index,
       prayerTitle,
       prayerTime,
+      iqamaTime,
       currentPrayerIndex,
       withOnTap,
     );
@@ -216,6 +251,7 @@ Widget _buildPrayerContent(
       index,
       prayerTitle,
       prayerTime,
+      iqamaTime,
       controller.currentPrayerIndex,
       withOnTap,
     ),
@@ -227,77 +263,103 @@ Widget _buildPrayerContentCore(
   int index,
   String prayerTitle,
   String prayerTime,
+  String? iqamaTime,
   int currentPrayerIndex,
   bool withOnTap,
 ) {
   final bool isCurrentPrayer = currentPrayerIndex == index;
+  final bool showIqama =
+      iqamaTime != null && AdhanController.instance.state.showIqamaTimes.value;
 
-  return AnimatedContainer(
-    duration: const Duration(milliseconds: 300),
-    curve: Curves.easeInOut,
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(16),
-      color: isCurrentPrayer
-          ? Theme.of(context).colorScheme.surface.withValues(alpha: 0.5)
-          : Colors.transparent,
-    ),
-    child: ContainerButtonWidget(
-      onPressed: withOnTap
-          ? () => context.customBottomSheet(
-                textTitle: 'prayerDetails'.tr,
-                containerColor: context.theme.colorScheme.primaryContainer,
-                child: PrayerDetails(
-                  prayerName: prayerTitle,
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.end,
+    children: [
+      AnimatedContainer(
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(16),
+          color: isCurrentPrayer
+              ? Theme.of(context).colorScheme.surface.withValues(alpha: 0.5)
+              : Colors.transparent,
+        ),
+        child: ContainerButtonWidget(
+          onPressed: withOnTap
+              ? () => context.customBottomSheet(
+                  textTitle: 'prayerDetails'.tr,
+                  containerColor: context.theme.colorScheme.primaryContainer,
+                  child: PrayerDetails(prayerName: prayerTitle),
+                )
+              : null,
+          width: Get.width,
+          horizontalMargin: 0,
+          useGradient: false,
+          withShape: false,
+          backgroundColor: Colors.transparent,
+          shadowColor: Colors.transparent,
+          borderColor: isCurrentPrayer
+              ? Theme.of(context).colorScheme.surface.withValues(alpha: 0.5)
+              : Theme.of(context).colorScheme.surface.withValues(alpha: 0.2),
+          height: (isCurrentPrayer ? 60 : 45),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  flex: 4,
+                  child: Align(
+                    alignment: AlignmentDirectional.centerStart,
+                    child: _prayerNameBuild(
+                      context,
+                      index,
+                      prayerTitle,
+                      currentPrayerIndex,
+                    ),
+                  ),
                 ),
-              )
-          : null,
-      width: Get.width,
-      horizontalMargin: 0,
-      useGradient: false,
-      withShape: false,
-      backgroundColor: Colors.transparent,
-      shadowColor: Colors.transparent,
-      borderColor: isCurrentPrayer
-          ? Theme.of(context).colorScheme.surface.withValues(alpha: 0.5)
-          : Theme.of(context).colorScheme.surface.withValues(alpha: 0.2),
-      height: (isCurrentPrayer ? 60 : 45),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Expanded(
-              flex: 4,
-              child: Align(
-                alignment: AlignmentDirectional.centerStart,
-                child: _prayerNameBuild(
-                  context,
-                  index,
-                  prayerTitle,
-                  currentPrayerIndex,
+                Expanded(
+                  flex: 4,
+                  child: _prayerTimeBuild(
+                    context,
+                    index,
+                    prayerTime,
+                    currentPrayerIndex,
+                  ),
                 ),
-              ),
+              ],
             ),
-            Expanded(
-              flex: 4,
-              child: _prayerTimeBuild(
-                context,
-                index,
-                prayerTime,
-                currentPrayerIndex,
-              ),
-            ),
-          ],
+          ),
         ),
       ),
-    ),
+
+      if (showIqama)
+        Padding(
+          padding: const EdgeInsets.only(right: 40.0, left: 40.0, top: 4.0),
+          child: ReactiveNumberText(
+            text: '${'iqama'.tr} $iqamaTime',
+            style: TextStyle(
+              fontFamily: 'cairo',
+              fontSize: 12,
+              height: 1.2,
+              color: Theme.of(
+                context,
+              ).colorScheme.inversePrimary.withValues(alpha: 0.7),
+            ),
+          ),
+        ),
+    ],
   );
 }
 
 // دالة مساعدة لتحديد لون مؤشر التايم لاين
 Color _getTimelineIndicatorColor(
-    BuildContext context, int index, bool isCurrentPrayer, bool isPastPrayer) {
+  BuildContext context,
+  int index,
+  bool isCurrentPrayer,
+  bool isPastPrayer,
+) {
   if (isCurrentPrayer) {
     return Theme.of(context).colorScheme.surface;
   } else if (isPastPrayer) {
@@ -350,19 +412,24 @@ Widget _prayerTimeBuild(
 }
 
 Widget _prayerIconBuild(
-    BuildContext context, int index, IconData icon, bool isCurrentPrayer,
-    {bool? isCustomColor = true,
-    double? newSize,
-    double? oldSize,
-    Color? color}) {
+  BuildContext context,
+  int index,
+  IconData icon,
+  bool isCurrentPrayer, {
+  bool? isCustomColor = true,
+  double? newSize,
+  double? oldSize,
+  Color? color,
+}) {
   return Icon(
     icon,
     size: isCurrentPrayer ? (newSize ?? 28) : (oldSize ?? 16),
-    color: color ??
+    color:
+        color ??
         (isCustomColor!
             ? index == 1 || index == 2 || index == 3 || index == 4
-                ? const Color.fromARGB(255, 242, 181, 15)
-                : Theme.of(context).canvasColor
+                  ? const Color.fromARGB(255, 242, 181, 15)
+                  : Theme.of(context).canvasColor
             : Theme.of(context).canvasColor),
   );
 }
