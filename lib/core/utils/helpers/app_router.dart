@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 
 import '../../../presentation/about_app/about_app.dart';
+import '../../../presentation/feedback/screens/feedback_thread_screen.dart';
 import '../../../presentation/home/home.dart';
 import '../../../presentation/ourApp/screen/our_apps_screen.dart';
 import '../../../presentation/prayers/prayers.dart';
@@ -46,6 +47,11 @@ class AppRouter {
     GetPage(
       name: teachingPrayer,
       page: () => const TeachingPrayerScreen(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: feedback,
+      page: () => const FeedbackThreadScreen(),
       transition: Transition.fadeIn,
     ),
   ];

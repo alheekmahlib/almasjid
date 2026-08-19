@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '/core/utils/constants/extensions/contact_us_extension.dart';
 import '/core/utils/constants/extensions/launch_alheekmah_url_extension.dart';
 import '/core/utils/constants/extensions/share_app_extension.dart';
+import '/core/utils/helpers/app_router.dart';
 
 class UserOptions extends StatelessWidget {
   const UserOptions({super.key});
@@ -51,9 +51,7 @@ class UserOptions extends StatelessWidget {
             ),
             const Divider(),
             InkWell(
-              onTap: () => contactUs(
-                context: context,
-              ),
+              onTap: () => Get.toNamed(AppRouter.feedback),
               child: Row(
                 children: [
                   Icon(
