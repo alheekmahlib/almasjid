@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 import '/core/widgets/local_notification/controller/local_notifications_controller.dart';
 import 'core/services/languages/app_constants.dart';
@@ -67,7 +68,10 @@ class MyApp extends StatelessWidget {
                   ),
                 );
               },
-              navigatorObservers: [BotToastNavigatorObserver()],
+              navigatorObservers: [
+                BotToastNavigatorObserver(),
+                SentryNavigatorObserver(),
+              ],
               getPages: AppRouter.pages,
               home: SplashScreen(),
             ),

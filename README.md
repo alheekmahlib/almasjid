@@ -78,6 +78,8 @@ flutter build apk --release
 flutter build ipa --release
 ```
 
+> مراقبة الأخطاء عبر Sentry مفعّلة مؤقتاً (DSN مضمّن في `lib/core/services/sentry_service.dart`) لأغراض التشخيص — تُحذف المكتبة بالكامل قبل رفع التطبيق للمتجر.
+
 > يدعم التطبيق تعدد اللغات عبر ملفات `assets/locales/*.json`.
 
 ---
@@ -132,6 +134,8 @@ flutter build apk --release
 # iOS (requires macOS & Xcode)
 flutter build ipa --release
 ```
+
+> Error monitoring via Sentry is enabled temporarily (DSN embedded in `lib/core/services/sentry_service.dart`) for diagnosis — remove the library entirely before publishing to app stores.
 
 —
 
