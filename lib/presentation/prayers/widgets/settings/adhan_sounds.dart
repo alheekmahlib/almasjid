@@ -22,8 +22,9 @@ class AdhanSounds extends StatelessWidget {
         useGradient: false,
         borderRadius: 8.0,
         borderColor: Colors.transparent,
-        backgroundColor:
-            Theme.of(context).colorScheme.surface.withValues(alpha: .3),
+        backgroundColor: Theme.of(
+          context,
+        ).colorScheme.surface.withValues(alpha: .3),
       ),
     );
   }
@@ -32,60 +33,72 @@ class AdhanSounds extends StatelessWidget {
     return SizedBox(
       height: Get.height * .5,
       child: FutureBuilder<List<AdhanData>>(
-          future: notificationCtrl.state.adhanData,
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.done) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: ListView(
-                  children: List.generate(
-                    snapshot.data!.length,
-                    (index) => adhanListBuild(context, index),
-                  ),
+        future: notificationCtrl.state.adhanData,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            return Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              child: ListView(
+                children: List.generate(
+                  snapshot.data!.length,
+                  (index) => adhanListBuild(context, index),
                 ),
-              );
-            } else {
-              return const Center(child: CircularProgressIndicator.adaptive());
-            }
-          }),
+              ),
+            );
+          } else {
+            return const Center(child: CircularProgressIndicator.adaptive());
+          }
+        },
+      ),
     );
   }
 
   Widget adhanListBuild(BuildContext context, int index) {
     final notificationCtrl = PrayersNotificationsCtrl.instance;
     return FutureBuilder<List<AdhanData>>(
-        future: notificationCtrl.state.adhanData,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
-            List<AdhanData> adhans = snapshot.data!;
-            return GetX<PrayersNotificationsCtrl>(builder: (notificationCtrl) {
-              bool isSelected =
-                  notificationCtrl.isAdhanSelectByIndex(index).value;
+      future: notificationCtrl.state.adhanData,
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.done) {
+          List<AdhanData> adhans = snapshot.data!;
+          return GetX<PrayersNotificationsCtrl>(
+            builder: (notificationCtrl) {
+              bool isSelected = notificationCtrl
+                  .isAdhanSelectByIndex(index)
+                  .value;
               return Container(
                 decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.all(Radius.circular(8.0)),
-                    border: Border.all(
-                        color: isSelected
-                            ? context.theme.colorScheme.surface
-                            : context.theme.colorScheme.surface
-                                .withValues(alpha: .5),
-                        width: isSelected ? 2 : 1)),
-                margin:
-                    const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
+                  borderRadius: const BorderRadius.all(Radius.circular(8.0)),
+                  border: Border.all(
+                    color: isSelected
+                        ? context.theme.colorScheme.surface
+                        : context.theme.colorScheme.surface.withValues(
+                            alpha: .5,
+                          ),
+                    width: isSelected ? 2 : 1,
+                  ),
+                ),
+                margin: const EdgeInsets.symmetric(
+                  horizontal: 16.0,
+                  vertical: 4.0,
+                ),
                 child: Row(
                   children: [
                     Expanded(
                       flex: 10,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: isSelected
-                              ? context.theme.colorScheme.surface
-                                  .withValues(alpha: .5)
-                              : context.theme.colorScheme.surface
-                                  .withValues(alpha: .2),
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(8.0)),
+                      // Material بدل Container ملوّن حتى تظهر تموّجات نقر
+                      // ListTile فوق الخلفية لا خلفها.
+                      child: Material(
+                        color: isSelected
+                            ? context.theme.colorScheme.surface.withValues(
+                                alpha: .5,
+                              )
+                            : context.theme.colorScheme.surface.withValues(
+                                alpha: .2,
+                              ),
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(8.0),
                         ),
+                        clipBehavior: Clip.antiAlias,
                         child: ListTile(
                           minTileHeight: 40,
                           onTap: () async {
@@ -95,8 +108,9 @@ class AdhanSounds extends StatelessWidget {
                                       .isAdhanDownloadedByIndex(index)
                                       .value
                                   ? null
-                                  : await notificationCtrl
-                                      .adhanDownload(adhans[index]);
+                                  : await notificationCtrl.adhanDownload(
+                                      adhans[index],
+                                    );
                             }
                             await notificationCtrl.reschedulePrayers();
                           },
@@ -106,18 +120,18 @@ class AdhanSounds extends StatelessWidget {
                               Text(
                                 adhans[index].adhanName.tr,
                                 style: TextStyle(
-                                    color: context
-                                        .theme.colorScheme.inversePrimary
-                                        .withValues(alpha: .7),
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: 'cairo'),
+                                  color: context
+                                      .theme
+                                      .colorScheme
+                                      .inversePrimary
+                                      .withValues(alpha: .7),
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: 'cairo',
+                                ),
                                 textAlign: TextAlign.center,
                               ),
-                              PlayButton(
-                                adhanData: adhans,
-                                index: index,
-                              ),
+                              PlayButton(adhanData: adhans, index: index),
                             ],
                           ),
                           // leading: PlayButton(),
@@ -138,34 +152,47 @@ class AdhanSounds extends StatelessWidget {
                                     shadowWidth: 1.5,
                                     progressWidth: 2,
                                     shadowColor: Colors.transparent,
-                                    progressColor: index ==
+                                    progressColor:
+                                        index ==
                                             notificationCtrl
-                                                .state.downloadIndex.value
+                                                .state
+                                                .downloadIndex
+                                                .value
                                         ? notificationCtrl
-                                                .state.isDownloading.value
-                                            ? context.theme.colorScheme.surface
-                                            : Colors.transparent
+                                                  .state
+                                                  .isDownloading
+                                                  .value
+                                              ? context
+                                                    .theme
+                                                    .colorScheme
+                                                    .surface
+                                              : Colors.transparent
                                         : Colors.transparent,
                                     progress:
                                         notificationCtrl.state.progress.value,
                                   ),
                                 ),
                                 isSelected
-                                    ? Icon(Icons.done,
+                                    ? Icon(
+                                        Icons.done,
                                         size: 28,
                                         color:
-                                            context.theme.colorScheme.surface)
+                                            context.theme.colorScheme.surface,
+                                      )
                                     : const SizedBox.shrink(),
                               ],
-                            ))
+                            ),
+                          )
                         : const SizedBox.shrink(),
                   ],
                 ),
               );
-            });
-          } else {
-            return const Center(child: CircularProgressIndicator.adaptive());
-          }
-        });
+            },
+          );
+        } else {
+          return const Center(child: CircularProgressIndicator.adaptive());
+        }
+      },
+    );
   }
 }
