@@ -70,6 +70,9 @@ extension PrayersNotiUi on PrayersNotificationsCtrl {
   }
 
   RxBool isAdhanSelectByIndex(int adhanIndex) {
+    // selectedAdhanPath ردّي (Rx)؛ قراءته هنا تسجّل تبعية لدى GetX فيعاد
+    // بناء عنصر القائمة فور تغيير الاختيار — GetStorage وحده لا يفعّلها.
+    final selectedPath = state.selectedAdhanPath.value;
     final storedIndex = state.box.read<String?>(ADHAN_SELECTED_INDEX);
     if (storedIndex != null) {
       return RxBool(storedIndex == adhanIndex.toString());
@@ -77,8 +80,7 @@ extension PrayersNotiUi on PrayersNotificationsCtrl {
     // توافق مع البيانات القديمة قبل اشتقاق الفهرس.
     return RxBool(
       state.adhanList.length > adhanIndex &&
-          state.adhanList[adhanIndex].adhanLocalPath ==
-              state.selectedAdhanPath.value,
+          state.adhanList[adhanIndex].adhanLocalPath == selectedPath,
     );
   }
 
@@ -109,7 +111,9 @@ extension PrayersNotiUi on PrayersNotificationsCtrl {
     LocalReceivedNotification receivedAction,
   ) async {
     if (DateTime.now().isBefore(
-      receivedAction.displayedDate!.add(const Duration(minutes: 5)),
+      (receivedAction.displayedDate ?? DateTime.now()).add(
+        const Duration(minutes: 5),
+      ),
     )) {
       // تسليم منظم: نقر الإشعار يعني تولّي التطبيق التشغيل داخل الواجهة؛
       // نوقف خدمة التشغيل الأمامية أولاً حتى لا يتراكب صوتان.
