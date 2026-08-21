@@ -65,7 +65,11 @@ class QiblaController extends GetxController {
 
   double get currentZoom => mapController.value.camera.zoom;
 
-  void get currentLocation => mapController.value.move(userLocation.value!, 18);
+  void get currentLocation {
+    final location = userLocation.value;
+    if (location == null) return;
+    mapController.value.move(location, 18);
+  }
 
   void get zoomIn => mapController.value
       .move(mapController.value.camera.center, currentZoom + 1);

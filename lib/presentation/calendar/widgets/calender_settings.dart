@@ -16,9 +16,9 @@ class CalenderSettings extends StatelessWidget {
       padding: const EdgeInsets.all(4.0),
       margin: const EdgeInsets.symmetric(vertical: 8.0),
       decoration: BoxDecoration(
-          border:
-              Border.all(color: context.theme.colorScheme.surface, width: 1),
-          borderRadius: const BorderRadius.all(Radius.circular(8))),
+        border: Border.all(color: context.theme.colorScheme.surface, width: 1),
+        borderRadius: const BorderRadius.all(Radius.circular(8)),
+      ),
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
         decoration: BoxDecoration(
@@ -47,74 +47,78 @@ class CalenderSettings extends StatelessWidget {
               child: Align(
                 alignment: AlignmentDirectional.centerEnd,
                 child: GetBuilder<EventController>(
-                    builder: (eventCtrl) => Row(
+                  builder: (eventCtrl) => Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      ReactiveNumberText(
+                        text: '${eventCtrl.adjustHijriDays.value}'
+                            .convertNumbersToCurrentLang(),
+                        style: TextStyle(
+                          fontFamily: 'cairo',
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: context.theme.colorScheme.inversePrimary
+                              .withValues(alpha: .7),
+                        ),
+                      ),
+                      const Gap(16),
+                      Container(
+                        height: 30,
+                        width: 80,
+                        decoration: BoxDecoration(
+                          color: context.theme.colorScheme.surface,
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(8),
+                          ),
+                        ),
+                        child: Row(
                           mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            ReactiveNumberText(
-                              text: '${eventCtrl.adjustHijriDays.value}'
-                                  .convertNumbers(),
-                              style: TextStyle(
-                                fontFamily: 'cairo',
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: context.theme.colorScheme.inversePrimary
-                                    .withValues(alpha: .7),
+                            SizedBox(
+                              width: 30,
+                              child: ElevatedButton(
+                                onPressed: () => eventCtrl.increaseDay(),
+                                style: ButtonStyle(
+                                  padding: WidgetStateProperty.all(
+                                    EdgeInsets.zero,
+                                  ),
+                                  elevation: WidgetStateProperty.all(0),
+                                ),
+                                child: Icon(
+                                  Icons.add,
+                                  size: 18,
+                                  color: context.theme.canvasColor,
+                                ),
                               ),
                             ),
-                            const Gap(16),
-                            Container(
-                              height: 30,
-                              width: 80,
-                              decoration: BoxDecoration(
-                                color: context.theme.colorScheme.surface,
-                                borderRadius:
-                                    const BorderRadius.all(Radius.circular(8)),
-                              ),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  SizedBox(
-                                    width: 30,
-                                    child: ElevatedButton(
-                                        onPressed: () =>
-                                            eventCtrl.increaseDay(),
-                                        style: ButtonStyle(
-                                          padding: WidgetStateProperty.all(
-                                              EdgeInsets.zero),
-                                          elevation: WidgetStateProperty.all(0),
-                                        ),
-                                        child: Icon(
-                                          Icons.add,
-                                          size: 18,
-                                          color: context.theme.canvasColor,
-                                        )),
+                            context.vDivider(
+                              height: 20,
+                              color: context.theme.canvasColor,
+                            ),
+                            SizedBox(
+                              width: 30,
+                              child: ElevatedButton(
+                                onPressed: () => eventCtrl.decreaseDay(),
+                                style: ButtonStyle(
+                                  padding: WidgetStateProperty.all(
+                                    EdgeInsets.zero,
                                   ),
-                                  context.vDivider(
-                                      height: 20,
-                                      color: context.theme.canvasColor),
-                                  SizedBox(
-                                    width: 30,
-                                    child: ElevatedButton(
-                                        onPressed: () =>
-                                            eventCtrl.decreaseDay(),
-                                        style: ButtonStyle(
-                                          padding: WidgetStateProperty.all(
-                                              EdgeInsets.zero),
-                                          elevation: WidgetStateProperty.all(0),
-                                        ),
-                                        child: Icon(
-                                          Icons.remove,
-                                          size: 18,
-                                          color: context.theme.canvasColor,
-                                        )),
-                                  ),
-                                ],
+                                  elevation: WidgetStateProperty.all(0),
+                                ),
+                                child: Icon(
+                                  Icons.remove,
+                                  size: 18,
+                                  color: context.theme.canvasColor,
+                                ),
                               ),
                             ),
                           ],
-                        )),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ),
           ],

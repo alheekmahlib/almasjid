@@ -79,7 +79,7 @@ extension ConvertNumberExtension on String {
   // }
 
   // دالة تحويل الأرقام مع مراقبة تغييرات اللغة - Number conversion with language change observation
-  String convertNumbers() {
+  String convertNumbersToCurrentLang() {
     return Get.locale?.languageCode != null
         ? _convertWithLang(Get.locale!.languageCode)
         : this;

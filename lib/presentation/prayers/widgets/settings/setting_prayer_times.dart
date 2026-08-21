@@ -75,7 +75,8 @@ class SettingPrayerTimes extends StatelessWidget {
                               horizontal: 16.0,
                             ),
                             child: Text(
-                              adhanCtrl.prayerNameList[index]['time']!,
+                              '${adhanCtrl.prayerNameList[index]['time']!}'
+                                  .convertNumbersToCurrentLang(),
                               style: TextStyle(
                                 fontFamily: 'cairo',
                                 fontSize: 16,

@@ -6,6 +6,14 @@ extension PrayerTimesSerialization on AdhanState {
   /// تحويل البيانات إلى JSON للتخزين
   /// Convert data to JSON for storage
   Map<String, dynamic> toJson() {
+    // بيانات الصلاة غير مهيأة بعد: لا نقرأ حقول late غير مهيأة وإلا انهار التسلسل
+    // Uninitialized prayer data: reading the late fields below would throw
+    // LateInitializationError, so emit an empty payload instead.
+    if (prayerTimes == null || sunnahTimes == null) {
+      log('toJson skipped: prayer data not ready yet',
+          name: 'PrayerTimesSerialization');
+      return {};
+    }
     return {
       // أوقات الصلاة الأساسية / Basic prayer times
       'fajr': prayerTimes?.fajr.toIso8601String(),

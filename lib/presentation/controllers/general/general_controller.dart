@@ -228,15 +228,28 @@ class GeneralController extends GetxController with WidgetsBindingObserver {
     _isActivatingLocation = true;
     try {
       final isConnected = InternetConnectionController.instance.isConnected;
+      final locationServiceEnabled =
+          await LocationHelper.instance.isLocationServiceEnabled();
 
       final stored = PrayerCacheManager.getStoredLocation();
-      final shouldUseStoredOnly = !isConnected && stored != null;
+      final shouldUseStoredOnly =
+          (!isConnected || !locationServiceEnabled) && stored != null;
 
       if (shouldUseStoredOnly) {
-        log('No internet: skip fetching new position',
-            name: 'GeneralController');
+        log(
+          'No internet or location services disabled: '
+          'skip fetching new position',
+          name: 'GeneralController',
+        );
       } else {
-        await LocationHelper.instance.getPositionDetails();
+        // فشل جلب الموقع لا يجوز أن يوقف تحميل كاش الصلاة؛
+        // نكمل دائمًا بـ effectiveLocation (الحية أو المخزّنة).
+        try {
+          await LocationHelper.instance.getPositionDetails();
+        } catch (e) {
+          log('getPositionDetails failed, falling back to stored location: $e',
+              name: 'GeneralController');
+        }
       }
 
       final pos = Location.instance.position;
@@ -352,7 +365,10 @@ class GeneralController extends GetxController with WidgetsBindingObserver {
       position = null;
     }
     if (position == null) {
-      Get.context!.showSearchBottomSheet(Get.context!);
+      final context = Get.context;
+      if (context != null) {
+        context.showSearchBottomSheet(context);
+      }
       return false;
     }
     final newLocation = LatLng(

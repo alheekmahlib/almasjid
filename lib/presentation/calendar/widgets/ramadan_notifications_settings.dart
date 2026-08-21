@@ -20,7 +20,7 @@ class RamadanNotificationsSettings extends StatelessWidget {
               title: 'suhoorReminder'.tr,
               subtitle:
                   '${'beforeFajr'.tr} ${ctrl.suhoorMinutes.value} ${'minutes'.tr}'
-                      .convertNumbers(),
+                      .convertNumbersToCurrentLang(),
               value: ctrl.suhoorEnabled.value,
               onChanged: (value) => ctrl.toggleSuhoorNotification(value),
               onSettingsTap: () => _showTimePickerDialog(
@@ -41,7 +41,7 @@ class RamadanNotificationsSettings extends StatelessWidget {
               title: 'iftarReminder'.tr,
               subtitle:
                   '${'beforeMaghrib'.tr} ${ctrl.iftarMinutes.value} ${'minutes'.tr}'
-                      .convertNumbers(),
+                      .convertNumbersToCurrentLang(),
               value: ctrl.iftarEnabled.value,
               onChanged: (value) => ctrl.toggleIftarNotification(value),
               onSettingsTap: () => _showTimePickerDialog(
@@ -86,8 +86,10 @@ class RamadanNotificationsSettings extends StatelessWidget {
         backgroundColor: context.theme.colorScheme.primaryContainer,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         titlePadding: const EdgeInsets.all(8.0),
-        contentPadding:
-            const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 16.0,
+          vertical: 8.0,
+        ),
         actionsPadding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
         title: Row(
           children: [
@@ -105,15 +107,16 @@ class RamadanNotificationsSettings extends StatelessWidget {
             ),
             const Gap(12),
             Expanded(
-                child: Text(
-              title,
-              style: TextStyle(
-                fontFamily: 'cairo',
-                fontWeight: FontWeight.bold,
-                fontSize: 16,
-                color: context.theme.colorScheme.inversePrimary,
+              child: Text(
+                title,
+                style: TextStyle(
+                  fontFamily: 'cairo',
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                  color: context.theme.colorScheme.inversePrimary,
+                ),
               ),
-            )),
+            ),
           ],
         ),
         content: Column(
@@ -137,10 +140,12 @@ class RamadanNotificationsSettings extends StatelessWidget {
                     ),
                     decoration: BoxDecoration(
                       color: isSelected
-                          ? context.theme.colorScheme.surface
-                              .withValues(alpha: 0.3)
-                          : context.theme.colorScheme.surface
-                              .withValues(alpha: 0.2),
+                          ? context.theme.colorScheme.surface.withValues(
+                              alpha: 0.3,
+                            )
+                          : context.theme.colorScheme.surface.withValues(
+                              alpha: 0.2,
+                            ),
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
                         color: isSelected
@@ -153,7 +158,8 @@ class RamadanNotificationsSettings extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          '$minutes ${'minutes'.tr}'.convertNumbers(),
+                          '$minutes ${'minutes'.tr}'
+                              .convertNumbersToCurrentLang(),
                           style: TextStyle(
                             fontFamily: 'cairo',
                             fontSize: 14,
@@ -163,7 +169,7 @@ class RamadanNotificationsSettings extends StatelessWidget {
                             color: isSelected
                                 ? color
                                 : context.theme.colorScheme.inversePrimary
-                                    .withValues(alpha: .7),
+                                      .withValues(alpha: .7),
                           ),
                         ),
                         if (isSelected)
@@ -186,11 +192,13 @@ class RamadanNotificationsSettings extends StatelessWidget {
             child: Text(
               'cancel'.tr,
               style: TextStyle(
-                  fontFamily: 'cairo',
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                  color: context.theme.colorScheme.inversePrimary
-                      .withValues(alpha: .7)),
+                fontFamily: 'cairo',
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+                color: context.theme.colorScheme.inversePrimary.withValues(
+                  alpha: .7,
+                ),
+              ),
             ),
           ),
         ],
@@ -236,17 +244,22 @@ class _ModernNotificationTile extends StatelessWidget {
       titleWidget: Row(
         children: [
           Container(
-              height: 45,
-              width: 45,
-              padding: const EdgeInsets.all(8),
-              margin: const EdgeInsets.symmetric(vertical: 4),
-              decoration: BoxDecoration(
-                color: context.theme.colorScheme.primaryContainer
-                    .withValues(alpha: .5),
-                borderRadius: BorderRadius.circular(10),
+            height: 45,
+            width: 45,
+            padding: const EdgeInsets.all(8),
+            margin: const EdgeInsets.symmetric(vertical: 4),
+            decoration: BoxDecoration(
+              color: context.theme.colorScheme.primaryContainer.withValues(
+                alpha: .5,
               ),
-              child: customSvgWithColor(icon,
-                  color: context.theme.colorScheme.surface, width: 25)),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: customSvgWithColor(
+              icon,
+              color: context.theme.colorScheme.surface,
+              width: 25,
+            ),
+          ),
           const Gap(16),
           Expanded(
             child: Column(
@@ -269,8 +282,9 @@ class _ModernNotificationTile extends StatelessWidget {
                     height: 1.4,
                     fontSize: 12,
                     fontFamily: 'cairo',
-                    color: context.theme.colorScheme.inversePrimary
-                        .withValues(alpha: .7),
+                    color: context.theme.colorScheme.inversePrimary.withValues(
+                      alpha: .7,
+                    ),
                   ),
                 ),
               ],

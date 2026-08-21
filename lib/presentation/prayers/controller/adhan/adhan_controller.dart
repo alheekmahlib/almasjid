@@ -299,8 +299,11 @@ class AdhanController extends GetxController {
       await state.countryListFuture;
 
       // حفظ البيانات الجديدة
-      // Save new data
-      PrayerCacheManager.savePrayerData(state.toJson(), currentLocation);
+      // Save new data (skip when uninitialized to avoid writing junk cache)
+      final json = state.toJson();
+      if (json.isNotEmpty) {
+        PrayerCacheManager.savePrayerData(json, currentLocation);
+      }
     } catch (e) {
       log('Error fetching prayer times: $e', name: 'AdhanController');
       rethrow;

@@ -50,7 +50,8 @@ class PrayerDetails extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
-                          adhanCtrl.prayerNameList[index]['time'],
+                          '${adhanCtrl.prayerNameList[index]['time']}'
+                              .convertNumbersToCurrentLang(),
                           style: TextStyle(
                             fontFamily: 'cairo',
                             fontSize: 22,

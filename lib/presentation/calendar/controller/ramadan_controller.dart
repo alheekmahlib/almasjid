@@ -16,7 +16,10 @@ enum _FastingNotificationType {
   suhoor(baseId: 1000, titleKey: 'suhoorReminder', bodyKey: 'timeForSuhoor'),
   iftar(baseId: 1050, titleKey: 'iftarReminder', bodyKey: 'prepareForIftar'),
   lastTen(
-      baseId: 1100, titleKey: 'lastTenNights', bodyKey: 'laylatAlQadrReminder');
+    baseId: 1100,
+    titleKey: 'lastTenNights',
+    bodyKey: 'laylatAlQadrReminder',
+  );
 
   const _FastingNotificationType({
     required this.baseId,
@@ -160,7 +163,8 @@ class RamadanController extends GetxController {
   }
 
   void _updateCurrentJuz() {
-    currentJuz.value = khatmas
+    currentJuz.value =
+        khatmas
             .firstWhereOrNull((k) => k.id == currentKhatmaId.value)
             ?.completedJuz ??
         0;
@@ -168,13 +172,15 @@ class RamadanController extends GetxController {
 
   void _startNewKhatma() {
     final newId = khatmas.isEmpty ? 1 : khatmas.last.id + 1;
-    khatmas.add(QuranKhatma(
-      id: newId,
-      completedJuz: 0,
-      startDate: DateTime.now(),
-      hijriYear: hijriNow.hYear,
-      hijriMonth: hijriNow.hMonth,
-    ));
+    khatmas.add(
+      QuranKhatma(
+        id: newId,
+        completedJuz: 0,
+        startDate: DateTime.now(),
+        hijriYear: hijriNow.hYear,
+        hijriMonth: hijriNow.hMonth,
+      ),
+    );
     currentKhatmaId.value = newId;
     currentJuz.value = 0;
     _saveQuranData();
@@ -225,36 +231,39 @@ class RamadanController extends GetxController {
     iftarMinutes.value = _box.read(_kRamadanStorage.iftarMinutes) ?? 30;
   }
 
-  void _toggleNotification(
+  /// ينتظر اكتمال الجدولة/الإلغاء كي يعكس مؤشر تحميل المفتاح المدة الفعلية.
+  Future<void> _toggleNotification(
     RxBool state,
     String storageKey,
     Future<void> Function() schedule,
     Future<void> Function() cancel,
     bool value,
-  ) {
+  ) async {
     state.value = value;
     _box.write(storageKey, value);
-    value ? schedule() : cancel();
+    final operation = value ? schedule() : cancel();
     update();
+    await operation;
   }
 
-  void toggleSuhoorNotification(bool value) => _toggleNotification(
-        suhoorEnabled,
-        _kRamadanStorage.suhoorNotification,
-        _scheduleSuhoorNotification,
-        () => _cancelNotifications(_FastingNotificationType.suhoor),
-        value,
-      );
+  Future<void> toggleSuhoorNotification(bool value) => _toggleNotification(
+    suhoorEnabled,
+    _kRamadanStorage.suhoorNotification,
+    _scheduleSuhoorNotification,
+    () => _cancelNotifications(_FastingNotificationType.suhoor),
+    value,
+  );
 
-  void toggleIftarNotification(bool value) => _toggleNotification(
-        iftarEnabled,
-        _kRamadanStorage.iftarNotification,
-        _scheduleIftarNotification,
-        () => _cancelNotifications(_FastingNotificationType.iftar),
-        value,
-      );
+  Future<void> toggleIftarNotification(bool value) => _toggleNotification(
+    iftarEnabled,
+    _kRamadanStorage.iftarNotification,
+    _scheduleIftarNotification,
+    () => _cancelNotifications(_FastingNotificationType.iftar),
+    value,
+  );
 
-  void toggleLastTenNightsNotification(bool value) => _toggleNotification(
+  Future<void> toggleLastTenNightsNotification(bool value) =>
+      _toggleNotification(
         lastTenNightsEnabled,
         _kRamadanStorage.lastTenNights,
         _scheduleLastTenNightsNotification,
@@ -323,7 +332,9 @@ class RamadanController extends GetxController {
           time: notificationTime,
           payload: {'sound_type': 'bell'},
         );
-        log('${type.name} #${type.baseId + day} scheduled at $notificationTime');
+        log(
+          '${type.name} #${type.baseId + day} scheduled at $notificationTime',
+        );
       }
     } catch (e) {
       log('Error scheduling ${type.name}: $e');
@@ -331,16 +342,14 @@ class RamadanController extends GetxController {
   }
 
   Future<void> _scheduleSuhoorNotification() => _scheduleFastingNotification(
-        type: _FastingNotificationType.suhoor,
-        getTime: (pt) =>
-            pt.fajr.subtract(Duration(minutes: suhoorMinutes.value)),
-      );
+    type: _FastingNotificationType.suhoor,
+    getTime: (pt) => pt.fajr.subtract(Duration(minutes: suhoorMinutes.value)),
+  );
 
   Future<void> _scheduleIftarNotification() => _scheduleFastingNotification(
-        type: _FastingNotificationType.iftar,
-        getTime: (pt) =>
-            pt.maghrib.subtract(Duration(minutes: iftarMinutes.value)),
-      );
+    type: _FastingNotificationType.iftar,
+    getTime: (pt) => pt.maghrib.subtract(Duration(minutes: iftarMinutes.value)),
+  );
 
   Future<void> _scheduleLastTenNightsNotification() =>
       _scheduleFastingNotification(

@@ -30,24 +30,25 @@ extension AdhanUi on AdhanController {
     // sl<NotificationController>().initializeNotification();
     state.box.write(AUTO_CALCULATION, value);
     state.isLoadingPrayerData.value = true;
-    initializeStoredAdhan(forceUpdate: true);
+    // await ضروري كي يعكس مؤشر تحميل المفتاح المدة الفعلية لإعادة الحساب
+    await initializeStoredAdhan(forceUpdate: true);
   }
 
   Future<void> notificationOptionsOnTap(int i, int prayerIndex) async {
-    // await PrayersNotificationsCtrl.instance.scheduleDailyNotificationsForPrayer(
-    //   prayerIndex,
-    //   prayerNameList[prayerIndex]['title'],
-    //   notificationOptions[i]['title'],
-    // );
-    await NotifyHelper().scheduledNotification(
-      reminderId: 99999,
-      title: 'Fajr'.tr,
-      summary: 'وقت صلاة الفجر',
-      body: 'fajrBody'.tr,
-      isRepeats: false,
-      time: DateTime.now().add(const Duration(seconds: 10)),
-      payload: {'sound_type': 'sound'},
+    await PrayersNotificationsCtrl.instance.scheduleDailyNotificationsForPrayer(
+      prayerIndex,
+      prayerNameList[prayerIndex]['title'],
+      notificationOptions[i]['title'],
     );
+    // await NotifyHelper().scheduledNotification(
+    //   reminderId: 99999,
+    //   title: 'Fajr'.tr,
+    //   summary: 'وقت صلاة الفجر',
+    //   body: 'fajrBody'.tr,
+    //   isRepeats: false,
+    //   time: DateTime.now().add(const Duration(seconds: 10)),
+    //   payload: {'sound_type': 'sound'},
+    // );
     update(['change_notification']);
   }
 

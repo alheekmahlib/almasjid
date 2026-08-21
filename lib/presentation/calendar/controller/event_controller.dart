@@ -25,9 +25,7 @@ class EventController extends GetxController {
     adjustHijriDays.value = box.read('adjustHijriDays') ?? 0;
     selectedDate = HijriDate.now();
     initializeMonths();
-    pageController = PageController(
-      initialPage: selectedDate.hMonth - 1,
-    );
+    pageController = PageController(initialPage: selectedDate.hMonth - 1);
     Future.delayed(const Duration(seconds: 20), () async {
       await loadJson();
       await ramadhanOrEidGreeting();
@@ -42,11 +40,7 @@ class EventController extends GetxController {
 
   void initializeMonths() {
     months = List.generate(12, (index) {
-      var hijri = HijriDate.fromHijri(
-        selectedDate.hYear,
-        index + 1,
-        1,
-      );
+      var hijri = HijriDate.fromHijri(selectedDate.hYear, index + 1, 1);
       hijri.lengthOfMonth = hijri.getDaysInMonth(hijri.hYear, hijri.hMonth);
       return hijri;
     });
@@ -57,8 +51,10 @@ class EventController extends GetxController {
     var adjustedYear = currentHijri.hYear;
 
     // Ensure days do not exceed the month length
-    var daysInMonth =
-        currentHijri.getDaysInMonth(currentHijri.hYear, currentHijri.hMonth);
+    var daysInMonth = currentHijri.getDaysInMonth(
+      currentHijri.hYear,
+      currentHijri.hMonth,
+    );
     if (adjustedDay > daysInMonth) {
       adjustedDay -= daysInMonth;
       adjustedMonth++;
@@ -69,8 +65,10 @@ class EventController extends GetxController {
     }
 
     hijriNow = HijriDate.fromHijri(adjustedYear, adjustedMonth, adjustedDay);
-    hijriNow.lengthOfMonth =
-        hijriNow.getDaysInMonth(hijriNow.hYear, hijriNow.hMonth);
+    hijriNow.lengthOfMonth = hijriNow.getDaysInMonth(
+      hijriNow.hYear,
+      hijriNow.hMonth,
+    );
 
     startYear = hijriNow.hYear - 3;
     endYear = hijriNow.hYear + 3;
@@ -118,26 +116,31 @@ class EventController extends GetxController {
   String titleString(int id, int month) {
     switch (id) {
       case 1:
-        return '${hijriNow.hYear}'.convertNumbers();
+        return '${hijriNow.hYear}'.convertNumbersToCurrentLang();
       case 2:
-        return '${'9'.convertNumbers()}, ${months[month - 1].getLongMonthName().tr}';
+        return '${'9'.convertNumbersToCurrentLang()}, ${months[month - 1].getLongMonthName().tr}';
       case 3:
-        return '${'10'.convertNumbers()}, ${months[month - 1].getLongMonthName().tr}';
+        return '${'10'.convertNumbersToCurrentLang()}, ${months[month - 1].getLongMonthName().tr}';
       case 4:
-        return '${'10'.convertNumbers()}, ${months[month - 1].getLongMonthName().tr}';
+        return '${'10'.convertNumbersToCurrentLang()}, ${months[month - 1].getLongMonthName().tr}';
       case 8:
-        return '${'6'.convertNumbers()}, ${months[month - 1].getLongMonthName().tr}';
+        return '${'6'.convertNumbersToCurrentLang()}, ${months[month - 1].getLongMonthName().tr}';
       case 9:
-        return '${'9'.convertNumbers()}, ${months[month - 1].getLongMonthName().tr}';
+        return '${'9'.convertNumbersToCurrentLang()}, ${months[month - 1].getLongMonthName().tr}';
       case 10:
-        return '${'9'.convertNumbers()}, ${months[month - 1].getLongMonthName().tr}';
+        return '${'9'.convertNumbersToCurrentLang()}, ${months[month - 1].getLongMonthName().tr}';
       default:
-        return '${hijriNow.hYear}'.convertNumbers();
+        return '${hijriNow.hYear}'.convertNumbersToCurrentLang();
     }
   }
 
-  Widget getArtWidget(Widget lottieWidget, Widget svgWidget, Widget titleWidget,
-      int day, int month) {
+  Widget getArtWidget(
+    Widget lottieWidget,
+    Widget svgWidget,
+    Widget titleWidget,
+    int day,
+    int month,
+  ) {
     for (Event event in events) {
       if (event.month == month && event.day.contains(day)) {
         if (event.isLottie) {
@@ -155,8 +158,9 @@ class EventController extends GetxController {
   }
 
   Future<void> loadJson() async {
-    final String response =
-        await rootBundle.loadString('assets/json/religious_event.json');
+    final String response = await rootBundle.loadString(
+      'assets/json/religious_event.json',
+    );
     final data = await json.decode(response);
     DataModel dataModel = DataModel.fromJson(data);
     events.value = dataModel.data;
@@ -174,16 +178,17 @@ class EventController extends GetxController {
 
         await Future.delayed(const Duration(seconds: 2));
         customBottomSheet(
-            child: ReminderEventBottomSheet(
-          lottieFile: event.lottiePath,
-          title: event.title.tr,
-          hadith: hadithText,
-          bookInfo: bookInfo,
-          titleString: titleString(event.id, event.month),
-          svgPath: event.svgPath,
-          day: hijriNow.hDay,
-          month: event.month,
-        ));
+          child: ReminderEventBottomSheet(
+            lottieFile: event.lottiePath,
+            title: event.title.tr,
+            hadith: hadithText,
+            bookInfo: bookInfo,
+            titleString: titleString(event.id, event.month),
+            svgPath: event.svgPath,
+            day: hijriNow.hDay,
+            month: event.month,
+          ),
+        );
         box.write(event.title, false);
       }
       bool notSameDay = event.day.contains(hijriNow.hDay);
@@ -208,8 +213,11 @@ class EventController extends GetxController {
 
       if (daysPassed > 4) {
         // احسب المناسبة للسنة الهجرية القادمة - Calculate the event for the next Hijri year
-        DateTime nextYearEnd =
-            hijriCalendar.hijriToGregorian(year + 1, month, day);
+        DateTime nextYearEnd = hijriCalendar.hijriToGregorian(
+          year + 1,
+          month,
+          day,
+        );
         return DateTimeRange(start: start, end: nextYearEnd).duration.inDays;
       } else {
         // إذا مضى 4 أيام أو أقل، أظهر أن المناسبة قد مضت - If 4 days or less have passed, show that the event has passed
@@ -272,16 +280,21 @@ class EventController extends GetxController {
   int getEventYear(int month, int day) {
     HijriDate hijriCalendar = HijriDate();
     DateTime start = DateTime.now().add(Duration(days: adjustHijriDays.value));
-    DateTime currentYearEnd =
-        hijriCalendar.hijriToGregorian(hijriNow.hYear, month, day);
+    DateTime currentYearEnd = hijriCalendar.hijriToGregorian(
+      hijriNow.hYear,
+      month,
+      day,
+    );
 
     if (!start.isAfter(currentYearEnd)) {
       // إذا كان تاريخ المناسبة لم يحن بعد في السنة الحالية - If the event date hasn't arrived yet in current year
       return hijriNow.hYear;
     } else {
       // إذا مضى على المناسبة، تحقق من عدد الأيام - If the event has passed, check number of days
-      int daysPassed =
-          DateTimeRange(start: currentYearEnd, end: start).duration.inDays;
+      int daysPassed = DateTimeRange(
+        start: currentYearEnd,
+        end: start,
+      ).duration.inDays;
 
       if (daysPassed > 4) {
         // إذا مضى أكثر من 4 أيام، استخدم السنة القادمة - If more than 4 days have passed, use next year

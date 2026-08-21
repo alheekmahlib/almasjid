@@ -48,6 +48,15 @@ class LocationHelper {
   }
 
   Future<void> getPositionDetails() async {
+    // خدمات الموقع معطلة: نعمل بالموقع المخزّن بدل رمي استثناء يوقف تحميل الكاش
+    // Location services disabled: keep the restored/stored location instead
+    // of throwing and aborting the prayer-cache load downstream.
+    if (!await Geolocator.isLocationServiceEnabled()) {
+      log('Location services are disabled; keeping stored location',
+          name: 'LocationHelper');
+      return;
+    }
+
     // على Desktop، طلب الموقع مباشرة سيظهر مربع حوار الإذن
     if (Platform.isMacOS || Platform.isLinux || Platform.isWindows) {
       await _getDesktopPosition();
@@ -58,10 +67,8 @@ class LocationHelper {
     bool isHMSAvailable = await HuaweiLocationHelper.instance._isHMSAvailable();
     bool useHuaweiLocation = Platform.isAndroid && isHMSAvailable;
 
-    if (await Geolocator.isLocationServiceEnabled()) {
-      if (await Geolocator.checkPermission() == LocationPermission.denied) {
-        await Geolocator.requestPermission();
-      }
+    if (await Geolocator.checkPermission() == LocationPermission.denied) {
+      await Geolocator.requestPermission();
     }
 
     if (await checkPermission()) {
@@ -109,21 +116,28 @@ class LocationHelper {
       }
 
       if (!useHuaweiLocation || currentPosition == null) {
-        currentPosition = await Geolocator.getCurrentPosition(
-          locationSettings: Platform.isAndroid
-              ? AndroidSettings(
-                  accuracy: LocationAccuracy.high,
-                  distanceFilter: 1000,
-                  forceLocationManager: useHuaweiLocation,
-                  timeLimit: const Duration(seconds: 30),
-                )
-              : const LocationSettings(
-                  accuracy: LocationAccuracy.high,
-                  distanceFilter: 1000,
-                  timeLimit: Duration(seconds: 30),
-                ),
-        );
-        GeneralController.instance.state.activeLocation.value = true;
+        try {
+          currentPosition = await Geolocator.getCurrentPosition(
+            locationSettings: Platform.isAndroid
+                ? AndroidSettings(
+                    accuracy: LocationAccuracy.high,
+                    distanceFilter: 1000,
+                    forceLocationManager: useHuaweiLocation,
+                    timeLimit: const Duration(seconds: 30),
+                  )
+                : const LocationSettings(
+                    accuracy: LocationAccuracy.high,
+                    distanceFilter: 1000,
+                    timeLimit: Duration(seconds: 30),
+                  ),
+          );
+          GeneralController.instance.state.activeLocation.value = true;
+        } catch (e) {
+          // فشل جلب الموقع (تعطل الخدمة/المهلة) لا يوقف بقية مسار التفعيل
+          // A failed fetch must not abort activation; stored location stays.
+          log('Failed to fetch current position: $e', name: 'LocationHelper');
+          return;
+        }
       }
 
       try {
@@ -156,12 +170,18 @@ class LocationHelper {
 
   /// الحصول على الموقع لأنظمة Desktop
   Future<void> _getDesktopPosition() async {
-    final position = await Geolocator.getCurrentPosition(
-      locationSettings: const LocationSettings(
-        accuracy: LocationAccuracy.high,
-        timeLimit: Duration(seconds: 30),
-      ),
-    );
+    final Position position;
+    try {
+      position = await Geolocator.getCurrentPosition(
+        locationSettings: const LocationSettings(
+          accuracy: LocationAccuracy.high,
+          timeLimit: Duration(seconds: 30),
+        ),
+      );
+    } catch (e) {
+      log('Failed to fetch desktop position: $e', name: 'LocationHelper');
+      return;
+    }
 
     try {
       await _reverseGeocode(position);
@@ -194,13 +214,20 @@ class LocationHelper {
 
   LatLng? _currentLocation;
 
-  LatLng get currentLocation {
+  /// الموقع الحالي: المخزّن إن وُجد، وإلا آخر قيمة في الذاكرة (قد تكون null).
+  /// Current location: stored value if present, otherwise the last in-memory
+  /// value. Returns null instead of throwing when nothing is available.
+  LatLng? get currentLocation {
     final storedLocation = GetStorage().read(CURRENT_LOCATION);
-    if (storedLocation != null) {
-      return LatLng(storedLocation['latitude'], storedLocation['longitude']);
-    } else {
-      return _currentLocation!;
+    if (storedLocation is Map &&
+        storedLocation['latitude'] != null &&
+        storedLocation['longitude'] != null) {
+      return LatLng(
+        (storedLocation['latitude'] as num).toDouble(),
+        (storedLocation['longitude'] as num).toDouble(),
+      );
     }
+    return _currentLocation;
   }
 
   set currentLocation(LatLng value) {

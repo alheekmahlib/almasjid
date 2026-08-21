@@ -5,12 +5,13 @@ class CalculatingDateEventsWidget extends StatelessWidget {
   final int year;
   final int month;
   final int day;
-  CalculatingDateEventsWidget(
-      {super.key,
-      required this.month,
-      required this.day,
-      required this.name,
-      required this.year});
+  CalculatingDateEventsWidget({
+    super.key,
+    required this.month,
+    required this.day,
+    required this.name,
+    required this.year,
+  });
 
   final countdownCtrl = EventController.instance;
 
@@ -35,12 +36,12 @@ class CalculatingDateEventsWidget extends StatelessWidget {
                   widthShadow: 5,
                   backgroundProgress: Theme.of(context).primaryColorLight,
                   colorProgress: Theme.of(context).colorScheme.primary,
-                  colorProgressDark:
-                      Theme.of(context).canvasColor.withValues(alpha: 0.5),
-                  colorBorder: Theme.of(context)
-                      .colorScheme
-                      .surface
-                      .withValues(alpha: 0.1),
+                  colorProgressDark: Theme.of(
+                    context,
+                  ).canvasColor.withValues(alpha: 0.5),
+                  colorBorder: Theme.of(
+                    context,
+                  ).colorScheme.surface.withValues(alpha: 0.1),
                   colorBackgroundIcon: Colors.transparent,
                 ),
                 // margin: const EdgeInsets.symmetric(vertical: 2.0),
@@ -78,8 +79,11 @@ class CalculatingDateEventsWidget extends StatelessWidget {
                             fit: BoxFit.scaleDown,
                             child: ReactiveNumberText(
                               text: countdownCtrl.daysArabicConvert(
-                                  daysRemaining,
-                                  daysRemaining.toString().convertNumbers()),
+                                daysRemaining,
+                                daysRemaining
+                                    .toString()
+                                    .convertNumbersToCurrentLang(),
+                              ),
                               style: TextStyle(
                                 fontSize: 14.0,
                                 fontFamily: 'cairo',

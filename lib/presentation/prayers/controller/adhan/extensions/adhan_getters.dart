@@ -822,7 +822,10 @@ extension AdhanGetters on AdhanController {
         index,
       ); // نرجع القيمة الحالية دون تغيير
     }
-    // initializeStoredAdhan();
+    state.highLatitudeRuleIndex.value = index;
+    // إشعار GetBuilder(id: 'init_athan') في شيت الإعدادات — بدونه لا تتحدث
+    // المفاتيح حتى إغلاق الشيت وفتحه من جديد.
+    update(['init_athan']);
     return getHighLatitudeRuleFromIndex(index);
   }
 

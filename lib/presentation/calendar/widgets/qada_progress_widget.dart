@@ -18,8 +18,9 @@ class QadaProgressWidget extends StatelessWidget {
         return _EmptyQadaState();
       }
 
-      final progress =
-          missedCount > 0 ? (fastedCount / missedCount) * 100 : 0.0;
+      final progress = missedCount > 0
+          ? (fastedCount / missedCount) * 100
+          : 0.0;
       final remaining = missedCount - fastedCount;
       final isCompleted = remaining == 0;
 
@@ -57,8 +58,9 @@ class QadaProgressWidget extends StatelessWidget {
                     backgroundColor: Colors.transparent,
                     valueColor: AlwaysStoppedAnimation<Color>(
                       isCompleted
-                          ? context.theme.colorScheme.surface
-                              .withValues(alpha: 0.8)
+                          ? context.theme.colorScheme.surface.withValues(
+                              alpha: 0.8,
+                            )
                           : context.theme.colorScheme.inverseSurface,
                     ),
                   ),
@@ -68,23 +70,25 @@ class QadaProgressWidget extends StatelessWidget {
                   width: 80,
                   height: 80,
                   decoration: BoxDecoration(
-                    color: context.theme.colorScheme.surface
-                        .withValues(alpha: 0.1),
+                    color: context.theme.colorScheme.surface.withValues(
+                      alpha: 0.1,
+                    ),
                     shape: BoxShape.circle,
                   ),
                   child: isCompleted
                       ? Icon(
                           SolarIconsBold.checkCircle,
                           size: 40,
-                          color: context.theme.colorScheme.surface
-                              .withValues(alpha: 0.8),
+                          color: context.theme.colorScheme.surface.withValues(
+                            alpha: 0.8,
+                          ),
                         )
                       : Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
                               '${progress.toStringAsFixed(0)}%'
-                                  .convertNumbers(),
+                                  .convertNumbersToCurrentLang(),
                               style: TextStyle(
                                 fontSize: 18,
                                 fontFamily: 'cairo',
@@ -176,10 +180,11 @@ class _ModernStatItem extends StatelessWidget {
         //     : context.theme.canvasColor,
         borderRadius: BorderRadius.circular(10),
         border: Border.all(
-            color: highlight
-                ? color.withValues(alpha: 0.6)
-                : color.withValues(alpha: .3),
-            width: 1),
+          color: highlight
+              ? color.withValues(alpha: 0.6)
+              : color.withValues(alpha: .3),
+          width: 1,
+        ),
       ),
       child: Row(
         children: [
@@ -202,7 +207,7 @@ class _ModernStatItem extends StatelessWidget {
               borderRadius: BorderRadius.circular(6),
             ),
             child: Text(
-              '$value'.convertNumbers(),
+              '$value'.convertNumbersToCurrentLang(),
               style: TextStyle(
                 fontSize: 12,
                 fontFamily: 'cairo',
@@ -254,8 +259,9 @@ class _EmptyQadaState extends StatelessWidget {
             fontSize: 12,
             fontFamily: 'cairo',
             height: 1.4,
-            color:
-                context.theme.colorScheme.inversePrimary.withValues(alpha: 0.5),
+            color: context.theme.colorScheme.inversePrimary.withValues(
+              alpha: 0.5,
+            ),
           ),
           textAlign: TextAlign.center,
         ),

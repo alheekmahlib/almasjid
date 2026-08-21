@@ -97,8 +97,12 @@ class OurPrayerAdjustments extends PrayerAdjustments {
   });
 
   int getAdjustmentByIndex(int index) {
+    final prayerList = AdhanController.instance.prayerNameList;
+    if (index < 0 || index >= prayerList.length) {
+      return 0;
+    }
     return getAdjustmentByPrayerName(
-      AdhanController.instance.prayerNameList[index]['sharedAdjustment']!,
+      prayerList[index]['sharedAdjustment'] ?? '',
     );
   }
 

@@ -25,6 +25,7 @@ class AdhanSounds extends StatelessWidget {
         backgroundColor: Theme.of(
           context,
         ).colorScheme.surface.withValues(alpha: .3),
+        mainAxisAlignment: MainAxisAlignment.start,
       ),
     );
   }

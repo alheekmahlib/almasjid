@@ -19,20 +19,21 @@ class ReactiveNumberText extends StatelessWidget {
   final TextDirection? textDirection;
   final TextAlign? textAlign;
   final TextOverflow? overflow;
-  const ReactiveNumberText(
-      {super.key,
-      required this.text,
-      this.style,
-      this.textDirection,
-      this.textAlign,
-      this.overflow});
+  const ReactiveNumberText({
+    super.key,
+    required this.text,
+    this.style,
+    this.textDirection,
+    this.textAlign,
+    this.overflow,
+  });
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<LocalizationController>(
       id: 'changeLanguage',
       builder: (localeCtrl) => Text(
-        text.convertNumbers(),
+        text.convertNumbersToCurrentLang(),
         style: style,
         textDirection: textDirection,
         textAlign: textAlign,

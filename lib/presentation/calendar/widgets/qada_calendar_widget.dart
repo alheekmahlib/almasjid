@@ -59,9 +59,11 @@ class QadaCalendarWidget extends StatelessWidget {
           final daysInMonth = ctrl.ramadanDaysCount;
 
           // حساب يوم الأسبوع لأول يوم رمضان (الجمعة = 5، السبت = 6، الأحد = 0...)
-          final firstDayOfRamadan =
-              HijriDate.fromHijri(ctrl.hijriNow.hYear, 9, 1)
-                  .hijriToGregorian(ctrl.hijriNow.hYear, 9, 1);
+          final firstDayOfRamadan = HijriDate.fromHijri(
+            ctrl.hijriNow.hYear,
+            9,
+            1,
+          ).hijriToGregorian(ctrl.hijriNow.hYear, 9, 1);
           final firstWeekday = firstDayOfRamadan.weekday; // 1=Mon, 7=Sun
           // تحويل ليبدأ من الجمعة: الجمعة=0, السبت=1, الأحد=2, الاثنين=3, الثلاثاء=4, الأربعاء=5, الخميس=6
           final startOffset =
@@ -159,13 +161,12 @@ class QadaCalendarWidget extends StatelessWidget {
   void _showFastDialog(BuildContext context, RamadanController ctrl, int day) {
     Get.dialog(
       AlertDialog(
-        constraints: BoxConstraints(
-          minHeight: 100,
-          minWidth: Get.width * 0.9,
-        ),
+        constraints: BoxConstraints(minHeight: 100, minWidth: Get.width * 0.9),
         titlePadding: const EdgeInsets.all(8.0),
-        contentPadding:
-            const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 16.0,
+          vertical: 8.0,
+        ),
         actionsPadding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
         backgroundColor: context.theme.colorScheme.primaryContainer,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
@@ -196,7 +197,7 @@ class QadaCalendarWidget extends StatelessWidget {
           ],
         ),
         content: Text(
-          '${'markDayAsFastedConfirm'.tr} ${'$day'.convertNumbers()}?',
+          '${'markDayAsFastedConfirm'.tr} ${'$day'.convertNumbersToCurrentLang()}?',
           style: TextStyle(
             fontSize: 14,
             fontFamily: 'cairo',
@@ -273,8 +274,9 @@ class _LegendItem extends StatelessWidget {
           style: TextStyle(
             fontSize: 14,
             fontFamily: 'cairo',
-            color:
-                context.theme.colorScheme.inversePrimary.withValues(alpha: .6),
+            color: context.theme.colorScheme.inversePrimary.withValues(
+              alpha: .6,
+            ),
           ),
         ),
       ],
@@ -307,19 +309,23 @@ class _ModernDayCell extends StatelessWidget {
     Color borderColor;
 
     if (isFasted) {
-      backgroundColor = context.theme.colorScheme.surface
-          .withValues(alpha: isDark ? 0.3 : 0.15);
+      backgroundColor = context.theme.colorScheme.surface.withValues(
+        alpha: isDark ? 0.3 : 0.15,
+      );
       textColor = context.theme.colorScheme.surface;
       borderColor = context.theme.colorScheme.surface.withValues(alpha: 0.3);
     } else if (isMissed) {
-      backgroundColor = context.theme.colorScheme.inverseSurface
-          .withValues(alpha: isDark ? 0.3 : 0.15);
+      backgroundColor = context.theme.colorScheme.inverseSurface.withValues(
+        alpha: isDark ? 0.3 : 0.15,
+      );
       textColor = context.theme.colorScheme.inverseSurface;
-      borderColor =
-          context.theme.colorScheme.inverseSurface.withValues(alpha: 0.3);
+      borderColor = context.theme.colorScheme.inverseSurface.withValues(
+        alpha: 0.3,
+      );
     } else {
-      backgroundColor =
-          context.theme.colorScheme.surface.withValues(alpha: 0.1);
+      backgroundColor = context.theme.colorScheme.surface.withValues(
+        alpha: 0.1,
+      );
       textColor = context.theme.colorScheme.inversePrimary;
       borderColor = context.theme.colorScheme.surface.withValues(alpha: 0.3);
     }
@@ -342,12 +348,13 @@ class _ModernDayCell extends StatelessWidget {
             boxShadow: (isMissed || isFasted)
                 ? [
                     BoxShadow(
-                      color: (isFasted
-                              ? context.theme.colorScheme.surface
-                                  .withValues(alpha: 0.3)
-                              : context.theme.colorScheme.inverseSurface
-                                  .withValues(alpha: 0.3))
-                          .withValues(alpha: 0.2),
+                      color:
+                          (isFasted
+                                  ? context.theme.colorScheme.surface
+                                        .withValues(alpha: 0.3)
+                                  : context.theme.colorScheme.inverseSurface
+                                        .withValues(alpha: 0.3))
+                              .withValues(alpha: 0.2),
                       blurRadius: 4,
                       offset: const Offset(0, 2),
                     ),
@@ -358,14 +365,15 @@ class _ModernDayCell extends StatelessWidget {
             alignment: Alignment.center,
             children: [
               Text(
-                '$day'.convertNumbers(),
+                '$day'.convertNumbersToCurrentLang(),
                 style: TextStyle(
                   color: textColor,
                   fontSize: 18,
                   fontFamily: 'cairo',
                   height: 1.4,
-                  fontWeight:
-                      isMissed || isFasted ? FontWeight.bold : FontWeight.w500,
+                  fontWeight: isMissed || isFasted
+                      ? FontWeight.bold
+                      : FontWeight.w500,
                 ),
               ),
               if (isFasted)

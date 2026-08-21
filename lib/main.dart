@@ -10,24 +10,20 @@ import 'package:timezone/data/latest.dart' as tz;
 
 import '/core/services/languages/dependency_inj.dart' as dep;
 import 'core/services/notifications_helper.dart';
-import 'core/services/sentry_service.dart';
 import 'core/services/services_locator.dart';
 import 'my_app.dart';
 
 Future<void> main() async {
-  await SentryService.init(() async {
-    WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-    widgetsBinding;
-    FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-    Map<String, Map<String, String>> languages = await dep.init();
-    await initializeApp();
-    runApp(
-      AppInfo(
-        data: await AppInfoData.get(),
-        child: MyApp(languages: languages),
-      ),
-    );
-  });
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  Map<String, Map<String, String>> languages = await dep.init();
+  await initializeApp();
+  runApp(
+    AppInfo(
+      data: await AppInfoData.get(),
+      child: MyApp(languages: languages),
+    ),
+  );
 }
 
 Future<void> initializeApp() async {

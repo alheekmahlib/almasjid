@@ -13,40 +13,48 @@ class NotificationIconWidget extends StatelessWidget {
   final Color? iconColor;
   final double? padding;
   final double? margin;
-  const NotificationIconWidget(
-      {super.key,
-      required this.iconHeight,
-      required this.padding,
-      this.margin,
-      this.iconColor});
+  const NotificationIconWidget({
+    super.key,
+    required this.iconHeight,
+    required this.padding,
+    this.margin,
+    this.iconColor,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return GetX<LocalNotificationsController>(builder: (notiCtrl) {
-      return Center(
-        child: badges.Badge(
-          showBadge: notiCtrl.unreadCount > 0,
-          position: badges.BadgePosition.bottomEnd(bottom: -25, end: -18),
-          badgeStyle: const badges.BadgeStyle(
-            shape: badges.BadgeShape.square,
-            badgeColor: Colors.transparent,
-          ),
-          badgeContent: ReactiveNumberText(
-            text: notiCtrl.unreadCount.toString().convertNumbers(),
-            style: TextStyle(
+    return GetX<LocalNotificationsController>(
+      builder: (notiCtrl) {
+        return Center(
+          child: badges.Badge(
+            showBadge: notiCtrl.unreadCount > 0,
+            position: badges.BadgePosition.bottomEnd(bottom: -25, end: -18),
+            badgeStyle: const badges.BadgeStyle(
+              shape: badges.BadgeShape.square,
+              badgeColor: Colors.transparent,
+            ),
+            badgeContent: ReactiveNumberText(
+              text: notiCtrl.unreadCount
+                  .toString()
+                  .convertNumbersToCurrentLang(),
+              style: TextStyle(
                 fontFamily: 'cairo',
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
                 height: 1.3,
-                color: context.theme.canvasColor),
-          ),
-          child: customSvgWithCustomColor(SvgPath.svgNotifications,
+                color: context.theme.canvasColor,
+              ),
+            ),
+            child: customSvgWithCustomColor(
+              SvgPath.svgNotifications,
               height: iconHeight,
               width: iconHeight,
-              color: iconColor ??
-                  Theme.of(context).colorScheme.secondaryContainer),
-        ),
-      );
-    });
+              color:
+                  iconColor ?? Theme.of(context).colorScheme.secondaryContainer,
+            ),
+          ),
+        );
+      },
+    );
   }
 }

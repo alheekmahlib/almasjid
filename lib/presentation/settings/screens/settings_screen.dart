@@ -46,14 +46,14 @@ class SettingsScreen extends StatelessWidget {
                 customSvgWithColor(
                   SvgPath.svgHomeSettings,
                   height: 22,
-                  color: context.theme.canvasColor.withValues(alpha: .6),
+                  color: context.theme.canvasColor,
                 ),
                 const Gap(16),
                 Text(
                   'prayerSetting'.tr,
                   style: TextStyle(
                     fontSize: 18,
-                    color: context.theme.canvasColor.withValues(alpha: .6),
+                    color: context.theme.canvasColor,
                     fontWeight: FontWeight.bold,
                     fontFamily: 'cairo',
                     height: 1.4,

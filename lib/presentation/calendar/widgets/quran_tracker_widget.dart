@@ -36,59 +36,61 @@ class QuranTrackerWidget extends StatelessWidget {
         const Spacer(),
         // الدائرة الرئيسية مع العدد
         GetBuilder<RamadanController>(
-            init: RamadanController.instance,
-            builder: (ctrl) {
-              final isCompleted = ctrl.currentJuz.value >= 30;
-              return Stack(
-                alignment: Alignment.center,
-                children: [
-                  // دائرة التقدم
-                  SizedBox(
-                    width: 100,
-                    height: 100,
-                    child: CircularProgressIndicator(
-                      value: ctrl.khatmaProgress / 100,
-                      strokeWidth: 12,
-                      strokeCap: StrokeCap.round,
-                      backgroundColor: context.theme.colorScheme.surface
-                          .withValues(alpha: 0.1),
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                        isCompleted
-                            ? context.theme.colorScheme.surface
-                            : context.theme.colorScheme.surface
-                                .withValues(alpha: .7),
-                      ),
+          init: RamadanController.instance,
+          builder: (ctrl) {
+            final isCompleted = ctrl.currentJuz.value >= 30;
+            return Stack(
+              alignment: Alignment.center,
+              children: [
+                // دائرة التقدم
+                SizedBox(
+                  width: 100,
+                  height: 100,
+                  child: CircularProgressIndicator(
+                    value: ctrl.khatmaProgress / 100,
+                    strokeWidth: 12,
+                    strokeCap: StrokeCap.round,
+                    backgroundColor: context.theme.colorScheme.surface
+                        .withValues(alpha: 0.1),
+                    valueColor: AlwaysStoppedAnimation<Color>(
+                      isCompleted
+                          ? context.theme.colorScheme.surface
+                          : context.theme.colorScheme.surface.withValues(
+                              alpha: .7,
+                            ),
                     ),
                   ),
-                  // العدد
-                  Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        '${ctrl.currentJuz.value}'.convertNumbers(),
-                        style: TextStyle(
-                          height: 1.4,
-                          fontSize: 26,
-                          fontFamily: 'cairo',
-                          fontWeight: FontWeight.bold,
-                          color: context.theme.colorScheme.surface,
-                        ),
+                ),
+                // العدد
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      '${ctrl.currentJuz.value}'.convertNumbersToCurrentLang(),
+                      style: TextStyle(
+                        height: 1.4,
+                        fontSize: 26,
+                        fontFamily: 'cairo',
+                        fontWeight: FontWeight.bold,
+                        color: context.theme.colorScheme.surface,
                       ),
-                      Text(
-                        'juz'.tr,
-                        style: TextStyle(
-                          height: 1.4,
-                          fontSize: 14,
-                          fontFamily: 'cairo',
-                          fontWeight: FontWeight.bold,
-                          color: context.theme.colorScheme.surface,
-                        ),
+                    ),
+                    Text(
+                      'juz'.tr,
+                      style: TextStyle(
+                        height: 1.4,
+                        fontSize: 14,
+                        fontFamily: 'cairo',
+                        fontWeight: FontWeight.bold,
+                        color: context.theme.colorScheme.surface,
                       ),
-                    ],
-                  ),
-                ],
-              );
-            }),
+                    ),
+                  ],
+                ),
+              ],
+            );
+          },
+        ),
         const Spacer(),
         GetBuilder<RamadanController>(
           init: RamadanController.instance,
@@ -99,11 +101,14 @@ class QuranTrackerWidget extends StatelessWidget {
               // if (ctrl.completedKhatmasCount > 0) ...[
               Container(
                 height: 150,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 8,
+                ),
                 decoration: BoxDecoration(
-                  color:
-                      context.theme.colorScheme.surface.withValues(alpha: .1),
+                  color: context.theme.colorScheme.surface.withValues(
+                    alpha: .1,
+                  ),
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Row(
@@ -120,7 +125,7 @@ class QuranTrackerWidget extends StatelessWidget {
                         const Gap(16),
                         Text(
                           '${ctrl.completedKhatmasCount} ${'khatmas'.tr}'
-                              .convertNumbers(),
+                              .convertNumbersToCurrentLang(),
                           style: TextStyle(
                             fontSize: 14,
                             fontFamily: 'cairo',
@@ -133,7 +138,9 @@ class QuranTrackerWidget extends StatelessWidget {
                           onTap: ctrl.resetQuranData,
                           child: Container(
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 8, vertical: 1),
+                              horizontal: 8,
+                              vertical: 1,
+                            ),
                             decoration: BoxDecoration(
                               color: context.theme.colorScheme.surface,
                               borderRadius: BorderRadius.circular(4),
@@ -148,7 +155,7 @@ class QuranTrackerWidget extends StatelessWidget {
                               ),
                             ),
                           ),
-                        )
+                        ),
                       ],
                     ),
                     const Gap(16),
@@ -209,16 +216,9 @@ class _ModernControlButton extends StatelessWidget {
           decoration: BoxDecoration(
             color: color.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(16),
-            border: Border.all(
-              color: color.withValues(alpha: 0.3),
-              width: 1.5,
-            ),
+            border: Border.all(color: color.withValues(alpha: 0.3), width: 1.5),
           ),
-          child: Icon(
-            icon,
-            size: 28,
-            color: color,
-          ),
+          child: Icon(icon, size: 28, color: color),
         ),
       ),
     );

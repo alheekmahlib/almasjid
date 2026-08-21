@@ -23,8 +23,10 @@ class PrayersWidgetConfig {
       if (!adhanCtrl.state.isPrayerTimesInitialized.value ||
           adhanCtrl.state.prayerTimes == null ||
           adhanCtrl.state.sunnahTimes == null) {
-        log('Prayer times not initialized — trying MonthlyPrayerCache fallback',
-            name: 'PrayersWidgetConfig');
+        log(
+          'Prayer times not initialized — trying MonthlyPrayerCache fallback',
+          name: 'PrayersWidgetConfig',
+        );
 
         // محاولة التحديث من الكاش الشهري مباشرة بدون انتظار AdhanController
         final fallbackSuccess = await _updateFromMonthlyCache();
@@ -38,8 +40,10 @@ class PrayersWidgetConfig {
         // Retry after 2 seconds if not exceeded max retries
         if (_retryCount < _maxRetries) {
           _retryCount++;
-          log('Retrying widget update ($_retryCount/$_maxRetries)...',
-              name: 'PrayersWidgetConfig');
+          log(
+            'Retrying widget update ($_retryCount/$_maxRetries)...',
+            name: 'PrayersWidgetConfig',
+          );
           await Future.delayed(const Duration(seconds: 2));
           return await updatePrayersDate();
         } else {
@@ -55,8 +59,10 @@ class PrayersWidgetConfig {
 
       if (adhanCtrl.prayerNameList.isEmpty ||
           adhanCtrl.prayerNameList.length < 8) {
-        log('Invalid prayer list data — trying MonthlyPrayerCache fallback',
-            name: 'PrayersWidgetConfig');
+        log(
+          'Invalid prayer list data — trying MonthlyPrayerCache fallback',
+          name: 'PrayersWidgetConfig',
+        );
 
         final fallbackSuccess = await _updateFromMonthlyCache();
         lastUpdateSucceeded = fallbackSuccess;
@@ -110,14 +116,18 @@ class PrayersWidgetConfig {
           hijriDayName: weekDaysFullName[hijri.weekDay() - 1].tr,
           hijriMonth: '${hijri.hMonth}',
           hijriYear: '${hijri.hYear}',
-          currentPrayerName:
-              adhanCtrl.getPrayerDetails(isNextPrayer: false).prayerName,
-          nextPrayerName:
-              adhanCtrl.getPrayerDetails(isNextPrayer: true).prayerName,
-          currentPrayerTime:
-              adhanCtrl.getPrayerDetails(isNextPrayer: false).prayerTime,
-          nextPrayerTime:
-              adhanCtrl.getPrayerDetails(isNextPrayer: true).prayerTime,
+          currentPrayerName: adhanCtrl
+              .getPrayerDetails(isNextPrayer: false)
+              .prayerName,
+          nextPrayerName: adhanCtrl
+              .getPrayerDetails(isNextPrayer: true)
+              .prayerName,
+          currentPrayerTime: adhanCtrl
+              .getPrayerDetails(isNextPrayer: false)
+              .prayerTime,
+          nextPrayerTime: adhanCtrl
+              .getPrayerDetails(isNextPrayer: true)
+              .prayerTime,
           appLanguage: Get.locale?.languageCode ?? 'ar',
         );
       } else if (Platform.isIOS) {
@@ -129,11 +139,17 @@ class PrayersWidgetConfig {
         await HomeWidget.saveWidgetData('ishaTime', '$ishaTime');
         await HomeWidget.saveWidgetData('sunriseTime', '$sunriseTime');
         await HomeWidget.saveWidgetData(
-            'middleOfTheNightTime', '$middleOfTheNightTime');
+          'middleOfTheNightTime',
+          '$middleOfTheNightTime',
+        );
         await HomeWidget.saveWidgetData(
-            'lastThirdOfTheNightTime', '$lastThirdOfTheNightTime');
-        log('Saved individual prayer times (forced even if monthly present)',
-            name: 'PrayersWidgetConfig');
+          'lastThirdOfTheNightTime',
+          '$lastThirdOfTheNightTime',
+        );
+        log(
+          'Saved individual prayer times (forced even if monthly present)',
+          name: 'PrayersWidgetConfig',
+        );
         await HomeWidget.saveWidgetData('fajrName', fajrName.tr);
         await HomeWidget.saveWidgetData('dhuhrName', dhuhrName.tr);
         await HomeWidget.saveWidgetData('asrName', asrName.tr);
@@ -141,68 +157,118 @@ class PrayersWidgetConfig {
         await HomeWidget.saveWidgetData('ishaName', ishaName.tr);
         await HomeWidget.saveWidgetData('sunriseName', sunriseName.tr);
         await HomeWidget.saveWidgetData(
-            'middleOfTheNightName', middleOfTheNightName.tr);
+          'middleOfTheNightName',
+          middleOfTheNightName.tr,
+        );
         await HomeWidget.saveWidgetData(
-            'lastThirdOfTheNightName', lastThirdOfTheNightName.tr);
+          'lastThirdOfTheNightName',
+          lastThirdOfTheNightName.tr,
+        );
         await HomeWidget.saveWidgetData('hijriDay', '${hijri.hDay}');
         await HomeWidget.saveWidgetData(
-            'hijriDayName', weekDaysFullName[hijri.weekDay() - 1].tr);
+          'hijriDayName',
+          weekDaysFullName[hijri.weekDay() - 1].tr,
+        );
         await HomeWidget.saveWidgetData('hijriMonth', '${hijri.hMonth}');
         await HomeWidget.saveWidgetData('hijriYear', '${hijri.hYear}');
         await HomeWidget.saveWidgetData(
-            'appLanguage', Get.locale?.languageCode ?? 'ar');
+          'appLanguage',
+          Get.locale?.languageCode ?? 'ar',
+        );
       } else if (Platform.isAndroid) {
         // حفظ طوابع زمنية لدعم عدّاد الوديجت (Chronometer)
         final currentPrayer = adhanCtrl.getPrayerDetails(isNextPrayer: false);
         final nextPrayer = adhanCtrl.getPrayerDetails(isNextPrayer: true);
         if (currentPrayer.prayerTime != null) {
-          await HomeWidget.saveWidgetData<int>('current_prayer_epoch',
-              currentPrayer.prayerTime!.millisecondsSinceEpoch);
+          await HomeWidget.saveWidgetData<int>(
+            'current_prayer_epoch',
+            currentPrayer.prayerTime!.millisecondsSinceEpoch,
+          );
         }
         if (nextPrayer.prayerTime != null) {
-          await HomeWidget.saveWidgetData<int>('next_prayer_epoch',
-              nextPrayer.prayerTime!.millisecondsSinceEpoch);
+          await HomeWidget.saveWidgetData<int>(
+            'next_prayer_epoch',
+            nextPrayer.prayerTime!.millisecondsSinceEpoch,
+          );
         }
         await HomeWidget.saveWidgetData<String>(
-            'hijri_day_number', '${hijri.hDay}'.convertNumbers());
+          'hijri_day_number',
+          '${hijri.hDay}'.convertNumbersToCurrentLang(),
+        );
         await HomeWidget.saveWidgetData<String>(
-            'hijri_day_name', weekDaysFullName[hijri.weekDay() - 1].tr);
+          'hijri_day_name',
+          weekDaysFullName[hijri.weekDay() - 1].tr,
+        );
         await HomeWidget.saveWidgetData<String>(
-            'hijri_year', '${hijri.hYear}'.convertNumbers());
+          'hijri_year',
+          '${hijri.hYear}'.convertNumbersToCurrentLang(),
+        );
         await HomeWidget.saveWidgetData<String>(
-            'hijri_month_image', '${hijri.hMonth}');
-        await HomeWidget.saveWidgetData<String>('current_prayer_name',
-            adhanCtrl.getPrayerDetails(isNextPrayer: false).prayerName);
+          'hijri_month_image',
+          '${hijri.hMonth}',
+        );
         await HomeWidget.saveWidgetData<String>(
-            'current_prayer_time',
-            DateFormatter.formatPrayerTime(
-                    adhanCtrl.getPrayerDetails(isNextPrayer: false).prayerTime)
-                .convertNumbers());
+          'current_prayer_name',
+          adhanCtrl.getPrayerDetails(isNextPrayer: false).prayerName,
+        );
         await HomeWidget.saveWidgetData<String>(
-            'next_prayer_time',
-            DateFormatter.formatPrayerTime(
-                    adhanCtrl.getPrayerDetails(isNextPrayer: true).prayerTime)
-                .convertNumbers());
-        await HomeWidget.saveWidgetData<String>('fajr_time',
-            DateFormatter.formatPrayerTime(fajrTime).convertNumbers());
-        await HomeWidget.saveWidgetData<String>('shuroq_time',
-            DateFormatter.formatPrayerTime(sunriseTime).convertNumbers());
-        await HomeWidget.saveWidgetData<String>('dhuhr_time',
-            DateFormatter.formatPrayerTime(dhuhrTime).convertNumbers());
-        await HomeWidget.saveWidgetData<String>('asr_time',
-            DateFormatter.formatPrayerTime(asrTime).convertNumbers());
-        await HomeWidget.saveWidgetData<String>('maghrib_time',
-            DateFormatter.formatPrayerTime(maghribTime).convertNumbers());
-        await HomeWidget.saveWidgetData<String>('isha_time',
-            DateFormatter.formatPrayerTime(ishaTime).convertNumbers());
+          'current_prayer_time',
+          DateFormatter.formatPrayerTime(
+            adhanCtrl.getPrayerDetails(isNextPrayer: false).prayerTime,
+          ).convertNumbersToCurrentLang(),
+        );
         await HomeWidget.saveWidgetData<String>(
-            'muntasaf_allayl_time',
-            DateFormatter.formatPrayerTime(middleOfTheNightTime)
-                .convertNumbers());
+          'next_prayer_time',
+          DateFormatter.formatPrayerTime(
+            adhanCtrl.getPrayerDetails(isNextPrayer: true).prayerTime,
+          ).convertNumbersToCurrentLang(),
+        );
         await HomeWidget.saveWidgetData<String>(
-            'althuluth_alakhir_time',
-            DateFormatter.formatPrayerTime(lastThirdOfTheNightTime)
-                .convertNumbers());
+          'fajr_time',
+          DateFormatter.formatPrayerTime(
+            fajrTime,
+          ).convertNumbersToCurrentLang(),
+        );
+        await HomeWidget.saveWidgetData<String>(
+          'shuroq_time',
+          DateFormatter.formatPrayerTime(
+            sunriseTime,
+          ).convertNumbersToCurrentLang(),
+        );
+        await HomeWidget.saveWidgetData<String>(
+          'dhuhr_time',
+          DateFormatter.formatPrayerTime(
+            dhuhrTime,
+          ).convertNumbersToCurrentLang(),
+        );
+        await HomeWidget.saveWidgetData<String>(
+          'asr_time',
+          DateFormatter.formatPrayerTime(asrTime).convertNumbersToCurrentLang(),
+        );
+        await HomeWidget.saveWidgetData<String>(
+          'maghrib_time',
+          DateFormatter.formatPrayerTime(
+            maghribTime,
+          ).convertNumbersToCurrentLang(),
+        );
+        await HomeWidget.saveWidgetData<String>(
+          'isha_time',
+          DateFormatter.formatPrayerTime(
+            ishaTime,
+          ).convertNumbersToCurrentLang(),
+        );
+        await HomeWidget.saveWidgetData<String>(
+          'muntasaf_allayl_time',
+          DateFormatter.formatPrayerTime(
+            middleOfTheNightTime,
+          ).convertNumbersToCurrentLang(),
+        );
+        await HomeWidget.saveWidgetData<String>(
+          'althuluth_alakhir_time',
+          DateFormatter.formatPrayerTime(
+            lastThirdOfTheNightTime,
+          ).convertNumbersToCurrentLang(),
+        );
         await HomeWidget.saveWidgetData<String>('fajr_name', fajrName.tr);
         await HomeWidget.saveWidgetData<String>('shuroq_name', sunriseName.tr);
         await HomeWidget.saveWidgetData<String>('dhuhr_name', dhuhrName.tr);
@@ -210,15 +276,23 @@ class PrayersWidgetConfig {
         await HomeWidget.saveWidgetData<String>('maghrib_name', maghribName.tr);
         await HomeWidget.saveWidgetData<String>('isha_name', ishaName.tr);
         await HomeWidget.saveWidgetData<String>(
-            'muntasaf_allayl_name', middleOfTheNightName.tr);
+          'muntasaf_allayl_name',
+          middleOfTheNightName.tr,
+        );
         await HomeWidget.saveWidgetData<String>(
-            'althuluth_alakhir_name', lastThirdOfTheNightName.tr);
+          'althuluth_alakhir_name',
+          lastThirdOfTheNightName.tr,
+        );
         // اسم الصلاة التالية للاستخدام في الوديجت
-        await HomeWidget.saveWidgetData<String>('next_prayer_name',
-            adhanCtrl.getPrayerDetails(isNextPrayer: true).prayerName);
+        await HomeWidget.saveWidgetData<String>(
+          'next_prayer_name',
+          adhanCtrl.getPrayerDetails(isNextPrayer: true).prayerName,
+        );
         // تمرير لغة التطبيق اختيارياً في أندرويد (قد تُستخدم في المزود الأصلي للويدجت)
         await HomeWidget.saveWidgetData<String>(
-            'app_language', Get.locale?.languageCode ?? 'ar');
+          'app_language',
+          Get.locale?.languageCode ?? 'ar',
+        );
       }
 
       // كتابة بيانات الشهر الكامل إلى مخزن الويدجت المشترك — قبل التحديث
@@ -257,8 +331,10 @@ class PrayersWidgetConfig {
         final now = DateTime.now();
         final diff = nextPrayer.prayerTime!.difference(now);
         if (diff.inSeconds > 0) {
-          _updateTimer =
-              Timer(diff + const Duration(minutes: 1), updatePrayersDate);
+          _updateTimer = Timer(
+            diff + const Duration(minutes: 1),
+            updatePrayersDate,
+          );
         }
       }
     } catch (e) {
@@ -281,13 +357,17 @@ class PrayersWidgetConfig {
       final now = DateTime.now();
       final dayTimes = MonthlyPrayerCache.getPrayerTimesForDate(now);
       if (dayTimes == null) {
-        log('No MonthlyPrayerCache data for today',
-            name: 'PrayersWidgetConfig');
+        log(
+          'No MonthlyPrayerCache data for today',
+          name: 'PrayersWidgetConfig',
+        );
         return false;
       }
 
-      log('Updating widget from MonthlyPrayerCache fallback',
-          name: 'PrayersWidgetConfig');
+      log(
+        'Updating widget from MonthlyPrayerCache fallback',
+        name: 'PrayersWidgetConfig',
+      );
 
       final fajrTime = dayTimes.fajr;
       final sunriseTime = dayTimes.sunrise;
@@ -301,8 +381,9 @@ class PrayersWidgetConfig {
       // أسماء الصلوات مع مراعاة الجمعة ورمضان
       const fajrName = 'Fajr';
       const sunriseName = 'Sunrise';
-      final dhuhrName =
-          intl.DateFormat('EEEE').format(now) == 'Friday' ? 'Friday' : 'Dhuhr';
+      final dhuhrName = intl.DateFormat('EEEE').format(now) == 'Friday'
+          ? 'Friday'
+          : 'Dhuhr';
       const asrName = 'Asr';
       final hijri = HijriDate.now();
       final maghribName = hijri.hMonth == 9 ? 'ramadanMaghribName' : 'Maghrib';
@@ -387,9 +468,13 @@ class PrayersWidgetConfig {
         await HomeWidget.saveWidgetData('ishaTime', '$ishaTime');
         await HomeWidget.saveWidgetData('sunriseTime', '$sunriseTime');
         await HomeWidget.saveWidgetData(
-            'middleOfTheNightTime', '$middleOfTheNightTime');
+          'middleOfTheNightTime',
+          '$middleOfTheNightTime',
+        );
         await HomeWidget.saveWidgetData(
-            'lastThirdOfTheNightTime', '$lastThirdOfTheNightTime');
+          'lastThirdOfTheNightTime',
+          '$lastThirdOfTheNightTime',
+        );
         await HomeWidget.saveWidgetData('fajrName', fajrName.tr);
         await HomeWidget.saveWidgetData('dhuhrName', dhuhrName.tr);
         await HomeWidget.saveWidgetData('asrName', asrName.tr);
@@ -397,59 +482,115 @@ class PrayersWidgetConfig {
         await HomeWidget.saveWidgetData('ishaName', ishaName.tr);
         await HomeWidget.saveWidgetData('sunriseName', sunriseName.tr);
         await HomeWidget.saveWidgetData(
-            'middleOfTheNightName', middleOfTheNightName.tr);
+          'middleOfTheNightName',
+          middleOfTheNightName.tr,
+        );
         await HomeWidget.saveWidgetData(
-            'lastThirdOfTheNightName', lastThirdOfTheNightName.tr);
+          'lastThirdOfTheNightName',
+          lastThirdOfTheNightName.tr,
+        );
         await HomeWidget.saveWidgetData('hijriDay', '${hijri.hDay}');
         await HomeWidget.saveWidgetData(
-            'hijriDayName', weekDaysFullName[hijri.weekDay() - 1].tr);
+          'hijriDayName',
+          weekDaysFullName[hijri.weekDay() - 1].tr,
+        );
         await HomeWidget.saveWidgetData('hijriMonth', '${hijri.hMonth}');
         await HomeWidget.saveWidgetData('hijriYear', '${hijri.hYear}');
         await HomeWidget.saveWidgetData(
-            'appLanguage', Get.locale?.languageCode ?? 'ar');
+          'appLanguage',
+          Get.locale?.languageCode ?? 'ar',
+        );
       } else if (Platform.isAndroid) {
         if (currentPrayerTime != null) {
           await HomeWidget.saveWidgetData<int>(
-              'current_prayer_epoch', currentPrayerTime.millisecondsSinceEpoch);
+            'current_prayer_epoch',
+            currentPrayerTime.millisecondsSinceEpoch,
+          );
         }
         if (nextPrayerTime != null) {
           await HomeWidget.saveWidgetData<int>(
-              'next_prayer_epoch', nextPrayerTime.millisecondsSinceEpoch);
+            'next_prayer_epoch',
+            nextPrayerTime.millisecondsSinceEpoch,
+          );
         }
         await HomeWidget.saveWidgetData<String>(
-            'hijri_day_number', '${hijri.hDay}'.convertNumbers());
+          'hijri_day_number',
+          '${hijri.hDay}'.convertNumbersToCurrentLang(),
+        );
         await HomeWidget.saveWidgetData<String>(
-            'hijri_day_name', weekDaysFullName[hijri.weekDay() - 1].tr);
+          'hijri_day_name',
+          weekDaysFullName[hijri.weekDay() - 1].tr,
+        );
         await HomeWidget.saveWidgetData<String>(
-            'hijri_year', '${hijri.hYear}'.convertNumbers());
+          'hijri_year',
+          '${hijri.hYear}'.convertNumbersToCurrentLang(),
+        );
         await HomeWidget.saveWidgetData<String>(
-            'hijri_month_image', '${hijri.hMonth}');
+          'hijri_month_image',
+          '${hijri.hMonth}',
+        );
         await HomeWidget.saveWidgetData<String>(
-            'current_prayer_name', currentPrayerName);
-        await HomeWidget.saveWidgetData<String>('current_prayer_time',
-            DateFormatter.formatPrayerTime(currentPrayerTime).convertNumbers());
-        await HomeWidget.saveWidgetData<String>('next_prayer_time',
-            DateFormatter.formatPrayerTime(nextPrayerTime).convertNumbers());
-        await HomeWidget.saveWidgetData<String>('fajr_time',
-            DateFormatter.formatPrayerTime(fajrTime).convertNumbers());
-        await HomeWidget.saveWidgetData<String>('shuroq_time',
-            DateFormatter.formatPrayerTime(sunriseTime).convertNumbers());
-        await HomeWidget.saveWidgetData<String>('dhuhr_time',
-            DateFormatter.formatPrayerTime(dhuhrTime).convertNumbers());
-        await HomeWidget.saveWidgetData<String>('asr_time',
-            DateFormatter.formatPrayerTime(asrTime).convertNumbers());
-        await HomeWidget.saveWidgetData<String>('maghrib_time',
-            DateFormatter.formatPrayerTime(maghribTime).convertNumbers());
-        await HomeWidget.saveWidgetData<String>('isha_time',
-            DateFormatter.formatPrayerTime(ishaTime).convertNumbers());
+          'current_prayer_name',
+          currentPrayerName,
+        );
         await HomeWidget.saveWidgetData<String>(
-            'muntasaf_allayl_time',
-            DateFormatter.formatPrayerTime(middleOfTheNightTime)
-                .convertNumbers());
+          'current_prayer_time',
+          DateFormatter.formatPrayerTime(
+            currentPrayerTime,
+          ).convertNumbersToCurrentLang(),
+        );
         await HomeWidget.saveWidgetData<String>(
-            'althuluth_alakhir_time',
-            DateFormatter.formatPrayerTime(lastThirdOfTheNightTime)
-                .convertNumbers());
+          'next_prayer_time',
+          DateFormatter.formatPrayerTime(
+            nextPrayerTime,
+          ).convertNumbersToCurrentLang(),
+        );
+        await HomeWidget.saveWidgetData<String>(
+          'fajr_time',
+          DateFormatter.formatPrayerTime(
+            fajrTime,
+          ).convertNumbersToCurrentLang(),
+        );
+        await HomeWidget.saveWidgetData<String>(
+          'shuroq_time',
+          DateFormatter.formatPrayerTime(
+            sunriseTime,
+          ).convertNumbersToCurrentLang(),
+        );
+        await HomeWidget.saveWidgetData<String>(
+          'dhuhr_time',
+          DateFormatter.formatPrayerTime(
+            dhuhrTime,
+          ).convertNumbersToCurrentLang(),
+        );
+        await HomeWidget.saveWidgetData<String>(
+          'asr_time',
+          DateFormatter.formatPrayerTime(asrTime).convertNumbersToCurrentLang(),
+        );
+        await HomeWidget.saveWidgetData<String>(
+          'maghrib_time',
+          DateFormatter.formatPrayerTime(
+            maghribTime,
+          ).convertNumbersToCurrentLang(),
+        );
+        await HomeWidget.saveWidgetData<String>(
+          'isha_time',
+          DateFormatter.formatPrayerTime(
+            ishaTime,
+          ).convertNumbersToCurrentLang(),
+        );
+        await HomeWidget.saveWidgetData<String>(
+          'muntasaf_allayl_time',
+          DateFormatter.formatPrayerTime(
+            middleOfTheNightTime,
+          ).convertNumbersToCurrentLang(),
+        );
+        await HomeWidget.saveWidgetData<String>(
+          'althuluth_alakhir_time',
+          DateFormatter.formatPrayerTime(
+            lastThirdOfTheNightTime,
+          ).convertNumbersToCurrentLang(),
+        );
         await HomeWidget.saveWidgetData<String>('fajr_name', fajrName.tr);
         await HomeWidget.saveWidgetData<String>('shuroq_name', sunriseName.tr);
         await HomeWidget.saveWidgetData<String>('dhuhr_name', dhuhrName.tr);
@@ -457,13 +598,21 @@ class PrayersWidgetConfig {
         await HomeWidget.saveWidgetData<String>('maghrib_name', maghribName.tr);
         await HomeWidget.saveWidgetData<String>('isha_name', ishaName.tr);
         await HomeWidget.saveWidgetData<String>(
-            'muntasaf_allayl_name', middleOfTheNightName.tr);
+          'muntasaf_allayl_name',
+          middleOfTheNightName.tr,
+        );
         await HomeWidget.saveWidgetData<String>(
-            'althuluth_alakhir_name', lastThirdOfTheNightName.tr);
+          'althuluth_alakhir_name',
+          lastThirdOfTheNightName.tr,
+        );
         await HomeWidget.saveWidgetData<String>(
-            'next_prayer_name', nextPrayerName);
+          'next_prayer_name',
+          nextPrayerName,
+        );
         await HomeWidget.saveWidgetData<String>(
-            'app_language', Get.locale?.languageCode ?? 'ar');
+          'app_language',
+          Get.locale?.languageCode ?? 'ar',
+        );
       }
 
       // كتابة بيانات الشهر الكامل إلى مخزن الويدجت المشترك — قبل التحديث
@@ -485,8 +634,10 @@ class PrayersWidgetConfig {
         );
       }
 
-      log('Widget updated from MonthlyPrayerCache successfully',
-          name: 'PrayersWidgetConfig');
+      log(
+        'Widget updated from MonthlyPrayerCache successfully',
+        name: 'PrayersWidgetConfig',
+      );
       return true;
     } catch (e) {
       log('Error in _updateFromMonthlyCache: $e', name: 'PrayersWidgetConfig');
@@ -512,7 +663,11 @@ class PrayersWidgetConfig {
       ];
 
       for (final monthStart in months) {
-        final daysInMonth = DateTime(monthStart.year, monthStart.month + 1, 0).day;
+        final daysInMonth = DateTime(
+          monthStart.year,
+          monthStart.month + 1,
+          0,
+        ).day;
         final days = <String, String>{};
 
         for (int day = 1; day <= daysInMonth; day++) {
@@ -537,21 +692,28 @@ class PrayersWidgetConfig {
         };
 
         // مفتاح خاص بكل شهر + المفتاح العام للتوافقية
-        final monthKey = 'monthly_prayer_times_${monthStart.year}_${monthStart.month}';
+        final monthKey =
+            'monthly_prayer_times_${monthStart.year}_${monthStart.month}';
         await HomeWidget.saveWidgetData<String>(monthKey, jsonEncode(data));
 
         // الاحتفاظ بالمفتاح القديم للشهر الحالي (توافقية مع Provider.swift القديم)
         if (monthStart.year == now.year && monthStart.month == now.month) {
           await HomeWidget.saveWidgetData<String>(
-              'monthly_prayer_times', jsonEncode(data));
+            'monthly_prayer_times',
+            jsonEncode(data),
+          );
         }
 
-        log('Monthly prayer data written to widget storage (${monthStart.year}-${monthStart.month}, ${days.length} days)',
-            name: 'PrayersWidgetConfig');
+        log(
+          'Monthly prayer data written to widget storage (${monthStart.year}-${monthStart.month}, ${days.length} days)',
+          name: 'PrayersWidgetConfig',
+        );
       }
     } catch (e) {
-      log('Error writing monthly data to widget storage: $e',
-          name: 'PrayersWidgetConfig');
+      log(
+        'Error writing monthly data to widget storage: $e',
+        name: 'PrayersWidgetConfig',
+      );
     }
   }
 
@@ -567,8 +729,10 @@ class PrayersWidgetConfig {
               Get.toNamed(AppRouter.homeScreen);
             } catch (_) {
               try {
-                Get.to(() => const HomeScreen(),
-                    transition: Transition.downToUp);
+                Get.to(
+                  () => const HomeScreen(),
+                  transition: Transition.downToUp,
+                );
               } catch (_) {}
             }
           });
