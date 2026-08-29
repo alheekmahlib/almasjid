@@ -1,71 +1,34 @@
-import 'dart:developer' show log;
-import 'dart:io' show Platform;
+import 'dart:async' show unawaited;
 
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:rate_my_app/rate_my_app.dart';
+import 'package:multi_store_review/multi_store_review.dart';
 
 class RateAppHelper {
-  static Future<void> initRateMyApp() async {
-    if (Platform.isIOS || Platform.isFuchsia) {
-      await rateMyApp.init();
-      if (rateMyApp.shouldOpenDialog) {
-        rateMyApp.showRateDialog(Get.context!);
-      }
-    }
+  static final MultiStoreReview _review = MultiStoreReview.instance;
+
+  /// معرّف التطبيق في App Store؛ يغطي iOS وmacOS معًا لأن القائمة شراء
+  /// موحّد (universal purchase). متجر Google يُستنتج تلقائيًا من اسم
+  /// الحزمة com.alheekmah.aqimApp.
+  static const StoreListing _listing = StoreListing(appStoreId: '6752765521');
+
+  /// يُنادى مرة عند إقلاع التطبيق: يعدّ الإطلاق ويسلّح بوابة التقييم.
+  ///
+  /// الأرقام منسوخة من إعداد rate_my_app السابق:
+  /// 7 تشغيلات قبل أول طلب، و15 يومًا بين المحاولات.
+  /// الحالة تُخزَّن داخل المنصة نفسها (SharedPreferences/UserDefaults) —
+  /// لا تحتاج get_storage ولا أي إعداد إضافي.
+  static void initReviewGate() {
+    unawaited(
+      _review.configure(
+        policy: const ReviewPolicy(minLaunches: 7, minDaysBetweenPrompts: 15),
+      ),
+    );
   }
 
-  static final RateMyApp rateMyApp = RateMyApp(
-    preferencesPrefix: 'rateMyApp_',
-    minDays: 5,
-    minLaunches: 7,
-    remindDays: 15,
-    remindLaunches: 20,
-    googlePlayIdentifier: 'com.alheekmah.alheekmahLibrary',
-    appStoreIdentifier: '6742311921',
-  );
-
-  static void showRateDialog(BuildContext context) {
-    if (rateMyApp.shouldOpenDialog) {
-      rateMyApp.showRateDialog(
-        context,
-        title: 'Rate this app',
-        // The dialog title.
-        message:
-            'If you like this app, please take a little bit of your time to review it !\nIt really helps us and it shouldn\'t take you more than one minute.',
-        // The dialog message.
-        rateButton: 'RATE',
-        // The dialog "rate" button text.
-        noButton: 'NO THANKS',
-        // The dialog "no" button text.
-        laterButton: 'MAYBE LATER',
-        // The dialog "later" button text.
-        listener: (button) {
-          // The button click listener (useful if you want to cancel the click event).
-          switch (button) {
-            case RateMyAppDialogButton.rate:
-              log('Clicked on "Rate".');
-              break;
-            case RateMyAppDialogButton.later:
-              log('Clicked on "Later".');
-              break;
-            case RateMyAppDialogButton.no:
-              log('Clicked on "No".');
-              break;
-          }
-
-          return true; // Return false if you want to cancel the click event.
-        },
-        ignoreNativeDialog: Platform.isAndroid,
-        // Set to false if you want to show the Apple's native app rating dialog on iOS or Google's native app rating dialog (depends on the current Platform).
-        dialogStyle: const DialogStyle(),
-        // Custom dialog styles.
-
-        onDismissed: () => rateMyApp.callEvent(RateMyAppEventType
-            .laterButtonPressed), // Called when the user dismissed the dialog (either by taping outside or by pressing the "back" button).
-        // contentBuilder: (context, defaultContent) => content, // This one allows you to change the default dialog content.
-        // actionsBuilder: (context) => [], // This one allows you to use your own buttons.
-      );
-    }
-  }
+  /// اسأل بوابة التقييم في اللحظات الإيجابية (إتمام مهمة أعجب المستخدم...).
+  ///
+  /// تعيد true إذا جرت محاولة عرض حوار التقييم (أو فتح صفحة المتجر كحل
+  /// بديل)، وfalse إن قررت البوابة الانتظار. لا ترمي استثناءً أبدًا،
+  /// وحوار التقييم أصلي ومترجم وفق لغة جهاز المستخدم.
+  static Future<bool> maybeRequestReview() =>
+      _review.maybeRequestReview(listing: _listing);
 }

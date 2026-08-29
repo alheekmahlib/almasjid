@@ -67,11 +67,15 @@ dependencies:
   just_audio: ^0.10.6
   latlong2: ^0.10.1
   lottie: ^3.5.1
+  multi_store_review:
+    git:
+      url: https://github.com/alheekmahlib/multi_store_review.git
+      path: multi_store_review
+      ref: multi_store_review-v2.2.0
   nominatim_geocoding: ^0.0.6
   package_rename: ^1.10.1
   path: ^1.9.1
   path_provider: ^2.1.6
-  rate_my_app: ^2.4.1
   screenshot: ^3.0.0
   share_plus: ^12.0.2
   slide_countdown: ^2.0.2
@@ -87,6 +91,13 @@ dev_dependencies:
   flutter_lints: ^5.0.0
   flutter_test:
     sdk: flutter
+  # لاستيراد واجهة المنصة في اختبار rate_app_helper فقط؛ ref الـ override
+  # أعلاه هو الحاكم للمصدر.
+  multi_store_review_platform_interface:
+    git:
+      url: https://github.com/alheekmahlib/multi_store_review.git
+      path: multi_store_review_platform_interface
+      ref: multi_store_review_platform_interface-v2.2.0
 
 flutter_native_splash:
   color: "#001A23"
@@ -166,6 +177,12 @@ flutter:
   # see https://flutter.dev/to/font-from-package
 
 dependency_overrides:
+  # واجهة المنصة في نفس مستودع multi_store_review وغير منشورة على pub.dev.
+  multi_store_review_platform_interface:
+    git:
+      url: https://github.com/alheekmahlib/multi_store_review.git
+      path: multi_store_review_platform_interface
+      ref: multi_store_review_platform_interface-v2.2.0
   # مؤقتًا: إصلاح منعلال حالة قائمة floatica (1.2.1 محليًا) حتى يُنشر الإصدار
   floatica:
     path: ../floatica

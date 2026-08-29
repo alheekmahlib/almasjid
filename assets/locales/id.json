@@ -486,7 +486,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "What'sNewDetails10": "۞ Ditambahkan bagian kota untuk mengetahui waktu sholat di beberapa kota.\n۞ Perbaikan umum kinerja dan stabilitas.",
+  "What'sNewDetails10": "۞ Ditambahkan waktu Iqamah dengan kemampuan menyesuaikan waktu dan notifikasi.\n۞ Peningkatan logika notifikasi.\n۞ Peningkatan kinerja.",
   "@What'sNewDetails10": {
     "type": "text",
     "placeholders": {}

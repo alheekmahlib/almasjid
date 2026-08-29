@@ -64,8 +64,6 @@ class GeneralController extends GetxController with WidgetsBindingObserver {
     // HijriWidgetConfig().updateHijriDate();
     // PrayersWidgetConfig.onPrayerWidgetClicked();
     // HijriWidgetConfig.onHijriWidgetClicked();
-    // Future.delayed(
-    //     const Duration(seconds: 10), () => RateAppHelper.initRateMyApp());
 
     super.onInit();
   }
@@ -82,8 +80,9 @@ class GeneralController extends GetxController with WidgetsBindingObserver {
   void updateGreeting() {
     final now = DateTime.now();
     final isMorning = now.hour < 12;
-    state.greeting.value =
-        isMorning ? 'صبحكم الله بالخير' : 'مساكم الله بالخير';
+    state.greeting.value = isMorning
+        ? 'صبحكم الله بالخير'
+        : 'مساكم الله بالخير';
   }
 
   /// -------- [PrayersMethods] ----------
@@ -117,8 +116,9 @@ class GeneralController extends GetxController with WidgetsBindingObserver {
           if (lastDate != today) {
             // إعادة حساب أوقات الصلاة لليوم الجديد
             // Recalculate prayer times for new day
-            await AdhanController.instance
-                .initializeStoredAdhan(forceUpdate: false);
+            await AdhanController.instance.initializeStoredAdhan(
+              forceUpdate: false,
+            );
 
             // تحديث الويدجت صراحةً بعد إعادة الحساب
             // Explicitly update widget after recalculation
@@ -132,8 +132,10 @@ class GeneralController extends GetxController with WidgetsBindingObserver {
             if (PrayersWidgetConfig.lastUpdateSucceeded) {
               state.box.write('last_widget_update_date', today);
             }
-            log('Date changed on resume: recalculated prayer times',
-                name: 'GeneralController');
+            log(
+              'Date changed on resume: recalculated prayer times',
+              name: 'GeneralController',
+            );
           } else {
             PrayersWidgetConfig().updatePrayersDate();
           }
@@ -156,8 +158,10 @@ class GeneralController extends GetxController with WidgetsBindingObserver {
     await Future.delayed(const Duration(milliseconds: 500));
   }
 
-  Future<void> initLocation(
-      {bool? isOpenSettings = true, bool refreshUI = true}) async {
+  Future<void> initLocation({
+    bool? isOpenSettings = true,
+    bool refreshUI = true,
+  }) async {
     try {
       state.isLocationLoading.value = true;
 
@@ -166,8 +170,10 @@ class GeneralController extends GetxController with WidgetsBindingObserver {
       final hasStoredLocation = storedPosition != null;
       final isConnected = InternetConnectionController.instance.isConnected;
       if (!isConnected && hasStoredLocation) {
-        log('No internet: using stored location without fetching a new one',
-            name: 'GeneralController');
+        log(
+          'No internet: using stored location without fetching a new one',
+          name: 'GeneralController',
+        );
         await _activateLocation(refreshUI: false);
         return;
       }
@@ -221,15 +227,17 @@ class GeneralController extends GetxController with WidgetsBindingObserver {
   // ✅ دالة منفصلة لتفعيل الموقع
   Future<void> _activateLocation({required bool refreshUI}) async {
     if (_isActivatingLocation) {
-      log('Activation already in progress; skipping',
-          name: 'GeneralController');
+      log(
+        'Activation already in progress; skipping',
+        name: 'GeneralController',
+      );
       return;
     }
     _isActivatingLocation = true;
     try {
       final isConnected = InternetConnectionController.instance.isConnected;
-      final locationServiceEnabled =
-          await LocationHelper.instance.isLocationServiceEnabled();
+      final locationServiceEnabled = await LocationHelper.instance
+          .isLocationServiceEnabled();
 
       final stored = PrayerCacheManager.getStoredLocation();
       final shouldUseStoredOnly =
@@ -247,22 +255,26 @@ class GeneralController extends GetxController with WidgetsBindingObserver {
         try {
           await LocationHelper.instance.getPositionDetails();
         } catch (e) {
-          log('getPositionDetails failed, falling back to stored location: $e',
-              name: 'GeneralController');
+          log(
+            'getPositionDetails failed, falling back to stored location: $e',
+            name: 'GeneralController',
+          );
         }
       }
 
       final pos = Location.instance.position;
-      final effectiveLocation =
-          pos != null ? LatLng(pos.latitude, pos.longitude) : stored;
+      final effectiveLocation = pos != null
+          ? LatLng(pos.latitude, pos.longitude)
+          : stored;
 
       log('Location activated: $pos', name: 'Main');
       state.box.write(ACTIVE_LOCATION, true);
       state.box.write(IS_LOCATION_ACTIVE, true);
       state.box.write(FIRST_LAUNCH, true);
 
-      await AdhanController.instance
-          .initializeStoredAdhan(newLocation: effectiveLocation);
+      await AdhanController.instance.initializeStoredAdhan(
+        newLocation: effectiveLocation,
+      );
       AdhanController.instance.state.location =
           await AdhanController.instance.localizedLocation;
       if (refreshUI) {
@@ -295,8 +307,11 @@ class GeneralController extends GetxController with WidgetsBindingObserver {
       Get.forceAppUpdate();
       await SplashScreenController.instance.isNotificationAllowed();
     } catch (e) {
-      log('Error initializing manual location: $e',
-          name: 'GeneralController', error: e);
+      log(
+        'Error initializing manual location: $e',
+        name: 'GeneralController',
+        error: e,
+      );
       rethrow;
     } finally {
       state.isLocationLoading.value = false;
@@ -371,13 +386,12 @@ class GeneralController extends GetxController with WidgetsBindingObserver {
       }
       return false;
     }
-    final newLocation = LatLng(
-      position.latitude,
-      position.longitude,
-    );
+    final newLocation = LatLng(position.latitude, position.longitude);
 
-    log('Current Location: $currentLocation, New Location: $newLocation',
-        name: 'GeneralController');
+    log(
+      'Current Location: $currentLocation, New Location: $newLocation',
+      name: 'GeneralController',
+    );
     if (newLocation != currentLocation) {
       try {
         log('Updating location and prayer times...', name: 'GeneralController');
@@ -402,17 +416,23 @@ class GeneralController extends GetxController with WidgetsBindingObserver {
         // Update widget
         // PrayersWidgetConfig().updatePrayersDate();
 
-        log('Location and prayer times updated successfully',
-            name: 'GeneralController');
+        log(
+          'Location and prayer times updated successfully',
+          name: 'GeneralController',
+        );
         return true;
       } catch (e) {
-        log('Error updating location and prayer times: $e',
-            name: 'GeneralController');
+        log(
+          'Error updating location and prayer times: $e',
+          name: 'GeneralController',
+        );
         return false;
       }
     }
-    log('Location has not changed, no update needed',
-        name: 'GeneralController');
+    log(
+      'Location has not changed, no update needed',
+      name: 'GeneralController',
+    );
     return false;
   }
 }

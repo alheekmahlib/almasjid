@@ -486,7 +486,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "What'sNewDetails10": "۞ Birden çok şehirde namaz vakitlerini öğrenmek için şehirler bölümü eklendi.\n۞ Genel performans ve kararlılık iyileştirmeleri.",
+  "What'sNewDetails10": "۞ İkamet vakitleri eklendi; saat ve bildirimleri özelleştirme imkânıyla.\n۞ Bildirim mantığı iyileştirildi.\n۞ Performans iyileştirmeleri.",
   "@What'sNewDetails10": {
     "type": "text",
     "placeholders": {}

@@ -6,6 +6,7 @@ list(APPEND FLUTTER_PLUGIN_LIST
   connectivity_plus
   flutter_timezone
   geolocator_windows
+  multi_store_review
   share_plus
   url_launcher_windows
 )

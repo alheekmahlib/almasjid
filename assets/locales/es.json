@@ -486,7 +486,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "What'sNewDetails10": "۞ Añadida sección de ciudades para conocer horarios de oración en múltiples ciudades.\n۞ Mejoras generales en rendimiento y estabilidad.",
+  "What'sNewDetails10": "۞ Se añadieron los horarios de Iqama con la posibilidad de personalizar la hora y las notificaciones.\n۞ Se mejoró la lógica de notificaciones.\n۞ Mejoras de rendimiento.",
   "@What'sNewDetails10": {
     "type": "text",
     "placeholders": {}
