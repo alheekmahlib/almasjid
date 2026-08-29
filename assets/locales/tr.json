@@ -775,8 +775,7 @@
   "@minutes": {
     "type": "text",
     "placeholders": {}
-  }
-,
+  },
   "stopAdhan": "Durdur",
   "@stopAdhan": {
     "description": "stopAdhan",
@@ -816,6 +815,12 @@
   "feedbackSentError": "Geri bildirim gönderilemedi, tekrar dene",
   "@feedbackSentError": {
     "description": "feedbackSentError",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackQueued": "Geri bildiriminiz bağlantı geri geldiğinde otomatik olarak gönderilecek",
+  "@feedbackQueued": {
+    "description": "feedbackQueued",
     "type": "text",
     "placeholders": {}
   },

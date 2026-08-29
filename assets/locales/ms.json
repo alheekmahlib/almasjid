@@ -775,8 +775,7 @@
   "@minutes": {
     "type": "text",
     "placeholders": {}
-  }
-,
+  },
   "stopAdhan": "Hentikan",
   "@stopAdhan": {
     "description": "stopAdhan",
@@ -816,6 +815,12 @@
   "feedbackSentError": "Gagal menghantar maklum balas, cuba lagi",
   "@feedbackSentError": {
     "description": "feedbackSentError",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackQueued": "Maklum balas anda akan dihantar secara automatik apabila sambungan kembali",
+  "@feedbackQueued": {
+    "description": "feedbackQueued",
     "type": "text",
     "placeholders": {}
   },

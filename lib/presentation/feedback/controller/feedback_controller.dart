@@ -1,19 +1,23 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:developer' show log;
 import 'dart:io' show File, Platform;
 
+import 'package:connectivity_kit/connectivity_kit.dart';
 import 'package:dio/dio.dart' as dio show FormData, MultipartFile;
 import 'package:either_dart/either.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_info/flutter_app_info.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:image_picker/image_picker.dart';
 
 import '../../../core/services/api_client.dart';
 import '../../../core/services/error_handling_system.dart';
 import '../../../core/services/local_notifications_service.dart';
 import '../../../core/utils/constants/api_constants.dart';
+import '../data/feedback_media_staging.dart';
+import '../data/feedback_queue.dart';
 import '../data/models/feedback_model.dart';
 import '../data/models/feedback_reply_model.dart';
 import '../data/models/feedback_thread.dart';
@@ -88,12 +92,59 @@ class FeedbackController extends GetxController {
   static const int _maxVideoBytes = 50 * 1024 * 1024;
 
   // ---------- Lifecycle ----------
+  /// علامة نتيجة "أُدخلت الطابور": token/id فارغ تتحقق منه الواجهات
+  /// لعرض رسالة الانتظار بدل رسالة النجاح الفوري.
+  static const FeedbackModel _queuedModel = FeedbackModel(
+    id: '',
+    token: '',
+    message: '',
+    status: 'queued',
+    published: false,
+    createdAt: '',
+    updatedAt: '',
+  );
+  static const FeedbackReplyModel _queuedReply = FeedbackReplyModel(
+    id: '',
+    feedbackId: '',
+    authorRole: 'user',
+    body: '',
+    createdAt: '',
+  );
+
+  /// اشتراك أحداث الطابور لتحديث القائمة عند وصول إرسال مؤجَّل.
+  StreamSubscription<QueueEvent>? _queueSubscription;
+
   @override
   void onInit() {
     super.onInit();
     _loadTokens();
     loadAllThreads();
     checkForNewReplies();
+    _listenToQueue();
+  }
+
+  @override
+  void onClose() {
+    _queueSubscription?.cancel();
+    super.onClose();
+  }
+
+  /// عند نجاح إرسال مؤجَّل في الخلفية: حدّث القائمة والمحادثة المفتوحة.
+  void _listenToQueue() {
+    if (!Get.isRegistered<TaskQueueService>()) return;
+    _queueSubscription = Get.find<TaskQueueService>().events.listen((event) {
+      if (event is! QueueTaskSucceeded) return;
+      final type = event.task.type;
+      if (type != FeedbackQueue.submitType && type != FeedbackQueue.replyType) {
+        return;
+      }
+      loadAllThreads();
+      final token = event.task.payload['token']?.toString();
+      final open = openThread.value?.feedback.token;
+      if (token != null && token.isNotEmpty && token == open) {
+        openConversation(token);
+      }
+    });
   }
 
   /// يضمن تحميل القائمة عند فتح شاشة الملاحظات (ولو بعد hot restart).
@@ -192,9 +243,26 @@ class FeedbackController extends GetxController {
     try {
       // اجمع معلومات الجهاز قبل أي await (سياق الواجهة لا يُستخدم عبر الفجوات).
       final userMeta = _collectUserMeta(context);
+
+      // دون اتصال: أدخل الطابور مباشرة بدل الفشل (الوسائط تُرحَّل
+      // إلى مجلد دائم لتُرفع لاحقًا).
+      if (!_isOnline) {
+        return await _enqueueSubmit(
+          trimmed: trimmed,
+          email: email,
+          userMeta: userMeta,
+        );
+      }
+
+      // ارفع الوسائط المختارة أولاً (إن وُجدت) واحصل على روابطها.
       final mediaUrls = await _uploadAllFiles();
       if (mediaUrls == null) {
-        return Left(Failure(500, 'feedbackUploading'));
+        // فشل الرفع (اتصال متذبذب غالبًا) — أسقط للطابور بدل إظهار خطأ.
+        return await _enqueueSubmit(
+          trimmed: trimmed,
+          email: email,
+          userMeta: userMeta,
+        );
       }
 
       final body = <String, dynamic>{
@@ -219,31 +287,111 @@ class FeedbackController extends GetxController {
         printResponse: false,
       );
 
-      return result.fold((failure) => Left(failure), (data) {
-        final map = _asMap(data);
-        if (map == null) return Left(DataSource.DEFAULT.getFailure());
-        final token = map['token']?.toString();
-        final dataField = map['data'];
-        final feedbackMap = dataField is Map
-            ? Map<String, dynamic>.from(dataField)
-            : null;
-        if (feedbackMap == null) return Left(DataSource.DEFAULT.getFailure());
-        final model = FeedbackModel.fromJson(feedbackMap);
-        final finalToken = (token != null && token.isNotEmpty)
-            ? token
-            : model.token;
-        if (finalToken.isNotEmpty) {
-          _addToken(finalToken);
+      // فشل شبكي/خادم → الطابور (الروابط رُفعت بالفعل فتُعاد كما هي)؛
+      // أما 4xx فهي أخطاء حقيقية تُعرض للمستخدم ولا تستحق إعادة محاولة.
+      final failure = result.fold<Failure?>((f) => f, (_) => null);
+      if (failure != null) {
+        if (_isQueueableFailure(failure)) {
+          return await _enqueueSubmit(
+            trimmed: trimmed,
+            email: email,
+            userMeta: userMeta,
+            mediaUrls: mediaUrls,
+          );
         }
-        clearFiles();
-        return Right(model);
-      });
+        return Left(failure);
+      }
+
+      final map = _asMap(result.right);
+      if (map == null) return Left(DataSource.DEFAULT.getFailure());
+      final token = map['token']?.toString();
+      final dataField = map['data'];
+      final feedbackMap = dataField is Map
+          ? Map<String, dynamic>.from(dataField)
+          : null;
+      if (feedbackMap == null) return Left(DataSource.DEFAULT.getFailure());
+      final model = FeedbackModel.fromJson(feedbackMap);
+      final finalToken = (token != null && token.isNotEmpty)
+          ? token
+          : model.token;
+      if (finalToken.isNotEmpty) {
+        _addToken(finalToken);
+      }
+      clearFiles(); // افرغ القائمة بعد النجاح
+      return Right(model);
     } catch (e) {
       log('submitFeedback error: $e', name: 'FeedbackController');
       return Left(DataSource.DEFAULT.getFailure());
     } finally {
       isSubmitting.value = false;
     }
+  }
+
+  // ---------- الطابور دون اتصال ----------
+
+  /// هل يوجد اتصال الآن؟ (بحسب خدمة المراقبة المسجَّلة في main).
+  bool get _isOnline =>
+      Get.isRegistered<ConnectionService>() &&
+      Get.find<ConnectionService>().currentStatus.isOnline;
+
+  /// هل الفشل شبكي/خادم يستحق الدخول في الطابور؟
+  /// في نظام أخطاء هذا التطبيق الأكواد السالبة/الصفرية أخطاء عميل
+  /// شبكية، و5xx أخطاء خادم عابرة — أما 4xx فلا تنجح بإعادة المحاولة.
+  bool _isQueueableFailure(Failure failure) =>
+      failure.code <= 0 || failure.code >= 500;
+
+  /// يضيف ملاحظة جديدة إلى الطابور ويعيد علامة queued.
+  ///
+  /// [mediaUrls] لروابط رُفعت بالفعل (فشل POST بعد نجاح الرفع)، وإلا
+  /// تُرحَّل الملفات المختارة إلى مجلد دائم ليرفعها المعالج لاحقًا.
+  Future<Either<Failure, FeedbackModel>> _enqueueSubmit({
+    required String trimmed,
+    String? email,
+    Map<String, dynamic>? userMeta,
+    List<String> mediaUrls = const [],
+  }) async {
+    final staged = selectedFiles.isNotEmpty && mediaUrls.isEmpty
+        ? await FeedbackMediaStaging.stage(selectedFiles)
+        : const <String>[];
+    await Get.find<TaskQueueService>().enqueue(
+      type: FeedbackQueue.submitType,
+      payload: <String, dynamic>{
+        'message': trimmed,
+        'app_source': appSource,
+        'user_meta': userMeta ?? <String, dynamic>{},
+        if (email != null && email.trim().isNotEmpty)
+          'contact_email': email.trim(),
+        if (mediaUrls.isNotEmpty) 'media_urls': mediaUrls,
+        if (staged.isNotEmpty) FeedbackMediaStaging.payloadKey: staged,
+      },
+    );
+    clearFiles();
+    return const Right(_queuedModel);
+  }
+
+  /// يضيف رد متابعة إلى الطابور ويعيد علامة queued.
+  Future<Either<Failure, FeedbackReplyModel>> _enqueueReply({
+    required String token,
+    required String body,
+    List<String> mediaUrls = const [],
+  }) async {
+    if (body.isEmpty && selectedFiles.isEmpty && mediaUrls.isEmpty) {
+      return Left(Failure(400, 'feedbackReplyHint'));
+    }
+    final staged = selectedFiles.isNotEmpty && mediaUrls.isEmpty
+        ? await FeedbackMediaStaging.stage(selectedFiles)
+        : const <String>[];
+    await Get.find<TaskQueueService>().enqueue(
+      type: FeedbackQueue.replyType,
+      payload: <String, dynamic>{
+        'token': token,
+        'body': body,
+        if (mediaUrls.isNotEmpty) 'media_urls': mediaUrls,
+        if (staged.isNotEmpty) FeedbackMediaStaging.payloadKey: staged,
+      },
+    );
+    clearFiles();
+    return const Right(_queuedReply);
   }
 
   // ---------- المحادثة المفتوحة ----------
@@ -274,10 +422,18 @@ class FeedbackController extends GetxController {
 
     isReplying.value = true;
     try {
+      // دون اتصال: رد نصي/بوسائط مرحَّلة يدخل الطابور بدل الفشل.
+      if (!_isOnline) {
+        return await _enqueueReply(token: token, body: trimmed);
+      }
+
+      // ارفع الوسائط المختارة أولاً (إن وُجدت).
       final mediaUrls = await _uploadAllFiles();
       if (mediaUrls == null) {
-        return Left(Failure(500, 'feedbackUploading'));
+        // اتصال متذبذب — أسقط للطابور بدل إظهار خطأ.
+        return await _enqueueReply(token: token, body: trimmed);
       }
+      // النص مطلوب فقط إن لم تكن هناك وسائط.
       if (trimmed.isEmpty && mediaUrls.isEmpty) {
         return Left(Failure(400, 'feedbackReplyHint'));
       }
@@ -295,25 +451,35 @@ class FeedbackController extends GetxController {
         printResponse: false,
       );
 
-      return result.fold((failure) => Left(failure), (data) {
-        final map = _asMap(data);
-        final replyMap = map == null
-            ? null
-            : (map['data'] is Map
-                  ? Map<String, dynamic>.from(map['data'])
-                  : null);
-        if (replyMap == null) return Left(DataSource.DEFAULT.getFailure());
-        final reply = FeedbackReplyModel.fromJson(replyMap);
-        final current = openThread.value;
-        if (current != null) {
-          final updated = current.copyWith(
-            replies: [...current.replies, reply],
+      // فشل شبكي/خادم → الطابور؛ أما 4xx فأخطاء حقيقية تُعرض للمستخدم.
+      final failure = result.fold<Failure?>((f) => f, (_) => null);
+      if (failure != null) {
+        if (_isQueueableFailure(failure)) {
+          return await _enqueueReply(
+            token: token,
+            body: trimmed,
+            mediaUrls: mediaUrls,
           );
-          openThread.value = updated;
-          _upsertThreadInList(updated);
         }
-        return Right(reply);
-      });
+        return Left(failure);
+      }
+
+      final map = _asMap(result.right);
+      final replyMap = map == null
+          ? null
+          : (map['data'] is Map
+                ? Map<String, dynamic>.from(map['data'])
+                : null);
+      if (replyMap == null) return Left(DataSource.DEFAULT.getFailure());
+      final reply = FeedbackReplyModel.fromJson(replyMap);
+      // أضف الرد محليًا للمحادثة المفتوحة + للقائمة.
+      final current = openThread.value;
+      if (current != null) {
+        final updated = current.copyWith(replies: [...current.replies, reply]);
+        openThread.value = updated;
+        _upsertThreadInList(updated);
+      }
+      return Right(reply);
     } catch (e) {
       log('sendReply error: $e', name: 'FeedbackController');
       return Left(DataSource.DEFAULT.getFailure());
@@ -338,32 +504,34 @@ class FeedbackController extends GetxController {
 
   // ---------- اختيار ورفع الوسائط ----------
 
-  /// يفتح المعرض لاختيار صور متعددة. يتحقق من النوع والحجم والحد الأقصى.
+  /// يفتح حوار اختيار الصور (متعددة). يعمل على كل المنصات بما فيها macOS.
+  ///
+  /// يستخدم `file_picker` لأن `image_picker` لا تدعم سطح المكتب.
+  /// يتحقق من النوع والحجم والحد الأقصى.
   Future<String?> pickImages() async {
-    final remaining = maxFiles - selectedFiles.length;
-    if (remaining <= 0) return 'feedbackMaxFiles';
+    if (selectedFiles.length >= maxFiles) return 'feedbackMaxFiles';
 
-    final picker = ImagePicker();
     try {
-      final results = await picker.pickMultiImage(
-        limit: remaining,
-        imageQuality: 85,
+      final result = await FilePicker.platform.pickFiles(
+        type: FileType.image,
+        allowMultiple: true,
+        withData: false,
       );
-      if (results.isEmpty) return null; // ألغى المستخدم
+      if (result == null || result.files.isEmpty) return null; // ألغى المستخدم
 
-      for (final x in results) {
+      for (final pf in result.files) {
         if (selectedFiles.length >= maxFiles) break;
-        final file = File(x.path);
-        final ext = _extension(x.path);
-        final size = await file.length();
+        final path = pf.path;
+        if (path == null || path.isEmpty) continue;
+        final ext = _extension(path);
 
         if (!_allowedImageExts.contains(ext)) {
           return 'feedbackInvalidType';
         }
-        if (size > _maxImageBytes) {
+        if (pf.size > _maxImageBytes) {
           return 'feedbackFileTooLarge';
         }
-        selectedFiles.add(file);
+        selectedFiles.add(File(path));
       }
       return null; // نجاح
     } catch (e) {
@@ -372,26 +540,30 @@ class FeedbackController extends GetxController {
     }
   }
 
-  /// يفتح المعرض لاختيار فيديو واحد. يتحقق من النوع والحجم.
+  /// يفتح حوار اختيار فيديو واحد. يعمل على كل المنصات بما فيها macOS.
   Future<String?> pickVideo() async {
     if (selectedFiles.length >= maxFiles) return 'feedbackMaxFiles';
 
-    final picker = ImagePicker();
     try {
-      final x = await picker.pickVideo(source: ImageSource.gallery);
-      if (x == null) return null; // ألغى المستخدم
+      final result = await FilePicker.platform.pickFiles(
+        type: FileType.video,
+        allowMultiple: false,
+        withData: false,
+      );
+      if (result == null || result.files.isEmpty) return null; // ألغى المستخدم
 
-      final file = File(x.path);
-      final ext = _extension(x.path);
-      final size = await file.length();
+      final pf = result.files.first;
+      final path = pf.path;
+      if (path == null || path.isEmpty) return null;
+      final ext = _extension(path);
 
       if (!_allowedVideoExts.contains(ext)) {
         return 'feedbackInvalidType';
       }
-      if (size > _maxVideoBytes) {
+      if (pf.size > _maxVideoBytes) {
         return 'feedbackFileTooLarge';
       }
-      selectedFiles.add(file);
+      selectedFiles.add(File(path));
       return null; // نجاح
     } catch (e) {
       log('pickVideo error: $e', name: 'FeedbackController');

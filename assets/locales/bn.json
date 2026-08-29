@@ -775,8 +775,7 @@
   "@minutes": {
     "type": "text",
     "placeholders": {}
-  }
-,
+  },
   "stopAdhan": "বন্ধ করুন",
   "@stopAdhan": {
     "description": "stopAdhan",
@@ -816,6 +815,12 @@
   "feedbackSentError": "মন্তব্য পাঠানো যায়নি, আবার চেষ্টা করুন",
   "@feedbackSentError": {
     "description": "feedbackSentError",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackQueued": "ইন্টারনেট সংযোগ ফিরে এলে আপনার মতামত স্বয়ংক্রিয়ভাবে পাঠানো হবে",
+  "@feedbackQueued": {
+    "description": "feedbackQueued",
     "type": "text",
     "placeholders": {}
   },

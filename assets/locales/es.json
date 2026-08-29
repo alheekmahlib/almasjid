@@ -775,8 +775,7 @@
   "@minutes": {
     "type": "text",
     "placeholders": {}
-  }
-,
+  },
   "stopAdhan": "Detener",
   "@stopAdhan": {
     "description": "stopAdhan",
@@ -816,6 +815,12 @@
   "feedbackSentError": "No se pudo enviar el comentario, inténtalo de nuevo",
   "@feedbackSentError": {
     "description": "feedbackSentError",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackQueued": "Tu comentario se enviará automáticamente cuando vuelva la conexión",
+  "@feedbackQueued": {
+    "description": "feedbackQueued",
     "type": "text",
     "placeholders": {}
   },

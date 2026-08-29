@@ -17,6 +17,10 @@ dependencies:
   bot_toast: ^4.1.3
   bubble_lens: ^2.0.0
   compassx: ^1.0.1
+  connectivity_kit:
+    git:
+      url: https://github.com/alheekmahlib/connectivity_kit.git
+      ref: v0.2.0
   connectivity_plus: ^7.3.1
   cupertino_icons: ^1.0.9
   dio: ^5.11.0
@@ -25,6 +29,7 @@ dependencies:
       ref: master
       url: https://github.com/alheekmahlib/drawing_animation.git
   either_dart: ^1.0.0
+  file_picker: ^8.0.0
   floating_menu_expendable: ^1.1.1
   floatica: ^1.2.1
     # git:
@@ -58,7 +63,6 @@ dependencies:
   home_widget: ^0.9.3
   huawei_location: ^6.17.0+300
   huawei_site: ^6.5.1+303
-  image_picker: ^1.2.3
   intl: ^0.20.2
   just_audio: ^0.10.6
   latlong2: ^0.10.1

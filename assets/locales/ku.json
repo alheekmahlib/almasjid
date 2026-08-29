@@ -775,8 +775,7 @@
   "@minutes": {
     "type": "text",
     "placeholders": {}
-  }
-,
+  },
   "stopAdhan": "بوەستاندن",
   "@stopAdhan": {
     "description": "stopAdhan",
@@ -816,6 +815,12 @@
   "feedbackSentError": "نەتوانرا تێبینیەکە بنێردرێت، دووبارە هەوڵ بدەوە",
   "@feedbackSentError": {
     "description": "feedbackSentError",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackQueued": "کاتێک ئینتەرنێت گەڕایەوە، تێبینیەکەت خۆکارانە دەنێردرێت",
+  "@feedbackQueued": {
+    "description": "feedbackQueued",
     "type": "text",
     "placeholders": {}
   },

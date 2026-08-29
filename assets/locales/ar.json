@@ -1040,8 +1040,7 @@
   "@showIqamaTimes": {
     "type": "text",
     "placeholders": {}
-  }
-,
+  },
   "stopAdhan": "إيقاف",
   "@stopAdhan": {
     "description": "stopAdhan",
@@ -1087,6 +1086,12 @@
   "feedbackSentError": "تعذّر إرسال الملاحظة، حاول مرة أخرى",
   "@feedbackSentError": {
     "description": "feedbackSentError",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackQueued": "ستُرسل ملاحظتك تلقائيًا عند عودة الاتصال بالإنترنت",
+  "@feedbackQueued": {
+    "description": "feedbackQueued",
     "type": "text",
     "placeholders": {}
   },

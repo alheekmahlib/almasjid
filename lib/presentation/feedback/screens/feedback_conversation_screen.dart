@@ -40,9 +40,13 @@ class _FeedbackConversationScreenState
     if (!mounted) return;
     result.fold(
       (failure) => context.showCustomErrorSnackBar('feedbackSentError'.tr),
-      (_) {
+      (reply) {
         _replyCtrl.clear();
         _c.clearFiles();
+        // id فارغ = الرد في الطابور وسيُرسل عند عودة الاتصال.
+        if (reply.id.isEmpty) {
+          context.showCustomErrorSnackBar('feedbackQueued'.tr, isDone: true);
+        }
       },
     );
   }
@@ -99,21 +103,21 @@ class _FeedbackConversationScreenState
   Widget _statusChip(String status) {
     final (label, color) = _statusStyle(status);
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 4.h, horizontal: 16.w),
+      padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
       child: Align(
         alignment: AlignmentDirectional.centerStart,
         child: Chip(
           label: Text(
             label,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.white,
               fontFamily: 'cairo',
               fontWeight: FontWeight.bold,
-              fontSize: 12.sp,
+              fontSize: 12,
             ),
           ),
           backgroundColor: color,
-          padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 2.h),
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
           visualDensity: VisualDensity.compact,
         ),
       ),
@@ -155,7 +159,7 @@ class _FeedbackConversationScreenState
       ),
     ];
     return ListView.builder(
-      padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       itemCount: items.length,
       itemBuilder: (context, index) => _ChatBubble(item: items[index]),
     );
@@ -164,7 +168,7 @@ class _FeedbackConversationScreenState
   Widget _replyBar(BuildContext context) {
     final colorScheme = context.theme.colorScheme;
     return Container(
-      padding: EdgeInsets.fromLTRB(12.w, 8.h, 12.w, 8.h),
+      padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
       decoration: BoxDecoration(
         color: colorScheme.surface.withValues(alpha: 0.08),
         border: Border(
@@ -179,10 +183,10 @@ class _FeedbackConversationScreenState
             final files = _c.selectedFiles;
             if (files.isEmpty) return const SizedBox.shrink();
             return Padding(
-              padding: EdgeInsets.only(bottom: 8.h),
+              padding: const EdgeInsets.only(bottom: 8),
               child: Wrap(
-                spacing: 8.w,
-                runSpacing: 8.h,
+                spacing: 8,
+                runSpacing: 8,
                 children: List.generate(files.length, (i) {
                   final isVideo = _c.isVideoFile(files[i]);
                   return Stack(
@@ -190,17 +194,17 @@ class _FeedbackConversationScreenState
                       ClipRRect(
                         borderRadius: BorderRadius.circular(8.r),
                         child: SizedBox(
-                          width: 48.w,
-                          height: 48.w,
+                          width: 48,
+                          height: 48,
                           child: Stack(
                             fit: StackFit.expand,
                             children: [
                               Image.file(files[i], fit: BoxFit.cover),
                               if (isVideo)
-                                Icon(
+                                const Icon(
                                   Icons.play_circle_fill,
                                   color: Colors.white,
-                                  size: 22.sp,
+                                  size: 22,
                                 ),
                             ],
                           ),
@@ -217,10 +221,10 @@ class _FeedbackConversationScreenState
                               color: Colors.black54,
                               shape: BoxShape.circle,
                             ),
-                            child: Icon(
+                            child: const Icon(
                               Icons.close,
                               color: Colors.white,
-                              size: 12.sp,
+                              size: 12,
                             ),
                           ),
                         ),
@@ -242,19 +246,19 @@ class _FeedbackConversationScreenState
                   style: TextStyle(
                     color: colorScheme.inversePrimary,
                     fontFamily: 'cairo',
-                    fontSize: 15.sp,
+                    fontSize: 15,
                   ),
                   decoration: InputDecoration(
                     isDense: true,
-                    contentPadding: EdgeInsets.symmetric(
-                      horizontal: 12.w,
-                      vertical: 8.h,
+                    contentPadding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 8,
                     ),
                     hintText: 'feedbackReplyHint'.tr,
                     hintStyle: TextStyle(
                       color: colorScheme.inversePrimary.withValues(alpha: 0.5),
                       fontFamily: 'cairo',
-                      fontSize: 15.sp,
+                      fontSize: 15,
                     ),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12.r),
@@ -275,7 +279,7 @@ class _FeedbackConversationScreenState
                       icon: Icon(
                         Icons.add_photo_alternate_outlined,
                         color: colorScheme.primary,
-                        size: 22.sp,
+                        size: 22,
                       ),
                       visualDensity: VisualDensity.compact,
                     ),
@@ -284,7 +288,7 @@ class _FeedbackConversationScreenState
                       icon: Icon(
                         Icons.videocam_outlined,
                         color: colorScheme.primary,
-                        size: 22.sp,
+                        size: 22,
                       ),
                       visualDensity: VisualDensity.compact,
                     ),
@@ -297,8 +301,8 @@ class _FeedbackConversationScreenState
                   onPressed: _c.isReplying.value ? null : _sendReply,
                   icon: _c.isReplying.value
                       ? SizedBox(
-                          width: 20.w,
-                          height: 20.w,
+                          width: 20,
+                          height: 20,
                           child: CircularProgressIndicator(
                             strokeWidth: 2,
                             valueColor: AlwaysStoppedAnimation<Color>(
@@ -306,11 +310,7 @@ class _FeedbackConversationScreenState
                             ),
                           ),
                         )
-                      : Icon(
-                          Icons.send,
-                          color: colorScheme.primary,
-                          size: 24.sp,
-                        ),
+                      : Icon(Icons.send, color: colorScheme.primary, size: 24),
                 ),
               ),
             ],
@@ -366,8 +366,8 @@ class _ChatBubble extends StatelessWidget {
     return Align(
       alignment: align,
       child: Container(
-        margin: EdgeInsets.symmetric(vertical: 4.h),
-        padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
+        margin: const EdgeInsets.symmetric(vertical: 4),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         constraints: BoxConstraints(maxWidth: 280.w),
         decoration: BoxDecoration(
           color: bg,
@@ -382,32 +382,32 @@ class _ChatBubble extends StatelessWidget {
                 color: colorScheme.inversePrimary.withValues(alpha: 0.6),
                 fontFamily: 'cairo',
                 fontWeight: FontWeight.bold,
-                fontSize: 11.sp,
+                fontSize: 11,
               ),
             ),
-            Gap(4.h),
+            const Gap(4),
             if (item.body.isNotEmpty)
               Text(
                 item.body,
                 style: TextStyle(
                   color: colorScheme.inversePrimary,
                   fontFamily: 'cairo',
-                  fontSize: 15.sp,
+                  fontSize: 15,
                 ),
                 textAlign: TextAlign.start,
               ),
             if (item.mediaUrls.isNotEmpty) ...[
-              Gap(6.h),
+              const Gap(6),
               FeedbackMediaGallery(urls: item.mediaUrls),
             ],
             if (time.isNotEmpty) ...[
-              Gap(4.h),
+              const Gap(4),
               Text(
                 time,
                 style: TextStyle(
                   color: colorScheme.inversePrimary.withValues(alpha: 0.5),
                   fontFamily: 'cairo',
-                  fontSize: 10.sp,
+                  fontSize: 10,
                 ),
               ),
             ],

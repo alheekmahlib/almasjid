@@ -37,7 +37,7 @@ class FeedbackThreadScreen extends StatelessWidget {
             color: colorScheme.primary,
             fontFamily: 'cairo',
             fontWeight: FontWeight.bold,
-            fontSize: 14.sp,
+            fontSize: 14,
           ),
         ),
       ),
@@ -46,14 +46,14 @@ class FeedbackThreadScreen extends StatelessWidget {
           children: [
             const AppBarWidget(withBackButton: true),
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 8.h),
+              padding: const EdgeInsets.symmetric(vertical: 8),
               child: Text(
                 'email'.tr,
                 style: TextStyle(
                   color: colorScheme.inversePrimary,
                   fontFamily: 'cairo',
                   fontWeight: FontWeight.bold,
-                  fontSize: 18.sp,
+                  fontSize: 18,
                 ),
               ),
             ),
@@ -71,14 +71,14 @@ class FeedbackThreadScreen extends StatelessWidget {
                 return RefreshIndicator(
                   onRefresh: _c.loadAllThreads,
                   child: ListView.separated(
-                    padding: EdgeInsets.fromLTRB(
-                      16.w,
-                      8.h,
-                      16.w,
-                      96.h,
+                    padding: const EdgeInsets.fromLTRB(
+                      16,
+                      8,
+                      16,
+                      96,
                     ), // مساحة للـ FAB
                     itemCount: _c.threads.length,
-                    separatorBuilder: (_, __) => Gap(10.h),
+                    separatorBuilder: (_, __) => const Gap(10),
                     itemBuilder: (context, index) {
                       final thread = _c.threads[index];
                       return _FeedbackCard(
@@ -120,7 +120,7 @@ class FeedbackThreadScreen extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(Icons.cloud_off_outlined, size: 48.sp),
+          const Icon(Icons.cloud_off_outlined, size: 48),
           const Gap(12),
           TextButton(
             onPressed: () => _c.loadAllThreads(),
@@ -141,20 +141,20 @@ class FeedbackThreadScreen extends StatelessWidget {
           children: [
             Icon(
               Icons.email_outlined,
-              size: 72.sp,
+              size: 72,
               color: colorScheme.surface.withValues(alpha: 0.4),
             ),
-            Gap(16.h),
+            const Gap(16),
             Text(
               'feedbackNoNotesYet'.tr,
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: colorScheme.inversePrimary.withValues(alpha: 0.7),
                 fontFamily: 'cairo',
-                fontSize: 16.sp,
+                fontSize: 16,
               ),
             ),
-            Gap(20.h),
+            const Gap(20),
             ContainerButtonWidget(
               onPressed: _openSendSheet,
               title: 'feedbackSendNote'.tr,
@@ -189,7 +189,7 @@ class _FeedbackCard extends StatelessWidget {
         onTap: onTap,
         borderRadius: BorderRadius.circular(12.r),
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 12.h),
+          padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 12),
           decoration: BoxDecoration(
             color: colorScheme.surface.withValues(alpha: 0.08),
             borderRadius: BorderRadius.circular(12.r),
@@ -200,21 +200,18 @@ class _FeedbackCard extends StatelessWidget {
               Row(
                 children: [
                   Container(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 8.w,
-                      vertical: 2.h,
-                    ),
+                    padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 2),
                     decoration: BoxDecoration(
                       color: color,
                       borderRadius: BorderRadius.circular(8.r),
                     ),
                     child: Text(
                       label,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.white,
                         fontFamily: 'cairo',
                         fontWeight: FontWeight.bold,
-                        fontSize: 11.sp,
+                        fontSize: 11,
                       ),
                     ),
                   ),
@@ -225,7 +222,7 @@ class _FeedbackCard extends StatelessWidget {
                       children: [
                         Icon(
                           Icons.chat_bubble_outline,
-                          size: 14.sp,
+                          size: 14,
                           color: colorScheme.inversePrimary.withValues(
                             alpha: 0.6,
                           ),
@@ -238,14 +235,14 @@ class _FeedbackCard extends StatelessWidget {
                               alpha: 0.6,
                             ),
                             fontFamily: 'cairo',
-                            fontSize: 12.sp,
+                            fontSize: 12,
                           ),
                         ),
                       ],
                     ),
                 ],
               ),
-              Gap(8.h),
+              const Gap(8),
               Text(
                 f.message,
                 maxLines: 2,
@@ -253,16 +250,16 @@ class _FeedbackCard extends StatelessWidget {
                 style: TextStyle(
                   color: colorScheme.inversePrimary,
                   fontFamily: 'cairo',
-                  fontSize: 15.sp,
+                  fontSize: 15,
                 ),
               ),
-              Gap(6.h),
+              const Gap(6),
               Text(
                 _formatDate(f.createdAt),
                 style: TextStyle(
                   color: colorScheme.inversePrimary.withValues(alpha: 0.5),
                   fontFamily: 'cairo',
-                  fontSize: 11.sp,
+                  fontSize: 11,
                 ),
               ),
             ],

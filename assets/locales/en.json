@@ -888,8 +888,7 @@
   "@showIqamaTimes": {
     "type": "text",
     "placeholders": {}
-  }
-,
+  },
   "stopAdhan": "Stop",
   "@stopAdhan": {
     "description": "stopAdhan",
@@ -935,6 +934,12 @@
   "feedbackSentError": "Could not send feedback, please try again",
   "@feedbackSentError": {
     "description": "feedbackSentError",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackQueued": "Your feedback will be sent automatically once the connection is back",
+  "@feedbackQueued": {
+    "description": "feedbackQueued",
     "type": "text",
     "placeholders": {}
   },

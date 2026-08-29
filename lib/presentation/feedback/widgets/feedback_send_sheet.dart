@@ -53,16 +53,23 @@ class _FeedbackSendSheetState extends State<FeedbackSendSheet> {
     result.fold(
       (failure) => context.showCustomErrorSnackBar('feedbackSentError'.tr),
       (model) {
+        // token فارغ = أُدخلت الطابور وستُرسل عند عودة الاتصال.
+        final queued = model.token.isEmpty;
         _messageCtrl.clear();
         _emailCtrl.clear();
         // أغلق الورقة (route الخاص بـ showModalBottomSheet).
         Navigator.of(context).pop();
-        context.showCustomErrorSnackBar('feedbackSentSuccess'.tr, isDone: true);
-        _c.loadAllThreads();
-        // افتح محادثة الملاحظة الجديدة مباشرة إن توفر token.
-        if (model.token.isNotEmpty) {
-          _c.openConversation(model.token);
-          Get.toNamed(AppRouter.feedbackConversation);
+        context.showCustomErrorSnackBar(
+          queued ? 'feedbackQueued'.tr : 'feedbackSentSuccess'.tr,
+          isDone: true,
+        );
+        // لا جديد يُحمَّل قبل الإرسال الفعلي — افتح المحادثة عند النجاح فقط.
+        if (!queued) {
+          _c.loadAllThreads();
+          if (model.token.isNotEmpty) {
+            _c.openConversation(model.token);
+            Get.toNamed(AppRouter.feedbackConversation);
+          }
         }
       },
     );
@@ -72,7 +79,7 @@ class _FeedbackSendSheetState extends State<FeedbackSendSheet> {
   Widget build(BuildContext context) {
     final colorScheme = context.theme.colorScheme;
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16.w),
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -83,10 +90,10 @@ class _FeedbackSendSheetState extends State<FeedbackSendSheet> {
             style: TextStyle(
               color: colorScheme.inversePrimary.withValues(alpha: 0.7),
               fontFamily: 'cairo',
-              fontSize: 13.sp,
+              fontSize: 13,
             ),
           ),
-          Gap(12.h),
+          const Gap(12),
           _messageField(context),
           ValueListenableBuilder<int>(
             valueListenable: _charCount,
@@ -99,17 +106,17 @@ class _FeedbackSendSheetState extends State<FeedbackSendSheet> {
                   style: TextStyle(
                     color: colorScheme.inversePrimary.withValues(alpha: 0.6),
                     fontFamily: 'cairo',
-                    fontSize: 11.sp,
+                    fontSize: 11,
                   ),
                 ),
               );
             },
           ),
-          Gap(12.h),
+          const Gap(12),
           _emailField(context),
-          Gap(12.h),
+          const Gap(12),
           _mediaSection(context),
-          Gap(16.h),
+          const Gap(16),
           ValueListenableBuilder<int>(
             valueListenable: _charCount,
             builder: (context, used, _) {
@@ -134,7 +141,7 @@ class _FeedbackSendSheetState extends State<FeedbackSendSheet> {
               });
             },
           ),
-          Gap(16.h),
+          const Gap(16),
         ],
       ),
     );
@@ -178,39 +185,39 @@ class _FeedbackSendSheetState extends State<FeedbackSendSheet> {
                 style: TextStyle(
                   color: colorScheme.inversePrimary.withValues(alpha: 0.6),
                   fontFamily: 'cairo',
-                  fontSize: 12.sp,
+                  fontSize: 12,
                 ),
               ),
             ],
           ),
           // شريط تقدّم الرفع.
           if (uploading) ...[
-            Gap(8.h),
+            const Gap(8),
             ClipRRect(
-              borderRadius: BorderRadius.circular(4.r),
+              borderRadius: BorderRadius.circular(4),
               child: LinearProgressIndicator(
                 value: progress,
-                minHeight: 6.h,
+                minHeight: 6,
                 backgroundColor: colorScheme.surface.withValues(alpha: 0.1),
                 valueColor: AlwaysStoppedAnimation<Color>(colorScheme.primary),
               ),
             ),
-            Gap(4.h),
+            const Gap(4),
             Text(
               '${'feedbackUploading'.tr} ${(progress * 100).toInt()}%',
               style: TextStyle(
                 color: colorScheme.inversePrimary.withValues(alpha: 0.6),
                 fontFamily: 'cairo',
-                fontSize: 11.sp,
+                fontSize: 11,
               ),
             ),
           ],
           // شبكة المصغّرات.
           if (files.isNotEmpty) ...[
-            Gap(8.h),
+            const Gap(8),
             Wrap(
               spacing: 8.w,
-              runSpacing: 8.h,
+              runSpacing: 8,
               children: List.generate(files.length, (i) {
                 return _thumb(context, files[i], i);
               }),
@@ -232,24 +239,24 @@ class _FeedbackSendSheetState extends State<FeedbackSendSheet> {
       opacity: onPressed == null ? 0.5 : 1.0,
       child: InkWell(
         onTap: onPressed,
-        borderRadius: BorderRadius.circular(8.r),
+        borderRadius: BorderRadius.circular(8),
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 6.h),
+          padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 6),
           decoration: BoxDecoration(
             color: colorScheme.surface.withValues(alpha: 0.08),
-            borderRadius: BorderRadius.circular(8.r),
+            borderRadius: BorderRadius.circular(8),
           ),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(icon, size: 18.sp, color: colorScheme.primary),
+              Icon(icon, size: 18, color: colorScheme.primary),
               Gap(4.w),
               Text(
                 label.tr,
                 style: TextStyle(
                   color: colorScheme.inversePrimary,
                   fontFamily: 'cairo',
-                  fontSize: 12.sp,
+                  fontSize: 12,
                 ),
               ),
             ],
@@ -265,7 +272,7 @@ class _FeedbackSendSheetState extends State<FeedbackSendSheet> {
     return Stack(
       children: [
         ClipRRect(
-          borderRadius: BorderRadius.circular(8.r),
+          borderRadius: BorderRadius.circular(8),
           child: SizedBox(
             width: 72.w,
             height: 72.w,
@@ -276,10 +283,10 @@ class _FeedbackSendSheetState extends State<FeedbackSendSheet> {
                 if (isVideo)
                   Container(
                     color: Colors.black.withValues(alpha: 0.3),
-                    child: Icon(
+                    child: const Icon(
                       Icons.play_circle_fill,
                       color: Colors.white,
-                      size: 28.sp,
+                      size: 28,
                     ),
                   ),
               ],
@@ -297,7 +304,7 @@ class _FeedbackSendSheetState extends State<FeedbackSendSheet> {
                 color: Colors.black54,
                 shape: BoxShape.circle,
               ),
-              child: Icon(Icons.close, color: Colors.white, size: 14.sp),
+              child: const Icon(Icons.close, color: Colors.white, size: 14),
             ),
           ),
         ),
@@ -332,21 +339,21 @@ class _FeedbackSendSheetState extends State<FeedbackSendSheet> {
       hintStyle: TextStyle(
         color: colorScheme.inversePrimary.withValues(alpha: 0.5),
         fontFamily: 'cairo',
-        fontSize: 15.sp,
+        fontSize: 15,
       ),
       icon: icon,
       filled: true,
       fillColor: colorScheme.surface.withValues(alpha: 0.08),
       border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(16.r),
+        borderRadius: BorderRadius.circular(16),
         borderSide: BorderSide(color: colorScheme.surface),
       ),
       enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(16.r),
+        borderRadius: BorderRadius.circular(16),
         borderSide: BorderSide(color: colorScheme.surface),
       ),
       focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(16.r),
+        borderRadius: BorderRadius.circular(16),
         borderSide: BorderSide(color: colorScheme.primary),
       ),
     );
@@ -363,7 +370,7 @@ class _FeedbackSendSheetState extends State<FeedbackSendSheet> {
       style: TextStyle(
         color: colorScheme.inversePrimary,
         fontFamily: 'cairo',
-        fontSize: 15.sp,
+        fontSize: 15,
       ),
       decoration: _fieldDecoration(context, hint: 'feedbackMessageHint'.tr),
     );
@@ -378,16 +385,12 @@ class _FeedbackSendSheetState extends State<FeedbackSendSheet> {
       style: TextStyle(
         color: colorScheme.inversePrimary,
         fontFamily: 'cairo',
-        fontSize: 15.sp,
+        fontSize: 15,
       ),
       decoration: _fieldDecoration(
         context,
         hint: 'feedbackContactOptional'.tr,
-        icon: Icon(
-          Icons.email_outlined,
-          size: 20.sp,
-          color: colorScheme.surface,
-        ),
+        icon: Icon(Icons.email_outlined, size: 20, color: colorScheme.surface),
       ),
     );
   }
