@@ -79,6 +79,9 @@ local.properties
 android/local.properties
 android/key.properties
 
+# Local API keys - copy from api_keys_example.dart (generated in CI from secrets)
+lib/core/utils/constants/api_keys.dart
+
 # Build scripts (optional - remove this section if you want to track them)
 build-play-store.sh
 quick-build-playstore.sh

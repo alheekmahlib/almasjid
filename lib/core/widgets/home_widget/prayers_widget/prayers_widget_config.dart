@@ -646,12 +646,14 @@ class PrayersWidgetConfig {
   }
 
   /// كتابة بيانات الشهر الكامل إلى مخزن الويدجت المشترك
-  /// ليتمكّن الويدجت الأصلي (iOS/Android) من استخراج أوقات اليوم الصحيحة بدون Flutter
+  /// ليتمكّن الويدجت الأصلي (iOS/Android/macOS) من استخراج أوقات اليوم
+  /// الصحيحة بدون Flutter
   /// Write full month data to widget shared storage so native widget
   /// can extract correct daily times without Flutter running
   Future<void> _writeMonthlyDataToWidgetStorage() async {
-    // macOS: HomeWidget لا يدعم saveWidgetData — البيانات تُرسل عبر MacOSWidgetService
-    if (Platform.isMacOS) return;
+    // macOS: HomeWidget لا يدعم saveWidgetData — تُرسل البيانات عبر
+    /// MacOSWidgetService ليكتبها AppDelegate في المخزن المشترك.
+    final bool isMacOS = Platform.isMacOS;
     try {
       await _ensureAppGroupId();
       final now = DateTime.now();
@@ -661,6 +663,8 @@ class PrayersWidgetConfig {
         DateTime(now.year, now.month),
         DateTime(now.year, now.month + 1), // يعمل حتى ديسمبر → ينتقل لسنة جديدة
       ];
+
+      final macMonthlyPayloads = <String, String>{};
 
       for (final monthStart in months) {
         final daysInMonth = DateTime(
@@ -690,23 +694,40 @@ class PrayersWidgetConfig {
           'month': monthStart.month,
           'days': days,
         };
+        final encoded = jsonEncode(data);
 
         // مفتاح خاص بكل شهر + المفتاح العام للتوافقية
         final monthKey =
             'monthly_prayer_times_${monthStart.year}_${monthStart.month}';
-        await HomeWidget.saveWidgetData<String>(monthKey, jsonEncode(data));
 
-        // الاحتفاظ بالمفتاح القديم للشهر الحالي (توافقية مع Provider.swift القديم)
-        if (monthStart.year == now.year && monthStart.month == now.month) {
-          await HomeWidget.saveWidgetData<String>(
-            'monthly_prayer_times',
-            jsonEncode(data),
-          );
+        if (isMacOS) {
+          macMonthlyPayloads[monthKey] = encoded;
+
+          // الاحتفاظ بالمفتاح العام للشهر الحالي (نفس سلوك iOS/Android)
+          if (monthStart.year == now.year && monthStart.month == now.month) {
+            macMonthlyPayloads['monthly_prayer_times'] = encoded;
+          }
+        } else {
+          await HomeWidget.saveWidgetData<String>(monthKey, encoded);
+
+          // الاحتفاظ بالمفتاح القديم للشهر الحالي (توافقية مع Provider.swift القديم)
+          if (monthStart.year == now.year && monthStart.month == now.month) {
+            await HomeWidget.saveWidgetData<String>(
+              'monthly_prayer_times',
+              encoded,
+            );
+          }
         }
 
         log(
           'Monthly prayer data written to widget storage (${monthStart.year}-${monthStart.month}, ${days.length} days)',
           name: 'PrayersWidgetConfig',
+        );
+      }
+
+      if (isMacOS && macMonthlyPayloads.isNotEmpty) {
+        await MacOSWidgetService.instance.updateMonthlyPrayerData(
+          macMonthlyPayloads,
         );
       }
     } catch (e) {

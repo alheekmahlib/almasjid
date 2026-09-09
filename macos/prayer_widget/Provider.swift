@@ -177,12 +177,73 @@ struct Provider: TimelineProvider {
         var prayerTimes: [(name: String, time: String)] = []
         var mainPrayers: [(name: String, time: String)] = []
 
-        let hasDailyData = store.string(forKey: "fajrTime") != nil
-
         var middleOfTheNightDate: String = "\(currentDateString.prefix(10)) 00:00:00.000"
         var lastThirdOfTheNightDate: String = "\(currentDateString.prefix(10)) 00:00:00.000"
 
-        if hasDailyData {
+        // المسار الأول: بيانات الشهر الكامل من المخزن المشترك (أدق من اليومية القديمة)
+        // Path 1: full-month data written by the app (current + next month),
+        // lets the widget self-serve the correct day without the app running.
+        let components = calendar.dateComponents([.year, .month, .day], from: currentDate)
+
+        var monthlyJson: String? = nil
+        let monthSpecificKey = "monthly_prayer_times_\(components.year ?? 0)_\(components.month ?? 0)"
+        monthlyJson = store.string(forKey: monthSpecificKey)
+        if monthlyJson == nil {
+            // التوافقية مع المفتاح العام القديم
+            monthlyJson = store.string(forKey: "monthly_prayer_times")
+        }
+        if let monthlyJson = monthlyJson,
+           let jsonData = monthlyJson.data(using: .utf8),
+           let parsed = try? JSONSerialization.jsonObject(with: jsonData) as? [String: Any],
+           let storedYear = parsed["year"] as? Int,
+           let storedMonth = parsed["month"] as? Int,
+           let days = parsed["days"] as? [String: String] {
+
+            let currentDay = components.day ?? 0
+
+            if storedYear == components.year && storedMonth == components.month,
+               let dayString = days["\(currentDay)"] {
+                // الصيغة: fajr|sunrise|dhuhr|asr|maghrib|isha|midnight|lastThird (HH:mm)
+                let parts = dayString.split(separator: "|").map(String.init)
+                if parts.count == 8 {
+                    let datePrefix = defaultFormatter.string(from: calendar.startOfDay(for: currentDate)).prefix(10)
+
+                    func buildTimeString(_ hhmm: String) -> String {
+                        return "\(datePrefix) \(hhmm):00.000"
+                    }
+
+                    prayerTimes = [
+                        (name: store.string(forKey: "fajrName") ?? "الفجر", time: buildTimeString(parts[0])),
+                        (name: store.string(forKey: "sunriseName") ?? "الشروق", time: buildTimeString(parts[1])),
+                        (name: store.string(forKey: "dhuhrName") ?? "الظهر", time: buildTimeString(parts[2])),
+                        (name: store.string(forKey: "asrName") ?? "العصر", time: buildTimeString(parts[3])),
+                        (name: store.string(forKey: "maghribName") ?? "المغرب", time: buildTimeString(parts[4])),
+                        (name: store.string(forKey: "ishaName") ?? "العشاء", time: buildTimeString(parts[5]))
+                    ]
+
+                    mainPrayers = [
+                        (name: prayerTimes[0].name, time: prayerTimes[0].time),
+                        (name: prayerTimes[2].name, time: prayerTimes[2].time),
+                        (name: prayerTimes[3].name, time: prayerTimes[3].time),
+                        (name: prayerTimes[4].name, time: prayerTimes[4].time),
+                        (name: prayerTimes[5].name, time: prayerTimes[5].time)
+                    ]
+
+                    middleOfTheNightDate = buildTimeString(parts[6])
+                    lastThirdOfTheNightDate = buildTimeString(parts[7])
+
+                    #if DEBUG
+                    if debug { print("[Widget] Using monthly data for day \(currentDay): \(dayString)") }
+                    #endif
+                }
+            }
+        }
+
+        let hasDailyData = store.string(forKey: "fajrTime") != nil
+
+        // المسار الثاني: البيانات اليومية الفردية (إذا لم تتوفر بيانات شهرية)
+        // Path 2: daily individual data fallback (when no monthly data available)
+        if prayerTimes.isEmpty && hasDailyData {
             #if DEBUG
             if debug { print("[Widget] Using daily individual prayer times") }
             #endif

@@ -71,6 +71,10 @@ class QiblaMapWidget extends StatelessWidget {
                                 urlTemplate: themeCtrl.isDarkMode
                                     ? ApiConstants.mapDarkUrl
                                     : ApiConstants.mapLightUrl,
+                                // إلزامي لمصادر MapTiler: المفتاح مقيّد
+                                // بحقل Allowed User-Agent header = Aqim-app.
+                                userAgentPackageName:
+                                    ApiConstants.mapTilerUserAgent,
                                 // tileProvider: CachedTileProvider(),
                               ),
                               PolylineLayer(

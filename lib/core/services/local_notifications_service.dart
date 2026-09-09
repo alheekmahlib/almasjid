@@ -159,7 +159,7 @@ class LocalNotificationsService {
     );
 
     await _plugin.initialize(
-      const InitializationSettings(
+      settings: const InitializationSettings(
         android: AndroidInitializationSettings('ic_notification'),
         iOS: darwinSettings,
         macOS: darwinSettings,
@@ -268,7 +268,7 @@ class LocalNotificationsService {
     );
 
     for (final legacyId in _legacyAwesomeChannelIds) {
-      await android.deleteNotificationChannel(legacyId);
+      await android.deleteNotificationChannel(channelId: legacyId);
     }
   }
 
@@ -301,11 +301,11 @@ class LocalNotificationsService {
 
     try {
       await _plugin.zonedSchedule(
-        id,
-        title,
-        body,
-        tzDateTime,
-        details,
+        id: id,
+        title: title,
+        body: body,
+        scheduledDate: tzDateTime,
+        notificationDetails: details,
         androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
         payload: encodedPayload,
         matchDateTimeComponents: isRepeats ? DateTimeComponents.time : null,
@@ -317,11 +317,11 @@ class LocalNotificationsService {
         name: 'LocalNotifications',
       );
       await _plugin.zonedSchedule(
-        id,
-        title,
-        body,
-        tzDateTime,
-        details,
+        id: id,
+        title: title,
+        body: body,
+        scheduledDate: tzDateTime,
+        notificationDetails: details,
         androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
         payload: encodedPayload,
         matchDateTimeComponents: isRepeats ? DateTimeComponents.time : null,
@@ -343,10 +343,10 @@ class LocalNotificationsService {
   }) async {
     await initialize(onTap: _onTap ?? (_) {});
     await _plugin.show(
-      id,
-      title,
-      body,
-      _buildNotificationDetails(
+      id: id,
+      title: title,
+      body: body,
+      notificationDetails: _buildNotificationDetails(
         soundType: soundType,
         summary: summary,
         badgeNumber: badgeNumber,
@@ -427,7 +427,7 @@ class LocalNotificationsService {
   // ─── الإلغاء ───
 
   Future<void> cancel(int id) async {
-    await _plugin.cancel(id);
+    await _plugin.cancel(id: id);
     log('Cancelled notification: $id', name: 'LocalNotifications');
   }
 

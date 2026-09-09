@@ -91,6 +91,16 @@ class AppDelegate: FlutterAppDelegate {
           WidgetCenter.shared.reloadAllTimelines()
           result(nil)
 
+        case "updateMonthlyPrayerData":
+          guard let args = call.arguments as? [String: String] else {
+            result(FlutterError(code: "bad_args", message: "Expected [String: String] arguments", details: nil))
+            return
+          }
+
+          self.storeMonthlyPrayerData(args)
+          WidgetCenter.shared.reloadAllTimelines()
+          result(nil)
+
         case "reloadAllTimelines":
           WidgetCenter.shared.reloadAllTimelines()
           result(nil)
@@ -161,7 +171,11 @@ class AppDelegate: FlutterAppDelegate {
       "lastUpdated"
     ]
 
-    var payload: [String: Any] = [:]
+    // دمج مع محتوى ملف الـ payload الحالي بدل استبداله،
+    // حتى لا تُمسح المفاتيح الشهرية (monthly_prayer_times*) عند كل تحديث يومي.
+    // Merge into the existing payload file instead of replacing it, so the
+    // monthly keys (monthly_prayer_times*) survive daily updates.
+    var payload: [String: Any] = self.readSharedPayloadFile()
 
     for key in expectedKeys {
       if let value = args[key] as? String {
@@ -187,6 +201,27 @@ class AppDelegate: FlutterAppDelegate {
     // This avoids CFPreferences/cfprefsd issues where suite reads return nil.
     self.writeSharedPayloadFile(payload)
 
+    ud.synchronize()
+  }
+
+  /// تخزين بيانات الأشهر (monthly_prayer_times*) في UserDefaults وملف الـ payload
+  /// المشترك — بنفس صيغة iOS/Android ليمكن للويدجت استخراج أوقات اليوم ذاتيًا.
+  /// Store full-month payloads (monthly_prayer_times*) in the shared UserDefaults
+  /// and payload file so the widget can self-serve the correct day.
+  private func storeMonthlyPrayerData(_ payloads: [String: String]) {
+    guard let ud = UserDefaults(suiteName: appGroupId) else {
+      NSLog("[MacOSWidget] Failed to open UserDefaults suite: %@", appGroupId)
+      return
+    }
+
+    var payload = readSharedPayloadFile()
+    for (key, json) in payloads {
+      ud.set(json, forKey: key)
+      payload[key] = json
+      NSLog("[MacOSWidget] Stored monthly payload key: %@", key)
+    }
+
+    writeSharedPayloadFile(payload)
     ud.synchronize()
   }
 }

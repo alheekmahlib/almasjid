@@ -14,8 +14,9 @@ class MacOSWidgetService {
   MacOSWidgetService._();
 
   // قناة التواصل مع Swift - Communication channel with Swift
-  static const MethodChannel _channel =
-      MethodChannel('com.alheekmah.aqimApp.prayer-widget');
+  static const MethodChannel _channel = MethodChannel(
+    'com.alheekmah.aqimApp.prayer-widget',
+  );
 
   /// تحديث بيانات الصلاة في ويدجت macOS
   /// Update prayer data in macOS widget
@@ -95,11 +96,40 @@ class MacOSWidgetService {
       // إرسال البيانات إلى Swift - Send data to Swift
       await _channel.invokeMethod('updatePrayerData', prayerData);
 
-      log('تم إرسال بيانات الصلاة إلى ويدجت macOS - Prayer data sent to macOS widget successfully',
-          name: 'MacOSWidgetService');
+      log(
+        'تم إرسال بيانات الصلاة إلى ويدجت macOS - Prayer data sent to macOS widget successfully',
+        name: 'MacOSWidgetService',
+      );
     } catch (e) {
-      log('خطأ في تحديث بيانات الصلاة لـ macOS: $e - Error updating prayer data for macOS: $e',
-          name: 'MacOSWidgetService');
+      log(
+        'خطأ في تحديث بيانات الصلاة لـ macOS: $e - Error updating prayer data for macOS: $e',
+        name: 'MacOSWidgetService',
+      );
+    }
+  }
+
+  /// كتابة بيانات الأشهر كاملة (الحالي + التالي) في مخزن الويدجت المشترك
+  /// ليتمكّن الويدجت الأصلي من استخراج أوقات اليوم الصحيحة بدون تشغيل Flutter.
+  /// Write full-month prayer payloads to the shared widget storage so the
+  /// native widget can self-serve the correct day without the app running.
+  ///
+  /// [payloads]: key هو `monthly_prayer_times_<year>_<month>` أو المفتاح العام
+  /// `monthly_prayer_times`، والقيمة JSON string بنفس صيغة iOS/Android.
+  Future<void> updateMonthlyPrayerData(Map<String, String> payloads) async {
+    try {
+      if (!Platform.isMacOS) return;
+
+      await _channel.invokeMethod('updateMonthlyPrayerData', payloads);
+
+      log(
+        'تم إرسال بيانات الأشهر إلى ويدجت macOS (${payloads.keys.join(', ')})',
+        name: 'MacOSWidgetService',
+      );
+    } catch (e) {
+      log(
+        'خطأ في إرسال البيانات الشهرية لـ macOS: $e',
+        name: 'MacOSWidgetService',
+      );
     }
   }
 
@@ -111,11 +141,15 @@ class MacOSWidgetService {
 
       await _channel.invokeMethod('reloadAllTimelines');
 
-      log('تم إعادة تحميل timelines للويدجت - Widget timelines reloaded successfully',
-          name: 'MacOSWidgetService');
+      log(
+        'تم إعادة تحميل timelines للويدجت - Widget timelines reloaded successfully',
+        name: 'MacOSWidgetService',
+      );
     } catch (e) {
-      log('خطأ في إعادة تحميل timelines: $e - Error reloading timelines: $e',
-          name: 'MacOSWidgetService');
+      log(
+        'خطأ في إعادة تحميل timelines: $e - Error reloading timelines: $e',
+        name: 'MacOSWidgetService',
+      );
     }
   }
 
@@ -127,11 +161,15 @@ class MacOSWidgetService {
 
       await _channel.invokeMethod('reloadTimeline', {'widgetKind': widgetKind});
 
-      log('تم إعادة تحميل timeline للويدجت $widgetKind - Timeline reloaded for widget $widgetKind',
-          name: 'MacOSWidgetService');
+      log(
+        'تم إعادة تحميل timeline للويدجت $widgetKind - Timeline reloaded for widget $widgetKind',
+        name: 'MacOSWidgetService',
+      );
     } catch (e) {
-      log('خطأ في إعادة تحميل timeline للويدجت $widgetKind: $e - Error reloading timeline for widget $widgetKind: $e',
-          name: 'MacOSWidgetService');
+      log(
+        'خطأ في إعادة تحميل timeline للويدجت $widgetKind: $e - Error reloading timeline for widget $widgetKind: $e',
+        name: 'MacOSWidgetService',
+      );
     }
   }
 
@@ -143,11 +181,15 @@ class MacOSWidgetService {
 
       await _channel.invokeMethod('initialize');
 
-      log('تم تهيئة خدمة ويدجت macOS - macOS widget service initialized successfully',
-          name: 'MacOSWidgetService');
+      log(
+        'تم تهيئة خدمة ويدجت macOS - macOS widget service initialized successfully',
+        name: 'MacOSWidgetService',
+      );
     } catch (e) {
-      log('خطأ في تهيئة خدمة ويدجت macOS: $e - Error initializing macOS widget service: $e',
-          name: 'MacOSWidgetService');
+      log(
+        'خطأ في تهيئة خدمة ويدجت macOS: $e - Error initializing macOS widget service: $e',
+        name: 'MacOSWidgetService',
+      );
     }
   }
 }

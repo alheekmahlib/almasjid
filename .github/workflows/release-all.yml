@@ -28,6 +28,24 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Create api_keys.dart from secrets
+        env:
+          MAPTILER_KEY: ${{ secrets.MAPTILER_KEY }}
+        shell: bash
+        run: |
+          if [ -z "$MAPTILER_KEY" ]; then
+            echo "::error::Secret MAPTILER_KEY is not configured in repository settings"
+            exit 1
+          fi
+          cat > lib/core/utils/constants/api_keys.dart <<EOF
+          // AUTO-GENERATED in CI from secrets - do not edit.
+          class ApiKeys {
+            ApiKeys._();
+            static const String mapTilerKey = '$MAPTILER_KEY';
+            static const String mapTilerUserAgent = 'Aqim-app';
+          }
+          EOF
+
       - name: Setup Java (Android)
         if: matrix.platform == 'android'
         uses: actions/setup-java@v4

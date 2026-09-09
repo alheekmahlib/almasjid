@@ -1,3 +1,5 @@
+import 'api_keys.dart';
+
 class ApiConstants {
   static const downloadAppUrl =
       'https://alheekmahlib.github.io/alheekmahlib/#/download/aqim';
@@ -30,10 +32,18 @@ class ApiConstants {
   static const String feedbackReplySuffix =
       '/reply'; // POST /feedback/{token}/reply
   static const String feedbackUploadEndpoint = '/upload'; // POST رفع وسائط
+
+  /// ترويسة User-Agent المطلوبة لعمل مفاتيح MapTiler:
+  /// المفتاح مقيّد في لوحة MapTiler بحقل Allowed User-Agent header بهذه القيمة
+  /// (مطابقة جزئية حساسة لحالة الأحرف).
+  static const String mapTilerUserAgent = ApiKeys.mapTilerUserAgent;
+
+  /// positron هي نظيرة basemaps.cartocdn light_all (كلاهما تصميم CARTO).
   static const String mapLightUrl =
-      'https://basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}.png';
+      'https://api.maptiler.com/maps/positron/{z}/{x}/{y}.png?key=${ApiKeys.mapTilerKey}';
+  // 'https://basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}.png';
+  /// darkmatter هي نظيرة basemaps.cartocdn dark_all (كلاهما تصميم CARTO).
   static const String mapDarkUrl =
-      'https://basemaps.cartocdn.com/rastertiles/dark_all/{z}/{x}/{y}.png';
-  static const String mapHuaweiUrl =
-      'https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png';
+      'https://api.maptiler.com/maps/darkmatter/{z}/{x}/{y}.png?key=${ApiKeys.mapTilerKey}';
+  // 'https://basemaps.cartocdn.com/rastertiles/dark_all/{z}/{x}/{y}.png';
 }
