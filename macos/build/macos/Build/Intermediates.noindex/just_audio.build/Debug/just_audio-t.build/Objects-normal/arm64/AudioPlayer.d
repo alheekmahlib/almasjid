@@ -1,0 +1,20 @@
+dependencies: \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/SDKSettings.json \
+  /Volumes/HawazenSSD/Applications/Dart/pub-cache/hosted/pub.dev/just_audio-0.10.6/darwin/just_audio/Sources/just_audio/AudioPlayer.m \
+  /Volumes/HawazenSSD/Applications/Dart/pub-cache/hosted/pub.dev/just_audio-0.10.6/darwin/just_audio/Sources/just_audio/./include/just_audio/BetterEventChannel.h \
+  /Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/ExplicitPrecompiledModules/AVFoundation-7JZXK0A5IIMK26W52PIZOAXZL.pcm \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/DarwinFoundation1.modulemap \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/DarwinFoundation3.modulemap \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/Foundation.framework/Modules/module.modulemap \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/AVFoundation.framework/Modules/module.modulemap \
+  /Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/ExplicitPrecompiledModules/FlutterMacOS-1WBCTX1JBGXDC657RCOVDV4PN.pcm \
+  /Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Products/Debug/FlutterMacOS.framework/Modules/module.modulemap \
+  /Volumes/HawazenSSD/Applications/Dart/pub-cache/hosted/pub.dev/just_audio-0.10.6/darwin/just_audio/Sources/just_audio/./include/just_audio/AudioPlayer.h \
+  /Volumes/HawazenSSD/Applications/Dart/pub-cache/hosted/pub.dev/just_audio-0.10.6/darwin/just_audio/Sources/just_audio/./include/just_audio/AudioSource.h \
+  /Volumes/HawazenSSD/Applications/Dart/pub-cache/hosted/pub.dev/just_audio-0.10.6/darwin/just_audio/Sources/just_audio/./include/just_audio/IndexedAudioSource.h \
+  /Volumes/HawazenSSD/Applications/Dart/pub-cache/hosted/pub.dev/just_audio-0.10.6/darwin/just_audio/Sources/just_audio/./include/just_audio/IndexedPlayerItem.h \
+  /Volumes/HawazenSSD/Applications/Dart/pub-cache/hosted/pub.dev/just_audio-0.10.6/darwin/just_audio/Sources/just_audio/./include/just_audio/LoadControl.h \
+  /Volumes/HawazenSSD/Applications/Dart/pub-cache/hosted/pub.dev/just_audio-0.10.6/darwin/just_audio/Sources/just_audio/./include/just_audio/UriAudioSource.h \
+  /Volumes/HawazenSSD/Applications/Dart/pub-cache/hosted/pub.dev/just_audio-0.10.6/darwin/just_audio/Sources/just_audio/./include/just_audio/ConcatenatingAudioSource.h \
+  /Volumes/HawazenSSD/Applications/Dart/pub-cache/hosted/pub.dev/just_audio-0.10.6/darwin/just_audio/Sources/just_audio/./include/just_audio/LoopingAudioSource.h \
+  /Volumes/HawazenSSD/Applications/Dart/pub-cache/hosted/pub.dev/just_audio-0.10.6/darwin/just_audio/Sources/just_audio/./include/just_audio/ClippingAudioSource.h

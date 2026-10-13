@@ -15,11 +15,28 @@ import java.io.FileOutputStream
 class MainActivity : FlutterActivity() {
     private val CHANNEL = "com.alheekmah.aqimApp/raw_audio"
     private val ALARMS_CHANNEL = "com.alheekmah.aqimApp/adhan_alarms"
+    private val COUNTDOWN_CHANNEL = "com.alheekmah.aqimApp/prayer_countdown"
     private val ADHAN_ALARM_ACTION = "com.alheekmah.aqimApp.ADAN_ALARM"
     private var mediaPlayer: MediaPlayer? = null
 
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
+
+        MethodChannel(flutterEngine.dartExecutor.binaryMessenger, COUNTDOWN_CHANNEL).setMethodCallHandler { call, result ->
+            when (call.method) {
+                "syncBoundaries" -> {
+                    val current = call.argument<Map<String, Any?>>("current") ?: emptyMap()
+                    val entries = call.argument<List<Map<String, Any?>>>("entries") ?: emptyList()
+                    PrayerCountdownNotifier.syncBoundaries(this, current, entries)
+                    result.success(true)
+                }
+                "cancel" -> {
+                    PrayerCountdownNotifier.cancel(this)
+                    result.success(true)
+                }
+                else -> result.notImplemented()
+            }
+        }
 
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, CHANNEL).setMethodCallHandler { call, result ->
             when (call.method) {

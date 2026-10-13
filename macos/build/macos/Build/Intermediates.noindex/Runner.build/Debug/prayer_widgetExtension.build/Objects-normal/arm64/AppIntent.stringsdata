@@ -1,0 +1,32 @@
+{
+  "source": "/Volumes/HawazenSSD/Projects/almasjid/macos/prayer_widget/AppIntent.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Configuration",
+        "location": {
+          "startingColumn": 49,
+          "startingLine": 12
+        }
+      },
+      {
+        "comment": "",
+        "key": "This is an example widget.",
+        "location": {
+          "startingColumn": 49,
+          "startingLine": 13
+        }
+      },
+      {
+        "comment": "",
+        "key": "Favorite Emoji",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 16
+        }
+      }
+    ]
+  },
+  "version": 1
+}

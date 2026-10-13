@@ -47,6 +47,7 @@ class AdhanState {
   IqamaOffsets iqamaOffsets = IqamaOffsets();
   RxBool iqamaNotificationsEnabled = false.obs;
   RxBool showIqamaTimes = true.obs;
+  RxBool prayerCountdownEnabled = false.obs;
   Future<List<String>>? countryListFuture;
   RxInt prohibitionTimesIndex = 0.obs;
   RxBool isPrayerTimesInitialized = false.obs;

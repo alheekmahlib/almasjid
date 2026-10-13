@@ -1,0 +1,999 @@
+{
+  "appName": "Aqim - Maktabada Xikma",
+  "@appName": {
+    "description": "appName",
+    "type": "text",
+    "placeholders": {}
+  },
+  "appLang": "Luuqadda App-ka",
+  "@appLang": {
+    "description": "appLang",
+    "type": "text",
+    "placeholders": {}
+  },
+  "lang": "Soomaali",
+  "@lang": {
+    "description": "lang",
+    "type": "text",
+    "placeholders": {}
+  },
+  "cites": "Magaalooyin",
+  "@cites": {
+    "description": "Bottom nav: cities tab",
+    "type": "text",
+    "placeholders": {}
+  },
+  "citiesPrayerTimesTitle": "Waqtiyada Salaadda ee Magaalooyinka",
+  "@citiesPrayerTimesTitle": {
+    "description": "Cities prayer times screen title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "citiesPrayerTimesSearchHint": "Raadi magaalo si aad u aragto waqtiyada salaadda",
+  "@citiesPrayerTimesSearchHint": {
+    "description": "Cities search hint",
+    "type": "text",
+    "placeholders": {}
+  },
+  "Fajr": "Fajr",
+  "@Fajr": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Dhuhr": "Dhuhr",
+  "@Dhuhr": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Asr": "Asr",
+  "@Asr": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Maghrib": "Maghrib",
+  "@Maghrib": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Isha": "Isha",
+  "@Isha": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lastThirdOfTheNight": "Saddexda meelood ee danbe ee habeenka",
+  "@lastThirdOfTheNight": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "middleOfTheNight": "Bartamaha habeenka",
+  "@middleOfTheNight": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Sunrise": "Qorrax-ka-soo-bixitaanka",
+  "@Sunrise": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Sun": "Axd",
+  "@Sun": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Mon": "Isn",
+  "@Mon": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Tue": "Tal",
+  "@Tue": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Wed": "Arb",
+  "@Wed": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Thu": "Kha",
+  "@Thu": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Fri": "Jim",
+  "@Fri": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Sat": "Sab",
+  "@Sat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Sunday": "Axad",
+  "@Sunday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Monday": "Isniin",
+  "@Monday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Tuesday": "Talaado",
+  "@Tuesday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Wednesday": "Arbaco",
+  "@Wednesday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Thursday": "Khamiis",
+  "@Thursday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Friday": "Jimco",
+  "@Friday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Saturday": "Sabti",
+  "@Saturday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "activeLocationPlease": "Fadlan wax ka bedel goobta si aad u hesho waqtiyada salaadda",
+  "@activeLocationPlease": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "prayerSetting": "Dejinta Salaadda",
+  "@prayerSetting": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "detectLocation": "Ogaanshaha Goobta",
+  "@detectLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "adhanSounds": "Codadka Adhaan-ka",
+  "@adhanSounds": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "aqsa": "Adhaan Al-Aqsa",
+  "@aqsa": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saqqaf": "Hashim As-Saqqaf",
+  "@saqqaf": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sarihi": "Abdul Majeed As-Sarihi",
+  "@sarihi": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setTimingCalculations": "Hagaajinta Xisaabta Waqtiyada",
+  "@setTimingCalculations": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "automaticallyDetermineCalculationMethod": "Si toos ah u go'aaminta habka xisaabinta",
+  "@automaticallyDetermineCalculationMethod": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "madhab": "Mathab",
+  "@madhab": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "shafie": "Shaafici, Maaliki iyo Hanbali",
+  "@shafie": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hanafe": "Hanafi",
+  "@hanafe": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "madhabNote": "Waqtiga Cishaa ee Hanafiyada wuu dib u dhacaa ka Jumhuurka, waxaana u dhow laba iyo toban daqiiqo sida ku qoran \"Mawsuucada Fiqhiga Kuwaytiga\" (7/175), waqtiga Asarna wuu dib u dhacaa Hanafiyada shan iyo labaatan daqiiqo iyo wax ka badan, iyadoo ku xiran kala duwanaanta waddammada iyo faslada.",
+  "@madhabNote": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "SeventhOfTheNight": "Toddobaad habeenka",
+  "@SeventhOfTheNight": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "usingTheAngle": "Isticmaalka xagasha",
+  "@usingTheAngle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "SetPrayerTimes": "Dejinta Waqtiyada Salaadda",
+  "@SetPrayerTimes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notificationOptions": "Doorashooyinka Ogeysiinta",
+  "@notificationOptions": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nothing": "Waxba",
+  "@nothing": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "silent": "Aammusan",
+  "@silent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bell": "Cod",
+  "@bell": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sound": "Adhaan",
+  "@sound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "aboutPrayer": "Ku saabsan Salaadda",
+  "@aboutPrayer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "timeLeft:": "Waqtiga hadhay ee adhaan-ka:",
+  "@timeLeft:": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fromQuran:": "Quraanka:",
+  "@fromQuran:": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fromSunnah:": "Sunnada:",
+  "@fromSunnah:": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "prohibitionTimes": "Waqtiga la mamnuucayo salaadda",
+  "@prohibitionTimes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fajrBody": "Kii salaada subaxda saladay wuu ku jiraa dammaanadda Allah",
+  "@fajrBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dhuhrBody": "Salaadda salaadda iyo waxa gacmahaagu leh",
+  "@dhuhrBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "asrBody": "Kii salaada salaado labada qabow galay jannada",
+  "@asrBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "maghribBody": "Ma jiro qayb Islaam ah qofka ka taga salaadda",
+  "@maghribBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ishaBody": "Kii salaada cishaa ku salaada jamaacdaa, wuu la mid yahay qiyaamka badh habeen",
+  "@ishaBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "timeForPrayer": "Waqtiga salaadda",
+  "@timeForPrayer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "openAppReminderTitle": "Xusuusin furitaanka app-ka",
+  "@openAppReminderTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "openAppReminderBody": "Fadlan fur app-ka si aad u qorsheysato ogeysiisyada salaadda cusub.",
+  "@openAppReminderBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "prayer": "Salaadda",
+  "@prayer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "langChange": "Beddelka Luuqadda",
+  "@langChange": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "themeTitle": "Dooro muuqaalka",
+  "@themeTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ourApps": "Barnaamijyadeenna",
+  "@ourApps": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "aboutApp": "Ku saabsan App-ka",
+  "@aboutApp": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "about_app": "App-ka 'Aqim' waa app Islami oo fudud oo toos ah, oo si gaar ah loogu sameeyay si uu kaaga caawiyo inaad samaysid salaadaadka waqtigooda oo fudud.\nApp-ku waxa uu diiradda saaraa bixinta qalabka muhiimka ah ee ay Muslim walba u baahan tahay noloshiisa maalinlaha ah, iyada oo loo marayo interface-fudud oo isticmaal ah oo kuu dammaanad qaadaya khibrad raaxo leh oo cad.\n'Aqim', mar dambe ma lumin doontid sallaad, maxaa yeelay app-ku waxa uu u shaqeeyaa sida koor shakhsi ah iyo hage saxan oo Qibladdaada ah, taas oo ka dhigaysa qalabka ugu fiican ee lagu ilaaliyo tiirarka ugu muhiimsan ee Islaamka.",
+  "@about_app": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "about_app2": "Sifooyinka App-ka:",
+  "@about_app2": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "about_app3": "Waqtiyada Salaadda: App-ku waxa uu muujiyaa waqtiyada salaadda iyada oo leh saxnaad sare oo ku saleysan goobta juqraafiyeedka.\nOgeysiinta Adhaan: Hel digniino maqal ah marka waqtiga sallaad kasta yimaado si had iyo jeer u diyaar ahaato.\nJihada Qiblada: Kompas saxan oo fudud oo la isticmaalo si loo go'aamiyo jihada Qiblada saxda ah meel kasta oo adduunka ka mid ah.\nInterface Is-dhexgal: Naqshad fudud oo cad oo fududda u dhigaysa in la dhex maro sifooyinka app-ka iyada oo aan wax isku dhafan ah lahayn.",
+  "@about_app3": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "email": "Nala soo xidhiidh",
+  "@email": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "share": "La wadaag app-ka",
+  "@share": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "facebook": "Nagu raac Facebook",
+  "@facebook": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "qibla": "Qiblada",
+  "@qibla": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "qiblaDirection": "Jihada Qiblada",
+  "@qiblaDirection": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "compass": "Kampas",
+  "@compass": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "map": "Khariidad",
+  "@map": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locationNote": "Fadlan daar adeegyada goobta si aad u hesho saacadaha salaadda ee sax ah oo ku salaysan goobta aad hadda joogto.\nSi loo hubiyo in saacadaha salaadda si toos ah loo cusboonaysiiyo markaad safar tagto ama u guurto meel cusub, app-ka waxa kale oo uu u baahan yahay in uu galo goobta aad joogto marka uu ka shaqaynayo dhabarka.\nWaxaan kugu dhamaynayaa in dhammaan xogta goobta aad joogto ay ahaan doonto mid sir ah oo aan la wadaagi doonin cid saddexaad ah.",
+  "@locationNote": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notificationNote": "Fadlan wax ka bedel ogeysiisyada si aad u hesho digniin waqtiyada salaadda iyo ogeysiisyo kale.",
+  "@notificationNote": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locate": "Ogaansi Otomaatig",
+  "@locate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "activation": "Wax ka bedelka",
+  "@activation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ok": "Haa",
+  "@ok": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancel": "Ka laabo",
+  "teachingPrayer": "Baridda Salaadda",
+  "noData": "Xog lama hayo @x",
+  "@cancel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "searchForCity": "Raadi Magaalo",
+  "@searchForCity": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectFromMap": "Ka dooro Khariidadda",
+  "@selectFromMap": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterCityName": "Gali magaca magaalada...",
+  "@enterCityName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "manualLocationNote": "Aaladaha Huawei, waxaa lagu talinayaa in goobta si gacal ah loo dejiyo si loo helo saxnaanta ugu fiican",
+  "@manualLocationNote": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locationSetSuccessfully": "Goobta si guul leh ayaa loo dejiyay",
+  "@locationSetSuccessfully": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "failedToSetLocation": "Waa lagu fashilmay dejinta goobta",
+  "@failedToSetLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "failedToSearchCities": "Waa lagu fashilmay raadinta magaalooyinka",
+  "@failedToSearchCities": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectCountry": "Dooro Dalka",
+  "@selectCountry": {
+    "description": "Country picker title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterCountryName": "Raadi dal...",
+  "@enterCountryName": {
+    "description": "Country search hint",
+    "type": "text",
+    "placeholders": {}
+  },
+  "noResults": "Natiijo ma jirto",
+  "@noResults": {
+    "description": "Shown when search has no matches",
+    "type": "text",
+    "placeholders": {}
+  },
+  "failedToLoadCountries": "Ku guuldareystay soo dejinta dalalka",
+  "@failedToLoadCountries": {
+    "description": "Countries list loading error",
+    "type": "text",
+    "placeholders": {}
+  },
+  "What's New": "Maxaa cusub",
+  "@What's New": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "What'sNewDetails10": "۞ Waxaa lagu daray waqtiyada Iqamah iyadoo waqtiga iyo ogeysiisyada lagu habeyn karo.\n۞ Hagaajinta mantiiqda ogeysiisyada.\n۞ Hagaajin waxqabad.",
+  "@What'sNewDetails10": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "shareImage": "La wadaag sawirka",
+  "@shareImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sharePrayerTime": "Waqtiga salaadda xigta",
+  "@sharePrayerTime": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nextPrayer": "Salaadda xigta",
+  "@nextPrayer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Muharram": "Muharram",
+  "@Muharram": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Safar": "Safar",
+  "@Safar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Rabi' Al-Awwal": "Rabii' Al-Awwal",
+  "@Rabi' Al-Awwal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Rabi' Al-Thani": "Rabii' Al-Thani",
+  "@Rabi' Al-Thani": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Jumada Al-Awwal": "Jumaada Al-Awwal",
+  "@Jumada Al-Awwal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Jumada Al-Thani": "Jumaada Al-Thani",
+  "@Jumada Al-Thani": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Rajab": "Rajab",
+  "@Rajab": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Sha'aban": "Sha'abaan",
+  "@Sha'aban": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Ramadan": "Ramadaan",
+  "@Ramadan": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Shawwal": "Shawwaal",
+  "@Shawwal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Dhu Al-Qi'dah": "Dhul Qi'da",
+  "@Dhu Al-Qi'dah": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Dhu Al-Hijjah": "Dhul Hijja",
+  "@Dhu Al-Hijjah": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "settings": "Dejinta",
+  "@settings": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "prayerDetails": "Faahfaahinta Salaadda",
+  "@prayerDetails": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "min": "daqiiq",
+  "@min": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "h": "saac",
+  "@h": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saving...": "Kaydinaya...",
+  "@saving...": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locationSetted": "Goobta la dejiyay",
+  "@locationSetted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tapOnMapToSelectLocation": "Riix khariidadda si aad u doorato goobta",
+  "@tapOnMapToSelectLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseSelectLocation": "Fadlan dooro goob khariidadda ku taal",
+  "@pleaseSelectLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "downloadingPrayerData": "Waa la soo dejinayaa xogta salaadda...",
+  "@downloadingPrayerData": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noInternet": "Ma jiro xidhiidh internet ah",
+  "@noInternet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noNotifications": "Ma jiraan ogeysiisyo",
+  "@noNotifications": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "qiblaDirectionForCity": "Jihada Qiblada ee magaaladiinna:",
+  "@qiblaDirectionForCity": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "qiblaNoteForDesktop": "Astaantan waxa lagu heli karaa oo kaliya aaladaha leh compass-ka. Fadlan isticmaal qalab leh compass feature si aad u hesho jihada Qiblada ee ku salaysan goobtaada hadda.",
+  "@qiblaNoteForDesktop": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reminder": "Xusuusin",
+  "@reminder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "liatafaqahuu": "fahmaan",
+  "@liatafaqahuu": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "understanding": "si ay ku helaan waxbarasho ku saabsan diinta",
+  "@understanding": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "baset": "Abdul Basit",
+  "@baset": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "qatami": "Nasser Al-Qatami",
+  "@qatami": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "salah": "Salah Al-Deeb",
+  "@salah": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "start": "Bilow",
+  "@start": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "skip": "Boodbood",
+  "@skip": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reset": "Dib u deji",
+  "@reset": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fastingReminder": "Xusuusin Soon",
+  "@fastingReminder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "aboutMonth": "Ku saabsan Bisha",
+  "@aboutMonth": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ramadanMaghribName": "Furitaanka",
+  "@ramadanMaghribName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "startHijriYear": "Bilowga Sannadka Hijriga",
+  "@startHijriYear": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reminderToFastTasoo'a": "Xusuus lagu soomo Tasu'a",
+  "@reminderToFastTasoo'a": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reminderToFastAshura": "Xusuus lagu soomo Ashura",
+  "@reminderToFastAshura": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ramadhan": "Bisha Ramadaan",
+  "@ramadhan": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nightOfQadir": "Xusuus Laylat al-Qadr",
+  "@nightOfQadir": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "EidAl-Fitr": "Ciida Fitri",
+  "@EidAl-Fitr": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sexShawwal": "Xusuus lagu soomo lixda Shawwal",
+  "@sexShawwal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "arafahReminder": "Xusuus lagu soomo Maalinta Arafah",
+  "@arafahReminder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tenDaysOfDhul-Hijjah": "Iyo Toban Habeen",
+  "@tenDaysOfDhul-Hijjah": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "EidAl-Adha": "Ciida Adha",
+  "@EidAl-Adha": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iqama": "Iqamada",
+  "@iqama": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "timeForIqama": "Waqtiga iqamada",
+  "@timeForIqama": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iqamaBody": "Ka soo aqo salaadda",
+  "@iqamaBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iqamaNotifications": "Ogeysiintada iqamada",
+  "@iqamaNotifications": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iqamaNotificationsDesc": "Ogeysiis waqtiga iqamada salaadaha",
+  "@iqamaNotificationsDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "showIqamaTimes": "Muujin waqtiga iqamada",
+  "@showIqamaTimes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "minutes": "daqiiqad",
+  "@minutes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "stopAdhan": "Jooji",
+  "@stopAdhan": {
+    "description": "stopAdhan",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackSendNote": "Soo dir faallo",
+  "@feedbackSendNote": {
+    "description": "feedbackSendNote",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackSubtitle": "La wadaag faalladaada ama warbi xaalad",
+  "@feedbackSubtitle": {
+    "description": "feedbackSubtitle",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackMessageHint": "Qor faalladaada halkan...",
+  "@feedbackMessageHint": {
+    "description": "feedbackMessageHint",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackContactOptional": "Iimeel la xiriir (ikhtiyaari)",
+  "@feedbackContactOptional": {
+    "description": "feedbackContactOptional",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackSentSuccess": "Faalladaada si guul leh ayaa loo diray",
+  "@feedbackSentSuccess": {
+    "description": "feedbackSentSuccess",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackSentError": "Lama diri karin faallo, isku day mar kale",
+  "@feedbackSentError": {
+    "description": "feedbackSentError",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackQueued": "Fikirkagu waa si toos ah loo soo diri doonaa marka isku xirku soo laabto",
+  "@feedbackQueued": {
+    "description": "feedbackQueued",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackNoNotesYet": "Wali faallo ma jirto",
+  "@feedbackNoNotesYet": {
+    "description": "feedbackNoNotesYet",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackReplyHint": "Qor raac faalladaada...",
+  "@feedbackReplyHint": {
+    "description": "feedbackReplyHint",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackReplyTitle": "Jawaabta Maamulaha",
+  "@feedbackReplyTitle": {
+    "description": "feedbackReplyTitle",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackStatusPlanned": "La qorsheeyay",
+  "@feedbackStatusPlanned": {
+    "description": "feedbackStatusPlanned",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackStatusInProgress": "Wii socdaa",
+  "@feedbackStatusInProgress": {
+    "description": "feedbackStatusInProgress",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackStatusComplete": "La dhammeeyay",
+  "@feedbackStatusComplete": {
+    "description": "feedbackStatusComplete",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackAdminRole": "Maamule",
+  "@feedbackAdminRole": {
+    "description": "feedbackAdminRole",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackYouRole": "Aniga",
+  "@feedbackYouRole": {
+    "description": "feedbackYouRole",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackPickImages": "Sawiro",
+  "@feedbackPickImages": {
+    "description": "feedbackPickImages",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackPickVideo": "Muuqaal",
+  "@feedbackPickVideo": {
+    "description": "feedbackPickVideo",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackMaxFiles": "Ugu badan 5 fayl",
+  "@feedbackMaxFiles": {
+    "description": "feedbackMaxFiles",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackFileTooLarge": "Faylka aad u weyn",
+  "@feedbackFileTooLarge": {
+    "description": "feedbackFileTooLarge",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackInvalidType": "Nooca faylkaan lama taageerin",
+  "@feedbackInvalidType": {
+    "description": "feedbackInvalidType",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackUploading": "Wuu soo gudbeynayaa",
+  "@feedbackUploading": {
+    "description": "feedbackUploading",
+    "type": "text",
+    "placeholders": {}
+  },
+  "charactersRemaining": "xarfo hadhay",
+  "@charactersRemaining": {
+    "description": "charactersRemaining",
+    "type": "text",
+    "placeholders": {}
+  },
+  "retry": "Mar kale isku day",
+  "@retry": {
+    "description": "retry",
+    "type": "text",
+    "placeholders": {}
+  },
+  "prayerCountdownNotification": "Ogeysiis joogto ah oo waqtiga salaada",
+  "@prayerCountdownNotification": {
+    "description": "Persistent prayer countdown notification",
+    "type": "text",
+    "placeholders": {}
+  },
+  "countdownNextPrayer": "Salaada xigta: @prayer @time",
+  "@countdownNextPrayer": {
+    "description": "Persistent prayer countdown notification",
+    "type": "text",
+    "placeholders": {
+      "prayer": {
+        "type": "String"
+      },
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "countdownJustStarted": "Waa waqtiga @prayer",
+  "@countdownJustStarted": {
+    "description": "Persistent prayer countdown notification",
+    "type": "text",
+    "placeholders": {
+      "prayer": {
+        "type": "String"
+      }
+    }
+  },
+  "countdownElapsedMinutes": "@minutes daqiiqo ka dib @prayer",
+  "@countdownElapsedMinutes": {
+    "description": "Persistent prayer countdown notification",
+    "type": "text",
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      },
+      "prayer": {
+        "type": "String"
+      }
+    }
+  },
+  "countdownElapsedHoursMinutes": "@hours saac iyo @minutes daqiiqo ka dib @prayer",
+  "@countdownElapsedHoursMinutes": {
+    "description": "Persistent prayer countdown notification",
+    "type": "text",
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      },
+      "minutes": {
+        "type": "int"
+      },
+      "prayer": {
+        "type": "String"
+      }
+    }
+  },
+  "countdownNextLabel": "Salaada xigta",
+  "@countdownNextLabel": {
+    "description": "Live Activity labels for prayer countdown",
+    "type": "text",
+    "placeholders": {}
+  },
+  "countdownElapsedLabel": "Ka dib",
+  "@countdownElapsedLabel": {
+    "description": "Live Activity labels for prayer countdown",
+    "type": "text",
+    "placeholders": {}
+  },
+  "countdownNextEventLabel": "Waqtiga xiga",
+  "@countdownNextEventLabel": {
+    "description": "Label for countdown to non-prayer slots (sunrise/midnight/last third)",
+    "type": "text",
+    "placeholders": {}
+  }
+}

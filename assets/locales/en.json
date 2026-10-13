@@ -1038,5 +1038,81 @@
     "description": "retry",
     "type": "text",
     "placeholders": {}
+  },
+  "prayerCountdownNotification": "Persistent prayer countdown notification",
+  "@prayerCountdownNotification": {
+    "description": "Persistent prayer countdown notification",
+    "type": "text",
+    "placeholders": {}
+  },
+  "countdownNextPrayer": "Next prayer: @prayer @time",
+  "@countdownNextPrayer": {
+    "description": "Persistent prayer countdown notification",
+    "type": "text",
+    "placeholders": {
+      "prayer": {
+        "type": "String"
+      },
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "countdownJustStarted": "It is time for @prayer",
+  "@countdownJustStarted": {
+    "description": "Persistent prayer countdown notification",
+    "type": "text",
+    "placeholders": {
+      "prayer": {
+        "type": "String"
+      }
+    }
+  },
+  "countdownElapsedMinutes": "@minutes minutes since @prayer",
+  "@countdownElapsedMinutes": {
+    "description": "Persistent prayer countdown notification",
+    "type": "text",
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      },
+      "prayer": {
+        "type": "String"
+      }
+    }
+  },
+  "countdownElapsedHoursMinutes": "@hours h @minutes m since @prayer",
+  "@countdownElapsedHoursMinutes": {
+    "description": "Persistent prayer countdown notification",
+    "type": "text",
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      },
+      "minutes": {
+        "type": "int"
+      },
+      "prayer": {
+        "type": "String"
+      }
+    }
+  },
+  "countdownNextLabel": "Next prayer",
+  "@countdownNextLabel": {
+    "description": "Live Activity labels for prayer countdown",
+    "type": "text",
+    "placeholders": {}
+  },
+  "countdownElapsedLabel": "Since",
+  "@countdownElapsedLabel": {
+    "description": "Live Activity labels for prayer countdown",
+    "type": "text",
+    "placeholders": {}
+  },
+  "countdownNextEventLabel": "Next time",
+  "@countdownNextEventLabel": {
+    "description": "Label for countdown to non-prayer slots (sunrise/midnight/last third)",
+    "type": "text",
+    "placeholders": {}
   }
 }

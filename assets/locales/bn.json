@@ -919,5 +919,81 @@
     "description": "retry",
     "type": "text",
     "placeholders": {}
+  },
+  "prayerCountdownNotification": "নামাজের সময়ের স্থায়ী নোটিফিকেশন",
+  "@prayerCountdownNotification": {
+    "description": "Persistent prayer countdown notification",
+    "type": "text",
+    "placeholders": {}
+  },
+  "countdownNextPrayer": "পরবর্তী নামাজ: @prayer @time",
+  "@countdownNextPrayer": {
+    "description": "Persistent prayer countdown notification",
+    "type": "text",
+    "placeholders": {
+      "prayer": {
+        "type": "String"
+      },
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "countdownJustStarted": "@prayer-এর সময় হয়েছে",
+  "@countdownJustStarted": {
+    "description": "Persistent prayer countdown notification",
+    "type": "text",
+    "placeholders": {
+      "prayer": {
+        "type": "String"
+      }
+    }
+  },
+  "countdownElapsedMinutes": "@prayer-এর @minutes মিনিট অতীবাহিত",
+  "@countdownElapsedMinutes": {
+    "description": "Persistent prayer countdown notification",
+    "type": "text",
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      },
+      "prayer": {
+        "type": "String"
+      }
+    }
+  },
+  "countdownElapsedHoursMinutes": "@prayer-এর @hours ঘণ্টা @minutes মিনিট অতীবাহিত",
+  "@countdownElapsedHoursMinutes": {
+    "description": "Persistent prayer countdown notification",
+    "type": "text",
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      },
+      "minutes": {
+        "type": "int"
+      },
+      "prayer": {
+        "type": "String"
+      }
+    }
+  },
+  "countdownNextLabel": "পরবর্তী নামাজ",
+  "@countdownNextLabel": {
+    "description": "Live Activity labels for prayer countdown",
+    "type": "text",
+    "placeholders": {}
+  },
+  "countdownElapsedLabel": "অতীবাহিত",
+  "@countdownElapsedLabel": {
+    "description": "Live Activity labels for prayer countdown",
+    "type": "text",
+    "placeholders": {}
+  },
+  "countdownNextEventLabel": "পরবর্তী সময়",
+  "@countdownNextEventLabel": {
+    "description": "Label for countdown to non-prayer slots (sunrise/midnight/last third)",
+    "type": "text",
+    "placeholders": {}
   }
 }

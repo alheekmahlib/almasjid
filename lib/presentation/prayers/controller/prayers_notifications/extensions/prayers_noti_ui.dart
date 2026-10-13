@@ -44,11 +44,13 @@ extension PrayersNotiUi on PrayersNotificationsCtrl {
           : null;
       final fileName = entry?.adhanFileName ?? 'aqsa';
       regularPath = entry?.adhanLocalPath ?? 'resource://raw/${fileName}_athan';
-      // iOS لا يحتوي نسخاً فجرية مدمجة؛ وsarihi له تسمية خاصة في raw.
+      // iOS/macOS لا يحتويان نسخاً فجرية مدمجة؛ وsarihi له تسمية خاصة في raw.
       final fajirRaw = fileName == 'sarihi'
           ? 'sarihi_athan_fajir'
           : '${fileName}_fajir_athan';
-      fajirPath = Platform.isIOS ? regularPath : 'resource://raw/$fajirRaw';
+      fajirPath = Platform.isIOS || Platform.isMacOS
+          ? regularPath
+          : 'resource://raw/$fajirRaw';
     }
 
     state.selectedAdhanPath.value = regularPath;

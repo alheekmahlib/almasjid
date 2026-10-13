@@ -1,0 +1,20 @@
+moduledependenciestarget: \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/SDKSettings.json \
+  /Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/ExplicitPrecompiledModules/_DarwinFoundation1-2W0C3I2Z6XMZXYTH0WASMO1KV.pcm \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/usr/include/DarwinFoundation1.modulemap \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/21/include/module.modulemap \
+  /Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/ExplicitPrecompiledModules/CoreServices-4AX84WBERHPZ3HZQKY1O4KIWS.pcm \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/usr/include/DarwinFoundation2.modulemap \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/CoreFoundation.framework/Modules/module.modulemap \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/CoreServices.framework/Modules/module.modulemap \
+  /Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/ExplicitPrecompiledModules/CoreText-BTR6ZL2JUTONKNG3CRVHM4OAC.pcm \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/CoreGraphics.framework/Modules/module.modulemap \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/CoreText.framework/Modules/module.modulemap \
+  /Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/ExplicitPrecompiledModules/ColorSync-2NI6WQBGG8SGMKEX8Y7B4GU2A.pcm \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/ColorSync.framework/Modules/module.modulemap \
+  /Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/ExplicitPrecompiledModules/ImageIO-BRIE2EL2AL7H616YWMAH7AT3W.pcm \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/ImageIO.framework/Modules/module.modulemap \
+  /Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/ExplicitPrecompiledModules/Foundation-9DOSW0QTN7WE74797R2F7G8RF.pcm \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Foundation.framework/Modules/module.modulemap \
+  /Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/ExplicitPrecompiledModules/CUPS-CTE7C5HIF6B5YJ2RJZFRE3X0A.pcm \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/usr/include/cups.modulemap

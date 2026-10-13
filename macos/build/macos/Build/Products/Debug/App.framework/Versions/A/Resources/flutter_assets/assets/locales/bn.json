@@ -1,0 +1,999 @@
+{
+  "appName": "আকিম - মাকতাবাতুল হিকমাহ",
+  "@appName": {
+    "description": "appName",
+    "type": "text",
+    "placeholders": {}
+  },
+  "appLang": "অ্যাপের ভাষা",
+  "@appLang": {
+    "description": "appLang",
+    "type": "text",
+    "placeholders": {}
+  },
+  "lang": "বাংলা",
+  "@lang": {
+    "description": "lang",
+    "type": "text",
+    "placeholders": {}
+  },
+  "cites": "শহরসমূহ",
+  "@cites": {
+    "description": "Bottom nav: cities tab",
+    "type": "text",
+    "placeholders": {}
+  },
+  "citiesPrayerTimesTitle": "শহরের নামাজের সময়",
+  "@citiesPrayerTimesTitle": {
+    "description": "Cities prayer times screen title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "citiesPrayerTimesSearchHint": "নামাজের সময় দেখতে শহর খুঁজুন",
+  "@citiesPrayerTimesSearchHint": {
+    "description": "Cities search hint",
+    "type": "text",
+    "placeholders": {}
+  },
+  "Fajr": "ফজর",
+  "@Fajr": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Dhuhr": "যুহর",
+  "@Dhuhr": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Asr": "আসর",
+  "@Asr": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Maghrib": "মাগরিব",
+  "@Maghrib": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Isha": "ইশা",
+  "@Isha": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lastThirdOfTheNight": "রাতের শেষ তৃতীয়াংশ",
+  "@lastThirdOfTheNight": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "middleOfTheNight": "রাতের মধ্য",
+  "@middleOfTheNight": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Sunrise": "সূর্যোদয়",
+  "@Sunrise": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Sun": "রবি",
+  "@Sun": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Mon": "সোম",
+  "@Mon": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Tue": "মঙ্গল",
+  "@Tue": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Wed": "বুধ",
+  "@Wed": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Thu": "বৃহস্পতি",
+  "@Thu": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Fri": "শুক্র",
+  "@Fri": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Sat": "শনি",
+  "@Sat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Sunday": "রবিবার",
+  "@Sunday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Monday": "সোমবার",
+  "@Monday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Tuesday": "মঙ্গলবার",
+  "@Tuesday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Wednesday": "বুধবার",
+  "@Wednesday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Thursday": "বৃহস্পতিবার",
+  "@Thursday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Friday": "শুক্রবার",
+  "@Friday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Saturday": "শনিবার",
+  "@Saturday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "activeLocationPlease": "নামাজের সময় সক্রিয় করতে অনুগ্রহ করে অবস্থান সেবা চালু করুন",
+  "@activeLocationPlease": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "prayerSetting": "নামাজের সেটিংস",
+  "@prayerSetting": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "detectLocation": "অবস্থান নির্ধারণ",
+  "@detectLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "adhanSounds": "আজানের আওয়াজ",
+  "@adhanSounds": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "aqsa": "আকসার আজান",
+  "@aqsa": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saqqaf": "হাশিম আস-সাক্কাফ",
+  "@saqqaf": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sarihi": "আব্দুল মাজিদ আস-সারিহি",
+  "@sarihi": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setTimingCalculations": "সময় গণনা সেট করুন",
+  "@setTimingCalculations": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "automaticallyDetermineCalculationMethod": "স্বয়ংক্রিয়ভাবে গণনা পদ্ধতি নির্ধারণ",
+  "@automaticallyDetermineCalculationMethod": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "madhab": "মাজহাব",
+  "@madhab": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "shafie": "শাফেঈ, মালিকি ও হাম্বলি",
+  "@shafie": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hanafe": "হানাফি",
+  "@hanafe": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "madhabNote": "হানাফি মাজহাবে ইশার আজান জমহুরের তুলনায় প্রায় বারো মিনিট দেরিতে হয়, যেমনটি 'আল-মাওসুআ আল-ফিকহিয়্যা আল-কুয়ায়তিয়্যা'-তে (৭/১৭৫) উল্লেখ রয়েছে। এবং হানাফি মাজহাবে আসরের আজান দেশ ও ঋতু অনুযায়ী আধা ঘন্টা বা তার বেশি দেরিতে হয়।",
+  "@madhabNote": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "SeventhOfTheNight": "রাতের সপ্তমাংশ",
+  "@SeventhOfTheNight": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "usingTheAngle": "কোণ ব্যবহার করে",
+  "@usingTheAngle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "SetPrayerTimes": "নামাজের সময় সেট করুন",
+  "@SetPrayerTimes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notificationOptions": "বিজ্ঞপ্তির বিকল্প",
+  "@notificationOptions": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nothing": "কিছুই না",
+  "@nothing": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "silent": "নিরব",
+  "@silent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bell": "ঘন্টা",
+  "@bell": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sound": "আজান",
+  "@sound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "aboutPrayer": "নামাজ সম্পর্কে",
+  "@aboutPrayer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "timeLeft:": "আজানের বাকি সময়:",
+  "@timeLeft:": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fromQuran:": "কুরআন থেকে:",
+  "@fromQuran:": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fromSunnah:": "সুন্নাহ থেকে:",
+  "@fromSunnah:": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "prohibitionTimes": "নিষিদ্ধ সময়ে নামাজ",
+  "@prohibitionTimes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fajrBody": "যে ব্যক্তি ফজরের নামাজ পড়ল সে আল্লাহর জিম্মায়",
+  "@fajrBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dhuhrBody": "নামাজ, নামাজ এবং তোমাদের দাসদাসীরা",
+  "@dhuhrBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "asrBody": "যে ব্যক্তি দুই ঠান্ডা নামাজ পড়ল সে জান্নাতে প্রবেশ করবে",
+  "@asrBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "maghribBody": "যে ব্যক্তি নামাজ ছাড়ে তার জন্য ইসলামে কোন অংশ নেই",
+  "@maghribBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ishaBody": "যে ব্যক্তি জামাতে ইশা পড়ল সে যেন অর্ধ রাত কিয়াম করল",
+  "@ishaBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "timeForPrayer": "নামাজের সময়",
+  "@timeForPrayer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "openAppReminderTitle": "অ্যাপ খোলার স্মরণিকা",
+  "@openAppReminderTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "openAppReminderBody": "নতুন নামাজের বিজ্ঞপ্তি সময়সূচী করতে অনুগ্রহ করে অ্যাপটি খুলুন।",
+  "@openAppReminderBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "prayer": "নামাজ",
+  "@prayer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "langChange": "ভাষা পরিবর্তন",
+  "@langChange": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "themeTitle": "থিম নির্বাচন করুন",
+  "@themeTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ourApps": "আমাদের অ্যাপ",
+  "@ourApps": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "aboutApp": "অ্যাপ সম্পর্কে",
+  "@aboutApp": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "about_app": "'আকিম' অ্যাপটি একটি সহজ এবং সরাসরি ইসলামিক অ্যাপ্লিকেশন, যা বিশেষভাবে আপনাকে সময়মতো এবং সহজে আপনার নামাজ আদায় করতে সাহায্য করার জন্য ডিজাইন করা হয়েছে।\nঅ্যাপটি প্রতিটি মুসলমানের দৈনন্দিন জীবনে প্রয়োজনীয় মৌলিক সরঞ্জামগুলি প্রদানের উপর ফোকাস করে, একটি ব্যবহার-বান্ধব ইন্টারঅ্যাক্টিভ ইন্টারফেসের মাধ্যমে যা আপনার জন্য আরামদায়ক এবং স্পষ্ট অভিজ্ঞতা নিশ্চিত করে।\n'আকিম' এর সাথে, আপনি আর কখনো কোনো নামাজ মিস করবেন না, কারণ অ্যাপটি ব্যক্তিগত অ্যালার্ম এবং আপনার কিবলার জন্য নির্ভুল গাইড হিসেবে কাজ করে, যা এটিকে ইসলামের সবচেয়ে গুরুত্বপূর্ণ স্তম্ভগুলি বজায় রাখার জন্য নিখুঁত সরঞ্জাম করে তোলে।",
+  "@about_app": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "about_app2": "অ্যাপের বৈশিষ্ট্যসমূহ:",
+  "@about_app2": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "about_app3": "নামাজের সময়: অ্যাপটি আপনার ভৌগোলিক অবস্থানের উপর ভিত্তি করে উচ্চ নির্ভুলতার সাথে নামাজের সময় প্রদর্শন করে।\nআজানের বিজ্ঞপ্তি: প্রতিটি নামাজের সময় আসার সাথে সাথে অডিও সতর্কতা পান যাতে সর্বদা প্রস্তুত থাকতে পারেন।\nকিবলার দিক: বিশ্বের যেকোনো স্থান থেকে সঠিক কিবলার দিক নির্ধারণ করার জন্য নির্ভুল এবং ব্যবহার-সহজ কম্পাস।\nইন্টারঅ্যাক্টিভ ইন্টারফেস: সহজ এবং স্পষ্ট ডিজাইন যা কোনো জটিলতা ছাড়াই অ্যাপের বৈশিষ্ট্যগুলির মধ্যে নেভিগেট করা সহজ করে।",
+  "@about_app3": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "email": "আমাদের সাথে যোগাযোগ",
+  "@email": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "share": "অ্যাপ শেয়ার করুন",
+  "@share": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "facebook": "ফেসবুকে আমাদের ফলো করুন",
+  "@facebook": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "qibla": "কিবলা",
+  "@qibla": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "qiblaDirection": "কিবলার দিক",
+  "@qiblaDirection": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "compass": "কম্পাস",
+  "@compass": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "map": "মানচিত্র",
+  "@map": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locationNote": "আপনার বর্তমান অবস্থানের ভিত্তিতে সঠিক নামাজের সময় পেতে অনুগ্রহ করে অবস্থান সেবা সক্রিয় করুন।\nআপনি যখন ভ্রমণ করেন বা নতুন স্থানে যান তখন নামাজের সময় স্বয়ংক্রিয়ভাবে আপডেট হওয়া নিশ্চিত করতে, অ্যাপটির ব্যাকগ্রাউন্ডে আপনার অবস্থানে অ্যাক্সেসের প্রয়োজন।\nআমরা আপনাকে নিশ্চয়তা দিচ্ছি যে আপনার সমস্ত অবস্থানের তথ্য সম্পূর্ণ গোপনীয় থাকবে এবং কোনো তৃতীয় পক্ষের সাথে ভাগ করা হবে না।",
+  "@locationNote": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notificationNote": "নামাজের সময় এবং অন্যান্য বিজ্ঞপ্তি পেতে অনুগ্রহ করে নোটিফিকেশন চালু করুন।",
+  "@notificationNote": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locate": "স্বয়ংক্রিয় সনাক্ত",
+  "@locate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "activation": "সক্রিয়করণ",
+  "@activation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ok": "ঠিক আছে",
+  "@ok": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancel": "বাতিল",
+  "teachingPrayer": "নামাজ শিক্ষা",
+  "noData": "@x এর জন্য কোনো ডাটা নেই",
+  "@cancel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "searchForCity": "শহর খুঁজুন",
+  "@searchForCity": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectFromMap": "মানচিত্র থেকে নির্বাচন করুন",
+  "@selectFromMap": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterCityName": "শহরের নাম লিখুন...",
+  "@enterCityName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "manualLocationNote": "হুয়াওয়ে ডিভাইসের জন্য, সর্বোত্তম নির্ভুলতার জন্য ম্যানুয়াল অবস্থান সেট করা সুপারিশ করা হয়",
+  "@manualLocationNote": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locationSetSuccessfully": "অবস্থান সফলভাবে সেট করা হয়েছে",
+  "@locationSetSuccessfully": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "failedToSetLocation": "অবস্থান সেট করতে ব্যর্থ",
+  "@failedToSetLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "failedToSearchCities": "শহর খুঁজতে ব্যর্থ",
+  "@failedToSearchCities": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectCountry": "দেশ নির্বাচন করুন",
+  "@selectCountry": {
+    "description": "Country picker title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterCountryName": "একটি দেশ খুঁজুন...",
+  "@enterCountryName": {
+    "description": "Country search hint",
+    "type": "text",
+    "placeholders": {}
+  },
+  "noResults": "কোন ফলাফল নেই",
+  "@noResults": {
+    "description": "Shown when search has no matches",
+    "type": "text",
+    "placeholders": {}
+  },
+  "failedToLoadCountries": "দেশসমূহ লোড করতে ব্যর্থ",
+  "@failedToLoadCountries": {
+    "description": "Countries list loading error",
+    "type": "text",
+    "placeholders": {}
+  },
+  "What's New": "নতুন কী",
+  "@What's New": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "What'sNewDetails10": "۞ ইকামতের সময় যোগ করা হয়েছে, সময় ও নোটিফিকেশন কাস্টমাইজ করার সুযোগসহ।\n۞ নোটিফিকেশন লজিকের উন্নতি।\n۞ কর্মক্ষমতার উন্নতি।",
+  "@What'sNewDetails10": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "shareImage": "ছবি শেয়ার করুন",
+  "@shareImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sharePrayerTime": "পরবর্তী নামাজের সময়",
+  "@sharePrayerTime": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nextPrayer": "পরবর্তী নামাজ",
+  "@nextPrayer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Muharram": "মুহাররম",
+  "@Muharram": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Safar": "সফর",
+  "@Safar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Rabi' Al-Awwal": "রবিউল আউয়াল",
+  "@Rabi' Al-Awwal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Rabi' Al-Thani": "রবিউস সানি",
+  "@Rabi' Al-Thani": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Jumada Al-Awwal": "জমাদিউল আউয়াল",
+  "@Jumada Al-Awwal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Jumada Al-Thani": "জমাদিউল আখিরাহ",
+  "@Jumada Al-Thani": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Rajab": "রজব",
+  "@Rajab": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Sha'aban": "শাবান",
+  "@Sha'aban": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Ramadan": "রমজান",
+  "@Ramadan": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Shawwal": "শাওয়াল",
+  "@Shawwal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Dhu Al-Qi'dah": "জিলকদ",
+  "@Dhu Al-Qi'dah": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Dhu Al-Hijjah": "জিলহজ",
+  "@Dhu Al-Hijjah": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "settings": "সেটিংস",
+  "@settings": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "prayerDetails": "নামাজের বিস্তারিত",
+  "@prayerDetails": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "min": "মিনিট",
+  "@min": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "h": "ঘন্টা",
+  "@h": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saving...": "সংরক্ষণ করা হচ্ছে...",
+  "@saving...": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locationSetted": "নির্ধারিত অবস্থান",
+  "@locationSetted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tapOnMapToSelectLocation": "অবস্থান নির্বাচন করতে মানচিত্রে ট্যাপ করুন",
+  "@tapOnMapToSelectLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseSelectLocation": "দয়া করে মানচিত্রে একটি অবস্থান নির্বাচন করুন",
+  "@pleaseSelectLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "downloadingPrayerData": "নামাজের তথ্য ডাউনলোড করা হচ্ছে...",
+  "@downloadingPrayerData": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noInternet": "ইন্টারনেট সংযোগ নেই",
+  "@noInternet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noNotifications": "কোনো বিজ্ঞপ্তি নেই",
+  "@noNotifications": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "qiblaDirectionForCity": "আপনার শহরের জন্য কিবলার দিক:",
+  "@qiblaDirectionForCity": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "qiblaNoteForDesktop": "এই ফিচারটি শুধুমাত্র কম্পাস সুবিধা সহ ডিভাইসে উপলব্ধ। আপনার বর্তমান অবস্থানের ভিত্তিতে কিবলার দিক দেখতে অনুগ্রহ করে কম্পাস ফিচার সহ একটি ডিভাইস ব্যবহার করুন।",
+  "@qiblaNoteForDesktop": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reminder": "রিমাইন্ডার",
+  "@reminder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "liatafaqahuu": "বুঝুক",
+  "@liatafaqahuu": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "understanding": "ধর্মে জ্ঞানানুশীলন করতে",
+  "@understanding": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "baset": "আব্দুল বাসিত",
+  "@baset": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "qatami": "নাসের আল-কাতামি",
+  "@qatami": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "salah": "সালাহ আল-দিব",
+  "@salah": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "start": "শুরু করুন",
+  "@start": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "skip": "এড়িয়ে যান",
+  "@skip": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reset": "রিসেট করুন",
+  "@reset": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fastingReminder": "রোজার তাগাদা",
+  "@fastingReminder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "aboutMonth": "মাস সম্পর্কে",
+  "@aboutMonth": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ramadanMaghribName": "ইফতার",
+  "@ramadanMaghribName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "startHijriYear": "হিজরি বছরের শুরু",
+  "@startHijriYear": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reminderToFastTasoo'a": "তাসুআ রোজা রাখার স্মরণ",
+  "@reminderToFastTasoo'a": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reminderToFastAshura": "আশুরা রোজা রাখার স্মরণ",
+  "@reminderToFastAshura": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ramadhan": "রমজান মাস",
+  "@ramadhan": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nightOfQadir": "লাইলাতুল কদর স্মরণ",
+  "@nightOfQadir": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "EidAl-Fitr": "ঈদুল ফিতর",
+  "@EidAl-Fitr": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sexShawwal": "শাওয়ালের ছয় রোজা রাখার স্মরণ",
+  "@sexShawwal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "arafahReminder": "আরাফাহ দিবসের রোজা রাখার স্মরণ",
+  "@arafahReminder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tenDaysOfDhul-Hijjah": "এবং দশ রাত্রি",
+  "@tenDaysOfDhul-Hijjah": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "EidAl-Adha": "ঈদুল আযহা",
+  "@EidAl-Adha": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iqama": "ইকামত",
+  "@iqama": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "timeForIqama": "ইকামতের সময় হয়েছে",
+  "@timeForIqama": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iqamaBody": "চলুন নামাজে অংশ নিই",
+  "@iqamaBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iqamaNotifications": "ইকামতের বিজ্ঞপ্তি",
+  "@iqamaNotifications": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iqamaNotificationsDesc": "প্রতি নামাজের ইকামতের সময়ে বিজ্ঞপ্তি",
+  "@iqamaNotificationsDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "showIqamaTimes": "ইকামতের সময় দেখান",
+  "@showIqamaTimes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "minutes": "মিনিট",
+  "@minutes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "stopAdhan": "বন্ধ করুন",
+  "@stopAdhan": {
+    "description": "stopAdhan",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackSendNote": "মন্তব্য পাঠান",
+  "@feedbackSendNote": {
+    "description": "feedbackSendNote",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackSubtitle": "আপনার মতামত জানান বা সমস্যা রিপোর্ট করুন",
+  "@feedbackSubtitle": {
+    "description": "feedbackSubtitle",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackMessageHint": "এখানে আপনার মন্তব্য লিখুন...",
+  "@feedbackMessageHint": {
+    "description": "feedbackMessageHint",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackContactOptional": "যোগাযোগের ইমেইল (ঐচ্ছিক)",
+  "@feedbackContactOptional": {
+    "description": "feedbackContactOptional",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackSentSuccess": "আপনার মন্তব্য সফলভাবে পাঠানো হয়েছে",
+  "@feedbackSentSuccess": {
+    "description": "feedbackSentSuccess",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackSentError": "মন্তব্য পাঠানো যায়নি, আবার চেষ্টা করুন",
+  "@feedbackSentError": {
+    "description": "feedbackSentError",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackQueued": "ইন্টারনেট সংযোগ ফিরে এলে আপনার মতামত স্বয়ংক্রিয়ভাবে পাঠানো হবে",
+  "@feedbackQueued": {
+    "description": "feedbackQueued",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackNoNotesYet": "এখনও কোনো মন্তব্য নেই",
+  "@feedbackNoNotesYet": {
+    "description": "feedbackNoNotesYet",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackReplyHint": "আপনার মন্তব্যের উত্তর লিখুন...",
+  "@feedbackReplyHint": {
+    "description": "feedbackReplyHint",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackReplyTitle": "অ্যাডমিনের উত্তর",
+  "@feedbackReplyTitle": {
+    "description": "feedbackReplyTitle",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackStatusPlanned": "পরিকল্পিত",
+  "@feedbackStatusPlanned": {
+    "description": "feedbackStatusPlanned",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackStatusInProgress": "চলমান",
+  "@feedbackStatusInProgress": {
+    "description": "feedbackStatusInProgress",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackStatusComplete": "সম্পন্ন",
+  "@feedbackStatusComplete": {
+    "description": "feedbackStatusComplete",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackAdminRole": "অ্যাডমিন",
+  "@feedbackAdminRole": {
+    "description": "feedbackAdminRole",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackYouRole": "আমি",
+  "@feedbackYouRole": {
+    "description": "feedbackYouRole",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackPickImages": "ছবি",
+  "@feedbackPickImages": {
+    "description": "feedbackPickImages",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackPickVideo": "ভিডিও",
+  "@feedbackPickVideo": {
+    "description": "feedbackPickVideo",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackMaxFiles": "সর্বোচ্চ ৫টি ফাইল",
+  "@feedbackMaxFiles": {
+    "description": "feedbackMaxFiles",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackFileTooLarge": "ফাইলটি অনেক বড়",
+  "@feedbackFileTooLarge": {
+    "description": "feedbackFileTooLarge",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackInvalidType": "অসমর্থিত ফাইল",
+  "@feedbackInvalidType": {
+    "description": "feedbackInvalidType",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackUploading": "আপলোড হচ্ছে",
+  "@feedbackUploading": {
+    "description": "feedbackUploading",
+    "type": "text",
+    "placeholders": {}
+  },
+  "charactersRemaining": "অক্ষর বাকি",
+  "@charactersRemaining": {
+    "description": "charactersRemaining",
+    "type": "text",
+    "placeholders": {}
+  },
+  "retry": "আবার চেষ্টা করুন",
+  "@retry": {
+    "description": "retry",
+    "type": "text",
+    "placeholders": {}
+  },
+  "prayerCountdownNotification": "নামাজের সময়ের স্থায়ী নোটিফিকেশন",
+  "@prayerCountdownNotification": {
+    "description": "Persistent prayer countdown notification",
+    "type": "text",
+    "placeholders": {}
+  },
+  "countdownNextPrayer": "পরবর্তী নামাজ: @prayer @time",
+  "@countdownNextPrayer": {
+    "description": "Persistent prayer countdown notification",
+    "type": "text",
+    "placeholders": {
+      "prayer": {
+        "type": "String"
+      },
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "countdownJustStarted": "@prayer-এর সময় হয়েছে",
+  "@countdownJustStarted": {
+    "description": "Persistent prayer countdown notification",
+    "type": "text",
+    "placeholders": {
+      "prayer": {
+        "type": "String"
+      }
+    }
+  },
+  "countdownElapsedMinutes": "@prayer-এর @minutes মিনিট অতীবাহিত",
+  "@countdownElapsedMinutes": {
+    "description": "Persistent prayer countdown notification",
+    "type": "text",
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      },
+      "prayer": {
+        "type": "String"
+      }
+    }
+  },
+  "countdownElapsedHoursMinutes": "@prayer-এর @hours ঘণ্টা @minutes মিনিট অতীবাহিত",
+  "@countdownElapsedHoursMinutes": {
+    "description": "Persistent prayer countdown notification",
+    "type": "text",
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      },
+      "minutes": {
+        "type": "int"
+      },
+      "prayer": {
+        "type": "String"
+      }
+    }
+  },
+  "countdownNextLabel": "পরবর্তী নামাজ",
+  "@countdownNextLabel": {
+    "description": "Live Activity labels for prayer countdown",
+    "type": "text",
+    "placeholders": {}
+  },
+  "countdownElapsedLabel": "অতীবাহিত",
+  "@countdownElapsedLabel": {
+    "description": "Live Activity labels for prayer countdown",
+    "type": "text",
+    "placeholders": {}
+  },
+  "countdownNextEventLabel": "পরবর্তী সময়",
+  "@countdownNextEventLabel": {
+    "description": "Label for countdown to non-prayer slots (sunrise/midnight/last third)",
+    "type": "text",
+    "placeholders": {}
+  }
+}

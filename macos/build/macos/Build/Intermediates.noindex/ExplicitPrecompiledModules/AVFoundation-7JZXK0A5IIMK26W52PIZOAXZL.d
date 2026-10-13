@@ -1,0 +1,24 @@
+moduledependenciestarget: \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/SDKSettings.json \
+  /Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/ExplicitPrecompiledModules/_DarwinFoundation1-3GQHDEJC931QUXQ4PTCT0HDJ2.pcm \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/usr/include/DarwinFoundation1.modulemap \
+  /Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/ExplicitPrecompiledModules/Foundation-B7KLNUY720EKO4FDJXTBLPWSU.pcm \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/CoreFoundation.framework/Modules/module.modulemap \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/CoreGraphics.framework/Modules/module.modulemap \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Foundation.framework/Modules/module.modulemap \
+  /Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/ExplicitPrecompiledModules/CoreMedia-BA3I7K5YGAFSJJA8J2N9VXK6A.pcm \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/ImageIO.framework/Modules/module.modulemap \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/CoreVideo.framework/Modules/module.modulemap \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/CoreMedia.framework/Modules/module.modulemap \
+  /Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/ExplicitPrecompiledModules/UniformTypeIdentifiers-7O50L1NSLC9WPHFZB2642AVI1.pcm \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/UniformTypeIdentifiers.framework/Modules/module.modulemap \
+  /Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/ExplicitPrecompiledModules/VideoToolbox-E80ANRI1Q6PKQ62N3N859T6BI.pcm \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/VideoToolbox.framework/Modules/module.modulemap \
+  /Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/ExplicitPrecompiledModules/MediaToolbox-7Y91SXUFPYYEJTU360EWYF6UI.pcm \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/MediaToolbox.framework/Modules/module.modulemap \
+  /Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/ExplicitPrecompiledModules/QuartzCore-58HUGYITM8HRML9JTT25DQ2WL.pcm \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/QuartzCore.framework/Modules/module.modulemap \
+  /Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/ExplicitPrecompiledModules/AVFAudio-61Q3U63YEHIQHUFGGGY1IARNA.pcm \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/AVFAudio.framework/Modules/module.modulemap \
+  /Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/ExplicitPrecompiledModules/simd-3FXITHF5DO9TUZ6Q7PLF3BJ78.pcm \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/usr/include/simd/module.modulemap

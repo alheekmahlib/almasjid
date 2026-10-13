@@ -1,0 +1,29 @@
+{
+  "" : {
+    "diagnostics" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/flutter_timezone.build/Debug/flutter_timezone-t.build/Objects-normal/arm64/flutter_timezone-primary.dia",
+    "emit-module-dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/flutter_timezone.build/Debug/flutter_timezone-t.build/Objects-normal/arm64/flutter_timezone-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/flutter_timezone.build/Debug/flutter_timezone-t.build/Objects-normal/arm64/flutter_timezone-primary-emit-module.dia",
+    "pch" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/flutter_timezone.build/Debug/flutter_timezone-t.build/Objects-normal/arm64/flutter_timezone-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/flutter_timezone.build/Debug/flutter_timezone-t.build/Objects-normal/arm64/flutter_timezone-primary.swiftdeps"
+  },
+  "/Volumes/HawazenSSD/Applications/Dart/pub-cache/hosted/pub.dev/flutter_timezone-5.1.0/macos/flutter_timezone/Sources/flutter_timezone/FlutterTimezonePlugin.swift" : {
+    "const-values" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/flutter_timezone.build/Debug/flutter_timezone-t.build/Objects-normal/arm64/FlutterTimezonePlugin.swiftconstvalues",
+    "dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/flutter_timezone.build/Debug/flutter_timezone-t.build/Objects-normal/arm64/FlutterTimezonePlugin.d",
+    "diagnostics" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/flutter_timezone.build/Debug/flutter_timezone-t.build/Objects-normal/arm64/FlutterTimezonePlugin.dia",
+    "index-unit-output-path" : "/flutter_timezone.build/Debug/flutter_timezone-t.build/Objects-normal/arm64/FlutterTimezonePlugin.o",
+    "llvm-bc" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/flutter_timezone.build/Debug/flutter_timezone-t.build/Objects-normal/arm64/FlutterTimezonePlugin.bc",
+    "object" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/flutter_timezone.build/Debug/flutter_timezone-t.build/Objects-normal/arm64/FlutterTimezonePlugin.o",
+    "swift-dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/flutter_timezone.build/Debug/flutter_timezone-t.build/Objects-normal/arm64/FlutterTimezonePlugin.swiftdeps",
+    "swiftmodule" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/flutter_timezone.build/Debug/flutter_timezone-t.build/Objects-normal/arm64/FlutterTimezonePlugin~partial.swiftmodule"
+  },
+  "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/flutter_timezone.build/Debug/flutter_timezone-t.build/DerivedSources/resource_bundle_accessor.swift" : {
+    "const-values" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/flutter_timezone.build/Debug/flutter_timezone-t.build/Objects-normal/arm64/resource_bundle_accessor.swiftconstvalues",
+    "dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/flutter_timezone.build/Debug/flutter_timezone-t.build/Objects-normal/arm64/resource_bundle_accessor.d",
+    "diagnostics" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/flutter_timezone.build/Debug/flutter_timezone-t.build/Objects-normal/arm64/resource_bundle_accessor.dia",
+    "index-unit-output-path" : "/flutter_timezone.build/Debug/flutter_timezone-t.build/Objects-normal/arm64/resource_bundle_accessor.o",
+    "llvm-bc" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/flutter_timezone.build/Debug/flutter_timezone-t.build/Objects-normal/arm64/resource_bundle_accessor.bc",
+    "object" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/flutter_timezone.build/Debug/flutter_timezone-t.build/Objects-normal/arm64/resource_bundle_accessor.o",
+    "swift-dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/flutter_timezone.build/Debug/flutter_timezone-t.build/Objects-normal/arm64/resource_bundle_accessor.swiftdeps",
+    "swiftmodule" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/flutter_timezone.build/Debug/flutter_timezone-t.build/Objects-normal/arm64/resource_bundle_accessor~partial.swiftmodule"
+  }
+}

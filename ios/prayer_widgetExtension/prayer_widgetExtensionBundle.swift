@@ -13,5 +13,7 @@ import SwiftUI
 struct prayer_widgetExtensionBundle: WidgetBundle {
     var body: some Widget {
         prayer_widget()
+        // Live Activity للعدّ التنازلي (شاشة القفل + الجزيرة الديناميكية)
+        PrayerLiveActivity()
     }
 }

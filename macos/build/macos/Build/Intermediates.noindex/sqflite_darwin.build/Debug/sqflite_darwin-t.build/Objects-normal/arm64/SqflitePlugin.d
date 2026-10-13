@@ -1,0 +1,24 @@
+dependencies: \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/SDKSettings.json \
+  /Volumes/HawazenSSD/Applications/Dart/pub-cache/hosted/pub.dev/sqflite_darwin-2.4.3+1/darwin/sqflite_darwin/Sources/sqflite_darwin/SqflitePlugin.m \
+  /Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/sqflite_darwin.build/Debug/sqflite_darwin-t.build/DerivedSources/resource_bundle_accessor.h \
+  /Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/ExplicitPrecompiledModules/Foundation-B7KLNUY720EKO4FDJXTBLPWSU.pcm \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/DarwinFoundation1.modulemap \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/Foundation.framework/Modules/module.modulemap \
+  /Volumes/HawazenSSD/Applications/Dart/pub-cache/hosted/pub.dev/sqflite_darwin-2.4.3+1/darwin/sqflite_darwin/Sources/sqflite_darwin/SqflitePlugin.h \
+  /Volumes/HawazenSSD/Applications/Dart/pub-cache/hosted/pub.dev/sqflite_darwin-2.4.3+1/darwin/sqflite_darwin/Sources/sqflite_darwin/include/sqflite_darwin/SqflitePluginPublic.h \
+  /Volumes/HawazenSSD/Applications/Dart/pub-cache/hosted/pub.dev/sqflite_darwin-2.4.3+1/darwin/sqflite_darwin/Sources/sqflite_darwin/include/sqflite_darwin/SqfliteImportPublic.h \
+  /Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/ExplicitPrecompiledModules/FlutterMacOS-1WBCTX1JBGXDC657RCOVDV4PN.pcm \
+  /Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Products/Debug/FlutterMacOS.framework/Modules/module.modulemap \
+  /Volumes/HawazenSSD/Applications/Dart/pub-cache/hosted/pub.dev/sqflite_darwin-2.4.3+1/darwin/sqflite_darwin/Sources/sqflite_darwin/SqfliteDatabase.h \
+  /Volumes/HawazenSSD/Applications/Dart/pub-cache/hosted/pub.dev/sqflite_darwin-2.4.3+1/darwin/sqflite_darwin/Sources/sqflite_darwin/SqfliteCursor.h \
+  /Volumes/HawazenSSD/Applications/Dart/pub-cache/hosted/pub.dev/sqflite_darwin-2.4.3+1/darwin/sqflite_darwin/Sources/sqflite_darwin/SqfliteOperation.h \
+  /Volumes/HawazenSSD/Applications/Dart/pub-cache/hosted/pub.dev/sqflite_darwin-2.4.3+1/darwin/sqflite_darwin/Sources/sqflite_darwin/SqfliteImport.h \
+  /Volumes/HawazenSSD/Applications/Dart/pub-cache/hosted/pub.dev/sqflite_darwin-2.4.3+1/darwin/sqflite_darwin/Sources/sqflite_darwin/SqfliteDarwinImport.h \
+  /Volumes/HawazenSSD/Applications/Dart/pub-cache/hosted/pub.dev/sqflite_darwin-2.4.3+1/darwin/sqflite_darwin/Sources/sqflite_darwin/SqfliteDarwinDB.h \
+  /Volumes/HawazenSSD/Applications/Dart/pub-cache/hosted/pub.dev/sqflite_darwin-2.4.3+1/darwin/sqflite_darwin/Sources/sqflite_darwin/SqfliteDarwinDatabase.h \
+  /Volumes/HawazenSSD/Applications/Dart/pub-cache/hosted/pub.dev/sqflite_darwin-2.4.3+1/darwin/sqflite_darwin/Sources/sqflite_darwin/SqfliteDarwinResultSet.h \
+  /Volumes/HawazenSSD/Applications/Dart/pub-cache/hosted/pub.dev/sqflite_darwin-2.4.3+1/darwin/sqflite_darwin/Sources/sqflite_darwin/SqfliteDarwinDatabaseAdditions.h \
+  /Volumes/HawazenSSD/Applications/Dart/pub-cache/hosted/pub.dev/sqflite_darwin-2.4.3+1/darwin/sqflite_darwin/Sources/sqflite_darwin/SqfliteDarwinDatabaseQueue.h \
+  /Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/ExplicitPrecompiledModules/SQLite3-J69TXB8Q07NF5EGEDFWXIYHA.pcm \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/SQLite3.modulemap

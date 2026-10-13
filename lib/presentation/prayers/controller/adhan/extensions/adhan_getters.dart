@@ -764,6 +764,8 @@ extension AdhanGetters on AdhanController {
     state.iqamaNotificationsEnabled.value =
         state.box.read(IQAMA_NOTIFICATIONS_ENABLED) ?? false;
     state.showIqamaTimes.value = state.box.read(SHOW_IQAMA_TIMES) ?? true;
+    state.prayerCountdownEnabled.value =
+        state.box.read(PRAYER_COUNTDOWN_NOTIFICATION_ENABLED) ?? false;
     // state.adjustments[0].value = state.box.read(ADJUSTMENT_FAJR) ?? 0;
     // state.adjustments[1].value = state.box.read(ADJUSTMENT_DHUHR) ?? 0;
     // state.adjustments[2].value = state.box.read(ADJUSTMENT_ASR) ?? 0;

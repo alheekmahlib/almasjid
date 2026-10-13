@@ -211,6 +211,15 @@ class SettingPrayerTimes extends StatelessWidget {
               endPadding: 16.0,
               onChanged: (bool value) => adhanCtrl.toggleShowIqamaTimes(value),
             ),
+            CustomSwitchWidget<AdhanController>(
+              controller: adhanCtrl,
+              title: 'prayerCountdownNotification',
+              value: adhanCtrl.state.prayerCountdownEnabled.value,
+              startPadding: 16.0,
+              endPadding: 16.0,
+              onChanged: (bool value) =>
+                  adhanCtrl.togglePrayerCountdownNotification(value),
+            ),
           ],
         ],
       ),

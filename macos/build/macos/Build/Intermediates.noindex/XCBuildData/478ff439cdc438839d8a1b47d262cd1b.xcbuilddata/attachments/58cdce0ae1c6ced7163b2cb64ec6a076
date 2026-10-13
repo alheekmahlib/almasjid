@@ -1,0 +1,4 @@
+module share_plus {
+header "share_plus-Swift.h"
+export *
+}

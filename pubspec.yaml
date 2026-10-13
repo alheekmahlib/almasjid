@@ -3,7 +3,7 @@ description: "A Prayer and qibla application."
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-version: 1.2.15+21
+version: 1.2.16+23
 
 environment:
   sdk: '>=3.12.2 <4.0.0'
@@ -71,7 +71,9 @@ dependencies:
     git:
       url: https://github.com/alheekmahlib/multi_store_review.git
       path: multi_store_review
-      ref: multi_store_review-v2.2.0
+      # v2.2.1: اسم منتج SPM بصيغة kebab-case كي تتطابق مع مانيفيست
+      # FlutterGeneratedPluginSwiftPackage في Flutter 3.47+.
+      ref: multi_store_review-v2.2.1
   nominatim_geocoding: ^0.0.6
   package_rename: ^1.10.1
   path: ^1.9.1

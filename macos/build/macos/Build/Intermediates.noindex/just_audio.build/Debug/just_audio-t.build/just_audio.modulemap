@@ -1,0 +1,4 @@
+module just_audio {
+umbrella "/Volumes/HawazenSSD/Projects/almasjid/macos/Flutter/ephemeral/Packages/.packages/just_audio-0.10.6/Sources/just_audio/include"
+export *
+}

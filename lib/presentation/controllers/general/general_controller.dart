@@ -381,7 +381,7 @@ class GeneralController extends GetxController with WidgetsBindingObserver {
     }
     if (position == null) {
       final context = Get.context;
-      if (context != null) {
+      if (context!.mounted) {
         context.showSearchBottomSheet(context);
       }
       return false;

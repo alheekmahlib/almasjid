@@ -19,7 +19,8 @@ class PrayersNotificationsCtrl extends GetxController {
       : state.selectedAdhanPath.value;
 
   void get getSharedVariables {
-    String fajirPath = Platform.isIOS
+    // Darwin لا يملك موارد raw؛ الفجر يعود للمسار العادي حتى التحميل.
+    String fajirPath = Platform.isIOS || Platform.isMacOS
         ? 'resource://raw/aqsa_athan'
         : 'resource://raw/aqsa_fajir_athan';
     state.selectedAdhanPath.value =
@@ -65,13 +66,12 @@ class PrayersNotificationsCtrl extends GetxController {
   }
 
   /// مقرئ مختار غير محمّل → تحميل صامت في الخلفية:
-  /// - iOS: يحتاج الحزمة الكاملة (الأذان الكامل m4a + مقطع الإشعار) حتى
-  ///   للافتراضي متى توفرت حزمته في الكتالوج — كما كان التطبيق القديم
+  /// - iOS/macOS: يحتاج الحزمة الكاملة (الأذان الكامل m4a + مقطع الإشعار)
+  ///   حتى للافتراضي متى توفرت حزمته في الكتالوج — كما كان التطبيق القديم
   ///   يحمّل حزمة الأقصى تلقائياً.
   /// - أندرويد: المسارات resource://raw لغير الافتراضي لم تعد مضمونة في
   ///   الحزمة؛ حتى اكتمال التحميل يعود التشغيل للأقصى المدمج.
   Future<void> _migrateSelectedAdhanIfNeeded() async {
-    if (Platform.isMacOS) return;
     try {
       final box = state.box;
       final selectedIndex =
@@ -87,7 +87,7 @@ class PrayersNotificationsCtrl extends GetxController {
       if (entry == null) return;
 
       final String path = box.read<String?>(ADHAN_PATH) ?? '';
-      final bool needsDownload = Platform.isIOS
+      final bool needsDownload = Platform.isIOS || Platform.isMacOS
           ? entry.urlIosAdhan != null
           : (entry.urlAndroidAdhan != null &&
                 path.startsWith('resource://raw/') &&

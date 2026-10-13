@@ -1,0 +1,39 @@
+{
+  "" : {
+    "diagnostics" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/url_launcher_macos.build/Debug/url_launcher_macos-t.build/Objects-normal/arm64/url_launcher_macos-primary.dia",
+    "emit-module-dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/url_launcher_macos.build/Debug/url_launcher_macos-t.build/Objects-normal/arm64/url_launcher_macos-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/url_launcher_macos.build/Debug/url_launcher_macos-t.build/Objects-normal/arm64/url_launcher_macos-primary-emit-module.dia",
+    "pch" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/url_launcher_macos.build/Debug/url_launcher_macos-t.build/Objects-normal/arm64/url_launcher_macos-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/url_launcher_macos.build/Debug/url_launcher_macos-t.build/Objects-normal/arm64/url_launcher_macos-primary.swiftdeps"
+  },
+  "/Volumes/HawazenSSD/Applications/Dart/pub-cache/hosted/pub.dev/url_launcher_macos-3.2.6/macos/url_launcher_macos/Sources/url_launcher_macos/UrlLauncherPlugin.swift" : {
+    "const-values" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/url_launcher_macos.build/Debug/url_launcher_macos-t.build/Objects-normal/arm64/UrlLauncherPlugin.swiftconstvalues",
+    "dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/url_launcher_macos.build/Debug/url_launcher_macos-t.build/Objects-normal/arm64/UrlLauncherPlugin.d",
+    "diagnostics" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/url_launcher_macos.build/Debug/url_launcher_macos-t.build/Objects-normal/arm64/UrlLauncherPlugin.dia",
+    "index-unit-output-path" : "/url_launcher_macos.build/Debug/url_launcher_macos-t.build/Objects-normal/arm64/UrlLauncherPlugin.o",
+    "llvm-bc" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/url_launcher_macos.build/Debug/url_launcher_macos-t.build/Objects-normal/arm64/UrlLauncherPlugin.bc",
+    "object" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/url_launcher_macos.build/Debug/url_launcher_macos-t.build/Objects-normal/arm64/UrlLauncherPlugin.o",
+    "swift-dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/url_launcher_macos.build/Debug/url_launcher_macos-t.build/Objects-normal/arm64/UrlLauncherPlugin.swiftdeps",
+    "swiftmodule" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/url_launcher_macos.build/Debug/url_launcher_macos-t.build/Objects-normal/arm64/UrlLauncherPlugin~partial.swiftmodule"
+  },
+  "/Volumes/HawazenSSD/Applications/Dart/pub-cache/hosted/pub.dev/url_launcher_macos-3.2.6/macos/url_launcher_macos/Sources/url_launcher_macos/messages.g.swift" : {
+    "const-values" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/url_launcher_macos.build/Debug/url_launcher_macos-t.build/Objects-normal/arm64/messages.g.swiftconstvalues",
+    "dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/url_launcher_macos.build/Debug/url_launcher_macos-t.build/Objects-normal/arm64/messages.g.d",
+    "diagnostics" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/url_launcher_macos.build/Debug/url_launcher_macos-t.build/Objects-normal/arm64/messages.g.dia",
+    "index-unit-output-path" : "/url_launcher_macos.build/Debug/url_launcher_macos-t.build/Objects-normal/arm64/messages.g.o",
+    "llvm-bc" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/url_launcher_macos.build/Debug/url_launcher_macos-t.build/Objects-normal/arm64/messages.g.bc",
+    "object" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/url_launcher_macos.build/Debug/url_launcher_macos-t.build/Objects-normal/arm64/messages.g.o",
+    "swift-dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/url_launcher_macos.build/Debug/url_launcher_macos-t.build/Objects-normal/arm64/messages.g.swiftdeps",
+    "swiftmodule" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/url_launcher_macos.build/Debug/url_launcher_macos-t.build/Objects-normal/arm64/messages.g~partial.swiftmodule"
+  },
+  "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/url_launcher_macos.build/Debug/url_launcher_macos-t.build/DerivedSources/resource_bundle_accessor.swift" : {
+    "const-values" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/url_launcher_macos.build/Debug/url_launcher_macos-t.build/Objects-normal/arm64/resource_bundle_accessor.swiftconstvalues",
+    "dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/url_launcher_macos.build/Debug/url_launcher_macos-t.build/Objects-normal/arm64/resource_bundle_accessor.d",
+    "diagnostics" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/url_launcher_macos.build/Debug/url_launcher_macos-t.build/Objects-normal/arm64/resource_bundle_accessor.dia",
+    "index-unit-output-path" : "/url_launcher_macos.build/Debug/url_launcher_macos-t.build/Objects-normal/arm64/resource_bundle_accessor.o",
+    "llvm-bc" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/url_launcher_macos.build/Debug/url_launcher_macos-t.build/Objects-normal/arm64/resource_bundle_accessor.bc",
+    "object" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/url_launcher_macos.build/Debug/url_launcher_macos-t.build/Objects-normal/arm64/resource_bundle_accessor.o",
+    "swift-dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/url_launcher_macos.build/Debug/url_launcher_macos-t.build/Objects-normal/arm64/resource_bundle_accessor.swiftdeps",
+    "swiftmodule" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/url_launcher_macos.build/Debug/url_launcher_macos-t.build/Objects-normal/arm64/resource_bundle_accessor~partial.swiftmodule"
+  }
+}

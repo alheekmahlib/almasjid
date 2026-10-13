@@ -1,0 +1,4 @@
+module sqflite_darwin {
+umbrella "/Volumes/HawazenSSD/Projects/almasjid/macos/Flutter/ephemeral/Packages/.packages/sqflite_darwin-2.4.3+1/Sources/sqflite_darwin/include"
+export *
+}

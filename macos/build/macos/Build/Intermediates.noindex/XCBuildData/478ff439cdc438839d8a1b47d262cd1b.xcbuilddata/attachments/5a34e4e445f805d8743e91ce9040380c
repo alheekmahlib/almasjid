@@ -1,0 +1,39 @@
+{
+  "" : {
+    "diagnostics" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/flutter_local_notifications.build/Debug/flutter_local_notifications-t.build/Objects-normal/arm64/flutter_local_notifications-primary.dia",
+    "emit-module-dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/flutter_local_notifications.build/Debug/flutter_local_notifications-t.build/Objects-normal/arm64/flutter_local_notifications-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/flutter_local_notifications.build/Debug/flutter_local_notifications-t.build/Objects-normal/arm64/flutter_local_notifications-primary-emit-module.dia",
+    "pch" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/flutter_local_notifications.build/Debug/flutter_local_notifications-t.build/Objects-normal/arm64/flutter_local_notifications-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/flutter_local_notifications.build/Debug/flutter_local_notifications-t.build/Objects-normal/arm64/flutter_local_notifications-primary.swiftdeps"
+  },
+  "/Volumes/HawazenSSD/Applications/Dart/pub-cache/hosted/pub.dev/flutter_local_notifications-22.3.0/macos/flutter_local_notifications/Sources/flutter_local_notifications/FlutterLocalNotificationsConverters.swift" : {
+    "const-values" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/flutter_local_notifications.build/Debug/flutter_local_notifications-t.build/Objects-normal/arm64/FlutterLocalNotificationsConverters.swiftconstvalues",
+    "dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/flutter_local_notifications.build/Debug/flutter_local_notifications-t.build/Objects-normal/arm64/FlutterLocalNotificationsConverters.d",
+    "diagnostics" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/flutter_local_notifications.build/Debug/flutter_local_notifications-t.build/Objects-normal/arm64/FlutterLocalNotificationsConverters.dia",
+    "index-unit-output-path" : "/flutter_local_notifications.build/Debug/flutter_local_notifications-t.build/Objects-normal/arm64/FlutterLocalNotificationsConverters.o",
+    "llvm-bc" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/flutter_local_notifications.build/Debug/flutter_local_notifications-t.build/Objects-normal/arm64/FlutterLocalNotificationsConverters.bc",
+    "object" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/flutter_local_notifications.build/Debug/flutter_local_notifications-t.build/Objects-normal/arm64/FlutterLocalNotificationsConverters.o",
+    "swift-dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/flutter_local_notifications.build/Debug/flutter_local_notifications-t.build/Objects-normal/arm64/FlutterLocalNotificationsConverters.swiftdeps",
+    "swiftmodule" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/flutter_local_notifications.build/Debug/flutter_local_notifications-t.build/Objects-normal/arm64/FlutterLocalNotificationsConverters~partial.swiftmodule"
+  },
+  "/Volumes/HawazenSSD/Applications/Dart/pub-cache/hosted/pub.dev/flutter_local_notifications-22.3.0/macos/flutter_local_notifications/Sources/flutter_local_notifications/FlutterLocalNotificationsPlugin.swift" : {
+    "const-values" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/flutter_local_notifications.build/Debug/flutter_local_notifications-t.build/Objects-normal/arm64/FlutterLocalNotificationsPlugin.swiftconstvalues",
+    "dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/flutter_local_notifications.build/Debug/flutter_local_notifications-t.build/Objects-normal/arm64/FlutterLocalNotificationsPlugin.d",
+    "diagnostics" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/flutter_local_notifications.build/Debug/flutter_local_notifications-t.build/Objects-normal/arm64/FlutterLocalNotificationsPlugin.dia",
+    "index-unit-output-path" : "/flutter_local_notifications.build/Debug/flutter_local_notifications-t.build/Objects-normal/arm64/FlutterLocalNotificationsPlugin.o",
+    "llvm-bc" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/flutter_local_notifications.build/Debug/flutter_local_notifications-t.build/Objects-normal/arm64/FlutterLocalNotificationsPlugin.bc",
+    "object" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/flutter_local_notifications.build/Debug/flutter_local_notifications-t.build/Objects-normal/arm64/FlutterLocalNotificationsPlugin.o",
+    "swift-dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/flutter_local_notifications.build/Debug/flutter_local_notifications-t.build/Objects-normal/arm64/FlutterLocalNotificationsPlugin.swiftdeps",
+    "swiftmodule" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/flutter_local_notifications.build/Debug/flutter_local_notifications-t.build/Objects-normal/arm64/FlutterLocalNotificationsPlugin~partial.swiftmodule"
+  },
+  "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/flutter_local_notifications.build/Debug/flutter_local_notifications-t.build/DerivedSources/resource_bundle_accessor.swift" : {
+    "const-values" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/flutter_local_notifications.build/Debug/flutter_local_notifications-t.build/Objects-normal/arm64/resource_bundle_accessor.swiftconstvalues",
+    "dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/flutter_local_notifications.build/Debug/flutter_local_notifications-t.build/Objects-normal/arm64/resource_bundle_accessor.d",
+    "diagnostics" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/flutter_local_notifications.build/Debug/flutter_local_notifications-t.build/Objects-normal/arm64/resource_bundle_accessor.dia",
+    "index-unit-output-path" : "/flutter_local_notifications.build/Debug/flutter_local_notifications-t.build/Objects-normal/arm64/resource_bundle_accessor.o",
+    "llvm-bc" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/flutter_local_notifications.build/Debug/flutter_local_notifications-t.build/Objects-normal/arm64/resource_bundle_accessor.bc",
+    "object" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/flutter_local_notifications.build/Debug/flutter_local_notifications-t.build/Objects-normal/arm64/resource_bundle_accessor.o",
+    "swift-dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/flutter_local_notifications.build/Debug/flutter_local_notifications-t.build/Objects-normal/arm64/resource_bundle_accessor.swiftdeps",
+    "swiftmodule" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/flutter_local_notifications.build/Debug/flutter_local_notifications-t.build/Objects-normal/arm64/resource_bundle_accessor~partial.swiftmodule"
+  }
+}

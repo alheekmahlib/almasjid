@@ -1,0 +1,1270 @@
+{
+  "appName": "أقِم - مكتبة الحكمة",
+  "@appName": {
+    "description": "appName",
+    "type": "text",
+    "placeholders": {}
+  },
+  "appLang": "لغة التطبيق",
+  "@appLang": {
+    "description": "appLang",
+    "type": "text",
+    "placeholders": {}
+  },
+  "lang": "العربية",
+  "@lang": {
+    "description": "lang",
+    "type": "text",
+    "placeholders": {}
+  },
+  "cites": "المدن",
+  "@cites": {
+    "description": "Bottom nav: cities tab",
+    "type": "text",
+    "placeholders": {}
+  },
+  "citiesPrayerTimesTitle": "صلوات المدن",
+  "@citiesPrayerTimesTitle": {
+    "description": "Cities prayer times screen title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "citiesPrayerTimesSearchHint": "ابحث عن المدينة لمعرفة مواقيت صلاتها",
+  "@citiesPrayerTimesSearchHint": {
+    "description": "Cities search hint",
+    "type": "text",
+    "placeholders": {}
+  },
+  "Fajr": "الفجر",
+  "@Fajr": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Dhuhr": "الظهر",
+  "@Dhuhr": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Asr": "العصر",
+  "@Asr": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Maghrib": "المغرب",
+  "@Maghrib": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Isha": "العشاء",
+  "@Isha": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lastThirdOfTheNight": "الثلث الأخير",
+  "@lastThirdOfTheNight": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "middleOfTheNight": "منتصف الليل",
+  "@middleOfTheNight": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Sunrise": "الشروق",
+  "@Sunrise": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Sun": "أح",
+  "@Sun": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Mon": "إث",
+  "@Mon": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Tue": "ثل",
+  "@Tue": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Wed": "أر",
+  "@Wed": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Thu": "خم",
+  "@Thu": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Fri": "جم",
+  "@Fri": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Sat": "سب",
+  "@Sat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Sunday": "الأحد",
+  "@Sunday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Monday": "الإثنين",
+  "@Monday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Tuesday": "الثلاثاء",
+  "@Tuesday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Wednesday": "الأربعاء",
+  "@Wednesday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Thursday": "الخميس",
+  "@Thursday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Friday": "الجمعة",
+  "@Friday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Saturday": "السبت",
+  "@Saturday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "activeLocationPlease": "يرجى تفعيل تحديد الموقع لتفعيل أوقات الصلاة",
+  "@activeLocationPlease": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "prayerSetting": "إعدادات الصلاة",
+  "@prayerSetting": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "detectLocation": "تحديد الموقع",
+  "@detectLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "adhanSounds": "أصوات الأذان",
+  "@adhanSounds": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "aqsa": "أذان الأقصى",
+  "@aqsa": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saqqaf": "هاشم السقاف",
+  "@saqqaf": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sarihi": "عبد المجيد السريحي",
+  "@sarihi": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setTimingCalculations": "ضبط حساب المواقيت",
+  "@setTimingCalculations": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "automaticallyDetermineCalculationMethod": "تحديد طريقة الحساب تلقائيًا",
+  "@automaticallyDetermineCalculationMethod": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "madhab": "المذهب",
+  "@madhab": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "shafie": "شافعي، مالكي وحنبلي",
+  "@shafie": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hanafe": "حنفي",
+  "@hanafe": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "madhabNote": "إن أذان العشاء يتأخر عند الحنفية ، عنه لدى الجمهور ، بنحو ثنتي عشرة دقيقة كما في \" الموسوعة الفقهية الكويتية \" (7/175)، وأذان العصر يتأخر عند الحنفية بنصف ساعة وأكثر ، بحسب اختلاف البلدان والفصول.",
+  "@madhabNote": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "SeventhOfTheNight": "سبع الليل",
+  "@SeventhOfTheNight": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "usingTheAngle": "بإستخدام الزاوية",
+  "@usingTheAngle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "SetPrayerTimes": "ضبط مواقيت الصلاة",
+  "@SetPrayerTimes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notificationOptions": "خيارات الإشعار",
+  "@notificationOptions": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nothing": "لا شئ",
+  "@nothing": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "silent": "صامت",
+  "@silent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bell": "نغمة",
+  "@bell": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sound": "أذان",
+  "@sound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "aboutPrayer": "عن الصلاة",
+  "@aboutPrayer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "timeLeft:": "الوقت المتبقي للأذان:",
+  "@timeLeft:": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fromQuran:": "من القرآن:",
+  "@fromQuran:": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fromSunnah:": "من السنة:",
+  "@fromSunnah:": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "prohibitionTimes": "وقت منهي الصلاة فيه",
+  "@prohibitionTimes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fajrBody": "من صلى الصبح فهو في ذمة الله",
+  "@fajrBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dhuhrBody": "الصلاة الصلاة وما ملكت أيمانكم",
+  "@dhuhrBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "asrBody": "من صلى البردين دخل الجنة",
+  "@asrBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "maghribBody": "لا حظ في الإسلام لمن ترك الصلاة",
+  "@maghribBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ishaBody": "من صلى العشاء في جماعة، كان كقيام نصف االليل",
+  "@ishaBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "timeForPrayer": "وقت صلاة",
+  "@timeForPrayer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "openAppReminderTitle": "تذكير بفتح التطبيق",
+  "@openAppReminderTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "openAppReminderBody": "يرجى فتح التطبيق لجدولة إشعارات الصلاة الجديدة.",
+  "@openAppReminderBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "prayer": "الصلاة",
+  "@prayer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "langChange": "تغيير اللغة",
+  "@langChange": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "themeTitle": "أختر المظهر",
+  "@themeTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ourApps": "تطبيقاتنا",
+  "@ourApps": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "aboutApp": "عن التطبيق",
+  "@aboutApp": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "about_app": "تطبيق ‘أَقِم’ هو تطبيق إسلامي بسيط ومباشر، مصمم خصيصًا لمساعدتك على أداء صلاتك في وقتها وبكل سهولة.\nيركز التطبيق على تقديم الأدوات الأساسية التي يحتاجها كل مسلم في حياته اليومية، من خلال واجهة تفاعلية سهلة الاستخدام تضمن لك تجربة مريحة وواضحة.\nمع ‘أَقِم’، لن تفوتك أي صلاة بعد الآن، حيث يعمل التطبيق كمُنبه شخصي وموجه دقيق لقبلتك، مما يجعله الأداة المثالية للحفاظ على أهم أركان الإسلام.",
+  "@about_app": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "about_app2": "مميزات التطبيق:",
+  "@about_app2": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "about_app3": "أوقات الصلاة: يعرض التطبيق مواقيت الصلاة بدقة عالية بناءً على موقعك الجغرافي.\nإشعارات الأذان: استقبل تنبيهات صوتية عند حلول وقت كل صلاة لتكون على استعداد دائم.\nاتجاه القبلة: بوصلة دقيقة وسهلة الاستخدام لتحديد اتجاه القبلة الصحيح من أي مكان في العالم.\nواجهة تفاعلية: تصميم بسيط وواضح يجعل من السهل التنقل بين مميزات التطبيق دون أي تعقيد.",
+  "@about_app3": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "email": "تواصل معنا",
+  "@email": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "share": "شارك التطبيق",
+  "@share": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "facebook": "تابعنا على فيسبوك",
+  "@facebook": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "qibla": "القبلة",
+  "@qibla": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "qiblaDirection": "اتجاه القبلة",
+  "@qiblaDirection": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "compass": "بوصلة",
+  "@compass": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "map": "خارطة",
+  "@map": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locationNote": "يرجى تفعيل خدمة تحديد الموقع لتصلك أوقات الصلاة بدقة بناءً على موقعك الحالي.\nلضمان تحديث أوقات الصلاة تلقائيًا عند سفرك أو انتقالك لمكان جديد، يحتاج التطبيق أيضًا إلى الوصول لموقعك في الخلفية.\nنؤكد لك أن جميع بيانات موقعك ستبقى سرية تمامًا ولن يتم مشاركتها مع أي طرف ثالث.",
+  "@locationNote": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notificationNote": "يرجى تفعيل الإشعارات ليصلك تنبيهات بأوقات الصلاة والإشعارات الأخرى.",
+  "@notificationNote": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locate": "تحديد تلقائي",
+  "@locate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "activation": "تفعيل",
+  "@activation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ok": "موافق",
+  "@ok": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancel": "إلغاء",
+  "teachingPrayer": "تعليم الصلاة",
+  "noData": "لا توجد بيانات لـ @x",
+  "@cancel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "searchForCity": "البحث عن المدينة",
+  "@searchForCity": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectFromMap": "تحديد من الخريطة",
+  "@selectFromMap": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterCityName": "ادخل اسم المدينة...",
+  "@enterCityName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "manualLocationNote": "يُفضل على الأجهزة هواوي تحديد الموقع يدوياً للحصول على أفضل دقة",
+  "@manualLocationNote": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locationSetSuccessfully": "تم تحديد الموقع بنجاح",
+  "@locationSetSuccessfully": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "failedToSetLocation": "فشل في تحديد الموقع",
+  "@failedToSetLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "failedToSearchCities": "فشل في البحث عن المدن",
+  "@failedToSearchCities": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectCountry": "اختر الدولة",
+  "@selectCountry": {
+    "description": "Country picker title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterCountryName": "ابحث عن دولة...",
+  "@enterCountryName": {
+    "description": "Country search hint",
+    "type": "text",
+    "placeholders": {}
+  },
+  "noResults": "لا توجد نتائج",
+  "@noResults": {
+    "description": "Shown when search has no matches",
+    "type": "text",
+    "placeholders": {}
+  },
+  "failedToLoadCountries": "فشل في تحميل الدول",
+  "@failedToLoadCountries": {
+    "description": "Countries list loading error",
+    "type": "text",
+    "placeholders": {}
+  },
+  "What's New": "ما الجديد",
+  "@What's New": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "What'sNewDetails10": "۞ إضافة أوقات الإقامة مع إمكانية تخصيص الوقت والإشعارات.\n۞ تحسين منطق الإشعارات.\n۞ تحسينات في الأداء.",
+  "@What'sNewDetails10": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "shareImage": "شارك الصورة",
+  "@shareImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sharePrayerTime": "وقت الصلاة القادمة",
+  "@sharePrayerTime": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nextPrayer": "الصلاة القادمة",
+  "@nextPrayer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Muharram": "محرم",
+  "@Muharram": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Safar": "صفر",
+  "@Safar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Rabi' Al-Awwal": "ربيع الاول",
+  "@Rabi' Al-Awwal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Rabi' Al-Thani": "ربيع الثاني",
+  "@Rabi' Al-Thani": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Jumada Al-Awwal": "جمادى الاول",
+  "@Jumada Al-Awwal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Jumada Al-Thani": "جمادى الآخرة",
+  "@Jumada Al-Thani": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Rajab": "رجب",
+  "@Rajab": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Sha'aban": "شعبان",
+  "@Sha'aban": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Ramadan": "رمضان",
+  "@Ramadan": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Shawwal": "شوال",
+  "@Shawwal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Dhu Al-Qi'dah": "ذو القعدة",
+  "@Dhu Al-Qi'dah": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Dhu Al-Hijjah": "ذوالحجة",
+  "@Dhu Al-Hijjah": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "settings": "الإعدادات",
+  "@settings": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "prayerDetails": "تفاصيل الصلاة",
+  "@prayerDetails": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "min": "د",
+  "@min": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "h": "س",
+  "@h": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saving...": "جاري الحفظ...",
+  "@saving...": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locationSetted": "الموقع المحدد",
+  "@locationSetted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tapOnMapToSelectLocation": "اضغط على الخريطة لتحديد الموقع",
+  "@tapOnMapToSelectLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseSelectLocation": "يرجى تحديد موقع على الخريطة",
+  "@pleaseSelectLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "downloadingPrayerData": "جاري تحميل بيانات الصلاة...",
+  "@downloadingPrayerData": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noInternet": "لا يوجد اتصال بالإنترنت",
+  "@noInternet": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noNotifications": "لا توجد إشعارات",
+  "@noNotifications": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "liatafaqahuu": "ليتفقهوا",
+  "@liatafaqahuu": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "understanding": "to obtain understanding in the religion",
+  "@understanding": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "qiblaDirectionForCity": "اتجاه القبلة لمدينتك:",
+  "@qiblaDirectionForCity": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "qiblaNoteForDesktop": "هذه الميزة متاحة فقط على الأجهزة التي تحتوي  البوصلة. يرجى استخدام جهاز فيه ميزة البوصلة للوصول إلى اتجاه القبلة بناءً على موقعك الحالي.",
+  "@qiblaNoteForDesktop": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reminder": "تذكير",
+  "@reminder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "baset": "عبد الباسط",
+  "@baset": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "qatami": "ناصر القطامي",
+  "@qatami": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "salah": "صلاح الذيب",
+  "@salah": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "start": "ابدأ",
+  "@start": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "skip": "تخطي",
+  "@skip": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "qadaDays": "أيام القضاء",
+  "@qadaDays": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tapToSelectMissedDays": "اضغط على الأيام التي لم تصمها لإضافتها للقضاء",
+  "@tapToSelectMissedDays": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "markAsFasted": "تسجيل صيام",
+  "@markAsFasted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "markDayAsFastedConfirm": "هل تريد تسجيل صيام اليوم",
+  "@markDayAsFastedConfirm": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "confirm": "تأكيد",
+  "@confirm": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "totalMissedDays": "إجمالي أيام القضاء",
+  "@totalMissedDays": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fastedDays": "أيام تم صيامها",
+  "@fastedDays": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "remainingQada": "المتبقي من القضاء",
+  "@remainingQada": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noMissedDays": "لا توجد أيام قضاء",
+  "@noMissedDays": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tapCalendarToAddMissedDays": "اضغط على التقويم لإضافة الأيام الفائتة",
+  "@tapCalendarToAddMissedDays": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "qadaSection": "قسم القضاء",
+  "@qadaSection": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notificationsSection": "التنبيهات",
+  "@notificationsSection": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "quranSection": "ختمة القرآن",
+  "@quranSection": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sadaqahSection": "الصدقات",
+  "@sadaqahSection": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "zakatSection": "زكاة الفطر",
+  "@zakatSection": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "timetableSection": "إمساكية رمضان",
+  "@timetableSection": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "quranTracker": "متتبع الختمات",
+  "@quranTracker": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "completedJuz": "الأجزاء المقروءة",
+  "@completedJuz": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "juz": "جزء",
+  "@juz": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sadaqahTracker": "متتبع الصدقات",
+  "@sadaqahTracker": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "totalSadaqah": "إجمالي الصدقات",
+  "@totalSadaqah": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sadaqahDays": "أيام الصدقة",
+  "@sadaqahDays": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addSadaqah": "إضافة صدقة",
+  "@addSadaqah": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "recentSadaqah": "آخر الصدقات",
+  "@recentSadaqah": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "amount": "المبلغ",
+  "@amount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "note": "ملاحظة",
+  "@note": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "optional": "اختياري",
+  "@optional": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "add": "إضافة",
+  "@add": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ramadanTimetable": "إمساكية رمضان",
+  "@ramadanTimetable": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "day": "اليوم",
+  "@day": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "zakatCalculator": "حاسبة زكاة الفطر",
+  "@zakatCalculator": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "familyMembers": "عدد أفراد الأسرة",
+  "@familyMembers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pricePerPerson": "سعر الصاع للفرد",
+  "@pricePerPerson": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterAmount": "أدخل المبلغ",
+  "@enterAmount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "totalZakat": "إجمالي الزكاة",
+  "@totalZakat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "zakatNote": "زكاة الفطر واجبة على كل مسلم يملك قوت يومه وليلته. تُخرج قبل صلاة العيد.",
+  "@zakatNote": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ramadanNotifications": "تنبيهات رمضان",
+  "@ramadanNotifications": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "suhoorReminder": "تذكير السحور",
+  "@suhoorReminder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iftarReminder": "تذكير الإفطار",
+  "@iftarReminder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "beforeFajr": "قبل الفجر بـ",
+  "@beforeFajr": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "beforeMaghrib": "قبل المغرب بـ",
+  "@beforeMaghrib": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "minutes": "دقيقة",
+  "@minutes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "suhoorTime": "وقت تنبيه السحور",
+  "@suhoorTime": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iftarTime": "وقت تنبيه الإفطار",
+  "@iftarTime": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lastTenNights": "العشر الأواخر",
+  "@lastTenNights": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lastTenNightsDesc": "تذكيرات مكثفة لليالي الوتر",
+  "@lastTenNightsDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "timeForSuhoor": "حان وقت السحور",
+  "@timeForSuhoor": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "prepareForIftar": "استعد للإفطار",
+  "@prepareForIftar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "completed": "مكتمل",
+  "@completed": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "missedDay": "يوم فائت",
+  "@missedDay": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fastedDay": "تم صيامه",
+  "@fastedDay": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "khatmas": "ختمة",
+  "@khatmas": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "days": "أيام",
+  "@days": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hijri": "هـ",
+  "@hijri": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reset": "إعادة تعيين",
+  "@reset": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fastingReminder": "تذكير الصيام",
+  "@fastingReminder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "aboutMonth": "عن الشهر",
+  "@aboutMonth": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ramadanMaghribName": "الإفطار",
+  "@ramadanMaghribName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "startHijriYear": "بداية العام الهجري",
+  "@startHijriYear": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reminderToFastTasoo'a": "تذكير بصيام تاسوعاء",
+  "@reminderToFastTasoo'a": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reminderToFastAshura": "تذكير بصيام عاشوراء",
+  "@reminderToFastAshura": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ramadhan": "شهر رمضان",
+  "@ramadhan": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nightOfQadir": "تذكير بليلة القدر",
+  "@nightOfQadir": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "EidAl-Fitr": "عيد الفطر",
+  "@EidAl-Fitr": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sexShawwal": "تذكير بصيام الستّ من شوال",
+  "@sexShawwal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "arafahReminder": "تذكير بصيام يوم عرفة",
+  "@arafahReminder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tenDaysOfDhul-Hijjah": "وليال عشر",
+  "@tenDaysOfDhul-Hijjah": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "EidAl-Adha": "عيد الأضحى",
+  "@EidAl-Adha": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iqama": "الإقامة",
+  "@iqama": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "timeForIqama": "حان وقت إقامة صلاة",
+  "@timeForIqama": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iqamaBody": "هيّا إلى الصلاة",
+  "@iqamaBody": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iqamaNotifications": "إشعارات الإقامة",
+  "@iqamaNotifications": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iqamaNotificationsDesc": "تنبيه عند وقت الإقامة لكل صلاة",
+  "@iqamaNotificationsDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "showIqamaTimes": "إظهار وقت الإقامة",
+  "@showIqamaTimes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "stopAdhan": "إيقاف",
+  "@stopAdhan": {
+    "description": "stopAdhan",
+    "type": "text",
+    "placeholders": {}
+  },
+  "download": "تحميل",
+  "@download": {
+    "description": "download",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackSendNote": "إرسال الملاحظة",
+  "@feedbackSendNote": {
+    "description": "feedbackSendNote",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackSubtitle": "شاركنا ملاحظتك أو أبلغ عن مشكلة",
+  "@feedbackSubtitle": {
+    "description": "feedbackSubtitle",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackMessageHint": "اكتب ملاحظتك هنا...",
+  "@feedbackMessageHint": {
+    "description": "feedbackMessageHint",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackContactOptional": "بريد إلكتروني للتواصل (اختياري)",
+  "@feedbackContactOptional": {
+    "description": "feedbackContactOptional",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackSentSuccess": "تم إرسال ملاحظتك بنجاح",
+  "@feedbackSentSuccess": {
+    "description": "feedbackSentSuccess",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackSentError": "تعذّر إرسال الملاحظة، حاول مرة أخرى",
+  "@feedbackSentError": {
+    "description": "feedbackSentError",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackQueued": "ستُرسل ملاحظتك تلقائيًا عند عودة الاتصال بالإنترنت",
+  "@feedbackQueued": {
+    "description": "feedbackQueued",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackNoNotesYet": "لا توجد ملاحظات بعد",
+  "@feedbackNoNotesYet": {
+    "description": "feedbackNoNotesYet",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackReplyHint": "اكتب متابعة على ملاحظتك...",
+  "@feedbackReplyHint": {
+    "description": "feedbackReplyHint",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackReplyTitle": "رد المشرف",
+  "@feedbackReplyTitle": {
+    "description": "feedbackReplyTitle",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackStatusPlanned": "مُخطّط",
+  "@feedbackStatusPlanned": {
+    "description": "feedbackStatusPlanned",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackStatusInProgress": "قيد التنفيذ",
+  "@feedbackStatusInProgress": {
+    "description": "feedbackStatusInProgress",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackStatusComplete": "مكتمل",
+  "@feedbackStatusComplete": {
+    "description": "feedbackStatusComplete",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackAdminRole": "المشرف",
+  "@feedbackAdminRole": {
+    "description": "feedbackAdminRole",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackYouRole": "أنا",
+  "@feedbackYouRole": {
+    "description": "feedbackYouRole",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackPickImages": "صور",
+  "@feedbackPickImages": {
+    "description": "feedbackPickImages",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackPickVideo": "فيديو",
+  "@feedbackPickVideo": {
+    "description": "feedbackPickVideo",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackMaxFiles": "الحد الأقصى 5 ملفات",
+  "@feedbackMaxFiles": {
+    "description": "feedbackMaxFiles",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackFileTooLarge": "حجم الملف كبير جداً",
+  "@feedbackFileTooLarge": {
+    "description": "feedbackFileTooLarge",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackInvalidType": "نوع الملف غير مدعوم",
+  "@feedbackInvalidType": {
+    "description": "feedbackInvalidType",
+    "type": "text",
+    "placeholders": {}
+  },
+  "feedbackUploading": "جارٍ الرفع",
+  "@feedbackUploading": {
+    "description": "feedbackUploading",
+    "type": "text",
+    "placeholders": {}
+  },
+  "charactersRemaining": "حرفاً متبقياً",
+  "@charactersRemaining": {
+    "description": "charactersRemaining",
+    "type": "text",
+    "placeholders": {}
+  },
+  "retry": "إعادة المحاولة",
+  "@retry": {
+    "description": "retry",
+    "type": "text",
+    "placeholders": {}
+  },
+  "prayerCountdownNotification": "الإشعار الدائم لموعد الصلاة",
+  "@prayerCountdownNotification": {
+    "description": "Persistent prayer countdown notification",
+    "type": "text",
+    "placeholders": {}
+  },
+  "countdownNextPrayer": "الصلاة القادمة: @prayer @time",
+  "@countdownNextPrayer": {
+    "description": "Persistent prayer countdown notification",
+    "type": "text",
+    "placeholders": {
+      "prayer": {
+        "type": "String"
+      },
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "countdownJustStarted": "حان وقت @prayer",
+  "@countdownJustStarted": {
+    "description": "Persistent prayer countdown notification",
+    "type": "text",
+    "placeholders": {
+      "prayer": {
+        "type": "String"
+      }
+    }
+  },
+  "countdownElapsedMinutes": "مضى @minutes دقيقة على @prayer",
+  "@countdownElapsedMinutes": {
+    "description": "Persistent prayer countdown notification",
+    "type": "text",
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      },
+      "prayer": {
+        "type": "String"
+      }
+    }
+  },
+  "countdownElapsedHoursMinutes": "مضى @hours ساعة و@minutes دقيقة على @prayer",
+  "@countdownElapsedHoursMinutes": {
+    "description": "Persistent prayer countdown notification",
+    "type": "text",
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      },
+      "minutes": {
+        "type": "int"
+      },
+      "prayer": {
+        "type": "String"
+      }
+    }
+  },
+  "countdownNextLabel": "الصلاة القادمة",
+  "@countdownNextLabel": {
+    "description": "Live Activity labels for prayer countdown",
+    "type": "text",
+    "placeholders": {}
+  },
+  "countdownElapsedLabel": "مضى على",
+  "@countdownElapsedLabel": {
+    "description": "Live Activity labels for prayer countdown",
+    "type": "text",
+    "placeholders": {}
+  },
+  "countdownNextEventLabel": "الوقت القادم",
+  "@countdownNextEventLabel": {
+    "description": "Label for countdown to non-prayer slots (sunrise/midnight/last third)",
+    "type": "text",
+    "placeholders": {}
+  }
+}

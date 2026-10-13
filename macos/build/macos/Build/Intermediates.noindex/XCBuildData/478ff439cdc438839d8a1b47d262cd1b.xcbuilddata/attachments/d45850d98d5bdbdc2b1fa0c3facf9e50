@@ -1,0 +1,4 @@
+module device_info_plus {
+header "device_info_plus-Swift.h"
+export *
+}

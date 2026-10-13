@@ -1,0 +1,29 @@
+{
+  "" : {
+    "diagnostics" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/file_picker.build/Debug/file_picker-t.build/Objects-normal/arm64/file_picker-primary.dia",
+    "emit-module-dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/file_picker.build/Debug/file_picker-t.build/Objects-normal/arm64/file_picker-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/file_picker.build/Debug/file_picker-t.build/Objects-normal/arm64/file_picker-primary-emit-module.dia",
+    "pch" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/file_picker.build/Debug/file_picker-t.build/Objects-normal/arm64/file_picker-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/file_picker.build/Debug/file_picker-t.build/Objects-normal/arm64/file_picker-primary.swiftdeps"
+  },
+  "/Volumes/HawazenSSD/Applications/Dart/pub-cache/hosted/pub.dev/file_picker-8.3.7/macos/file_picker/Sources/file_picker/FilePickerPlugin.swift" : {
+    "const-values" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/file_picker.build/Debug/file_picker-t.build/Objects-normal/arm64/FilePickerPlugin.swiftconstvalues",
+    "dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/file_picker.build/Debug/file_picker-t.build/Objects-normal/arm64/FilePickerPlugin.d",
+    "diagnostics" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/file_picker.build/Debug/file_picker-t.build/Objects-normal/arm64/FilePickerPlugin.dia",
+    "index-unit-output-path" : "/file_picker.build/Debug/file_picker-t.build/Objects-normal/arm64/FilePickerPlugin.o",
+    "llvm-bc" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/file_picker.build/Debug/file_picker-t.build/Objects-normal/arm64/FilePickerPlugin.bc",
+    "object" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/file_picker.build/Debug/file_picker-t.build/Objects-normal/arm64/FilePickerPlugin.o",
+    "swift-dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/file_picker.build/Debug/file_picker-t.build/Objects-normal/arm64/FilePickerPlugin.swiftdeps",
+    "swiftmodule" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/file_picker.build/Debug/file_picker-t.build/Objects-normal/arm64/FilePickerPlugin~partial.swiftmodule"
+  },
+  "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/file_picker.build/Debug/file_picker-t.build/DerivedSources/resource_bundle_accessor.swift" : {
+    "const-values" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/file_picker.build/Debug/file_picker-t.build/Objects-normal/arm64/resource_bundle_accessor.swiftconstvalues",
+    "dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/file_picker.build/Debug/file_picker-t.build/Objects-normal/arm64/resource_bundle_accessor.d",
+    "diagnostics" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/file_picker.build/Debug/file_picker-t.build/Objects-normal/arm64/resource_bundle_accessor.dia",
+    "index-unit-output-path" : "/file_picker.build/Debug/file_picker-t.build/Objects-normal/arm64/resource_bundle_accessor.o",
+    "llvm-bc" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/file_picker.build/Debug/file_picker-t.build/Objects-normal/arm64/resource_bundle_accessor.bc",
+    "object" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/file_picker.build/Debug/file_picker-t.build/Objects-normal/arm64/resource_bundle_accessor.o",
+    "swift-dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/file_picker.build/Debug/file_picker-t.build/Objects-normal/arm64/resource_bundle_accessor.swiftdeps",
+    "swiftmodule" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/file_picker.build/Debug/file_picker-t.build/Objects-normal/arm64/resource_bundle_accessor~partial.swiftmodule"
+  }
+}

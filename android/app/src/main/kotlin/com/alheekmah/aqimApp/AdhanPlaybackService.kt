@@ -164,6 +164,14 @@ class AdhanPlaybackService : Service() {
 
     private fun playAdhan(filePath: String?) {
         try {
+            // حرس دفاعي: حتى لو بدأت الخدمة من مسار آخر، الصامت/الاهتزاز
+            // يمنعان التشغيل؛ stopAdhan يعيد نشر الإشعار قابلاً للمسح.
+            val audioManager = getSystemService(Context.AUDIO_SERVICE) as AudioManager
+            if (audioManager.ringerMode != AudioManager.RINGER_MODE_NORMAL) {
+                stopAdhan()
+                return
+            }
+
             if (!requestAudioFocus()) {
                 stopSelf()
                 return

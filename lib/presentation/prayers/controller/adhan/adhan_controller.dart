@@ -330,6 +330,9 @@ class AdhanController extends GetxController {
     // Ensure precise scheduling starts after times are ready
     updateCurrentPrayer();
 
+    // إعادة بناء الإشعار الدائم بعد جهوزية الأوقات (تغيّر موقع/طريقة/تعديل)
+    unawaited(PrayerCountdownNotificationService.instance.refresh());
+
     // تحديث الـ widget بعد تهيئة أوقات الصلاة مباشرة
     // Update widget immediately after prayer times initialization
     if (Platform.isIOS || Platform.isAndroid || Platform.isMacOS) {
@@ -533,6 +536,8 @@ class AdhanController extends GetxController {
       if (changed) {
         // Update only the necessary widgets: list highlight, selected date views, and progress visuals
         update(['init_athan', 'selected_date_prayers', 'update_progress']);
+        // قلب الإشعار الدائم لحظة دخول الصلاة الجديدة بدقة
+        unawaited(PrayerCountdownNotificationService.instance.refresh());
       } else {
         // Still refresh progress/time-bound widgets
         update(['update_progress']);

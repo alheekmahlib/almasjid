@@ -18,5 +18,7 @@ import UserNotifications
 
   func didInitializeImplicitFlutterEngine(_ engineBridge: FlutterImplicitEngineBridge) {
     GeneratedPluginRegistrant.register(with: engineBridge.pluginRegistry)
+    // قناة إشعار العدّ التنازلي الدائم (iOS: إنشاء/تحديث/إنهاء Live Activity)
+    PrayerCountdownChannel.register(on: engineBridge.applicationRegistrar.messenger())
   }
 }

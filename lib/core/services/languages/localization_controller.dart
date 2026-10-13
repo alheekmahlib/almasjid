@@ -1,3 +1,4 @@
+import 'dart:async' show unawaited;
 import 'dart:ui';
 
 import 'package:get/get.dart';
@@ -5,6 +6,7 @@ import 'package:get_storage/get_storage.dart';
 
 import '../../../../presentation/controllers/settings_controller.dart';
 import '../../utils/constants/shared_preferences_constants.dart';
+import '../prayer_countdown_notification_service.dart';
 import '../services_locator.dart';
 import 'app_constants.dart';
 import 'language_models.dart';
@@ -103,5 +105,9 @@ class LocalizationController extends GetxController implements GetxService {
     // إجبار تحديث جميع Controllers المعتمدة على اللغة
     // Force update all language-dependent Controllers
     Get.forceAppUpdate();
+
+    // نصوص الإشعار الدائم مخبأة سلفًا بلغة قديمة؛ أعيد بناءها
+    // Persistent-countdown texts are pre-rendered; rebuild for new locale.
+    unawaited(PrayerCountdownNotificationService.instance.onLocaleChanged());
   }
 }

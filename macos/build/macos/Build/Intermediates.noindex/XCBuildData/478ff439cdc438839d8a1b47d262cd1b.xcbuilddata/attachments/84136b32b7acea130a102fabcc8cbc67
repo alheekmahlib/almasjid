@@ -1,0 +1,4 @@
+module flutter_timezone {
+header "flutter_timezone-Swift.h"
+export *
+}

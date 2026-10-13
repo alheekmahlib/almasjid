@@ -1,0 +1,43 @@
+- generic [ref=e3]:
+  - generic [ref=e4]:
+    - generic [ref=e6]:
+      - generic [ref=e7]: This website needs to use some cookies and similar technologies to function. With your consent, we will use those means to collect aggregated statistics on user visits and usage of this website in order to analyze and improve our services. By accepting all cookies, you agree to our use of cookies in this way. You can manage your preferences at any time by clicking "Cookie Settings" in the footer. More information
+      - generic [ref=e14]: Learn more about how AppGallery processes your data and about your rights.View
+    - generic [ref=e9]:
+      - generic [ref=e10] [cursor=pointer]: ACCEPT ALL
+      - generic [ref=e11] [cursor=pointer]: COOKIE SETTINGS
+      - generic [ref=e12] [cursor=pointer]: ACCEPT ONLY ESSENTIAL COOKIES
+  - generic [ref=e15]:
+    - generic [ref=e16]:
+      - img [ref=e17] [cursor=pointer]
+      - generic [ref=e18] [cursor=pointer]: AppGallery
+    - generic [ref=e19]:
+      - generic [ref=e20]: Featured
+      - generic [ref=e22]: Categories
+      - generic [ref=e24]: Top
+    - generic [ref=e26]:
+      - generic [ref=e27]:
+        - textbox "Search apps/games" [active] [ref=e29]: aqim
+        - generic [ref=e49] [cursor=pointer]
+      - generic [ref=e30]: Download AppGallery
+      - img [ref=e32] [cursor=pointer]
+  - generic [ref=e51]:
+    - paragraph [ref=e52]:
+      - generic [ref=e53]: Results for aqim
+    - generic [ref=e54]:
+      - img "Search Result Empty" [ref=e55]
+      - paragraph [ref=e56]: No results
+  - generic [ref=e58]:
+    - generic [ref=e59]:
+      - link "AppGallery User Agreement" [ref=e60] [cursor=pointer]:
+        - /url: https://privacy.consumer.huawei.com/legal/hiapp/terms.htm?country=DE&branchid=0&language=en_US
+      - generic [ref=e61]: and
+      - link "Statement About AppGallery and Privacy" [ref=e62] [cursor=pointer]:
+        - /url: https://privacy.consumer.huawei.com/legal/hiapp/privacy-statement.htm?country=DE&branchid=1&language=en_US
+    - generic [ref=e63]:
+      - link "About cookies" [ref=e64] [cursor=pointer]:
+        - /url: /static/agweb/CookieStatement_en.html
+      - generic [ref=e65]: "|"
+      - link "Cookies settings" [ref=e66] [cursor=pointer]:
+        - /url: /static/agweb/CookieStatement_en.html
+    - generic [ref=e67]: HUAWEI AppGallery. All rights reserved. © 2010-2026

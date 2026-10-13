@@ -1,0 +1,40 @@
+{
+  "source": "/Volumes/HawazenSSD/Projects/almasjid/macos/prayer_widget/PrayerWidget.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "أوقات الصلاة",
+        "location": {
+          "startingColumn": 35,
+          "startingLine": 19
+        }
+      },
+      {
+        "comment": "",
+        "key": "ابقَ على اطلاع بمواقيت الصلاة اليومية بدقة مع تحديث تلقائي.",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 20
+        }
+      },
+      {
+        "comment": "",
+        "key": "أوقات الصلاة (الفجر)",
+        "location": {
+          "startingColumn": 35,
+          "startingLine": 35
+        }
+      },
+      {
+        "comment": "",
+        "key": "ودجت صغير بتصميم مخصص للفجر.",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 36
+        }
+      }
+    ]
+  },
+  "version": 1
+}

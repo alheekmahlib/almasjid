@@ -94,7 +94,7 @@ class PrayersOfCites extends StatelessWidget {
                                       horizontal: 16.0,
                                     ),
                                     itemCount: controller.cities.length,
-                                    onReorder: controller.reorder,
+                                    onReorderItem: controller.reorder,
                                     itemBuilder: (context, index) {
                                       final city = controller.cities[index];
 
@@ -209,7 +209,7 @@ class PrayersOfCites extends StatelessWidget {
                                       horizontal: 16.0,
                                     ),
                                     itemCount: controller.cities.length,
-                                    onReorder: controller.reorder,
+                                    onReorderItem: controller.reorder,
                                     itemBuilder: (context, index) {
                                       final city = controller.cities[index];
 

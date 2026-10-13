@@ -9,6 +9,8 @@
 		<string>com.alheekmah.alheekmahLibrary.dailyTask</string>
 		<string>com.alheekmah.midnightWidgetUpdate</string>
 	</array>
+	<key>NSSupportsLiveActivities</key>
+	<true/>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>
@@ -33,6 +35,14 @@
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSBonjourServices</key>
+	<array>
+		<string>_dartVmService._tcp</string>
+	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>لالتقاط صورة أو مقطع فيديو وإرفاقه بملاحظاتك عند التواصل معنا.</string>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>للسماح لأدوات التطوير بالاتصال بالتطبيق أثناء تصحيح الأخطاء.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>This app uses your location to provide accurate prayer times and send prayer notifications even when the app is closed. For example, it will automatically remind you when it's time for Fajr prayer at 5:30 AM based on your current location, without needing to open the app.</string>
 	<key>NSLocationTemporaryUsageDescriptionDictionary</key>

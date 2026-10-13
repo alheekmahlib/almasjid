@@ -1,0 +1,4 @@
+module connectivity_plus {
+header "connectivity_plus-Swift.h"
+export *
+}

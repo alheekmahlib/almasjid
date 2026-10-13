@@ -1,0 +1,223 @@
+{
+  "object" : {
+    "artifacts" : [
+
+    ],
+    "dependencies" : [
+      {
+        "basedOn" : null,
+        "packageRef" : {
+          "identity" : "audio_session-0.2.4",
+          "kind" : "fileSystem",
+          "location" : "/Volumes/HawazenSSD/Projects/almasjid/macos/Flutter/ephemeral/Packages/.packages/audio_session-0.2.4",
+          "name" : "audio_session"
+        },
+        "state" : {
+          "name" : "fileSystem",
+          "path" : "/Volumes/HawazenSSD/Projects/almasjid/macos/Flutter/ephemeral/Packages/.packages/audio_session-0.2.4"
+        },
+        "subpath" : "audio_session-0.2.4"
+      },
+      {
+        "basedOn" : null,
+        "packageRef" : {
+          "identity" : "connectivity_plus-7.3.1",
+          "kind" : "fileSystem",
+          "location" : "/Volumes/HawazenSSD/Projects/almasjid/macos/Flutter/ephemeral/Packages/.packages/connectivity_plus-7.3.1",
+          "name" : "connectivity_plus"
+        },
+        "state" : {
+          "name" : "fileSystem",
+          "path" : "/Volumes/HawazenSSD/Projects/almasjid/macos/Flutter/ephemeral/Packages/.packages/connectivity_plus-7.3.1"
+        },
+        "subpath" : "connectivity_plus-7.3.1"
+      },
+      {
+        "basedOn" : null,
+        "packageRef" : {
+          "identity" : "device_info_plus-11.5.0",
+          "kind" : "fileSystem",
+          "location" : "/Volumes/HawazenSSD/Projects/almasjid/macos/Flutter/ephemeral/Packages/.packages/device_info_plus-11.5.0",
+          "name" : "device_info_plus"
+        },
+        "state" : {
+          "name" : "fileSystem",
+          "path" : "/Volumes/HawazenSSD/Projects/almasjid/macos/Flutter/ephemeral/Packages/.packages/device_info_plus-11.5.0"
+        },
+        "subpath" : "device_info_plus-11.5.0"
+      },
+      {
+        "basedOn" : null,
+        "packageRef" : {
+          "identity" : "file_picker-8.3.7",
+          "kind" : "fileSystem",
+          "location" : "/Volumes/HawazenSSD/Projects/almasjid/macos/Flutter/ephemeral/Packages/.packages/file_picker-8.3.7",
+          "name" : "file_picker"
+        },
+        "state" : {
+          "name" : "fileSystem",
+          "path" : "/Volumes/HawazenSSD/Projects/almasjid/macos/Flutter/ephemeral/Packages/.packages/file_picker-8.3.7"
+        },
+        "subpath" : "file_picker-8.3.7"
+      },
+      {
+        "basedOn" : null,
+        "packageRef" : {
+          "identity" : "flutter_local_notifications-22.3.0",
+          "kind" : "fileSystem",
+          "location" : "/Volumes/HawazenSSD/Projects/almasjid/macos/Flutter/ephemeral/Packages/.packages/flutter_local_notifications-22.3.0",
+          "name" : "flutter_local_notifications"
+        },
+        "state" : {
+          "name" : "fileSystem",
+          "path" : "/Volumes/HawazenSSD/Projects/almasjid/macos/Flutter/ephemeral/Packages/.packages/flutter_local_notifications-22.3.0"
+        },
+        "subpath" : "flutter_local_notifications-22.3.0"
+      },
+      {
+        "basedOn" : null,
+        "packageRef" : {
+          "identity" : "flutter_timezone-5.1.0",
+          "kind" : "fileSystem",
+          "location" : "/Volumes/HawazenSSD/Projects/almasjid/macos/Flutter/ephemeral/Packages/.packages/flutter_timezone-5.1.0",
+          "name" : "flutter_timezone"
+        },
+        "state" : {
+          "name" : "fileSystem",
+          "path" : "/Volumes/HawazenSSD/Projects/almasjid/macos/Flutter/ephemeral/Packages/.packages/flutter_timezone-5.1.0"
+        },
+        "subpath" : "flutter_timezone-5.1.0"
+      },
+      {
+        "basedOn" : null,
+        "packageRef" : {
+          "identity" : "flutterframework",
+          "kind" : "fileSystem",
+          "location" : "/Volumes/HawazenSSD/Projects/almasjid/macos/Flutter/ephemeral/Packages/.packages/FlutterFramework",
+          "name" : "FlutterFramework"
+        },
+        "state" : {
+          "name" : "fileSystem",
+          "path" : "/Volumes/HawazenSSD/Projects/almasjid/macos/Flutter/ephemeral/Packages/.packages/FlutterFramework"
+        },
+        "subpath" : "flutterframework"
+      },
+      {
+        "basedOn" : null,
+        "packageRef" : {
+          "identity" : "geolocator_apple-2.3.14",
+          "kind" : "fileSystem",
+          "location" : "/Volumes/HawazenSSD/Projects/almasjid/macos/Flutter/ephemeral/Packages/.packages/geolocator_apple-2.3.14",
+          "name" : "geolocator_apple"
+        },
+        "state" : {
+          "name" : "fileSystem",
+          "path" : "/Volumes/HawazenSSD/Projects/almasjid/macos/Flutter/ephemeral/Packages/.packages/geolocator_apple-2.3.14"
+        },
+        "subpath" : "geolocator_apple-2.3.14"
+      },
+      {
+        "basedOn" : null,
+        "packageRef" : {
+          "identity" : "just_audio-0.10.6",
+          "kind" : "fileSystem",
+          "location" : "/Volumes/HawazenSSD/Projects/almasjid/macos/Flutter/ephemeral/Packages/.packages/just_audio-0.10.6",
+          "name" : "just_audio"
+        },
+        "state" : {
+          "name" : "fileSystem",
+          "path" : "/Volumes/HawazenSSD/Projects/almasjid/macos/Flutter/ephemeral/Packages/.packages/just_audio-0.10.6"
+        },
+        "subpath" : "just_audio-0.10.6"
+      },
+      {
+        "basedOn" : null,
+        "packageRef" : {
+          "identity" : "multi_store_review",
+          "kind" : "fileSystem",
+          "location" : "/Volumes/HawazenSSD/Projects/almasjid/macos/Flutter/ephemeral/Packages/.packages/multi_store_review",
+          "name" : "multi_store_review"
+        },
+        "state" : {
+          "name" : "fileSystem",
+          "path" : "/Volumes/HawazenSSD/Projects/almasjid/macos/Flutter/ephemeral/Packages/.packages/multi_store_review"
+        },
+        "subpath" : "multi_store_review"
+      },
+      {
+        "basedOn" : null,
+        "packageRef" : {
+          "identity" : "package_info_plus-8.3.1",
+          "kind" : "fileSystem",
+          "location" : "/Volumes/HawazenSSD/Projects/almasjid/macos/Flutter/ephemeral/Packages/.packages/package_info_plus-8.3.1",
+          "name" : "package_info_plus"
+        },
+        "state" : {
+          "name" : "fileSystem",
+          "path" : "/Volumes/HawazenSSD/Projects/almasjid/macos/Flutter/ephemeral/Packages/.packages/package_info_plus-8.3.1"
+        },
+        "subpath" : "package_info_plus-8.3.1"
+      },
+      {
+        "basedOn" : null,
+        "packageRef" : {
+          "identity" : "share_plus-12.0.2",
+          "kind" : "fileSystem",
+          "location" : "/Volumes/HawazenSSD/Projects/almasjid/macos/Flutter/ephemeral/Packages/.packages/share_plus-12.0.2",
+          "name" : "share_plus"
+        },
+        "state" : {
+          "name" : "fileSystem",
+          "path" : "/Volumes/HawazenSSD/Projects/almasjid/macos/Flutter/ephemeral/Packages/.packages/share_plus-12.0.2"
+        },
+        "subpath" : "share_plus-12.0.2"
+      },
+      {
+        "basedOn" : null,
+        "packageRef" : {
+          "identity" : "shared_preferences_foundation-2.5.7",
+          "kind" : "fileSystem",
+          "location" : "/Volumes/HawazenSSD/Projects/almasjid/macos/Flutter/ephemeral/Packages/.packages/shared_preferences_foundation-2.5.7",
+          "name" : "shared_preferences_foundation"
+        },
+        "state" : {
+          "name" : "fileSystem",
+          "path" : "/Volumes/HawazenSSD/Projects/almasjid/macos/Flutter/ephemeral/Packages/.packages/shared_preferences_foundation-2.5.7"
+        },
+        "subpath" : "shared_preferences_foundation-2.5.7"
+      },
+      {
+        "basedOn" : null,
+        "packageRef" : {
+          "identity" : "sqflite_darwin-2.4.3+1",
+          "kind" : "fileSystem",
+          "location" : "/Volumes/HawazenSSD/Projects/almasjid/macos/Flutter/ephemeral/Packages/.packages/sqflite_darwin-2.4.3+1",
+          "name" : "sqflite_darwin"
+        },
+        "state" : {
+          "name" : "fileSystem",
+          "path" : "/Volumes/HawazenSSD/Projects/almasjid/macos/Flutter/ephemeral/Packages/.packages/sqflite_darwin-2.4.3+1"
+        },
+        "subpath" : "sqflite_darwin-2.4.3+1"
+      },
+      {
+        "basedOn" : null,
+        "packageRef" : {
+          "identity" : "url_launcher_macos-3.2.6",
+          "kind" : "fileSystem",
+          "location" : "/Volumes/HawazenSSD/Projects/almasjid/macos/Flutter/ephemeral/Packages/.packages/url_launcher_macos-3.2.6",
+          "name" : "url_launcher_macos"
+        },
+        "state" : {
+          "name" : "fileSystem",
+          "path" : "/Volumes/HawazenSSD/Projects/almasjid/macos/Flutter/ephemeral/Packages/.packages/url_launcher_macos-3.2.6"
+        },
+        "subpath" : "url_launcher_macos-3.2.6"
+      }
+    ],
+    "prebuilts" : [
+
+    ]
+  },
+  "version" : 7
+}

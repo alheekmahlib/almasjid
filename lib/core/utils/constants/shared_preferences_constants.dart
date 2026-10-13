@@ -45,6 +45,10 @@ const String IQAMA_OFFSET_ISHA = 'IQAMA_OFFSET_ISHA';
 const String IQAMA_NOTIFICATIONS_ENABLED = 'IQAMA_NOTIFICATIONS_ENABLED';
 const String SHOW_IQAMA_TIMES = 'SHOW_IQAMA_TIMES';
 
+/// إشعار العدّ التنازلي الدائم لوقت الصلاة القادمة (أندرويد).
+const String PRAYER_COUNTDOWN_NOTIFICATION_ENABLED =
+    'PRAYER_COUNTDOWN_NOTIFICATION_ENABLED';
+
 const String FIRST_LAUNCH = 'FIRST_LAUNCH';
 
 // Cities feature

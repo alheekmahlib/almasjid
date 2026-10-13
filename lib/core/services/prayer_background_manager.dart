@@ -8,6 +8,7 @@ import 'package:latlong2/latlong.dart';
 import '/core/services/internet_connection_controller.dart';
 import '/core/services/location/locations.dart';
 import '/core/services/notifications_helper.dart';
+import '/core/services/prayer_countdown_notification_service.dart';
 import '/core/widgets/home_widget/home_widget.dart';
 import '/core/widgets/local_notification/controller/local_notifications_controller.dart';
 import '../../presentation/prayers/prayers.dart';
@@ -228,6 +229,14 @@ class PrayerBackgroundManager {
         } catch (e) {
           log('Periodic widget update failed: $e', name: _tag);
         }
+      }
+
+      // تجديد نافذة الإشعار الدائم (حدود الغد) — الكرونومتر الأصلي نفسه
+      // يستمر، هذا التجديد يضمن قلب النصوص عند الحدود بعد قتل التطبيق.
+      try {
+        await PrayerCountdownNotificationService.instance.refresh();
+      } catch (e) {
+        log('Countdown notification refresh failed: $e', name: _tag);
       }
 
       // التحقق من المهام اليومية إذا لزم الأمر

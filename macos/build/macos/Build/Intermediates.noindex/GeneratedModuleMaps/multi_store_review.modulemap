@@ -1,0 +1,4 @@
+module multi_store_review {
+header "multi_store_review-Swift.h"
+export *
+}

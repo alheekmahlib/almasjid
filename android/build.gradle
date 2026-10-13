@@ -5,7 +5,7 @@ ext {
 }
 
 buildscript {
-    ext.kotlin_version = '2.2.10'
+    ext.kotlin_version = '2.2.20'
     repositories {
         google()
         mavenCentral()
@@ -14,7 +14,7 @@ buildscript {
 
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath 'com.android.tools.build:gradle:9.3.0'
+        classpath 'com.android.tools.build:gradle:9.3.3'
         classpath 'com.huawei.agconnect:agcp:1.9.1.301'
     }
 }

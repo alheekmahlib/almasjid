@@ -1,0 +1,4 @@
+module geolocator_apple {
+umbrella "/Volumes/HawazenSSD/Projects/almasjid/macos/Flutter/ephemeral/Packages/.packages/geolocator_apple-2.3.14/Sources/geolocator_apple/include/geolocator_apple"
+export *
+}

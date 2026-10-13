@@ -1,0 +1,191 @@
+name: Release — AppGallery (draft)
+
+# Manual-trigger workflow: builds a Huawei-signed APK (default release build
+# type) and attaches it to the AppGallery Connect draft release. Review
+# submission stays manual. AGC Publishing API: token → signed OBS upload URL
+# → PUT binary → attach to the app's draft release. No review-submission
+# call is made.
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: release-appgallery
+  cancel-in-progress: false
+
+env:
+  FLUTTER_VERSION: 3.47.6
+  # From android/agconnect-services.json (not a secret)
+  HUAWEI_APP_ID: 115301239
+
+defaults:
+  run:
+    working-directory: app
+
+jobs:
+  release:
+    name: Build APK & upload as draft
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: app
+      - name: Checkout floatica (path dependency ../floatica)
+        uses: actions/checkout@v4
+        with:
+          repository: alheekmahlib/floatica
+          path: floatica
+      - name: Validate required secrets
+        env:
+          MAPTILER_KEY: ${{ secrets.MAPTILER_KEY }}
+          HUAWEI_KEYSTORE_BASE64: ${{ secrets.HUAWEI_KEYSTORE_BASE64 }}
+          HUAWEI_KEYSTORE_PASSWORD: ${{ secrets.HUAWEI_KEYSTORE_PASSWORD }}
+          HUAWEI_KEY_ALIAS: ${{ secrets.HUAWEI_KEY_ALIAS }}
+          HUAWEI_KEY_PASSWORD: ${{ secrets.HUAWEI_KEY_PASSWORD }}
+          AGC_CLIENT_ID: ${{ secrets.AGC_CLIENT_ID }}
+          AGC_CLIENT_SECRET: ${{ secrets.AGC_CLIENT_SECRET }}
+        run: |
+          miss=0
+          need() { if [ -z "${!1}" ]; then echo "::error::Missing GitHub secret: $1"; miss=1; fi; }
+          need MAPTILER_KEY
+          need HUAWEI_KEYSTORE_BASE64
+          need HUAWEI_KEYSTORE_PASSWORD
+          need HUAWEI_KEY_ALIAS
+          need HUAWEI_KEY_PASSWORD
+          need AGC_CLIENT_ID
+          need AGC_CLIENT_SECRET
+          [ "$miss" -eq 1 ] && exit 1
+          echo "All required secrets are present"
+      - uses: actions/setup-java@v4
+        with:
+          distribution: zulu
+          java-version: 17
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 3.47.6
+          cache: true
+      - name: Generate api_keys.dart from secrets
+        env:
+          MAPTILER_KEY: ${{ secrets.MAPTILER_KEY }}
+        run: |
+          cat > lib/core/utils/constants/api_keys.dart <<EOF
+          // AUTO-GENERATED in CI from secrets - do not edit.
+          class ApiKeys {
+            ApiKeys._();
+            static const String mapTilerKey = '$MAPTILER_KEY';
+            static const String mapTilerUserAgent = 'Aqim-app';
+          }
+          EOF
+      - name: Restore Huawei signing keystore
+        env:
+          HUAWEI_KEYSTORE_BASE64: ${{ secrets.HUAWEI_KEYSTORE_BASE64 }}
+          HUAWEI_KEYSTORE_PASSWORD: ${{ secrets.HUAWEI_KEYSTORE_PASSWORD }}
+          HUAWEI_KEY_ALIAS: ${{ secrets.HUAWEI_KEY_ALIAS }}
+          HUAWEI_KEY_PASSWORD: ${{ secrets.HUAWEI_KEY_PASSWORD }}
+        run: |
+          if ! printf '%s' "$HUAWEI_KEYSTORE_BASE64" | tr -d ' \r\n\t' | base64 --decode > android/app/huawei-release.jks 2>/dev/null; then
+            echo "::error::HUAWEI_KEYSTORE_BASE64 is not valid base64 — recreate the secret (base64 -i huawei-release-key.keystore)"
+            exit 1
+          fi
+          { echo "storePassword=$HUAWEI_KEYSTORE_PASSWORD"
+            echo "keyPassword=$HUAWEI_KEY_PASSWORD"
+            echo "keyAlias=$HUAWEI_KEY_ALIAS"
+            echo "storeFile=huawei-release.jks"
+          } > android/key.properties
+      - run: flutter pub get
+      - run: flutter build apk --release
+      - name: Upload APK as draft (no review submission)
+        env:
+          AGC_CLIENT_ID: ${{ secrets.AGC_CLIENT_ID }}
+          AGC_CLIENT_SECRET: ${{ secrets.AGC_CLIENT_SECRET }}
+        run: |
+          set -euo pipefail
+          APK="build/app/outputs/flutter-apk/app-release.apk"
+          # strip paste artifacts from secrets
+          AGC_CLIENT_ID=$(printf '%s' "$AGC_CLIENT_ID" | tr -d ' \r\n\t')
+          AGC_CLIENT_SECRET=$(printf '%s' "$AGC_CLIENT_SECRET" | tr -d ' \r\n\t')
+
+          RESP=$(curl -s -w "\n%{http_code}" -X POST "https://connect-api.cloud.huawei.com/api/oauth2/v1/token" \
+            -H "Content-Type: application/json" \
+            -d "{\"client_id\":\"$AGC_CLIENT_ID\",\"grant_type\":\"client_credentials\",\"client_secret\":\"$AGC_CLIENT_SECRET\"}")
+          CODE=${RESP##*$'\n'}
+          BODY=${RESP%$'\n'*}
+          if [ "$CODE" != "200" ]; then
+            echo "::error::AGC token request failed with HTTP $CODE: $BODY"
+            echo "::error::Check: 1) secret values match the API client exactly 2) the API client's IP whitelist is EMPTY 3) it is an API client (client id + secret), not a service-account JSON key"
+            exit 1
+          fi
+          TOKEN=$(jq -r '.access_token // empty' <<<"$BODY")
+          if [ -z "$TOKEN" ]; then echo "::error::No access_token in response: $BODY"; exit 1; fi
+
+          # Permission probe: app-info is a publishing-API read scoped to our app
+          # 401 = bad credentials (JSON body); empty 403 = the publishing-
+          # permission gate on the API client itself.
+          RESP=$(curl -s -w "\n%{http_code}" -G "https://connect-api.cloud.huawei.com/api/publish/v2/app-info" \
+            --data-urlencode "appId=$HUAWEI_APP_ID" \
+            -H "client_id: $AGC_CLIENT_ID" \
+            -H "Authorization: Bearer $TOKEN")
+          CODE=${RESP##*$'\n'}
+          BODY=${RESP%$'\n'*}
+          if [ "$CODE" = "403" ]; then
+            echo "::error::AGC app-info probe returned 403 with a VALID token (invalid credentials would give 401 with a JSON body)"
+            echo "::error::The API client cannot access the publishing API for appId $HUAWEI_APP_ID — either its role still lacks publishing rights, or app $HUAWEI_APP_ID belongs to a different Huawei account than the client."
+            exit 1
+          elif [ "$CODE" != "200" ]; then
+            echo "::warning::app-info probe returned HTTP $CODE: $BODY — continuing to upload-url"
+          else
+            echo "app-info probe OK — this client can read app $HUAWEI_APP_ID."
+          fi
+
+          SIZE=$(stat -c%s "$APK")
+          RESP=$(curl -s -w "\n%{http_code}" -G "https://connect-api.cloud.huawei.com/api/publish/v2/upload-url/for-obs" \
+            --data-urlencode "appId=$HUAWEI_APP_ID" \
+            --data-urlencode "fileName=release.apk" \
+            --data-urlencode "contentLength=$SIZE" \
+            --data-urlencode "suffix=apk" \
+            -H "Content-Type: application/json" \
+            -H "client_id: $AGC_CLIENT_ID" \
+            -H "Authorization: Bearer $TOKEN")
+          CODE=${RESP##*$'\n'}
+          BODY=${RESP%$'\n'*}
+          if [ "$CODE" != "200" ]; then
+            echo "::error::AGC upload-url failed with HTTP $CODE: $BODY"
+            echo "::error::Console-side causes (most likely first): 1) the API client is project-scoped — recreate it with Project = N/A (team-level) 2) it lacks the app-publishing permission/role 3) its IP whitelist is set (must be empty) 4) appId $HUAWEI_APP_ID is not under this account. After recreating the client, update the AGC_CLIENT_ID / AGC_CLIENT_SECRET secrets."
+            exit 1
+          fi
+          URLJSON="$BODY"
+          UPLOAD_URL=$(jq -r '.urlInfo.url // empty' <<<"$URLJSON")
+          OBJECT_ID=$(jq -r '.urlInfo.objectId // empty' <<<"$URLJSON")
+          if [ -z "$UPLOAD_URL" ] || [ -z "$OBJECT_ID" ]; then
+            echo "::error::Could not obtain upload URL: $URLJSON"
+            exit 1
+          fi
+
+          declare -a HARGS=()
+          while IFS=$'\t' read -r k v; do HARGS+=(-H "$k: $v"); done \
+            < <(jq -r '.urlInfo.headers | to_entries[] | "\(.key)\t\(.value)"' <<<"$URLJSON")
+          HARGS+=(-H "Content-Type: application/octet-stream")
+          PUTLOG=$(mktemp)
+          HTTP=$(curl -s -o "$PUTLOG" -w "%{http_code}" -X PUT "${HARGS[@]}" --data-binary "@$APK" "$UPLOAD_URL")
+          if [ "$HTTP" != "200" ]; then
+            echo "::error::APK upload failed with HTTP $HTTP: $(head -c 400 "$PUTLOG")"
+            rm -f "$PUTLOG"
+            exit 1
+          fi
+          rm -f "$PUTLOG"
+
+          RESP=$(curl -s -w "\n%{http_code}" -X PUT "https://connect-api.cloud.huawei.com/api/publish/v2/app-file-info?appId=$HUAWEI_APP_ID" \
+            -H "client_id: $AGC_CLIENT_ID" \
+            -H "Authorization: Bearer $TOKEN" \
+            -H "Content-Type: application/json" \
+            -d "{\"fileType\":5,\"files\":[{\"fileName\":\"release.apk\",\"fileDestUrl\":\"$OBJECT_ID\"}]}")
+          CODE=${RESP##*$'\n'}
+          RET=${RESP%$'\n'*}
+          if [ "$CODE" != "200" ]; then
+            echo "::error::AGC app-file-info failed with HTTP $CODE: $RET"
+            exit 1
+          fi
+          RETCODE=$(jq -r '.ret.code // -1' <<<"$RET")
+          if [ "$RETCODE" != "0" ]; then echo "::error::AGC app-file-info failed: $RET"; exit 1; fi
+          echo "APK attached to the AppGallery Connect draft release — review NOT submitted."

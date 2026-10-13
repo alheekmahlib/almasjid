@@ -1,0 +1,139 @@
+name: Release — Google Play (production)
+
+# Manual-trigger workflow: builds a signed AAB (googlePlayRelease build type)
+# and uploads it to the production track with localized what's-new notes.
+# Google does not allow automated review submission for this account, so the
+# release lands ready on the production track and you press "Send for review"
+# once in the Play Console.
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: release-play
+  cancel-in-progress: false
+
+env:
+  FLUTTER_VERSION: 3.47.6
+
+defaults:
+  run:
+    working-directory: app
+
+jobs:
+  release:
+    name: Build AAB & upload to production
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: app
+      - name: Checkout floatica (path dependency ../floatica)
+        uses: actions/checkout@v4
+        with:
+          repository: alheekmahlib/floatica
+          path: floatica
+      - name: Validate required secrets
+        env:
+          MAPTILER_KEY: ${{ secrets.MAPTILER_KEY }}
+          PLAY_KEYSTORE_BASE64: ${{ secrets.PLAY_KEYSTORE_BASE64 }}
+          PLAY_KEYSTORE_PASSWORD: ${{ secrets.PLAY_KEYSTORE_PASSWORD }}
+          PLAY_KEY_ALIAS: ${{ secrets.PLAY_KEY_ALIAS }}
+          PLAY_KEY_PASSWORD: ${{ secrets.PLAY_KEY_PASSWORD }}
+          PLAY_SERVICE_ACCOUNT_JSON: ${{ secrets.PLAY_SERVICE_ACCOUNT_JSON }}
+        run: |
+          miss=0
+          need() { if [ -z "${!1}" ]; then echo "::error::Missing GitHub secret: $1"; miss=1; fi; }
+          need MAPTILER_KEY
+          need PLAY_KEYSTORE_BASE64
+          need PLAY_KEYSTORE_PASSWORD
+          need PLAY_KEY_ALIAS
+          need PLAY_KEY_PASSWORD
+          need PLAY_SERVICE_ACCOUNT_JSON
+          [ "$miss" -eq 1 ] && exit 1
+          echo "All required secrets are present"
+      - uses: actions/setup-java@v4
+        with:
+          distribution: zulu
+          java-version: 17
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 3.47.6
+          cache: true
+      - name: Generate api_keys.dart from secrets
+        env:
+          MAPTILER_KEY: ${{ secrets.MAPTILER_KEY }}
+        run: |
+          cat > lib/core/utils/constants/api_keys.dart <<EOF
+          // AUTO-GENERATED in CI from secrets - do not edit.
+          class ApiKeys {
+            ApiKeys._();
+            static const String mapTilerKey = '$MAPTILER_KEY';
+            static const String mapTilerUserAgent = 'Aqim-app';
+          }
+          EOF
+      - name: Restore Play signing keystore
+        env:
+          PLAY_KEYSTORE_BASE64: ${{ secrets.PLAY_KEYSTORE_BASE64 }}
+          PLAY_KEYSTORE_PASSWORD: ${{ secrets.PLAY_KEYSTORE_PASSWORD }}
+          PLAY_KEY_ALIAS: ${{ secrets.PLAY_KEY_ALIAS }}
+          PLAY_KEY_PASSWORD: ${{ secrets.PLAY_KEY_PASSWORD }}
+        run: |
+          if ! printf '%s' "$PLAY_KEYSTORE_BASE64" | tr -d ' \r\n\t' | base64 --decode > android/app/play-upload.jks 2>/dev/null; then
+            echo "::error::PLAY_KEYSTORE_BASE64 is not valid base64 — recreate the secret (base64 -i google-play-keystore.jks)"
+            exit 1
+          fi
+          { echo "googlePlayStorePassword=$PLAY_KEYSTORE_PASSWORD"
+            echo "googlePlayKeyPassword=$PLAY_KEY_PASSWORD"
+            echo "googlePlayKeyAlias=$PLAY_KEY_ALIAS"
+            echo "googlePlayStoreFile=play-upload.jks"
+          } > android/google-play-key.properties
+      - run: flutter pub get
+      - run: flutter build appbundle --release --flavor googlePlayRelease
+      - name: Locate AAB output
+        run: |
+          AAB=$(ls build/app/outputs/bundle/googlePlayRelease/*.aab 2>/dev/null | head -1)
+          if [ -z "$AAB" ]; then
+            echo "::error::No .aab under build/app/outputs/bundle/googlePlayRelease:"
+            ls -R build/app/outputs/bundle 2>/dev/null | head -30
+            exit 1
+          fi
+          echo "AAB_NAME=$(basename "$AAB")" >> "$GITHUB_ENV"
+          echo "AAB: $AAB"
+      - name: Build localized what's-new files & read version
+        run: |
+          VERSION=$(sed -n 's/^version:[[:space:]]*//p' pubspec.yaml | tr -d '[:space:]')
+          if [ -z "$VERSION" ]; then
+            echo "::error::Could not read version from pubspec.yaml"
+            exit 1
+          fi
+          if [ ! -f "release_notes/$VERSION/ar.md" ]; then
+            echo "::error::Missing release_notes/$VERSION/ar.md — write the release notes before running this workflow"
+            exit 1
+          fi
+          mkdir -p whatsnew
+          for f in "release_notes/$VERSION"/*.md; do
+            lang=$(basename "$f" .md)
+            case "$lang" in
+              en) loc="en-US" ;;
+              *)  loc="$lang" ;;
+            esac
+            cp "$f" "whatsnew/whatsnew-$loc"
+            echo "whatsnew-$loc ← $lang"
+          done
+          NAME="v$(echo "$VERSION" | cut -d+ -f1)"
+          echo "RELEASE_NAME=$NAME" >> "$GITHUB_ENV"
+          echo "Releasing $NAME to production"
+      - uses: r0adkll/upload-google-play@v1
+        with:
+          serviceAccountJsonPlainText: ${{ secrets.PLAY_SERVICE_ACCOUNT_JSON }}
+          packageName: com.alheekmah.aqimApp
+          releaseFiles: app/build/app/outputs/bundle/googlePlayRelease/${{ env.AAB_NAME }}
+          tracks: production
+          status: completed
+          releaseName: ${{ env.RELEASE_NAME }}
+          whatsNewDirectory: app/whatsnew
+          # Google rejects automated review submission for this account type;
+          # the release lands ready on the production track and you press
+          # "Send for review" once from the Play Console.

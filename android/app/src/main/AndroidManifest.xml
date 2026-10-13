@@ -101,6 +101,20 @@
         <receiver
             android:name=".AdhanAlarmReceiver"
             android:exported="false" />
+        <!-- إشعار العدّ التنازلي الدائم: منبّهات حدود الصلوات وإعادة
+             التسليح بعد الإقلاع وتغيّر الوقت/المنطقة الزمنية/اللغة -->
+        <receiver
+            android:name=".CountdownNotificationReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.alheekmah.aqimApp.PRAYER_COUNTDOWN_BOUNDARY" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+                <action android:name="android.intent.action.DATE_CHANGED" />
+                <action android:name="android.intent.action.LOCALE_CHANGED" />
+            </intent-filter>
+        </receiver>
         <service
             android:name=".AdhanPlaybackService"
             android:exported="false"

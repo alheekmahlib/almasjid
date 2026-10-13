@@ -3,11 +3,17 @@ package com.alheekmah.aqimApp
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.media.AudioManager
 
 /** يستقبل إنذار وقت الصلاة ويطلق خدمة تشغيل الأذان الأمامية. */
 class AdhanAlarmReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
+        // الصامت/الاهتزاز يمنعان الأذان (MediaPlayer على قناة الوسائط لا
+        // يكتمهما النظام)؛ يظهر إشعار FLN الصامت وحده بلا صوت.
+        val audioManager = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
+        if (audioManager.ringerMode != AudioManager.RINGER_MODE_NORMAL) return
+
         val serviceIntent = Intent(context, AdhanPlaybackService::class.java)
             .putExtra(
                 AdhanPlaybackService.EXTRA_FILE_PATH,

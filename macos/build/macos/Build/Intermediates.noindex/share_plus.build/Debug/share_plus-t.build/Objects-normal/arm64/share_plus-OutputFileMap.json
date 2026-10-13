@@ -1,0 +1,29 @@
+{
+  "" : {
+    "diagnostics" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/share_plus.build/Debug/share_plus-t.build/Objects-normal/arm64/share_plus-primary.dia",
+    "emit-module-dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/share_plus.build/Debug/share_plus-t.build/Objects-normal/arm64/share_plus-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/share_plus.build/Debug/share_plus-t.build/Objects-normal/arm64/share_plus-primary-emit-module.dia",
+    "pch" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/share_plus.build/Debug/share_plus-t.build/Objects-normal/arm64/share_plus-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/share_plus.build/Debug/share_plus-t.build/Objects-normal/arm64/share_plus-primary.swiftdeps"
+  },
+  "/Volumes/HawazenSSD/Applications/Dart/pub-cache/hosted/pub.dev/share_plus-12.0.2/macos/share_plus/Sources/share_plus/SharePlusMacosPlugin.swift" : {
+    "const-values" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/share_plus.build/Debug/share_plus-t.build/Objects-normal/arm64/SharePlusMacosPlugin.swiftconstvalues",
+    "dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/share_plus.build/Debug/share_plus-t.build/Objects-normal/arm64/SharePlusMacosPlugin.d",
+    "diagnostics" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/share_plus.build/Debug/share_plus-t.build/Objects-normal/arm64/SharePlusMacosPlugin.dia",
+    "index-unit-output-path" : "/share_plus.build/Debug/share_plus-t.build/Objects-normal/arm64/SharePlusMacosPlugin.o",
+    "llvm-bc" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/share_plus.build/Debug/share_plus-t.build/Objects-normal/arm64/SharePlusMacosPlugin.bc",
+    "object" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/share_plus.build/Debug/share_plus-t.build/Objects-normal/arm64/SharePlusMacosPlugin.o",
+    "swift-dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/share_plus.build/Debug/share_plus-t.build/Objects-normal/arm64/SharePlusMacosPlugin.swiftdeps",
+    "swiftmodule" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/share_plus.build/Debug/share_plus-t.build/Objects-normal/arm64/SharePlusMacosPlugin~partial.swiftmodule"
+  },
+  "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/share_plus.build/Debug/share_plus-t.build/DerivedSources/resource_bundle_accessor.swift" : {
+    "const-values" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/share_plus.build/Debug/share_plus-t.build/Objects-normal/arm64/resource_bundle_accessor.swiftconstvalues",
+    "dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/share_plus.build/Debug/share_plus-t.build/Objects-normal/arm64/resource_bundle_accessor.d",
+    "diagnostics" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/share_plus.build/Debug/share_plus-t.build/Objects-normal/arm64/resource_bundle_accessor.dia",
+    "index-unit-output-path" : "/share_plus.build/Debug/share_plus-t.build/Objects-normal/arm64/resource_bundle_accessor.o",
+    "llvm-bc" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/share_plus.build/Debug/share_plus-t.build/Objects-normal/arm64/resource_bundle_accessor.bc",
+    "object" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/share_plus.build/Debug/share_plus-t.build/Objects-normal/arm64/resource_bundle_accessor.o",
+    "swift-dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/share_plus.build/Debug/share_plus-t.build/Objects-normal/arm64/resource_bundle_accessor.swiftdeps",
+    "swiftmodule" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/share_plus.build/Debug/share_plus-t.build/Objects-normal/arm64/resource_bundle_accessor~partial.swiftmodule"
+  }
+}

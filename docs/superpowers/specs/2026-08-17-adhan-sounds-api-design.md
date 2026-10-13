@@ -105,3 +105,26 @@ NotifyHelper، ويُبنى منها النموذج الموحد.
 - مصفوفة يدوية للمرحلة 1: جدولة 30ي/10ي، نقر (حي/خلفية/مقتول)، رمضان،
   منشورات، رفض إذن Android 13+، التحقق من سماع المقرئ المختار على Android.
 - flutter_test: parsing الكتالوج، fallback الهجرة، حسابات نافذة الجدولة.
+
+## تحديث 2026-10-12 — macOS parity مع آلية iOS
+
+- فُتح تنزيل الحزم على macOS: `AudioDownloader` يمرر عبر مسار iOS نفسه
+  (`urlIosAdhan` → فك ضغط إلى `Library/Sounds` في حاوية الـsandbox)، بنفس
+  مفاتيح التخزين (`ADHAN_PATH_AUDIO`/`FAJIR`/`SEGMENT`)؛ والهجرة الصامتة
+  وتنزيل الاختيار من الواجهة صارا يعملان على macOS كـiOS.
+- صوت إشعار الأذان على Darwin: المقطع المحمّل ≤30ث إن وُجد، وإلا الأقصى
+  المدمج `aqsa_athan.aiff` — عبر `resolveDarwinAdhanSoundName`. على macOS
+  يُجرَّد امتداد الاسم (سلوك NSSound) بخلاف iOS.
+- الحزمة الافتراضية على macOS ثلاثة ملفات فقط: `aqsa_athan.aiff`
+  (مقطع 25ث — النسخة السابقة كانت الأذان الكامل 226ث فتتجاوز حد 30ث
+  وتصمت الإشعارات) و`notification.aiff` و`silence.mp3`؛ حُذف
+  `aqsa_fajir_athan.aiff` غير المسجل.
+- قيود macOS مؤكدة بالفحص: الكتابة ممنوعة (EPERM) في `<container>/Library/Sounds`
+  و`Contents/Resources` للحزمة؛ Group Container قابل للكتابة لكن
+  **NotificationCenter لا يبحث فيه** (فشل حل الاسم مثبت بغياب سطر
+  `Playing sound <file>` وتشغيل افتراضي ~1ث). لذا صوت إشعار الأذان على
+  macOS = الأقصى المدمج دائماً، والتنزيل يخدم الأذان الكامل داخل التطبيق
+  (استخراج إلى Group Container/Sounds). خيار مستقبلي خارج App Store:
+  temporary-exception للكتابة في ~/Library/Sounds الحقيقي.
+- تنبيه محتوى: مقطع saqqaf مدته 30.000ث بالضبط — على حد «أقل من 30ث»
+  خطر اقتطاع/رفض حتى على iOS.

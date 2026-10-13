@@ -1,0 +1,4 @@
+module audio_session {
+umbrella "/Volumes/HawazenSSD/Projects/almasjid/macos/Flutter/ephemeral/Packages/.packages/audio_session-0.2.4/Sources/audio_session/include"
+export *
+}

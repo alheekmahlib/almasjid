@@ -1,0 +1,29 @@
+- generic [ref=e3]:
+  - generic [ref=e4]:
+    - generic [ref=e6]:
+      - generic [ref=e7]: This website needs to use some cookies and similar technologies to function. With your consent, we will use those means to collect aggregated statistics on user visits and usage of this website in order to analyze and improve our services. By accepting all cookies, you agree to our use of cookies in this way. You can manage your preferences at any time by clicking "Cookie Settings" in the footer. More information
+      - generic [ref=e14]: Learn more about how AppGallery processes your data and about your rights.View
+    - generic [ref=e9]:
+      - generic [ref=e10] [cursor=pointer]: ACCEPT ALL
+      - generic [ref=e11] [cursor=pointer]: COOKIE SETTINGS
+      - generic [ref=e12] [cursor=pointer]: ACCEPT ONLY ESSENTIAL COOKIES
+  - generic [ref=e15]:
+    - generic [ref=e16]:
+      - img [ref=e17] [cursor=pointer]
+      - generic [ref=e18] [cursor=pointer]: AppGallery
+    - generic [ref=e19]:
+      - generic [ref=e20]: Featured
+      - generic [ref=e22]: Categories
+      - generic [ref=e24]: Top
+    - generic [ref=e26]:
+      - generic [ref=e27]:
+        - textbox "Search apps/games" [active] [ref=e29]: أقم
+        - generic [ref=e49] [cursor=pointer]
+      - generic [ref=e30]: Download AppGallery
+      - img [ref=e32] [cursor=pointer]
+  - generic [ref=e70]:
+    - paragraph [ref=e71]:
+      - generic [ref=e72]: Results for أقم
+    - generic [ref=e73]:
+      - img "Search Result Empty" [ref=e74]
+      - paragraph [ref=e75]: No results

@@ -1,0 +1,29 @@
+{
+  "" : {
+    "diagnostics" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/multi_store_review.build/Debug/multi_store_review-t.build/Objects-normal/arm64/multi_store_review-primary.dia",
+    "emit-module-dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/multi_store_review.build/Debug/multi_store_review-t.build/Objects-normal/arm64/multi_store_review-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/multi_store_review.build/Debug/multi_store_review-t.build/Objects-normal/arm64/multi_store_review-primary-emit-module.dia",
+    "pch" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/multi_store_review.build/Debug/multi_store_review-t.build/Objects-normal/arm64/multi_store_review-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/multi_store_review.build/Debug/multi_store_review-t.build/Objects-normal/arm64/multi_store_review-primary.swiftdeps"
+  },
+  "/Volumes/HawazenSSD/Applications/Dart/pub-cache/git/multi_store_review-7bb6c6e40afc35f52483803987ddfcc0a217d4b9/multi_store_review/macos/multi_store_review/Sources/multi_store_review/MultiStoreReviewPlugin.swift" : {
+    "const-values" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/multi_store_review.build/Debug/multi_store_review-t.build/Objects-normal/arm64/MultiStoreReviewPlugin.swiftconstvalues",
+    "dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/multi_store_review.build/Debug/multi_store_review-t.build/Objects-normal/arm64/MultiStoreReviewPlugin.d",
+    "diagnostics" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/multi_store_review.build/Debug/multi_store_review-t.build/Objects-normal/arm64/MultiStoreReviewPlugin.dia",
+    "index-unit-output-path" : "/multi_store_review.build/Debug/multi_store_review-t.build/Objects-normal/arm64/MultiStoreReviewPlugin.o",
+    "llvm-bc" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/multi_store_review.build/Debug/multi_store_review-t.build/Objects-normal/arm64/MultiStoreReviewPlugin.bc",
+    "object" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/multi_store_review.build/Debug/multi_store_review-t.build/Objects-normal/arm64/MultiStoreReviewPlugin.o",
+    "swift-dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/multi_store_review.build/Debug/multi_store_review-t.build/Objects-normal/arm64/MultiStoreReviewPlugin.swiftdeps",
+    "swiftmodule" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/multi_store_review.build/Debug/multi_store_review-t.build/Objects-normal/arm64/MultiStoreReviewPlugin~partial.swiftmodule"
+  },
+  "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/multi_store_review.build/Debug/multi_store_review-t.build/DerivedSources/resource_bundle_accessor.swift" : {
+    "const-values" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/multi_store_review.build/Debug/multi_store_review-t.build/Objects-normal/arm64/resource_bundle_accessor.swiftconstvalues",
+    "dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/multi_store_review.build/Debug/multi_store_review-t.build/Objects-normal/arm64/resource_bundle_accessor.d",
+    "diagnostics" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/multi_store_review.build/Debug/multi_store_review-t.build/Objects-normal/arm64/resource_bundle_accessor.dia",
+    "index-unit-output-path" : "/multi_store_review.build/Debug/multi_store_review-t.build/Objects-normal/arm64/resource_bundle_accessor.o",
+    "llvm-bc" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/multi_store_review.build/Debug/multi_store_review-t.build/Objects-normal/arm64/resource_bundle_accessor.bc",
+    "object" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/multi_store_review.build/Debug/multi_store_review-t.build/Objects-normal/arm64/resource_bundle_accessor.o",
+    "swift-dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/multi_store_review.build/Debug/multi_store_review-t.build/Objects-normal/arm64/resource_bundle_accessor.swiftdeps",
+    "swiftmodule" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/multi_store_review.build/Debug/multi_store_review-t.build/Objects-normal/arm64/resource_bundle_accessor~partial.swiftmodule"
+  }
+}

@@ -1,0 +1,4 @@
+module flutter_local_notifications {
+header "flutter_local_notifications-Swift.h"
+export *
+}

@@ -35,20 +35,20 @@ extension AdhanUi on AdhanController {
   }
 
   Future<void> notificationOptionsOnTap(int i, int prayerIndex) async {
-    await PrayersNotificationsCtrl.instance.scheduleDailyNotificationsForPrayer(
-      prayerIndex,
-      prayerNameList[prayerIndex]['title'],
-      notificationOptions[i]['title'],
-    );
-    // await NotifyHelper().scheduledNotification(
-    //   reminderId: 99999,
-    //   title: 'Fajr'.tr,
-    //   summary: 'وقت صلاة الفجر',
-    //   body: 'fajrBody'.tr,
-    //   isRepeats: false,
-    //   time: DateTime.now().add(const Duration(seconds: 10)),
-    //   payload: {'sound_type': 'sound'},
+    // await PrayersNotificationsCtrl.instance.scheduleDailyNotificationsForPrayer(
+    //   prayerIndex,
+    //   prayerNameList[prayerIndex]['title'],
+    //   notificationOptions[i]['title'],
     // );
+    await NotifyHelper().scheduledNotification(
+      reminderId: 99999,
+      title: 'Fajr'.tr,
+      summary: 'وقت صلاة الفجر',
+      body: 'fajrBody'.tr,
+      isRepeats: false,
+      time: DateTime.now().add(const Duration(seconds: 10)),
+      payload: {'sound_type': 'sound'},
+    );
     update(['change_notification']);
   }
 
@@ -83,6 +83,15 @@ extension AdhanUi on AdhanController {
   void toggleShowIqamaTimes(bool value) {
     state.showIqamaTimes.value = value;
     state.box.write(SHOW_IQAMA_TIMES, value);
+    update(['init_athan']);
+  }
+
+  /// تفعيل/تعطيل الإشعار الدائم بالعدّ التنازلي للصلاة القادمة.
+  /// يطلب أذونات الإشعارات عند التفعيل ويبني/يلغي الإشعار والمنبّهات.
+  Future<void> togglePrayerCountdownNotification(bool value) async {
+    state.prayerCountdownEnabled.value = value;
+    state.box.write(PRAYER_COUNTDOWN_NOTIFICATION_ENABLED, value);
+    await PrayerCountdownNotificationService.instance.setEnabled(value);
     update(['init_athan']);
   }
 }

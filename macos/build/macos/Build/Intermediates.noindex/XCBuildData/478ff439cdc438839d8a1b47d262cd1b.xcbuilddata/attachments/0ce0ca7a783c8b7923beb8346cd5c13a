@@ -1,0 +1,4 @@
+module shared_preferences_foundation {
+header "shared_preferences_foundation-Swift.h"
+export *
+}

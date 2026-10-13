@@ -1,0 +1,19 @@
+{
+  "" : {
+    "diagnostics" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/FlutterGeneratedPluginSwiftPackage.build/Debug/FlutterGeneratedPluginSwiftPackage-t.build/Objects-normal/arm64/FlutterGeneratedPluginSwiftPackage-primary.dia",
+    "emit-module-dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/FlutterGeneratedPluginSwiftPackage.build/Debug/FlutterGeneratedPluginSwiftPackage-t.build/Objects-normal/arm64/FlutterGeneratedPluginSwiftPackage-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/FlutterGeneratedPluginSwiftPackage.build/Debug/FlutterGeneratedPluginSwiftPackage-t.build/Objects-normal/arm64/FlutterGeneratedPluginSwiftPackage-primary-emit-module.dia",
+    "pch" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/FlutterGeneratedPluginSwiftPackage.build/Debug/FlutterGeneratedPluginSwiftPackage-t.build/Objects-normal/arm64/FlutterGeneratedPluginSwiftPackage-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/FlutterGeneratedPluginSwiftPackage.build/Debug/FlutterGeneratedPluginSwiftPackage-t.build/Objects-normal/arm64/FlutterGeneratedPluginSwiftPackage-primary.swiftdeps"
+  },
+  "/Volumes/HawazenSSD/Projects/almasjid/macos/Flutter/ephemeral/Packages/FlutterGeneratedPluginSwiftPackage/Sources/FlutterGeneratedPluginSwiftPackage/FlutterGeneratedPluginSwiftPackage.swift" : {
+    "const-values" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/FlutterGeneratedPluginSwiftPackage.build/Debug/FlutterGeneratedPluginSwiftPackage-t.build/Objects-normal/arm64/FlutterGeneratedPluginSwiftPackage.swiftconstvalues",
+    "dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/FlutterGeneratedPluginSwiftPackage.build/Debug/FlutterGeneratedPluginSwiftPackage-t.build/Objects-normal/arm64/FlutterGeneratedPluginSwiftPackage.d",
+    "diagnostics" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/FlutterGeneratedPluginSwiftPackage.build/Debug/FlutterGeneratedPluginSwiftPackage-t.build/Objects-normal/arm64/FlutterGeneratedPluginSwiftPackage.dia",
+    "index-unit-output-path" : "/FlutterGeneratedPluginSwiftPackage.build/Debug/FlutterGeneratedPluginSwiftPackage-t.build/Objects-normal/arm64/FlutterGeneratedPluginSwiftPackage.o",
+    "llvm-bc" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/FlutterGeneratedPluginSwiftPackage.build/Debug/FlutterGeneratedPluginSwiftPackage-t.build/Objects-normal/arm64/FlutterGeneratedPluginSwiftPackage.bc",
+    "object" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/FlutterGeneratedPluginSwiftPackage.build/Debug/FlutterGeneratedPluginSwiftPackage-t.build/Objects-normal/arm64/FlutterGeneratedPluginSwiftPackage.o",
+    "swift-dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/FlutterGeneratedPluginSwiftPackage.build/Debug/FlutterGeneratedPluginSwiftPackage-t.build/Objects-normal/arm64/FlutterGeneratedPluginSwiftPackage.swiftdeps",
+    "swiftmodule" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/FlutterGeneratedPluginSwiftPackage.build/Debug/FlutterGeneratedPluginSwiftPackage-t.build/Objects-normal/arm64/FlutterGeneratedPluginSwiftPackage~partial.swiftmodule"
+  }
+}

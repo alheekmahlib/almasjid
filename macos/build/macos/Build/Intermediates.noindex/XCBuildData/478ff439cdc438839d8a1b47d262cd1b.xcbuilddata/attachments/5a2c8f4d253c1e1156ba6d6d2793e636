@@ -1,0 +1,129 @@
+{
+  "" : {
+    "diagnostics" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/prayer_widgetExtension-primary.dia",
+    "emit-module-dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/prayer_widgetExtension-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/prayer_widgetExtension-primary-emit-module.dia",
+    "pch" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/prayer_widgetExtension-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/prayer_widgetExtension-primary.swiftdeps"
+  },
+  "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/DerivedSources/GeneratedAssetSymbols.swift" : {
+    "const-values" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftconstvalues",
+    "dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/GeneratedAssetSymbols.d",
+    "diagnostics" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/GeneratedAssetSymbols.dia",
+    "index-unit-output-path" : "/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "llvm-bc" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/GeneratedAssetSymbols.bc",
+    "object" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "swift-dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftdeps",
+    "swiftmodule" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/GeneratedAssetSymbols~partial.swiftmodule"
+  },
+  "/Volumes/HawazenSSD/Projects/almasjid/macos/prayer_widget/AppIntent.swift" : {
+    "const-values" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/AppIntent.swiftconstvalues",
+    "dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/AppIntent.d",
+    "diagnostics" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/AppIntent.dia",
+    "index-unit-output-path" : "/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/AppIntent.o",
+    "llvm-bc" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/AppIntent.bc",
+    "object" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/AppIntent.o",
+    "swift-dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/AppIntent.swiftdeps",
+    "swiftmodule" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/AppIntent~partial.swiftmodule"
+  },
+  "/Volumes/HawazenSSD/Projects/almasjid/macos/prayer_widget/CustomProgressViewStyle.swift" : {
+    "const-values" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/CustomProgressViewStyle.swiftconstvalues",
+    "dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/CustomProgressViewStyle.d",
+    "diagnostics" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/CustomProgressViewStyle.dia",
+    "index-unit-output-path" : "/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/CustomProgressViewStyle.o",
+    "llvm-bc" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/CustomProgressViewStyle.bc",
+    "object" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/CustomProgressViewStyle.o",
+    "swift-dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/CustomProgressViewStyle.swiftdeps",
+    "swiftmodule" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/CustomProgressViewStyle~partial.swiftmodule"
+  },
+  "/Volumes/HawazenSSD/Projects/almasjid/macos/prayer_widget/PrayerWidget.swift" : {
+    "const-values" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/PrayerWidget.swiftconstvalues",
+    "dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/PrayerWidget.d",
+    "diagnostics" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/PrayerWidget.dia",
+    "index-unit-output-path" : "/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/PrayerWidget.o",
+    "llvm-bc" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/PrayerWidget.bc",
+    "object" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/PrayerWidget.o",
+    "swift-dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/PrayerWidget.swiftdeps",
+    "swiftmodule" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/PrayerWidget~partial.swiftmodule"
+  },
+  "/Volumes/HawazenSSD/Projects/almasjid/macos/prayer_widget/PrayerWidgetEntry.swift" : {
+    "const-values" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/PrayerWidgetEntry.swiftconstvalues",
+    "dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/PrayerWidgetEntry.d",
+    "diagnostics" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/PrayerWidgetEntry.dia",
+    "index-unit-output-path" : "/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/PrayerWidgetEntry.o",
+    "llvm-bc" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/PrayerWidgetEntry.bc",
+    "object" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/PrayerWidgetEntry.o",
+    "swift-dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/PrayerWidgetEntry.swiftdeps",
+    "swiftmodule" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/PrayerWidgetEntry~partial.swiftmodule"
+  },
+  "/Volumes/HawazenSSD/Projects/almasjid/macos/prayer_widget/PrayerWidgetEntryView.swift" : {
+    "const-values" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/PrayerWidgetEntryView.swiftconstvalues",
+    "dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/PrayerWidgetEntryView.d",
+    "diagnostics" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/PrayerWidgetEntryView.dia",
+    "index-unit-output-path" : "/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/PrayerWidgetEntryView.o",
+    "llvm-bc" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/PrayerWidgetEntryView.bc",
+    "object" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/PrayerWidgetEntryView.o",
+    "swift-dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/PrayerWidgetEntryView.swiftdeps",
+    "swiftmodule" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/PrayerWidgetEntryView~partial.swiftmodule"
+  },
+  "/Volumes/HawazenSSD/Projects/almasjid/macos/prayer_widget/PrayerWidgetHelpers.swift" : {
+    "const-values" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/PrayerWidgetHelpers.swiftconstvalues",
+    "dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/PrayerWidgetHelpers.d",
+    "diagnostics" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/PrayerWidgetHelpers.dia",
+    "index-unit-output-path" : "/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/PrayerWidgetHelpers.o",
+    "llvm-bc" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/PrayerWidgetHelpers.bc",
+    "object" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/PrayerWidgetHelpers.o",
+    "swift-dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/PrayerWidgetHelpers.swiftdeps",
+    "swiftmodule" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/PrayerWidgetHelpers~partial.swiftmodule"
+  },
+  "/Volumes/HawazenSSD/Projects/almasjid/macos/prayer_widget/Provider.swift" : {
+    "const-values" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/Provider.swiftconstvalues",
+    "dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/Provider.d",
+    "diagnostics" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/Provider.dia",
+    "index-unit-output-path" : "/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/Provider.o",
+    "llvm-bc" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/Provider.bc",
+    "object" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/Provider.o",
+    "swift-dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/Provider.swiftdeps",
+    "swiftmodule" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/Provider~partial.swiftmodule"
+  },
+  "/Volumes/HawazenSSD/Projects/almasjid/macos/prayer_widget/WidgetBackground.swift" : {
+    "const-values" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/WidgetBackground.swiftconstvalues",
+    "dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/WidgetBackground.d",
+    "diagnostics" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/WidgetBackground.dia",
+    "index-unit-output-path" : "/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/WidgetBackground.o",
+    "llvm-bc" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/WidgetBackground.bc",
+    "object" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/WidgetBackground.o",
+    "swift-dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/WidgetBackground.swiftdeps",
+    "swiftmodule" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/WidgetBackground~partial.swiftmodule"
+  },
+  "/Volumes/HawazenSSD/Projects/almasjid/macos/prayer_widget/prayer_widget.swift" : {
+    "const-values" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/prayer_widget.swiftconstvalues",
+    "dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/prayer_widget.d",
+    "diagnostics" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/prayer_widget.dia",
+    "index-unit-output-path" : "/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/prayer_widget.o",
+    "llvm-bc" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/prayer_widget.bc",
+    "object" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/prayer_widget.o",
+    "swift-dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/prayer_widget.swiftdeps",
+    "swiftmodule" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/prayer_widget~partial.swiftmodule"
+  },
+  "/Volumes/HawazenSSD/Projects/almasjid/macos/prayer_widget/prayer_widgetBundle.swift" : {
+    "const-values" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/prayer_widgetBundle.swiftconstvalues",
+    "dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/prayer_widgetBundle.d",
+    "diagnostics" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/prayer_widgetBundle.dia",
+    "index-unit-output-path" : "/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/prayer_widgetBundle.o",
+    "llvm-bc" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/prayer_widgetBundle.bc",
+    "object" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/prayer_widgetBundle.o",
+    "swift-dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/prayer_widgetBundle.swiftdeps",
+    "swiftmodule" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/prayer_widgetBundle~partial.swiftmodule"
+  },
+  "/Volumes/HawazenSSD/Projects/almasjid/macos/prayer_widget/prayer_widgetControl.swift" : {
+    "const-values" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/prayer_widgetControl.swiftconstvalues",
+    "dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/prayer_widgetControl.d",
+    "diagnostics" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/prayer_widgetControl.dia",
+    "index-unit-output-path" : "/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/prayer_widgetControl.o",
+    "llvm-bc" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/prayer_widgetControl.bc",
+    "object" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/prayer_widgetControl.o",
+    "swift-dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/prayer_widgetControl.swiftdeps",
+    "swiftmodule" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/Runner.build/Debug/prayer_widgetExtension.build/Objects-normal/arm64/prayer_widgetControl~partial.swiftmodule"
+  }
+}

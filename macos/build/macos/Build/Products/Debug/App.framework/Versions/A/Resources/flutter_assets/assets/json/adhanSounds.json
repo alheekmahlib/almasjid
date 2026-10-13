@@ -1,0 +1,68 @@
+[
+  {
+    "index": 0,
+    "adhanFileName": "aqsa",
+    "adhanLocalPath": "resource://raw/aqsa_athan",
+    "isBundled": true,
+    "adhanName": "aqsa",
+    "urlAndroidAdhan": null,
+    "urlAndroidFajirAdhan": null,
+    "urlIosAdhan": "ios/aqsa.zip",
+    "urlPlayAdhan": "aqsa_athan.m4a"
+  },
+  {
+    "index": 1,
+    "adhanFileName": "saqqaf",
+    "adhanLocalPath": null,
+    "isBundled": false,
+    "adhanName": "saqqaf",
+    "urlAndroidAdhan": "android/saqqaf_athan.wav",
+    "urlAndroidFajirAdhan": "android/saqqaf_fajir_athan.wav",
+    "urlIosAdhan": "ios/saqqaf.zip",
+    "urlPlayAdhan": "saqqaf_athan.m4a"
+  },
+  {
+    "index": 2,
+    "adhanFileName": "sarihi",
+    "adhanLocalPath": null,
+    "isBundled": false,
+    "adhanName": "sarihi",
+    "urlAndroidAdhan": "android/sarihi_athan.wav",
+    "urlAndroidFajirAdhan": "android/sarihi_athan_fajir.wav",
+    "urlIosAdhan": "ios/sarihi.zip",
+    "urlPlayAdhan": "sarihi_athanF.m4a"
+  },
+  {
+    "index": 3,
+    "adhanFileName": "baset",
+    "adhanLocalPath": null,
+    "isBundled": false,
+    "adhanName": "baset",
+    "urlAndroidAdhan": "android/baset_athan.wav",
+    "urlAndroidFajirAdhan": "android/baset_fajir_athan.wav",
+    "urlIosAdhan": "ios/baset.zip",
+    "urlPlayAdhan": "baset_athan.m4a"
+  },
+  {
+    "index": 4,
+    "adhanFileName": "qatami",
+    "adhanLocalPath": null,
+    "isBundled": false,
+    "adhanName": "qatami",
+    "urlAndroidAdhan": "android/qatami_athan.wav",
+    "urlAndroidFajirAdhan": "android/qatami_fajir_athan.wav",
+    "urlIosAdhan": "ios/qatami.zip",
+    "urlPlayAdhan": "qatami_athan.m4a"
+  },
+  {
+    "index": 5,
+    "adhanFileName": "salah",
+    "adhanLocalPath": null,
+    "isBundled": false,
+    "adhanName": "salah",
+    "urlAndroidAdhan": "android/salah_athan.wav",
+    "urlAndroidFajirAdhan": "android/salah_fajir_athan.wav",
+    "urlIosAdhan": "ios/salah.zip",
+    "urlPlayAdhan": "salah_athan.m4a"
+  }
+]

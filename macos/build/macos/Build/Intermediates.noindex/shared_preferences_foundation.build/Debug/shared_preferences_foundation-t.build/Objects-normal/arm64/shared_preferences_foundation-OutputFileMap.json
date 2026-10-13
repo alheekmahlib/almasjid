@@ -1,0 +1,39 @@
+{
+  "" : {
+    "diagnostics" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/shared_preferences_foundation.build/Debug/shared_preferences_foundation-t.build/Objects-normal/arm64/shared_preferences_foundation-primary.dia",
+    "emit-module-dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/shared_preferences_foundation.build/Debug/shared_preferences_foundation-t.build/Objects-normal/arm64/shared_preferences_foundation-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/shared_preferences_foundation.build/Debug/shared_preferences_foundation-t.build/Objects-normal/arm64/shared_preferences_foundation-primary-emit-module.dia",
+    "pch" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/shared_preferences_foundation.build/Debug/shared_preferences_foundation-t.build/Objects-normal/arm64/shared_preferences_foundation-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/shared_preferences_foundation.build/Debug/shared_preferences_foundation-t.build/Objects-normal/arm64/shared_preferences_foundation-primary.swiftdeps"
+  },
+  "/Volumes/HawazenSSD/Applications/Dart/pub-cache/hosted/pub.dev/shared_preferences_foundation-2.5.7/darwin/shared_preferences_foundation/Sources/shared_preferences_foundation/SharedPreferencesPlugin.swift" : {
+    "const-values" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/shared_preferences_foundation.build/Debug/shared_preferences_foundation-t.build/Objects-normal/arm64/SharedPreferencesPlugin.swiftconstvalues",
+    "dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/shared_preferences_foundation.build/Debug/shared_preferences_foundation-t.build/Objects-normal/arm64/SharedPreferencesPlugin.d",
+    "diagnostics" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/shared_preferences_foundation.build/Debug/shared_preferences_foundation-t.build/Objects-normal/arm64/SharedPreferencesPlugin.dia",
+    "index-unit-output-path" : "/shared_preferences_foundation.build/Debug/shared_preferences_foundation-t.build/Objects-normal/arm64/SharedPreferencesPlugin.o",
+    "llvm-bc" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/shared_preferences_foundation.build/Debug/shared_preferences_foundation-t.build/Objects-normal/arm64/SharedPreferencesPlugin.bc",
+    "object" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/shared_preferences_foundation.build/Debug/shared_preferences_foundation-t.build/Objects-normal/arm64/SharedPreferencesPlugin.o",
+    "swift-dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/shared_preferences_foundation.build/Debug/shared_preferences_foundation-t.build/Objects-normal/arm64/SharedPreferencesPlugin.swiftdeps",
+    "swiftmodule" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/shared_preferences_foundation.build/Debug/shared_preferences_foundation-t.build/Objects-normal/arm64/SharedPreferencesPlugin~partial.swiftmodule"
+  },
+  "/Volumes/HawazenSSD/Applications/Dart/pub-cache/hosted/pub.dev/shared_preferences_foundation-2.5.7/darwin/shared_preferences_foundation/Sources/shared_preferences_foundation/messages.g.swift" : {
+    "const-values" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/shared_preferences_foundation.build/Debug/shared_preferences_foundation-t.build/Objects-normal/arm64/messages.g.swiftconstvalues",
+    "dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/shared_preferences_foundation.build/Debug/shared_preferences_foundation-t.build/Objects-normal/arm64/messages.g.d",
+    "diagnostics" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/shared_preferences_foundation.build/Debug/shared_preferences_foundation-t.build/Objects-normal/arm64/messages.g.dia",
+    "index-unit-output-path" : "/shared_preferences_foundation.build/Debug/shared_preferences_foundation-t.build/Objects-normal/arm64/messages.g.o",
+    "llvm-bc" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/shared_preferences_foundation.build/Debug/shared_preferences_foundation-t.build/Objects-normal/arm64/messages.g.bc",
+    "object" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/shared_preferences_foundation.build/Debug/shared_preferences_foundation-t.build/Objects-normal/arm64/messages.g.o",
+    "swift-dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/shared_preferences_foundation.build/Debug/shared_preferences_foundation-t.build/Objects-normal/arm64/messages.g.swiftdeps",
+    "swiftmodule" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/shared_preferences_foundation.build/Debug/shared_preferences_foundation-t.build/Objects-normal/arm64/messages.g~partial.swiftmodule"
+  },
+  "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/shared_preferences_foundation.build/Debug/shared_preferences_foundation-t.build/DerivedSources/resource_bundle_accessor.swift" : {
+    "const-values" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/shared_preferences_foundation.build/Debug/shared_preferences_foundation-t.build/Objects-normal/arm64/resource_bundle_accessor.swiftconstvalues",
+    "dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/shared_preferences_foundation.build/Debug/shared_preferences_foundation-t.build/Objects-normal/arm64/resource_bundle_accessor.d",
+    "diagnostics" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/shared_preferences_foundation.build/Debug/shared_preferences_foundation-t.build/Objects-normal/arm64/resource_bundle_accessor.dia",
+    "index-unit-output-path" : "/shared_preferences_foundation.build/Debug/shared_preferences_foundation-t.build/Objects-normal/arm64/resource_bundle_accessor.o",
+    "llvm-bc" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/shared_preferences_foundation.build/Debug/shared_preferences_foundation-t.build/Objects-normal/arm64/resource_bundle_accessor.bc",
+    "object" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/shared_preferences_foundation.build/Debug/shared_preferences_foundation-t.build/Objects-normal/arm64/resource_bundle_accessor.o",
+    "swift-dependencies" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/shared_preferences_foundation.build/Debug/shared_preferences_foundation-t.build/Objects-normal/arm64/resource_bundle_accessor.swiftdeps",
+    "swiftmodule" : "/Volumes/HawazenSSD/Projects/almasjid/macos/build/macos/Build/Intermediates.noindex/shared_preferences_foundation.build/Debug/shared_preferences_foundation-t.build/Objects-normal/arm64/resource_bundle_accessor~partial.swiftmodule"
+  }
+}

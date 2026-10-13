@@ -15,11 +15,13 @@
 	- [المميزات](#المميزات)
 	- [الأذونات والخصوصية](#الأذونات-والخصوصية)
 	- [التثبيت والتشغيل](#التثبيت-والتشغيل)
+	- [النشر والإصدارات](#النشر-والإصدارات)
 - [English](#english)
 	- [Overview](#overview)
 	- [Features](#features)
 	- [Permissions & Privacy](#permissions--privacy)
 	- [Build & Run](#build--run)
+	- [Releasing](#releasing)
 
 <p align="center">
 	<img src="assets/images/aqim_icon.png" alt="Aqim icon" width="120" />
@@ -82,6 +84,42 @@ flutter build ipa --release
 
 > يدعم التطبيق تعدد اللغات عبر ملفات `assets/locales/*.json`.
 
+### النشر والإصدارات
+
+الرفع للمتاجر يتم عبر GitHub Actions بworkflows يدوية التشغيل (نفس نمط مستودع alquranalkareem). طقس كل إصدار:
+
+1. ارفع `version:` في `pubspec.yaml` (مثل `1.2.17+24`).
+2. اكتب ملاحظات الإصدار في `release_notes/<الإصدار-الكامل>/ar.md` (`en.md` اختياري) — الـworkflow يفشل إن غاب ملف العربية.
+3. شغّل الـworkflow المطلوب يدويًا من تبويب Actions:
+
+| الـWorkflow | الوجهة | ملاحظات |
+|---|---|---|
+| `release-play` | Google Play (production) | AAB بنكهة `googlePlayRelease`، ملاحظات whatsnew تلقائيًا من `release_notes` — الإرسال للمراجعة يدويًا من Play Console |
+| `release-testflight` | TestFlight (iOS) | إرسال نسخة App Store للمراجعة يدويًا من App Store Connect |
+| `release-appgallery` | Huawei AppGallery (مسودة) | APK بتوقيع هواوي — المراجعة يدويًا |
+| `release-github` | GitHub Release مرقّم `v<الإصدار>` | تحميلات مباشرة: Android/macOS (موقّع وموثّق Developer ID)/Linux |
+| `release-mac-appstore` | Mac App Store (TestFlight) | حزمة `.pkg` موقّعة |
+
+الأسرار (تُضبط مرة واحدة عبر `./set-store-secrets.sh` من جذر المستودع):
+
+| السر | المستوى | المصدر |
+|---|---|---|
+| `MAPTILER_KEY` | المستودع | مفتاح MapTiler |
+| `PLAY_KEYSTORE_BASE64/PASSWORD/ALIAS/KEY_PASSWORD` | المستودع | `android/google-play-keystore.jks` + `google-play-key.properties` |
+| `PLAY_SERVICE_ACCOUNT_JSON` | المستودع | حساب خدمة من Play Console بوصول للتطبيق |
+| `HUAWEI_KEYSTORE_BASE64/PASSWORD/ALIAS/KEY_PASSWORD` | المستودع | `android/huawei-release-key.keystore` + `key.properties` |
+| `IOS_PROFILE_BASE64` / `IOS_PROFILE_WIDGET_BASE64` | المستودع | بروفايل App Store جديد لـ`com.alheekmah.aqimApp` وللويدجت `...prayerWidget` |
+| `MAS_PROFILE_BASE64` / `MAS_PROFILE_WIDGET_BASE64` | المستودع | بروفايل Mac App Store (المنصة macOS حصريًا) للتطبيق والويدجت |
+| `IOS_P12_BASE64/PASSWORD` | المستودع (مشترك) | شهادة Apple Distribution (نفس قيم تطبيق القرآن) |
+| `MAC_DEV_ID_P12_BASE64/PASSWORD` | المستودع (مشترك) | شهادة Developer ID Application |
+| `MAS_INSTALLER_P12_BASE64/PASSWORD` | المستودع (مشترك) | شهادة 3rd Party Mac Developer Installer |
+| `ASC_KEY_ID/ISSUER_ID/KEY_P8_BASE64` | المستودع (مشترك) | مفتاح App Store Connect API |
+| `AGC_CLIENT_ID/SECRET` | المستودع (مشترك) | عميل Publishing API من AppGallery Connect |
+
+> «مشترك» تعني نفس القيم المعتمدة في مستودع القرآن لكنها تُضبط على مستوى كل مستودع — حساب `alheekmahlib` شخصي، وأسرار مستوى المؤسسة غير متاحة على GitHub للحسابات الشخصية.
+
+> تذكير: الـbuildType الافتراضي `release` موقّع بمفتاح هواوي، وبناء Play يستخدم `--flavor googlePlayRelease`. اعتمادية `floatica` تُسحب في CI كمستودع شقيق تلقائيًا.
+
 ---
 
 ## English
@@ -136,6 +174,24 @@ flutter build ipa --release
 ```
 
 > Error monitoring via Sentry is enabled temporarily (DSN embedded in `lib/core/services/sentry_service.dart`) for diagnosis — remove the library entirely before publishing to app stores.
+
+### Releasing
+
+Store uploads run through manually-triggered GitHub Actions workflows (same setup as the alquranalkareem repo). Release ritual:
+
+1. Bump `version:` in `pubspec.yaml` (e.g. `1.2.17+24`).
+2. Write `release_notes/<full-version>/ar.md` (`en.md` optional) — workflows fail fast if the Arabic notes file is missing.
+3. Run the desired workflow from the Actions tab:
+
+| Workflow | Target | Notes |
+|---|---|---|
+| `release-play` | Google Play (production) | AAB via the `googlePlayRelease` build type, what's-new from `release_notes` — press "Send for review" in Play Console |
+| `release-testflight` | TestFlight (iOS) | App Store submission stays manual in App Store Connect |
+| `release-appgallery` | Huawei AppGallery (draft) | Huawei-signed APK — review submission manual |
+| `release-github` | Versioned GitHub Release `v<version>` | Direct downloads: Android/macOS (Developer ID signed + notarized)/Linux |
+| `release-mac-appstore` | Mac App Store (TestFlight) | Signed `.pkg` |
+
+Secrets are configured once via `./set-store-secrets.sh` from the repo root: app-specific secrets (Android keystores, provisioning profiles, Play service account) and shared ones (Apple Distribution, Developer ID, Mac Installer, ASC API key, AGC client — same values as the Quran repo) all live at repo level, since the `alheekmahlib` account is personal and GitHub org-level secrets are unavailable. The default `release` build type is Huawei-signed; Play builds use `--flavor googlePlayRelease`. The `floatica` dependency is checked out as a sibling repo in CI automatically.
 
 —
 

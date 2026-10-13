@@ -56,8 +56,8 @@ class LocalNotificationsService {
   static const String bellChannelId = 'prayers_bell';
   static const String silentChannelId = 'prayers_silent';
 
-  /// أسماء ملفات res/raw بدون امتداد، لكل مقرئ مدمج.
-  static const List<String> _reciters = [
+  /// مقاطع المقرئين المدمجة في حزمة macOS بترتيب فهرس الكتالوج (0-5).
+  static const List<String> _bundledMacReciters = [
     'aqsa',
     'saqqaf',
     'sarihi',
@@ -65,6 +65,29 @@ class LocalNotificationsService {
     'qatami',
     'salah',
   ];
+
+  /// اسم ملف مقطع المقرئ المدمج في حزمة macOS لصوت إشعار الأذان — macOS 26
+  /// لا يقرأ أصوات الإشعارات إلا من Resources للحزمة فمقاطع المقرئين
+  /// مضمّنة وقت البناء. الفهرس وفق ترتيب الكتالوج؛ عند غيابه يُشتق من
+  /// المسار المخزّن، وإلا يُرجع للأقصى.
+  static String macBundledReciterSoundFile({
+    String? selectedIndex,
+    String? legacyPathIndex,
+    String? storedPath,
+  }) {
+    final idx = int.tryParse(selectedIndex ?? legacyPathIndex ?? '');
+    String reciter;
+    if (idx != null && idx >= 0 && idx < _bundledMacReciters.length) {
+      reciter = _bundledMacReciters[idx];
+    } else {
+      final path = storedPath ?? '';
+      reciter = _bundledMacReciters.firstWhere(
+        (r) => path.contains(r),
+        orElse: () => 'aqsa',
+      );
+    }
+    return '${reciter}_athan.aiff';
+  }
 
   /// قنوات awesome_notifications القديمة (وقنوات المرحلة الأولى المؤقتة
   /// لكل مقرئ) تُحذف مرة عند التهيئة (هجرة نظيفة).
@@ -82,20 +105,6 @@ class LocalNotificationsService {
     'prayers_adhan_qatami',
     'prayers_adhan_salah',
   ];
-
-  /// الصوت المختار من التخزين بصيغة `resource://raw/<name>`
-  String get _selectedAdhanResource =>
-      GetStorage('AdhanSounds').read<String?>(ADHAN_PATH) ??
-      'resource://raw/aqsa_athan';
-
-  /// اسم المقرئ المختار من المسار المخزن (أو الافتراضي aqsa).
-  String get _selectedReciter {
-    final raw = _selectedAdhanResource.replaceFirst('resource://raw/', '');
-    for (final reciter in _reciters) {
-      if (raw.startsWith(reciter)) return reciter;
-    }
-    return 'aqsa';
-  }
 
   /// مسار الصوت الكامل المحمّل للمقرئ المختار (الفجري عند الطلب)، إن وُجد
   /// الملف فعلاً على القرص. يستخدمه مشغّل أذان أندرويد وتشغيل الأذان
@@ -119,11 +128,11 @@ class LocalNotificationsService {
     }
   }
 
-  /// اسم ملف مقطع iOS المحمّل (≤30 ثانية) في Library/Sounds — يُحله
+  /// اسم ملف مقطع Darwin المحمّل (≤30 ثانية) في Library/Sounds — يُحله
   /// UNNotificationSound — أو null للرجوع للصوت المدمج من حزمة التطبيق.
   /// لا توجد مقاطع فجرية منفصلة حالياً؛ مقطع الفجر يرجع للعادي.
-  String? _downloadedIosSegmentName() {
-    if (!Platform.isIOS) return null;
+  String? _downloadedDarwinSegmentName() {
+    if (!Platform.isIOS && !Platform.isMacOS) return null;
     try {
       final box = GetStorage('AdhanSounds');
       final selectedIndex = int.tryParse(
@@ -363,6 +372,30 @@ class LocalNotificationsService {
     return bumped;
   }
 
+  /// اسم صوت الأذان لإشعارات Darwin:
+  /// - مقطع محمّل (≤30ث) من Library/Sounds إن وُجد، وإلا الصوت المدمج
+  ///   aqsa_athan (الحزمة الافتراضية لا تضم غيره لغير المحمّل).
+  /// - macOS يحل الأسماء بلا امتداد (سلوك NSSound) بينما iOS بالامتداد،
+  ///   فتُجرَّد امتدادات الصوت المعروفة على macOS فقط.
+  static String resolveDarwinAdhanSoundName({
+    required bool isMacOS,
+    String? downloadedSegmentName,
+  }) {
+    if (downloadedSegmentName != null) {
+      return stripDarwinSoundExtension(downloadedSegmentName, isMacOS: isMacOS);
+    }
+    return stripDarwinSoundExtension('aqsa_athan.aiff', isMacOS: isMacOS);
+  }
+
+  /// تجريد امتداد ملف الصوت على macOS فقط؛ iOS تُمرر الاسم كما هو.
+  static String stripDarwinSoundExtension(
+    String fileName, {
+    required bool isMacOS,
+  }) {
+    if (!isMacOS) return fileName;
+    return fileName.replaceFirst(RegExp(r'\.(aiff|aif|caf|wav)$'), '');
+  }
+
   NotificationDetails _buildNotificationDetails({
     required String? soundType,
     required String? summary,
@@ -394,16 +427,32 @@ class LocalNotificationsService {
       visibility: NotificationVisibility.public,
     );
 
-    // iOS: مقطع محمّل من Library/Sounds أو الصوت المدمج (الأقصى).
-    // macOS: أصوات المقرئين المدمجة تبقى من حزمة التطبيق في هذه المرحلة.
+    // Darwin: macOS = مقطع المقرئ المختار المدمج في الحزمة (Resources هو
+    // موضع البحث الوحيد نظامياً — مثبت بفحص systemsoundserverd، ولا مسار
+    // قابل للكتابة يبحث فيه)؛ التنزيل على الماك يخدم الأذان الكامل داخل
+    // التطبيق فقط. iOS = المقطع المحمّل من Library/Sounds أو المدمج.
     final String? darwinSoundFile;
     switch (soundType) {
       case 'sound':
-        darwinSoundFile = Platform.isIOS
-            ? (_downloadedIosSegmentName() ?? 'aqsa_athan.aiff')
-            : '${_selectedReciter}_athan.aiff';
+        final box = GetStorage('AdhanSounds');
+        darwinSoundFile = Platform.isMacOS
+            ? stripDarwinSoundExtension(
+                macBundledReciterSoundFile(
+                  selectedIndex: box.read<String?>(ADHAN_SELECTED_INDEX),
+                  legacyPathIndex: box.read<String?>(ADHAN_PATH_INDEX),
+                  storedPath: box.read<String?>(ADHAN_PATH),
+                ),
+                isMacOS: true,
+              )
+            : resolveDarwinAdhanSoundName(
+                isMacOS: false,
+                downloadedSegmentName: _downloadedDarwinSegmentName(),
+              );
       case 'bell':
-        darwinSoundFile = 'notification.aiff';
+        darwinSoundFile = stripDarwinSoundExtension(
+          'notification.aiff',
+          isMacOS: Platform.isMacOS,
+        );
       default:
         darwinSoundFile = null;
     }

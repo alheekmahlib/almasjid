@@ -4,12 +4,11 @@ part of '../prayers.dart';
 /// - أندرويد: ملفا WAV مباشرة — العادي والفجري (أذان الفجر مختلف) —
 ///   إلى `<Documents>/Sounds/audio/` لتشغّلهما خدمة التشغيل المباشر
 ///   وخصية تشغيل الأذان الكامل داخل التطبيق.
-/// - iOS: حزمة zip تحتوي الأذان الكامل (عادي + فجري بصيغة m4a)
+/// - iOS/macOS: حزمة zip تحتوي الأذان الكامل (عادي + فجري بصيغة m4a)
 ///   والمقطع القصير ≤30 ثانية (aiff)؛ يُستخرج كل شيء إلى Library/Sounds
 ///   لأن UNNotificationSound يحل أسماء الملفات من هناك، ويُخزن مسار
 ///   المقطع بمفتاح مستقل لصوت الإشعار بينما المفاتيح العادية تحمل
 ///   الأذان الكامل للتشغيل داخل التطبيق.
-/// - macOS: غير مدعوم في هذه المرحلة (يبقى على الأصوات المدمجة).
 class AudioDownloader {
   final notiCtrl = PrayersNotificationsCtrl.instance;
 
@@ -26,10 +25,8 @@ class AudioDownloader {
     AdhanData adhanData, {
     void Function(int, int)? onReceiveProgress,
   }) async {
-    if (Platform.isMacOS) return adhanData;
-
-    if (Platform.isIOS) {
-      return _downloadIos(adhanData, onReceiveProgress);
+    if (Platform.isIOS || Platform.isMacOS) {
+      return _downloadDarwin(adhanData, onReceiveProgress);
     }
     return _downloadAndroid(adhanData, onReceiveProgress);
   }
@@ -76,9 +73,9 @@ class AudioDownloader {
     }
   }
 
-  // ─── iOS ───
+  // ─── iOS/macOS ───
 
-  Future<AdhanData> _downloadIos(
+  Future<AdhanData> _downloadDarwin(
     AdhanData adhanData,
     void Function(int, int)? onReceiveProgress,
   ) async {
@@ -94,9 +91,29 @@ class AudioDownloader {
       if (bytes == null) return adhanData;
 
       // Library/Sounds هو المجلد الوحيد (غير حزمة التطبيق) الذي يحل منه
-      // iOS أصوات الإشعارات؛ نستخرج فيه كل الملفات.
-      final libraryDir = await getLibraryDirectory();
-      final soundsDir = Directory(path.join(libraryDir.path, 'Sounds'));
+      // iOS أصوات الإشعارات؛ نستخرج فيه كل الملفات. على macOS 26 الكتابة
+      // في <container>/Library/Sounds ممنوعة نظامياً (EPERM) والبديل
+      // المثبت بالفحص: Sounds داخل مجموعة التطبيق المشتركة — يبحث عنها
+      // NotificationCenter ويكتبها sandbox بلا امتناع (HOME داخل الحاوية
+      // = <container>/Data؛ الصعود ثلاثاً يصل Library ثم Group Containers).
+      final String soundsPath;
+      if (Platform.isMacOS) {
+        final home = Platform.environment['HOME'];
+        if (home == null || home.isEmpty) {
+          throw Exception('HOME is not set; cannot resolve group Sounds');
+        }
+        final libraryDir = Directory(home).parent.parent.parent;
+        soundsPath = path.join(
+          libraryDir.path,
+          'Group Containers',
+          'group.alheekmah.aqimApp.prayerWidget',
+          'Sounds',
+        );
+      } else {
+        final libraryDir = await getLibraryDirectory();
+        soundsPath = path.join(libraryDir.path, 'Sounds');
+      }
+      final soundsDir = Directory(soundsPath);
       if (!soundsDir.existsSync()) {
         soundsDir.createSync(recursive: true);
       }
@@ -146,7 +163,7 @@ class AudioDownloader {
       box.write(ADHAN_PATH_INDEX, adhanData.index.toString());
 
       log(
-        'iOS adhan extracted: full=$fullRegularPath, '
+        'Darwin adhan extracted: full=$fullRegularPath, '
         'fajir=$fullFajirPath, segment=$segmentPath',
         name: 'AudioDownloader',
       );
@@ -155,10 +172,13 @@ class AudioDownloader {
         adhanData,
         mainPath: fullRegularPath,
         fajirPath: fullFajirPath,
-        ios: true,
+        darwin: true,
       );
     } catch (e) {
-      log('Error downloading iOS adhan package: $e', name: 'AudioDownloader');
+      log(
+        'Error downloading Darwin adhan package: $e',
+        name: 'AudioDownloader',
+      );
       return adhanData;
     }
   }
@@ -230,7 +250,7 @@ class AudioDownloader {
         adhanData,
         mainPath: regularPath,
         fajirPath: fajirPath,
-        ios: false,
+        darwin: false,
       );
     } catch (e) {
       log('Error downloading Android adhan: $e', name: 'AudioDownloader');
@@ -259,7 +279,7 @@ class AudioDownloader {
     AdhanData adhanData, {
     required String? mainPath,
     required String? fajirPath,
-    required bool ios,
+    required bool darwin,
   }) {
     return AdhanData(
       index: adhanData.index,
@@ -271,8 +291,8 @@ class AudioDownloader {
       urlAndroidFajirAdhan: adhanData.urlAndroidFajirAdhan,
       urlIosAdhan: adhanData.urlIosAdhan,
       urlPlayAdhan: adhanData.urlPlayAdhan,
-      androidFilePath: ios ? adhanData.androidFilePath : mainPath,
-      iosFilePath: ios ? mainPath : adhanData.iosFilePath,
+      androidFilePath: darwin ? adhanData.androidFilePath : mainPath,
+      iosFilePath: darwin ? mainPath : adhanData.iosFilePath,
       androidFajirFilePath: fajirPath,
       adhanPath: mainPath,
     );
