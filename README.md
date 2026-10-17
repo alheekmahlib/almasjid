@@ -49,6 +49,21 @@
 ## 📲 Download
 
 <p align="center">
+  <a href="https://apps.apple.com/us/app/%D8%A3%D9%82%D9%85-%D9%85%D9%83%D8%AA%D8%A8%D8%A9-%D8%A7%D9%84%D8%AD%D9%83%D9%85%D8%A9/id6752765521">
+    <img src="https://img.shields.io/badge/App_Store-Download-000000?style=for-the-badge&logo=apple&logoColor=white" alt="Download on the App Store"/>
+  </a>
+  <a href="https://play.google.com/store/apps/details?id=com.alheekmah.aqimApp">
+    <img src="https://img.shields.io/badge/Google_Play-Get_it_on-414141?style=for-the-badge&logo=googleplay&logoColor=white" alt="Get it on Google Play"/>
+  </a>
+  <a href="https://appgallery.huawei.com/#/app/C115301239">
+    <img src="https://img.shields.io/badge/Huawei_AppGallery-Explore-red?style=for-the-badge&logo=huawei&logoColor=white" alt="Explore it on AppGallery"/>
+  </a>
+  <a href="https://apps.apple.com/us/app/%D8%A3%D9%82%D9%85-%D9%85%D9%83%D8%AA%D8%A8%D8%A9-%D8%A7%D9%84%D8%AD%D9%83%D9%85%D8%A9/id6752765521">
+    <img src="https://img.shields.io/badge/Mac_App_Store-Download-999999?style=for-the-badge&logo=macos&logoColor=white" alt="Download on the Mac App Store"/>
+  </a>
+</p>
+
+<p align="center">
   <a href="https://github.com/alheekmahlib/aqim/releases">
     <img src="https://img.shields.io/badge/GitHub_Releases-Direct_Downloads-181717?style=for-the-badge&logo=github&logoColor=white" alt="Download from GitHub Releases"/>
   </a>
@@ -56,8 +71,6 @@
     <img src="https://img.shields.io/badge/Web-GitHub_Pages-3DDC84?style=for-the-badge&logo=githubpages&logoColor=white" alt="Open the web version"/>
   </a>
 </p>
-
-> Aqim is rolling out to Google Play, the App Store, Huawei AppGallery, and the Mac App Store — the store badges will land here as each listing goes live. Until then, every release ships signed direct downloads for Android, macOS (Developer ID signed & notarized), and Linux via GitHub Releases, plus an always-up-to-date web build on GitHub Pages.
 
 ---
 
@@ -285,7 +298,7 @@ Found a bug or have an idea? Please [open an issue](https://github.com/alheekmah
 
 ## ⭐ Show Your Support
 
-If you like Aqim, please ⭐ star the repository — it helps others discover it. You can also support continued development:
+If you like Aqim, please ⭐ star the repository and consider [rating it on the stores](#-download) — it helps others discover it. You can also support continued development:
 
 <p align="center">
   <a href="https://www.buymeacoffee.com/haw8a9zen">
