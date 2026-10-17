@@ -37,7 +37,7 @@
 
 set -euo pipefail
 
-REPO="alheekmahlib/almasjid"
+REPO="alheekmahlib/aqim"
 
 REPO_ONLY=0
 SHARED_ONLY=0

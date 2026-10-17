@@ -58,7 +58,7 @@ jobs:
         run: flutter pub get
 
       - name: Build web
-        run: flutter build web --release --no-tree-shake-icons --base-href /almasjid/
+        run: flutter build web --release --no-tree-shake-icons --base-href /aqim/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

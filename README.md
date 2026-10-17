@@ -1,198 +1,307 @@
+<div dir="ltr">
+
 <p align="center">
-	<img src="assets/images/aqim_banner.png" alt="Aqim app banner" width="900" />
+  <img src="https://raw.githubusercontent.com/alheekmahlib/data/refs/heads/main/apps_photos/aqim_app/aqim_icon2.png" width="90" alt="Aqim logo"/>
 </p>
 
-# أَقِم — Aqim
-
-تطبيق مواقيت الصلاة والقبلة البسيط والدقيق. Flutter app for Prayer Times and Qibla.
-
-—
-
-## المحتويات · Table of Contents
-
-- [العربية](#العربية)
-	- [نبذة](#نبذة)
-	- [المميزات](#المميزات)
-	- [الأذونات والخصوصية](#الأذونات-والخصوصية)
-	- [التثبيت والتشغيل](#التثبيت-والتشغيل)
-	- [النشر والإصدارات](#النشر-والإصدارات)
-- [English](#english)
-	- [Overview](#overview)
-	- [Features](#features)
-	- [Permissions & Privacy](#permissions--privacy)
-	- [Build & Run](#build--run)
-	- [Releasing](#releasing)
+<h1 align="center">أقم — مكتبة الحكمة</h1>
+<h3 align="center">Aqim — Al-Heekmah Library</h3>
 
 <p align="center">
-	<img src="assets/images/aqim_icon.png" alt="Aqim icon" width="120" />
+  <img src="https://raw.githubusercontent.com/alheekmahlib/data/refs/heads/main/apps_photos/aqim_app/play_store/Feature%20graphic.png" width="100%" alt="Aqim feature graphic"/>
+</p>
+
+<p align="center">
+  <a href="https://github.com/alheekmahlib/aqim/releases">
+    <img src="https://img.shields.io/github/v/release/alheekmahlib/aqim?style=for-the-badge&color=2EA44F&label=Release" alt="Latest release"/>
+  </a>
+  <a href="https://github.com/alheekmahlib/aqim/actions/workflows/release-github.yml">
+    <img src="https://img.shields.io/github/actions/workflow/status/alheekmahlib/aqim/release-github.yml?style=for-the-badge&label=Release+CI&logo=github" alt="Release CI status"/>
+  </a>
+  <a href="https://github.com/alheekmahlib/aqim/stargazers">
+    <img src="https://img.shields.io/github/stars/alheekmahlib/aqim?style=for-the-badge&color=dfb317&label=Stars" alt="GitHub stars"/>
+  </a>
+  <a href="https://github.com/alheekmahlib/aqim/network/members">
+    <img src="https://img.shields.io/github/forks/alheekmahlib/aqim?style=for-the-badge&color=8B5CF6&label=Forks" alt="GitHub forks"/>
+  </a>
+  <a href="https://github.com/alheekmahlib/aqim/issues">
+    <img src="https://img.shields.io/github/issues/alheekmahlib/aqim?style=for-the-badge&color=E34F26&label=Issues" alt="GitHub issues"/>
+  </a>
+  <a href="https://www.buymeacoffee.com/haw8a9zen">
+    <img src="https://img.shields.io/badge/Buy_Me_A_Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black" alt="Buy Me A Coffee"/>
+  </a>
+  <a href="https://paypal.me/hawazen89">
+    <img src="https://img.shields.io/badge/PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white" alt="PayPal"/>
+  </a>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Flutter-Stable-02569B?style=for-the-badge&logo=flutter&logoColor=white" alt="Flutter"/>
+  <img src="https://img.shields.io/badge/Dart-%E2%89%A5%203.12-0175C2?style=for-the-badge&logo=dart&logoColor=white" alt="Dart SDK"/>
+  <img src="https://img.shields.io/badge/Version-1.2.16-46A758?style=for-the-badge" alt="App version"/>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Platform-Android%20%7C%20iOS%20%7C%20macOS%20%7C%20Linux%20%7C%20Web-3DDC84?style=for-the-badge" alt="Platforms"/>
+  <img src="https://img.shields.io/badge/Languages-11-8B5CF6?style=for-the-badge" alt="Supported languages"/>
+</p>
+
+## 📲 Download
+
+<p align="center">
+  <a href="https://github.com/alheekmahlib/aqim/releases">
+    <img src="https://img.shields.io/badge/GitHub_Releases-Direct_Downloads-181717?style=for-the-badge&logo=github&logoColor=white" alt="Download from GitHub Releases"/>
+  </a>
+  <a href="https://alheekmahlib.github.io/aqim/">
+    <img src="https://img.shields.io/badge/Web-GitHub_Pages-3DDC84?style=for-the-badge&logo=githubpages&logoColor=white" alt="Open the web version"/>
+  </a>
+</p>
+
+> Aqim is rolling out to Google Play, the App Store, Huawei AppGallery, and the Mac App Store — the store badges will land here as each listing goes live. Until then, every release ships signed direct downloads for Android, macOS (Developer ID signed & notarized), and Linux via GitHub Releases, plus an always-up-to-date web build on GitHub Pages.
+
+---
+
+## 🕌 About The App
+
+**Aqim (أقم — مكتبة الحكمة)** is a free, open-source prayer-times and Qibla application built with Flutter for Android, iOS, macOS, Linux, and the web. Part of the Al-Heekmah Library family of apps, it pairs accurate location-aware prayer times with a polished **Liquid Glass** interface: audible adhan from a choice of muezzins, home-screen widgets and an iOS Live Activity that keep the next prayer in view, a compass-and-map Qibla finder, a step-by-step prayer guide, and a Hijri calendar with religious events — all localized in 11 languages.
+
+The app is under active development — new features ship regularly, and contributions from the community are welcome.
+
+---
+
+## ✨ Features
+
+### 🕌 Prayer Times
+
+- **Accurate, location-based times** — detected automatically from your location, or pick any place by searching a city map.
+- **Smart calculation settings** — automatic calculation-method detection with full manual override, including the madhab (Asr angle) setting.
+- **Next-prayer dashboard** — a beautiful countdown to the upcoming prayer, at a glance.
+- **Prayer times for any city** — search a city from the Cities tab and get its full schedule, plus the Qibla direction for that city.
+
+### 🔔 Adhan & Notifications
+
+- **Audible adhan** at every prayer time, with per-prayer toggles.
+- **6 muezzin voices** — Al-Aqsa bundled with the app; Al-Saqqaf, Al-Sarihi, Al-Baset, Al-Qatami, and more downloaded once in-app, most with a dedicated Fajr adhan.
+- **Pre-prayer countdown notifications** so you can wrap up and get ready.
+- **Robust background scheduling** — alarms keep firing accurately thanks to background fetch and a native alarm scheduler.
+
+### 🧭 Qibla
+
+- **Precise compass** pointing to the Qibla from wherever you are.
+- **Interactive map** (MapTiler tiles) showing your location and the Qibla direction.
+- Works for your current location **or any searched city**.
+
+### 📱 Widgets & Live Activity
+
+- **Home-screen prayer widget** on Android, iOS, and macOS — the next prayer and its countdown, right on your home screen.
+- **iOS Live Activity** — a live next-prayer countdown on the Lock Screen and Dynamic Island.
+
+### 🕌 Teaching Prayer
+
+- A **step-by-step illustrated guide** to prayer, enriched with related hadiths and sunnahs.
+
+### 📅 Hijri Calendar & Events
+
+- Full **Hijri calendar** with a comfortable month view.
+- **Religious occasions** throughout the year, with optional reminders so you never miss them.
+
+### 🎨 Personalization
+
+- **Liquid Glass** and classic themes; light & dark modes.
+- **11 languages**: Arabic, English, Spanish, Filipino, Indonesian, Kurdish, Malay, Somali, Turkish, Urdu, Bengali.
+- Polished Arabic typography with the Cairo font family.
+
+---
+
+## 📸 Screenshots
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/alheekmahlib/data/refs/heads/main/apps_photos/aqim_app/app%20gellary/p1.png" width="30%" alt="Screenshot 1"/>
+  <img src="https://raw.githubusercontent.com/alheekmahlib/data/refs/heads/main/apps_photos/aqim_app/app%20gellary/p2.png" width="30%" alt="Screenshot 2"/>
+  <img src="https://raw.githubusercontent.com/alheekmahlib/data/refs/heads/main/apps_photos/aqim_app/app%20gellary/p3.png" width="30%" alt="Screenshot 3"/>
 </p>
 
 ---
 
-## العربية
+## 🛠️ Tech Stack
 
-### نبذة
-
-تطبيق "أَقِم" هو تطبيق إسلامي بسيط ومباشر، مصمم خصيصًا لمساعدتك على أداء صلاتك في وقتها وبكل سهولة. يركز التطبيق على تقديم الأدوات الأساسية التي يحتاجها كل مسلم في حياته اليومية، من خلال واجهة تفاعلية سهلة الاستخدام تضمن لك تجربة مريحة وواضحة. مع "أَقِم"، لن تفوتك أي صلاة بعد الآن؛ إذ يعمل التطبيق كمُنبه شخصي وموجّه دقيق لقبلتك، مما يجعله الأداة المثالية للحفاظ على أهم أركان الإسلام.
-
-### المميزات
-
-- أوقات الصلاة: يعرض التطبيق مواقيت الصلاة بدقة عالية بناءً على موقعك الجغرافي.
-- إشعارات الأذان: استقبل تنبيهات صوتية عند حلول وقت كل صلاة لتكون على استعداد دائم.
-- اتجاه القبلة: بوصلة دقيقة وسهلة الاستخدام لتحديد اتجاه القبلة الصحيح من أي مكان في العالم.
-- واجهة تفاعلية: تصميم بسيط وواضح يجعل من السهل التنقل بين مميزات التطبيق دون أي تعقيد.
-
-### الأذونات والخصوصية
-
-- الموقع: لاستخدام الحسابات الدقيقة لمواقيت الصلاة وتحديد اتجاه القبلة.
-- الإشعارات: لإرسال التنبيهات عند دخول وقت الصلاة.
-
-نلتزم باحترام خصوصيتك وعدم جمع أي بيانات شخصية غير ضرورية.
-
-### التثبيت والتشغيل
-
-متطلبات أساسية:
-
-- Flutter SDK 3.22+ (أو الأحدث)
-- Xcode/Android Studio وأدوات المنصات ذات الصلة
-
-خطوات سريعة:
-
-1) تثبيت الحزم:
-
-```bash
-flutter pub get
-```
-
-2) تشغيل التطبيق على جهاز/محاكي متصل:
-
-```bash
-flutter run
-```
-
-3) إنشاء نسخة إنتاجية (اختياري):
-
-```bash
-# Android
-flutter build apk --release
-
-# iOS (يتطلب macOS وXcode)
-flutter build ipa --release
-```
-
-> مراقبة الأخطاء عبر Sentry مفعّلة مؤقتاً (DSN مضمّن في `lib/core/services/sentry_service.dart`) لأغراض التشخيص — تُحذف المكتبة بالكامل قبل رفع التطبيق للمتجر.
-
-> يدعم التطبيق تعدد اللغات عبر ملفات `assets/locales/*.json`.
-
-### النشر والإصدارات
-
-الرفع للمتاجر يتم عبر GitHub Actions بworkflows يدوية التشغيل (نفس نمط مستودع alquranalkareem). طقس كل إصدار:
-
-1. ارفع `version:` في `pubspec.yaml` (مثل `1.2.17+24`).
-2. اكتب ملاحظات الإصدار في `release_notes/<الإصدار-الكامل>/ar.md` (`en.md` اختياري) — الـworkflow يفشل إن غاب ملف العربية.
-3. شغّل الـworkflow المطلوب يدويًا من تبويب Actions:
-
-| الـWorkflow | الوجهة | ملاحظات |
-|---|---|---|
-| `release-play` | Google Play (production) | AAB بنكهة `googlePlayRelease`، ملاحظات whatsnew تلقائيًا من `release_notes` — الإرسال للمراجعة يدويًا من Play Console |
-| `release-testflight` | TestFlight (iOS) | إرسال نسخة App Store للمراجعة يدويًا من App Store Connect |
-| `release-appgallery` | Huawei AppGallery (مسودة) | APK بتوقيع هواوي — المراجعة يدويًا |
-| `release-github` | GitHub Release مرقّم `v<الإصدار>` | تحميلات مباشرة: Android/macOS (موقّع وموثّق Developer ID)/Linux |
-| `release-mac-appstore` | Mac App Store (TestFlight) | حزمة `.pkg` موقّعة |
-
-الأسرار (تُضبط مرة واحدة عبر `./set-store-secrets.sh` من جذر المستودع):
-
-| السر | المستوى | المصدر |
-|---|---|---|
-| `MAPTILER_KEY` | المستودع | مفتاح MapTiler |
-| `PLAY_KEYSTORE_BASE64/PASSWORD/ALIAS/KEY_PASSWORD` | المستودع | `android/google-play-keystore.jks` + `google-play-key.properties` |
-| `PLAY_SERVICE_ACCOUNT_JSON` | المستودع | حساب خدمة من Play Console بوصول للتطبيق |
-| `HUAWEI_KEYSTORE_BASE64/PASSWORD/ALIAS/KEY_PASSWORD` | المستودع | `android/huawei-release-key.keystore` + `key.properties` |
-| `IOS_PROFILE_BASE64` / `IOS_PROFILE_WIDGET_BASE64` | المستودع | بروفايل App Store جديد لـ`com.alheekmah.aqimApp` وللويدجت `...prayerWidget` |
-| `MAS_PROFILE_BASE64` / `MAS_PROFILE_WIDGET_BASE64` | المستودع | بروفايل Mac App Store (المنصة macOS حصريًا) للتطبيق والويدجت |
-| `IOS_P12_BASE64/PASSWORD` | المستودع (مشترك) | شهادة Apple Distribution (نفس قيم تطبيق القرآن) |
-| `MAC_DEV_ID_P12_BASE64/PASSWORD` | المستودع (مشترك) | شهادة Developer ID Application |
-| `MAS_INSTALLER_P12_BASE64/PASSWORD` | المستودع (مشترك) | شهادة 3rd Party Mac Developer Installer |
-| `ASC_KEY_ID/ISSUER_ID/KEY_P8_BASE64` | المستودع (مشترك) | مفتاح App Store Connect API |
-| `AGC_CLIENT_ID/SECRET` | المستودع (مشترك) | عميل Publishing API من AppGallery Connect |
-
-> «مشترك» تعني نفس القيم المعتمدة في مستودع القرآن لكنها تُضبط على مستوى كل مستودع — حساب `alheekmahlib` شخصي، وأسرار مستوى المؤسسة غير متاحة على GitHub للحسابات الشخصية.
-
-> تذكير: الـbuildType الافتراضي `release` موقّع بمفتاح هواوي، وبناء Play يستخدم `--flavor googlePlayRelease`. اعتمادية `floatica` تُسحب في CI كمستودع شقيق تلقائيًا.
+| Concern | Technology |
+| --- | --- |
+| Framework | Flutter (Dart SDK ≥ 3.12) |
+| State management | GetX (`get`) + `get_it` service locator |
+| Local storage | GetStorage |
+| Prayer calculation | [`adhan`](https://pub.dev/packages/adhan) |
+| Qibla | `compassx` (compass) + `flutter_map` with MapTiler tiles |
+| Location | `geolocator` + `huawei_location` / `huawei_site` on Huawei devices; Nominatim geocoding for city search |
+| Adhan audio | `just_audio` |
+| Notifications & alarms | `flutter_local_notifications`, `background_fetch` |
+| Home widgets | `home_widget` (Android / iOS / macOS) |
+| Liquid Glass UI | `floatica`, `liquid_glass_plus` |
+| Networking | Dio + either_dart failure system |
 
 ---
 
-## English
+## 📂 Project Structure
 
-### Overview
+```
+lib/
+├── core/                    # App-wide services and utilities
+│   ├── services/            # Adhan alarm scheduler, notifications, location, connectivity…
+│   ├── utils/               # Constants, extensions, themes, router
+│   └── widgets/             # Shared widgets (glass containers, buttons, switches…)
+├── presentation/
+│   ├── controllers/         # Global controllers (theme, …)
+│   ├── prayers/             # Times dashboard, cities times, Hijri widget
+│   ├── qibla/               # Qibla compass & map
+│   ├── teaching_prayer/     # Step-by-step prayer teaching
+│   ├── calendar/            # Hijri calendar & religious events
+│   ├── settings/            # Settings & theme switching
+│   └── …                    # home, splash, feedback, about, whats_new, our apps
+├── main.dart                # Entry point
+└── my_app.dart              # Bootstrap (DI, themes, localization, notifications)
 
-“Aqim” is a simple and focused Islamic app built to help you pray on time with ease. It provides the essential daily tools for every Muslim with a clean, interactive UI for a clear and comfortable experience. With Aqim, you won’t miss a prayer again—think of it as your personal reminder with accurate Qibla guidance.
-
-### Features
-
-- Prayer Times: Highly accurate timings based on your geographic location.
-- Adhan Notifications: Receive audible alerts when it’s time to pray.
-- Qibla Direction: A precise and easy-to-use compass to find the Qibla anywhere.
-- Interactive UI: A clean, straightforward design that’s effortless to navigate.
-
-### Permissions & Privacy
-
-- Location: Required for accurate prayer times and Qibla direction.
-- Notifications: To alert you at prayer times.
-
-We respect your privacy and do not collect unnecessary personal data.
-
-### Build & Run
-
-Prerequisites:
-
-- Flutter SDK 3.22+ (or newer)
-- Xcode/Android Studio with platform toolchains
-
-Quick start:
-
-1) Install dependencies:
-
-```bash
-flutter pub get
+test/                        # Unit & widget tests
 ```
 
-2) Run on a connected device/emulator:
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- **Flutter SDK** (stable channel) with **Dart ≥ 3.12** — install via [flutter.dev/docs/get-started/install](https://flutter.dev/docs/get-started/install).
+- **Android**: Android Studio with platform tools; `minSdk 27`, `compileSdk 37` (Android 8.1+).
+- **iOS / macOS**: Xcode with an available simulator or a connected device, plus CocoaPods.
+- A free **[MapTiler](https://www.maptiler.com/)** key (map tiles for the Qibla & location map).
+- The [`floatica`](https://github.com/alheekmahlib/floatica) package cloned as a **sibling repository** (it is wired as a local path override).
+- Verify your setup:
 
 ```bash
+flutter doctor
+```
+
+### Installation
+
+```bash
+# 1. Clone the repository and its sibling path dependency
+git clone https://github.com/alheekmahlib/aqim.git
+cd aqim
+git clone https://github.com/alheekmahlib/floatica.git ../floatica
+
+# 2. Install dependencies
+flutter pub get
+
+# 3. Configure your MapTiler key
+cp lib/core/utils/constants/api_keys_example.dart lib/core/utils/constants/api_keys.dart
+# then edit lib/core/utils/constants/api_keys.dart and set mapTilerKey
+
+# 4. Run the app
 flutter run
 ```
 
-3) Build release (optional):
+### 🔐 Key Configuration
+
+`api_keys.dart` is git-ignored; start from the provided template. In CI it is generated automatically from the `MAPTILER_KEY` secret.
+
+| Key | Where | Purpose |
+| --- | --- | --- |
+| `mapTilerKey` | `lib/core/utils/constants/api_keys.dart` | Map tiles for the Qibla & location map (local runs); generated from the `MAPTILER_KEY` repo secret in CI |
+
+### Build
+
+Release builds:
 
 ```bash
-# Android
+# Android APK / App Bundle
 flutter build apk --release
+flutter build appbundle --release
 
-# iOS (requires macOS & Xcode)
-flutter build ipa --release
+# iOS / macOS
+flutter build ios --release
+flutter build macos --release
 ```
 
-> Error monitoring via Sentry is enabled temporarily (DSN embedded in `lib/core/services/sentry_service.dart`) for diagnosis — remove the library entirely before publishing to app stores.
+> The default `release` build type is Huawei-signed; Google Play builds go through CI with the `googlePlayRelease` flavor.
+
+> Error monitoring via Sentry is enabled temporarily (DSN embedded in `lib/core/services/sentry_service.dart`) for diagnosis — it is removed before store releases.
 
 ### Releasing
 
-Store uploads run through manually-triggered GitHub Actions workflows (same setup as the alquranalkareem repo). Release ritual:
+Releasing runs through six workflows in `.github/workflows/`, triggered manually from the Actions tab (the web deploy runs automatically):
 
-1. Bump `version:` in `pubspec.yaml` (e.g. `1.2.17+24`).
-2. Write `release_notes/<full-version>/ar.md` (`en.md` optional) — workflows fail fast if the Arabic notes file is missing.
-3. Run the desired workflow from the Actions tab:
+| Workflow | What it does |
+|---|---|
+| `release-github.yml` | Builds Android/macOS/Linux (production signing, notarized macOS) and publishes a versioned GitHub Release with direct downloads |
+| `release-play.yml` | Builds a signed AAB (`googlePlayRelease`) and uploads it to the production track (press "Send for review" once in Play Console) |
+| `release-testflight.yml` | Builds a signed IPA and uploads it to TestFlight |
+| `release-appgallery.yml` | Builds a Huawei-signed APK and attaches it to the AppGallery Connect draft release (review not submitted) |
+| `release-mac-appstore.yml` | Builds a signed Mac App Store .pkg and uploads it to TestFlight |
+| `deploy-web.yml` | Builds and deploys the web version to GitHub Pages on every push to `main` |
 
-| Workflow | Target | Notes |
-|---|---|---|
-| `release-play` | Google Play (production) | AAB via the `googlePlayRelease` build type, what's-new from `release_notes` — press "Send for review" in Play Console |
-| `release-testflight` | TestFlight (iOS) | App Store submission stays manual in App Store Connect |
-| `release-appgallery` | Huawei AppGallery (draft) | Huawei-signed APK — review submission manual |
-| `release-github` | Versioned GitHub Release `v<version>` | Direct downloads: Android/macOS (Developer ID signed + notarized)/Linux |
-| `release-mac-appstore` | Mac App Store (TestFlight) | Signed `.pkg` |
+Every release: bump `version:` in `pubspec.yaml` (e.g. `1.2.17+24`) and write `release_notes/<full-version>/ar.md` (+ optional `en.md`) — the workflows fail fast if the Arabic notes file is missing.
 
-Secrets are configured once via `./set-store-secrets.sh` from the repo root: app-specific secrets (Android keystores, provisioning profiles, Play service account) and shared ones (Apple Distribution, Developer ID, Mac Installer, ASC API key, AGC client — same values as the Quran repo) all live at repo level, since the `alheekmahlib` account is personal and GitHub org-level secrets are unavailable. The default `release` build type is Huawei-signed; Play builds use `--flavor googlePlayRelease`. The `floatica` dependency is checked out as a sibling repo in CI automatically.
+Required GitHub secrets (configured once via `./set-store-secrets.sh` from the repo root): `MAPTILER_KEY`; Android — `PLAY_KEYSTORE_BASE64`, `PLAY_KEYSTORE_PASSWORD`, `PLAY_KEY_ALIAS`, `PLAY_KEY_PASSWORD`, `PLAY_SERVICE_ACCOUNT_JSON`; Huawei — `HUAWEI_KEYSTORE_BASE64`, `HUAWEI_KEYSTORE_PASSWORD`, `HUAWEI_KEY_ALIAS`, `HUAWEI_KEY_PASSWORD`, `AGC_CLIENT_ID`, `AGC_CLIENT_SECRET`; Apple — `IOS_P12_BASE64`, `IOS_P12_PASSWORD`, `IOS_PROFILE_BASE64`, `IOS_PROFILE_WIDGET_BASE64`, `MAC_DEV_ID_P12_BASE64`, `MAC_DEV_ID_P12_PASSWORD`, `MAS_INSTALLER_P12_BASE64`, `MAS_INSTALLER_P12_PASSWORD`, `MAS_PROFILE_BASE64`, `MAS_PROFILE_WIDGET_BASE64`, `ASC_KEY_ID`, `ASC_ISSUER_ID`, `ASC_KEY_P8_BASE64`.
 
-—
+---
 
-Made with Flutter. If you have suggestions or find issues, please open an issue or a pull request.
+## 🧪 Testing
+
+```bash
+flutter test
+```
+
+The suite covers theme switching (classic / Liquid Glass), the glass container widget, and more (`test/`).
+
+---
+
+## 🧰 Troubleshooting
+
+| Problem | Likely cause | Solution |
+| --- | --- | --- |
+| `flutter pub get` fails on `connectivity_kit` / `multi_store_review` / `drawing_animation` / `google_huawei_availability` | Git dependencies pulled from GitHub | Ensure you have network access to GitHub and a valid Git setup (`git --version`), then retry. |
+| `flutter pub get` fails resolving `floatica` | `floatica` is wired as a local path override (`../floatica`) | Clone it as a sibling: `git clone https://github.com/alheekmahlib/floatica.git ../floatica` |
+| Build fails: `api_keys.dart` not found | The real key file is git-ignored | Copy `lib/core/utils/constants/api_keys_example.dart` to `api_keys.dart` and fill in your MapTiler key. |
+| Web deploy workflow fails with "MAPTILER_KEY is not configured" | The repo secret is missing | Add `MAPTILER_KEY` in the repository settings → Secrets and variables → Actions. |
+| Android build fails with SDK errors | Wrong platform tools | Open Android Studio → SDK Manager, install SDK 37 / matching build tools, then `flutter clean && flutter pub get`. |
+| iOS build fails at pod install | Outdated CocoaPods repos | `cd ios && pod install --repo-update` (repeat in `macos/` for macOS). |
+| Run fails: device not detected | Platform tooling issues | Run `flutter doctor -v`, start an emulator or connect a device, confirm with `flutter devices`. |
+| Stale build / weird UI glitches after pulling changes | Cached artifacts | `flutter clean && flutter pub get` then rerun. |
+| Gradle `minSdk 27` error on old device | Device Android version < 8.1 | Use a device with Android 8.1 (API 27) or newer. |
+
+---
+
+## 🤝 Contributing
+
+Contributions are most welcome! The app is under active development and there is a roadmap of upcoming features.
+
+1. Fork the repository and create a feature branch (`git checkout -b feature/my-feature`).
+2. Follow the existing code style — run `dart format` and make sure `flutter analyze` and `flutter test` pass.
+3. Add or update tests for the behavior you change.
+4. Open a Pull Request with a clear description of what changed and why.
+
+Found a bug or have an idea? Please [open an issue](https://github.com/alheekmahlib/aqim/issues).
+
+---
+
+## ⭐ Show Your Support
+
+If you like Aqim, please ⭐ star the repository — it helps others discover it. You can also support continued development:
+
+<p align="center">
+  <a href="https://www.buymeacoffee.com/haw8a9zen">
+    <img src="https://img.shields.io/badge/Buy_Me_A_Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black" alt="Buy Me A Coffee"/>
+  </a>
+  <a href="https://paypal.me/hawazen89">
+    <img src="https://img.shields.io/badge/PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white" alt="PayPal"/>
+  </a>
+</p>
+
+Jazaakum Allahu khairan.
+
+---
+
+## 🔗 More From Al-Heekmah Library
+
+Explore the rest of the family of apps on GitHub: [@alheekmahlib](https://github.com/alheekmahlib)
+
+</div>
